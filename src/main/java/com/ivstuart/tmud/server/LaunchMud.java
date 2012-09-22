@@ -6,6 +6,12 @@
  */
 package com.ivstuart.tmud.server;
 
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
+import java.net.URISyntaxException;
+import java.util.Properties;
+
 import org.apache.log4j.Logger;
 
 import com.ivstuart.tmud.state.util.StateReader;
@@ -18,11 +24,10 @@ public class LaunchMud {
 
 	private static final Logger LOGGER = Logger.getLogger(LaunchMud.class);
 
-	public final static int DEFAULT_PORT = 5678;
-	public final static String USAGE = "LaunchMud <primary config file>";
+	public static Properties mudServerProperties;
 
 	private static void displayUsage() {
-		System.out.println(USAGE);
+		System.out.println("LaunchMud <primary config file>");
 		System.exit(0);
 	}
 
@@ -34,18 +39,49 @@ public class LaunchMud {
 			displayUsage();
 		}
 
+		try {
+			loadMudServerProperties();
+		} catch (Exception e) {
+			LOGGER.error("Problem loading mud server properties", e);
+		}
+
 		StateReader.load();
 
 		MudServer s = new MudServer();
 
-		s.startListening(DEFAULT_PORT);
+		s.startListening(mudServerProperties.getProperty("default.port","5678"));
+		
 		try {
 			Thread.sleep(15 * 60 * 1000); // 15 minutes
 		} catch (Exception e) {
-			System.err.println(e.toString());
+			LOGGER.error("Problem sleeping",e);
 		}
 
 		LOGGER.info("Finnished mud.");
+
+	}
+
+	private static void loadMudServerProperties() throws URISyntaxException,
+			IOException {
+		LOGGER.info("Loading mud server properties");
+
+		mudServerProperties = new Properties();
+
+		Reader reader = null;
+
+		try {
+
+			reader = new FileReader("src/main/resources/config/mudserver.properties");
+
+			mudServerProperties.load(reader);
+
+		} finally {
+
+			if (reader != null) {
+				reader.close();
+			}
+
+		}
 
 	}
 

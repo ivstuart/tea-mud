@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 
 import org.apache.log4j.Logger;
 
+import com.ivstuart.tmud.server.LaunchMud;
 import com.ivstuart.tmud.state.BaseSkill;
 import com.ivstuart.tmud.state.BasicThing;
 import com.ivstuart.tmud.state.GuardMob;
@@ -20,25 +21,19 @@ import com.ivstuart.tmud.utils.FileHandle;
 
 public class StateReader {
 
-	private static final Logger LOGGER = Logger.getLogger(StateReader.class);
+	private static final String CLASS = "class";
 
-	private static String INCLUDE = "include";
+	private static String classprefix = "com.ivstuart.tmud.";
 
-	private static String CLASS = "class";
+	private static final String CLONE = "clone";
 
-	private static String NEW_CLASS = "id";
-
-	private static String CLONE = "clone";
+	private static final String INCLUDE = "include";
 
 	private static StateReader loader = new StateReader();
 
-	private static String _defaultConfigFile = "index.txt";
+	private static final Logger LOGGER = Logger.getLogger(StateReader.class);
 
-	private static String _delim;
-
-	private static String _dir;
-	
-	private static final String classprefix = "com.ivstuart.tmud.";
+	private static final String NEW_CLASS = "id";
 
 	private static void add(Object obj_) {
 
@@ -107,7 +102,8 @@ public class StateReader {
 		return loader;
 	}
 
-	// public static void load() gets propertie which points at index file which
+	// public static void load() gets properties which points at index file
+	// which
 	// references other files to load.
 
 	private static Method getMethod(Object object, String name, Class<?> aClass) {
@@ -120,26 +116,31 @@ public class StateReader {
 	}
 
 	public static void load() {
+
+		classprefix = LaunchMud.mudServerProperties.getProperty("class.prefix");
+
 		try {
-			load(_defaultConfigFile);
+			load(LaunchMud.mudServerProperties
+					.getProperty("world.state.filepath"));
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.debug("Problem loading state file", e);
 		}
 	}
 
-	public static void load(String filename_) throws Exception {
+	public static void load(String fileName) throws Exception {
 
-		LOGGER.info("Loading from file:" + filename_);
+		LOGGER.info("Loading from file [ " + fileName + " ]");
 
-		String filename = _dir + filename_;
+		String filename = System.getProperty("user.dir")
+				+ LaunchMud.mudServerProperties.getProperty("world.state.dir")
+				+ fileName;
 
 		FileHandle file = new FileHandle(filename);
 
 		try {
 			file.read();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.debug("Problem loading state file", e);
 		}
 
 		Object obj = null;
@@ -165,7 +166,7 @@ public class StateReader {
 
 					try {
 						String[] params = args.split(" ");
-						
+
 						LOGGER.debug(params[0] + params[1]);
 
 						// TODO decide if enum is better to model SHIELD_BLOCK
@@ -176,14 +177,14 @@ public class StateReader {
 
 						args = value.toString();
 					} catch (Exception e) {
-						LOGGER.warn("Problem calling setter",e);
+						LOGGER.warn("Problem calling setter", e);
 					}
 
 				}
 
 			}
 
-			LOGGER.debug("tag = " + tag + " args = " + args);
+			LOGGER.debug("tag [ " + tag + " ] args [ " + args + " ]");
 
 			if (CLASS.equals(tag)) {
 				currentClass = args;
@@ -198,7 +199,8 @@ public class StateReader {
 					try {
 						LOGGER.info("Creating instance of class type [ "
 								+ currentClass + " ]");
-						Class<?> theClass = Class.forName(classprefix + currentClass);
+						Class<?> theClass = Class.forName(classprefix
+								+ currentClass);
 						obj = theClass.newInstance();
 					} catch (InstantiationException ie) {
 						ie.printStackTrace();
@@ -219,7 +221,7 @@ public class StateReader {
 			}
 
 			if (INCLUDE.equals(tag)) {
-				// call recusively to load other files...
+				// call recursively to load other files...
 				StateReader.load(args);
 				continue;
 			}
@@ -230,12 +232,12 @@ public class StateReader {
 			Method method = null;
 
 			// TODO look for method of that required name on the object and back
-			// up the class hierachy for params
+			// up the class hierarchy for parameters
 			// String and Integer. See if this works.
 
 			try {
 
-				// Responsiblity of called method to deal with string to number
+				// Responsibility of called method to deal with string to number
 				// conversions.
 				method = getMethod(obj, methodName, String.class);
 				Method integerMethod = getMethod(obj, methodName, int.class);
@@ -278,13 +280,4 @@ public class StateReader {
 
 	}
 
-	private StateReader() {
-		_delim = System.getProperty("file.separator");
-		
-		// TODO source from properties file (-D option to launch script)
-		_dir = System.getProperty("user.dir") + "/src/main/resources/world/";
-		//+ _delim + "state" + _delim	+ "world" + _delim;
-
-		LOGGER.debug("Directory location for reading word files [" + _dir + "]");
-	}
 }

@@ -16,7 +16,11 @@ import java.nio.channels.SocketChannel;
 import java.nio.channels.spi.SelectorProvider;
 import java.util.Iterator;
 
+import org.apache.log4j.Logger;
+
 public class MudServer {
+
+	private static final Logger LOGGER = Logger.getLogger(MudServer.class);
 
 	/** Thread which runs the Selector */
 	private class SelectorThread extends Thread {
@@ -31,10 +35,11 @@ public class MudServer {
 
 			buffer.clear();
 
-			int count = socketChannel.read(buffer);
+			int numberOfBytesRead = socketChannel.read(buffer);
 
-			if (count <= 0) {
-				System.out.println("Count = " + count);
+			if (numberOfBytesRead <= 0) {
+				LOGGER.debug("Less than 1 byte read [" + numberOfBytesRead
+						+ "]");
 				socketChannel.close();
 				return;
 			}
@@ -68,6 +73,7 @@ public class MudServer {
 
 					Iterator<SelectionKey> selectionKeyIter = readSelector
 							.selectedKeys().iterator();
+
 					while (selectionKeyIter.hasNext()) {
 						SelectionKey sk = selectionKeyIter.next();
 						selectionKeyIter.remove();
@@ -94,10 +100,8 @@ public class MudServer {
 						}
 					}
 				}
-			} catch (Exception ex) {
-				ex.printStackTrace();
-				System.out.println("Exception in selector loop: "
-						+ ex.toString());
+			} catch (Exception e) {
+				LOGGER.error("Problem with communication channel", e);
 			}
 		} // end run()
 
@@ -115,6 +119,10 @@ public class MudServer {
 	/** The thread that waits for ready Channels - accept / read */
 	private SelectorThread readThread = null;
 
+	protected void startListening(String port) {
+		startListening(Integer.parseInt(port));
+	}
+
 	/**
 	 * Sets up the selectors and starts listening
 	 */
@@ -124,18 +132,21 @@ public class MudServer {
 			readSelector = SelectorProvider.provider().openSelector();
 			writeSelector = SelectorProvider.provider().openSelector();
 			ssch = ServerSocketChannel.open();
+
+			// Non-blocking
 			ssch.configureBlocking(false);
 			InetSocketAddress isa = new InetSocketAddress(
 					InetAddress.getLocalHost(), port);
-			System.out.println("Started on host = "
-					+ InetAddress.getLocalHost());
+
+			LOGGER.info("Started listening on [ " + InetAddress.getLocalHost()
+					+ ":" + port + " ]");
+
 			ssch.socket().bind(isa);
 			ssch.register(readSelector, SelectionKey.OP_ACCEPT);
 			ssch.register(writeSelector, SelectionKey.OP_ACCEPT);
 
-			System.out.println("Started listening on port = " + port);
 		} catch (Exception e) {
-			System.out.println("Error starting listening" + e.toString());
+			LOGGER.error("Problem with starting selector thread", e);
 		}
 
 		this.readThread = new SelectorThread();
@@ -148,7 +159,7 @@ public class MudServer {
 		try {
 			this.ssch.close();
 		} catch (Exception e) {
-			System.err.println("Exception in stop()" + e.toString());
+			LOGGER.error("Problem with stopping selector thread", e);
 		}
 		this.ssch = null;
 	}
