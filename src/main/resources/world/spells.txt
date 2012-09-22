@@ -1,0 +1,105 @@
+class: state.Spell
+id: poison
+level: 1
+cost: 7
+damage: 2d6
+speed: 5
+# Hard coded rather than reflection instanciated txt look up of a class
+# might be better with spellEffect: spells.Poison
+spellEffect: POISON
+
+class: state.Spell
+id: cure poison
+level: 1
+cost: 7
+damage: 2d6
+speed: 5
+# Hard coded rather than reflection instanciated txt look up of a class
+# might be better with spellEffect: spells.Poison
+spellEffect: CURE
+
+id: magic missile
+level: 1
+cost: 5
+damage: 2d6
+speed: 5
+
+id: shock
+level: 1
+cost: 7
+damage: 2d6
+speed: 5
+
+id: magic bolt
+cost: 10
+level: 1
+damage: 3d6
+speed: 7
+prereq: magic missile
+
+id: magic blast
+level: 10
+cost: 20
+damage: 4d6
+speed: 8
+prereq: magic missile
+
+id: chill touch
+level: 3
+cost: 5
+mana: WATER
+damage: 2d6
+speed: 5
+
+id: ice blast
+level: 10
+cost: 5
+damage: 2d6
+speed: 5
+mana: WATER
+prereq: chill touch
+
+id: cold of cold
+level: 20
+cost: 5
+damage: 2d6
+speed: 5
+mana: WATER
+prereq: ice blast
+
+id: lesser healing
+level: 4
+cost: 5
+damage: -2d6
+target: SELF
+speed: 5
+mana: EARTH
+prereq: 
+
+id: healing touch
+level: 4
+cost: 5
+damage: -4d6
+target: SELF
+speed: 5
+mana: EARTH
+prereq: lesser healing
+
+id: greater healing
+level: 4
+cost: 5
+damage: -6d6
+target: SELF
+speed: 5
+mana: EARTH
+prereq: healing touch
+
+id: protection
+level: 10
+cost: 5
+damage: -6d6
+target: SELF
+speed: 5
+mana: WATER
+prereq: healing touch
+prereq: greater healing

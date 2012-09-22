@@ -1,0 +1,10 @@
+id: 1
+name:
+profit:
+behaviour:
+trades: ALL GOOD EVIL
+open:
+banks:
+buys: regular exp
+buys: 
+etc...

@@ -1,0 +1,133 @@
+class: state.Room
+
+id: R-P1
+brief: The Portal of Eternal Darkness
+type: Ether
+look: Your essense seems suspended, listlessly in a chaotic maelstrom of swirling
+look: white and black mist. As the mists flow about you, black and white tendrils
+look: seem to pause, pulling you either up or down. Looking far below your
+look: body, the dense black mist seems to get heavier. Far above you, the white
+look: misty tendrils form clouds. It seems the blackness brings with it great, yet
+look: wonderous feelings of evil. Tainted only by the white tendrils persistance
+look: at a heavenly conception of righteousness. Far off you see a form, thats calls 
+look: to you.
+exits: body->R-001-001
+key: gold7
+properties: NOMobS 
+keywords: dragon
+description: a huge sleeping dragon. Crikey! thats lucky he is asleep.
+
+id: R-P2
+brief: The Portal of Eternal Light
+type: Ether
+look: Your essense seems suspended, listlessly in a chaotic maelstrom of swirling
+look: white and black mist. As the mists flow about you, black and white tendrils
+look: seem to pause, pulling you either up or down. Looking far below your
+look: body, the dense black mist seems to get heavier. Far above you, the white
+look: misty tendrils form clouds. It seems the blackness brings with it great, yet
+look: wonderous feelings of evil. Tainted only by the white tendrils persistance
+look: at a heavenly conception of righteousness. Far off you see a form, thats calls 
+look: to you.
+exits: body->R-001-001
+key: gold7
+properties: NOMobS 
+keywords: dragon
+description: a huge sleeping dragon. Crikey! thats lucky hes asleep.
+
+id: R-001-001
+# Beneath the Portal of Eternal Light
+brief: A room near a dark portal
+type: Chamber 
+look: This room has been ornately decorated with murals and tapestries
+look: depicting glorious battles fought by the army of light. To the east the
+look: inner sanctum of the White Tower flickers with bright torches. The portal of
+look: eternal light ends in a bright point of light.  
+exits: east->R-002-001 south->R-001-002 
+doors: [east]
+exitHidden: east
+mob: snake-002
+mob: snake-002
+item: sword-001
+item: scarf-001
+item: scarf-002
+item: scarf-003
+item: scarf-003
+properties: DAR
+
+id: R-002-001
+brief: The Dark Inner Sanctum of the White Tower
+type: Chamber
+look: The dark inner sanctum within the White Tower is made from highly polished
+look: snow white marbled stone. Along the outer walls of the courtyard torches,
+look: held by iron sconces, flicker dim light about the area. 
+exits: east->R-003-001 south->R-002-002 west->R-001-001 
+properties: DARK
+
+id: R-003-001
+brief: The Mosaic Covered Floor in the White Tower
+type: Chamber
+look: The mosaic painted on the throne id floor is a map of the world. It was
+look: charted for the king to sit upon his floor and gaze at his conquests. The
+look: mosaic was painted by the finest artisans of the world in pain-staking
+look: detail. Perhaps spending some time reviewing this mosaic will be beneficial
+look: in gaining an understanding of the lay of the land. 
+exits: south->R-003-002 west->R-002-001
+
+
+id: R-001-002
+brief: The Inner Sanctum of the White Tower
+type: Chamber
+look: This small corridor runs west away from the main throne id of the white
+look: tower. The hall has occasional tapestries on the walls that depict the
+look: victorious battles and conquests for the army of the light. To the west a
+look: small stairwell ascends to the roof of the tower. 
+exits: north->R-001-001 east->R-002-002 south->R-001-003 
+prop: teacher-001
+
+id: R-002-002
+brief: The Inner Sanctum of the White Tower
+type: Chamber
+look: This small corridor runs west away from the main throne id of the white
+look: tower. The hall has occasional tapestries on the walls that depict the
+look: victorious battles and conquests for the army of the light. To the west a
+look: small stairwell ascends to the roof of the tower. 
+exits: north->R-002-001 east->R-003-002 south->R-002-003 west->R-001-002
+#doors: north
+prop: teacher-002
+mob: guard-003
+mob: guard-003
+
+id: R-003-002
+brief: The Inner Sanctum of the White Tower
+type: Chamber
+look: This small corridor runs west away from the main throne id of the white
+look: tower. The hall has occasional tapestries on the walls that depict the
+look: victorious battles and conquests for the army of the light. To the west a
+look: small stairwell ascends to the roof of the tower. 
+exits: north->R-003-001 south->R-003-003 west->R-002-002
+
+id: R-001-003
+brief: The Inner Sanctum of the White Tower
+type: Chamber
+look: The inner sanctum within the White Tower is made from highly polished
+look: snow white marbled stone. Along the outer walls of the courtyard torches,
+look: held by iron sconces, flicker dim light about the area. 
+exits: north->R-001-002 east->R-002-003
+
+id: R-002-003
+brief: The Inner Sanctum of the White Tower
+type: Chamber
+look: The inner sanctum within the White Tower is made from highly polished
+look: snow white marbled stone. Along the outer walls of the courtyard torches,
+look: held by iron sconces, flicker dim light about the area. 
+exits: north->R-002-002 east->R-003-003 west->R-001-003
+
+id: R-003-003
+brief: The Inner Sanctum of the White Tower
+type: Chamber
+look: The inner sanctum within the White Tower is made from highly polished
+look: snow white marbled stone. Along the outer walls of the courtyard torches,
+look: held by iron sconces, flicker dim light about the area. 
+exits: north->R-003-002 west->R-002-003
+initdoors:
+

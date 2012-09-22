@@ -1,0 +1,192 @@
+class: state.Gem
+# Level 20 Gems
+id: fire-20
+alias: ruby gem
+short: rough ruby gemstone
+look: rough ruby gemstone
+action:
+type: gem
+mana: FIRE
+level: 20
+wear: PRIMARY SECONDARY
+weight: 1
+
+id: earth-20
+alias: emerald gem
+short: rough emerald gemstone
+look: rough emerald gemstone
+action:
+type: gem
+mana: EARTH
+level: 20
+wear: PRIMARY SECONDARY
+weight: 1
+
+id: water-20
+alias: sapphire gem
+short: rough sapphire gemstone
+look: rough sapphire gemstone
+action:
+type: gem
+mana: WATER
+level: 20
+wear: PRIMARY SECONDARY
+weight: 1
+
+id: air-20
+alias: diamond gem
+short: rough diamond gemstone
+look: rough diamond gemstone
+action:
+type: gem
+mana: AIR
+level: 20
+wear: PRIMARY SECONDARY
+weight: 1
+
+# Level 40 Gems
+id: fire-40
+alias: ruby gem
+short: fine ruby gemstone
+look: fine ruby gemstone
+action:
+type: gem
+mana: FIRE
+level: 40
+wear: PRIMARY SECONDARY
+weight: 1
+
+id: earth-40
+alias: emerald gem
+short: fine emerald gemstone
+look: fine emerald gemstone
+action:
+type: gem
+mana: EARTH
+level: 40
+wear: PRIMARY SECONDARY
+weight: 1
+
+id: water-40
+alias: sapphire gem
+short: fine sapphire gemstone
+look: fine sapphire gemstone
+action:
+type: gem
+mana: WATER
+level: 40
+wear: PRIMARY SECONDARY
+weight: 1
+
+id: air-40
+alias: diamond gem
+short: fine diamond gemstone
+look: fine diamond gemstone
+action:
+type: gem
+mana: AIR
+level: 40
+wear: PRIMARY SECONDARY
+weight: 1
+
+
+# Level 60 Gems
+id: fire-60
+alias: ruby gem
+short: sparkling ruby gemstone
+look: sparkling ruby gemstone
+action:
+type: gem
+mana: FIRE
+level: 60
+wear: PRIMARY SECONDARY
+weight: 1
+
+id: earth-60
+alias: emerald gem
+short: sparkling emerald gemstone
+look: sparkling emerald gemstone
+action:
+type: gem
+mana: EARTH
+level: 60
+wear: PRIMARY SECONDARY
+weight: 1
+
+id: water-60
+alias: sapphire gem
+short: sparkling sapphire gemstone
+look: sparkling sapphire gemstone
+action:
+type: gem
+mana: WATER
+level: 60
+wear: PRIMARY SECONDARY
+weight: 1
+
+id: air-60
+alias: diamond gem
+short: sparkling diamond gemstone
+look: sparkling diamond gemstone
+action:
+type: gem
+mana: AIR
+level: 60
+wear: PRIMARY SECONDARY
+weight: 1
+
+
+# Level 80 Gems
+id: fire-80
+alias: ruby gem
+short: flawless ruby gemstone
+look: flawless ruby gemstone
+action:
+type: gem
+mana: FIRE
+level: 80
+wear: PRIMARY SECONDARY
+weight: 1
+
+id: earth-80
+alias: emerald gem
+short: flawless emerald gemstone
+look: flawless emerald gemstone
+action:
+type: gem
+mana: EARTH
+level: 80
+wear: PRIMARY SECONDARY
+weight: 1
+
+id: water-80
+alias: sapphire gem
+short: flawless sapphire gemstone
+look: flawless sapphire gemstone
+action:
+type: gem
+mana: WATER
+level: 80
+wear: PRIMARY SECONDARY
+weight: 1
+
+id: air-80
+alias: diamond gem
+short: flawless diamond gemstone
+look: flawless diamond gemstone
+action:
+type: gem
+mana: AIR
+level: 80
+wear: PRIMARY SECONDARY
+weight: 1
+
+# diamond
+# emrelled
+# saphire
+# opal
+# carneliane
+# garnet
+# onyx
+# jade
+# immortal gem

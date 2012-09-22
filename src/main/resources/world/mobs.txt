@@ -1,0 +1,67 @@
+include: teachers.txt
+
+class: state.Mob
+
+id: snake-001
+name: king cobra
+alias: king cobra snake
+short: the hooded cobra snake
+long: A cobra snake rears up and opens its fearsome hood.
+look: The cobra snake waves back and forth before you, its hood displaying brilliant
+look: colors designed to serve notice to its prey that it is about to strike.
+behaviour: WANDER AGGRESSIVE STAY SENSE
+affects: SANC
+align: 0
+level: 7
+offensive: 70   
+defensive: 30   
+armour: 13
+hp: 7d7+70
+damage: 2d2
+copper: 25
+xp: 200
+state: STANDING
+attackType: claw bite
+ability: bash poison
+
+id: snake-002
+name: small cobra
+alias: small cobra snake
+short: the small green snake
+long: A small snake hisses at you mencingly.
+look: The snake is a common garden snake is and all together unremarkable.
+behaviour:  STAY 
+level: 1
+offensive: 70   
+defensive: 20   
+armour: 5
+hp: 1d6+10
+damage: 1d3
+copper: 5
+xp: 20
+state: STANDING
+attackType: claw bite
+
+class: state.GuardMob
+
+id: guard-003
+name: small official looking guard
+alias: small official guard
+short: the small guard
+long: A small guard paces up and down
+look: The guard resembles a typical palace guard, complete with hat and spear
+behaviour:  STAY 
+level: 1
+offensive: 70   
+defensive: 20   
+armour: 5
+hp: 1d6+10
+damage: 1d3
+copper: 5
+xp: 20
+state: STANDING
+attackType: punch
+guardExit: south
+
+
+# dice types possible for most fields 

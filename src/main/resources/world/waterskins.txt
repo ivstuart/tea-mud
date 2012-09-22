@@ -1,0 +1,10 @@
+class: state.Waterskin
+id: waterskin-001
+alias: waterskin canteen
+short: hide waterskin
+look: hide waterskin
+type: drinkable
+weight: 5
+cost: 10
+rent: 5
+affects:

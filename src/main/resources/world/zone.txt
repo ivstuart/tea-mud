@@ -1,0 +1,15 @@
+class: state.Zone
+
+id: 1
+name: Northern Midgaard Main City
+short: Northern Midgaard Main City
+look: Northern Midgaard Main City
+lifespan: 300
+reset: 0
+itemInRoom: sword-001 R-003-001
+mobInRoom: snake-001 R-003-001
+#mob: snakehunter-001 R-003-001
+#give: sword-001 
+#room: sword R-003-002
+#room: bag R-003-002
+#put: coins

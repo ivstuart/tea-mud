@@ -1,0 +1,10 @@
+class: state.Food
+id: food-001
+alias: food bread loaf
+short: loaf of bread
+look: loaf of bread
+type: food
+weight: 5
+cost: 10
+rent: 5
+affects:

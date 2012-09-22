@@ -1,0 +1,27 @@
+#Armour
+class: state.Armour
+
+id: scarf-001
+alias: scarf
+brief: red scarf
+look: red scarf with flowers on it
+action:
+effects: 3 
+wear: HEAD NECK
+weight: 2
+cost: 10
+rent: 5
+affects:
+armour: 0 2 0 0 0 0 0
+
+id: scarf-002
+clone: scarf-001
+brief: green scarf
+clearLook:
+look: green scarf with flowers on it
+
+id: scarf-003
+clone: scarf-001
+brief: black scarf
+clearLook:
+look: black scarf with flowers on it

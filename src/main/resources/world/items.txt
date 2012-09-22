@@ -1,0 +1,66 @@
+# including sub class items aswell
+include: gems.txt
+include: armour.txt
+include: weapons.txt
+include: food.txt
+include: waterskins.txt
+include: torches.txt
+
+class: state.Item
+
+id: key-001
+alias: key
+short: gold key
+look: large golden key
+wear: PRIMARY
+properties: door1
+
+id: map-001
+alias: map
+short: map
+look: map
+
+id: bag-001
+alias: bag
+short: leather bag
+look: worn leather bag
+type: container
+weight: 1
+
+id: tinder-box-001
+alias: small tinder-box
+short: small tinder-box
+look: small flint strike and lite tinder-box 
+type: LIGHTER
+weight: 1
+
+id: flint-001
+alias: flint tinder
+short: flint and tinder
+look: flint and tinder
+type: lighter
+
+id: potion-001
+alias: potion
+short: green potion
+look: bubbling green potion with a rotten smell
+type: drinkable
+weight: 5
+cost: 10
+rent: 5
+affects:
+
+id: lockpicks-001
+alias: lockpicks
+short: lockpicks
+look: set of lock picking tools
+type: lockpicks
+
+# wand
+# scroll
+# beer 
+# coffee - think caffine verses sleep spell
+# pets?
+
+
+

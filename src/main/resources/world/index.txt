@@ -1,0 +1,12 @@
+# If you load the items and mobs first you can use mob: and item: in room file.
+include: items.txt
+include: mobs.txt
+include: rooms.txt
+include: zone.txt
+
+#include: items.txt
+#include: mobs.txt
+#include: zone.txt
+# just added spells in
+include: spells.txt
+include: skills.txt

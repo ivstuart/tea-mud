@@ -1,0 +1,9 @@
+class: state.Torch
+id: torch-001
+alias: torch
+short: wooden torch with a chard end
+look: wooden torch with chard end which is has a sticky oily substance on the end
+type: torch
+effects: 20
+wear: PRIMARY SECONDARY
+weight: 1

@@ -1,0 +1,27 @@
+slashing
+piercing
+concusion
+whips
+axes
+pole arms
+two handed
+kick
+bash
+rescue
+tackle
+track
+second attack
+third attack
+focus
+unarmed attack
+advanced kick
+parry
+dodge
+shield block
+dual wield
+
+ * @author stuarti crushing . piercing . slashing . thrusting . chopping 2h
+ *         crushing. 2h piercing . 2h slashing . 2h thrusting . 2h chopping
+ *         punching . kicking . grapling . throwing . holding knife throwing .
+ *         bows . cross bows . thrown heavy . thrown improvised
+

@@ -1,0 +1,30 @@
+class: state.Weapon
+
+# SKILL types: slashing piercing crushing chopping thrusting
+# Note basic weapons have only one type of skill based attack - TODO make duel skill weapons.
+
+id: sword-001
+alias: sword
+short: rusty sword
+look: rusty sword which looks well worn
+skill: slashing
+type: weapon
+damage: 1d6+1
+wear: PRIMARY
+weight: 5
+cost: 10
+rent: 5
+affects:
+
+id: club-001
+alias: club
+short: rusty club
+look: rusty club which looks well worn
+skill: crushing
+type: weapon
+damage: 1d6+2
+wear: PRIMARY
+weight: 5
+cost: 10
+rent: 5
+affects:

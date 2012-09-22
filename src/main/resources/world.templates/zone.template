@@ -1,0 +1,12 @@
+id: 1
+name: Northern Midgaard Main City
+short: Northern Midgaard Main City
+long: Northern Midgaard Main City
+lifespan: 300 // seconds?
+reset: NEVER
+mobInRoom: snake-001 R-003-001
+mobInRoom: snakehunter-001 R-003-001
+give: sword-001 
+itemInRoom: sword R-003-002
+itemInRoom: bag R-003-002
+put: coins
