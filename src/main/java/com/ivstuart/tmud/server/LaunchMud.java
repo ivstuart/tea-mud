@@ -45,7 +45,7 @@ public class LaunchMud {
 			LOGGER.error("Problem loading mud server properties", e);
 		}
 
-		StateReader.load();
+		StateReader.getInstance().load();
 
 		MudServer s = new MudServer();
 
@@ -61,7 +61,7 @@ public class LaunchMud {
 
 	}
 
-	private static void loadMudServerProperties() throws URISyntaxException,
+	public static void loadMudServerProperties() throws URISyntaxException,
 			IOException {
 		LOGGER.info("Loading mud server properties");
 
