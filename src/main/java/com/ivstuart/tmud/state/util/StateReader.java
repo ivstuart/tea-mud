@@ -7,16 +7,12 @@ import java.lang.reflect.Method;
 import org.apache.log4j.Logger;
 
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.BaseSkill;
 import com.ivstuart.tmud.state.BasicThing;
 import com.ivstuart.tmud.state.GuardMob;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Prop;
 import com.ivstuart.tmud.state.Room;
-import com.ivstuart.tmud.state.Spell;
 import com.ivstuart.tmud.state.World;
-import com.ivstuart.tmud.state.Zone;
 import com.ivstuart.tmud.utils.FileHandle;
 
 public class StateReader {
@@ -37,47 +33,9 @@ public class StateReader {
 		return loader;
 	}
 
-	private void add(Object obj_) {
+	private void addToWorld(Object object) {
 
-		if (obj_ instanceof Room) {
-			World.add((Room) obj_);
-			return;
-		}
-
-		if (obj_ instanceof GuardMob) {
-			World.add((GuardMob) obj_);
-			return;
-		}
-
-		if (obj_ instanceof Mob) {
-			World.add((Mob) obj_);
-			return;
-		}
-
-		if (obj_ instanceof Item) {
-			World.add((Item) obj_);
-			return;
-		}
-
-		if (obj_ instanceof Zone) {
-			World.add((Zone) obj_);
-			return;
-		}
-
-		if (obj_ instanceof Spell) {
-			World.add((Spell) obj_);
-			return;
-		}
-
-		if (obj_ instanceof BaseSkill) {
-			World.add((BaseSkill) obj_);
-			return;
-		}
-
-		if (obj_ instanceof Prop) {
-			World.add((Prop) obj_);
-			return;
-		}
+		World.INSTANCE.addToWorld(object);
 
 	}
 
@@ -104,7 +62,7 @@ public class StateReader {
 			String args) throws ClassNotFoundException, IllegalAccessException {
 
 		if (obj != null) {
-			add(obj);
+			addToWorld(obj);
 		}
 
 		if (currentClass != null) {
@@ -262,7 +220,7 @@ public class StateReader {
 
 		}
 
-		add(obj);
+		addToWorld(obj);
 	}
 
 	public void load(String fileName) throws Exception {

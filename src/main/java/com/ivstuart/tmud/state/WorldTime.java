@@ -24,7 +24,7 @@ public class WorldTime implements Runnable {
 
 	private static boolean _running = false;
 
-	public static WorldTime INSTANCE = new WorldTime();
+	private static final WorldTime INSTANCE = new WorldTime();
 
 	public static void addFighting(Mob mob_) {
 		// TODO should I have a Set<Fight> for this instead?
@@ -152,21 +152,21 @@ public class WorldTime implements Runnable {
 
 				resolveCombat();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+
+				LOGGER.error("Problem during running",e);
 			}
 		}
 		LOGGER.info("Finnished the world time");
 
 	}
 
-	private void sendHeartBeat() {
-		// TODO add a try catch as this can easily have a null pointer
-		// somewhere.!!!
+	/**
+	 * 
+	 */
+	void sendHeartBeat() {
 
-		// mobs
-		// items - torches etc..
 		for (Tickable tickable : tickables) {
+			// TODO add exception handling
 			tickable.tick();
 		}
 

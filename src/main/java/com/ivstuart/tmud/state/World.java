@@ -177,6 +177,52 @@ public class World {
 		_players.remove(player.getName());
 
 	}
+	
+	public void addToWorld(Object object) {
+
+		if (object instanceof Room) {
+			World.add((Room) object);
+			return;
+		}
+
+		if (object instanceof GuardMob) {
+			World.add((GuardMob) object);
+			return;
+		}
+
+		if (object instanceof Mob) {
+			World.add((Mob) object);
+			return;
+		}
+
+		if (object instanceof Item) {
+			World.add((Item) object);
+			return;
+		}
+
+		if (object instanceof Zone) {
+			World.add((Zone) object);
+			return;
+		}
+
+		if (object instanceof Spell) {
+			World.add((Spell) object);
+			return;
+		}
+
+		if (object instanceof BaseSkill) {
+			World.add((BaseSkill) object);
+			return;
+		}
+
+		if (object instanceof Prop) {
+			World.add((Prop) object);
+			return;
+		}
+		
+		throw new IllegalArgumentException("Unknow object type ["+object.getClass().getSimpleName()+"]");
+
+	}
 
 	private World() {
 		tickers = new HashMap<String, Tickable>();

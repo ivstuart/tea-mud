@@ -153,6 +153,7 @@ public class RoomManager {
 	}
 
 	public RoomManager() {
+		// TODO enum to replace this?
 		_directionMap.put("north", "south");
 		_directionMap.put("east", "west");
 		_directionMap.put("south", "north");
