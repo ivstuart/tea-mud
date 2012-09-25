@@ -24,6 +24,8 @@ public enum WeatherSky {
 	}
 
 	private WeatherSky betterWeather() {
+		// TODO avoid using ordinal and add state transitions logic into each
+		// enum as a member attribute
 		int ordinal = this.ordinal();
 
 		if (++ordinal > values().length) {

@@ -6,9 +6,9 @@ import java.nio.channels.*;
 import java.nio.charset.*;
 import java.util.StringTokenizer;
 
-/*
+/**
  * Point of this is that it is making use of new File NIO Java 1.4 code!!
- * 
+ * TODO update this to use a FileReader class
  */
 public class FileHandle {
 
@@ -18,32 +18,11 @@ public class FileHandle {
 
 	private static CharsetDecoder decoder = charset.newDecoder();
 
-	public static void main(String args[]) {
-
-		FileHandle newFile = new FileHandle("filename3");
-
-		try {
-			newFile.writeln("Testing 1 2 3");
-
-			String fileContent = newFile.read();
-
-			System.out.println("Content:" + fileContent);
-
-			newFile.close();
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
 	private File file = null;
 
 	private FileChannel wChannel = null;
 
 	private StringTokenizer st = null;
-
-	private StringBuffer sb = null;
 
 	public FileHandle(String filename) {
 
@@ -88,7 +67,8 @@ public class FileHandle {
 
 		FileChannel rChannel = fio.getChannel();
 
-		sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
+		
 		// Read response
 		while ((rChannel.read(buffer)) != -1) {
 			buffer.flip();
@@ -101,20 +81,15 @@ public class FileHandle {
 			charBuffer.clear();
 		}
 
+		// TODO rewrite with also address closing resource cleanly
 		fio.close();
 		rChannel.close();
 
-		// Need to change this to use platform specific carriage return string
+		// TODO Need to change this to use platform specific carriage return string
 		st = new StringTokenizer(sb.toString(), "\r\n");
 
 		return sb.toString();
 
-	}
-
-	public void restart() {
-		if (sb != null) {
-			st = new StringTokenizer(sb.toString(), "\r\n");
-		}
 	}
 
 	public void write(String content) throws IOException {

@@ -26,7 +26,7 @@ public class World {
 	private static Set<String> _players;
 	private static Set<String> _playerNames;
 
-	public static World INSTANCE = new World();
+	private static World INSTANCE = new World();
 
 	public static void add(BaseSkill skill) {
 		LOGGER.info("Adding skill [ " + skill.getId() + "]");
@@ -220,7 +220,13 @@ public class World {
 			return;
 		}
 		
-		throw new IllegalArgumentException("Unknow object type ["+object.getClass().getSimpleName()+"]");
+		if (object != null) {
+			LOGGER.warn("Unknow object type ["+object.getClass().getSimpleName()+"]");
+		}
+		else {
+			LOGGER.warn("Object of null reference attempted to add to the world!");
+		}
+		// TODO throw new IllegalArgumentException("Unknow object type ["+object.getClass().getSimpleName()+"]");
 
 	}
 
@@ -245,5 +251,10 @@ public class World {
 		LOGGER.info("WorldTime running [ "
 				+ WorldTime.getInstance().isRunning() + " ]");
 	}
+
+	public static World getInstance() {
+		return INSTANCE;
+	}
+
 
 }

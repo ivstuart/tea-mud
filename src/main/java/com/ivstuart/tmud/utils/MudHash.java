@@ -1,6 +1,9 @@
 package com.ivstuart.tmud.utils;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * 
@@ -20,13 +23,13 @@ public class MudHash<T> {
 		map = new HashMap<String, T>();
 	}
 
-	public void add(String aString, T aObject) {
-		for (int i = 0; i < aString.length(); i++) {
-			String aTempString = aString.substring(0, i + 1);
-			if (map.containsKey(aTempString)) {
+	public void add(String key, T aObject) {
+		for (int i = 0; i < key.length(); i++) {
+			String shorterKey = key.substring(0, i + 1);
+			if (map.containsKey(shorterKey)) {
 				continue;
 			}
-			map.put(aTempString, aObject);
+			map.put(shorterKey, aObject);
 		}
 	}
 
@@ -34,8 +37,8 @@ public class MudHash<T> {
 		map.clear();
 	}
 
-	public T get(String aString) {
-		T obj = map.get(aString);
+	public T get(String key) {
+		T obj = map.get(key);
 		if (obj == null) {
 			return defaultObject;
 		}
@@ -47,22 +50,25 @@ public class MudHash<T> {
 
 	}
 
-	public void remove(String aString) {
+	public void remove(String key) {
 		Set<String> keySet = map.keySet();
-		Object aObject = map.get(aString);
-		for (int i = 0; i < aString.length(); i++) {
-			String aTempString = aString.substring(0, i + 1);
-			if (aObject == map.get(aTempString)) {
-				map.remove(aTempString);
-				keySet.remove(aTempString);
+
+		Object aObject = map.get(key);
+
+		for (int i = 0; i < key.length(); i++) {
+			String shorterKey = key.substring(0, i + 1);
+
+			if (aObject.equals(map.get(shorterKey))) {
+				map.remove(shorterKey);
+				keySet.remove(shorterKey);
 			}
 		}
-		String aTemp = aString.substring(0, 1);
-		Iterator<String> aIterator = keySet.iterator();
-		while (aIterator.hasNext()) {
-			String aKeyString = aIterator.next();
-			if (aKeyString.startsWith(aTemp)) {
-				this.add(aKeyString, map.get(aKeyString));
+
+		String firstCharacterOfKey = key.substring(0, 1);
+
+		for (String keyOfMap : keySet) {
+			if (keyOfMap.startsWith(firstCharacterOfKey)) {
+				this.add(keyOfMap, map.get(keyOfMap));
 				break;
 			}
 		}
@@ -71,8 +77,8 @@ public class MudHash<T> {
 
 	public void replace(String aString, T aObject) {
 		for (int i = 1; i < aString.length(); i++) {
-			String aTempString = aString.substring(0, i + 1);
-			map.put(aTempString, aObject);
+			String truncatedKey = aString.substring(0, i + 1);
+			map.put(truncatedKey, aObject);
 		}
 	}
 

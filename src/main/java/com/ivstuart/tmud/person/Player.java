@@ -9,7 +9,6 @@ import com.ivstuart.tmud.server.Connection;
 import com.ivstuart.tmud.server.Output;
 import com.ivstuart.tmud.state.Attributes;
 import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.utils.Nameable;
 
 public class Player implements Serializable, Nameable {
 

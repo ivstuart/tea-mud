@@ -9,7 +9,6 @@ package com.ivstuart.tmud.command.communication;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.World;
-import com.ivstuart.tmud.utils.*;
 
 /**
  * @author stuarti
@@ -33,26 +32,30 @@ public class QuestTell implements Command {
 	 * @see command.Command#execute(java.lang.String)
 	 */
 	@Override
-	public void execute(Mob mob_, String input) {
-		// TODO Auto-generated method stub
-		StringPair inputPair = Parser.parseMessage(input);
+	public void execute(Mob mob, String input) {
+		String[] inputSplit = input.split(" ");
 
-		String message = "$D" + mob_.getId() + " tells you -->"
-				+ inputPair.getTarget() + "$J";
+		if (inputSplit.length < 2) {
+			mob.out("need source and target group to tell");
+			return;
+		}
 
-		String name = inputPair.getSource();
+		String message = "$D" + mob.getId() + " tells you -->" + inputSplit[1]
+				+ "$J";
+
+		String name = inputSplit[0];
 
 		if (World.isOnline(name) == false) {
-			mob_.out("Tell who?");
+			mob.out("Tell who?");
 			return;
 		}
 
 		Mob playerMob = World.getMob(name);
 
 		playerMob.out(message);
-		mob_.out("You:" + message);
+		mob.out("You:" + message);
 
-		playerMob.setLastToldBy(mob_);
+		playerMob.setLastToldBy(mob);
 
 	}
 }

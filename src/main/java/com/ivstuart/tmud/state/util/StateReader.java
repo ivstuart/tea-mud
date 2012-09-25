@@ -35,7 +35,7 @@ public class StateReader {
 
 	private void addToWorld(Object object) {
 
-		World.INSTANCE.addToWorld(object);
+		World.getInstance().addToWorld(object);
 
 	}
 

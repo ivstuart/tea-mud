@@ -35,7 +35,7 @@ public class Channel {
 
 	public void add(String message) {
 		good.add(message);
-		// World.getWhoList().out(message);
+
 		if (good.size() > MAX_SIZE) {
 			good.remove(0);
 		}
@@ -43,9 +43,11 @@ public class Channel {
 
 	public String toString(int channel) {
 		StringBuilder sb = new StringBuilder();
-		for (int index = 0; index < good.size(); index++) {
-			sb.append(good.get(index) + "\n");
+
+		for (String lineOfChat : good) {
+			sb.append(lineOfChat).append("\n");
 		}
+
 		return sb.toString();
 	}
 }

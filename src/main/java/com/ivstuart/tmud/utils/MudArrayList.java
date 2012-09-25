@@ -7,6 +7,18 @@ import org.apache.log4j.Logger;
 
 import com.ivstuart.tmud.state.BasicThing;
 
+/**
+ * Decorator of List to allow following additional look up logic
+ * 
+ *  get 1.sword
+ *  get 2.sword
+ *  
+ *  Hence when a list has multiple items with naming conflicts you can select with an index specific to differentiate them
+ *  
+ * @author Ivan
+ *
+ * @param <E>
+ */
 public class MudArrayList<E> extends ArrayList<E> {
 
 	private static final Logger LOGGER = Logger.getLogger(MudArrayList.class);
@@ -93,11 +105,11 @@ public class MudArrayList<E> extends ArrayList<E> {
 
 	}
 
-	private int stringIndexOf(String aString) {
+	public int stringIndexOf(String value) {
 
-		int indexOfSeperator = aString.indexOf('.');
+		int indexOfSeperator = value.indexOf('.');
 
-		if (indexOfSeperator == 0 || indexOfSeperator == aString.length()) {
+		if (indexOfSeperator == 0 || indexOfSeperator == value.length()) {
 			return -1;
 		}
 
@@ -105,14 +117,18 @@ public class MudArrayList<E> extends ArrayList<E> {
 
 		if (indexOfSeperator > 0) {
 			try {
-				itemNumber = Integer.parseInt(aString.substring(0,
+				itemNumber = Integer.parseInt(value.substring(0,
 						indexOfSeperator));
 			} catch (Exception e) {
 				itemNumber = -1;
 			}
-			aString = aString.substring(++indexOfSeperator, aString.length());
+			value = value.substring(++indexOfSeperator, value.length());
 		}
 
+		return indexOf(value, itemNumber);
+	}
+
+	public int indexOf(String value, int itemNumber) {
 		for (int index = 0; index < this.size(); index++) {
 
 			// TODO do not use toString();
@@ -122,8 +138,8 @@ public class MudArrayList<E> extends ArrayList<E> {
 			String shortName = basicThing.getId();
 
 			if (shortName != null
-					&& (shortName.startsWith(aString) || (_indexLookup && shortName
-							.indexOf(aString) > -1))) {
+					&& (shortName.startsWith(value) || (_indexLookup && shortName
+							.indexOf(value) > -1))) {
 				if (itemNumber-- < 2) {
 					return index;
 				}
