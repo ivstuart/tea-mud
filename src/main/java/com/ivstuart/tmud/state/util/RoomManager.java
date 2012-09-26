@@ -22,10 +22,10 @@ public class RoomManager {
 
 	private static final Logger LOGGER = Logger.getLogger(RoomManager.class);
 
-	private static Map<String, String> _directionMap = new HashMap<String, String>();
+	private static Map<String, String> directionMap = new HashMap<String, String>();
 
 	// Not thread safe but we only single thread loading of the world
-	private static Door _lastCreatedDoor;
+	private static Door lastCreatedDoor;
 
 	private static List<DoorDAO> exitsWithDoors;
 
@@ -53,7 +53,7 @@ public class RoomManager {
 		aDoor.setLook("gate");
 		aDoor.setState(state);
 
-		_lastCreatedDoor = aDoor;
+		lastCreatedDoor = aDoor;
 
 		DoorDAO doorDAO = new DoorDAO();
 		doorDAO.setDoor(aDoor);
@@ -113,7 +113,7 @@ public class RoomManager {
 
 	public static String reverseDirection(String direction) {
 
-		String reversed = _directionMap.get(direction);
+		String reversed = directionMap.get(direction);
 
 		LOGGER.debug("direction " + direction + " becomes " + reversed);
 
@@ -122,11 +122,11 @@ public class RoomManager {
 	}
 
 	public static void setDoorKeys(String keys_) {
-		if (_lastCreatedDoor == null) {
+		if (lastCreatedDoor == null) {
 			return;
 		}
 
-		_lastCreatedDoor.setId(keys_);
+		lastCreatedDoor.setId(keys_);
 	}
 
 	public static void setDoorOnEndOfExit() {
@@ -154,12 +154,12 @@ public class RoomManager {
 
 	public RoomManager() {
 		// TODO enum to replace this?
-		_directionMap.put("north", "south");
-		_directionMap.put("east", "west");
-		_directionMap.put("south", "north");
-		_directionMap.put("west", "east");
-		_directionMap.put("up", "down");
-		_directionMap.put("down", "up");
+		directionMap.put("north", "south");
+		directionMap.put("east", "west");
+		directionMap.put("south", "north");
+		directionMap.put("west", "east");
+		directionMap.put("up", "down");
+		directionMap.put("down", "up");
 
 		exitsWithDoors = new ArrayList<DoorDAO>();
 	}

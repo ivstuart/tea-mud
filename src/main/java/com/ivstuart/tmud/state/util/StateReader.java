@@ -40,6 +40,7 @@ public class StateReader {
 	}
 
 	private Object createClone(Object entity, String id) {
+		
 		if (entity instanceof Room) {
 			return World.getRoom(id).clone();
 		}

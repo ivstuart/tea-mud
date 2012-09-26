@@ -10,13 +10,13 @@ import com.ivstuart.tmud.state.BasicThing;
 /**
  * Decorator of List to allow following additional look up logic
  * 
- *  get 1.sword
- *  get 2.sword
- *  
- *  Hence when a list has multiple items with naming conflicts you can select with an index specific to differentiate them
- *  
+ * get 1.sword get 2.sword
+ * 
+ * Hence when a list has multiple items with naming conflicts you can select
+ * with an index specific to differentiate them
+ * 
  * @author Ivan
- *
+ * 
  * @param <E>
  */
 public class MudArrayList<E> extends ArrayList<E> {
@@ -24,15 +24,15 @@ public class MudArrayList<E> extends ArrayList<E> {
 	private static final Logger LOGGER = Logger.getLogger(MudArrayList.class);
 
 	private static final long serialVersionUID = 1L;
-	private boolean _indexLookup = false;
+	private boolean indexLookup = false;
 
 	public MudArrayList() {
 		super(0);
 	}
 
-	public MudArrayList(boolean indexLookup_) {
+	public MudArrayList(boolean indexLookup) {
 		super(0);
-		_indexLookup = indexLookup_;
+		this.indexLookup = indexLookup;
 	}
 
 	public MudArrayList(Collection<? extends E> collection) {
@@ -41,28 +41,28 @@ public class MudArrayList<E> extends ArrayList<E> {
 
 	@Override
 	public boolean add(E e) {
-
-
 		return super.add(e);
 	}
 
-	public boolean containsString(String aString) {
-		for (int index = 0; index < this.size(); index++) {
+	public boolean containsString(String containedString) {
 
-			String stringValue = this.get(index).toString();
+		for (E element : this) {
 
-			if (aString.equalsIgnoreCase(stringValue)) {
+			if (containedString.equalsIgnoreCase(element.toString())) {
 				return true;
 			}
+
 		}
+
 		return false;
+
 	}
 
-	public E get(String msg_) {
+	public E get(String value) {
 
-		LOGGER.info("Getting from list for:" + msg_);
+		LOGGER.info("Getting from list for:" + value);
 
-		int index = this.stringIndexOf(msg_);
+		int index = this.stringIndexOf(value);
 
 		if (index < 0) {
 			return null;
@@ -71,20 +71,20 @@ public class MudArrayList<E> extends ArrayList<E> {
 		}
 	}
 
-	public E getExact(String aString) {
-		for (int index = 0; index < this.size(); index++) {
+	public E getExact(String value) {
 
-			String stringValue = this.get(index).toString();
+		for (E element : this) {
 
-			if (aString.equalsIgnoreCase(stringValue)) {
-				return this.get(index);
+			if (value.equalsIgnoreCase(element.toString())) {
+				return element;
 			}
 		}
+
 		return null;
 	}
 
-	public E remove(String aString) {
-		int index = this.stringIndexOf(aString);
+	public E remove(String value) {
+		int index = this.stringIndexOf(value);
 		if (index < 0) {
 			return null;
 		} else {
@@ -92,12 +92,12 @@ public class MudArrayList<E> extends ArrayList<E> {
 		}
 	}
 
-	public E removeExact(String aString) {
+	public E removeExact(String value) {
 		for (int index = 0; index < this.size(); index++) {
 
 			String stringValue = this.get(index).toString();
 
-			if (aString.equalsIgnoreCase(stringValue)) {
+			if (value.equalsIgnoreCase(stringValue)) {
 				return this.remove(index);
 			}
 		}
@@ -119,7 +119,8 @@ public class MudArrayList<E> extends ArrayList<E> {
 			try {
 				itemNumber = Integer.parseInt(value.substring(0,
 						indexOfSeperator));
-			} catch (Exception e) {
+			} catch (NumberFormatException e) {
+				LOGGER.error("Client entered invalid index number" , e);
 				itemNumber = -1;
 			}
 			value = value.substring(++indexOfSeperator, value.length());
@@ -129,18 +130,24 @@ public class MudArrayList<E> extends ArrayList<E> {
 	}
 
 	public int indexOf(String value, int itemNumber) {
+
 		for (int index = 0; index < this.size(); index++) {
 
-			// TODO do not use toString();
+			String shortName = ((BasicThing) this.get(index)).getId();
 
-			BasicThing basicThing = (BasicThing) this.get(index);
+			if (shortName == null) {
+				continue;
+			}
 
-			String shortName = basicThing.getId();
+			boolean match = false;
+			if (indexLookup) {
+				match = (shortName.indexOf(value) > -1);
+			} else {
+				match = shortName.startsWith(value);
+			}
 
-			if (shortName != null
-					&& (shortName.startsWith(value) || (_indexLookup && shortName
-							.indexOf(value) > -1))) {
-				if (itemNumber-- < 2) {
+			if (match) {
+				if (itemNumber-- <= 1) {
 					return index;
 				}
 			}

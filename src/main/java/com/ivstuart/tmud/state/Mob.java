@@ -21,7 +21,6 @@ import com.ivstuart.tmud.person.carried.Inventory;
 import com.ivstuart.tmud.person.statistics.Affect;
 import com.ivstuart.tmud.person.statistics.MobAffects;
 import com.ivstuart.tmud.person.statistics.MobMana;
-import com.ivstuart.tmud.utils.CollectionUtils;
 
 public class Mob extends Prop implements Tickable {
 
@@ -490,7 +489,7 @@ public class Mob extends Prop implements Tickable {
 
 		// TODO Check affects
 
-		if (!CollectionUtils.isEmpty(tickers)) {
+		if (tickers != null) {
 			for (Tickable ticker : tickers) {
 				ticker.tick();
 			}

@@ -9,13 +9,13 @@ public class ArmourEffect implements SpellEffect {
 	public static final String ARMOUR = "armour";
 
 	@Override
-	public void effect(Mob giver_, Mob reciever_, int amount_) {
+	public void effect(Mob caster, Mob target, int amount) {
 
-		Affect aff = new ArmourBuff(reciever_, ARMOUR, amount_);
+		Affect armorAffect = new ArmourBuff(target, ARMOUR, amount);
 
-		reciever_.addAffect(aff);
+		target.addAffect(armorAffect);
 
-		reciever_.out("Armor buff applied!");
+		target.out("Armor buff applied!");
 
 	}
 

@@ -8,19 +8,19 @@ import java.util.Map;
 
 public class SpellEffectFactory {
 
-	private static Map<String, SpellEffect> _spellEffectMap = new HashMap<String, SpellEffect>();
+	private static Map<String, SpellEffect> spellEffectMap = new HashMap<String, SpellEffect>();
 
 	public final static SpellEffect DAMAGE = new Damage();
 
 	static {
-		_spellEffectMap.put("HEAL", new Heal());
-		_spellEffectMap.put("POISON", new Poison());
-		_spellEffectMap.put("CURE", new Cure());
+		spellEffectMap.put("HEAL", new Heal());
+		spellEffectMap.put("POISON", new Poison());
+		spellEffectMap.put("CURE", new Cure());
 	}
 
-	public static SpellEffect get(String name_) {
+	public static SpellEffect get(String spell) {
 
-		return _spellEffectMap.get(name_.toUpperCase());
+		return spellEffectMap.get(spell.toUpperCase());
 	}
 
 }

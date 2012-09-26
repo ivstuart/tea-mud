@@ -6,7 +6,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 import com.ivstuart.tmud.common.Colour;
 
-/*
+/* TODO pull out enums and config to resource files.
  * This class is simple a data class to store the configuration 
  * for the players character
  */

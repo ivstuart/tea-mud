@@ -348,7 +348,7 @@ public class Login implements Readable {
 		}
 
 		try {
-			MudIO.save(player, player.getName() + ".sav");
+			MudIO.getInstance().save(player, player.getName() + ".sav");
 		} catch (IOException e) {
 			LOGGER.error("Problem saving character to disk", e);
 		}
@@ -432,7 +432,7 @@ public class Login implements Readable {
 		Player player;
 
 		try {
-			player = (Player) MudIO.load(name + ".sav");
+			player = (Player) MudIO.getInstance().load(name + ".sav");
 		} catch (Exception e) {
 			LOGGER.error("Problem loading character from disk", e);
 			out("Failed logging in");

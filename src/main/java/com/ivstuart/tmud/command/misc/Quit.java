@@ -8,6 +8,8 @@ package com.ivstuart.tmud.command.misc;
 
 import java.io.IOException;
 
+import org.apache.log4j.Logger;
+
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.state.Mob;
@@ -20,6 +22,8 @@ import com.ivstuart.tmud.utils.MudIO;
  */
 public class Quit implements Command {
 
+	private static final Logger LOGGER = Logger.getLogger(Quit.class);
+	
 	@Override
 	public void execute(Mob mob_, String input) {
 
@@ -34,10 +38,9 @@ public class Quit implements Command {
 
 		// Save character first
 		try {
-			MudIO.save(player, mob_.getId() + ".sav");
+			MudIO.getInstance().save(player, mob_.getId() + ".sav");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error("Problem saving character",e);
 			mob_.out("Problem saving character!");
 			return;
 		}

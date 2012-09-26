@@ -12,7 +12,6 @@ import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Prop;
 import com.ivstuart.tmud.state.Track;
-import com.ivstuart.tmud.utils.CollectionUtils;
 import com.ivstuart.tmud.utils.MudArrayList;
 
 public class Look implements Command {
@@ -91,7 +90,7 @@ public class Look implements Command {
 
 		List<Exit> exits = mob.getRoom().getExits();
 
-		if (CollectionUtils.isEmpty(exits)) {
+		if (exits.isEmpty()) {
 			sb.append("none");
 		} else {
 			for (Exit exit : exits) {

@@ -6,11 +6,17 @@ import java.nio.channels.*;
 import java.nio.charset.*;
 import java.util.StringTokenizer;
 
+import org.apache.log4j.Logger;
+
+
 /**
- * Point of this is that it is making use of new File NIO Java 1.4 code!!
- * TODO update this to use a FileReader class
+ * Point of this is that it is making use of new File NIO Java 1.4 code!! TODO
+ * update this to use a JDK7 mechanism to read files.
  */
 public class FileHandle {
+	
+	private static final Logger LOGGER = Logger
+			.getLogger(FileHandle.class);
 
 	private static Charset charset = Charset.forName("ISO-8859-1");
 
@@ -23,10 +29,13 @@ public class FileHandle {
 	private FileChannel wChannel = null;
 
 	private StringTokenizer st = null;
+	
+	private String NL = null;
 
 	public FileHandle(String filename) {
-
+		
 		file = new File(filename);
+		NL = System.getProperty("line.separator");
 	}
 
 	public void close() throws IOException {
@@ -56,7 +65,7 @@ public class FileHandle {
 		return st.hasMoreTokens();
 	}
 
-	public String read() throws IOException {
+	public String read() throws FileNotFoundException {
 
 		// Allocate buffers
 		ByteBuffer buffer = ByteBuffer.allocateDirect(1024);
@@ -68,25 +77,31 @@ public class FileHandle {
 		FileChannel rChannel = fio.getChannel();
 
 		StringBuilder sb = new StringBuilder();
-		
+
 		// Read response
-		while ((rChannel.read(buffer)) != -1) {
-			buffer.flip();
-			// Decode buffer
-			decoder.decode(buffer, charBuffer, false);
-			// Display
-			charBuffer.flip();
-			sb.append(charBuffer.toString());
-			buffer.clear();
-			charBuffer.clear();
+		try {
+			try {
+				while ((rChannel.read(buffer)) != -1) {
+					buffer.flip();
+					
+					// Decode buffer
+					decoder.decode(buffer, charBuffer, false);
+					
+					// Display
+					charBuffer.flip();
+					sb.append(charBuffer.toString());
+					buffer.clear();
+					charBuffer.clear();
+				}
+			} finally {
+				fio.close();
+				rChannel.close();
+			}
+		} catch (IOException e) {
+			LOGGER.error("Problem reading file",e);
 		}
 
-		// TODO rewrite with also address closing resource cleanly
-		fio.close();
-		rChannel.close();
-
-		// TODO Need to change this to use platform specific carriage return string
-		st = new StringTokenizer(sb.toString(), "\r\n");
+		st = new StringTokenizer(sb.toString(), NL);
 
 		return sb.toString();
 

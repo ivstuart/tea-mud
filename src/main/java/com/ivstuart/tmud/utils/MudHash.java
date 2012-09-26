@@ -53,12 +53,12 @@ public class MudHash<T> {
 	public void remove(String key) {
 		Set<String> keySet = map.keySet();
 
-		Object aObject = map.get(key);
+		Object objectToRemove = map.get(key);
 
 		for (int i = 0; i < key.length(); i++) {
 			String shorterKey = key.substring(0, i + 1);
 
-			if (aObject.equals(map.get(shorterKey))) {
+			if (objectToRemove.equals(map.get(shorterKey))) {
 				map.remove(shorterKey);
 				keySet.remove(shorterKey);
 			}
@@ -75,15 +75,15 @@ public class MudHash<T> {
 
 	}
 
-	public void replace(String aString, T aObject) {
+	public void replace(String aString, T replacement) {
 		for (int i = 1; i < aString.length(); i++) {
 			String truncatedKey = aString.substring(0, i + 1);
-			map.put(truncatedKey, aObject);
+			map.put(truncatedKey, replacement);
 		}
 	}
 
-	public void setDefault(T obj) {
-		defaultObject = obj;
+	public void setDefault(T defaultObject) {
+		this.defaultObject = defaultObject;
 	}
 
 	@Override

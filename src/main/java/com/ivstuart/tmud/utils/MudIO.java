@@ -20,17 +20,16 @@ import com.ivstuart.tmud.server.LaunchMud;
 
 /**
  * @author stuarti
- * TODO change from static to non-static
  */
 public class MudIO {
 
-	private static final Logger LOGGER = Logger
-			.getLogger(MudIO.class);
+	private static final Logger LOGGER = Logger.getLogger(MudIO.class);
+	
+	private static final MudIO INSTANCE = new MudIO();
 
-
-	public static Object load(String fileName) throws Exception {
-		FileInputStream aFileInputStream = new FileInputStream(getSaveDirectory()
-				+ fileName);
+	public Object load(String fileName) throws Exception {
+		FileInputStream aFileInputStream = new FileInputStream(
+				getSaveDirectory() + fileName);
 
 		fileName = fileName.toLowerCase();
 
@@ -46,7 +45,7 @@ public class MudIO {
 		return loadedObject;
 	}
 
-	public static Object load(String fileName, boolean gzip) throws Exception {
+	public Object load(String fileName, boolean gzip) throws Exception {
 
 		fileName = fileName.toLowerCase();
 
@@ -54,8 +53,8 @@ public class MudIO {
 			return load(fileName);
 		}
 
-		FileInputStream aFileInputStream = new FileInputStream(getSaveDirectory()
-				+ fileName);
+		FileInputStream aFileInputStream = new FileInputStream(
+				getSaveDirectory() + fileName);
 
 		ObjectInputStream aObjectInputStream = new ObjectInputStream(
 				aFileInputStream);
@@ -69,11 +68,10 @@ public class MudIO {
 		return loadedObject;
 	}
 
-	public static void save(Object saveObject, String fileName)
-			throws IOException {
+	public void save(Object saveObject, String fileName) throws IOException {
 
 		fileName = fileName.toLowerCase();
-		
+
 		ObjectOutputStream out = new ObjectOutputStream(new GZIPOutputStream(
 				new FileOutputStream(getSaveDirectory() + fileName)));
 
@@ -84,7 +82,7 @@ public class MudIO {
 		out.close();
 	}
 
-	public static void save(Object saveObject, String fileName, boolean gzip)
+	public void save(Object saveObject, String fileName, boolean gzip)
 			throws IOException {
 
 		fileName = fileName.toLowerCase();
@@ -93,7 +91,7 @@ public class MudIO {
 			save(saveObject, fileName);
 			return;
 		}
-		
+
 		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(
 				getSaveDirectory() + fileName));
 
@@ -103,10 +101,14 @@ public class MudIO {
 
 		out.close();
 	}
-	
-	public static String getSaveDirectory() {
+
+	public String getSaveDirectory() {
 		return LaunchMud.mudServerProperties.getProperty("player.save.dir");
-		
+
+	}
+
+	public static MudIO getInstance() {
+		return INSTANCE;
 	}
 
 }

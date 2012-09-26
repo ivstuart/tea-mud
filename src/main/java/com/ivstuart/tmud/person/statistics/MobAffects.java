@@ -58,7 +58,7 @@ public class MobAffects implements Serializable {
 
 	@Override
 	public String toString() {
-		if (_affects.size() == 0) {
+		if (_affects.isEmpty()) {
 			return "";
 		}
 

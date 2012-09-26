@@ -230,7 +230,8 @@ public class Equipment implements Serializable {
 			sb.append("<");
 			sb.append(EquipmentConstants.location[eq.getWorn()]);
 			sb.append("> ");
-			sb.append(eq + "\n");
+			sb.append(eq);
+			sb.append("\n");
 		}
 		return sb.toString();
 	}

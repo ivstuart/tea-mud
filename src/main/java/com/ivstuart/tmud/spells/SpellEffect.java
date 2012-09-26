@@ -4,5 +4,5 @@ import com.ivstuart.tmud.state.Mob;
 
 public interface SpellEffect {
 
-	public void effect(Mob giver_, Mob reciever, int amount_);
+	public void effect(Mob caster, Mob target, int amount);
 }
