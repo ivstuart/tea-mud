@@ -76,6 +76,7 @@ public class Prompt implements Command {
 		sb.append(BLUE + mv.getPrompt() + "Mv ");
 
 		sb.append(" $H<$I");
+	
 		sb.append(RED + fm.getPrompt() + "Fi ");
 		sb.append(BROWN + em.getPrompt() + "Ea ");
 		sb.append(BLUE + wm.getPrompt() + "Wa ");

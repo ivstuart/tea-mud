@@ -96,7 +96,12 @@ public class MudServer {
 							ConnectionManager.add(channel);
 						} else if (sk.isReadable()) {
 
-							readSocket((SocketChannel) sk.channel());
+							try {
+								readSocket((SocketChannel) sk.channel());
+							} catch (IOException ioe) {
+								ConnectionManager.close(sk);
+								throw ioe;
+							}
 						}
 					}
 				}

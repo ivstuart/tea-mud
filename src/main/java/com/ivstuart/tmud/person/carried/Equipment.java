@@ -56,10 +56,16 @@ public class Equipment implements Serializable {
 	public boolean add(Equipable eq) {
 		if (this.equip(eq)) {
 			// TODO
-			Collections.sort(_equipment);
+			sortEquipment();
 			return true;
 		}
 		return false;
+	}
+
+
+	@SuppressWarnings("unchecked")
+	private void sortEquipment() {
+		Collections.sort(_equipment);
 	}
 
 	private boolean checkTwoHandedAndNotEmptyHands(Integer location) {

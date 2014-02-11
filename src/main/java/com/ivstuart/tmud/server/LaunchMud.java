@@ -49,7 +49,7 @@ public class LaunchMud {
 
 		MudServer s = new MudServer();
 
-		s.startListening(mudServerProperties.getProperty("default.port","5678"));
+		s.startListening(getMudServerPort());
 		
 		try {
 			Thread.sleep(15 * 60 * 1000); // 15 minutes
@@ -59,6 +59,13 @@ public class LaunchMud {
 
 		LOGGER.info("Finnished mud.");
 
+	}
+
+	public static int getMudServerPort() {
+		if (mudServerProperties == null) {
+			return 5678;
+		}
+		return Integer.parseInt(mudServerProperties.getProperty("default.port","5678"));
 	}
 
 	public static void loadMudServerProperties() throws URISyntaxException,

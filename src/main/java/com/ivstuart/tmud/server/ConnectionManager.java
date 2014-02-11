@@ -1,5 +1,7 @@
 package com.ivstuart.tmud.server;
 
+import java.io.IOException;
+import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,6 +40,16 @@ public class ConnectionManager {
 
 	private ConnectionManager() {
 
+	}
+
+	public static void close(SelectionKey sk) {
+		map.remove(sk.channel());
+		try {
+			sk.channel().close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -1,6 +1,26 @@
 package com.ivstuart.tmud.common;
 
 public enum Colour {
+	
+	
+	/*
+	 * A - Cyan 
+	 * B - Yellow
+	 * C - Orange 
+	 * D - Green
+	 * E - Light Grey
+	 * F - Gray 
+	 * G - Red
+	 * H - Magenta 
+	 * I - Pink 
+	 * J - White 
+	 * K - Blue 
+	 * L - Dark Green 
+	 * M - Dark Blue 
+	 * N - Dark Magenta 
+	 * O - Dark Cyan 
+	 * P - Black
+	 */
 
 	WHITE("\033[1;37m"), LIGHTGREEN("\033[1;32m"), LIGHTBLUE("\033[1;34m"), LIGHTRED(
 			"\033[1;31m"), YELLOW("\033[1;33m"), LIGHTCYAN("\033[1;36m"), LIGHTPURPLE(
@@ -16,15 +36,21 @@ public enum Colour {
 			"\033[41m"), BGYELLOW("\033[43m"), BGCYAN("\033[46m"), BGPURPLE(
 			"\033[45m"), BGBLACK("\033[40m"), BGDEFAULT("\033[49m");
 
-	private String _colourString;
+	private String ansiCode;
+	private String encoding; // TODO 
 
 	private Colour(String escapeString) {
-		_colourString = escapeString;
+		ansiCode = escapeString;
+		encoding = "$H";
+	}
+	
+	public String getAnsiCode() {
+		return ansiCode;
 	}
 
 	@Override
 	public String toString() {
-		return _colourString;
+		return ansiCode;
 	}
 
 }
