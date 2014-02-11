@@ -41,7 +41,7 @@ public class LaunchClient implements Runnable {
 
 	public LaunchClient() throws IOException {
 		super();
-		String ip = InetAddress.getLocalHost().toString(); // Same as you have configured your mud server
+		String ip = InetAddress.getLocalHost().getHostAddress(); // Same as you have configured your mud server
 		int port = LaunchMud.getMudServerPort();
 
 		try {
