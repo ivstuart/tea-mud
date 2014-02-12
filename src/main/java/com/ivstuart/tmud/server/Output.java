@@ -1,5 +1,7 @@
 package com.ivstuart.tmud.server;
 
+import java.text.Normalizer;
+
 public class Output {
 
 	private static final String LINE_STRING = "-----------------------------------------------------------------------------";
@@ -9,7 +11,7 @@ public class Output {
 	private static final char LINE_SEPERATOR = '~';
 
 	private static final int CHAR_INDEX_OFFSET = 64;
-
+	
 	/*
 	 * A - Cyan B - Yellow C - Orange D - Green E - Light Grey F - Gray G - Red
 	 * H - Magenta I - Pink J - White K - Blue L - Dark Green M - Dark Blue N -
@@ -29,30 +31,58 @@ public class Output {
 		return colour[index];
 	}
 
-	public static String getString(String aString, boolean ansi) {
-		if (aString == null) {
+	public static String getString(String message, boolean ansi) {
+		if (message == null) {
 			return "null";
 		}
 
-		int index = aString.indexOf(ANSI_IDENTIFIER);
+		if (ansi) {
+			message = replaceAnsi(message);
+		}
+		else {
+			message = removeAnsi(message);
+		}
+		
+		message = replaceLineSeperators(message);
+
+		return message;
+
+	}
+
+	public static String removeAnsi(String message) {
+		
+		int index = message.indexOf(ANSI_IDENTIFIER);
 
 		while (index > -1) {
-			char aChar = aString.charAt(index + 1);
-			String escapeString;
+			StringBuilder sb = new StringBuilder(message);
+			sb.replace(index, index + 2, "");
+			message = sb.toString();
+			index = message.indexOf(ANSI_IDENTIFIER);
+		}
+		return message;
+		
+		
+	}
 
-			if (ansi) {
-				escapeString = getEscapeString(aChar);
-			} else {
-				escapeString = colour[0];
-			}
+	public static String replaceAnsi(String message) {
+		int index = message.indexOf(ANSI_IDENTIFIER);
 
-			StringBuilder sb = new StringBuilder(aString);
+		while (index > -1) {
+			char aChar = message.charAt(index + 1);
+			
+			String escapeString = getEscapeString(aChar);
+
+			StringBuilder sb = new StringBuilder(message);
 
 			sb.replace(index, index + 2, escapeString);
-			aString = sb.toString();
-			index = aString.indexOf(ANSI_IDENTIFIER);
+			message = sb.toString();
+			index = message.indexOf(ANSI_IDENTIFIER);
 		}
+		return message;
+	}
 
+	public static String replaceLineSeperators(String aString) {
+		int index;
 		index = aString.indexOf(LINE_SEPERATOR);
 
 		while (index > -1) {
@@ -61,9 +91,7 @@ public class Output {
 			aString = sb.toString();
 			index = aString.indexOf(LINE_SEPERATOR);
 		}
-
 		return aString;
-
 	}
 
 	public Output() {

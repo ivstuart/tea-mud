@@ -3,7 +3,10 @@ package com.ivstuart.tmud.common;
 public enum Colour {
 	
 	
-	/*
+	/** 
+	 * $H for example means the same as Magenta colour in text. Useful in text encoding resource files.
+	 * In code just directly use the Colour enum.
+	 * 
 	 * A - Cyan 
 	 * B - Yellow
 	 * C - Orange 
@@ -37,16 +40,11 @@ public enum Colour {
 			"\033[45m"), BGBLACK("\033[40m"), BGDEFAULT("\033[49m");
 
 	private String ansiCode;
-	private String encoding; // TODO 
 
 	private Colour(String escapeString) {
 		ansiCode = escapeString;
-		encoding = "$H";
 	}
 	
-	public String getAnsiCode() {
-		return ansiCode;
-	}
 
 	@Override
 	public String toString() {
