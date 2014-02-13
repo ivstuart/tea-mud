@@ -28,42 +28,45 @@ public class TestRescue {
 
 		playerMob.setPlayer(player1);
 
-		Mob dragon = new Mob();
-		dragon.setName("dragon");
+		Mob angrySheep = new Mob();
+		angrySheep.setName("sheep");
 
 		Mob anotherPlayerMob = new Mob();
 		anotherPlayerMob.setName("player2");
 
 		Room whiteRoom = new Room();
 
-		whiteRoom.add(dragon);
+		whiteRoom.add(angrySheep);
+		
+		// TODO fix this
+		assertNotNull("Check sheep is in room",whiteRoom.getMob(angrySheep.getName()));
+		
 		whiteRoom.add(playerMob);
 		whiteRoom.add(anotherPlayerMob);
 		
 
 		Command kill = CommandProvider.getCommand(Kill.class);
 		
-		assertEquals("Check dragon","dragon",dragon.getName());		
+		assertEquals("Check sheep","sheep",angrySheep.getName());		
 		
-		// TODO fix this
-		assertNotNull("Check dragon is in room",whiteRoom.getMob(dragon.getName()));
+		assertNotNull("Check sheep is in room",whiteRoom.getMob(angrySheep.getName()));
 		
-		assertEquals("Check dragon is in room",dragon,whiteRoom.getMob(dragon.getName()));
+		assertEquals("Check sheep is in room",angrySheep,whiteRoom.getMob(angrySheep.getName()));
 
-		kill.execute(playerMob, dragon.getName());
-		kill.execute(dragon, playerMob.getName());
+		kill.execute(playerMob, angrySheep.getName());
+		kill.execute(angrySheep, playerMob.getName());
 
 
-		assertTrue("Dragon should target player",
-				dragon.getFight().isEngaged(playerMob));
+		assertTrue("sheep should target player",
+				angrySheep.getFight().isEngaged(playerMob));
 
 		Command rescue = CommandProvider.getCommand(Rescue.class);
 		rescue.execute(anotherPlayerMob, "player");
 
-		assertFalse("Dragon should target other player", dragon.getFight()
+		assertFalse("sheep should target other player", angrySheep.getFight()
 				.isEngaged(playerMob));
 		
-		assertTrue("Dragon should target other player", dragon.getFight()
+		assertTrue("sheep should target other player", angrySheep.getFight()
 				.isEngaged(anotherPlayerMob));
 
 	}
