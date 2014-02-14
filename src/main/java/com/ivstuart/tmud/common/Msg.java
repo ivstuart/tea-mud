@@ -194,7 +194,10 @@ public class Msg {
 					replacement = output.substring(divIndex + 1, endIndex);
 				}
 
-				LOGGER.debug("Replacement is [" + replacement + "]");
+				// TODO FIXME fix replacement for test debugging purposes 
+				// Avoid truncating the names such that debugging is easier
+				// update unit test class for Msg to improve logging.
+				LOGGER.trace("Replacement is [" + replacement + "]");
 
 				int nameBeginIndex = replacement.indexOf("NAME");
 
@@ -226,7 +229,7 @@ public class Msg {
 
 				}
 
-				LOGGER.debug("After name Replacement is [" + replacement + "]");
+				LOGGER.trace("After name Replacement is [" + replacement + "]");
 
 				if (genderBeginIndex > -1) {
 

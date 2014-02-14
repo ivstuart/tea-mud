@@ -118,7 +118,7 @@ public class Player implements Serializable, Nameable {
 		message = Output.getString(message,
 				config.getConfigData().is(ConfigData.ANSI));
 
-		LOGGER.debug("out [ " + message + " ]");
+		LOGGER.debug(getName()+" output ["+message+"]");
 
 		if (conn != null) {
 			conn.out(message);

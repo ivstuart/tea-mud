@@ -328,6 +328,7 @@ public class Mob extends Prop implements Tickable {
 
 	@Override
 	public void out(Msg msg_) {
+		LOGGER.debug(this.getName()+" output [ " + msg_.toString(this) + " ]");
 		if (player != null) {
 			player.out(msg_.toString(this));
 		}
@@ -335,8 +336,10 @@ public class Mob extends Prop implements Tickable {
 	}
 
 	public void out(String message) {
+		LOGGER.debug(this.getName()+" output [ " + message + " ]");
+		
 		if (player != null) {
-			LOGGER.debug("output [ " + message + " ]");
+			
 			player.out(message);
 		}
 	}
@@ -430,6 +433,13 @@ public class Mob extends Prop implements Tickable {
 
 	public void setName(String name_) {
 		name = name_;
+	}
+	
+	// TODO FIXME sort out if id and name is required for Mobs
+	//  i.e is id, short and long descriptions sufficient.
+	public void setNameAndId(String name_) {
+		name = name_;
+		this.setId(name_);
 	}
 
 	public void setOffensive(String offensive_) {

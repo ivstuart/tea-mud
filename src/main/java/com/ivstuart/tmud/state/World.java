@@ -243,6 +243,10 @@ public class World {
 												// creation
 		_props = new HashMap<String, Prop>();
 
+		startTime();
+	}
+
+	private void startTime() {
 		Thread worldTimeThread = new Thread(WorldTime.getInstance());
 		worldTimeThread.setName("WorldTime-" + worldTimeThread.getId());
 		worldTimeThread.setDaemon(true);

@@ -87,6 +87,7 @@ public class WorldTime implements Runnable {
 		WorldTime.init();
 	}
 
+
 	public boolean isRunning() {
 		return _running;
 	}

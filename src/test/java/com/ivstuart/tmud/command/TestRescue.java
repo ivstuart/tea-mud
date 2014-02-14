@@ -14,60 +14,69 @@ import com.ivstuart.tmud.command.combat.Rescue;
 import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.World;
 
 public class TestRescue {
 
 	@Test
 	public void testRescueWhenNotFighting() {
 
-		Mob playerMob = new Mob();
-		playerMob.setName("player");
-
+		Mob player1Mob = new Mob();
 		Player player1 = new Player();
-		player1.setMob(playerMob);
+		player1.setMob(player1Mob);
+		player1Mob.setNameAndId("player1");
+		player1Mob.setPlayer(player1);
 
-		playerMob.setPlayer(player1);
+		Mob sheepMob = new Mob();
+		sheepMob.setNameAndId("sheep");
 
-		Mob angrySheep = new Mob();
-		angrySheep.setName("sheep");
-
-		Mob anotherPlayerMob = new Mob();
-		anotherPlayerMob.setName("player2");
+		Mob player2Mob = new Mob();
+		player2Mob.setNameAndId("player2");
+		Player player2 = new Player();
+		player2.setMob(player2Mob);
+		player2Mob.setPlayer(player2);
 
 		Room whiteRoom = new Room();
 
-		whiteRoom.add(angrySheep);
-		
-		// TODO fix this
-		assertNotNull("Check sheep is in room",whiteRoom.getMob(angrySheep.getName()));
-		
-		whiteRoom.add(playerMob);
-		whiteRoom.add(anotherPlayerMob);
-		
+		whiteRoom.add(sheepMob);
+		whiteRoom.add(player1Mob);
+		whiteRoom.add(player2Mob);
 
 		Command kill = CommandProvider.getCommand(Kill.class);
-		
-		assertEquals("Check sheep","sheep",angrySheep.getName());		
-		
-		assertNotNull("Check sheep is in room",whiteRoom.getMob(angrySheep.getName()));
-		
-		assertEquals("Check sheep is in room",angrySheep,whiteRoom.getMob(angrySheep.getName()));
 
-		kill.execute(playerMob, angrySheep.getName());
-		kill.execute(angrySheep, playerMob.getName());
+		assertEquals("Check sheep name", "sheep", sheepMob.getName());
+		assertNotNull("Check sheep exists in the room",
+				whiteRoom.getMob(sheepMob.getName()));
+		assertEquals("Check sheep is in the room", sheepMob,
+				whiteRoom.getMob(sheepMob.getName()));
 
+		World.getInstance(); // Starts time.
 
-		assertTrue("sheep should target player",
-				angrySheep.getFight().isEngaged(playerMob));
+		kill.execute(player1Mob, sheepMob.getName());
+		kill.execute(sheepMob, player1Mob.getName());
+
+		// Check they are targeting each other.
+		assertEquals("sheep should target player1", player1Mob, sheepMob
+				.getFight().getTarget());
+		assertEquals("player 1 should target sheep", sheepMob, player1Mob
+				.getFight().getTarget());
+
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		assertTrue("sheep and player1 will be engaged in combat", sheepMob
+				.getFight().isEngaged(player1Mob));
 
 		Command rescue = CommandProvider.getCommand(Rescue.class);
-		rescue.execute(anotherPlayerMob, "player");
+		rescue.execute(player2Mob, "player");
 
-		assertFalse("sheep should target other player", angrySheep.getFight()
-				.isEngaged(playerMob));
-		
-		assertTrue("sheep should target other player", angrySheep.getFight()
-				.isEngaged(anotherPlayerMob));
+		assertFalse("sheep should target other player", sheepMob.getFight()
+				.isEngaged(player1Mob));
+
+		assertTrue("sheep should target other player", sheepMob.getFight()
+				.isEngaged(player2Mob));
 
 	}
 
@@ -75,7 +84,6 @@ public class TestRescue {
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
