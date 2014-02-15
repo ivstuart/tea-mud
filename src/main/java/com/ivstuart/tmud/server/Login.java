@@ -289,10 +289,33 @@ public class Login implements Readable {
 		out("Password:" + password);
 
 		Mob mob = new Mob();
+		Player player = new Player();
+		
+		initializeCharacter(password, att, mob, player);
+
+		initialEquipment(player);
+
+		if (!isValidName(name)) {
+			out("Someone just created a character with your name!");
+			out("Exiting create character process, please try again");
+			myConnection.disconnect();
+			return;
+		}
+
+		try {
+			MudIO.getInstance().save(player, player.getName() + ".sav");
+		} catch (IOException e) {
+			LOGGER.error("Problem saving character to disk", e);
+		}
+		out("Created character. Check your email for login password");
+		myConnection.disconnect();
+	}
+
+	public void initializeCharacter(String password, int[] attributes, Mob mob, Player player) {
 		mob.setId(name);
 		mob.setBrief(name);
 		mob.setName(name);
-		Player player = new Player();
+		
 		PlayerData data = player.getData();
 
 		mob.setPlayer(player);
@@ -303,7 +326,7 @@ public class Login implements Readable {
 		data.setPassword(password);
 
 		// Str Con Dex Int Wis - Set
-		player.setAttributes(att);
+		player.setAttributes(attributes);
 
 		mob.setGender(gender);
 
@@ -337,23 +360,6 @@ public class Login implements Readable {
 
 		data.setThirst(500);
 		data.setHunger(500);
-
-		initialEquipment(player);
-
-		if (!isValidName(name)) {
-			out("Someone just created a character with your name!");
-			out("Exiting create character process, please try again");
-			myConnection.disconnect();
-			return;
-		}
-
-		try {
-			MudIO.getInstance().save(player, player.getName() + ".sav");
-		} catch (IOException e) {
-			LOGGER.error("Problem saving character to disk", e);
-		}
-		out("Created character. Check your email for login password");
-		myConnection.disconnect();
 	}
 
 	private String createPassword() {

@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.log4j.Logger;
 
 import com.ivstuart.tmud.fighting.action.BasicAttack;
 import com.ivstuart.tmud.fighting.action.FightAction;
@@ -22,6 +23,8 @@ import com.ivstuart.tmud.state.WorldTime;
 public class Fight {
 
 	private static final int MAX_SIZE = 10;
+	
+	private static final Logger LOGGER = Logger.getLogger(Fight.class);
 
 	// TODO use a PriorityQueue ?
 	private LinkedList<FightAction> fightActions;
@@ -68,10 +71,12 @@ public class Fight {
 
 	public void changeTarget(Mob newTargetMob) {
 
-		Mob target = melee.getTarget();
+		Mob ownTarget = melee.getTarget();
 
-		if (target != null) {
-			target.getFight().removeTargettedBy(melee.getSelf());
+		if (ownTarget != null) {
+			ownTarget.getFight().removeTargettedBy(melee.getSelf());
+			
+			LOGGER.debug(ownTarget.getName()+" target removed from "+melee.getSelf().getName());
 		}
 
 		melee.setTarget(newTargetMob);
@@ -79,6 +84,8 @@ public class Fight {
 		if (newTargetMob != null) {
 
 			newTargetMob.getFight().addTargettedBy(melee.getSelf());
+			
+			LOGGER.debug(newTargetMob.getName()+" is changing target to "+melee.getSelf().getName());
 
 		}
 

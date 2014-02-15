@@ -99,7 +99,7 @@ public class Msg {
 
 	public String maleToFemale(String text) throws ParseException {
 
-		LOGGER.debug("Gender before [" + text + "]");
+		LOGGER.trace("Gender before [" + text + "]");
 
 		if (text == null || text.length() < 2) {
 			throw new ParseException("Gender string too short", 0);
@@ -134,7 +134,7 @@ public class Msg {
 					.toUpperCase());
 		}
 
-		LOGGER.debug("Gender after [" + gender + "]");
+		LOGGER.trace("Gender after [" + gender + "]");
 
 		return gender;
 	}
@@ -194,18 +194,9 @@ public class Msg {
 					replacement = output.substring(divIndex + 1, endIndex);
 				}
 
-				// TODO FIXME fix replacement for test debugging purposes 
-				// Avoid truncating the names such that debugging is easier
-				// update unit test class for Msg to improve logging.
-				LOGGER.trace("Replacement is [" + replacement + "]");
-
-				int nameBeginIndex = replacement.indexOf("NAME");
-
-				int genderBeginIndex = replacement.indexOf("GEN-");
-
 				NAME_REPLACEMENT:
 
-				if (nameBeginIndex > -1) {
+				if (replacement.indexOf("NAME") > -1) {
 
 					if (tagMsgable == null) {
 						replacement = "";
@@ -220,18 +211,12 @@ public class Msg {
 						name = unseen;
 					}
 
-					if (replacement.length() > nameBeginIndex + 4) {
-						replacement = name
-								+ replacement.substring(nameBeginIndex + 4);
-					} else {
-						replacement = name;
-					}
+					replacement = name;
 
 				}
-
-				LOGGER.trace("After name Replacement is [" + replacement + "]");
-
-				if (genderBeginIndex > -1) {
+				
+				// Gender him her replacement code
+				if (replacement.indexOf("GEN-") > -1) {
 
 					replacement = replacement.substring(4);
 
@@ -243,6 +228,9 @@ public class Msg {
 
 				}
 
+				// TODO decide on debug / trace here.
+				LOGGER.trace(requester.getName()+" replacing ["+output.substring(index, endIndex + 1)+"]  with ["+replacement+"]");
+				
 				output.replace(index, endIndex + 1, replacement);
 
 			}

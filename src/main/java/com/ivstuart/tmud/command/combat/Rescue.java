@@ -2,9 +2,12 @@ package com.ivstuart.tmud.command.combat;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.WorldTime;
 
 /**
  * TODO rescue <mob> rescue <mob> [from <mob>] rescue <mob> [from all] rescue
@@ -16,6 +19,8 @@ import com.ivstuart.tmud.state.Mob;
 public class Rescue implements Command {
 
 	private static final String RESCUE = "rescue";
+	
+	private static final Logger LOGGER = Logger.getLogger(Rescue.class);
 
 	@Override
 	public void execute(Mob mob, String input) {
@@ -59,8 +64,14 @@ public class Rescue implements Command {
 
 		Ability ability = mob.getLearned().getAbility(RESCUE);
 		if (ability.isSuccessful()) {
-			mob.out("<S-You/NAME> successfully rescue <T-you/NAME>.");
+			// mob.out("<S-You/NAME> successfully rescue <T-you/NAME>.");
+			mob.getRoom().out("<S-You/NAME> successfully rescue <T-you/NAME>.");
+			if (!mob.getFight().isFighting()) {
+				mob.getFight().getMelee().setTarget(aggressor);
+				WorldTime.addFighting(mob);
+			}
 
+			LOGGER.debug(mob.getName() +" rescues "+aggressor.getFight().getTarget().getName()+" from combat with you.");
 			aggressor.getFight().changeTarget(mob);
 
 			if (ability.isImproved()) {

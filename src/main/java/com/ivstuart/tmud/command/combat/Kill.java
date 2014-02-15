@@ -20,9 +20,8 @@ public class Kill implements Command {
 		target.getFight().getMelee().setTarget(mob);
 
 		WorldTime.addFighting(mob);
+		
 		WorldTime.addFighting(target);
-
-		// mob.out("debug...."+target.getFight());
 
 	}
 

@@ -12,6 +12,9 @@ import com.ivstuart.tmud.command.CommandProvider;
 import com.ivstuart.tmud.command.combat.Kill;
 import com.ivstuart.tmud.command.combat.Rescue;
 import com.ivstuart.tmud.person.Player;
+import com.ivstuart.tmud.person.PlayerData;
+import com.ivstuart.tmud.person.statistics.MobMana;
+import com.ivstuart.tmud.state.Attribute;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Room;
 import com.ivstuart.tmud.state.World;
@@ -21,20 +24,14 @@ public class TestRescue {
 	@Test
 	public void testRescueWhenNotFighting() {
 
-		Mob player1Mob = new Mob();
-		Player player1 = new Player();
-		player1.setMob(player1Mob);
-		player1Mob.setNameAndId("player1");
-		player1Mob.setPlayer(player1);
+		
+		Mob player1Mob = makeDefaultPlayerMob("player1");
+		Mob player2Mob = makeDefaultPlayerMob("player2");
 
+		// TODO have test resource file to load in a mob sheep and mob player test files.
 		Mob sheepMob = new Mob();
 		sheepMob.setNameAndId("sheep");
-
-		Mob player2Mob = new Mob();
-		player2Mob.setNameAndId("player2");
-		Player player2 = new Player();
-		player2.setMob(player2Mob);
-		player2Mob.setPlayer(player2);
+		sheepMob.setHp("100");
 
 		Room whiteRoom = new Room();
 
@@ -61,30 +58,84 @@ public class TestRescue {
 		assertEquals("player 1 should target sheep", sheepMob, player1Mob
 				.getFight().getTarget());
 
-		try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		sleepShortWhile();
+		
+		
 		assertTrue("sheep and player1 will be engaged in combat", sheepMob
 				.getFight().isEngaged(player1Mob));
 
+		// RESCUE
 		Command rescue = CommandProvider.getCommand(Rescue.class);
-		rescue.execute(player2Mob, "player");
-
-		assertFalse("sheep should target other player", sheepMob.getFight()
-				.isEngaged(player1Mob));
+		rescue.execute(player2Mob, "player1");
+		
+		
+		sleepShortWhile();
+		
+		// Check they are targeting each other, but player 2 now.
+		assertEquals("sheep should target player2", player2Mob.getName(), sheepMob
+				.getFight().getTarget().getName());
+		
+		assertEquals("player 2 should target sheep", sheepMob.getName(), player2Mob
+				.getFight().getTarget().getName());
 
 		assertTrue("sheep should target other player", sheepMob.getFight()
 				.isEngaged(player2Mob));
+		
+		assertFalse("sheep should target other player", sheepMob.getFight()
+				.isEngaged(player1Mob));
+
+
 
 	}
 
-	public void sleepAsecond() {
+	public void sleepShortWhile() {
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(400);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static Mob makeDefaultPlayerMob(String name) {
+		Mob mob = new Mob();
+		Player player = new Player();
+		player.setMob(mob);
+		mob.setNameAndId(name);
+		mob.setPlayer(player);
+		int[] defaultAttributes = {10,10,10,10,10};
+		player.setAttributes(defaultAttributes);
+		
+		mob.setId(name);
+		mob.setBrief(name);
+		mob.setName(name);
+		
+		PlayerData data = player.getData();
+
+		mob.setPlayer(player);
+
+		player.setMob(mob);
+
+		player.getData().setAlignment(new Attribute("Alignment",1000));
+
+		mob.setHeight(6);
+
+		data.setPlayingFor(0);
+
+		data.setTotalXp(0);
+		data.setRemort(0);
+		data.setPracs(0);
+
+		mob.setLevel(1);
+
+		data.setAge(16 + (int) (Math.random() * 5));
+
+		mob.setHp("10");
+		mob.setMv("10");
+		mob.setMana(new MobMana(true));
+
+		data.setThirst(500);
+		data.setHunger(500);
+		
+		return mob;
 	}
 }
