@@ -30,6 +30,11 @@ public class Ability implements Serializable {
 	public Ability(String name_) {
 		id = name_;
 	}
+	
+	public Ability(String name,int startSkillLevel) {
+		id = name;
+		skill = startSkillLevel;
+	}
 
 	public String getId() {
 		return id;

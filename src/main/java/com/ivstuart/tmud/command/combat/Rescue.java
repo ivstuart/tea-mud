@@ -25,7 +25,7 @@ public class Rescue implements Command {
 	@Override
 	public void execute(Mob mob, String input) {
 
-		mob.out("todo rescue");
+		LOGGER.debug(mob.getName()+" executing rescue command");
 
 		if (!mob.getLearned().hasLearned(RESCUE)) {
 			mob.out("You have no knowledge of rescue");

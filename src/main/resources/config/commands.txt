@@ -19,6 +19,7 @@ command.config.FightConfig
 command.combat.Kill
 command.combat.Flee
 command.combat.Flurry
+command.combat.Rescue
 command.info.Who
 command.info.Scan
 command.info.AttributeInfo

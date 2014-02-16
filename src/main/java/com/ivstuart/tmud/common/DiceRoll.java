@@ -24,6 +24,8 @@ public class DiceRoll implements Serializable {
 	public static final DiceRoll ONE_D_SIX = new DiceRoll();
 	public static final DiceRoll ONE_D_FOUR = new DiceRoll((short) 4);
 	public static final DiceRoll ONE_D100 = new DiceRoll((short) 100);
+	
+	public static final DiceRoll DEFAULT_HP = new DiceRoll((short)2,(short)10,(short)50);
 
 	public static void main(String args[]) {
 		DiceRoll d = new DiceRoll("3d6+1");
