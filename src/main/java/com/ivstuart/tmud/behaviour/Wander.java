@@ -1,5 +1,6 @@
 package com.ivstuart.tmud.behaviour;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -21,11 +22,28 @@ public class Wander implements Tickable {
 
 	public Wander(Mob mob) {
 		this.mob = mob;
+		maxDistance = 2;
 	}
 
 	@Override
 	public String getId() {
 		return mob.getId();
+	}
+
+	public int getMaxDistance() {
+		return maxDistance;
+	}
+
+	public List<Room> getRooms() {
+		return rooms;
+	}
+
+	public void setMaxDistance(int maxDistance) {
+		this.maxDistance = maxDistance;
+	}
+
+	public void setRooms(List<Room> rooms) {
+		this.rooms = rooms;
 	}
 
 	@Override
@@ -48,6 +66,11 @@ public class Wander implements Tickable {
 		LOGGER.info("Mob wanders to a new location");
 
 		Room room = mob.getRoom();
+		
+		// Lazy init
+		if (rooms == null) {
+			new ArrayList<Room>(maxDistance);
+		}
 
 		int index = rooms.indexOf(room);
 

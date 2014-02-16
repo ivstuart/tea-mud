@@ -162,7 +162,7 @@ public class MudServer {
 	/** Stop the selector thread */
 	public synchronized void stop() {
 		try {
-			this.ssch.close();
+			ssch.close();
 		} catch (Exception e) {
 			LOGGER.error("Problem with stopping selector thread", e);
 		}

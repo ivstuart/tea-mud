@@ -25,9 +25,11 @@ public class LaunchMud {
 	private static final Logger LOGGER = Logger.getLogger(LaunchMud.class);
 
 	public static Properties mudServerProperties;
+	
+	private static MudServer mudServer;
 
 	private static void displayUsage() {
-		System.out.println("LaunchMud <primary config file>");
+		System.out.println("LaunchMud <primary config file> [mode]");
 		System.exit(0);
 	}
 
@@ -39,6 +41,11 @@ public class LaunchMud {
 			displayUsage();
 		}
 
+		start();
+
+	}
+
+	public static void start() {
 		try {
 			loadMudServerProperties();
 		} catch (Exception e) {
@@ -47,9 +54,9 @@ public class LaunchMud {
 
 		StateReader.getInstance().load();
 
-		MudServer s = new MudServer();
+		mudServer = new MudServer();
 
-		s.startListening(getMudServerPort());
+		mudServer.startListening(getMudServerPort());
 		
 		try {
 			Thread.sleep(15 * 60 * 1000); // 15 minutes
@@ -58,7 +65,15 @@ public class LaunchMud {
 		}
 
 		LOGGER.info("Finnished mud.");
-
+	}
+	
+	public static boolean stop() {
+		if (mudServer != null) {
+			mudServer.stop();
+			return true;
+		}
+		return false;
+		
 	}
 
 	public static int getMudServerPort() {
