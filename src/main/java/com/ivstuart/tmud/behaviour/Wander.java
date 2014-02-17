@@ -57,6 +57,8 @@ public class Wander implements Tickable {
 			return;
 		}
 
+		Room currentRoom = mob.getRoom();
+
 		Exit exit = MoveManager.random(mob);
 
 		if (exit == null) {
@@ -66,7 +68,7 @@ public class Wander implements Tickable {
 		LOGGER.info("Mob wanders to a new location");
 
 		Room room = mob.getRoom();
-		
+
 		// Lazy init
 		if (rooms == null) {
 			new ArrayList<Room>(maxDistance);
@@ -75,17 +77,22 @@ public class Wander implements Tickable {
 		int index = rooms.indexOf(room);
 
 		if (index != -1) {
+			// A-B-C-D rooms if in D and goes to C then only need to keep list
+			// A-B-C
 			rooms = rooms.subList(0, index);
 		} else {
+
+			if (rooms.size() > maxDistance) {
+				// Do not wander any more to new locations but can wander to
+				// previous locations
+				
+				// Return mob to last known room (think lost sheep on a leash).
+				MoveManager.move(mob,currentRoom);
+				
+				LOGGER.debug("Not wandering at max distance from start location");
+
+			}
 			rooms.add(room);
-		}
-
-		if (rooms.size() > maxDistance) {
-			// Do not wander any more to new locations but can wander to
-			// previous locations
-
-			LOGGER.debug("Not wandering at max distance from start location");
-
 		}
 
 	}

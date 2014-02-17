@@ -14,6 +14,7 @@ public class Aggressive implements Tickable {
 	public void tick() {
 		// TODO Auto-generated method stub
 
+		// If any players visible in same location then random pick one to attack.
 	}
 
 }

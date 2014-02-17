@@ -14,6 +14,7 @@ public class Sleeping implements Tickable {
 	public void tick() {
 		// TODO Auto-generated method stub
 
+		// If state awake and not fighting then change state to sleeping.
 	}
 
 }
