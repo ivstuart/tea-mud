@@ -21,7 +21,7 @@ public class WanderTest {
 		// TODO create a set of rooms and exits for the Mob to be tested in 
 		// OR load default test world and use the state from that in which to test (more of an integration test then)
 		
-		// TODO LaunchMud.main(new String[0]); // TODO set thread to exit when test does.
+		LaunchMud.main(new String[0]); // TODO set thread to exit when test does.
 		
 		
 		Wander wandering = new Wander(mob);
@@ -33,7 +33,7 @@ public class WanderTest {
 		
 		System.out.println("Rooms been to"+wandering.getRooms());
 		
-		// TODO LaunchMud.stop();
+		LaunchMud.stop();
 
 	}
 

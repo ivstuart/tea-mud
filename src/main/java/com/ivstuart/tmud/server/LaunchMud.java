@@ -27,6 +27,8 @@ public class LaunchMud {
 	public static Properties mudServerProperties;
 	
 	private static MudServer mudServer;
+	
+	private static boolean isRunning = true;
 
 	private static void displayUsage() {
 		System.out.println("LaunchMud <primary config file> [mode]");
@@ -58,11 +60,14 @@ public class LaunchMud {
 
 		mudServer.startListening(getMudServerPort());
 		
-		try {
-			Thread.sleep(15 * 60 * 1000); // 15 minutes
-		} catch (Exception e) {
-			LOGGER.error("Problem sleeping",e);
+		while (isRunning) {
+			try {
+				Thread.sleep(3000); // Check for shutdown every three seconds
+			} catch (Exception e) {
+				LOGGER.error("Problem sleeping",e);
+			}
 		}
+
 
 		LOGGER.info("Finnished mud.");
 	}
@@ -70,10 +75,15 @@ public class LaunchMud {
 	public static boolean stop() {
 		if (mudServer != null) {
 			mudServer.stop();
+			isRunning = false;
 			return true;
 		}
 		return false;
 		
+	}
+	
+	public static boolean isRunning() {
+		return isRunning;
 	}
 
 	public static int getMudServerPort() {

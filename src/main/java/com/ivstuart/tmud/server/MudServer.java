@@ -18,6 +18,8 @@ import java.util.Iterator;
 
 import org.apache.log4j.Logger;
 
+import com.ivstuart.tmud.exceptions.MudException;
+
 public class MudServer {
 
 	private static final Logger LOGGER = Logger.getLogger(MudServer.class);
@@ -31,16 +33,18 @@ public class MudServer {
 			super("SelectorThread");
 		}
 
-		private void readSocket(SocketChannel socketChannel) throws IOException {
+		private void readSocket(SelectionKey sk) throws IOException {
+			
+			SocketChannel sc = (SocketChannel) sk.channel();
 
 			buffer.clear();
 
-			int numberOfBytesRead = socketChannel.read(buffer);
+			int numberOfBytesRead =sc.read(buffer);
 
-			if (numberOfBytesRead <= 0) {
-				LOGGER.debug("Less than 1 byte read [" + numberOfBytesRead
-						+ "]");
-				socketChannel.close();
+			if (numberOfBytesRead == -1) {
+				LOGGER.info("SocketChannel closing after read -1");
+				sc.close();
+				sk.cancel();
 				return;
 			}
 
@@ -58,15 +62,17 @@ public class MudServer {
 			}
 
 			if (sb.length() < 1) {
-				return;
+				return ;
 			}
 
-			ConnectionManager.process(socketChannel, sb.toString());
+			ConnectionManager.process(sc, sb.toString());
+			return;
 
 		}
 
 		@Override
 		public void run() {
+			LOGGER.info("Starting running mud server read sockets");
 			try {
 				// block until a Channel is ready for I/O
 				while (readSelector.select() > 0) {
@@ -94,16 +100,25 @@ public class MudServer {
 							channel.register(writeSelector,
 									SelectionKey.OP_WRITE);
 							ConnectionManager.add(channel);
+						} else if (sk.isConnectable()) {
+							LOGGER.info("SelectionKey is connected");
 						} else if (sk.isReadable()) {
 
 							try {
-								readSocket((SocketChannel) sk.channel());
+								readSocket(sk);
 							} catch (IOException ioe) {
 								ConnectionManager.close(sk);
 								throw ioe;
 							}
+						} else if (sk.isWritable()) {
+							LOGGER.info("SelectionKey is wriable");
+						} else if (!sk.isValid()) {
+							LOGGER.info("SelectionKey is invalid");
+							new MudException("SelectionKey is invalid:");
 						}
 					}
+					
+//					selectionKeyIter.remove();
 				}
 			} catch (Exception e) {
 				LOGGER.error("Problem with communication channel", e);
@@ -132,6 +147,7 @@ public class MudServer {
 	 * Sets up the selectors and starts listening
 	 */
 	protected void startListening(int port) {
+		LOGGER.info("Starting read write networking for the mud server");
 		try {
 			// create the selector and the ServerSocket
 			readSelector = SelectorProvider.provider().openSelector();
@@ -161,12 +177,15 @@ public class MudServer {
 
 	/** Stop the selector thread */
 	public synchronized void stop() {
+		LOGGER.info("Starting shutdown of the mud server");
 		try {
+			ssch.socket().close();
 			ssch.close();
 		} catch (Exception e) {
 			LOGGER.error("Problem with stopping selector thread", e);
 		}
 		this.ssch = null;
+		LOGGER.info("Finished shutdown of the mud server");
 	}
 
 }

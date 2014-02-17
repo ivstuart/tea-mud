@@ -45,7 +45,9 @@ public class ConnectionManager {
 	public static void close(SelectionKey sk) {
 		map.remove(sk.channel());
 		try {
+			sk.cancel();
 			sk.channel().close();
+			((SocketChannel)sk.channel()).finishConnect();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

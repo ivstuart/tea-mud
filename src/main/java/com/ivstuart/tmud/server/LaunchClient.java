@@ -11,14 +11,16 @@ import java.net.Socket;
 import org.apache.log4j.Logger;
 
 /**
- * Recommend putty or tintin++ however please please double check site and source of any download
- * to ensure that there any binary files are trustworthy. In the meantime this can be used 
- * as a safe local client, which does not handle the ansi colour coding.
+ * Recommend putty or tintin++ however please please double check site and
+ * source of any download to ensure that there any binary files are trustworthy.
+ * In the meantime this can be used as a safe local client, which does not
+ * handle the ansi colour coding.
  * 
- * To switch this off from command line use "configdata ansi" to toggle on and off.
+ * To switch this off from command line use "configdata ansi" to toggle on and
+ * off.
  * 
  * @author Ivan
- *
+ * 
  */
 public class LaunchClient implements Runnable {
 
@@ -31,23 +33,34 @@ public class LaunchClient implements Runnable {
 
 	public static void main(String argv[]) throws IOException {
 
-		LaunchClient client = new LaunchClient();
-		Thread responseThread = new Thread(client);
-
-		responseThread.start();
+		LaunchClient client = init();
 		client.readWriteStreams();
 
 	}
 
+	public static LaunchClient init() throws IOException {
+		LaunchClient client = new LaunchClient();
+		
+		Thread responseThread = new Thread(client);
+		responseThread.start();
+		
+		return client;
+	}
+
 	public LaunchClient() throws IOException {
 		super();
-		String ip = InetAddress.getLocalHost().getHostAddress(); // Same as you have configured your mud server
+		String ip = InetAddress.getLocalHost().getHostAddress(); // Same as you
+																	// have
+																	// configured
+																	// your mud
+																	// server
 		int port = LaunchMud.getMudServerPort();
 
 		try {
 			socket = new Socket(ip, port);
 		} catch (Exception e) {
-			LOGGER.error("Problem opening socket connection on "+ip+":"+port, e);
+			LOGGER.error("Problem opening socket connection on " + ip + ":"
+					+ port, e);
 		}
 
 		bufferReader = new BufferedReader(new InputStreamReader(
@@ -69,6 +82,17 @@ public class LaunchClient implements Runnable {
 			System.out.println();
 		}
 
+	}
+
+	/**
+	 * Used by integration tests only
+	 * 
+	 * @param userInput
+	 */
+	public void send(String userInput) {
+		if (isRunning) {
+			pw.println(userInput); // pushing input over to socket.
+		}
 	}
 
 	@Override
