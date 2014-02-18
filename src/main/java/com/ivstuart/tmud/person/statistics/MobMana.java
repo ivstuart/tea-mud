@@ -12,7 +12,7 @@ public class MobMana implements Serializable {
 	private ManaAttribute _mana[] = null;
 
 	public MobMana() {
-		initialize(false);
+		// initialize(false);
 	}
 
 	public MobMana(boolean isPlayer_) {

@@ -18,14 +18,15 @@ import com.ivstuart.tmud.state.BaseSkill;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Room;
 import com.ivstuart.tmud.state.World;
+import com.ivstuart.tmud.utils.TestHelper;
 
 public class TestRescue {
 
 	@Test
 	public void testRescueWhenNotFighting() {
 
-		Mob player1Mob = makeDefaultPlayerMob("player1");
-		Mob player2Mob = makeDefaultPlayerMob("player2");
+		Mob player1Mob = TestHelper.makeDefaultPlayerMob("player1");
+		Mob player2Mob = TestHelper.makeDefaultPlayerMob("player2");
 
 		// Teach rescue to player 2
 		Ability rescueAbility = new Ability("rescue", 100);
@@ -99,46 +100,4 @@ public class TestRescue {
 		}
 	}
 
-	public static Mob makeDefaultPlayerMob(String name) {
-		Mob mob = new Mob();
-		Player player = new Player();
-		player.setMob(mob);
-		mob.setNameAndId(name);
-		mob.setPlayer(player);
-		int[] defaultAttributes = { 10, 10, 10, 10, 10 };
-		player.setAttributes(defaultAttributes);
-
-		mob.setId(name);
-		mob.setBrief(name);
-		mob.setName(name);
-
-		PlayerData data = player.getData();
-
-		mob.setPlayer(player);
-
-		player.setMob(mob);
-
-		player.getData().setAlignment(new Attribute("Alignment", 1000));
-
-		mob.setHeight(6);
-
-		data.setPlayingFor(0);
-
-		data.setTotalXp(0);
-		data.setRemort(0);
-		data.setPracs(0);
-
-		mob.setLevel(1);
-
-		data.setAge(16 + (int) (Math.random() * 5));
-
-		mob.setHp("100");
-		mob.setMv("100");
-		mob.setMana(new MobMana(true));
-
-		data.setThirst(500);
-		data.setHunger(500);
-
-		return mob;
-	}
 }

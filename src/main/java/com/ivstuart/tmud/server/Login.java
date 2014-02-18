@@ -23,6 +23,7 @@ import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Room;
 import com.ivstuart.tmud.state.World;
 import com.ivstuart.tmud.state.util.EntityProvider;
+import com.ivstuart.tmud.utils.GsonIO;
 import com.ivstuart.tmud.utils.MudIO;
 
 /**
@@ -290,7 +291,7 @@ public class Login implements Readable {
 
 		Mob mob = new Mob();
 		Player player = new Player();
-		
+
 		initializeCharacter(password, att, mob, player);
 
 		initialEquipment(player);
@@ -303,19 +304,24 @@ public class Login implements Readable {
 		}
 
 		try {
-			MudIO.getInstance().save(player, player.getName() + ".sav");
+			// TODO remove this
+			// MudIO.getInstance().save(player, player.getName() + ".sav");
+			GsonIO gio = new GsonIO();
+			gio.save(player, player.getName() + ".sav");
 		} catch (IOException e) {
 			LOGGER.error("Problem saving character to disk", e);
 		}
+
 		out("Created character. Check your email for login password");
 		myConnection.disconnect();
 	}
 
-	public void initializeCharacter(String password, int[] attributes, Mob mob, Player player) {
+	public void initializeCharacter(String password, int[] attributes, Mob mob,
+			Player player) {
 		mob.setId(name);
 		mob.setBrief(name);
 		mob.setName(name);
-		
+
 		PlayerData data = player.getData();
 
 		mob.setPlayer(player);
@@ -435,10 +441,14 @@ public class Login implements Readable {
 
 	private void loadCharacter() {
 
-		Player player;
+		Player player = null;
 
 		try {
-			player = (Player) MudIO.getInstance().load(name + ".sav");
+//			player = (Player) MudIO.getInstance().load(name + ".sav");
+//			
+			String fileName = name + ".sav";
+			GsonIO gio = new GsonIO();
+			player = gio.loadPlayer(fileName);
 		} catch (Exception e) {
 			LOGGER.error("Problem loading character from disk", e);
 			out("Failed logging in");

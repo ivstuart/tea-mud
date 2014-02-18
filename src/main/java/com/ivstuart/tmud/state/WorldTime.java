@@ -45,6 +45,10 @@ public class WorldTime implements Runnable {
 		return fighting;
 	}
 
+	/**
+	 * Only World and TestHelper are allowed to get an instance of WorldTime
+	 * @return
+	 */
 	public static WorldTime getInstance() {
 		return INSTANCE;
 	}
@@ -92,7 +96,7 @@ public class WorldTime implements Runnable {
 		return _running;
 	}
 
-	private void repopulateMobs() {
+	public void repopulateMobs() {
 		for (Iterator<DeadMob> iter = deadMobs.iterator(); iter.hasNext();) {
 			DeadMob deadMob = iter.next();
 			if (deadMob.shouldRepopulate()) {
@@ -108,7 +112,7 @@ public class WorldTime implements Runnable {
 		}
 	}
 
-	private void resolveCombat() {
+	public void resolveCombat() {
 
 		// LOGGER.debug("resolveCombat");
 
@@ -161,10 +165,7 @@ public class WorldTime implements Runnable {
 
 	}
 
-	/**
-	 * 
-	 */
-	void sendHeartBeat() {
+	public void sendHeartBeat() {
 
 		for (Tickable tickable : tickables) {
 			// TODO add exception handling
@@ -172,5 +173,12 @@ public class WorldTime implements Runnable {
 		}
 
 	}
+
+	public void tickWithCombat() {
+		sendHeartBeat();
+		repopulateMobs();
+		resolveCombat();
+	}
+	
 
 }

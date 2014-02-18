@@ -14,6 +14,7 @@ import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.World;
+import com.ivstuart.tmud.utils.GsonIO;
 import com.ivstuart.tmud.utils.MudIO;
 
 /**
@@ -23,7 +24,7 @@ import com.ivstuart.tmud.utils.MudIO;
 public class Quit implements Command {
 
 	private static final Logger LOGGER = Logger.getLogger(Quit.class);
-	
+
 	@Override
 	public void execute(Mob mob_, String input) {
 
@@ -38,9 +39,12 @@ public class Quit implements Command {
 
 		// Save character first
 		try {
-			MudIO.getInstance().save(player, mob_.getId() + ".sav");
+			// TODO remove this
+			// MudIO.getInstance().save(player, mob_.getId() + ".sav");
+			GsonIO gio = new GsonIO();
+			gio.save(player, player.getName() + ".sav");
 		} catch (IOException e) {
-			LOGGER.error("Problem saving character",e);
+			LOGGER.error("Problem saving character", e);
 			mob_.out("Problem saving character!");
 			return;
 		}
