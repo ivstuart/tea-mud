@@ -4,6 +4,7 @@ import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.person.statistics.MobMana;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.MobStatus;
 
 public abstract class FightAction {
 
@@ -115,4 +116,5 @@ public abstract class FightAction {
 
 		// return ToStringBuilder.reflectionToString(this);
 	}
+	
 }

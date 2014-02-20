@@ -56,6 +56,12 @@ short: lockpicks
 look: set of lock picking tools
 type: lockpicks
 
+id: gazelle-001
+alias: gazelle body
+short: gazelle body
+look: fresh remains of a gazelle
+type: BUTCHERABLE
+
 # wand
 # scroll
 # beer 

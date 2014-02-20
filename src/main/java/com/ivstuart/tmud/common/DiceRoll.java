@@ -82,6 +82,10 @@ public class DiceRoll implements Serializable {
 		diceSides = sides;
 		diceBonus = adder;
 	}
+	
+	public DiceRoll(int number, int sides, int adder) {
+		this((short)number,(short)sides,(short)adder);
+	}
 
 	/**
 	 * Must be of the form 0d0+0 with + being optimal.
@@ -128,6 +132,7 @@ public class DiceRoll implements Serializable {
 		diceSides = Short.parseShort(param2);
 		diceBonus = Short.parseShort(param3);
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {

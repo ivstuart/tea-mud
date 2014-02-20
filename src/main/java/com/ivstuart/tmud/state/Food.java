@@ -22,4 +22,7 @@ public class Food extends Item {
 		_portions = Integer.parseInt(drafts_.trim());
 	}
 
+	public void setNumberPortions(int drafts_) {
+		_portions = drafts_;
+	}
 }

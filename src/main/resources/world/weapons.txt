@@ -8,7 +8,7 @@ alias: sword
 short: rusty sword
 look: rusty sword which looks well worn
 skill: slashing
-type: weapon
+type: weapon SHARP
 damage: 1d6+1
 wear: PRIMARY
 weight: 5
@@ -27,4 +27,17 @@ wear: PRIMARY
 weight: 5
 cost: 10
 rent: 5
+affects:
+
+id: knife-001
+alias: knife
+short: small hunting knife
+look: small hunting knife ideal for butchering small animals
+skill: slashing
+type: weapon SHARP
+damage: 1d2+1
+wear: PRIMARY
+weight: 1
+cost: 2
+rent: 1
 affects:

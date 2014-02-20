@@ -6,8 +6,6 @@
  */
 package com.ivstuart.tmud.command.ability;
 
-import static com.ivstuart.tmud.state.MobState.BASH_ALERT;
-
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.fighting.action.FightAction;
 import com.ivstuart.tmud.state.Ability;
@@ -86,33 +84,12 @@ public class Bash implements Command {
 
 	}
 
-	private boolean checkMobStatus(Mob mob, Mob target) {
+	private boolean checkMobStatus(Mob self, Mob target) {
 
-		if (!mob.getState().canMove()) {
-			// You must be able to move to bash someone
-			mob.out("You must be standing or flying to bash someone");
-			return true;
-		}
+		AbilityHelper.canUseAbility(self,target,"bash");
 
-		MobStatus status = mob.getMobStatus();
-
-		if (status.isGroundFighting()) {
-			mob.out("You are ground fighting so can not bash someone");
-			return true;
-		}
-
-		if (status.isImmobile()) {
-			mob.out("You are immobile so can not bash someone");
-			return true;
-		}
-
-		if (status.isBashed()) {
-			mob.out("You are bashed so can not bash someone");
-			return true;
-		}
-
-		if (status.isBashLagged()) {
-			mob.out("You are not ready to bash someone yet");
+		if (self.getMobStatus().isBashLagged()) {
+			self.out("You are not ready to bash someone yet");
 			return true;
 		}
 
@@ -144,9 +121,8 @@ public class Bash implements Command {
 			return true;
 		}
 
-		MobStatus status = new MobStatus();
-
-		status.is(BASH_ALERT);
+		// Mob is base aware now for 8 seconds which follow.
+		targetStatus.setBashAlert(8);
 
 		return false;
 	}

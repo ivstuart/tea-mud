@@ -142,4 +142,14 @@ public class Inventory implements Serializable {
 		return items.remove(name);
 	}
 
+	public boolean hasSharpEdge() {
+		for (Item item : items) {
+			if ("SHARP".indexOf(item.getType()) > -1) {
+				return true;
+			}
+
+		}
+		return false;
+	}
+
 }

@@ -160,4 +160,12 @@ public class Item extends Prop implements Equipable, Msgable {
 
 	}
 
+	public boolean isButcherable() {
+		return (_type.indexOf("BUTCHERABLE") != -1);
+	}
+
+	public int getWeight() {
+		return _weight;
+	}
+
 }

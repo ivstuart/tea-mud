@@ -16,28 +16,26 @@ import com.ivstuart.tmud.state.Mob;
 /**
  * @author Ivan Stuart
  */
-public class Circle implements Command {
+public class BackStab implements Command {
 
-	class FightActionCircle extends FightAction {
+	class FightActionBackStab extends FightAction {
 
-		public FightActionCircle(Mob me, Mob target) {
+		public FightActionBackStab(Mob me, Mob target) {
 			super(me, target);
 		}
 
 		@Override
 		public void begin() {
 			super.begin();
-			
-			getSelf().getMobStatus().setCircling(10000);
 
 			// TODO review and test this
-			if (!getSelf().getMv().deduct(15)) {
-				out("You do not have enough movement left to circle");
+			if (!getSelf().getMv().deduct(20)) {
+				out("You do not have enough movement left to backstab");
 				this.finished();
 			}
 
 			durationMillis(500);
-			out("<S-You prepare your/NAME prepares GEN-him>self to circle <T-you/NAME>.");
+			out("<S-You prepare your/NAME prepares GEN-him>self to backstab <T-you/NAME>.");
 
 			if (checkMobStatus(getSelf(), getTarget())) {
 				this.finished();
@@ -47,7 +45,7 @@ public class Circle implements Command {
 
 		@Override
 		public void changed() {
-			getSelf().getMobStatus().setCircling(0);
+			// TODO Auto-generated method stub
 
 		}
 
@@ -62,43 +60,30 @@ public class Circle implements Command {
 			if (checkMobStatus(getSelf(), getTarget())) {
 				this.finished();
 			}
-			
-			// Check if another theif is attemping to also circle at the same time
-			// Note only most progressed 
-			if (getTarget().getFight().isBeingCircled()) {
-				getSelf().out(getTarget().getName()
-						+ " is already being circled you collide and are off balance");
-				durationMillis(5000);
-				getSelf().getMobStatus().setCircling(2500); // Other theif gets caught out this way.
-				getSelf().getMobStatus().setOffBalance(2500);
-				return;
-			}
-			
 
 			// Success or fail
-			Ability ability = getSelf().getLearned().getAbility("circle");
-			if (ability.isSuccessful()) {
-				out("<S-You/NAME> successfully circled <T-you/NAME>.");
+			Ability bashAbility = getSelf().getLearned().getAbility("backstab");
+			if (bashAbility.isSuccessful()) {
+				out("<S-You/NAME> successfully backstabed <T-you/NAME>.");
 
 				// TODO assign damage and if not fighting target each other
 				int dex = getSelf().getPlayer().getAttributes().getDEX().getValue();
 				
-				DiceRoll damage = new DiceRoll(3,5,dex);
+				DiceRoll damage = new DiceRoll(3,6,dex);
 				
 				// Could just send this object the FightAction to damage.
 				DamageManager.deal(getSelf(), getTarget(), damage.roll());
 
-				if (ability.isImproved()) {
-					out("[[[[ Your ability to " + ability.getId()
+				if (bashAbility.isImproved()) {
+					out("[[[[ Your ability to " + bashAbility.getId()
 							+ " has improved ]]]]");
-					ability.improve();
+					bashAbility.improve();
 				}
 			} else {
-				out("<S-You/NAME> miss<S-/es> circle <T-you/NAME>.");
+				out("<S-You/NAME> miss<S-/es> backstab <T-you/NAME>.");
 			}
 
 			durationMillis(2500);
-			getSelf().getMobStatus().setCircling(0);
 		}
 
 		@Override
@@ -110,7 +95,7 @@ public class Circle implements Command {
 
 	private boolean checkMobStatus(Mob self, Mob target) {
 
-		AbilityHelper.canUseAbility(self, target, "circle");
+		AbilityHelper.canUseAbility(self, target, "backstab");
 
 		return false;
 	}
@@ -121,9 +106,9 @@ public class Circle implements Command {
 
 	private boolean checkTargetStatus(Mob mob, Mob target) {
 
-		if (!target.getFight().isFighting()) {
+		if (target.getFight().isFighting()) {
 			mob.out(target.getName()
-					+ " is not fighting, you can only circle during combat!");
+					+ " is fighting, you can not sneak up to backstab!");
 			return true;
 		}
 
@@ -132,16 +117,16 @@ public class Circle implements Command {
 
 	@Override
 	public void execute(Mob mob, String input) {
-		// Same as backstab but can use during combat only
-		if (!mob.getLearned().hasLearned("circle")) {
-			mob.out("You have no knowledge of circle");
+
+		if (!mob.getLearned().hasLearned("backstab")) {
+			mob.out("You have no knowledge of backstab");
 			return;
 		}
 
 		Mob target = mob.getRoom().getMob(input);
 
 		if (target == null) {
-			mob.out(input + " is not here to circle!");
+			mob.out(input + " is not here to backstab!");
 			return;
 		}
 
@@ -149,11 +134,7 @@ public class Circle implements Command {
 			return;
 		}
 
-		// Also need to check if another thief is circling at the same time
-		// they will bump into each other and lose that circle in that event.
-
-		
-		mob.getFight().add(new FightActionCircle(mob, target));
+		mob.getFight().add(new FightActionBackStab(mob, target));
 
 	}
 

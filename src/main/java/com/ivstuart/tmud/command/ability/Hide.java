@@ -24,6 +24,12 @@ public class Hide implements Command {
 	public void execute(Mob mob, String input) {
 
 		mob.out("todo hide");
+		
+		// TODO can hide self
+		//          hide objects
+		//          hide exits or props only if they where hidden in the first place and made visible.
+		
+		// Do "search" in collaboration with this command.
 	}
 
 }

@@ -213,4 +213,13 @@ public class Fight {
 		return ToStringBuilder.reflectionToString(this);
 	}
 
+	public boolean isBeingCircled() {
+		for (Mob mob : targettedBy) {
+			if (mob.getMobStatus().isCircling()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 }

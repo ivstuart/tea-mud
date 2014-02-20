@@ -62,6 +62,7 @@ look: snow white marbled stone. Along the outer walls of the courtyard torches,
 look: held by iron sconces, flicker dim light about the area. 
 exits: east->R-003-001 south->R-002-002 west->R-001-001 
 properties: DARK
+item: knife-001
 
 id: R-003-001
 brief: The Mosaic Covered Floor in the White Tower

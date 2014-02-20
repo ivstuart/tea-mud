@@ -37,8 +37,6 @@ public class Cast implements Command {
 	@Override
 	public void execute(Mob mob_, String input_) {
 
-		// mob_.out("casting code todo - draft mode at the moment");
-
 		// Check if can cast ie if standing.
 		if (mob_.getState() != STAND) {
 			mob_.out("You must be standing to cast spells");
@@ -84,7 +82,7 @@ public class Cast implements Command {
 		}
 
 		// check you have mana and a casting level which is required.
-		LOGGER.info("Debug = spell.getManaType()=" + spell.getManaType());
+		LOGGER.debug("Spell mana type [" + spell.getManaType() + "]");
 
 		MobMana mana = mob_.getMana();
 

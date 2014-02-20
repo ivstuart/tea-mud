@@ -133,4 +133,12 @@ public class MobStatus {
 	public final String toString() {
 		return ToStringBuilder.reflectionToString(this);
 	}
+
+	public boolean isCircling() {
+		return is(CIRCLING);
+	}
+
+	public void setCircling(int durationInSeconds) {
+		add(CIRCLING,durationInSeconds);
+	}
 }

@@ -50,6 +50,7 @@ public class Wander implements Tickable {
 	public void tick() {
 
 		if (mob.getFight().isFighting()) {
+			LOGGER.debug(mob.getName()+" is fighting and hence will not wander away");
 			return;
 		}
 
