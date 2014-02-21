@@ -6,12 +6,16 @@ public class Exit extends BasicThing {
 	private String destinationRoomId;
 	private transient Room destinationRoom; // optimization
 	private Door door;
+	
+	private String[] standardExits = {"north","south","east","west","up","down"};
+	private boolean isSpecial;
 
 	public Exit() {
 	}
 
 	public Exit(String id, String destination_) {
 		this.setId(id);
+		isSpecial = isSpecial(id);
 		destinationRoomId = destination_;
 	}
 
@@ -70,5 +74,18 @@ public class Exit extends BasicThing {
 
 	public void setDoor(Door door_) {
 		door = door_;
+	}
+	
+	public boolean isSpecial() {
+		return isSpecial;
+	}
+
+	public boolean isSpecial(String id) {
+		for (String name : standardExits) {
+			if (id.equals(name)) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

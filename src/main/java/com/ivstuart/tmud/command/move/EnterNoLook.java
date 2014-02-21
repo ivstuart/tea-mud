@@ -24,6 +24,12 @@ public class EnterNoLook implements Command {
 			return;
 		}
 
+		if (mob.getMobStatus().isHidden()) {
+			mob.out("You can not move while hidding!");
+			return;
+		}
+
+		
 		Exit exit = room.getExit(input);
 
 		if (exit == null) {

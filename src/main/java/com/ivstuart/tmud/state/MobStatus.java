@@ -141,4 +141,12 @@ public class MobStatus {
 	public void setCircling(int durationInSeconds) {
 		add(CIRCLING,durationInSeconds);
 	}
+
+	public void setHidden(int durationInSeconds) {
+		add(HIDDEN,durationInSeconds);
+	}
+	
+	public boolean isHidden() {
+		return is(HIDDEN);
+	}
 }
