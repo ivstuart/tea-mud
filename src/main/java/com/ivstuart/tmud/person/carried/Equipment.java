@@ -242,4 +242,8 @@ public class Equipment implements Serializable {
 		return sb.toString();
 	}
 
+	public boolean hasShieldEquiped() {
+		return ((Item)_primary).isShield() ||  ((Item)_secondary).isShield();
+	}
+
 }

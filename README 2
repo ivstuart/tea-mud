@@ -58,3 +58,28 @@ Either done or on the to do list.
   exits: west->R-003-003
     
  Also add the room id "R-004-003" in as a suitable exit to an existing room.
+ 
+ 4.2 How to add new commands to players?
+ 
+ A. Add class to file tea-mud\src\main\resources\config\commands.txt
+ 
+ 4.3 How to add new abilities or skills to the code base?
+ 
+ A. Add in tea-mud\src\main\resources\world\abilities.txt and to the code.
+ 
+ 5. Coding insights or corrections or simplications
+ --------------------------------------------------
+ 
+  1. Props where created to keep fountains and other physical items that could not be taken seperate from other item types.
+  On reflection the code would be easier and cleaner if these all became an items type which was noget=true.
+  All noget true items would be listed first in rooms to meet the requirement for wells, fountains bushes, special trees which bear fruit
+  etc. Favour using items for everything and phase out props use.
+  2. Equipable should also be dropped anything equipable is an item. Just use item in code. Have items which are not worn. 
+     Which is how it is already.
+  3. MobMana is/was overkill. Simplier options. API to be cleaned up for easy of use. 
+  4. SomeMoney and Money is over the top too. API to be cleaned up for easy of use. 
+  
+  6. Testing focus
+  ----------------
+  
+  The follow package needs manual testing com.ivstuart.tmud.command.ability.* to sure it up.

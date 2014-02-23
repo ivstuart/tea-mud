@@ -7,6 +7,9 @@
 package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.common.DiceRoll;
+import com.ivstuart.tmud.person.carried.Money;
+import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Mob;
 
 /**
@@ -34,8 +37,46 @@ public class Steal implements Command {
 			mob.out(input + " is not here to steal from!");
 			return;
 		}
+		
+		// TODO optional make it possible to steal other players
+		// rule decision if fighting alignment impact this option
+		if (target.isPlayer()) {
+			mob.out(input + " is a player, hence no stealing");
+			return;
+		}
 
-		mob.out("steal todo");
+		Ability steal = mob.getLearned().getAbility("steal");
+
+		if (steal == null) {
+			mob.out("You have no knowledge of sneak");
+			return;
+		}
+
+
+		if (steal.isSuccessful()) {
+			mob.out("<S-You/NAME> successfully pilfer something...");
+
+			// TODO optional make it possible to steal other inventory items.
+			int amount = DiceRoll.ONE_D100.roll();
+			
+			int available = target.getInventory().getPurse().getValue();
+			
+			int taken = Math.min(amount, available);
+			
+			Money money = new Money(Money.COPPER,taken);
+			
+			// TODO make some mobs aware of this and respond accordingly.
+			target.getInventory().getPurse().remove(money);
+			mob.getInventory().add(money);
+			
+			if (steal.isImproved()) {
+				mob.out("[[[[ Your ability to " + steal.getId()
+						+ " has improved ]]]]");
+				steal.improve();
+			}
+		}
+		
+		
 	}
 
 }

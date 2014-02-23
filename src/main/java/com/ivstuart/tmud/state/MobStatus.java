@@ -149,4 +149,12 @@ public class MobStatus {
 	public boolean isHidden() {
 		return is(HIDDEN);
 	}
+
+	public boolean isSneaking() {
+		return is(SNEAKING);
+	}
+	
+	public void setSneaking(int durationInSeconds) {
+		add(SNEAKING,durationInSeconds);
+	}
 }

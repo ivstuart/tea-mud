@@ -34,17 +34,21 @@ public class TestLearn implements Command {
 		Ability ab3 = new Ability("crushing");
 		Ability ab4 = new Ability("chopping");
 		Ability ab5 = new Ability("thrusting");
+		
+		Ability ab6 = new Ability("search");
 
 		ab1.setSkill(20);
 		ab2.setSkill(30);
 		ab3.setSkill(40);
 		ab4.setSkill(50);
 		ab5.setSkill(90);
+        ab6.setSkill(90);
 
 		learn(mob, ab1);
 		learn(mob, ab3);
 		learn(mob, ab4);
 		learn(mob, ab5);
+		learn(mob, ab6);
 
 		learnSkill(mob, "kick");
 		learnSkill(mob, "rescue"); // 19th Jul 2009

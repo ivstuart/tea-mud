@@ -172,6 +172,10 @@ public class Item extends Prop implements Equipable, Msgable {
 		return false;
 	}
 
+	public boolean isShield() {
+		return (_type.indexOf("SHIELD") != -1);
+	}
+
 
 
 }

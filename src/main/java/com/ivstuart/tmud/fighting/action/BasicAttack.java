@@ -160,17 +160,18 @@ public class BasicAttack extends FightAction {
 	}
 
 	private void hit() {
-
-		// out("You hit someone called " + character.getName());
-
-		// Dodging?
+		
+	
+		if (parrySuccessful()) {
+			return;
+		}
 
 		BasicDamage damage = new BasicDamage();
 
+		// TODO source base damage from weapon
 		// Weapon roll
 		// damage.setRoll(1,400,0);
 		getSelf().getWeapon();
-
 		damage.setRoll(DiceRoll.ONE_D_SIX);
 
 		Ability enhancedDamage = getSelf().getLearned().getAbility(
@@ -191,17 +192,25 @@ public class BasicAttack extends FightAction {
 
 		// Hit location
 
-		// Take off armour
-
-		// Saves
-
-		Ability dodge = getTarget().getLearned().getAbility("dodge");
-
-		Ability parry = getTarget().getLearned().getAbility("parry");
-
 		// Could just send this object the FightAction to damage.
 		DamageManager.deal(getSelf(), getTarget(), damage.roll());
 
+	}
+
+	private boolean parrySuccessful() {
+		Ability parry = getTarget().getLearned().getAbility("parry");
+		
+		if (parry != null && parry.isSuccessful()) {
+			getTarget().out("<S-You/NAME> successfully parry the blow <T-you/NAME>.");
+
+			if (parry.isImproved()) {
+				getTarget().out("[[[[ Your ability to "
+						+ parry.getId() + " has improved ]]]]");
+				parry.improve();
+			}
+		}
+		
+		return false;
 	}
 
 	/*

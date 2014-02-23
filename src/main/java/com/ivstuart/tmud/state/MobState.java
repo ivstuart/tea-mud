@@ -4,7 +4,7 @@ public enum MobState {
 
 	BASHED("[*]"), BASH_ALERT("[!]"), BASH_LAGGED("[|]"), SILENCED("="), CASTING(
 			"(Casting)"), CIRCLING("o"), OFFBALANCE("/"), GROUNDFIGHTING("g"), IMMOBILE(
-			"i"), BLINDED("-"), STUNNED("_"), CONFUSED("?"), HIDDEN("-.-"),INVISIBLE("-i-");
+			"i"), BLINDED("-"), STUNNED("_"), CONFUSED("?"), HIDDEN("-.-"),INVISIBLE("-i-"),SNEAKING(".s.");
 
 	private String prompt;
 

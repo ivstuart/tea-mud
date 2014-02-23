@@ -26,6 +26,8 @@ public class Player implements Serializable, Nameable {
 
 	private transient Connection conn;
 
+	private boolean admin = false;
+
 	public Player() {
 		playerData = new PlayerData();
 		config = new Config();
@@ -163,6 +165,10 @@ public class Player implements Serializable, Nameable {
 	 */
 	public void setMob(Mob me) {
 		this.mob = me;
+	}
+
+	public boolean isAdmin() {
+		return admin;
 	}
 
 }

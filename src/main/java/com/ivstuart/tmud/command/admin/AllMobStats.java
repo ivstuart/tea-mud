@@ -19,8 +19,20 @@ public class AllMobStats implements Command {
 
 	@Override
 	public void execute(Mob mob, String input) {
+		
+		if (!mob.isAdmin()) {
+			mob.out("This command is not available to you.");
+			return;
+		}
+		
+		Mob target = mob.getRoom().getMob(input);
 
-		mob.out("Need to add a toString() to mob");
+		if (target == null) {
+			mob.out(input + " is not here to get all stats on!");
+			return;
+		}
+
+		mob.out(target.toString());
 
 	}
 

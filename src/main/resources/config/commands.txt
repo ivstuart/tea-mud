@@ -71,15 +71,24 @@ command.misc.Title
 command.misc.Death
 command.misc.Quit
 command.misc.Password
-command.ability.Learn
-command.ability.Unlearn
-command.ability.Practice
-command.ability.Cast
-command.ability.Kick
+command.ability.BackStab
 command.ability.Bash
+command.ability.Cast
 command.ability.Tackle
 command.ability.Circle
-command.ability.BackStab
+command.ability.Butcher
+command.ability.Disarm
+command.ability.Hide
+command.ability.Investigate
+command.ability.Kick
+command.ability.Learn
+command.ability.Practice
+command.ability.Search
+command.ability.Sneak
+command.ability.Steal
+command.ability.Tackle
+command.ability.Unhide
+command.ability.Unlearn
 command.state.Meditate
 command.state.Rest
 command.state.Sit
@@ -89,11 +98,11 @@ command.state.Wake
 
 # Admin Commands
 
+command.admin.AllMobStats
+command.admin.Debug
 command.admin.Level
 command.admin.Reload
 command.admin.Teleport
-command.admin.AllMobStats
-command.admin.Debug
 command.admin.TestLearn
 command.admin.TestPoison
 command.admin.ShowFighting

@@ -1,7 +1,8 @@
 package com.ivstuart.tmud.fighting;
 
 import com.ivstuart.tmud.common.Msg;
-import com.ivstuart.tmud.constants.*;
+import com.ivstuart.tmud.constants.DamageConstants;
+import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Corpse;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Prop;
@@ -12,7 +13,18 @@ public class DamageManager {
 
 	public static void deal(Mob attacker, Mob defender, int damage) {
 
-		// Check saves
+
+	
+		// Check saves first
+		damage = checkForDodge(defender, damage);
+		
+		damage = checkForShieldBlocking(defender, damage);
+		
+		// Take off armour at hit location
+		//   if melee the armor at location 
+		//      apply any armor peneration skills or specials to counter armour saves
+		//   if spell damage the average armour minus any special elemental saves
+		// TODO 
 
 		Msg msg = new Msg(attacker, defender, DamageConstants.toString(damage));
 
@@ -86,5 +98,45 @@ public class DamageManager {
 		 * this.setTarget(null); }
 		 */
 
+	}
+
+	private static int checkForDodge(Mob defender, int damage) {
+		Ability dodge = defender.getLearned().getAbility("dodge");
+
+		if (dodge != null && dodge.isSuccessful()) {
+			defender.out("<S-You/NAME> successfully dodge missing most of the attack.");
+
+			damage = (int) damage / 10;
+
+			if (dodge.isImproved()) {
+				defender.out("[[[[ Your ability to " + dodge.getId()
+						+ " has improved ]]]]");
+				dodge.improve();
+			}
+		}
+
+		return damage;
+
+	}
+
+	public static int checkForShieldBlocking(Mob defender, int damage) {
+		Ability shieldBlock = defender.getLearned().getAbility("shield block");
+
+		if (shieldBlock != null) {
+			if (defender.getEquipment().hasShieldEquiped()) {
+				if (shieldBlock.isSuccessful()) {
+					defender.out("<S-You/NAME> successfully shield block <T-you/NAME>.");
+
+					damage -= 5;
+
+					if (shieldBlock.isImproved()) {
+						defender.out("[[[[ Your ability to "
+								+ shieldBlock.getId() + " has improved ]]]]");
+						shieldBlock.improve();
+					}
+				}
+			}
+		}
+		return damage;
 	}
 }

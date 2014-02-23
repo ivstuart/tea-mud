@@ -531,4 +531,15 @@ public class Mob extends Prop implements Tickable {
 
 	}
 
+	public boolean isSneaking() {
+		return mobStatus.isSneaking();
+	}
+
+	public boolean isAdmin() {
+		if (this.isPlayer()) {
+			return this.player.isAdmin();
+		}
+		return false;
+	}
+
 }

@@ -35,7 +35,7 @@ public class Search implements Command {
 			return;
 		}
 
-		if (mob.getMv().deduct(10)) {
+		if (!mob.getMv().deduct(10)) {
 			mob.out("You do not have enough movement to search.");
 			return;
 		}
