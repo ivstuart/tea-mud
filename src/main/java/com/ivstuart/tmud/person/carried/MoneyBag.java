@@ -24,7 +24,6 @@ public class MoneyBag implements SomeMoney {
 	 * 
 	 */
 	public MoneyBag() {
-		super();
 		list = new ArrayList<SomeMoney>();
 	}
 

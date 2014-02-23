@@ -9,6 +9,9 @@ public class ShieldBlock implements Command {
 	@Override
 	public void execute(Mob mob, String input) {
 
+		
+		// Passive ability ?
+		
 		if (!mob.getLearned().hasLearned(AbilityConstants.SHIELD_BLOCK)) {
 			mob.out("You have no knowledge of shield block");
 			return;

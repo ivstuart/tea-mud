@@ -10,7 +10,21 @@ A text based MUD along the lines of ROP, Fate and other Diku / Circle muds.
 Setup Instructions
 ------------------
 
-TODO
+Run configurations main class:
+
+ com.ivstuart.tmud.server.LaunchMud
+
+Use putty / zmud / tintin++ to telnet to port 5678 (default port) or can use main class:
+
+ com.ivstuart.tmud.server.LaunchClient
+ 
+However no ansi colour supported on simple Java LaunchClient.
+
+> look
+> config ansi
+
+This toggles off the ansi colour. In game. Note that passwords are not being checked so ignore the failure message.
+Just type look or 'l' to see your surroundings.
 
 Contacting the Author
 ---------------------

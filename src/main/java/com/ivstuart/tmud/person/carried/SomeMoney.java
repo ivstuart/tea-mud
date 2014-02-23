@@ -17,6 +17,7 @@ import java.util.List;
  */
 public interface SomeMoney extends Serializable {
 
+	
 	public void add(Money money);
 
 	public void add(SomeMoney cash);

@@ -79,7 +79,7 @@ command.ability.Kick
 command.ability.Bash
 command.ability.Tackle
 command.ability.Circle
-command.ability.Backstab
+command.ability.BackStab
 command.state.Meditate
 command.state.Rest
 command.state.Sit

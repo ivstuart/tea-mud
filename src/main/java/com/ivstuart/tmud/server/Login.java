@@ -304,10 +304,10 @@ public class Login implements Readable {
 		}
 
 		try {
-			// TODO remove this
-			// MudIO.getInstance().save(player, player.getName() + ".sav");
-			GsonIO gio = new GsonIO();
-			gio.save(player, player.getName() + ".sav");
+			MudIO.getInstance().save(player, player.getName() + ".sav");
+			// FIXME More problems then it solves.
+			// GsonIO gio = new GsonIO();
+			// gio.save(player, player.getName() + ".sav");
 		} catch (IOException e) {
 			LOGGER.error("Problem saving character to disk", e);
 		}
@@ -444,11 +444,11 @@ public class Login implements Readable {
 		Player player = null;
 
 		try {
-//			player = (Player) MudIO.getInstance().load(name + ".sav");
-//			
-			String fileName = name + ".sav";
-			GsonIO gio = new GsonIO();
-			player = gio.loadPlayer(fileName);
+			player = (Player) MudIO.getInstance().load(name + ".sav");
+			// FIXME more problems than it solves.
+			// String fileName = name + ".sav";
+			// GsonIO gio = new GsonIO();
+			// player = gio.loadPlayer(fileName);
 		} catch (Exception e) {
 			LOGGER.error("Problem loading character from disk", e);
 			out("Failed logging in");

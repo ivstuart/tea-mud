@@ -40,9 +40,10 @@ public class Quit implements Command {
 		// Save character first
 		try {
 			// TODO remove this
-			// MudIO.getInstance().save(player, mob_.getId() + ".sav");
-			GsonIO gio = new GsonIO();
-			gio.save(player, player.getName() + ".sav");
+			MudIO.getInstance().save(player, mob_.getId() + ".sav");
+			// FIXME more issues then it solves.
+			// GsonIO gio = new GsonIO();
+			// gio.save(player, player.getName() + ".sav");
 		} catch (IOException e) {
 			LOGGER.error("Problem saving character", e);
 			mob_.out("Problem saving character!");
