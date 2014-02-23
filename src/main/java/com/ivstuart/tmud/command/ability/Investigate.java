@@ -7,6 +7,9 @@
 package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.state.Ability;
+import com.ivstuart.tmud.state.Corpse;
+import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 
 /**
@@ -28,14 +31,31 @@ public class Investigate implements Command {
 			return;
 		}
 
-		Mob target = mob.getRoom().getMob(input);
+		Item corpseItem = mob.getRoom().getItems().get(input);
 
-		if (target == null) {
-			mob.out(input + " is not here to Investigate from!");
+		if (!corpseItem.isCorpse()) {
+			mob.out(input + " is not investigatable");
 			return;
 		}
+		
+		Corpse corpse = (Corpse)corpseItem;
+		
+		// Success or fail
+		Ability ability = mob.getLearned().getAbility("investigate");
 
-		mob.out("steal todo");
+		if (ability.isSuccessful()) {
+			mob.out("<S-You/NAME> successfully investigated.");
+			
+			mob.out(corpse.investigation());
+	
+			if (ability.isImproved()) {
+				mob.out("[[[[ Your ability to " + ability.getId()
+						+ " has improved ]]]]");
+				ability.improve();
+			}
+		} else {
+			mob.out("<S-You/NAME> failed to investigate.");
+		}
 	}
 
 }

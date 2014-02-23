@@ -56,7 +56,7 @@ public class Hide implements Command {
 
 		if (ability.isSuccessful()) {
 			mob.out("<S-You/NAME> successfully hide.");
-			mob.getMobStatus().setHidden(30 * 1000);
+			mob.getMobStatus().setHidden(30);
 
 			if (ability.isImproved()) {
 				mob.out("[[[[ Your ability to " + ability.getId()

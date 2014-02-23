@@ -5,15 +5,20 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.ivstuart.tmud.common.Equipable;
+import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.person.carried.Inventory;
 
-public class Corpse extends Prop {
+public class Corpse extends Item {
 
 	private static final long serialVersionUID = -1665651693089947124L;
 
 	private static final Logger LOGGER = Logger.getLogger(Corpse.class);
 
 	protected Inventory _inventory;
+	
+	private String whoKilledMe;
+	
+	private String whenIwasKilled;
 
 	public Corpse() {
 	}
@@ -52,4 +57,13 @@ public class Corpse extends Prop {
 
 	}
 
+	@Override
+	public boolean isCorpse() {
+		return true;
+	}
+
+	public String investigation() {
+		// TODO Auto-generated method stub
+		return "Killed by "+whoKilledMe+" , "+whenIwasKilled;
+	}
 }

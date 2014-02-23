@@ -168,4 +168,10 @@ public class Item extends Prop implements Equipable, Msgable {
 		return _weight;
 	}
 
+	public boolean isCorpse() {
+		return false;
+	}
+
+
+
 }
