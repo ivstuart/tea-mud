@@ -129,6 +129,15 @@ type: Chamber
 look: The inner sanctum within the White Tower is made from highly polished
 look: snow white marbled stone. Along the outer walls of the courtyard torches,
 look: held by iron sconces, flicker dim light about the area. 
-exits: north->R-003-002 west->R-002-003
+exits: north->R-003-002 west->R-002-003 east->R-004-003
+initdoors:
+
+id: R-004-003
+brief: The shinny new room in the White Tower
+type: Chamber Alcove
+look: The inner sanctum within the White Tower is made from highly polished
+look: snow white marbled stone. Light streams in from the window into this alcove.
+look: The breeze is refreshing and moved the purple and orange curtains adorning the small window.
+exits: west->R-003-003
 initdoors:
 

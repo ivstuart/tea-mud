@@ -1,0 +1,60 @@
+1. Introduction
+---------------
+
+This read me file is for new people to understand some of the design and build aspects of this code base.
+
+2. Design Choices
+-----------------
+
+ 1. Use github its a nice way to share and collaborate and keep code in a central location.
+ 2. Data files are just plain old text files. This means builders and editors can have full access to build with just a simple text editor.
+    To keep persistence simple only player objects will be saved. Note recently switched to gson for this to allow text editing should the 
+    structure change enough to invalidate an old players file. This is more verbose than using serialization, but more easily edited.
+    Map editor should not be required provided sensible co-ordinate naming is used for room ids, i.e. {zone}-{x-cord}-{y-cord}
+    Graph paper I suggest is the best way to design maps.
+ 3. Commands always get their own class and strategy/command pattern. Such that any code can look up a command and execute it just like a 
+    player can one their command line. Commands take only the mob they are from and the text if any that goes with the command. i.e. 
+    they are stateless, but the objects they act on are not.
+ 4. There is only one other thread to the players own, this is world time and it is responsible for the passage of time and any combat 
+    happens and is resolved in world time thread.
+ 5. Mob is abstracted out such that players and mobs are almost the same.
+ 6. Msg is a way to communicate out to all parties. It knows who sent the communication and has tags such that You/I her/him NAME etc.. 
+    can be automatically replaced such that the target reader of the message has the right grammar. It will also track if the message is 
+    slient or invisible... other status flag.
+ 7. The world stores objects by id which is any string. Then objects can be stamped out. i.e. You can have a data file for a sword and 
+    create 100s swords in a room which each are unique objects but have the same template source file. Great if you need a bunch of sheep 
+    on some farmland.
+ 8. Room has exits. Exits point to rooms all by id not by object reference, such that the world does not have to deserialise on start up. 
+    A door can be put onto 1 or more exits.
+ 9. Concept of fightActions which begin, happen, end and can be interrupted that act as a template pattern for other classes to extend from. 
+    Each which can be configured to have there own timings and flags.
+
+3. Game Mechanics
+-----------------
+
+Either done or on the to do list.
+
+ 1. Xp when in groups is divided on the ratio of level.
+ 2. Instance dungeons ??
+ 3. Make test starter world small and with everything easy to find.
+ 4. Procedural generation for some areas, i.e. forests, deserts etc..
+ 5. Keep with single alignment for races until player base passes 50 people. No players and no point to code this.
+ 6. Add safe zones with no combat, no stealing etc..
+ 7. Ditch the idea of Good v Evil and have two regions instead; Algarun and Helmbol
+ 8. Newbie zone is for levels 1-10 and is a single instance dungeon for both sides, choose alignment at level 10 (subject to player base).
+ 9. Remort at level 60. Essentially restart at level one with increased stats and existing equipment.
+ 
+ 4. How to.
+ -----------
+ 
+ 4.1 How to add a room to the world?
+ 
+ A. In file \tea-mud\src\main\resources\world\rooms.txt take a default room block and cut and paste then edit the ids.
+ 
+  id: R-004-003
+  brief: The shinny new room in the White Tower
+  type: Chamber Alcove
+  look: To do ... more to do.
+  exits: west->R-003-003
+    
+ Also add the room id "R-004-003" in as a suitable exit to an existing room.
