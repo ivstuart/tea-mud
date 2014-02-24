@@ -17,11 +17,15 @@ import com.ivstuart.tmud.state.Mob;
  */
 public class Shout implements Command {
 
+	/**
+	 * Same as say but travels up to 2 rooms away in all directions.
+	 * hmm... see Yell which does this for up to 5 rooms away.
+	 */
 	@Override
 	public void execute(Mob mob, String input) {
 		// TODO Auto-generated method stub
 
-		mob.getRoom().out(mob.getId() + " says, \"" + input + "\"");
+		mob.getRoom().out(mob.getId() + " shouts, \"" + input + "\"");
 	}
 
 }

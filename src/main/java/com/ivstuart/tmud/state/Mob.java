@@ -87,6 +87,8 @@ public class Mob extends Prop implements Tickable {
 
 	protected int weight; // kg base mob
 
+	private int wimpy;
+
 	public Mob() {
 		fight = new Fight(this);
 	}
@@ -540,6 +542,10 @@ public class Mob extends Prop implements Tickable {
 			return this.player.isAdmin();
 		}
 		return false;
+	}
+
+	public void setWimpy(int wimpy) {
+		this.wimpy = wimpy;
 	}
 
 }

@@ -7,6 +7,7 @@
 package com.ivstuart.tmud.command.communication;
 
 import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 
 /**
@@ -17,11 +18,24 @@ import com.ivstuart.tmud.state.Mob;
  */
 public class WriteOnPaper implements Command {
 
+	/**
+	 * Have a write on command for writing to signs
+	 *  notice boards
+	 *  paper etc...
+	 */
 	@Override
 	public void execute(Mob mob, String input) {
-		// TODO Auto-generated method stub
-		mob.getRoom().out("todo write on paper");
-
+		
+		// Check pen and paper first
+		
+		Item note = new Item();
+		
+		note.setLong(input);
+		note.setBrief(input.substring(0,40));
+		
+		// Add finished note to inventory.
+		mob.getInventory().add(note);
+		
 	}
 
 }
