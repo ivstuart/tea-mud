@@ -1,8 +1,10 @@
 package com.ivstuart.tmud.fighting;
 
+import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.constants.DamageConstants;
 import com.ivstuart.tmud.state.Ability;
+import com.ivstuart.tmud.state.Armour;
 import com.ivstuart.tmud.state.Corpse;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Prop;
@@ -24,36 +26,68 @@ public class DamageManager {
 		//   if melee the armor at location 
 		//      apply any armor peneration skills or specials to counter armour saves
 		//   if spell damage the average armour minus any special elemental saves
-		// TODO 
+		// TODO 	
+		int armour = checkArmourAtHitLocation(defender);
+		
+		if (armour > 0) {
+			// TODO no arm pen for spells
+			armour = checkForArmourPenetration(attacker, armour);
+		}
+		
+		damage = damage - armour;
+		
+		if (damage < 1) {
+			attacker.out("Your feeble blow is deflected by their armour");
+			return;
+		}
+		
+		// TODO
+		checkMagicalDamageSaves();
 
 		Msg msg = new Msg(attacker, defender, DamageConstants.toString(damage));
 
 		attacker.getRoom().out(msg);
 
 		defender.getHp().decrease(damage);
+		
+		// TODO if not fighting or a heavy blow defender will target and attack attacker.
 
 		checkForDefenderDeath(attacker, defender);
 
-		// Check if is < 0 -> corpse
+	}
 
-		/*
-		 * // If you are attacked you automatically fight back unless you are
-		 * already fighting if(this.isNotFighting()) { fighter.out("You
-		 * retaliate against "+fighter.getName()); this.setTarget(fighter); //
-		 * Characters need to configure a default response. this.start(new
-		 * NoWeapon(fighter,fighter),true); } // TODO I don't like this
-		 * if(attacker.getStats().getLifeStats().inflict(damage)) { // death
-		 * fighter.getFight().addKill();
-		 * attacker.getLocation().getRoom().add(new MudItem(attacker + "'s
-		 * corpse")); attacker.getLocation().move(World.getPortal(true));
-		 * attacker.out("You have been killed!");
-		 * 
-		 * fighter.out("You have killed "+attacker); // Last action as it would
-		 * cause Null pointer issue with the above attacker.getFight().clear();
-		 * 
-		 * this.setTarget(null); }
-		 */
+	private static void checkMagicalDamageSaves() {
+		// TODO Fire Water Earth Air and Magic saves to check
+		// acts rather like armour
+		
+	}
 
+	private static int checkArmourAtHitLocation(Mob defender) {
+		// TODO FIXME
+		Armour armour = defender.getEquipment().getTotalArmour();
+		return armour.getRandomSlot();
+	}
+
+	private static int checkForArmourPenetration(Mob attacker, int armour) {
+		if (armour < 1) {
+			return armour;
+		}
+		
+		// TODO armour penetration
+		Ability penetration = attacker.getLearned().getAbility("armour penetration");
+
+		if (penetration != null && penetration.isSuccessful()) {
+			attacker.out("<S-You/NAME> skillfully hit between your opponents armour");
+
+			armour -= DiceRoll.ONE_D_SIX.roll();
+
+			if (penetration.isImproved()) {
+				attacker.out("[[[[ Your ability to " + attacker.getId()
+						+ " has improved ]]]]");
+				penetration.improve();
+			}
+		}
+		return Math.max(armour,0);
 	}
 
 	public static void checkForDefenderDeath(Mob attacker, Mob defender) {

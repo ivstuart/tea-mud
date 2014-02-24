@@ -62,6 +62,9 @@ prereq: second attack
 id: dodge
 level: 1
 
+id: parry
+level: 1
+
 id: armor penetration
 level: 1
 

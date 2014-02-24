@@ -18,6 +18,7 @@ track
 second attack
 third attack
 focus
+armour penetration
 unarmed attack
 advanced kick
 parry

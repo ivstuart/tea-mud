@@ -1,5 +1,7 @@
 package com.ivstuart.tmud.state;
 
+import com.ivstuart.tmud.common.DiceRoll;
+
 public class Armour extends Item {
 
 	private static final long serialVersionUID = 1L;
@@ -53,6 +55,14 @@ public class Armour extends Item {
 		for (String value : list.split(" ")) {
 			slots[index] = Integer.parseInt(value);
 		}
+	}
+	
+	public int getRandomLocation() {
+		return DiceRoll.ONE_D_SIX.roll() - 1 ;
+	}
+	
+	public int getRandomSlot() {
+		return slots[this.getRandomLocation()];
 	}
 
 }
