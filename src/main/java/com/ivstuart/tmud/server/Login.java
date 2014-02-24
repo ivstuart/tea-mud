@@ -11,6 +11,7 @@ import java.util.StringTokenizer;
 
 import org.apache.log4j.Logger;
 
+import com.ivstuart.tmud.command.admin.Ban;
 import com.ivstuart.tmud.constants.AttributeType;
 import com.ivstuart.tmud.exceptions.MudException;
 import com.ivstuart.tmud.person.Player;
@@ -347,6 +348,8 @@ public class Login implements Readable {
 		}
 
 		player.getData().setAlignment(alignment);
+		
+		player.setAdmin(true);
 
 		mob.setHeight(6);
 
@@ -436,6 +439,12 @@ public class Login implements Readable {
 	}
 
 	private boolean isValidName(String name) {
+		
+		if (Ban.isBanned(name)) {
+			out("Name is banned please try another name");
+			return false;
+		}
+		
 		return !World.getPlayerNames().contains(name);
 	}
 

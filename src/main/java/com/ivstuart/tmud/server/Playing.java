@@ -22,12 +22,14 @@ public class Playing implements Readable {
 
 	private static final Logger LOGGER = Logger.getLogger(Playing.class);
 
+	private Player player;
 	private Mob mob;
-
+	
 	/**
 	 * 
 	 */
 	public Playing(Player player) {
+		this.player = player;
 		mob = player.getMob();
 	}
 
@@ -38,12 +40,24 @@ public class Playing implements Readable {
 	 */
 	@Override
 	public void read(String line) {
+		
+		if (player.getSnooper() != null) {
+			player.getSnooper().out("You snoop:"+line);
+		}
+		
 		String[] input = line.split(" ", 2);
 		String parameters = "";
 
 		// This is required as some commands act on their input
 		if (input.length == 2) {
 			parameters = input[1];
+		}
+		
+		if (mob.getMobStatus().isFrozen()) {
+			mob.out("You can only quit while frozen");
+			if (!input[0].equals("quit")) {
+				return;
+			}
 		}
 
 		try {

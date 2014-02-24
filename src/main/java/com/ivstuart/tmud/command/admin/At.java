@@ -7,6 +7,7 @@
 package com.ivstuart.tmud.command.admin;
 
 import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.command.CommandProvider;
 import com.ivstuart.tmud.state.Mob;
 
 /**
@@ -18,12 +19,35 @@ import com.ivstuart.tmud.state.Mob;
 public class At implements Command {
 
 	/**
-	 * Instantely kill any mob
+	 * At allows you to pass a command line to another player
 	 */
 	@Override
 	public void execute(Mob mob, String input) {
 
-		mob.out("At not implemented yet");
+		if (!mob.isAdmin()) {
+			mob.out("Admin only");
+			// return;
+		}
+
+		// mob command args
+		String[] args = input.split(" ", 3);
+		
+		if (args.length < 2) {
+			mob.out("Usage: mob command args");
+			return;
+		}
+
+		Mob target = mob.getRoom().getMob(args[0]);
+
+		if (target == null) {
+			mob.out(input + " is not here to at!");
+			return;
+		}
+
+		mob.out("You make mob "+target.getName()+" "+args[1]+" with "+args[2]);
+		CommandProvider.getCommandByString(args[1]).execute(target, args[2]);
+
+		
 	}
 
 }

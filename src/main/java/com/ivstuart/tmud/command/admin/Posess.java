@@ -18,11 +18,17 @@ import com.ivstuart.tmud.state.Mob;
 public class Posess implements Command {
 
 	/**
-	 * Instantely kill any mob
+	 * Make a target mob the mob you control
+	 *  technical note to park your original mob somewhere safe in the meantime.
 	 */
 	@Override
 	public void execute(Mob mob, String input) {
 
+		if(!mob.isAdmin()) {
+			mob.out("Admin only");
+			// return;
+		}
+		
 		mob.out("Posess not implemented yet");
 	}
 

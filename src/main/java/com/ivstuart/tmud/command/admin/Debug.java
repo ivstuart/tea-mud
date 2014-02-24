@@ -7,7 +7,12 @@ public class Debug implements Command {
 
 	@Override
 	public void execute(Mob mob_, String input_) {
-
+		
+		if(!mob_.isAdmin()) {
+			mob_.out("Admin only");
+			// return;
+		}
+		
 		if (input_.length() > 0) {
 			Mob mob = mob_.getRoom().getMob(input_);
 			if (mob != null) {

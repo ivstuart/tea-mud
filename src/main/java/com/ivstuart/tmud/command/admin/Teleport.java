@@ -20,10 +20,16 @@ import com.ivstuart.tmud.state.World;
 public class Teleport implements Command {
 
 	/**
-	 * Instantely kill any mob
+	 * Teleport instantely to new target location
 	 */
 	@Override
 	public void execute(Mob mob, String input) {
+		
+		if(!mob.isAdmin()) {
+			mob.out("Admin only");
+			// return;
+		}
+		
 		Room toRoom = World.getRoom(input);
 
 		if (toRoom != null) {

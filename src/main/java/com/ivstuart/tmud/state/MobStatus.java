@@ -157,4 +157,12 @@ public class MobStatus {
 	public void setSneaking(int durationInSeconds) {
 		add(SNEAKING,durationInSeconds);
 	}
+
+	public void setFrozen(int durationInSeconds) {
+		add(FROZEN,durationInSeconds);
+	}
+	
+	public boolean isFrozen() {
+		return is(FROZEN);
+	}
 }

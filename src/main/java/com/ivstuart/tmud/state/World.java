@@ -1,12 +1,15 @@
 package com.ivstuart.tmud.state;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
 
+import com.ivstuart.tmud.command.admin.Ban;
 import com.ivstuart.tmud.common.Tickable;
 import com.ivstuart.tmud.exceptions.MudException;
 import com.ivstuart.tmud.person.Player;
@@ -243,6 +246,9 @@ public class World {
 												// creation
 		_props = new HashMap<String, Prop>();
 
+		// Initialise banned list of player names if it exists.
+		Ban.init();
+		
 		startTime();
 	}
 
@@ -256,6 +262,7 @@ public class World {
 				+ WorldTime.getInstance().isRunning() + " ]");
 	}
 
+	
 	public static World getInstance() {
 		return INSTANCE;
 	}

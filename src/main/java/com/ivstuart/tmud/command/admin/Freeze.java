@@ -7,7 +7,9 @@
 package com.ivstuart.tmud.command.admin;
 
 import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.World;
 
 /**
  * @author stuarti
@@ -18,12 +20,30 @@ import com.ivstuart.tmud.state.Mob;
 public class Freeze implements Command {
 
 	/**
-	 * Instantely kill any mob
+	 * Freeze input from player to their mob.
+	 * Lasts until freeze is removed. 
+	 * Allowed to quit.
 	 */
 	@Override
 	public void execute(Mob mob, String input) {
 
-		mob.out("Freeze not implemented yet");
+		if(!mob.isAdmin()) {
+			mob.out("Admin only");
+			// return;
+		}
+		
+		Player player = World.getPlayer(input);
+		
+		if (player == null) {
+			mob.out("No player by the name of "+input+" is currently playing");
+			mob.out("Use ban if you have their name instead");
+			return;
+		}
+		
+		player.getMob().getMobStatus().setFrozen(8000);
+		
+		mob.out("Your freeze player "+player.getName());
+		player.out("You have been frozen by an admin, you can only quit");
 	}
 
 }

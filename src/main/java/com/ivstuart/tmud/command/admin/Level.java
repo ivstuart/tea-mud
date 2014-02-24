@@ -9,6 +9,11 @@ public class Level implements Command {
 	@Override
 	public void execute(Mob mob_, String input_) {
 
+		if (!mob_.isAdmin()) {
+			mob_.out("You should be an admin to use this command");
+			// return;
+		}
+		
 		int numberOfLevels = 1;
 
 		if (input_.length() > 0) {

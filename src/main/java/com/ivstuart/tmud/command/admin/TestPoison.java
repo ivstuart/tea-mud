@@ -28,6 +28,12 @@ public class TestPoison implements Command {
 	@Override
 	public void execute(Mob mob, String input) {
 
+		if(!mob.isAdmin()) {
+			mob.out("Admin only");
+			// return;
+		}
+		
+
 		Affect poisonAffect = new DamageOverTime(mob, "poison", 14,
 				DiceRoll.ONE_D_SIX);
 

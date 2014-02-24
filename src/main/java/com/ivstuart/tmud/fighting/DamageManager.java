@@ -32,6 +32,31 @@ public class DamageManager {
 
 		defender.getHp().decrease(damage);
 
+		checkForDefenderDeath(attacker, defender);
+
+		// Check if is < 0 -> corpse
+
+		/*
+		 * // If you are attacked you automatically fight back unless you are
+		 * already fighting if(this.isNotFighting()) { fighter.out("You
+		 * retaliate against "+fighter.getName()); this.setTarget(fighter); //
+		 * Characters need to configure a default response. this.start(new
+		 * NoWeapon(fighter,fighter),true); } // TODO I don't like this
+		 * if(attacker.getStats().getLifeStats().inflict(damage)) { // death
+		 * fighter.getFight().addKill();
+		 * attacker.getLocation().getRoom().add(new MudItem(attacker + "'s
+		 * corpse")); attacker.getLocation().move(World.getPortal(true));
+		 * attacker.out("You have been killed!");
+		 * 
+		 * fighter.out("You have killed "+attacker); // Last action as it would
+		 * cause Null pointer issue with the above attacker.getFight().clear();
+		 * 
+		 * this.setTarget(null); }
+		 */
+
+	}
+
+	public static void checkForDefenderDeath(Mob attacker, Mob defender) {
 		// check for defender death!
 		if (defender.getHp().getValue() <= 0) {
 			defender.out("You have been killed!\n\n");
@@ -77,27 +102,6 @@ public class DamageManager {
 			defender.getFight().stopFighting();
 			//
 		}
-
-		// Check if is < 0 -> corpse
-
-		/*
-		 * // If you are attacked you automatically fight back unless you are
-		 * already fighting if(this.isNotFighting()) { fighter.out("You
-		 * retaliate against "+fighter.getName()); this.setTarget(fighter); //
-		 * Characters need to configure a default response. this.start(new
-		 * NoWeapon(fighter,fighter),true); } // TODO I don't like this
-		 * if(attacker.getStats().getLifeStats().inflict(damage)) { // death
-		 * fighter.getFight().addKill();
-		 * attacker.getLocation().getRoom().add(new MudItem(attacker + "'s
-		 * corpse")); attacker.getLocation().move(World.getPortal(true));
-		 * attacker.out("You have been killed!");
-		 * 
-		 * fighter.out("You have killed "+attacker); // Last action as it would
-		 * cause Null pointer issue with the above attacker.getFight().clear();
-		 * 
-		 * this.setTarget(null); }
-		 */
-
 	}
 
 	private static int checkForDodge(Mob defender, int damage) {

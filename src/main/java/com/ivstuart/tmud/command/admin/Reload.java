@@ -20,6 +20,12 @@ public class Reload implements Command {
 
 	@Override
 	public void execute(Mob mob, String input) {
+		
+		if(!mob.isAdmin()) {
+			mob.out("Admin only");
+			// return;
+		}
+		
 		// TODO DOES NOT WORK - See ClassLoader code.
 		mob.out("Reloading command " + input);
 		CommandProvider.reloadCommand(input);

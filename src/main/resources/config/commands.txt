@@ -99,13 +99,20 @@ command.state.Wake
 # Admin Commands
 
 command.admin.AllMobStats
+command.admin.At
+command.admin.Ban
 command.admin.Debug
+command.admin.Freeze
 command.admin.Level
+command.admin.Posess
 command.admin.Reload
+command.admin.ShowFighting
+command.admin.Smite
+command.admin.Snoop
 command.admin.Teleport
 command.admin.TestLearn
 command.admin.TestPoison
-command.admin.ShowFighting
+
 
 # Building Commands
 

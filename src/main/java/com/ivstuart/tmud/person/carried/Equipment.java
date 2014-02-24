@@ -243,7 +243,13 @@ public class Equipment implements Serializable {
 	}
 
 	public boolean hasShieldEquiped() {
-		return ((Item)_primary).isShield() ||  ((Item)_secondary).isShield();
+		if (_primary != null && ((Item)_primary).isShield()) {
+			return true;
+		}
+		if (_secondary != null && ((Item)_secondary).isShield()) {
+			return true;
+		}	
+		return false; 
 	}
 
 }

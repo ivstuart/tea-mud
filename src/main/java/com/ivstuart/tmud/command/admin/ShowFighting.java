@@ -9,10 +9,15 @@ public class ShowFighting implements Command {
 	@Override
 	public void execute(Mob mob, String input) {
 
-		mob.out("showing who is fighting");
+		if(!mob.isAdmin()) {
+			mob.out("Admin only");
+			// return;
+		}
+		
+		mob.out("Showing who is fighting:\n");
 
 		for (Mob fighter : WorldTime.getFighting()) {
-			mob.out(fighter.getName() + " is fighting");
+			mob.out(fighter.getName() + " is fighting in room "+fighter.getRoom().getId());
 		}
 
 	}

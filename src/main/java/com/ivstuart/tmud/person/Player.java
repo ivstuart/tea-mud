@@ -27,6 +27,16 @@ public class Player implements Serializable, Nameable {
 	private transient Connection conn;
 
 	private boolean admin = false;
+	
+	public void setSnooper(Mob snooper) {
+		this.snooper = snooper;
+	}
+
+	private Mob snooper;
+
+	public Mob getSnooper() {
+		return snooper;
+	}
 
 	public Player() {
 		playerData = new PlayerData();
@@ -169,6 +179,10 @@ public class Player implements Serializable, Nameable {
 
 	public boolean isAdmin() {
 		return admin;
+	}
+
+	public void setAdmin(boolean b) {
+		admin = b;
 	}
 
 }
