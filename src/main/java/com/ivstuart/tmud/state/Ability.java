@@ -54,8 +54,15 @@ public class Ability implements Serializable {
 
 	public boolean isImproved() {
 		int roll = DiceRoll.ONE_D100.roll();
+		int difficulty = 5;
 
-		return roll < World.getAbility(id).getDifficulty();
+		try {
+			difficulty = World.getAbility(id).getDifficulty();
+		} catch (NullPointerException e) {
+			// TODO log warning message diff
+		}
+
+		return roll < difficulty;
 	}
 
 	public boolean isSkill() {
@@ -87,5 +94,9 @@ public class Ability implements Serializable {
 
 	public void setSkill(int skill_) {
 		skill = skill_;
+	}
+
+	public boolean isNull() {
+		return this == NULL_ABILITY;
 	}
 }

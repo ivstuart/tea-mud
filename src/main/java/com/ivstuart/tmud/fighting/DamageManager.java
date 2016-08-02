@@ -65,7 +65,11 @@ public class DamageManager {
 	private static int checkArmourAtHitLocation(Mob defender) {
 		// TODO FIXME
 		Armour armour = defender.getEquipment().getTotalArmour();
-		return armour.getRandomSlot();
+		try {
+			return armour.getRandomSlot();
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return 0;
+		}
 	}
 
 	private static int checkForArmourPenetration(Mob attacker, int armour) {

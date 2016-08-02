@@ -59,7 +59,7 @@ public class Cast implements Command {
 		for (String word : words) {
 			concatWords += word;
 			spellAbility = mob_.getLearned().getAbility(concatWords);
-			if (spellAbility != null) {
+			if (spellAbility != null && !spellAbility.isNull()) {
 				break;
 			}
 			concatWords += " ";
@@ -73,6 +73,7 @@ public class Cast implements Command {
 		Spell spell = World.getSpell(spellAbility.getId());
 
 		if (spell == null) {
+			LOGGER.warn("Spell ability:"+spellAbility.getId());
 			mob_.out("You know " + input_ + " which is not castable");
 			return;
 		}

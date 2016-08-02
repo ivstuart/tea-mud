@@ -59,7 +59,7 @@ speed: 5
 mana: WATER
 prereq: chill touch
 
-id: cold of cold
+id: cone of cold
 level: 20
 cost: 5
 damage: 2d6
