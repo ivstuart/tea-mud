@@ -3,6 +3,7 @@ package com.ivstuart.tmud.command;
 import java.io.IOException;
 import java.util.Collection;
 
+import com.ivstuart.tmud.server.LaunchMud;
 import org.apache.log4j.Logger;
 
 import com.ivstuart.tmud.command.misc.NullCommand;
@@ -18,8 +19,6 @@ import com.ivstuart.tmud.utils.MudHash;
  */
 public class CommandProvider {
 
-	private static final String command_config_path = "/src/main/resources/config/";
-
 	private static final Logger LOGGER = Logger
 			.getLogger(CommandProvider.class);
 
@@ -29,8 +28,6 @@ public class CommandProvider {
 	private static final Command NULL_COMMAND = new NullCommand();
 
 	private static MudHash<Command> commandHash = new MudHash<Command>();
-	
-	private static final String classprefix = "com.ivstuart.tmud.";
 
 	static {
 		INSTANCE = new CommandProvider();
@@ -38,7 +35,7 @@ public class CommandProvider {
 
 	private static Command create(String name) {
 		try {
-			// TODO classprefix 
+			String classprefix = LaunchMud.getMudServerClassPrefix();
 			return (Command) Class.forName(classprefix + name).newInstance();
 		} catch (Exception e) {
 			LOGGER.error("Problem creating new instance", e);
@@ -103,6 +100,7 @@ public class CommandProvider {
 	}
 
 	public void clearAndLoadCommands() {
+		String command_config_path = LaunchMud.getMudServerConfigDir();
 		FileHandle file = new FileHandle(System.getProperty("user.dir") + command_config_path + "commands.txt");
 			
 		try {

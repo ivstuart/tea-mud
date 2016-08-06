@@ -16,7 +16,7 @@ import com.ivstuart.tmud.state.Mob;
  *         To change the template for this generated type comment go to
  *         Window>Preferences>Java>Code Generation>Code and Comments
  */
-public class At implements Command {
+public class At extends AdminCommand {
 
 	/**
 	 * At allows you to pass a command line to another player
@@ -24,10 +24,7 @@ public class At implements Command {
 	@Override
 	public void execute(Mob mob, String input) {
 
-		if (!mob.isAdmin()) {
-			mob.out("Admin only");
-			// return;
-		}
+		super.execute(mob,input);
 
 		// mob command args
 		String[] args = input.split(" ", 3);

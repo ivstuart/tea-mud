@@ -17,18 +17,15 @@ import com.ivstuart.tmud.state.World;
  *         To change the template for this generated type comment go to
  *         Window>Preferences>Java>Code Generation>Code and Comments
  */
-public class Teleport implements Command {
+public class Teleport extends AdminCommand {
 
 	/**
 	 * Teleport instantely to new target location
 	 */
 	@Override
 	public void execute(Mob mob, String input) {
-		
-		if(!mob.isAdmin()) {
-			mob.out("Admin only");
-			// return;
-		}
+
+		super.execute(mob,input);
 		
 		Room toRoom = World.getRoom(input);
 

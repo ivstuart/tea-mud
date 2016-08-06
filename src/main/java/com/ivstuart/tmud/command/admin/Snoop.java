@@ -17,7 +17,7 @@ import com.ivstuart.tmud.state.World;
  *         To change the template for this generated type comment go to
  *         Window>Preferences>Java>Code Generation>Code and Comments
  */
-public class Snoop implements Command {
+public class Snoop extends AdminCommand {
 
 	/**
 	 * View all input from player as if in the same room.
@@ -25,10 +25,7 @@ public class Snoop implements Command {
 	@Override
 	public void execute(Mob mob, String input) {
 
-		if(!mob.isAdmin()) {
-			mob.out("Admin only");
-			// return;
-		}
+		super.execute(mob,input);
 		
 		Player player = World.getPlayer(input);
 

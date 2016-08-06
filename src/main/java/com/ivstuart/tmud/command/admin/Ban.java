@@ -22,7 +22,7 @@ import com.ivstuart.tmud.utils.GsonIO;
  *         To change the template for this generated type comment go to
  *         Window>Preferences>Java>Code Generation>Code and Comments
  */
-public class Ban implements Command {
+public class Ban extends AdminCommand {
 
 	private static List<String> bannedNames = null;
 	
@@ -32,10 +32,7 @@ public class Ban implements Command {
 	@Override
 	public void execute(Mob mob, String input) {
 
-		if (!mob.isAdmin()) {
-			mob.out("Admin only");
-			// return;
-		}
+		super.execute(mob,input);
 
 		String name = input;
 

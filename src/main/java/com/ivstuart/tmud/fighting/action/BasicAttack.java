@@ -111,6 +111,8 @@ public class BasicAttack extends FightAction {
 
 		if (getSelf().getRoom().getMobs().contains(getTarget()) == false) {
 			out(getTarget().getId() + " is no longer here to attack!");
+			// TODO decided if we need to disengage at this point if no other attackers then can leave aggro on last attacker
+			// if other attackers pick one at random to target.
 			finished();
 			return;
 		}

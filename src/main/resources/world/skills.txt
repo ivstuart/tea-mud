@@ -72,23 +72,19 @@ id: enhanced damage
 level: 1
 
 #Thief skills
-id: sneak 
+id: sneak
 level: 1
 prof: THIEF
 
-id: hide 
+id: hide
 level: 1
 prof: THIEF
 
-id: backstab 
+id: backstab
 level: 1
 prof: THIEF
 
-id: circle 
-level: 1
-prof: THIEF
-
-id: circle 
+id: circle
 level: 1
 prof: THIEF
 

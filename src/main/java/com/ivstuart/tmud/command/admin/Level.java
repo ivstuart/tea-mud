@@ -3,16 +3,13 @@ package com.ivstuart.tmud.command.admin;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Mob;
 
-public class Level implements Command {
+public class Level extends AdminCommand {
 
 	/** TODO refactor this as it not great ! */
 	@Override
 	public void execute(Mob mob_, String input_) {
 
-		if (!mob_.isAdmin()) {
-			mob_.out("You should be an admin to use this command");
-			// return;
-		}
+		super.execute(mob_,input_);
 		
 		int numberOfLevels = 1;
 

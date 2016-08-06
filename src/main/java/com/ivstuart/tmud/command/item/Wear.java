@@ -41,9 +41,9 @@ public class Wear implements Command {
 		if (mob.getEquipment().add(eq)) {
 			mob.getInventory().remove(item);
 			eq.equip(mob);
-			mob.out("You wear an " + item);
+			mob.out("You wear an " + item.getName());
 		} else {
-			mob.out("You do not have any space available to wear an " + item);
+			mob.out("You do not have any space available to wear an " + item.getName());
 			// mob.getInventory().add(item);
 		}
 

@@ -16,15 +16,12 @@ import com.ivstuart.tmud.state.Mob;
  *         To change the template for this generated type comment go to
  *         Window>Preferences>Java>Code Generation>Code and Comments
  */
-public class Reload implements Command {
+public class Reload extends AdminCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {
-		
-		if(!mob.isAdmin()) {
-			mob.out("Admin only");
-			// return;
-		}
+
+		super.execute(mob,input);
 		
 		// TODO DOES NOT WORK - See ClassLoader code.
 		mob.out("Reloading command " + input);

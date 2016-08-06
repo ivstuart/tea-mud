@@ -20,6 +20,7 @@ command.combat.Kill
 command.combat.Flee
 command.combat.Flurry
 command.combat.Rescue
+command.combat.Disengage
 command.info.Who
 command.info.Scan
 command.info.AttributeInfo
@@ -109,7 +110,9 @@ command.admin.Freeze
 command.admin.Level
 command.admin.Posess
 command.admin.Reload
+command.admin.Repopulate
 command.admin.ShowFighting
+command.admin.StopFighting
 command.admin.Smite
 command.admin.Snoop
 command.admin.Teleport

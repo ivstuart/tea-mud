@@ -91,7 +91,7 @@ public class Get implements Command {
 
 		mob.getInventory().add(anItem);
 
-		mob.out("You get an " + anItem.getId());
+		mob.out("You get an " + anItem.getName());
 	}
 
 	// TODO threadsafety

@@ -18,7 +18,7 @@ import com.ivstuart.tmud.state.Mob;
  *         To change the template for this generated type comment go to
  *         Window>Preferences>Java>Code Generation>Code and Comments
  */
-public class TestPoison implements Command {
+public class TestPoison extends AdminCommand {
 
 	/*
 	 * (non-Javadoc)
@@ -28,11 +28,7 @@ public class TestPoison implements Command {
 	@Override
 	public void execute(Mob mob, String input) {
 
-		if(!mob.isAdmin()) {
-			mob.out("Admin only");
-			// return;
-		}
-		
+		super.execute(mob,input);
 
 		Affect poisonAffect = new DamageOverTime(mob, "poison", 14,
 				DiceRoll.ONE_D_SIX);

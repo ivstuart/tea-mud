@@ -15,7 +15,12 @@ public class DamageManager {
 
 	public static void deal(Mob attacker, Mob defender, int damage) {
 
-
+		if (!checkInSameRoom(attacker,defender)) {
+			attacker.getFight().stopFighting();
+			defender.getFight().stopFighting();
+			attacker.out("Your target is in another room!");
+			return ;
+		}
 	
 		// Check saves first
 		damage = checkForDodge(defender, damage);
@@ -54,6 +59,10 @@ public class DamageManager {
 
 		checkForDefenderDeath(attacker, defender);
 
+	}
+
+	private static boolean checkInSameRoom(Mob attacker, Mob defender) {
+		return attacker.getRoom() == defender.getRoom();
 	}
 
 	private static void checkMagicalDamageSaves() {
@@ -135,7 +144,6 @@ public class DamageManager {
 			}
 
 			// clear any affects
-
 			attacker.getFight().stopFighting();
 			defender.getFight().stopFighting();
 			//

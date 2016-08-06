@@ -19,16 +19,13 @@ import com.ivstuart.tmud.state.World;
  *         To change the template for this generated type comment go to
  *         Window>Preferences>Java>Code Generation>Code and Comments
  */
-public class TestLearn implements Command {
+public class TestLearn extends AdminCommand {
 
 	
 	@Override
 	public void execute(Mob mob, String input) {
-		
-		if(!mob.isAdmin()) {
-			mob.out("Used for testing only, notify an admin if this is still available to non-admins");
-			// return;
-		}
+
+		super.execute(mob,input);
 		
 		mob.out("This is a test command to learn all skills and spells to 80% in the game");
 		

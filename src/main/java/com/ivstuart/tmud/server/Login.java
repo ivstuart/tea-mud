@@ -348,8 +348,11 @@ public class Login implements Readable {
 		}
 
 		player.getData().setAlignment(alignment);
-		
-		player.setAdmin(true);
+
+		if (World.isAdmin(player.getName())) {
+			player.setAdmin(true);
+			mob.out("Setting admin true");
+		}
 
 		mob.setHeight(6);
 
@@ -430,12 +433,6 @@ public class Login implements Readable {
 
 		player.getMob().getInventory().add(new Money(Money.COPPER, 50));
 
-		/**
-		 * You are carrying: 50 copper coins. A wooden torch A waterskin (full
-		 * of a clear liquid) A small tinder-box A wooden training cudgel
-		 * (pristine condition) A wooden training dagger (pristine condition)
-		 * The EverWar Mud players guide
-		 */
 	}
 
 	private boolean isValidName(String name) {

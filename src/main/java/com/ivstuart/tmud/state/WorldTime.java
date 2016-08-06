@@ -66,10 +66,6 @@ public class WorldTime implements Runnable {
 		deadMobs = new ArrayList<DeadMob>();
 	}
 
-	public static boolean removeFighting(Mob mob_) {
-		return fighting.remove(mob_);
-	}
-
 	public static boolean removeItem(Item item_) {
 		return tickables.remove(item_);
 	}
@@ -96,10 +92,15 @@ public class WorldTime implements Runnable {
 		return _running;
 	}
 
-	public void repopulateMobs() {
+	public void repopulateMobs()
+	{
+		repopulateMobs(false);
+	}
+
+	public void repopulateMobs(boolean forceRepop) {
 		for (Iterator<DeadMob> iter = deadMobs.iterator(); iter.hasNext();) {
 			DeadMob deadMob = iter.next();
-			if (deadMob.shouldRepopulate()) {
+			if (deadMob.shouldRepopulate() || forceRepop) {
 
 				iter.remove();
 				Mob mob = EntityProvider.createMob(deadMob.getID(),
@@ -112,6 +113,9 @@ public class WorldTime implements Runnable {
 		}
 	}
 
+	/**
+	 * Resolve commbat and remove from combat any that are not fighting
+     */
 	public void resolveCombat() {
 
 		// LOGGER.debug("resolveCombat");

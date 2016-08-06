@@ -19,8 +19,14 @@ public class EnterNoLook implements Command {
 
 		Room room = mob.getRoom();
 
+		if (mob.getFight().isFighting()) {
+			mob.out("You can not move while your fighting! Type flee or disengage to exit from combat");
+			return;
+		}
+
+
 		if (mob.getFight().isEngaged()) {
-			mob.out("You can not move while being attacked!");
+			mob.out("You can not move while being engaged in combat!");
 			return;
 		}
 

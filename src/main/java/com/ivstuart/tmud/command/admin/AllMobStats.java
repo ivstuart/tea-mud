@@ -15,15 +15,12 @@ import com.ivstuart.tmud.state.Mob;
  *         To change the template for this generated type comment go to
  *         Window>Preferences>Java>Code Generation>Code and Comments
  */
-public class AllMobStats implements Command {
+public class AllMobStats extends AdminCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {
 		
-		if (!mob.isAdmin()) {
-			mob.out("This command is not available to you.");
-			return;
-		}
+		super.execute(mob,input);
 		
 		Mob target = mob.getRoom().getMob(input);
 

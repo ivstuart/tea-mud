@@ -268,4 +268,10 @@ public class World {
 	}
 
 
+    public static boolean isAdmin(String name) {
+    	// TODO have a resource file.
+    	List adminNames = new ArrayList();
+		adminNames.add("Ivan");
+		return adminNames.contains(name);
+    }
 }

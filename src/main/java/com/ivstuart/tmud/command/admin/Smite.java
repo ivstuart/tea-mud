@@ -16,7 +16,7 @@ import com.ivstuart.tmud.state.Mob;
  *         To change the template for this generated type comment go to
  *         Window>Preferences>Java>Code Generation>Code and Comments
  */
-public class Smite implements Command {
+public class Smite extends AdminCommand {
 
 	/**
 	 * Instantely kill any mob
@@ -24,10 +24,7 @@ public class Smite implements Command {
 	@Override
 	public void execute(Mob mob, String input) {
 
-		if (!mob.isAdmin()) {
-			mob.out("Admin only");
-			// return;
-		}
+		super.execute(mob,input);
 
 		Mob target = mob.getRoom().getMob(input);
 

@@ -132,13 +132,13 @@ public class Look implements Command {
 			// correct tense of output.
 
 			if (mob.getFight() != null && mob.getFight().isFighting()) {
-				sb.append(" is fighting ");
+				sb.append(" is fighting a");
 				Mob target = mob.getFight().getTarget();
 				if (target != null) {
 					if (target == mob_) {
 						sb.append("you");
 					} else {
-						sb.append(target.getId() + "!");
+						sb.append(target.getName() + "!");
 					}
 				} else {
 					sb.append("someone!");

@@ -236,7 +236,14 @@ public class Equipment implements Serializable {
 			sb.append("<");
 			sb.append(EquipmentConstants.location[eq.getWorn()]);
 			sb.append("> ");
-			sb.append(eq);
+			Item item = null;
+			if (eq instanceof Item) {
+				item = (Item)eq;
+				sb.append(item.getBrief());
+			}
+			else {
+				sb.append(eq);
+			}
 			sb.append("\n");
 		}
 		return sb.toString();

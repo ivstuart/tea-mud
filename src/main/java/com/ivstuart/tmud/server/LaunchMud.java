@@ -93,6 +93,14 @@ public class LaunchMud {
 		return Integer.parseInt(mudServerProperties.getProperty("default.port","5678"));
 	}
 
+	public static String getMudServerConfigDir() {
+		return mudServerProperties.getProperty("command.config.dir","/src/main/resources/config/");
+	}
+
+	public static String getMudServerClassPrefix(){
+		return mudServerProperties.getProperty("class.prefix","com.ivstuart.tmud.");
+	}
+
 	public static void loadMudServerProperties() throws URISyntaxException,
 			IOException {
 		LOGGER.info("Loading mud server properties");
