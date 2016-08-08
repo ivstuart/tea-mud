@@ -151,4 +151,7 @@ public class Attribute implements Serializable {
 		return ToStringBuilder.reflectionToString(this);
 	}
 
+    public boolean isMaximum() {
+    	return current >= maximum;
+    }
 }

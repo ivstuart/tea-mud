@@ -130,4 +130,10 @@ public class MobMana implements Serializable {
 			init(ManaType.COMMON);
 		}
 	}
+
+	public void setCastLevel(int castLevel) {
+		for (ManaAttribute manaAtt : _mana) {
+			manaAtt.setCastlevel(castLevel);
+		}
+	}
 }

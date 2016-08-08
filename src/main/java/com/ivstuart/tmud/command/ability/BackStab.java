@@ -8,10 +8,12 @@ package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.common.DiceRoll;
+import com.ivstuart.tmud.common.Equipable;
 import com.ivstuart.tmud.fighting.DamageManager;
 import com.ivstuart.tmud.fighting.action.FightAction;
 import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.Weapon;
 
 /**
  * @author Ivan Stuart
@@ -28,7 +30,6 @@ public class BackStab implements Command {
 		public void begin() {
 			super.begin();
 
-			// TODO review and test this
 			if (!getSelf().getMv().deduct(20)) {
 				out("You do not have enough movement left to backstab");
 				this.finished();
@@ -45,13 +46,11 @@ public class BackStab implements Command {
 
 		@Override
 		public void changed() {
-			// TODO Auto-generated method stub
 
 		}
 
 		@Override
 		public void ended() {
-			// TODO Auto-generated method stub
 
 		}
 
@@ -62,11 +61,10 @@ public class BackStab implements Command {
 			}
 
 			// Success or fail
-			Ability bashAbility = getSelf().getLearned().getAbility("backstab");
-			if (bashAbility.isSuccessful()) {
+			Ability bsAbility = getSelf().getLearned().getAbility("backstab");
+			if (bsAbility.isSuccessful()) {
 				out("<S-You/NAME> successfully backstabed <T-you/NAME>.");
 
-				// TODO assign damage and if not fighting target each other
 				int dex = getSelf().getPlayer().getAttributes().getDEX().getValue();
 				
 				DiceRoll damage = new DiceRoll(3,6,dex);
@@ -74,10 +72,10 @@ public class BackStab implements Command {
 				// Could just send this object the FightAction to damage.
 				DamageManager.deal(getSelf(), getTarget(), damage.roll());
 
-				if (bashAbility.isImproved()) {
-					out("[[[[ Your ability to " + bashAbility.getId()
+				if (bsAbility.isImproved()) {
+					out("[[[[ Your ability to " + bsAbility.getId()
 							+ " has improved ]]]]");
-					bashAbility.improve();
+					bsAbility.improve();
 				}
 			} else {
 				out("<S-You/NAME> miss<S-/es> backstab <T-you/NAME>.");
@@ -95,9 +93,8 @@ public class BackStab implements Command {
 
 	private boolean checkMobStatus(Mob self, Mob target) {
 
-		AbilityHelper.canUseAbility(self, target, "backstab");
+		return AbilityHelper.canUseAbility(self, target, "backstab");
 
-		return false;
 	}
 
 	private boolean checkStatus(Mob mob, Mob target) {
@@ -120,6 +117,21 @@ public class BackStab implements Command {
 
 		if (!mob.getLearned().hasLearned("backstab")) {
 			mob.out("You have no knowledge of backstab");
+			return;
+		}
+
+		// check has a piercing weapon equiped.
+		Equipable weaponEq = mob.getEquipment().getPrimary();
+
+		if (weaponEq instanceof Weapon) {
+			Weapon weapon = (Weapon)weaponEq;
+			if (weapon.getSkill().indexOf("piercing") == -1) {
+				mob.out("Your primary weapon must be piercing in order to backstab");
+				return;
+			}
+		}
+		else {
+			mob.out("No primary weapon equiped which is piercing in order to backstab");
 			return;
 		}
 

@@ -1,7 +1,6 @@
 class: state.Weapon
 
 # SKILL types: slashing piercing crushing chopping thrusting
-# Note basic weapons have only one type of skill based attack - TODO make duel skill weapons.
 
 id: sword-001
 alias: sword
@@ -33,11 +32,24 @@ id: knife-001
 alias: knife
 short: small hunting knife
 look: small hunting knife ideal for butchering small animals
-skill: slashing
+skill: piercing
 type: weapon SHARP
 damage: 1d2+1
 wear: PRIMARY
 weight: 1
 cost: 2
 rent: 1
+affects:
+
+id: morning-star-001
+alias: morning star
+short: morning star
+look: morning star which looks well worn
+skill: crushing piercing
+type: weapon
+damage: 3d6+2
+wear: PRIMARY
+weight: 15
+cost: 15
+rent: 5
 affects:

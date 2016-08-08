@@ -65,4 +65,11 @@ public class Armour extends Item {
 		return slots[this.getRandomLocation()];
 	}
 
+    public int getAverage() {
+    	int total = 0;
+		for (int i = HEAD; i < ALL; i++) {
+			total += slots[i];
+		}
+		return total / ALL;
+    }
 }

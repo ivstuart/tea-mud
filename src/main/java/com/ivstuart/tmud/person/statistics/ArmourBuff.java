@@ -11,7 +11,6 @@ public class ArmourBuff extends Affect {
 	@Override
 	public void applyEffect() {
 		_mob.out("You feel the affects of " + _desc);
-
 	}
 
 	@Override

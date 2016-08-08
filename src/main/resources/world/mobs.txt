@@ -63,5 +63,43 @@ state: STANDING
 attackType: punch
 guardExit: south
 
+class: state.Mob
 
+id: troll-004
+name: cave troll
+alias: large cave troll
+short: the large gray cave troll
+long: A large gray cave troll snares at you.
+look: The troll is a common cave troll is and all together unremarkable.
+behaviour: WANDER
+level: 10
+offensive: 120
+defensive: 50
+armour: 20
+hp: 5d6+50
+damage: 4d6
+copper: 500
+xp: 200
+state: STANDING
+attackType: fist
+
+class: state.Mob
+
+id: dragon-005
+name: dragon
+alias: large red dragon
+short: the large red dragon
+long: A large red dragon snares at you.
+look: The dragon is a common dragon is and all together unremarkable.
+behaviour: AGGRO
+level: 60
+offensive: 200
+defensive: 100
+armour: 50
+hp: 5d6+500
+damage: 8d6
+copper: 1000
+xp: 2000
+state: STANDING
+attackType: claw tail bite breath
 # dice types possible for most fields 

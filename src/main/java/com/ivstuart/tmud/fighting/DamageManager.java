@@ -3,6 +3,9 @@ package com.ivstuart.tmud.fighting;
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.constants.DamageConstants;
+import com.ivstuart.tmud.person.statistics.BlurAffect;
+import com.ivstuart.tmud.person.statistics.SancAffect;
+import com.ivstuart.tmud.spells.Blur;
 import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Armour;
 import com.ivstuart.tmud.state.Corpse;
@@ -24,6 +27,12 @@ public class DamageManager {
 	
 		// Check saves first
 		damage = checkForDodge(defender, damage);
+
+		// 10% save chance
+		damage = checkForBlurDodge(attacker,defender,damage);
+
+		// Half damage
+		damage = checkForSancDodge(attacker,defender,damage);
 		
 		damage = checkForShieldBlocking(defender, damage);
 		
@@ -58,6 +67,28 @@ public class DamageManager {
 		// TODO if not fighting or a heavy blow defender will target and attack attacker.
 
 		checkForDefenderDeath(attacker, defender);
+
+	}
+
+	private static int checkForSancDodge(Mob attacker, Mob defender, int damage) {
+		SancAffect sanc = defender.getMobAffects().getSancAffect();
+
+		if (sanc == null) {
+			return damage;
+		}
+
+		return sanc.onHit(attacker, defender, damage);
+	}
+
+
+	private static int checkForBlurDodge(Mob attacker, Mob defender, int damage) {
+		BlurAffect blur = defender.getMobAffects().getBlurAffect();
+
+		if (blur == null) {
+			return damage;
+		}
+
+		return blur.onHit(attacker, defender, damage);
 
 	}
 

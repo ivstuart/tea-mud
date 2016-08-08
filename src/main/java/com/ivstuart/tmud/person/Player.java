@@ -107,13 +107,13 @@ public class Player implements Serializable, Nameable {
 		mob.getHp().increaseMaximum(dHP);
 		mob.getHp().restore();
 
-		int dMv = attributes.getDEX().getMaximum() + (int) (Math.random() * 4);
+		int dMv = (attributes.getDEX().getMaximum() + (int) (Math.random() * 5))/ 5;
 
 		mob.getMv().increaseMaximum(dMv);
 		mob.getMv().restore();
 
 		int dMana = (attributes.getINT().getMaximum()
-				+ attributes.getWIS().getMaximum() + (int) (Math.random() * 9)) / 3;
+				+ attributes.getWIS().getMaximum() + (int) (Math.random() * 9)) / 9;
 
 		mob.getMana().addMaximum(dMana);
 

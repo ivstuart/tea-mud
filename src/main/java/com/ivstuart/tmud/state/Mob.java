@@ -7,6 +7,8 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.ivstuart.tmud.behaviour.Wander;
+import com.ivstuart.tmud.behaviour.Aggressive;
+import com.ivstuart.tmud.behaviour.Sleeping;
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.Equipable;
 import com.ivstuart.tmud.common.Gender;
@@ -128,10 +130,6 @@ public class Mob extends Prop implements Tickable {
 
 		repopRoomID = baseMob.repopRoomID;
 
-		// _equipment = depends on loads;
-		// _inventory;
-		// protected Learned _learned;
-
 	}
 
 	public void addAffect(Affect affect_) {
@@ -139,6 +137,13 @@ public class Mob extends Prop implements Tickable {
 			mobAffects = new MobAffects(this);
 		}
 		mobAffects.add(affect_);
+	}
+
+	public MobAffects getMobAffects() {
+		if (null == mobAffects) {
+			mobAffects = new MobAffects(this);
+		}
+		return mobAffects;
 	}
 
 	public void addTickable(Tickable ticker) {
@@ -368,12 +373,20 @@ public class Mob extends Prop implements Tickable {
 
 	public void setBehaviour(String behaviours) {
 
-		// BehaviourFactory.build(this,behaviours);
-
+		// Could pass in the class name and use reflection to instantiate
 		if (behaviours.indexOf("WANDER") > -1) {
 
 			addTickable(new Wander(this));
 		}
+		if (behaviours.indexOf("AGGR") > -1) {
+
+			addTickable(new Aggressive(this));
+		}
+		if (behaviours.indexOf("SLEEP") > -1) {
+
+			addTickable(new Sleeping(this));
+		}
+
 	}
 
 	public void setCopper(String copper_) {

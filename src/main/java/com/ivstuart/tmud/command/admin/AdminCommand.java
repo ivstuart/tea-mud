@@ -22,7 +22,7 @@ public class AdminCommand implements Command {
 		
 		if (!mob.isAdmin()) {
 			mob.out("The command "+this.getClass().getSimpleName()+" is not available to you.");
-			return;
+			throw new AdminRuntimeException("Not a admin");
 		}
 
 	}

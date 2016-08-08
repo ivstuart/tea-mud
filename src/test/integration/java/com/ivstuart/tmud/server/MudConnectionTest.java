@@ -37,7 +37,6 @@ public class MudConnectionTest {
 		try {
 			client.send("1");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -55,14 +54,12 @@ public class MudConnectionTest {
 			try {
 				client = LaunchClient.init();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
 			try {
 				Thread.sleep(15 * 60 * 1000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} // 15 minutes no shutdown coded yet.
 

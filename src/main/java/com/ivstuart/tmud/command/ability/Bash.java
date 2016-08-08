@@ -27,7 +27,6 @@ public class Bash implements Command {
 		public void begin() {
 			super.begin();
 
-			// TODO review and test this
 			if (!getSelf().getMv().deduct(10)) {
 				out("You do not have enough movement left to bash");
 				this.finished();
@@ -44,13 +43,11 @@ public class Bash implements Command {
 
 		@Override
 		public void changed() {
-			// TODO Auto-generated method stub
 
 		}
 
 		@Override
 		public void ended() {
-			// TODO Auto-generated method stub
 
 		}
 
@@ -115,7 +112,6 @@ public class Bash implements Command {
 		}
 
 		if (targetStatus.isBashAlert()) {
-			// TODO decide if movement should be taken for this - I think yes.
 			mob.getMv().deduct(4);
 			mob.out(target.getName() + " easily avoids your bash!");
 			return true;

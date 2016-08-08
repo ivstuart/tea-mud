@@ -105,6 +105,7 @@ command.state.Wake
 command.admin.AllMobStats
 command.admin.At
 command.admin.Ban
+command.admin.ClearAffects
 command.admin.Debug
 command.admin.Freeze
 command.admin.Level

@@ -53,16 +53,24 @@ public class Fight {
 			return;
 		}
 
-		// i.e. for bash want to start the combat.
+		// i.e. for bash want to start the combat. Cast blur we do not want to start combat against self.
+		// same goes for healing spells they should not start melee combat.
 		if (fightActions.isEmpty()) {
+
 			if (melee.getTarget() == null) {
-				melee.setTarget(action.getTarget());
+				// Check not targetting self
+				if (melee.getSelf() == action.getTarget() || !action.isMeleeEnabled()) {
+					out("Not setting target");
+				}
+				else {
+					melee.setTarget(action.getTarget());
+				}
 			}
 		}
 
 		fightActions.add(action);
 
-		WorldTime.addFighting(melee.getSelf());
+		WorldTime.addFighting(action.getSelf());
 	}
 
 	private boolean addTargettedBy(Mob mob) {
@@ -134,6 +142,10 @@ public class Fight {
 		return melee.getTarget() != null;
 	}
 
+	public boolean hasFightActions() {
+		return !fightActions.isEmpty();
+	}
+
 	public boolean isGroundFighting() {
 		return melee.isGroundFighting();
 	}
@@ -154,7 +166,7 @@ public class Fight {
 
 		if (fightActions.isEmpty()) {
 
-			// Log.info("Fight action is empty foe "+this.getMelee().getSelf().getName());
+			LOGGER.info("Fight action is empty foe "+this.getMelee().getSelf().getName());
 
 			resolveMelee();
 
@@ -167,6 +179,7 @@ public class Fight {
 			}
 
 			if (fightAction.isMeleeEnabled()) {
+				out("Melee enabled so one round of melee fighting");
 				resolveMelee();
 
 			}
@@ -184,7 +197,12 @@ public class Fight {
 		if (melee.getTarget() != null) {
 			melee.next();
 			if (melee.isFinished()) {
-				melee.restart();
+				if (melee.getSelf() == melee.getTarget()) {
+					// stop fighting self.
+				}
+				else {
+					melee.restart();
+				}
 			}
 		}
 	}

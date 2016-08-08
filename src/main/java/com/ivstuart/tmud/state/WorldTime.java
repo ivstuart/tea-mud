@@ -129,7 +129,8 @@ public class WorldTime implements Runnable {
 			Mob mob = fightingIter.next();
 			if (mob != null) {
 				Fight fight = mob.getFight();
-				if (fight.isFighting()) {
+
+				if (fight.isFighting() || fight.hasFightActions()) {
 					fight.resolveCombat();
 				} else {
 					LOGGER.debug("removing from fighting [ " + mob.getName()

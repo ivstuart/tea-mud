@@ -12,6 +12,8 @@ import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Spell;
 
+import java.util.List;
+
 /**
  * @author stuarti
  * 
@@ -24,21 +26,23 @@ public class BasicSpell extends FightAction {
 
 	private Ability _ability;
 	private Spell _spell;
+	private List<Mob> _targets;
 
 	/**
 	 * @param character
 	 */
 	public BasicSpell(Ability ability_, Spell spell_, Mob me_, Mob target_) {
 		super(me_, target_);
-
 		_ability = ability_;
 		_spell = spell_;
-
-		// Never put behvaiour in here as repeat actions in a fight does not
-		// call the constructor!!!!!
-
 	}
 
+	public BasicSpell(Ability ability_, Spell spell_, Mob me_, Mob target_, List<Mob> targets_) {
+		super(me_, target_);
+		_ability = ability_;
+		_spell = spell_;
+		_targets = targets_;
+	}
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -184,8 +188,14 @@ public class BasicSpell extends FightAction {
 
 		int amount = _spell.getDamage().roll();
 
-		_spell.getSpellEffect().effect(getSelf(), getTarget(), amount);
-
+		if (_targets != null) {
+			for (Mob mob : _targets) {
+				_spell.getSpellEffect().effect(getSelf(), mob, amount);
+			}
+		}
+		else {
+			_spell.getSpellEffect().effect(getSelf(), getTarget(), amount);
+		}
 		// TODO spellEffect.apply() check resists()
 
 		// Dodging?

@@ -52,4 +52,7 @@ public class Affect {
 		return _desc + " " + affDuration[index] + " (" + _duration + ")";
 	}
 
+	public int getBuff() {
+		return 15;
+	}
 }

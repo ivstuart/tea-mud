@@ -353,6 +353,9 @@ public class Login implements Readable {
 			player.setAdmin(true);
 			mob.out("Setting admin true");
 		}
+		else {
+			player.setAdmin(false);
+		}
 
 		mob.setHeight(6);
 
@@ -369,6 +372,9 @@ public class Login implements Readable {
 		mob.setHp("10");
 		mob.setMv("10");
 		mob.setMana(new MobMana(true));
+
+		// int + wis / 2 to set casting level
+		mob.getMana().setCastLevel((att[3]+att[2])/2);
 
 		data.setThirst(500);
 		data.setHunger(500);

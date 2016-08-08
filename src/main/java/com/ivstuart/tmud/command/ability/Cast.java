@@ -17,6 +17,8 @@ import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Spell;
 import com.ivstuart.tmud.state.World;
 
+import java.util.List;
+
 import static com.ivstuart.tmud.common.MobState.STAND;
 
 /**
@@ -103,14 +105,52 @@ public class Cast implements Command {
 			return;
 		}
 
+
 		// TODO work out a way to support target value of
 		/* me, self, all, good, evil, etc.. */
+
+		if (spell.getTarget().indexOf("MANY") > -1) {
+			List<Mob> targets = mob_.getRoom().getMobs(target);
+
+			if (targets.isEmpty()) {
+				mob_.out(target + " is not here to target!");
+				return;
+			}
+			mana.cast(spell);
+
+			mob_.out("You begin to chant and make unusally complex gestures");
+
+			mob_.out("You start casting area effect " + spell.getId());
+
+			FightAction spellFightAction = new BasicSpell(spellAbility, spell,
+					mob_, targets.get(0), targets);
+
+			mob_.getFight().add(spellFightAction);
+			return;
+		}
 
 		Mob targetMob = mob_.getRoom().getMob(target);
 
 		if (targetMob == null) {
-			mob_.out(target + " is not here to target!");
-			return;
+			// TODO spells need to default targets depending on if they do damage or not.
+			Mob fightTarget = mob_.getFight().getTarget();
+			if (fightTarget != null) {
+				targetMob = fightTarget;
+			}
+			else if (targettingSelf(target)) {
+				targetMob = mob_;
+			}
+			else {
+				mob_.out(target + " is not here to target!");
+				return;
+			}
+		}
+
+		if (spell.getTarget().indexOf("SELF") > -1) {
+			if (targetMob != mob_) {
+				mob_.out("You can only target self with this spell");
+				return;
+			}
 		}
 
 		mana.cast(spell);
@@ -122,8 +162,12 @@ public class Cast implements Command {
 		FightAction spellFightAction = new BasicSpell(spellAbility, spell,
 				mob_, targetMob);
 
-		targetMob.getFight().add(spellFightAction);
+		mob_.getFight().add(spellFightAction);
 
+	}
+
+	private boolean targettingSelf(String target) {
+		return target.length() == 0 || target.equalsIgnoreCase("me") || target.equalsIgnoreCase("self");
 	}
 
 }

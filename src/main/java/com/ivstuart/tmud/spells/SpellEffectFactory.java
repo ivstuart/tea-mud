@@ -16,6 +16,9 @@ public class SpellEffectFactory {
 		spellEffectMap.put("HEAL", new Heal());
 		spellEffectMap.put("POISON", new Poison());
 		spellEffectMap.put("CURE", new Cure());
+		spellEffectMap.put("ARMOUR", new ArmourEffect());
+		spellEffectMap.put("BLUR", new Blur());
+		spellEffectMap.put("SANC", new Sanctury());
 	}
 
 	public static SpellEffect get(String spell) {

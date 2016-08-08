@@ -63,6 +63,7 @@ look: held by iron sconces, flicker dim light about the area.
 exits: east->R-003-001 south->R-002-002 west->R-001-001 
 properties: DARK
 item: knife-001
+mob: dragon-005
 
 id: R-003-001
 brief: The Mosaic Covered Floor in the White Tower
@@ -140,4 +141,4 @@ look: snow white marbled stone. Light streams in from the window into this alcov
 look: The breeze is refreshing and moved the purple and orange curtains adorning the small window.
 exits: west->R-003-003
 initdoors:
-
+mob: troll-004

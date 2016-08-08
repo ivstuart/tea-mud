@@ -7,9 +7,6 @@ public class Heal implements SpellEffect {
 	@Override
 	public void effect(Mob caster_, Mob target_, int amount_) {
 
-		// TODO Auto-generated method stub
-		// DamageManager.deal(giver_, reciever, amount_);
-
 		target_.getHp().increase(amount_);
 	}
 

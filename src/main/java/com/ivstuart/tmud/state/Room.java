@@ -88,6 +88,16 @@ public class Room extends BasicThing implements Msgable {
 		return _mobs.get(input_);
 	}
 
+	public List<Mob> getMobs(String target) {
+		List<Mob> mobs = new ArrayList<Mob>();
+		for (Mob mob :_mobs) {
+			if (mob.getName().indexOf(target) > -1 || "all".equalsIgnoreCase(target)) {
+				mobs.add(mob);
+			}
+		}
+		return mobs;
+	}
+
 	public MudArrayList<Mob> getMobs() {
 		return _mobs;
 	}
@@ -225,4 +235,16 @@ public class Room extends BasicThing implements Msgable {
 		_type = type_;
 	}
 
+    public Mob getRandomPlayer() {
+    	List<Mob> playerList = new ArrayList<Mob>();
+    	for (Mob mob : _mobs) {
+    		if (mob.isPlayer()) {
+				playerList.add(mob);
+			}
+		}
+		if (!playerList.isEmpty()) {
+			return playerList.get((int)(playerList.size() * Math.random()));
+		}
+		return null;
+	}
 }

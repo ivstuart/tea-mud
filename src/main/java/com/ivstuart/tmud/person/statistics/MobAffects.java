@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.ivstuart.tmud.spells.Blur;
 import com.ivstuart.tmud.state.Mob;
 
 public class MobAffects implements Serializable {
@@ -23,6 +24,15 @@ public class MobAffects implements Serializable {
 	public void add(Affect affect_) {
 		_affects.add(affect_);
 		affect_.applyEffect();
+	}
+
+	public Affect getArmourBuff() {
+		for (Affect affect : _affects) {
+			if (affect instanceof ArmourBuff) {
+				return affect;
+			}
+		}
+		return null;
 	}
 
 	public void clear() {
@@ -69,5 +79,23 @@ public class MobAffects implements Serializable {
 		}
 
 		return sb.toString();
+	}
+
+	public BlurAffect getBlurAffect() {
+		for (Affect affect : _affects) {
+			if (affect instanceof BlurAffect) {
+				return (BlurAffect)affect;
+			}
+		}
+		return null;
+	}
+
+	public SancAffect getSancAffect() {
+		for (Affect affect : _affects) {
+			if (affect instanceof SancAffect) {
+				return (SancAffect)affect;
+			}
+		}
+		return null;
 	}
 }
