@@ -6,8 +6,6 @@ import static com.ivstuart.tmud.constants.UsefulContants.affDuration;
 
 public class Affect {
 
-	// TODO remove mob from affect as the application of an affect needs to
-	// happen
 	protected Mob _mob;
 	protected String _desc;
 	protected int _duration;
@@ -19,7 +17,6 @@ public class Affect {
 	}
 
 	public void applyEffect() {
-		// TODO remove mob from these classes.
 		_mob.out("You feel the affects of " + _desc);
 
 	}

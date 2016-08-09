@@ -1,6 +1,7 @@
 package com.ivstuart.tmud.state;
 
 import com.ivstuart.tmud.constants.ManaType;
+import com.ivstuart.tmud.spells.BuffStats;
 import com.ivstuart.tmud.spells.SpellEffect;
 import com.ivstuart.tmud.spells.SpellEffectFactory;
 
@@ -16,9 +17,10 @@ public class Spell extends BaseSkill {
 
 	// TODO new - so think about this design
 	private SpellEffect _spellEffect; // Note a spell behaviour can reference
-										// another sell behaviour
+										// another spell behaviour
 
 	// Default is damage
+	private String _stat;
 
 	/**
 	 * Cost of spell is double when your level is the same as the spell and this
@@ -77,4 +79,19 @@ public class Spell extends BaseSkill {
 
 	}
 
+	public void setStat(String stat_) {
+		_stat = stat_;
+
+		if (_spellEffect != null && _spellEffect instanceof BuffStats) {
+			((BuffStats)_spellEffect).setStat(stat_);
+		}
+
+	}
+
+	public String getStat() {
+		if (_spellEffect != null && _spellEffect instanceof BuffStats) {
+			return ((BuffStats)_spellEffect).getStat();
+		}
+		return null;
+	}
 }

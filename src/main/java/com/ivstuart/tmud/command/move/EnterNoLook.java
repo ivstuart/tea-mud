@@ -35,6 +35,11 @@ public class EnterNoLook implements Command {
 			return;
 		}
 
+		if (mob.getMv().getValue() < 0) {
+			mob.out("You can not move you are out of movement and too tired!");
+			return;
+		}
+
 		
 		Exit exit = room.getExit(input);
 
@@ -78,11 +83,26 @@ public class EnterNoLook implements Command {
 
 		destination.add(mob);
 
-		// TODO limit movement of wondering monsters
-		// mob_.getRoomHistory().add(destination.getId());
-
 		// walk fly swim teleport run sneak etc.....
-		mob.out("You walk " + exit.getId());
+		if (mob.isRunning()) {
+			mob.out("You run " + exit.getId());
+		}
+		else if (mob.isSneaking()) {
+			mob.out("You sneak " + exit.getId());
+			mob.getMv().deduct(5);
+		}
+		else if (mob.isFlying()) {
+			mob.out("You fly " + exit.getId());
+			mob.getMv().deduct(1);
+		}
+		else {
+			mob.out("You walk " + exit.getId());
+			mob.getMv().deduct(4);
+		}
+
+
+		// fly 1 point. walk 4. walk on path 2 points.
+
 	}
 
 }

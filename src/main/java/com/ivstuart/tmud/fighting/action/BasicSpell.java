@@ -68,7 +68,7 @@ public class BasicSpell extends FightAction {
 		// still visble.
 		getSelf().getMobStatus().setCasting(6);
 
-		out("TRACE begin called");
+		// out("TRACE begin called");
 
 		super.begin();
 
@@ -92,7 +92,7 @@ public class BasicSpell extends FightAction {
 	@Override
 	public void changed() {
 
-		out("TRACE changed called");
+		// out("TRACE changed called");
 
 		out(new Msg(getSelf(), getTarget(),
 				"<S-You are/NAME is> disrupted from attacking <T-you/NAME>."));
@@ -138,7 +138,7 @@ public class BasicSpell extends FightAction {
 	@Override
 	public void ended() {
 
-		out("TRACE ended called");
+		// out("TRACE ended called");
 
 		duration(5);
 
@@ -148,7 +148,7 @@ public class BasicSpell extends FightAction {
 	@Override
 	public void happen() {
 
-		out("TRACE happen called");
+		// out("TRACE happen called");
 
 		if (true) {
 			getSelf().out(
@@ -186,15 +186,15 @@ public class BasicSpell extends FightAction {
 
 	private void hit() {
 
-		int amount = _spell.getDamage().roll();
+		// int amount = _spell.getDamage().roll();
 
 		if (_targets != null) {
 			for (Mob mob : _targets) {
-				_spell.getSpellEffect().effect(getSelf(), mob, amount);
+				_spell.getSpellEffect().effect(getSelf(), mob, _spell);
 			}
 		}
 		else {
-			_spell.getSpellEffect().effect(getSelf(), getTarget(), amount);
+			_spell.getSpellEffect().effect(getSelf(), getTarget(), _spell);
 		}
 		// TODO spellEffect.apply() check resists()
 
@@ -218,7 +218,9 @@ public class BasicSpell extends FightAction {
 
 	@Override
 	public boolean isMeleeEnabled() {
-		return false;
+		// return true for damage spells.
+		// return (_spell.getDamage().getMaxRoll() > 0); cant use damage as also used for duration.
+		return (!_spell.getSpellEffect().isPositiveEffect());
 	}
 
 	/*

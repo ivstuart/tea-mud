@@ -109,7 +109,7 @@ public class Cast implements Command {
 		// TODO work out a way to support target value of
 		/* me, self, all, good, evil, etc.. */
 
-		if (spell.getTarget().indexOf("MANY") > -1) {
+		if (spell.getTarget() != null && spell.getTarget().indexOf("MANY") > -1) {
 			List<Mob> targets = mob_.getRoom().getMobs(target);
 
 			if (targets.isEmpty()) {
@@ -146,7 +146,7 @@ public class Cast implements Command {
 			}
 		}
 
-		if (spell.getTarget().indexOf("SELF") > -1) {
+		if (spell.getTarget() != null && spell.getTarget().indexOf("SELF") > -1) {
 			if (targetMob != mob_) {
 				mob_.out("You can only target self with this spell");
 				return;

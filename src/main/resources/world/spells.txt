@@ -7,6 +7,7 @@ speed: 5
 # Hard coded rather than reflection instanciated txt look up of a class
 # might be better with spellEffect: spells.Poison
 spellEffect: POISON
+duration: 2d6+10
 
 class: state.Spell
 id: cure poison
@@ -113,6 +114,7 @@ speed: 5
 mana: WATER
 spellEffect: BLUR
 # Has a 10% dodge chance when hit with basic attack.
+duration: 2d6+100
 
 id: protection
 level: 10
@@ -122,6 +124,7 @@ target: SELF
 speed: 5
 mana: WATER
 spellEffect: ARMOUR
+duration: 2d6+100
 
 id: sanctury
 level: 10
@@ -132,6 +135,18 @@ target: SELF
 speed: 5
 mana: WATER
 spellEffect: SANC
+duration: 2d6+100
+
+id: stoneskin
+level: 10
+cost: 5
+damage: 500
+# damage is duration
+target: SELF
+speed: 5
+mana: EARTH
+spellEffect: SANC
+duration: 2d6+100
 
 id: burning hands
 level: 1
@@ -157,15 +172,21 @@ damage: 0
 target: SINGLE
 speed: 5
 mana: COMMON
+spellEffect: BUFF
+duration: 2d6+50
 
 id: earthen strength
 level: 4
 cost: 10
-damage: 0
+damage: 3
 target: SINGLE
 speed: 5
 mana: EARTH
+spellEffect: BUFF
+stat: str
+duration: 2d6+50
 
+# TODO
 id: detect invisible
 level: 1
 cost: 10
@@ -173,7 +194,10 @@ damage: 0
 target: SINGLE
 speed: 5
 mana: FIRE
+spellEffect: DETECT
+duration: 2d6+10
 
+# TODO
 id: invisiblity
 level: 10
 cost: 20
@@ -181,15 +205,22 @@ damage: 0
 target: SINGLE
 speed: 5
 mana: WATER
+spellEffect: INVISIBLITY
+duration: 2d6+10
 
+# TODO
 id: weaken
 level: 10
 cost: 20
-damage: 0
+damage: -3
 target: SINGLE
 speed: 5
 mana: WATER
+spellEffect: DEBUFF
+duration: 2d6+10
+stat: str
 
+# TODO
 id: sleep
 level: 10
 cost: 20
@@ -197,3 +228,24 @@ damage: 0
 target: SINGLE
 speed: 5
 mana: WATER
+spellEffect: SLEEP
+duration: 2d6+10
+
+id: word of recall
+level: 10
+cost: 15
+damage: 0
+target: SINGLE
+speed: 5
+mana: WATER
+spellEffect: RECALL
+duration: 2d6+10
+
+id: refresh
+level: 10
+cost: 25
+damage: 1d6+20
+target: SINGLE
+speed: 5
+mana: WATER
+spellEffect: REFRESH

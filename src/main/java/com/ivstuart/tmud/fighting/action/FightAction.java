@@ -5,8 +5,11 @@ import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.person.statistics.MobMana;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.MobStatus;
+import org.apache.log4j.Logger;
 
 public abstract class FightAction {
+
+	private static final Logger LOGGER = Logger.getLogger(FightAction.class);
 
 	private long whenNextStateMillis;
 
@@ -23,7 +26,14 @@ public abstract class FightAction {
 	}
 
 	public void begin() {
-		getSelf().getFight().changeTarget(getTarget());
+		// Set melee target
+		if (this.isMeleeEnabled()) {
+			LOGGER.debug("Is melee so setting melee target for combat");
+			getSelf().getFight().changeTarget(getTarget());
+		}
+		else {
+			LOGGER.debug("Is zero damage action so not setting melee target for combat");
+		}
 	}
 
 	public abstract void changed();

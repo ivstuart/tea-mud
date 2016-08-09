@@ -4,6 +4,7 @@ import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.constants.DamageConstants;
 import com.ivstuart.tmud.person.statistics.BlurAffect;
+import com.ivstuart.tmud.person.statistics.BuffStatsAffect;
 import com.ivstuart.tmud.person.statistics.SancAffect;
 import com.ivstuart.tmud.spells.Blur;
 import com.ivstuart.tmud.state.Ability;
@@ -35,6 +36,9 @@ public class DamageManager {
 		damage = checkForSancDodge(attacker,defender,damage);
 		
 		damage = checkForShieldBlocking(defender, damage);
+
+		// Combat sense
+		damage = checkForCombatSense(attacker, damage);
 		
 		// Take off armour at hit location
 		//   if melee the armor at location 
@@ -68,6 +72,18 @@ public class DamageManager {
 
 		checkForDefenderDeath(attacker, defender);
 
+	}
+
+	// 20% more damage with combat sense.
+	private static int checkForCombatSense(Mob attacker, int damage) {
+
+		BuffStatsAffect buff = attacker.getMobAffects().getBuffAffact("combat sense");
+
+		if (buff != null) {
+			damage *= 1.2;
+		}
+
+		return damage;
 	}
 
 	private static int checkForSancDodge(Mob attacker, Mob defender, int damage) {

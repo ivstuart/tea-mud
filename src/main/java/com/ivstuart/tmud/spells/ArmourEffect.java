@@ -3,20 +3,24 @@ package com.ivstuart.tmud.spells;
 import com.ivstuart.tmud.person.statistics.Affect;
 import com.ivstuart.tmud.person.statistics.ArmourBuff;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.Spell;
 
 public class ArmourEffect implements SpellEffect {
 
-	public static final String ARMOUR = "armour";
 
 	@Override
-	public void effect(Mob caster, Mob target, int amount) {
+	public void effect(Mob caster, Mob target, Spell spell) {
 
-		Affect armorAffect = new ArmourBuff(target, ARMOUR, amount);
+		Affect armorAffect = new ArmourBuff(target, spell.getId(),spell.getDuration().roll());
 
 		target.addAffect(armorAffect);
 
 		target.out("Armor buff applied!");
 
+	}
+
+	public boolean isPositiveEffect() {
+		return true;
 	}
 
 }

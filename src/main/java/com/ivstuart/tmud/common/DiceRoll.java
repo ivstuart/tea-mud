@@ -191,4 +191,7 @@ public class DiceRoll implements Serializable {
 				diceBonus });
 	}
 
+    public int getMaxRoll() {
+		return (diceNumber * diceSides) + diceBonus;
+    }
 }

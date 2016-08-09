@@ -25,7 +25,7 @@ public class Run implements Command {
 
 				currentRoom = mob.getRoom();
 			} else {
-				mob.out("You have run out of puff!");
+				mob.out("You have run out of puff to run!");
 				break;
 			}
 

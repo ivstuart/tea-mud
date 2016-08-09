@@ -561,4 +561,7 @@ public class Mob extends Prop implements Tickable {
 		this.wimpy = wimpy;
 	}
 
+	public boolean isFlying() {
+		return false; // for now TODO
+	}
 }

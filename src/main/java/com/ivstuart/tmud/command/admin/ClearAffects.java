@@ -20,6 +20,10 @@ public class ClearAffects extends AdminCommand {
 		}
 
 		mob.out("Clearing all affects on "+mob.getName());
+
+		// Best to remove effects first
+		mob.getMobAffects().removeAll();
+
 		mob.getMobAffects().clear();
 	}
 }

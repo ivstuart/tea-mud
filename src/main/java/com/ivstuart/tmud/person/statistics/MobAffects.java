@@ -98,4 +98,25 @@ public class MobAffects implements Serializable {
 		}
 		return null;
 	}
+
+    public BuffStatsAffect getBuffAffact(String id) {
+		for (Affect affect : _affects) {
+			if (affect instanceof BuffStatsAffect) {
+				BuffStatsAffect buff = (BuffStatsAffect)affect;
+				if (buff.getDesc().equalsIgnoreCase(id)) {
+					return buff;
+				}
+			}
+		}
+		return null;
+    }
+
+	public void removeAll() {
+		Iterator<Affect> affIter = _affects.iterator();
+
+		while (affIter.hasNext()) {
+			Affect affect = affIter.next();
+			affect.removeEffect();
+		}
+	}
 }

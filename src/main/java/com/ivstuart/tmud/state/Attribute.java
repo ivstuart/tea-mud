@@ -16,6 +16,8 @@ public class Attribute implements Serializable {
 
 	protected int current;
 
+	protected int savedMaximum;
+
 	public Attribute(Attribute oldAttribute_) {
 		name = oldAttribute_.name;
 		current = oldAttribute_.current;
@@ -154,4 +156,13 @@ public class Attribute implements Serializable {
     public boolean isMaximum() {
     	return current >= maximum;
     }
+
+    public void savePoint() {
+		savedMaximum = maximum;
+    }
+
+	public void rollback() {
+		maximum = savedMaximum;
+		increase(0);
+	}
 }

@@ -14,11 +14,18 @@ public class SpellEffectFactory {
 
 	static {
 		spellEffectMap.put("HEAL", new Heal());
-		spellEffectMap.put("POISON", new Poison());
+		spellEffectMap.put("POISON", new Poison()); // TODO Add poison type
 		spellEffectMap.put("CURE", new Cure());
 		spellEffectMap.put("ARMOUR", new ArmourEffect());
 		spellEffectMap.put("BLUR", new Blur());
 		spellEffectMap.put("SANC", new Sanctury());
+		spellEffectMap.put("RECALL", new Recall());
+		spellEffectMap.put("BUFF", new BuffStats());
+		spellEffectMap.put("DETECT", new BuffStats());
+		spellEffectMap.put("INVISIBLITY", new BuffStats());
+		spellEffectMap.put("DEBUFF", new BuffStats());
+		spellEffectMap.put("SLEEP", new BuffStats());
+		spellEffectMap.put("REFRESH", new Refresh());
 	}
 
 	public static SpellEffect get(String spell) {

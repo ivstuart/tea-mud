@@ -27,6 +27,8 @@ public class BaseSkill extends BasicThing {
 
 	private int speed = 10;
 
+	private DiceRoll duration;
+
 	public BaseSkill() {
 	}
 
@@ -97,4 +99,10 @@ public class BaseSkill extends BasicThing {
 		this.speed = speed;
 	}
 
+	public void setDuration(String duration) {
+		this.duration = new DiceRoll(duration);
+	}
+    public DiceRoll getDuration() {
+    	return duration;
+    }
 }
