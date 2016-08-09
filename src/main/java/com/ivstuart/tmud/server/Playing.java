@@ -40,7 +40,12 @@ public class Playing implements Readable {
 	 */
 	@Override
 	public void read(String line) {
-		
+
+		// TODO Apply any alias's
+
+		// line = line.replaceAll(regex, replacement);
+		line = player.applyAlias(line);
+
 		if (player.getSnooper() != null) {
 			player.getSnooper().out("You snoop:"+line);
 		}

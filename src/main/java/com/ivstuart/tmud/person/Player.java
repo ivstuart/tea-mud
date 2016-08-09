@@ -1,6 +1,9 @@
 package com.ivstuart.tmud.person;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 
@@ -27,6 +30,8 @@ public class Player implements Serializable, Nameable {
 	private transient Connection conn;
 
 	private boolean admin = false;
+
+	private Map<String,String> alias; // Limit to 30
 	
 	public void setSnooper(Mob snooper) {
 		this.snooper = snooper;
@@ -41,6 +46,7 @@ public class Player implements Serializable, Nameable {
 	public Player() {
 		playerData = new PlayerData();
 		config = new Config();
+		alias = new HashMap<>();
 	}
 
 	public boolean checkIfLeveled() {
@@ -185,4 +191,32 @@ public class Player implements Serializable, Nameable {
 		admin = b;
 	}
 
+	public void addAlias(String word, String word1) {
+		if (alias.size() > 30) {
+			out("You are at the limit for alias's please remove one and then you can add another one");
+			return;
+		}
+		alias.put(word,word1);
+	}
+
+	public void removeAlias(String word) {
+		alias.remove(word);
+	}
+
+	public void showAlias() {
+		this.out(alias.toString());
+	}
+
+	public String applyAlias(String input) {
+		if (alias == null) {
+			return input;
+		}
+		if (input.startsWith("alias")) {
+			return input;
+		}
+		for (Map.Entry<String,String> set : alias.entrySet()) {
+			input = input.replaceFirst("^"+set.getKey(),set.getValue());
+		}
+		return input;
+	}
 }

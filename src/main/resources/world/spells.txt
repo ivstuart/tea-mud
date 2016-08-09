@@ -186,7 +186,6 @@ spellEffect: BUFF
 stat: str
 duration: 2d6+50
 
-# TODO
 id: detect invisible
 level: 1
 cost: 10
@@ -197,7 +196,6 @@ mana: FIRE
 spellEffect: DETECT
 duration: 2d6+10
 
-# TODO
 id: invisiblity
 level: 10
 cost: 20
@@ -208,7 +206,6 @@ mana: WATER
 spellEffect: INVISIBLITY
 duration: 2d6+10
 
-# TODO
 id: weaken
 level: 10
 cost: 20
@@ -238,7 +235,15 @@ target: SINGLE
 speed: 5
 mana: WATER
 spellEffect: RECALL
-duration: 2d6+10
+
+id: summon
+level: 15
+cost: 25
+damage: 0
+target: ANY
+speed: 5
+mana: COMMON
+spellEffect: SUMMON
 
 id: refresh
 level: 10
@@ -248,3 +253,13 @@ target: SINGLE
 speed: 5
 mana: WATER
 spellEffect: REFRESH
+
+id: levitate
+level: 10
+cost: 25
+damage: 0
+duration: 200
+target: SINGLE
+speed: 5
+mana: WATER
+spellEffect: FLY

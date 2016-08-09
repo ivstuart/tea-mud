@@ -18,11 +18,29 @@ import com.ivstuart.tmud.state.Mob;
  */
 public class Alias implements Command {
 
+	// Each mob has their own alias mappings
+
 	@Override
 	public void execute(Mob mob, String input) {
 
-		// TODO
-		mob.out("TODO alias");
+		// mm cast magic missile
+		if (input.length() == 0) {
+			mob.getPlayer().showAlias();
+			return;
+		}
+
+		String words[] = input.split(" ",2);
+
+		if (words.length == 2) {
+			mob.getPlayer().addAlias(words[0],words[1]);
+		}
+		else if (words.length == 1) {
+			mob.getPlayer().removeAlias(words[0]);
+		}
+		else {
+			mob.out("Nothing to alias");
+		}
+
 	}
 
 }

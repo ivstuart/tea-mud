@@ -162,6 +162,11 @@ public class BasicAttack extends FightAction {
 	}
 
 	private void hit() {
+
+		if (this.getTarget() == null) {
+			out("Target is null hence your hit now misses");
+			return;
+		}
 		
 	
 		if (parrySuccessful()) {
