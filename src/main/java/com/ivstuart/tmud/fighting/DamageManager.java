@@ -1,6 +1,7 @@
 package com.ivstuart.tmud.fighting;
 
 import com.ivstuart.tmud.common.DiceRoll;
+import com.ivstuart.tmud.common.MobState;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.constants.DamageConstants;
 import com.ivstuart.tmud.person.statistics.BlurAffect;
@@ -25,12 +26,19 @@ public class DamageManager {
 			attacker.out("Your target is in another room!");
 			return ;
 		}
-	
-		// Check saves first
-		damage = checkForDodge(defender, damage);
 
-		// 10% save chance
-		damage = checkForBlurDodge(attacker,defender,damage);
+		if (checkIfTargetSleeping(defender)) {
+			damage *= 2;
+			defender.setState(MobState.WAKE);
+		}
+		else {
+
+			// Check saves first
+			damage = checkForDodge(defender, damage);
+
+			// 10% save chance
+			damage = checkForBlurDodge(attacker, defender, damage);
+		}
 
 		// Half damage
 		damage = checkForSancDodge(attacker,defender,damage);
@@ -72,6 +80,10 @@ public class DamageManager {
 
 		checkForDefenderDeath(attacker, defender);
 
+	}
+
+	private static boolean checkIfTargetSleeping(Mob defender) {
+		return defender.getState().isSleeping();
 	}
 
 	// 20% more damage with combat sense.

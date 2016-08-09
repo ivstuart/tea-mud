@@ -20,11 +20,12 @@ public class SpellEffectFactory {
 		spellEffectMap.put("BLUR", new Blur());
 		spellEffectMap.put("SANC", new Sanctury());
 		spellEffectMap.put("RECALL", new Recall());
+		spellEffectMap.put("SUMMON", new Summon());
 		spellEffectMap.put("BUFF", new BuffStats());
 		spellEffectMap.put("DETECT", new BuffStats());
 		spellEffectMap.put("INVISIBLITY", new BuffStats());
 		spellEffectMap.put("DEBUFF", new BuffStats());
-		spellEffectMap.put("SLEEP", new BuffStats());
+		spellEffectMap.put("SLEEP", new Sleep());
 		spellEffectMap.put("REFRESH", new Refresh());
 	}
 

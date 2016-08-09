@@ -22,13 +22,18 @@ public class Look implements Command {
 	@Override
 	public void execute(Mob mob_, String input_) {
 
+		if (mob_.getState().isSleeping()) {
+			mob_.out("Can not look while sleeping zzzZZZZzz....");
+			return;
+		}
+
 		if (input_.length() > 0) {
 			Mob mob = mob_.getRoom().getMob(input_);
 			if (mob != null) {
 				mob_.out("Info mob id       = " + mob.getId());
 				mob_.out("Info mob repop id = " + mob.getRepopRoomId());
 				mob_.out("Type :" + mob_.getClass().getSimpleName());
-				mob_.out("instanceof :" + (mob_ instanceof GuardMob));
+				mob_.out("instanceof GuardMob:" + (mob_ instanceof GuardMob));
 			}
 			return;
 		}
@@ -126,7 +131,15 @@ public class Look implements Command {
 
 		for (Mob mob : mob_.getRoom().getMobs()) {
 
+			if (mob_.hasDetectInvisible()) {
+				if (mob.isInvisible()) {
+					sb.append("(invis)");
+				}
+			}
+
 			sb.append("$H" + mob.getBrief());
+
+
 
 			// TODO should replace this code with a Msg object to handle the
 			// correct tense of output.
@@ -145,7 +158,12 @@ public class Look implements Command {
 				}
 
 			} else {
-				sb.append(" is here.");
+				if (mob.getState().isSleeping()) {
+					sb.append(" is sleeping here.");
+				}
+				else {
+					sb.append(" is here.");
+				}
 			}
 			sb.append("\n");
 		}

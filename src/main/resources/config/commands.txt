@@ -69,6 +69,7 @@ command.item.Drink
 command.item.Fill
 command.item.Empty
 command.item.Eat
+command.misc.Alias
 command.misc.Brief
 command.misc.Verbose
 command.misc.Title
@@ -99,6 +100,8 @@ command.state.Sit
 command.state.Sleep
 command.state.Stand
 command.state.Wake
+command.state.Visible
+command.state.Fly
 
 # Admin Commands
 

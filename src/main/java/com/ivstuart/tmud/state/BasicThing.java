@@ -22,6 +22,8 @@ public class BasicThing implements Serializable, Cloneable, Msgable {
 
 	private boolean hidden;
 	private boolean invisible;
+	private boolean detectInvisible;
+	private boolean detectHidden;
 
 	public BasicThing() {
 		look = "";
@@ -33,6 +35,8 @@ public class BasicThing implements Serializable, Cloneable, Msgable {
 		verbose = thing_.verbose;
 		look = thing_.look;
 		properties = thing_.properties;
+		detectInvisible = false;
+		detectHidden = false;
 	}
 
 	@Override
@@ -85,7 +89,7 @@ public class BasicThing implements Serializable, Cloneable, Msgable {
 
 	@Override
 	public boolean hasDetectInvisible() {
-		return false;
+		return detectInvisible;
 	}
 
 	public boolean hasProperty(String property_) {
@@ -129,6 +133,12 @@ public class BasicThing implements Serializable, Cloneable, Msgable {
 	public void out(Msg message) {
 
 	}
+
+	public void setInvisible(boolean flag) {
+		invisible = flag;
+	}
+
+	public void setDetectInvisible(boolean flag) { detectInvisible = flag;}
 
 	public void setBrief(String brief) {
 		this.brief = brief;

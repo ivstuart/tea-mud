@@ -1,5 +1,6 @@
 package com.ivstuart.tmud.command.move;
 
+import com.ivstuart.tmud.common.MobState;
 import org.apache.log4j.Logger;
 
 import com.ivstuart.tmud.command.Command;
@@ -37,6 +38,11 @@ public class EnterNoLook implements Command {
 
 		if (mob.getMv().getValue() < 0) {
 			mob.out("You can not move you are out of movement and too tired!");
+			return;
+		}
+
+		if (!mob.getState().canMove()) {
+			mob.out("You can not move you are "+mob.getState().getDesc());
 			return;
 		}
 

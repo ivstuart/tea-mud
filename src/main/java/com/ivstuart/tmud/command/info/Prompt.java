@@ -109,6 +109,9 @@ public class Prompt implements Command {
 			}
 		}
 		mob.out(sb.toString());
+
+		// MobState
+		mob.getState().canMove();
 	}
 
 	@Override

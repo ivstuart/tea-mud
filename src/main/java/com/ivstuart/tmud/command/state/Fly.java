@@ -46,9 +46,9 @@ public class Fly implements Command {
 
 		// Change state and notify mob and room
 
-		mob_.out("You wake");
+		mob_.out("You fly");
 
-		mob_.setState(STAND);
+		mob_.setState(FLYING);
 
 		// Note sleep to wake you will also stand
 	}

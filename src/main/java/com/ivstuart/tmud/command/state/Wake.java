@@ -7,6 +7,7 @@
 package com.ivstuart.tmud.command.state;
 
 import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.person.statistics.SleepAffect;
 import com.ivstuart.tmud.state.Mob;
 
 import static com.ivstuart.tmud.common.MobState.*;
@@ -43,7 +44,12 @@ public class Wake implements Command {
 		}
 
 		// Check allowed to change state
+		SleepAffect sleepingSpell = mob_.getMobAffects().getSleepAffect("sleep");
 
+		if (sleepingSpell != null) {
+			mob_.out("You are under the effects of a sleep spell!");
+			return;
+		}
 		// Change state and notify mob and room
 
 		mob_.out("You wake");

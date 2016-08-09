@@ -39,6 +39,10 @@ public enum MobState {
 		return canMove;
 	}
 
+	public boolean isSleeping() {
+		return this == SLEEP;
+	}
+
 	public String getDesc() {
 		return _desc;
 	}

@@ -119,4 +119,16 @@ public class MobAffects implements Serializable {
 			affect.removeEffect();
 		}
 	}
+
+    public SleepAffect getSleepAffect(String id) {
+		for (Affect affect : _affects) {
+			if (affect instanceof SleepAffect) {
+				SleepAffect buff = (SleepAffect)affect;
+				if (buff.getDesc().equalsIgnoreCase(id)) {
+					return buff;
+				}
+			}
+		}
+		return null;
+    }
 }

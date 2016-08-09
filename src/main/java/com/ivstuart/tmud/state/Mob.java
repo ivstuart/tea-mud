@@ -564,4 +564,5 @@ public class Mob extends Prop implements Tickable {
 	public boolean isFlying() {
 		return false; // for now TODO
 	}
+
 }

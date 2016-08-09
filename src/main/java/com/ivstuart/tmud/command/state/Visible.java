@@ -7,6 +7,7 @@
 package com.ivstuart.tmud.command.state;
 
 import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.person.statistics.BuffStatsAffect;
 import com.ivstuart.tmud.state.Mob;
 
 import static com.ivstuart.tmud.common.MobState.*;
@@ -16,39 +17,32 @@ public class Visible implements Command {
 	@Override
 	public void execute(Mob mob_, String input_) {
 
-		if (input_.length() > 0) {
-			Mob mobToWake = mob_.getRoom().getMob(input_);
-
-			if (mobToWake == null) {
-				mob_.out("Can not see " + input_ + " to wake");
-				return;
-			}
-
-			if (mobToWake.getState() != SLEEP) {
-				mob_.out(mob_.getName() + " is already awake!");
-				return;
-			}
-
-			mobToWake.setState(STAND);
-			mobToWake.out("You are woken by " + mob_.getName());
-			mob_.out("You wake " + mobToWake.getName());
+		// Check current state
+		if (mob_.getState().isSleeping()) {
+			mob_.out("You are sleeping wake up to vis and invis!");
 			return;
-
 		}
 
-		// Check current state
-		if (mob_.getState() != SLEEP) {
-			mob_.out("You are already awake!");
+		BuffStatsAffect invisAffect = mob_.getMobAffects().getBuffAffact("invisiblity");
+
+		if (invisAffect == null){
+			mob_.out("That spell is not active!");
 			return;
 		}
 
 		// Check allowed to change state
+		if (mob_.isInvisible()) {
+			mob_.out("You turn yourself visible");
+			mob_.setInvisible(false);
+			return;
+		}
 
 		// Change state and notify mob and room
 
-		mob_.out("You wake");
+		mob_.out("You turn yourself invisible");
 
 		mob_.setState(STAND);
+		mob_.setInvisible(true);
 
 		// Note sleep to wake you will also stand
 	}

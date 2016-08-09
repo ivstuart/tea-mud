@@ -220,7 +220,6 @@ spellEffect: DEBUFF
 duration: 2d6+10
 stat: str
 
-# TODO
 id: sleep
 level: 10
 cost: 20
@@ -229,7 +228,7 @@ target: SINGLE
 speed: 5
 mana: WATER
 spellEffect: SLEEP
-duration: 2d6+10
+duration: 1d6
 
 id: word of recall
 level: 10
