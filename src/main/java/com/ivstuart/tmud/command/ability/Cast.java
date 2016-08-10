@@ -141,7 +141,7 @@ public class Cast implements Command {
             } else if (targettingSelf(target)) {
                 targetMob = mob_;
             } else {
-                if (spell.getTarget().indexOf("ANY") > -1) {
+                if (spell.isAnyTarget()) {
                     LOGGER.debug("Getting mob from the world");
 
                     Player player = World.getPlayer(target);

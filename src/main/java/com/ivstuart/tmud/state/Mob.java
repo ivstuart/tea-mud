@@ -570,4 +570,11 @@ public class Mob extends Prop implements Tickable {
 	public void addAffect(Affect affect) {
 		mobAffects.add(affect.getDesc(),affect);
 	}
+
+    public boolean isGood() {
+    	if (this.isPlayer()) {
+    		return (player.getData().getAlignment().getValue() >= 0);
+		}
+		return true; // TODO have a mob parameter
+    }
 }

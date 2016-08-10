@@ -18,11 +18,9 @@ public class Summon implements SpellEffect {
         }
 
         // check same alignment
-        if (Math.signum(caster.getPlayer().getData().getAlignment().getValue()) !=
-                Math.signum(target.getPlayer().getData().getAlignment().getValue()))
-                {
-                    caster.out("You may only summon players of your own alignment");
-                    return;
+        if (caster.isGood() != target.isGood()) {
+            caster.out("You may only summon players of your own alignment");
+            return;
         }
 
 

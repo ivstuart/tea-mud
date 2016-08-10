@@ -94,4 +94,8 @@ public class Spell extends BaseSkill {
 		}
 		return null;
 	}
+
+    public boolean isAnyTarget() {
+    	return _targets.indexOf("ANY") > -1;
+    }
 }
