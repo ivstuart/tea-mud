@@ -21,10 +21,10 @@ public class BuffStats implements SpellEffect {
 	@Override
 	public void effect(Mob caster_, Mob target_, Spell spell) {
 
-		BuffStatsAffect affect = target_.getMobAffects().getBuffAffact(spell.getId());
+		BuffStatsAffect affect = (BuffStatsAffect)target_.getMobAffects().getAffect(spell.getId());
 
 		if (affect == null) {
-			target_.addAffect(new BuffStatsAffect(target_, spell));
+			target_.addAffect(spell.getId(),new BuffStatsAffect(target_, spell));
 		}
 		else {
 			affect.setDuration(spell.getDuration().roll());

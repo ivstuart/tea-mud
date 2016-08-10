@@ -148,17 +148,12 @@ public class BasicSpell extends FightAction {
 	@Override
 	public void happen() {
 
-		// out("TRACE happen called");
-
 		if (true) {
 			getSelf().out(
 					">>>>> [You have become better at " + _spell.getId()
 							+ "!] <<<<<");
 			_ability.improve();
 		}
-
-		// You launch a bolt of energy from your fingertips directed at a young
-		// centaur.
 
 		if (getSelf().getRoom().getMobs().contains(getTarget()) == false) {
 			out(getTarget().getId() + " is no longer here you stop casting");

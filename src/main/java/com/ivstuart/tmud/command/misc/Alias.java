@@ -18,7 +18,7 @@ import com.ivstuart.tmud.state.Mob;
  */
 public class Alias implements Command {
 
-	// Each mob has their own alias mappings
+	// Each player has their own alias mappings
 
 	@Override
 	public void execute(Mob mob, String input) {
@@ -33,9 +33,11 @@ public class Alias implements Command {
 
 		if (words.length == 2) {
 			mob.getPlayer().addAlias(words[0],words[1]);
+			mob.out("Adding alias '"+words[0]+"' as '"+words[1]+"'");
 		}
 		else if (words.length == 1) {
 			mob.getPlayer().removeAlias(words[0]);
+			mob.out("Removing alias '"+words[0]);
 		}
 		else {
 			mob.out("Nothing to alias");

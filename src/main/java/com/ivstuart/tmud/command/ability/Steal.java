@@ -48,7 +48,7 @@ public class Steal implements Command {
 		Ability steal = mob.getLearned().getAbility("steal");
 
 		if (steal == null) {
-			mob.out("You have no knowledge of sneak");
+			mob.out("You have no knowledge of steal");
 			return;
 		}
 

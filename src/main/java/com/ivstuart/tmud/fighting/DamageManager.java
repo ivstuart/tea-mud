@@ -4,6 +4,7 @@ import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.MobState;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.constants.DamageConstants;
+import com.ivstuart.tmud.person.statistics.Affect;
 import com.ivstuart.tmud.person.statistics.BlurAffect;
 import com.ivstuart.tmud.person.statistics.BuffStatsAffect;
 import com.ivstuart.tmud.person.statistics.SancAffect;
@@ -89,7 +90,7 @@ public class DamageManager {
 	// 20% more damage with combat sense.
 	private static int checkForCombatSense(Mob attacker, int damage) {
 
-		BuffStatsAffect buff = attacker.getMobAffects().getBuffAffact("combat sense");
+		Affect buff = attacker.getMobAffects().getAffect("combat sense");
 
 		if (buff != null) {
 			damage *= 1.2;
@@ -99,7 +100,7 @@ public class DamageManager {
 	}
 
 	private static int checkForSancDodge(Mob attacker, Mob defender, int damage) {
-		SancAffect sanc = defender.getMobAffects().getSancAffect();
+		Affect sanc = defender.getMobAffects().getAffect("sanctury");
 
 		if (sanc == null) {
 			return damage;
@@ -110,7 +111,7 @@ public class DamageManager {
 
 
 	private static int checkForBlurDodge(Mob attacker, Mob defender, int damage) {
-		BlurAffect blur = defender.getMobAffects().getBlurAffect();
+		Affect blur = defender.getMobAffects().getAffect("blur");
 
 		if (blur == null) {
 			return damage;

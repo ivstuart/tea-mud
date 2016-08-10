@@ -132,16 +132,16 @@ public class Mob extends Prop implements Tickable {
 
 	}
 
-	public void addAffect(Affect affect_) {
+	public void addAffect(String spellId,Affect affect_) {
 		if (null == mobAffects) {
-			mobAffects = new MobAffects(this);
+			mobAffects = new MobAffects();
 		}
-		mobAffects.add(affect_);
+		mobAffects.add(spellId,affect_);
 	}
 
 	public MobAffects getMobAffects() {
 		if (null == mobAffects) {
-			mobAffects = new MobAffects(this);
+			mobAffects = new MobAffects();
 		}
 		return mobAffects;
 	}
@@ -565,4 +565,7 @@ public class Mob extends Prop implements Tickable {
 		return false; // for now TODO
 	}
 
+	public void addAffect(Affect affect) {
+		mobAffects.add(affect.getDesc(),affect);
+	}
 }

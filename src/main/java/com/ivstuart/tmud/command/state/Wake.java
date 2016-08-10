@@ -44,7 +44,7 @@ public class Wake implements Command {
 		}
 
 		// Check allowed to change state
-		SleepAffect sleepingSpell = mob_.getMobAffects().getSleepAffect("sleep");
+		SleepAffect sleepingSpell = (SleepAffect) mob_.getMobAffects().getAffect("sleep");
 
 		if (sleepingSpell != null) {
 			mob_.out("You are under the effects of a sleep spell!");

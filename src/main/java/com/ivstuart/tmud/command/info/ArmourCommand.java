@@ -35,7 +35,7 @@ public class ArmourCommand implements Command {
 
 		Armour armour = mob.getEquipment().getTotalArmour(); // .armourAt(HEAD);
 
-		Affect armourBuff = mob.getMobAffects().getArmourBuff();
+		Affect armourBuff = mob.getMobAffects().getAffect("protection");
 
 		int buff = 0;
 		if (armourBuff != null) {

@@ -52,4 +52,9 @@ public class Affect {
 	public int getBuff() {
 		return 15;
 	}
+
+	// Default no change in damage
+    public int onHit(Mob attacker, Mob defender, int damage) {
+    	return damage;
+    }
 }

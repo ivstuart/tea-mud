@@ -10,7 +10,7 @@ public class Sanctury implements SpellEffect {
 	@Override
 	public void effect(Mob caster_, Mob target_, Spell spell) {
 
-		target_.addAffect(new SancAffect(caster_,spell.getId(),spell.getDuration().roll()));
+		target_.addAffect(spell.getId(),new SancAffect(caster_,spell.getId(),spell.getDuration().roll()));
 		// No nothing on hit.
 	}
 

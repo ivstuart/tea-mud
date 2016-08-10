@@ -23,7 +23,7 @@ public class Visible implements Command {
 			return;
 		}
 
-		BuffStatsAffect invisAffect = mob_.getMobAffects().getBuffAffact("invisiblity");
+		BuffStatsAffect invisAffect = (BuffStatsAffect)mob_.getMobAffects().getAffect("invisiblity");
 
 		if (invisAffect == null){
 			mob_.out("That spell is not active!");

@@ -13,7 +13,7 @@ public class ArmourEffect implements SpellEffect {
 
 		Affect armorAffect = new ArmourBuff(target, spell.getId(),spell.getDuration().roll());
 
-		target.addAffect(armorAffect);
+		target.addAffect(spell.getId(),armorAffect);
 
 		target.out("Armor buff applied!");
 
