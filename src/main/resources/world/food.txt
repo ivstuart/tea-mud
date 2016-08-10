@@ -8,3 +8,13 @@ weight: 5
 cost: 10
 rent: 5
 affects:
+
+id: waffer-001
+alias: waffer food bread
+short: waffer of bread
+look: waffer of bread
+type: food
+weight: 5
+cost: 10
+rent: 5
+affects:

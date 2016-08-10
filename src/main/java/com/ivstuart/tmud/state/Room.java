@@ -46,6 +46,7 @@ public class Room extends BasicThing implements Msgable {
 	}
 
 	public void add(Item item_) {
+		// TODO think about setting a reference for the item for the room to make it easier to locate.
 		_items.add(item_);
 	}
 

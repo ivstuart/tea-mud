@@ -16,41 +16,23 @@ public class Fly implements Command {
 	@Override
 	public void execute(Mob mob_, String input_) {
 
-		if (input_.length() > 0) {
-			Mob mobToWake = mob_.getRoom().getMob(input_);
-
-			if (mobToWake == null) {
-				mob_.out("Can not see " + input_ + " to wake");
-				return;
-			}
-
-			if (mobToWake.getState() != SLEEP) {
-				mob_.out(mob_.getName() + " is already awake!");
-				return;
-			}
-
-			mobToWake.setState(STAND);
-			mobToWake.out("You are woken by " + mob_.getName());
-			mob_.out("You wake " + mobToWake.getName());
-			return;
-
-		}
-
 		// Check current state
-		if (mob_.getState() != SLEEP) {
-			mob_.out("You are already awake!");
+		if (mob_.isFlying()) {
+			mob_.out("You are already flying!");
 			return;
 		}
 
 		// Check allowed to change state
-
+		if(!mob_.getMobAffects().hasAffect("levitate")) {
+			mob_.out("You do not have that spell active");
+			return;
+		}
 		// Change state and notify mob and room
-
+		mob_.getRoom().out("You start flying"); // TODO Msg text
 		mob_.out("You fly");
 
 		mob_.setState(FLYING);
 
-		// Note sleep to wake you will also stand
 	}
 
 }

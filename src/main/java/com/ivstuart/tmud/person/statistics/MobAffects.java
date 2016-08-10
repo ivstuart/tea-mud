@@ -80,4 +80,7 @@ public class MobAffects implements Serializable {
 		}
 	}
 
+    public boolean hasAffect(String levitate) {
+    	return affects.containsKey(levitate);
+    }
 }

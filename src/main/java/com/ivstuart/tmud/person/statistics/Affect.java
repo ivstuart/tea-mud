@@ -57,4 +57,8 @@ public class Affect {
     public int onHit(Mob attacker, Mob defender, int damage) {
     	return damage;
     }
+
+    public void expire() {
+		_duration = 0;
+    }
 }

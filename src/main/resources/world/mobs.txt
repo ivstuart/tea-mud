@@ -103,3 +103,22 @@ xp: 2000
 state: STANDING
 attackType: claw tail bite breath
 # dice types possible for most fields 
+
+# Used by the Animate Dead Spell linked by id field.
+id: zombie-001
+name: zombie
+alias: zombie
+short: the zombie
+long: A zombiesnares at you.
+look: The zombie is a common zombie is and all together unremarkable.
+level: 6
+offensive: 20
+defensive: 10
+armour: 5
+hp: 5d6+50
+damage: 1d6
+copper: 0
+xp: 20
+state: STANDING
+attackType: bite
+# dice types possible for most fields

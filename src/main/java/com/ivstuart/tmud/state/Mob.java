@@ -91,6 +91,8 @@ public class Mob extends Prop implements Tickable {
 
 	private int wimpy;
 
+	private boolean undead;
+
 	public Mob() {
 		fight = new Fight(this);
 	}
@@ -562,7 +564,7 @@ public class Mob extends Prop implements Tickable {
 	}
 
 	public boolean isFlying() {
-		return false; // for now TODO
+		return this.getState().isFlying();
 	}
 
 	public void addAffect(Affect affect) {

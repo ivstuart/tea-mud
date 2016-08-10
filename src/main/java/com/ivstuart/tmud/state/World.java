@@ -67,7 +67,7 @@ public class World {
 		_zones.put(zone.getId(), zone);
 	}
 
-	public static void addPLayer(Mob character) throws MudException {
+	public static void addPlayer(Mob character) throws MudException {
 
 		LOGGER.info("Adding player [ " + character.getName() + " ]");
 
@@ -78,6 +78,8 @@ public class World {
 		}
 
 		_players.add(character.getName());
+		// TODO review this next line of code.
+		_mobs.put(character.getId().toLowerCase(), character);
 
 		WorldTime.addTickable(character);
 
@@ -174,7 +176,7 @@ public class World {
 	}
 
 	public static void removePlayer(Player player) {
-		LOGGER.info("Creating guard mob with id [ " + player.getName() + "]");
+		LOGGER.info("Removing player with id [ " + player.getName() + "]");
 
 		_playerNames.remove(player.getName());
 		_players.remove(player.getName());

@@ -6,6 +6,7 @@
  */
 package com.ivstuart.tmud.command.ability;
 
+import com.ivstuart.tmud.person.Player;
 import org.apache.log4j.Logger;
 
 import com.ivstuart.tmud.command.Command;
@@ -142,7 +143,12 @@ public class Cast implements Command {
             } else {
                 if (spell.getTarget().indexOf("ANY") > -1) {
                     LOGGER.debug("Getting mob from the world");
-                    targetMob = World.getPlayer(target).getMob();
+
+                    Player player = World.getPlayer(target);
+
+                    if (player != null) {
+                        targetMob = player.getMob();
+                    }
 
                     if (targetMob == null) {
                         mob_.out(target + " is not in world to target!");

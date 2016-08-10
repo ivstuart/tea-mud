@@ -177,5 +177,8 @@ public class Item extends Prop implements Equipable, Msgable {
 	}
 
 
-
+	public Room getRoom() {
+		// TODO need for locate object spell
+		return null;
+	}
 }

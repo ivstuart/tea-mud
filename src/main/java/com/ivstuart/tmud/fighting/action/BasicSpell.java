@@ -170,13 +170,17 @@ public class BasicSpell extends FightAction {
 				"<S-You launch/NAME launches> a bolt of energy from <S-your/GEN-his> fingertips directed at a <T-you/NAME>."));
 
 		// if (isSuccess(getFighter().getFight().getHitChance())) {
-		if (isSuccess()) {
+		if (isSuccess() || isSpellEffectPositive()) {
 			hit();
 		} else {
 			miss();
 		}
 		Prompt.show(getSelf());
 		duration(1);
+	}
+
+	private boolean isSpellEffectPositive() {
+		return _spell.getSpellEffect().isPositiveEffect();
 	}
 
 	private void hit() {

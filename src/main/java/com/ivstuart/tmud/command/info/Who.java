@@ -26,20 +26,25 @@ public class Who implements Command {
 	@Override
 	public void execute(Mob mob, String input) {
 
-		mob.out("$~");
+		mob.out("$K~$J");
+
+		LOGGER.debug("Who debugging");
 
 		for (String playerName : World.getPlayers()) {
-			Player player = World.getPlayer(playerName);
+
+			LOGGER.debug("Player name is "+playerName);
+
+			Player player = World.getPlayer(playerName.toLowerCase());
 			if (player == null) {
+				LOGGER.debug("Player null in world is "+playerName);
 				continue;
 			}
-			String line = playerName + player.getData().getTitle();
-			mob.out(line);
+			String title = playerName + player.getData().getTitle();
 
-			LOGGER.debug("line");
+			mob.out(title);
 		}
 
-		mob.out("$~");
+		mob.out("$K~$J");
 	}
 
 }

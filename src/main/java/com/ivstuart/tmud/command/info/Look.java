@@ -27,6 +27,11 @@ public class Look implements Command {
 			return;
 		}
 
+		if (mob_.getMobAffects().hasAffect("blindness")) {
+			mob_.out("Can not not see anything while blinded!");
+			return;
+		}
+
 		if (input_.length() > 0) {
 			Mob mob = mob_.getRoom().getMob(input_);
 			if (mob != null) {
@@ -40,16 +45,20 @@ public class Look implements Command {
 
 		if (mob_.getRoom().hasProperty(DARK.toString())) {
 			// Can mob see in the dark?
+			if (mob_.getMobAffects().hasAffect("infravision")) {
+				mob_.out("You can see in the dark");
+			}
+			else {
+				// Is an item in the room which is creating light?
 
-			// Is an item in the room which is creating light?
+				// Is a mob in the room with a lit torch?
 
-			// Is a mob in the room with a lit torch?
-
-			if (!mob_.getRoom().hasLightSource()) {
-				mob_.out("Too dark...");
-				return;
-			} else {
-				mob_.out("This dark room is illuminated.");
+				if (!mob_.getRoom().hasLightSource()) {
+					mob_.out("Too dark...");
+					return;
+				} else {
+					mob_.out("This dark room is illuminated.");
+				}
 			}
 
 		}
@@ -160,6 +169,9 @@ public class Look implements Command {
 			} else {
 				if (mob.getState().isSleeping()) {
 					sb.append(" is sleeping here.");
+				}
+				if (mob.getState().isFlying()) {
+					sb.append(" is flying here.");
 				}
 				else {
 					sb.append(" is here.");

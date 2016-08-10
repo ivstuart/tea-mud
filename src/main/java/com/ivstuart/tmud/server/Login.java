@@ -33,6 +33,8 @@ import com.ivstuart.tmud.utils.MudIO;
  */
 public class Login implements Readable {
 
+	private static final Logger LOGGER = Logger.getLogger(Login.class);
+
 	private class ChooseAttributes implements Readable {
 
 		public ChooseAttributes() {
@@ -255,8 +257,6 @@ public class Login implements Readable {
 			}
 		}
 	}
-
-	private static final Logger LOGGER = Logger.getLogger(Login.class);
 
 	public static Item getItemClone(String id_) {
 		return EntityProvider.createItem(id_);
@@ -503,20 +503,21 @@ public class Login implements Readable {
 		Room newRoom = World.getRoom(roomId);
 
 		if (newRoom == null) {
-			System.out.println("Could not find players room!");
+			LOGGER.warn("Could not find players room!");
 			newRoom = World.getRoom("R-P2");
-		}
-
-		try {
-			World.addPLayer(character);
-		} catch (MudException e) {
-			LOGGER.error("Problem adding player to world", e);
-			return;
 		}
 
 		character.setRoom(newRoom);
 
 		newRoom.add(character);
+
+		LOGGER.warn("Attempting to add player to the world!");
+		try {
+			World.addPlayer(character);
+		} catch (MudException e) {
+			LOGGER.error("Problem adding player to world", e);
+			return;
+		}
 
 		myConnection.setState(new Playing(player));
 
