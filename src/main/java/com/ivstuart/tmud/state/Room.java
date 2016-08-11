@@ -254,4 +254,14 @@ public class Room extends BasicThing implements Msgable {
     	_items.addAll(inventory.getItems());
 		inventory.clear();
     }
+
+    public List<Mob> getFollowers(Mob mob_) {
+    	List<Mob> group = new ArrayList<>();
+		for (Mob mob : _mobs) {
+			if (mob.isFollowing(mob_)) {
+				group.add(mob);
+			}
+		}
+		return group;
+    }
 }

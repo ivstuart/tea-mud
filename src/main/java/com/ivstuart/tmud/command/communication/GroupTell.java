@@ -18,12 +18,9 @@ import com.ivstuart.tmud.state.World;
  */
 public class GroupTell implements Command {
 
-	/**
-	 * 
-	 */
+
 	public GroupTell() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/*

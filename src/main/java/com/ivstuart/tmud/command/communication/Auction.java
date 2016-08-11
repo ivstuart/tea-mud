@@ -8,6 +8,7 @@ package com.ivstuart.tmud.command.communication;
 
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.World;
 import com.ivstuart.tmud.world.Channel;
 import com.ivstuart.tmud.world.ChannelHistory;
 
@@ -35,6 +36,7 @@ public class Auction implements Command {
 
 			c.add(msg);
 			mob.out(msg);
+			World.out(msg,mob.isGood());
 		} else {
 			mob.out("$H------------( Auction History  )------------$J");
 			mob.out(c.toString(0));

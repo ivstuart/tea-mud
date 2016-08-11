@@ -20,15 +20,12 @@ import com.ivstuart.tmud.state.World;
 public class Bug implements Command {
 
 	/** 
-	 * Store these as emails or reports to separate location
+	 * TODO Store these as emails or reports to separate location
 	 */
 	@Override
 	public void execute(Mob mob, String input) {
 
-		// To all for now, will need to remove this when alignment and factions introduced.
-		for (String player : World.getPlayers()) {
-			World.getPlayer(player).out("BUG:"+input);
-		}
+		World.out("BUG:"+input,mob.isGood());
 	}
 
 }

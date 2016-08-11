@@ -102,6 +102,13 @@ command.state.Stand
 command.state.Wake
 command.state.Visible
 command.state.Fly
+command.party.Disband
+command.party.Ditch
+command.party.Follow
+command.party.Group
+command.party.ReportToGroup
+command.party.Split
+command.party.Ungroup
 
 # Admin Commands
 

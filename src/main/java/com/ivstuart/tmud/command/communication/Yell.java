@@ -24,11 +24,12 @@ public class Yell implements Command {
 
 	@Override
 	public void execute(Mob mob, String input) {
-		// TODO Auto-generated method stub
 
 		Yell yell = new Yell();
 
 		yell.area = new LinkedList<Room>();
+
+		yell.area.add(mob.getRoom()); // Include room presently in
 
 		yell.findArea(mob.getRoom().getExits(), 0);
 

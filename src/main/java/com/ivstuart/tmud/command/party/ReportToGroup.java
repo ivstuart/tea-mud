@@ -22,7 +22,6 @@ public class ReportToGroup implements Command {
 	 */
 	public ReportToGroup() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/*
@@ -32,12 +31,8 @@ public class ReportToGroup implements Command {
 	 */
 	@Override
 	public void execute(Mob mob, String input) {
-		// TODO Auto-generated method stub
-		// int rating = mob.getStats().getAttributes().getBaseAttack();
-		// mob.out("Your current rating is " + rating);
 
 		mob.out("Not done yet!");
-		// World.getTopTen().add(mob.getName(),rating);
 	}
 
 }

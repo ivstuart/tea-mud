@@ -22,7 +22,6 @@ public class Follow implements Command {
 	 */
 	public Follow() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/*
@@ -32,12 +31,23 @@ public class Follow implements Command {
 	 */
 	@Override
 	public void execute(Mob mob, String input) {
-		// TODO Auto-generated method stub
-		// int rating = mob.getStats().getAttributes().getBaseAttack();
-		// mob.out("Your current rating is " + rating);
 
-		mob.out("Not done yet!");
-		// World.getTopTen().add(mob.getName(),rating);
+		Mob toFollow = mob.getRoom().getMobs().get(input);
+
+		if (input.equalsIgnoreCase("me")) {
+			toFollow = mob;
+		}
+
+		if (mob == toFollow) {
+			mob.out("No point in following self, but you stop following anyone.");
+			mob.setFollowing(null);
+			return;
+		}
+
+		mob.setFollowing(toFollow);
+
+		mob.out("You start following "+toFollow.getName());
+
 	}
 
 }

@@ -276,4 +276,13 @@ public class World {
 		adminNames.add("Ivan");
 		return adminNames.contains(name);
     }
+
+	public static void out(String msg, boolean good) {
+		for (String player : _playerNames) {
+			Mob aPlayer = _mobs.get(player.toLowerCase());
+			if (aPlayer.isGood() == good) {
+				aPlayer.out(msg);
+			}
+		}
+	}
 }

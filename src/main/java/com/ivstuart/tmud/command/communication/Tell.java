@@ -50,7 +50,7 @@ public class Tell implements Command {
 			return;
 		}
 
-		Mob playerMob = World.getMob(name);
+		Mob playerMob = World.getMob(name.toLowerCase());
 
 		playerMob.out(message);
 		mob.out("You:" + message);

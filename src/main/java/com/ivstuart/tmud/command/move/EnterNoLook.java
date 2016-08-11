@@ -1,5 +1,6 @@
 package com.ivstuart.tmud.command.move;
 
+import com.ivstuart.tmud.command.CommandProvider;
 import com.ivstuart.tmud.common.MobState;
 import org.apache.log4j.Logger;
 
@@ -92,6 +93,7 @@ public class EnterNoLook implements Command {
 		// walk fly swim teleport run sneak etc.....
 		if (mob.isRunning()) {
 			mob.out("You run " + exit.getId());
+			mob.getMv().deduct(10);
 		}
 		else if (mob.isSneaking()) {
 			mob.out("You sneak " + exit.getId());
@@ -105,10 +107,13 @@ public class EnterNoLook implements Command {
 			mob.out("You walk " + exit.getId());
 			mob.getMv().deduct(4);
 		}
-
-
 		// fly 1 point. walk 4. walk on path 2 points.
 
+		// check room for followers and issue move command to any followers.
+		for (Mob follower : room.getFollowers(mob)) {
+			follower.out("You follow "+mob.getName()+" out of the room");
+			CommandProvider.getCommand(EnterNoLook.class).execute(follower, exit.getId());
+		}
 	}
 
 }

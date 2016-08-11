@@ -577,4 +577,8 @@ public class Mob extends Prop implements Tickable {
 		}
 		return true; // TODO have a mob parameter
     }
+
+    public boolean isFollowing(Mob mob_) {
+    	return following == mob_;
+    }
 }
