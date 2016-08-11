@@ -4,6 +4,7 @@ import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.fighting.DamageManager;
 import com.ivstuart.tmud.person.statistics.Affect;
 import com.ivstuart.tmud.person.statistics.DamageOverTime;
+import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Spell;
 
@@ -12,7 +13,7 @@ public class Poison implements SpellEffect {
 	public static final String POISON = "poison";
 
 	@Override
-	public void effect(Mob giver_, Mob reciever_, Spell spell) {
+	public void effect(Mob giver_, Mob reciever_, Spell spell, Item targetItem) {
 
 		// TODO Auto-generated method stub
 		DamageManager.deal(giver_, reciever_, spell.getDamage().roll());

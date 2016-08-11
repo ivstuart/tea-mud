@@ -1,17 +1,17 @@
 package com.ivstuart.tmud.spells;
 
 import com.ivstuart.tmud.person.movement.MoveManager;
+import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Room;
 import com.ivstuart.tmud.state.Spell;
-import com.ivstuart.tmud.state.World;
 
 /**
  * Created by Ivan on 09/08/2016.
  */
 public class Summon implements SpellEffect {
 
-    public void effect(Mob caster, Mob target, Spell spell) {
+    public void effect(Mob caster, Mob target, Spell spell, Item targetItem) {
 
         if (caster.getFight().isEngaged()) {
             caster.out("You summon fizzles uselessly can not be used in combat");

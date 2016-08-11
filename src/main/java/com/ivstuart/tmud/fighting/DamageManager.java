@@ -171,6 +171,7 @@ public class DamageManager {
 			defender.getFight().clear();
 			// create corpse and move equipment and inventory to corpse
 			Prop corpse = new Corpse(defender);
+			corpse.setId("corpse");
 
 			// corpse.setShort("Corpse of "+defender.getName());
 			corpse.setBrief("The corpse of a filthy " + defender.getName()

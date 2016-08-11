@@ -3,6 +3,7 @@ package com.ivstuart.tmud.state;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ivstuart.tmud.person.carried.Inventory;
 import org.apache.log4j.Logger;
 
 import com.ivstuart.tmud.common.Msg;
@@ -112,7 +113,7 @@ public class Room extends BasicThing implements Msgable {
 		return this.getId();
 	}
 
-	public List<Prop> getProps() {
+	public MudArrayList<Prop> getProps() {
 		return _props;
 	}
 
@@ -248,4 +249,9 @@ public class Room extends BasicThing implements Msgable {
 		}
 		return null;
 	}
+
+    public void addAll(Inventory inventory) {
+    	_items.addAll(inventory.getItems());
+		inventory.clear();
+    }
 }

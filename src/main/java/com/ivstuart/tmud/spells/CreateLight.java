@@ -1,6 +1,5 @@
 package com.ivstuart.tmud.spells;
 
-import com.ivstuart.tmud.server.Login;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Spell;
@@ -9,7 +8,7 @@ import com.ivstuart.tmud.state.util.EntityProvider;
 public class CreateLight implements SpellEffect {
 
 	@Override
-	public void effect(Mob caster_, Mob target_, Spell spell) {
+	public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
 
 		// TODO create an orb of light in casters hands that can be worn as an aura
 

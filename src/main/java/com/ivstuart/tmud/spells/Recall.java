@@ -1,16 +1,13 @@
 package com.ivstuart.tmud.spells;
 
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Room;
-import com.ivstuart.tmud.state.Spell;
-import com.ivstuart.tmud.state.World;
+import com.ivstuart.tmud.state.*;
 
 /**
  * Created by Ivan on 09/08/2016.
  */
 public class Recall implements SpellEffect {
 
-    public void effect(Mob caster, Mob target, Spell spell) {
+    public void effect(Mob caster, Mob target, Spell spell, Item targetItem) {
 
         if (caster.getFight().isEngaged()) {
             caster.out("You world of recall fizzles uselessly can not be used in combat");

@@ -1,7 +1,7 @@
 package com.ivstuart.tmud.spells;
 
 import com.ivstuart.tmud.person.statistics.BuffStatsAffect;
-import com.ivstuart.tmud.person.statistics.SancAffect;
+import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Spell;
 
@@ -19,7 +19,7 @@ public class BuffStats implements SpellEffect {
 	private String stat;
 
 	@Override
-	public void effect(Mob caster_, Mob target_, Spell spell) {
+	public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
 
 		BuffStatsAffect affect = (BuffStatsAffect)target_.getMobAffects().getAffect(spell.getId());
 

@@ -8,10 +8,7 @@ package com.ivstuart.tmud.fighting.action;
 
 import com.ivstuart.tmud.command.info.Prompt;
 import com.ivstuart.tmud.common.Msg;
-import com.ivstuart.tmud.state.Ability;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Room;
-import com.ivstuart.tmud.state.Spell;
+import com.ivstuart.tmud.state.*;
 import com.ivstuart.tmud.utils.MudArrayList;
 
 import java.util.List;
@@ -28,15 +25,21 @@ public class BasicSpell extends FightAction {
 
     private Ability _ability;
     private Spell _spell;
-    private List<Mob> _targets;
 
-    /**
-     * @param character
-     */
+    private List<Mob> _targets;
+    private Item _item;
+
     public BasicSpell(Ability ability_, Spell spell_, Mob me_, Mob target_) {
         super(me_, target_);
         _ability = ability_;
         _spell = spell_;
+    }
+
+    public BasicSpell(Ability ability_, Spell spell_, Mob me_, Item item_) {
+        super(me_, me_); // TODO maybe target should be null here.
+        _ability = ability_;
+        _spell = spell_;
+        _item = item_;
     }
 
     public BasicSpell(Ability ability_, Spell spell_, Mob me_, Mob target_, List<Mob> targets_) {
@@ -188,10 +191,10 @@ public class BasicSpell extends FightAction {
 
         if (_targets != null) {
             for (Mob mob : _targets) {
-                _spell.getSpellEffect().effect(getSelf(), mob, _spell);
+                _spell.getSpellEffect().effect(getSelf(), mob, _spell, _item);
             }
         } else {
-            _spell.getSpellEffect().effect(getSelf(), getTarget(), _spell);
+            _spell.getSpellEffect().effect(getSelf(), getTarget(), _spell, _item);
         }
         // TODO spellEffect.apply() check resists()
 

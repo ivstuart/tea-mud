@@ -7,19 +7,17 @@
 package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.person.Player;
+import com.ivstuart.tmud.state.*;
 import org.apache.log4j.Logger;
 
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.fighting.action.BasicSpell;
 import com.ivstuart.tmud.fighting.action.FightAction;
 import com.ivstuart.tmud.person.statistics.MobMana;
-import com.ivstuart.tmud.state.Ability;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Spell;
-import com.ivstuart.tmud.state.World;
 
 import java.util.List;
 
+import static com.ivstuart.tmud.common.MobState.FLYING;
 import static com.ivstuart.tmud.common.MobState.STAND;
 
 /**
@@ -41,8 +39,8 @@ public class Cast implements Command {
     public void execute(Mob mob_, String input_) {
 
         // Check if can cast ie if standing.
-        if (mob_.getState() != STAND) {
-            mob_.out("You must be standing to cast spells");
+        if (mob_.getState() != STAND && mob_.getState() != FLYING) {
+            mob_.out("You must be standing or flying to cast spells");
             return;
         }
 
@@ -110,26 +108,9 @@ public class Cast implements Command {
         // TODO work out a way to support target value of
         /* me, self, all, good, evil, etc.. */
 
-        if (spell.getTarget() != null && spell.getTarget().indexOf("MANY") > -1) {
-            List<Mob> targets = mob_.getRoom().getMobs(target);
+        if (checkTargetManySpell(mob_, target, spellAbility, spell, mana)) return;
 
-            if (targets.isEmpty()) {
-
-                mob_.out(target + " is not here to target!");
-                return;
-            }
-            mana.cast(spell);
-
-            mob_.out("You begin to chant and make unusally complex gestures");
-
-            mob_.out("You start casting area effect " + spell.getId());
-
-            FightAction spellFightAction = new BasicSpell(spellAbility, spell,
-                    mob_, targets.get(0), targets);
-
-            mob_.getFight().add(spellFightAction);
-            return;
-        }
+        if (checkTargetItemSpell(mob_, target, spellAbility, spell, mana)) return;
 
         Mob targetMob = mob_.getRoom().getMob(target);
 
@@ -154,20 +135,14 @@ public class Cast implements Command {
                         mob_.out(target + " is not in world to target!");
                     }
 
-                }
-                else {
+                } else {
                     mob_.out(target + " is not here to target!");
                     return;
                 }
             }
         }
 
-        if (spell.getTarget() != null && spell.getTarget().indexOf("SELF") > -1) {
-            if (targetMob != mob_) {
-                mob_.out("You can only target self with this spell");
-                return;
-            }
-        }
+        if (checkTargetSelf(mob_, spell, targetMob)) return;
 
         mana.cast(spell);
 
@@ -180,6 +155,70 @@ public class Cast implements Command {
 
         mob_.getFight().add(spellFightAction);
 
+    }
+
+    private boolean checkTargetSelf(Mob mob_, Spell spell, Mob targetMob) {
+        if (spell.getTarget() != null && spell.getTarget().indexOf("SELF") > -1) {
+            if (targetMob != mob_) {
+                mob_.out("You can only target self with this spell");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean checkTargetItemSpell(Mob mob_, String target, Ability spellAbility, Spell spell, MobMana mana) {
+        if (spell.getTarget() != null && spell.getTarget().indexOf("ITEM") > -1) {
+            Item item = mob_.getRoom().getItems().get(target);
+
+            if (item == null) {
+                // TODO decide if props still makes sense to have - danagerous cast.
+                item = (Item)mob_.getRoom().getProps().get(target);
+                if (item == null) {
+                    mob_.out("The item " + target + " is not here to target");
+                    return true;
+                }
+            }
+
+            // TODO check is item visible to player
+            mana.cast(spell);
+
+            mob_.out("You begin to chant and make very complex gestures");
+
+            mob_.out("You start casting " + spell.getId() + " at " + item.getName());
+
+            FightAction spellFightAction = new BasicSpell(spellAbility, spell,
+                    mob_, item);
+
+            mob_.getFight().add(spellFightAction);
+
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkTargetManySpell(Mob mob_, String target, Ability spellAbility, Spell spell, MobMana mana) {
+        if (spell.getTarget() != null && spell.getTarget().indexOf("MANY") > -1) {
+            List<Mob> targets = mob_.getRoom().getMobs(target);
+
+            if (targets.isEmpty()) {
+
+                mob_.out(target + " is not here to target!");
+                return true;
+            }
+            mana.cast(spell);
+
+            mob_.out("You begin to chant and make unusally complex gestures");
+
+            mob_.out("You start casting area effect " + spell.getId());
+
+            FightAction spellFightAction = new BasicSpell(spellAbility, spell,
+                    mob_, targets.get(0), targets);
+
+            mob_.getFight().add(spellFightAction);
+            return true;
+        }
+        return false;
     }
 
     private boolean targettingSelf(String target) {

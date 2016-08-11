@@ -13,6 +13,8 @@ import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.utils.*;
 
+import java.util.Iterator;
+
 /**
  * @author stuarti
  * 
@@ -82,6 +84,19 @@ public class Get implements Command {
 			mob.out(input + " is not here to get!");
 			return;
 		}
+
+		// TODO this is broken
+		if (input.equalsIgnoreCase("all")) {
+			Iterator<Item> itemIter = items.iterator();
+			for (Item item = itemIter.next();itemIter.hasNext();item = itemIter.next()) {
+				mob.getInventory().add(item);
+
+				mob.out("You get an " + item.getName());
+				itemIter.remove();
+			}
+			return;
+		}
+
 		Item anItem = items.remove(input);
 
 		if (anItem == null) {

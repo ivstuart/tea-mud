@@ -159,4 +159,7 @@ public class Inventory implements Serializable {
 	public Iterator<Item> iterator() {
 		return items.iterator();
 	}
+
+	public List<Item> getItems() { return items;
+	}
 }
