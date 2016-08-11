@@ -8,6 +8,8 @@ package com.ivstuart.tmud.person.carried;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Torch;
@@ -35,7 +37,7 @@ public class Inventory implements Serializable {
 	 */
 	public Inventory() {
 		super();
-		items = new MudArrayList<Item>();
+		items = new MudArrayList<Item>(true);
 		purse = new MoneyBag();
 	}
 
@@ -84,6 +86,8 @@ public class Inventory implements Serializable {
 
 		for (Item item : items) {
 			sb.append(item.getBrief() + "\n");
+			// TODO debug an issue
+			// sb.append(" Alias is "+item.getAlias() + "\n");
 		}
 
 		return sb.toString();
@@ -152,4 +156,7 @@ public class Inventory implements Serializable {
 		return false;
 	}
 
+	public Iterator<Item> iterator() {
+		return items.iterator();
+	}
 }

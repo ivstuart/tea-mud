@@ -1,0 +1,97 @@
+class: state.Spell
+id: chill touch
+level: 3
+cost: 5
+mana: WATER
+damage: 2d6
+speed: 5
+
+id: ice blast
+level: 10
+cost: 5
+damage: 2d6
+speed: 5
+mana: WATER
+prereq: chill touch
+
+id: cone of cold
+level: 20
+cost: 5
+damage: 2d6
+speed: 5
+mana: WATER
+prereq: ice blast
+
+id: blur
+level: 6
+cost: 5
+damage: 100
+# damage is duration
+target: SELF
+speed: 5
+mana: WATER
+spellEffect: BLUR
+# Has a 10% dodge chance when hit with basic attack.
+duration: 2d6+100
+
+id: protection
+level: 10
+cost: 5
+damage: 100
+target: SELF
+speed: 5
+mana: WATER
+spellEffect: ARMOUR
+duration: 2d6+100
+
+id: sanctury
+level: 10
+cost: 5
+damage: 100
+# damage is duration
+target: SELF
+speed: 5
+mana: WATER
+spellEffect: SANC
+duration: 2d6+100
+
+id: invisiblity
+level: 10
+cost: 20
+damage: 0
+target: SINGLE
+speed: 5
+mana: WATER
+spellEffect: INVISIBLITY
+duration: 2d6+10
+
+id: weaken
+level: 10
+cost: 20
+damage: -3
+target: SINGLE
+speed: 5
+mana: WATER
+spellEffect: DEBUFF
+duration: 2d6+10
+stat: str
+
+id: sleep
+level: 10
+cost: 20
+damage: 0
+target: SINGLE
+speed: 5
+mana: WATER
+spellEffect: SLEEP
+duration: 1d6
+
+id: water walking
+level: 1
+cost: 10
+damage: 0
+duration: 200
+target: SINGLE
+speed: 5
+mana: WATER
+spellEffect: BUFF

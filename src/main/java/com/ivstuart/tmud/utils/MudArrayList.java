@@ -3,6 +3,7 @@ package com.ivstuart.tmud.utils;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.ivstuart.tmud.state.Prop;
 import org.apache.log4j.Logger;
 
 import com.ivstuart.tmud.state.BasicThing;
@@ -132,6 +133,13 @@ public class MudArrayList<E> extends ArrayList<E> {
 	public int indexOf(String value, int itemNumber) {
 
 		for (int index = 0; index < this.size(); index++) {
+
+			// TODO merge Prop with BasicThing
+			// String shortName = ((Prop) this.get(index)).getAlias();
+
+//			if (shortName == null) {
+//				shortName = ((BasicThing) this.get(index)).getId();
+//			}
 
 			String shortName = ((BasicThing) this.get(index)).getId();
 

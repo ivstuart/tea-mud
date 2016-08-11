@@ -1,5 +1,6 @@
 package com.ivstuart.tmud.spells;
 
+import com.ivstuart.tmud.person.movement.MoveManager;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Room;
 import com.ivstuart.tmud.state.Spell;
@@ -28,8 +29,7 @@ public class Summon implements SpellEffect {
 
         if (toRoom != null) {
             caster.out("You summon to " + toRoom.getId());
-            target.getRoom().remove(target);
-            toRoom.add(target);
+            MoveManager.move(target,toRoom);
         } else {
             target.out("Room not found!");
         }

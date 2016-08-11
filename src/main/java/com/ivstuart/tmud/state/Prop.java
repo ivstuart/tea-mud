@@ -14,6 +14,10 @@ public class Prop extends BasicThing {
 	public Prop() {
 	}
 
+	public String getAlias() {
+		return alias;
+	}
+
 	public Prop(Prop prop_) {
 		super(prop_);
 		alias = prop_.alias;

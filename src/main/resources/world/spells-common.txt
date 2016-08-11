@@ -1,0 +1,147 @@
+class: state.Spell
+id: magic missile
+level: 1
+cost: 5
+damage: 2d6
+speed: 5
+
+id: magic bolt
+cost: 10
+level: 1
+damage: 3d6
+speed: 7
+prereq: magic missile
+
+id: magic blast
+level: 10
+cost: 20
+damage: 4d6
+speed: 8
+prereq: magic missile
+
+id: combat sense
+level: 4
+cost: 15
+damage: 0
+target: SINGLE
+speed: 5
+mana: COMMON
+spellEffect: BUFF
+duration: 2d6+50
+
+id: word of recall
+level: 10
+cost: 15
+damage: 0
+target: SINGLE
+speed: 5
+mana: COMMON
+spellEffect: RECALL
+
+id: summon
+level: 15
+cost: 25
+damage: 0
+target: ANY
+speed: 5
+mana: COMMON
+spellEffect: SUMMON
+
+id: refresh
+level: 10
+cost: 25
+damage: 1d6+20
+target: SINGLE
+speed: 5
+mana: COMMON
+spellEffect: REFRESH
+
+id: identify
+level: 10
+cost: 25
+damage: 0
+duration: 200
+target: ITEMS
+speed: 5
+mana: COMMON
+spellEffect: IDENT
+
+id: create light
+level: 1
+cost: 10
+damage: 0
+duration: 200
+target: SINGLE
+speed: 5
+mana: COMMON
+spellEffect: CREATE-LIGHT
+
+id: create water
+level: 1
+cost: 10
+damage: 0
+duration: 200
+target: SINGLE
+speed: 5
+mana: WATER
+spellEffect: CREATE-WATER
+
+id: create food
+level: 1
+cost: 10
+damage: 0
+duration: 200
+target: SINGLE
+speed: 5
+mana: EARTH
+spellEffect: CREATE-FOOD
+
+id: enchant weapon
+level: 1
+cost: 10
+damage: 0
+duration: 200
+target: SINGLE
+speed: 5
+mana: COMMON
+spellEffect: ENCHANT
+
+id: locate object
+level: 1
+cost: 10
+damage: 0
+duration: 200
+target: SINGLE
+speed: 5
+mana: COMMON
+spellEffect: BUFF
+
+id: animate dead
+level: 1
+cost: 10
+damage: 0
+duration: 200
+target: SINGLE
+speed: 5
+mana: COMMON
+spellEffect: ANIMATE-DEAD
+
+id: control weather
+level: 1
+cost: 10
+damage: 0
+duration: 200
+target: NONE
+speed: 5
+mana: COMMON
+spellEffect: CONTROL-WEATHER
+
+id: clone mob
+level: 1
+cost: 10
+damage: 0
+duration: 200
+target: SINGLE
+speed: 5
+mana: COMMON
+spellEffect: CLONE
