@@ -2,6 +2,7 @@ package com.ivstuart.tmud.person;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -32,12 +33,21 @@ public class Player implements Serializable, Nameable {
 	private boolean admin = false;
 
 	private Map<String,String> alias; // Limit to 30
-	
+
+	private Mob snooper;
+
+	private List<Mob> group;
+
+	public List<Mob> getGroup() {
+		return group;
+	}
+
+	public void setGroup(List<Mob> group) {
+		this.group = group;
+	}
 	public void setSnooper(Mob snooper) {
 		this.snooper = snooper;
 	}
-
-	private Mob snooper;
 
 	public Mob getSnooper() {
 		return snooper;

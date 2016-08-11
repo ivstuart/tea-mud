@@ -7,7 +7,13 @@
 package com.ivstuart.tmud.command.party;
 
 import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.command.CommandProvider;
+import com.ivstuart.tmud.command.item.Give;
+import com.ivstuart.tmud.command.move.EnterNoLook;
+import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.state.Mob;
+
+import java.util.List;
 
 /**
  * @author stuarti
@@ -32,7 +38,28 @@ public class Split implements Command {
 	@Override
 	public void execute(Mob mob, String input) {
 
-		mob.out("Not done yet!");
+		SomeMoney sm = (SomeMoney)mob.getInventory().get(input);
+
+		if (sm == null) {
+			mob.out("Nothing to split");
+			return;
+		}
+
+		List<Mob> group = mob.getPlayer().getGroup();
+		if (group == null) {
+			mob.out("No group to split cash with");
+			return;
+		}
+
+		int copperPerPerson = sm.getValue() / group.size();
+
+		// Give
+		for (Mob aMob : group) {
+			if (aMob != mob) {
+				CommandProvider.getCommand(Give.class).execute(mob, copperPerPerson + " copper "+aMob.getName());
+			}
+		}
+
 	}
 
 }

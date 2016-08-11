@@ -7,6 +7,8 @@
 package com.ivstuart.tmud.command.party;
 
 import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.command.CommandProvider;
+import com.ivstuart.tmud.command.move.EnterNoLook;
 import com.ivstuart.tmud.state.Mob;
 
 /**
@@ -32,7 +34,7 @@ public class Ungroup implements Command {
 	@Override
 	public void execute(Mob mob, String input) {
 
-		mob.out("Not done yet!");
+		CommandProvider.getCommand(Disband.class).execute(mob, input);
 	}
 
 }

@@ -9,6 +9,8 @@ package com.ivstuart.tmud.command.party;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Mob;
 
+import java.util.List;
+
 /**
  * @author stuarti
  * 
@@ -30,8 +32,25 @@ public class Disband implements Command {
 	 * @see command.Command#execute(java.lang.String)
 	 */
 	@Override
-	public void execute(Mob mob, String input) {
-		mob.out("Not done yet!");
+	public void execute(Mob mob_, String input) {
+		List<Mob> group = mob_.getPlayer().getGroup();
+
+		if (group == null) {
+			mob_.out("You have no group to disband");
+		}
+
+		if (input.equalsIgnoreCase("all")) {
+
+			for (Mob mob : group) {
+				mob.getPlayer().setGroup(null);
+				mob.out("You are disbanded from your current group");
+			}
+
+			group.clear();
+		}
+
+		// TODO code to disband a single member of the group.
+
 	}
 
 }

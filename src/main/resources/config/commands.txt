@@ -46,7 +46,7 @@ command.communication.Auction
 command.communication.Bug
 command.communication.Chat
 command.communication.Emote
-command.communication.GroupTell
+command.communication.TellGroup
 command.communication.Newbie
 command.communication.QuestTell
 command.communication.Raid
@@ -58,6 +58,7 @@ command.communication.Tell
 command.communication.WriteOnPaper
 command.communication.Yell
 command.item.Get
+command.item.Give
 command.item.Drop
 command.item.Sacrifice
 command.item.Wear

@@ -39,10 +39,10 @@ public class Prompt implements Command {
 		return FightConstants.healthStatus[index];
 	}
 
-	public static void show(Mob mob) {
+	public static String getPrompt(Mob mob) {
 
 		if (!mob.isPlayer()) {
-			return;
+			return "";
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -61,7 +61,7 @@ public class Prompt implements Command {
 
 		if (mana == null) {
 			mob.out("You have no magical power");
-			return;
+			return "";
 		}
 
 		Attribute hp = mob.getHp();
@@ -108,14 +108,18 @@ public class Prompt implements Command {
 				sb.append("]");
 			}
 		}
-		mob.out(sb.toString());
 
-		// MobState
-		mob.getState().canMove();
+		return sb.toString();
+
 	}
 
 	@Override
 	public void execute(Mob mob_, String input_) {
-		Prompt.show(mob_);
+
+		mob_.out(Prompt.getPrompt(mob_));
+	}
+
+	public static void show(Mob self) {
+		self.out(Prompt.getPrompt(self));
 	}
 }

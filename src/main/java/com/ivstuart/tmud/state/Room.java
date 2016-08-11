@@ -168,7 +168,9 @@ public class Room extends BasicThing implements Msgable {
 	}
 
 	public boolean remove(Money cash) {
-		return money.remove(cash);
+		if (money != null) {
+			return money.remove(cash);
+		}
 	}
 
 	/**
