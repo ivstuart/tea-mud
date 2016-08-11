@@ -84,3 +84,48 @@ target: SINGLE
 speed: 5
 mana: EARTH
 spellEffect: BUFF
+
+id: insect swarm
+level: 12
+cost: 10
+damage: 1d6
+target: SINGLE
+speed: 5
+mana: EARTH
+prereq:
+
+id: insect swarm2
+level: 20
+cost: 10
+damage: 2d6
+target: SINGLE
+speed: 5
+mana: EARTH
+prereq:
+
+id: insect swarm3
+level: 30
+cost: 10
+damage: 3d6
+target: SINGLE
+speed: 5
+mana: EARTH
+prereq:
+
+id: insect swarm4
+level: 40
+cost: 10
+damage: 4d6
+target: SINGLE
+speed: 5
+mana: EARTH
+prereq:
+
+id: insect swarm5
+level: 60
+cost: 10
+damage: 5d6
+target: SINGLE
+speed: 5
+mana: EARTH
+prereq:

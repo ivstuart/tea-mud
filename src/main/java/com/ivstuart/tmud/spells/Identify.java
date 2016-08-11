@@ -9,9 +9,7 @@ public class Identify implements SpellEffect {
 	@Override
 	public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
 
-		// TODO target items
-
-		caster_.out("Mob identity:"+target_.toString());
+		caster_.out("identity:"+targetItem.toString());
 	}
 
 	public boolean isPositiveEffect() {

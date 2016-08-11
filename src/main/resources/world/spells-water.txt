@@ -14,6 +14,23 @@ speed: 5
 mana: WATER
 prereq: chill touch
 
+id: acid arrow
+level: 10
+cost: 5
+damage: 2d6
+speed: 5
+mana: WATER
+prereq: chill touch
+
+id: acid rain
+level: 10
+cost: 5
+damage: 2d6
+target: MANY
+speed: 5
+mana: WATER
+prereq: acid arrow
+
 id: cone of cold
 level: 20
 cost: 5

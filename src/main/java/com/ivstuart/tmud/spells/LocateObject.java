@@ -9,12 +9,7 @@ public class LocateObject implements SpellEffect {
 	@Override
 	public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
 
-//		String itemId = "todo";
-//		Item item = World.getItem(itemId);
-//
-//		item.getRoom();
-		// Could walk every room in mud looking for item.
-		caster_.out("TODO");
+		caster_.out("Object is located in room"+targetItem.getRoom().getId());
 	}
 
 	public boolean isPositiveEffect() {

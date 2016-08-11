@@ -9,7 +9,6 @@ public class EnchantWeapon implements SpellEffect {
 	@Override
 	public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
 
-		// TODO target items
 		// TODO items have effects
 		caster_.out("TODO");
 	}

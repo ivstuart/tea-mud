@@ -167,6 +167,12 @@ public class Cast implements Command {
         return false;
     }
 
+    // TODO
+    // check equip
+    // check inve
+    // check room props
+    // check room items
+    // check world
     private boolean checkTargetItemSpell(Mob mob_, String target, Ability spellAbility, Spell spell, MobMana mana) {
         if (spell.getTarget() != null && spell.getTarget().indexOf("ITEM") > -1) {
             Item item = mob_.getRoom().getItems().get(target);
@@ -175,6 +181,8 @@ public class Cast implements Command {
                 // TODO decide if props still makes sense to have - danagerous cast.
                 item = (Item)mob_.getRoom().getProps().get(target);
                 if (item == null) {
+                    // TODO get Item from the World for locate object spell
+                    // World.getItem(target);
                     mob_.out("The item " + target + " is not here to target");
                     return true;
                 }

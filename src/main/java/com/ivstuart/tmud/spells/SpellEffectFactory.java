@@ -3,9 +3,6 @@ package com.ivstuart.tmud.spells;
 import java.util.HashMap;
 import java.util.Map;
 
-// This is crap should make this another map in world and add types using the reflection tech
-// I have already built....
-
 public class SpellEffectFactory {
 
 	private static Map<String, SpellEffect> spellEffectMap = new HashMap<String, SpellEffect>();
@@ -36,6 +33,9 @@ public class SpellEffectFactory {
 		spellEffectMap.put("CLONE", new CloneMob());
 		spellEffectMap.put("CURE-BLINDNESS", new CureBlindness());
 		spellEffectMap.put("ANIMATE-DEAD", new AnimateDead());
+
+		spellEffectMap.put("CHARM", new BuffStats());
+		spellEffectMap.put("LOCATE", new LocateObject());
 	}
 
 	public static SpellEffect get(String spell) {
