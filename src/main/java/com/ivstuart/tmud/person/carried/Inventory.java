@@ -162,4 +162,8 @@ public class Inventory implements Serializable {
 
 	public List<Item> getItems() { return items;
 	}
+
+	public boolean hasMoney(Money money) {
+		return this.getPurse().getValue() >= money.getValue();
+	}
 }

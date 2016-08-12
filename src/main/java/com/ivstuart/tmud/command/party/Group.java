@@ -93,6 +93,11 @@ public class Group implements Command {
     private void createNewGroup(Mob mob_) {
 
         List<Mob> group = mob_.getRoom().getFollowers(mob_);
+
+        if(group.size() == 0) {
+            mob_.out("No one else is following you to create a group with");
+            return;
+        }
         group.add(mob_); // Leader of the group.
 
         for (Mob mob : group) {

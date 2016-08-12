@@ -25,7 +25,7 @@ public class Give implements Command {
 	 * @param input
 	 * @return
 	 */
-	private boolean checkCashGet(Mob mob, String input) {
+	private boolean checkCashGive(Mob mob, Mob target, String input) {
 		// TODO Auto-generated method stub
 		int type = -1;
 		if (input.indexOf("copper") > 0) {
@@ -51,9 +51,12 @@ public class Give implements Command {
 
 			Money cash = new Money(type, coins);
 
-			if (mob.getRoom().remove(cash)) {
-				mob.getInventory().add(cash);
+			if (mob.getInventory().getPurse().remove(cash)) {
+				mob.out("You give "+cash+" to "+target.getName());
+				target.getInventory().add(cash);
+				return true;
 			}
+
 		}
 
 		return false;
@@ -62,41 +65,61 @@ public class Give implements Command {
 	@Override
 	public void execute(Mob mob, String input) {
 
-		// TODO Auto-generated method stub
+		String target = getLastWord(input);
 
-		if (input.equalsIgnoreCase("all")) {
-			getAllCoins(mob);
+		Mob targetMob = mob.getRoom().getMob(target);
+
+		if (targetMob == null) {
+			mob.out("There does not seem to be a "+target+" to give to here");
 			return;
 		}
 
-		if (checkCashGet(mob, input)) {
+		if (targetMob == mob) {
+			mob.out("There is no point in giving it to yourself");
 			return;
 		}
 
-		MudArrayList<Item> items = mob.getRoom().getItems();
-		if (items == null) {
-			mob.out(input + " is not here to get!");
-			return;
-		}
-		Item anItem = items.remove(input);
+		String itemString = input.split(" ")[0];
 
-		if (anItem == null) {
-			mob.out("Can not get " + input + " it is not here!");
+		if (itemString.equalsIgnoreCase("all")) {
+			giveAllCoins(mob,targetMob);
 			return;
 		}
-		mob.getInventory().add(anItem);
-		mob.out("You get an " + anItem);
+
+		if (checkCashGive(mob, targetMob, input)) {
+			return;
+		}
+
+		Item item = mob.getInventory().get(itemString);
+
+		if (item == null) {
+			mob.out(input + " is not here to give!");
+			return;
+		}
+
+		mob.getInventory().remove(item);
+		mob.out("You give an " + item);
+		targetMob.getInventory().add(item);
 	}
 
-	// TODO threadsafety
-	private void getAllCoins(Mob mob) {
+	private String getLastWord(String input) {
+		String words[] = input.split(" ");
 
-		SomeMoney money = mob.getRoom().getMoney();
+		return words[words.length-1];
+	}
+
+	private void giveAllCoins(Mob mob,Mob target) {
+
+		SomeMoney money = mob.getInventory().getPurse();
 
 		if (money != null) {
-			mob.getInventory().add(money);
-			money.clear();
+			mob.out("No money to give");
+			return;
 		}
+
+		target.getInventory().add(money);
+
+		money.clear();
 	}
 
 }

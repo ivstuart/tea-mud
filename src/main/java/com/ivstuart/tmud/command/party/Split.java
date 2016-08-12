@@ -10,6 +10,7 @@ import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.command.CommandProvider;
 import com.ivstuart.tmud.command.item.Give;
 import com.ivstuart.tmud.command.move.EnterNoLook;
+import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.state.Mob;
 
@@ -38,9 +39,23 @@ public class Split implements Command {
 	@Override
 	public void execute(Mob mob, String input) {
 
-		SomeMoney sm = (SomeMoney)mob.getInventory().get(input);
 
-		if (sm == null) {
+		// TODO refactor getSomeMoney into getInventory().get method
+		// SomeMoney sm = (SomeMoney)mob.getInventory().get(input);
+
+		String inputSplit[] = input.split(" ");
+
+		int coins = 0;
+		try {
+			coins = Integer.parseInt(inputSplit[0]);
+		} catch (NumberFormatException e) {
+			mob.out("No number of coins specified");
+		}
+
+		Money money = new Money(Money.COPPER, coins);
+
+		// Check has this much money available
+		if (!mob.getInventory().hasMoney(money)) {
 			mob.out("Nothing to split");
 			return;
 		}
@@ -51,7 +66,7 @@ public class Split implements Command {
 			return;
 		}
 
-		int copperPerPerson = sm.getValue() / group.size();
+		int copperPerPerson = money.getValue() / group.size();
 
 		// Give
 		for (Mob aMob : group) {
