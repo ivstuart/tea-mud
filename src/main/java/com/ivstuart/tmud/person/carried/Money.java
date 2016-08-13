@@ -134,4 +134,7 @@ public class Money implements SomeMoney {
 		return temp;
 	}
 
+	public int getQuantity() {
+		return quantity;
+	}
 }

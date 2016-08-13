@@ -98,7 +98,7 @@ public class Give implements Command {
 		}
 
 		mob.getInventory().remove(item);
-		mob.out("You give an " + item);
+		mob.out("You give an " + item.getName());
 		targetMob.getInventory().add(item);
 	}
 

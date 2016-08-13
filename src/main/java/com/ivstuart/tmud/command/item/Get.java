@@ -9,9 +9,11 @@ package com.ivstuart.tmud.command.item;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
+import com.ivstuart.tmud.state.Bag;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.utils.*;
+import static com.ivstuart.tmud.utils.StringUtil.*;
 
 import java.util.Iterator;
 
@@ -80,6 +82,7 @@ public class Get implements Command {
 		}
 
 		MudArrayList<Item> items = mob.getRoom().getItems();
+
 		if (items == null) {
 			mob.out(input + " is not here to get!");
 			return;
@@ -98,6 +101,28 @@ public class Get implements Command {
 		}
 
 		Item anItem = items.remove(input);
+
+		// Check if getting an item out from a bag
+		if (anItem == null) {
+
+			String target = getLastWord(input);
+			anItem = mob.getInventory().get(target);
+
+			if (anItem != null && anItem.isContainer()) {
+				Bag bag = (Bag)anItem;
+				String itemString = getFirstWord(input);
+				Item bagItem = bag.getInventory().get(itemString);
+
+				if (bagItem != null) {
+					mob.getInventory().add(bagItem);
+					bag.getInventory().remove(bagItem);
+					mob.out("You get a "+bagItem.getName()+" from "+bag.getName());
+					return;
+				}
+
+			}
+
+		}
 
 		if (anItem == null) {
 			mob.out("Can not get " + input + " it is not here!");

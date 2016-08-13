@@ -57,6 +57,7 @@ command.communication.Shout
 command.communication.Tell
 command.communication.WriteOnPaper
 command.communication.Yell
+command.item.Put
 command.item.Get
 command.item.Give
 command.item.Drop

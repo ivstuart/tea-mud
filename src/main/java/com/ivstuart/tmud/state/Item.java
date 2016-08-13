@@ -181,4 +181,12 @@ public class Item extends Prop implements Equipable, Msgable {
 		// TODO need for locate object spell
 		return null;
 	}
+
+    public boolean isRecitable() {
+    	return false;
+    }
+
+	public boolean isContainer() {
+		return false;
+	}
 }

@@ -39,10 +39,6 @@ public class Split implements Command {
 	@Override
 	public void execute(Mob mob, String input) {
 
-
-		// TODO refactor getSomeMoney into getInventory().get method
-		// SomeMoney sm = (SomeMoney)mob.getInventory().get(input);
-
 		String inputSplit[] = input.split(" ");
 
 		int coins = 0;
@@ -66,7 +62,7 @@ public class Split implements Command {
 			return;
 		}
 
-		int copperPerPerson = money.getValue() / group.size();
+		int copperPerPerson = money.getQuantity() / group.size();
 
 		// Give
 		for (Mob aMob : group) {

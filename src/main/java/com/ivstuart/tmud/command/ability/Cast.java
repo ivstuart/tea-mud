@@ -19,6 +19,7 @@ import java.util.List;
 
 import static com.ivstuart.tmud.common.MobState.FLYING;
 import static com.ivstuart.tmud.common.MobState.STAND;
+import static com.ivstuart.tmud.utils.StringUtil.*;
 
 /**
  * @author stuarti
@@ -47,26 +48,13 @@ public class Cast implements Command {
         // cast magic missile at target
         // cast smite <defaults to current target>
         // cast acid rain <defaults to enemies??>
-        // cast fireball me/self/all/evil/good/mobs
+        // cast fireball me/self/all/evil/good/mob
 
-		/* Ok so parse input_ to get number of words */
-        String words[] = input_.split(" ");
+        String concatWords = getFirstFewWords(input_);
 
-        String target = "me";
+        Ability spellAbility = mob_.getLearned().getAbility(concatWords);
 
-        Ability spellAbility = null;
-
-        String concatWords = "";
-        for (String word : words) {
-            concatWords += word;
-            spellAbility = mob_.getLearned().getAbility(concatWords);
-            if (spellAbility != null && !spellAbility.isNull()) {
-                break;
-            }
-            concatWords += " ";
-        }
-
-        if (spellAbility == null) {
+        if (spellAbility == null || spellAbility.isNull()) {
             mob_.out("You have no knowledge of spell " + input_);
             return;
         }
@@ -79,9 +67,7 @@ public class Cast implements Command {
             return;
         }
 
-        if (concatWords.length() < input_.length()) {
-            target = words[words.length - 1];
-        }
+        String target = getLastWord(input_,concatWords.length(),"me");
 
         // check you have mana and a casting level which is required.
         LOGGER.debug("Spell mana type [" + spell.getManaType() + "]");
@@ -156,6 +142,8 @@ public class Cast implements Command {
         mob_.getFight().add(spellFightAction);
 
     }
+
+
 
     private boolean checkTargetSelf(Mob mob_, Spell spell, Mob targetMob) {
         if (spell.getTarget() != null && spell.getTarget().indexOf("SELF") > -1) {

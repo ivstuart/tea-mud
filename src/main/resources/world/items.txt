@@ -20,6 +20,7 @@ alias: map
 short: map
 look: map
 
+class: state.Bag
 id: bag-001
 alias: bag
 short: leather bag
@@ -27,6 +28,7 @@ look: worn leather bag
 type: container
 weight: 1
 
+class: state.Item
 id: tinder-box-001
 alias: small tinder-box
 short: small tinder-box
