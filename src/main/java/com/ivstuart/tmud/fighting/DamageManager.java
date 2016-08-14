@@ -194,12 +194,44 @@ public class DamageManager {
 				if (attacker.isPlayer()) {
 					attacker.getPlayer().getData().addKill(defender);
 
-					attacker.out("You gained [" + xp
-							+ "] total experience for the kill.");
+					if (null != attacker.getPlayer().getGroup()) {
+						int totalLevel=0;
+						for (Mob aMob : attacker.getPlayer().getGroup()) {
+							if (aMob.getRoom() != defender.getRoom()) {
+								continue;
+							}
+							totalLevel += aMob.getPlayer().getData().getLevel();
+						}
+
+						// Have to be in the same room to gain the xp from the group kill
+						for (Mob aMob : attacker.getPlayer().getGroup()) {
+							if (aMob.getRoom() != defender.getRoom()) {
+								continue;
+							}
+							int level = aMob.getPlayer().getData().getLevel();
+
+							int xpSplit = (level * xp) / totalLevel;
+
+							aMob.out("You gained ["+xpSplit+"] total experience for the kill by being in a group.");
+
+							aMob.getPlayer().getData().addXp(xpSplit);
+
+							aMob.getPlayer().checkIfLeveled();
+
+						}
+
+
+					}
+					else {
+						attacker.out("You gained [" + xp
+								+ "] total experience for the kill.");
+
+						attacker.getPlayer().getData().addXp(xp);
+					}
 
 					attacker.getPlayer().checkIfLeveled();
 
-					attacker.out("You hear a filthy rat's death cry. - TODO publish message to all in hearing range.");
+					attacker.out("You hear a filthy rat's death cry.");
 				}
 
 			}

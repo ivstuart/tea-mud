@@ -1,14 +1,25 @@
-Release Notes for tea-mud version 0.1
+Release Notes for tea-mud version 0.2
 -------------------------------------
 
 
 What is tea-mud?
 ---------------
 
-A text based MUD along the lines of ROP, Fate and other Diku / Circle muds.
+A text based Multi-User Dungeon (MUD) along the lines of Rite of Passage (ROP), Fate and other Diku / Circle muds.
+The code base is very much a work in progress with more focus on package and class structure than
+working code. Having said that I am confident with approximate 6 months of effort this code base
+code be stabilized to be ready to host a real mud.
+
+There is a lack of unit test for classes. This is historical and will continue given the amount of state that is
+required to be set up to create tests v actually running the integrated code. One thought is to have helper methods
+to load objects to make writing the test classes easier.
 
 Setup Instructions
 ------------------
+
+I recommended using the latest version of IntelliJ for development. The console supports ANSI text.
+
+Right click on pom.xml and download external libraries required. I also recommend Java 8.
 
 Run configurations main class:
 

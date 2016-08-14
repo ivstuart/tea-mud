@@ -134,6 +134,16 @@ public class BasicThing implements Serializable, Cloneable, Msgable {
 
 	}
 
+	@Override
+	public boolean isGood() {
+		return true;
+	}
+
+	@Override
+	public String getRace() {
+		return null;
+	}
+
 	public void setInvisible(boolean flag) {
 		invisible = flag;
 	}

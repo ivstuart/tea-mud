@@ -97,6 +97,8 @@ public class CommandProvider {
 	private CommandProvider() {
 
 		clearAndLoadCommands();
+
+		loadSocials();
 	}
 
 	public void clearAndLoadCommands() {
@@ -126,4 +128,34 @@ public class CommandProvider {
 
 		commandHash.setDefault(new NullCommand());
 	}
+
+	public void loadSocials() {
+		String command_config_path = LaunchMud.getMudServerConfigDir();
+		FileHandle file = new FileHandle(System.getProperty("user.dir") + command_config_path + "socials.txt");
+
+		try {
+			file.read();
+		} catch (IOException e) {
+			LOGGER.error("Problem reading socials.txt file", e);
+			return;
+		}
+
+		LOGGER.info("Attempting to load social commands!");
+
+		while (file.hasMoreLines()) {
+			String line = file.getLine().trim();
+
+			LOGGER.info("Line [" + line + "]");
+
+			if (line != null && !line.startsWith("#")) {
+				commandHash.add(line.split(" ",2)[0], createSocial(line));
+			}
+		}
+
+	}
+
+	private Command createSocial(String line) {
+		return new Social(line);
+	}
+
 }

@@ -25,7 +25,6 @@ public class MoveManager {
 	// TODO decide if this method should really be here!
 	public static Exit random(Mob mob) {
 
-		// Guard against null pointer.. TODO right or wrong?
 		if (mob.getRoom() == null) {
 			return null;
 		}

@@ -2,6 +2,8 @@ package com.ivstuart.tmud.command.move;
 
 import com.ivstuart.tmud.command.CommandProvider;
 import com.ivstuart.tmud.common.MobState;
+import com.ivstuart.tmud.common.Msg;
+import com.ivstuart.tmud.state.util.RoomManager;
 import org.apache.log4j.Logger;
 
 import com.ivstuart.tmud.command.Command;
@@ -105,6 +107,8 @@ public class EnterNoLook implements Command {
 		}
 		else {
 			mob.out("You walk " + exit.getId());
+			room.out(new Msg(mob,"<S-NAME> walks "+exit.getId()));
+			destination.out(new Msg(mob,"<S-NAME> arrives from the "+RoomManager.reverseDirection(exit.getId())));
 			mob.getMv().deduct(4);
 		}
 		// fly 1 point. walk 4. walk on path 2 points.

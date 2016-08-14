@@ -261,7 +261,8 @@ public class Room extends BasicThing implements Msgable {
     public List<Mob> getFollowers(Mob mob_) {
     	List<Mob> group = new ArrayList<>();
 		for (Mob mob : _mobs) {
-			if (mob.isFollowing(mob_)) {
+			// Alignment must be the same to form a group
+			if (mob.isFollowing(mob_) && (mob.isAlignmentSame(mob_))) {
 				group.add(mob);
 			}
 		}

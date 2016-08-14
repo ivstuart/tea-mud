@@ -146,7 +146,18 @@ public class Look implements Command {
 				}
 			}
 
-			sb.append("$H" + mob.getBrief());
+			// TODO should be all done as part of Msg command
+			if (mob.isPlayer()) {
+				if(!mob.isAlignmentSame(mob_)) {
+					sb.append("$H "+mob.getSize()+" +* "+mob.getRace()+" *+");
+				}
+				else {
+					sb.append("$H" + mob.getBrief());
+				}
+			}
+			else {
+				sb.append("$H" + mob.getBrief());
+			}
 
 
 

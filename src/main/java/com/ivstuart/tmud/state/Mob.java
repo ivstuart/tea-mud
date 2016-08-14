@@ -346,9 +346,9 @@ public class Mob extends Prop implements Tickable {
 
 	public void out(String message) {
 		LOGGER.debug(this.getName()+" output [ " + message + " ]");
-		
+
 		if (player != null) {
-			
+
 			player.out(message);
 		}
 	}
@@ -451,7 +451,7 @@ public class Mob extends Prop implements Tickable {
 	public void setName(String name_) {
 		name = name_;
 	}
-	
+
 	// TODO FIXME sort out if id and name is required for Mobs
 	//  i.e is id, short and long descriptions sufficient.
 	public void setNameAndId(String name_) {
@@ -581,4 +581,22 @@ public class Mob extends Prop implements Tickable {
     public boolean isFollowing(Mob mob_) {
     	return following == mob_;
     }
+
+	public boolean isAlignmentSame(Mob mob_) {
+		return this.isGood() == mob_.isGood();
+	}
+
+	/**
+	 * Based on level and remorts.
+     * TODO add remorts
+	 * @return
+     */
+	public String getSize() {
+		if      (level <10) { return "small"; }
+		else if (level <20) { return "medium"; }
+        else if (level <40) { return "big"; }
+        else if (level <60) { return "large"; }
+        else if (level <80) { return "huge"; }
+        else                { return "massive"; }
+	}
 }

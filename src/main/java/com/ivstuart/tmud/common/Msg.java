@@ -206,7 +206,9 @@ public class Msg {
 
 					String name = null;
 					if (this.canSee(requester, tagMsgable)) {
-						name = tagMsgable.getName();
+
+						name = assignNameBasedOnAlignment(tagMsgable);
+
 					} else {
 						name = unseen;
 					}
@@ -237,6 +239,18 @@ public class Msg {
 		}
 
 		return output.toString();
+	}
+
+	private String assignNameBasedOnAlignment(Msgable tagMsgable) {
+
+		if (tagMsgable.getRace() != null && target != null) {
+			if (source.isGood() != target.isGood()) {
+				return "+* " + tagMsgable.getRace() + " *+";
+			}
+		}
+
+		return tagMsgable.getName();
+
 	}
 
 	public String toString(Msgable requester) {

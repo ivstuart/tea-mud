@@ -30,4 +30,7 @@ public interface Msgable {
 
 	public void out(Msg message);
 
+	public boolean isGood();
+
+	public String getRace();
 }
