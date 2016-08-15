@@ -6,6 +6,7 @@
  */
 package com.ivstuart.tmud.command.ability;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.state.*;
 import org.apache.log4j.Logger;
@@ -27,7 +28,7 @@ import static com.ivstuart.tmud.utils.StringUtil.*;
  *         To change the template for this generated type comment go to
  *         Window>Preferences>Java>Code Generation>Code and Comments
  */
-public class Cast implements Command {
+public class Cast extends BaseCommand {
 
     private static final Logger LOGGER = Logger.getLogger(Cast.class);
 

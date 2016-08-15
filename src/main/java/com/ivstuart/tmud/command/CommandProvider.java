@@ -3,6 +3,7 @@ package com.ivstuart.tmud.command;
 import java.io.IOException;
 import java.util.Collection;
 
+import com.ivstuart.tmud.common.MobState;
 import com.ivstuart.tmud.server.LaunchMud;
 import org.apache.log4j.Logger;
 
@@ -119,10 +120,24 @@ public class CommandProvider {
 		while (file.hasMoreLines()) {
 			String line = file.getLine();
 
-			LOGGER.info("Line [" + line + "]");
+			LOGGER.debug("Line [" + line + "]");
 
 			if (line != null && line.indexOf(".") > -1 && !line.startsWith("#")) {
-				commandHash.add(getLowerCaseLastToken(line, "."), create(line));
+
+				String positionParam = null;
+
+				if (line.indexOf(",") > -1) {
+					String lines[] = line.split(",",2);
+					line = lines[0];
+					positionParam = lines[1];
+				}
+				Command command = create(line);
+
+				if (positionParam !=null ) {
+					command.setMinimumPosition(MobState.valueOf(positionParam));
+				}
+
+				commandHash.add(getLowerCaseLastToken(line, "."), command);
 			}
 		}
 
@@ -145,10 +160,25 @@ public class CommandProvider {
 		while (file.hasMoreLines()) {
 			String line = file.getLine().trim();
 
-			LOGGER.info("Line [" + line + "]");
+			LOGGER.debug("Line [" + line + "]");
+
+			String positionParam = null;
+
+			if (line.indexOf(",") > -1) {
+				String lines[] = line.split(",",2);
+				line = lines[0];
+				positionParam = lines[1];
+			}
+			Command command = createSocial(line);
+
+			if (positionParam !=null ) {
+				command.setMinimumPosition(MobState.valueOf(positionParam));
+			}
+
+			commandHash.add(getLowerCaseLastToken(line, "."), command);
 
 			if (line != null && !line.startsWith("#")) {
-				commandHash.add(line.split(" ",2)[0], createSocial(line));
+				commandHash.add(line,command);
 			}
 		}
 

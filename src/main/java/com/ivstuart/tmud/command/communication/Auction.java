@@ -6,6 +6,7 @@
  */
 package com.ivstuart.tmud.command.communication;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.World;
@@ -18,7 +19,7 @@ import com.ivstuart.tmud.world.ChannelHistory;
  *         To change the template for this generated type comment go to
  *         Window>Preferences>Java>Code Generation>Code and Comments
  */
-public class Auction implements Command {
+public class Auction extends BaseCommand {
 
 	/*
 	 * (non-Javadoc)

@@ -2,12 +2,13 @@ package com.ivstuart.tmud.command.info;
 
 import java.util.List;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Exit;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.utils.MudArrayList;
 
-public class Scan implements Command {
+public class Scan extends BaseCommand {
 
 	private Mob myMob;
 

@@ -5,15 +5,15 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import static com.ivstuart.tmud.state.MobState.*;
+import static com.ivstuart.tmud.state.MobCombatState.*;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class MobStatus {
 
-	private Map<MobState, MobStateDuration> stateMap = new HashMap<MobState, MobStateDuration>();
+	private Map<MobCombatState, MobStateDuration> stateMap = new HashMap<MobCombatState, MobStateDuration>();
 
-	public void add(MobState state, int durationInSeconds) {
+	public void add(MobCombatState state, int durationInSeconds) {
 		stateMap.put(state, new MobStateDuration(durationInSeconds));
 	}
 
@@ -26,7 +26,7 @@ public class MobStatus {
 
 		removeExpiredStates();
 
-		for (Map.Entry<MobState, MobStateDuration> stateEntry : stateMap
+		for (Map.Entry<MobCombatState, MobStateDuration> stateEntry : stateMap
 				.entrySet()) {
 
 			sb.append(stateEntry.getKey().getPrompt());
@@ -36,7 +36,7 @@ public class MobStatus {
 		return sb.toString();
 	}
 
-	public boolean is(MobState state) {
+	public boolean is(MobCombatState state) {
 
 		if (stateMap.containsKey(state) == false) {
 			return false;
@@ -77,7 +77,7 @@ public class MobStatus {
 		return is(OFFBALANCE);
 	}
 
-	boolean removeExpiredState(MobState state) {
+	boolean removeExpiredState(MobCombatState state) {
 		MobStateDuration duration = stateMap.get(state);
 
 		if (duration != null && duration.isExpired()) {
@@ -90,12 +90,12 @@ public class MobStatus {
 
 	void removeExpiredStates() {
 
-		Iterator<Entry<MobState, MobStateDuration>> stateMapIter = stateMap
+		Iterator<Entry<MobCombatState, MobStateDuration>> stateMapIter = stateMap
 				.entrySet().iterator();
 
 		for (; stateMapIter.hasNext();) {
 
-			Map.Entry<MobState, MobStateDuration> stateEntry = stateMapIter
+			Map.Entry<MobCombatState, MobStateDuration> stateEntry = stateMapIter
 					.next();
 
 			if (stateEntry.getValue().isExpired()) {

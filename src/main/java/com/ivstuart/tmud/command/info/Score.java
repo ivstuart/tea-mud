@@ -6,6 +6,7 @@
  */
 package com.ivstuart.tmud.command.info;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.common.Info;
 import com.ivstuart.tmud.fighting.CombatCal;
@@ -28,7 +29,7 @@ import static com.ivstuart.tmud.constants.ManaType.*;
  *         You carry 17 stones and 3 pebbles of weight. You are unburdened.
  * 
  */
-public class Score implements Command {
+public class Score extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {

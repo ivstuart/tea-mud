@@ -62,4 +62,11 @@ public enum MobState {
     public boolean isFlying() {
         return this == FLYING;
     }
+
+    public boolean greaterThan(MobState minState) {
+        return minState.ordinal() < this.ordinal();
+    }
+
+    public boolean lessThan(MobState minState) { return minState.ordinal() > this.ordinal();
+    }
 }

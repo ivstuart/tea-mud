@@ -6,6 +6,7 @@
  */
 package com.ivstuart.tmud.command.item;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
@@ -22,7 +23,7 @@ import com.ivstuart.tmud.utils.*;
  * <container> must be in inventory or on ground. all objects to be put into
  * container must be in inventory.
  */
-public class Use implements Command {
+public class Use extends BaseCommand {
 
 	/**
 	 * @param input

@@ -1,5 +1,6 @@
 package com.ivstuart.tmud.command.move;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.CommandProvider;
 import com.ivstuart.tmud.common.MobState;
 import com.ivstuart.tmud.common.Msg;
@@ -14,7 +15,7 @@ import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Room;
 import com.ivstuart.tmud.state.Track;
 
-public class EnterNoLook implements Command {
+public class EnterNoLook extends BaseCommand {
 
 	private static final Logger LOGGER = Logger.getLogger(EnterNoLook.class);
 

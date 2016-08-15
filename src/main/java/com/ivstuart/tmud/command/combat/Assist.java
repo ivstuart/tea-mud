@@ -1,9 +1,10 @@
 package com.ivstuart.tmud.command.combat;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Mob;
 
-public class Assist implements Command {
+public class Assist extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {

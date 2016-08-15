@@ -6,6 +6,7 @@
  */
 package com.ivstuart.tmud.command.item;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
@@ -21,7 +22,7 @@ import com.ivstuart.tmud.utils.*;
  *         To change the template for this generated type comment go to
  *         Window>Preferences>Java>Code Generation>Code and Comments
  */
-public class Sacrifice implements Command {
+public class Sacrifice extends BaseCommand {
 
 	/**
 	 * @param input

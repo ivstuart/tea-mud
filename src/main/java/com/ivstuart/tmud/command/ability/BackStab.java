@@ -6,6 +6,7 @@
  */
 package com.ivstuart.tmud.command.ability;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.Equipable;
@@ -18,7 +19,7 @@ import com.ivstuart.tmud.state.Weapon;
 /**
  * @author Ivan Stuart
  */
-public class BackStab implements Command {
+public class BackStab extends BaseCommand {
 
 	class FightActionBackStab extends FightAction {
 

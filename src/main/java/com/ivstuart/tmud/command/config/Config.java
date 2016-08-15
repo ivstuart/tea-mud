@@ -1,10 +1,11 @@
 package com.ivstuart.tmud.command.config;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.state.Mob;
 
-public class Config implements Command {
+public class Config extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {

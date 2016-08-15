@@ -6,6 +6,7 @@
  */
 package com.ivstuart.tmud.command.item;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.common.Equipable;
 import com.ivstuart.tmud.server.Login;
@@ -22,7 +23,7 @@ import java.util.Iterator;
  *         To change the template for this generated type comment go to
  *         Window>Preferences>Java>Code Generation>Code and Comments
  */
-public class Wear implements Command {
+public class Wear extends BaseCommand {
 
 	private static final Logger LOGGER = Logger.getLogger(Wear.class);
 

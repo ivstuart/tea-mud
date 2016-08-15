@@ -4,6 +4,7 @@ import static com.ivstuart.tmud.constants.RoomEnums.RoomFlag.DARK;
 
 import java.util.List;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.state.Exit;
@@ -14,7 +15,7 @@ import com.ivstuart.tmud.state.Prop;
 import com.ivstuart.tmud.state.Track;
 import com.ivstuart.tmud.utils.MudArrayList;
 
-public class Look implements Command {
+public class Look extends BaseCommand {
 	/*
 	 * > look > look AT the angel > look IN the bag > look south (May give some
 	 * information as to what is south)

@@ -6,6 +6,7 @@
  */
 package com.ivstuart.tmud.command.ability;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Mob;
 
@@ -13,7 +14,7 @@ import com.ivstuart.tmud.state.Mob;
  * @author stuarti
  * 
  */
-public class Unhide implements Command {
+public class Unhide extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {

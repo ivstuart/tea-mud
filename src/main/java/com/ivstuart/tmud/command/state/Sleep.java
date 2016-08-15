@@ -8,10 +8,11 @@ package com.ivstuart.tmud.command.state;
 
 import static com.ivstuart.tmud.common.MobState.SLEEP;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Mob;
 
-public class Sleep implements Command {
+public class Sleep extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob_, String input_) {

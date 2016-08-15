@@ -5,7 +5,7 @@ import com.ivstuart.tmud.state.Mob;
 /**
  * Created by Ivan on 14/08/2016.
  */
-public class Social implements Command {
+public class Social extends BaseCommand {
 
     private final String cmd;
 
@@ -15,6 +15,6 @@ public class Social implements Command {
 
     @Override
     public void execute(Mob mob, String input) {
-        mob.out("TODO social command "+cmd);
+        mob.out("You  "+cmd+"'s around the room");
     }
 }

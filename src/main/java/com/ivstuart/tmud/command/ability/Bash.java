@@ -6,6 +6,7 @@
  */
 package com.ivstuart.tmud.command.ability;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.fighting.action.FightAction;
 import com.ivstuart.tmud.state.Ability;
@@ -15,7 +16,7 @@ import com.ivstuart.tmud.state.MobStatus;
 /**
  * @author Ivan Stuart
  */
-public class Bash implements Command {
+public class Bash extends BaseCommand {
 
 	class FightActionBash extends FightAction {
 

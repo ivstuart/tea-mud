@@ -8,10 +8,11 @@ package com.ivstuart.tmud.command.state;
 
 import static com.ivstuart.tmud.common.MobState.STAND;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Mob;
 
-public class Stand implements Command {
+public class Stand extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {

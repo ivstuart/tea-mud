@@ -6,6 +6,7 @@
  */
 package com.ivstuart.tmud.command.info;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.common.Info;
 import com.ivstuart.tmud.state.Attributes;
@@ -17,7 +18,7 @@ import com.ivstuart.tmud.state.Mob;
  *         To change the template for this generated type comment go to
  *         Window>Preferences>Java>Code Generation>Code and Comments
  */
-public class AttributeInfo implements Command {
+public class AttributeInfo extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {

@@ -6,13 +6,14 @@
  */
 package com.ivstuart.tmud.command.move;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.constants.DoorState;
 import com.ivstuart.tmud.state.Door;
 import com.ivstuart.tmud.state.Exit;
 import com.ivstuart.tmud.state.Mob;
 
-public class Lock implements Command {
+public class Lock extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {

@@ -1,9 +1,10 @@
 package com.ivstuart.tmud.command.combat;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Mob;
 
-public class Flee implements Command {
+public class Flee extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {
@@ -14,7 +15,6 @@ public class Flee implements Command {
 		}
 
 		// If you where attacking yourself then fleeing will success
-		// TODO
 
 		// If more than one person is attacking you would it be harder to flee?
 

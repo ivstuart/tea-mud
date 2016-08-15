@@ -6,6 +6,8 @@
  */
 package com.ivstuart.tmud.server;
 
+import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.common.MobState;
 import org.apache.log4j.Logger;
 
 import com.ivstuart.tmud.command.CommandProvider;
@@ -66,8 +68,18 @@ public class Playing implements Readable {
 		}
 
 		try {
-			CommandProvider.getCommandByString(input[0]).execute(mob,
-					parameters);
+			Command command = CommandProvider.getCommandByString(input[0]);
+
+			MobState minState = command.getMinimumPosition();
+
+			MobState currentState = mob.getState();
+
+			if (minState != null && currentState.lessThan(minState)) {
+				mob.out("You need to be at least "+minState.toString().toLowerCase()+" in order to "+command.getClass().getSimpleName().toLowerCase());
+				return;
+			}
+
+			command.execute(mob,parameters);
 		} catch (Exception e) {
 			LOGGER.error("Problem sourcing command for [ " + input[0] + " ]", e);
 			mob.out(e.getMessage());

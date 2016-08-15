@@ -6,6 +6,7 @@
  */
 package com.ivstuart.tmud.command.info;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.person.statistics.Affect;
 import com.ivstuart.tmud.state.Armour;
@@ -19,7 +20,7 @@ import static com.ivstuart.tmud.constants.UsefulContants.armourString;
  *         To change the template for this generated type comment go to
  *         Window>Preferences>Java>Code Generation>Code and Comments
  */
-public class ArmourCommand implements Command {
+public class ArmourCommand extends BaseCommand {
 
 	private String desc(int value_,int buff) {
 		int index = value_ + buff / 5;

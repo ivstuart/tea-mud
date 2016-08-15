@@ -6,6 +6,7 @@
  */
 package com.ivstuart.tmud.command.party;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.command.CommandProvider;
 import com.ivstuart.tmud.command.item.Give;
@@ -22,7 +23,7 @@ import java.util.List;
  *         To change the template for this generated type comment go to
  *         Window>Preferences>Java>Code Generation>Code and Comments
  */
-public class Split implements Command {
+public class Split extends BaseCommand {
 
 	/**
 	 * 

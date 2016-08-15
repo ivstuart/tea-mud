@@ -6,6 +6,7 @@
  */
 package com.ivstuart.tmud.command.misc;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.person.config.*;
 import com.ivstuart.tmud.state.Mob;
@@ -16,7 +17,7 @@ import com.ivstuart.tmud.state.Mob;
  *         To change the template for this generated type comment go to
  *         Window>Preferences>Java>Code Generation>Code and Comments
  */
-public class Brief implements Command {
+public class Brief extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {

@@ -1,10 +1,11 @@
 package com.ivstuart.tmud.command.combat;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.WorldTime;
 
-public class Kill implements Command {
+public class Kill extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {

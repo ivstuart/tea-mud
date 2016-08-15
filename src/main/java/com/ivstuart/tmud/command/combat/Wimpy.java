@@ -1,9 +1,10 @@
 package com.ivstuart.tmud.command.combat;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Mob;
 
-public class Wimpy implements Command {
+public class Wimpy extends BaseCommand {
 
 	/**
 	 * Set a value or percentage of health to automatically trigger fleeing from

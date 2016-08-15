@@ -8,6 +8,7 @@ package com.ivstuart.tmud.command.misc;
 
 import java.io.IOException;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import org.apache.log4j.Logger;
 
 import com.ivstuart.tmud.command.Command;
@@ -21,7 +22,7 @@ import com.ivstuart.tmud.utils.MudIO;
  * @author stuarti
  * 
  */
-public class Quit implements Command {
+public class Quit extends BaseCommand {
 
 	private static final Logger LOGGER = Logger.getLogger(Quit.class);
 

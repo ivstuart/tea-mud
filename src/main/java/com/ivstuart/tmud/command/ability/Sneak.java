@@ -6,6 +6,7 @@
  */
 package com.ivstuart.tmud.command.ability;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Mob;
@@ -14,7 +15,7 @@ import com.ivstuart.tmud.state.Mob;
  * @author stuarti
  * 
  */
-public class Sneak implements Command {
+public class Sneak extends BaseCommand {
 
 	/**
 	 * Move without alerting others to your presence as you enter in the same

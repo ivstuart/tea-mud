@@ -1,12 +1,13 @@
 package com.ivstuart.tmud.command.combat;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import org.apache.log4j.Logger;
 
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.fighting.action.BasicAttack;
 import com.ivstuart.tmud.state.Mob;
 
-public class Hit implements Command {
+public class Hit extends BaseCommand {
 
 	private static final Logger LOGGER = Logger.getLogger(Hit.class);
 

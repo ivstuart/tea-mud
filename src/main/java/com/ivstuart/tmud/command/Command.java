@@ -6,6 +6,7 @@
  */
 package com.ivstuart.tmud.command;
 
+import com.ivstuart.tmud.common.MobState;
 import com.ivstuart.tmud.state.Mob;
 
 /**
@@ -22,7 +23,9 @@ public interface Command {
 	 * @param input
 	 *            calling code ensures that null is never passed in
 	 */
-	public abstract void execute(Mob mob, String input);
+	public void execute(Mob mob, String input);
 
-	// public abstract String getHelp();
+	public MobState getMinimumPosition();
+
+	public void setMinimumPosition(MobState state);
 }

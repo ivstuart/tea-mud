@@ -6,12 +6,13 @@
  */
 package com.ivstuart.tmud.command.item;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Scroll;
 
-public class Recite implements Command {
+public class Recite extends BaseCommand {
 
 	/**
 	 * @param input

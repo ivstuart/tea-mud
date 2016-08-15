@@ -6,6 +6,7 @@
  */
 package com.ivstuart.tmud.command.info;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Mob;
 
@@ -15,7 +16,7 @@ import com.ivstuart.tmud.state.Mob;
  *         To change the template for this generated type comment go to
  *         Window>Preferences>Java>Code Generation>Code and Comments
  */
-public class WeatherInfo implements Command {
+public class WeatherInfo extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {

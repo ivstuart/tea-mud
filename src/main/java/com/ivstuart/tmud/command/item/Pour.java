@@ -6,6 +6,7 @@
  */
 package com.ivstuart.tmud.command.item;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
@@ -17,7 +18,7 @@ import com.ivstuart.tmud.state.Waterskin;
  *         To change the template for this generated type comment go to
  *         Window>Preferences>Java>Code Generation>Code and Comments
  */
-public class Pour implements Command {
+public class Pour extends BaseCommand {
 	/**
 	 * Usage: pour <from container> <to container> pour <from container> out
 	 * 

@@ -1,10 +1,11 @@
 package com.ivstuart.tmud.command.combat;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.fighting.action.AttackFlurry;
 import com.ivstuart.tmud.state.Mob;
 
-public class Flurry implements Command {
+public class Flurry extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {

@@ -1,5 +1,6 @@
 package com.ivstuart.tmud.command.ability;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.constants.AbilityConstants;
 import com.ivstuart.tmud.state.Mob;
@@ -7,7 +8,7 @@ import com.ivstuart.tmud.state.Mob;
 /**
  * @See DamageManager
  */
-public class ShieldBlock implements Command {
+public class ShieldBlock extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {

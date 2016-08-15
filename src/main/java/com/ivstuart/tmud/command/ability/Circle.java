@@ -6,6 +6,7 @@
  */
 package com.ivstuart.tmud.command.ability;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.fighting.DamageManager;
@@ -16,7 +17,7 @@ import com.ivstuart.tmud.state.Mob;
 /**
  * @author Ivan Stuart
  */
-public class Circle implements Command {
+public class Circle extends BaseCommand {
 
 	class FightActionCircle extends FightAction {
 

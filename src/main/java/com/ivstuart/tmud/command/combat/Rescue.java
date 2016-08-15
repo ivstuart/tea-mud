@@ -2,6 +2,7 @@ package com.ivstuart.tmud.command.combat;
 
 import java.util.List;
 
+import com.ivstuart.tmud.command.BaseCommand;
 import org.apache.log4j.Logger;
 
 import com.ivstuart.tmud.command.Command;
@@ -16,7 +17,7 @@ import com.ivstuart.tmud.state.WorldTime;
  * @author Ivan Stuart
  * 
  */
-public class Rescue implements Command {
+public class Rescue extends BaseCommand {
 
 	private static final String RESCUE = "rescue";
 	
