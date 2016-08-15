@@ -6,6 +6,7 @@
  */
 package com.ivstuart.tmud.fighting.action;
 
+import com.ivstuart.tmud.state.Weapon;
 import org.apache.log4j.Logger;
 
 import com.ivstuart.tmud.command.info.Prompt;
@@ -113,6 +114,7 @@ public class BasicAttack extends FightAction {
 			out(getTarget().getId() + " is no longer here to attack!");
 			// TODO decided if we need to disengage at this point if no other attackers then can leave aggro on last attacker
 			// if other attackers pick one at random to target.
+			getSelf().getFight().stopFighting(); // TODO keep aggro on last attacker
 			finished();
 			return;
 		}
@@ -145,9 +147,6 @@ public class BasicAttack extends FightAction {
 			hit();
 		}
 
-		// ie if a snake is not fighting it will attack me back at this point.
-
-		// if (isSuccess(getFighter().getFight().getHitChance())) {
 		if (isSuccess()) {
 			LOGGER.info("I am [" + getSelf().getId()
 					+ "] hit hitting my target");
@@ -175,17 +174,24 @@ public class BasicAttack extends FightAction {
 
 		BasicDamage damage = new BasicDamage();
 
-		// TODO source base damage from weapon
-		// Weapon roll
-		// damage.setRoll(1,400,0);
-		getSelf().getWeapon();
-		damage.setRoll(DiceRoll.ONE_D_SIX);
+		Weapon weapon = getSelf().getWeapon();
+
+		if (weapon != null) {
+			damage.setRoll(weapon.getDamage());
+		}
+		else {
+			damage.setRoll(getSelf().getDamage());
+		}
+
+		if (damage.getRoll() == null) {
+			damage.setRoll(DiceRoll.ONE_D_SIX);
+		}
 
 		Ability enhancedDamage = getSelf().getLearned().getAbility(
 				"enhanced damage");
 
 		if (enhancedDamage != null && enhancedDamage.isSuccessful()) {
-			damage.setRoll(DiceRoll.TWO_D_SIX);
+			damage.setMultiplier(2);
 		}
 
 		Ability armourPeneration = getSelf().getLearned().getAbility(
@@ -199,7 +205,18 @@ public class BasicAttack extends FightAction {
 
 		// Hit location
 
-		// Could just send this object the FightAction to damage.
+		// Mobs can have multiple attacks.
+
+		// LOGGER.debug(getSelf().getName()+" "+getTarget().getName()+" will deal "+damage.getRoll().toString());
+
+		if (!getSelf().isPlayer()) {
+			int attacks = getSelf().getAttacks();
+
+			for (int i=1;i<attacks;i++) {
+				DamageManager.deal(getSelf(), getTarget(), damage.roll());
+			}
+		}
+
 		DamageManager.deal(getSelf(), getTarget(), damage.roll());
 
 	}
@@ -229,10 +246,7 @@ public class BasicAttack extends FightAction {
 	private boolean isSuccess() {
 		int attack = CombatCal.getAttack(getSelf());
 
-		int defence = CombatCal.getDefence(getSelf());
-
-		LOGGER.info("attack is [ " + attack + " ]");
-		LOGGER.info("defence is [ " + defence + " ]");
+		int defence = CombatCal.getDefence(getTarget());
 
 		int divisor = attack + defence;
 
@@ -241,6 +255,8 @@ public class BasicAttack extends FightAction {
 		}
 
 		int chance = this.clipRange((attack * 100) / (divisor));
+
+		LOGGER.info("hit chance is ["+chance+"] attack is [" + attack + "] defence is [" + defence + "]");
 
 		return outcomeOfChance(chance);
 
@@ -258,7 +274,7 @@ public class BasicAttack extends FightAction {
 	}
 
 	protected boolean outcomeOfChance(int chance) {
-		return (Math.random() * 100) < chance;
+		return !DiceRoll.ONE_D100.rollLessThanOrEqualTo(chance);
 
 	}
 

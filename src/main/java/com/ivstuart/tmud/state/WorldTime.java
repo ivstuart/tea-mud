@@ -173,7 +173,7 @@ public class WorldTime implements Runnable {
 	public void sendHeartBeat() {
 
 		for (Tickable tickable : tickables) {
-			// TODO add exception handling
+			LOGGER.debug("Tick for "+tickable.getId());
 			tickable.tick();
 		}
 

@@ -6,14 +6,11 @@ import com.ivstuart.tmud.common.Tickable;
 import com.ivstuart.tmud.state.Mob;
 import org.apache.log4j.Logger;
 
-public class Sleeping implements Tickable {
+public class Sleeping extends BaseBehaviour {
 
 	private static Logger LOGGER = Logger.getLogger(Sleeping.class);
 
-	Mob mob;
-
-	public Sleeping(Mob mob) {
-		this.mob = mob;
+	public Sleeping() {
 	}
 
 	@Override

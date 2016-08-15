@@ -1,9 +1,9 @@
-accuse,REST
-applaud,REST
-bounce,REST
-beg,REST
-bleed,REST
-blush,REST
+accuse,REST,all those around the room of something bad
+applaud,REST,everyone for a job well done
+bounce,REST,off the walls like a rubber ball
+beg,REST,for some coins
+bleed,REST,blood goes everywhere
+blush,REST,your checks turn red
 bow,STAND
 brb,REST
 cackle,REST

@@ -45,6 +45,9 @@ public class CombatCal {
 	}
 
 	private static int getBaseDefence(Mob mob_) {
+		if (mob_ == null) {
+			return 0;
+		}
 		int total = mob_.getDefence();
 		if (mob_.isPlayer()) {
 			total += mob_.getPlayer().getAttributes().getSTR().getValue();

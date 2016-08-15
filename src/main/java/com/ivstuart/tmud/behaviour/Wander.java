@@ -12,16 +12,19 @@ import com.ivstuart.tmud.state.Exit;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Room;
 
-public class Wander implements Tickable {
+public class Wander extends BaseBehaviour {
 
 	private static Logger LOGGER = Logger.getLogger(Wander.class);
 
-	private Mob mob;
 	private List<Room> rooms;
 	private int maxDistance;
 
 	public Wander(Mob mob) {
 		this.mob = mob;
+		maxDistance = 2;
+	}
+
+	public Wander() {
 		maxDistance = 2;
 	}
 
@@ -54,7 +57,9 @@ public class Wander implements Tickable {
 			return;
 		}
 
-		if (DiceRoll.ONE_D100.rollMoreThan(5)) {
+		// TODO have this configurable in mob.txt file.
+		if (DiceRoll.ONE_D100.rollMoreThan(50)) {
+			LOGGER.debug(mob.getName()+" is does not feel like wandering this tick");
 			return;
 		}
 
@@ -72,7 +77,7 @@ public class Wander implements Tickable {
 
 		// Lazy init
 		if (rooms == null) {
-			new ArrayList<Room>(maxDistance);
+			rooms = new ArrayList<Room>(maxDistance);
 		}
 
 		int index = rooms.indexOf(room);

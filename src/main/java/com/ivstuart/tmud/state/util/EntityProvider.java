@@ -1,12 +1,7 @@
 package com.ivstuart.tmud.state.util;
 
+import com.ivstuart.tmud.state.*;
 import org.apache.log4j.Logger;
-
-import com.ivstuart.tmud.state.GuardMob;
-import com.ivstuart.tmud.state.Item;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Prop;
-import com.ivstuart.tmud.state.World;
 
 public class EntityProvider {
 
@@ -24,6 +19,7 @@ public class EntityProvider {
 
 		Mob newMob = null;
 
+		// TODO rethink this design as it does not scale for many mob types.
 		if (existingMob.isGuard()) {
 			newMob = new GuardMob(existingMob);
 		} else {

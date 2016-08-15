@@ -185,6 +185,14 @@ public class DiceRoll implements Serializable {
 		return roll() > i;
 	}
 
+	public boolean rollLessThan(int i) {
+		return roll() < i;
+	}
+
+	public boolean rollLessThanOrEqualTo(int i) {
+		return roll() <= i;
+	}
+
 	@Override
 	public String toString() {
 		return String.format("%dd%d+%d", new Object[] { diceNumber, diceSides,
@@ -194,4 +202,5 @@ public class DiceRoll implements Serializable {
     public int getMaxRoll() {
 		return (diceNumber * diceSides) + diceBonus;
     }
+
 }

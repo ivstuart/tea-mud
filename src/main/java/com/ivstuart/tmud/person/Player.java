@@ -36,7 +36,7 @@ public class Player implements Serializable, Nameable {
 
 	private Mob snooper;
 
-	private List<Mob> group;
+	private transient List<Mob> group;
 
 	public List<Mob> getGroup() {
 		return group;

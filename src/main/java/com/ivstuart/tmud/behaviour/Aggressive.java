@@ -9,11 +9,10 @@ import org.apache.log4j.Logger;
 
 import java.util.List;
 
-public class Aggressive implements Tickable {
+public class Aggressive extends BaseBehaviour {
 
 	private static Logger LOGGER = Logger.getLogger(Aggressive.class);
 
-	private Mob mob;
 	private int aggroChance;
 
 	public Aggressive(Mob mob) {
@@ -24,6 +23,10 @@ public class Aggressive implements Tickable {
 	public Aggressive(Mob mob,int aggroPercentage) {
 		this.mob = mob;
 		aggroChance = aggroPercentage;
+	}
+
+	public Aggressive() {
+		aggroChance = 50;
 	}
 
 	@Override
@@ -48,6 +51,7 @@ public class Aggressive implements Tickable {
 				return;
 			}
 
+			// TODO aggro by alignment or other criteria
 			Mob target = room.getRandomPlayer();
 
 			if (target == null) {

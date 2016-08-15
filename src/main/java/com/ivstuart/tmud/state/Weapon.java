@@ -13,10 +13,6 @@ public class Weapon extends Item {
 	private String skill;
 	private DiceRoll damage;
 
-	public int damageRoll() {
-		return damage.roll();
-	}
-
 	public String getSkill() {
 		return skill;
 	}
@@ -27,5 +23,9 @@ public class Weapon extends Item {
 
 	public void setSkill(String skill_) {
 		skill = skill_.trim();
+	}
+
+	public DiceRoll getDamage() {
+		return damage;
 	}
 }

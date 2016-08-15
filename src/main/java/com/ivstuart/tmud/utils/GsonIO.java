@@ -93,7 +93,8 @@ public class GsonIO {
 		StringBuilder sb = new StringBuilder();
 		BufferedReader br = null;
 		try {
-			br = new BufferedReader(new FileReader(fullPath));
+			FileReader fileReader = new FileReader(fullPath);
+			br = new BufferedReader(fileReader);
 			while ((readLine = br.readLine()) != null) {
 				sb.append(readLine);
 			}

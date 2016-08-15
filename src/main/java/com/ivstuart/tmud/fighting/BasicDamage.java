@@ -10,6 +10,7 @@ public class BasicDamage implements Damage {
 
 	// 1d6+0 as default roll
 	private DiceRoll roll;
+	private int multiplier=1;
 
 	// private int damage = 20;
 
@@ -29,7 +30,7 @@ public class BasicDamage implements Damage {
 
 	@Override
 	public int roll() {
-		return roll.roll();
+		return multiplier * roll.roll();
 
 	}
 
@@ -42,4 +43,11 @@ public class BasicDamage implements Damage {
 		roll = new DiceRoll((short) number, (short) sides, (short) adder);
 	}
 
+	public void setMultiplier(int i) {
+		this.multiplier = i;
+	}
+
+	public DiceRoll getRoll() {
+		return roll;
+	}
 }

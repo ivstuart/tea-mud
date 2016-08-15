@@ -163,16 +163,24 @@ public class CommandProvider {
 			LOGGER.debug("Line [" + line + "]");
 
 			String positionParam = null;
+			String description = null;
 
 			if (line.indexOf(",") > -1) {
-				String lines[] = line.split(",",2);
+				String lines[] = line.split(",",3);
 				line = lines[0];
 				positionParam = lines[1];
+				if (lines.length > 2) {
+					description = lines[2];
+				}
 			}
 			Command command = createSocial(line);
 
 			if (positionParam !=null ) {
 				command.setMinimumPosition(MobState.valueOf(positionParam));
+			}
+
+			if (description != null) {
+				((Social)command).setDescription(description);
 			}
 
 			commandHash.add(getLowerCaseLastToken(line, "."), command);

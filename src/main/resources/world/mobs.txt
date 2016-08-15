@@ -93,13 +93,14 @@ long: A large red dragon snares at you.
 look: The dragon is a common dragon is and all together unremarkable.
 behaviour: AGGRO
 level: 60
-offensive: 200
-defensive: 100
+attacks: 6
+offensive: 1000
+defensive: 500
 armour: 50
-hp: 5d6+500
-damage: 8d6
+hp: 5d6+5000
+damage: 1d60+100
 copper: 1000
-xp: 2000
+xp: 200000
 state: STANDING
 attackType: claw tail bite breath
 # dice types possible for most fields 

@@ -29,6 +29,8 @@ public class AllMobStats extends AdminCommand {
 			return;
 		}
 
+		mob.out("Damage = "+target.getDamage());
+
 		mob.out(target.toString());
 
 	}
