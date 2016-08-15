@@ -23,6 +23,7 @@ public class WorldTime implements Runnable {
 	private static List<Tickable> tickables;
 
 	private static boolean _running = false;
+	private static boolean pauseTime = false;
 
 	private static final WorldTime INSTANCE = new WorldTime();
 
@@ -172,6 +173,10 @@ public class WorldTime implements Runnable {
 
 	public void sendHeartBeat() {
 
+		if (pauseTime) {
+			return;
+		}
+
 		for (Tickable tickable : tickables) {
 			LOGGER.debug("Tick for "+tickable.getId());
 			tickable.tick();
@@ -184,6 +189,10 @@ public class WorldTime implements Runnable {
 		repopulateMobs();
 		resolveCombat();
 	}
-	
 
+
+	public static boolean togglePauseTime() {
+		pauseTime = !pauseTime;
+		return pauseTime;
+	}
 }

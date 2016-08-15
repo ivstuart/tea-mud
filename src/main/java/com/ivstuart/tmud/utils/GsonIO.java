@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import com.ivstuart.tmud.server.LaunchMud;
 import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
@@ -32,6 +33,8 @@ public class GsonIO {
 
 		File file = new File(getFullPath(fileName));
 		// creates the file
+
+		LOGGER.debug("File path:" + file.getAbsolutePath());
 
 		file.createNewFile();
 
@@ -77,23 +80,23 @@ public class GsonIO {
 	}
 
 	public String getSaveDirectory() {
-		return "src/main/resources/saved/gson/";
-		// return LaunchMud.mudServerProperties.getProperty("player.save.dir");
+		return LaunchMud.mudServerProperties.getProperty("player.ban.dir");
 	}
 
 	public String getFullPath(String fileName) {
 		return getSaveDirectory() + fileName + ".gson";
 	}
 
-	public Object load(String fullPath,Class aClass) throws IOException {
+	public Object load(String fileName,Class aClass) throws IOException {
+
 		LOGGER.info("Starting loading object fromm file:"
-				+ fullPath);
+				+ getFullPath(fileName));
 
 		String readLine = null;
 		StringBuilder sb = new StringBuilder();
 		BufferedReader br = null;
 		try {
-			FileReader fileReader = new FileReader(fullPath);
+			FileReader fileReader = new FileReader(getFullPath(fileName));
 			br = new BufferedReader(fileReader);
 			while ((readLine = br.readLine()) != null) {
 				sb.append(readLine);
@@ -111,7 +114,7 @@ public class GsonIO {
 		Object object = gson.fromJson(json, aClass);
 
 		LOGGER.info("Finnished loading object fromm file:"
-				+ fullPath);
+				+ getFullPath(fileName));
 
 		return object;
 		

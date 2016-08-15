@@ -27,7 +27,7 @@ public class Ban extends AdminCommand {
 	private static List<String> bannedNames = null;
 	
 
-	private static String fileName = "banned.gson";
+	private static String fileName = "banned";
 
 	@Override
 	public void execute(Mob mob, String input) {
@@ -49,7 +49,7 @@ public class Ban extends AdminCommand {
 		GsonIO io = new GsonIO();
 
 		try {
-			io.save(bannedNames, getSaveDirectory() + fileName);
+			io.save(bannedNames, fileName);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -63,10 +63,6 @@ public class Ban extends AdminCommand {
 
 	}
 
-	public static String getSaveDirectory() {
-		return "src/main/resources/saved/gson/ban/";
-		// return LaunchMud.mudServerProperties.getProperty("player.ban.dir");
-	}
 
 	public static boolean isBanned(String name) {
 		return bannedNames.contains(name);
@@ -76,7 +72,7 @@ public class Ban extends AdminCommand {
 		GsonIO io = new GsonIO();
 
 		try {
-			bannedNames = (List) io.load(getSaveDirectory() + fileName,
+			bannedNames = (List) io.load(fileName,
 					ArrayList.class);
 		} catch (IOException e) {
 			bannedNames = new ArrayList<String>();
