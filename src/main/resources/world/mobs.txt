@@ -9,8 +9,8 @@ short: the hooded cobra snake
 long: A cobra snake rears up and opens its fearsome hood.
 look: The cobra snake waves back and forth before you, its hood displaying brilliant
 look: colors designed to serve notice to its prey that it is about to strike.
-behaviour: WANDER:50:2
-behaviour: AGGRO:100
+#behaviour: WANDER:50:2
+#behaviour: AGGRO:100
 affects: SANC
 align: 0
 level: 7

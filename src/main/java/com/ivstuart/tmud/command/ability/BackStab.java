@@ -7,7 +7,6 @@
 package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.Equipable;
 import com.ivstuart.tmud.fighting.DamageManager;
@@ -15,11 +14,14 @@ import com.ivstuart.tmud.fighting.action.FightAction;
 import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Weapon;
+import org.apache.log4j.Logger;
 
 /**
  * @author Ivan Stuart
  */
 public class BackStab extends BaseCommand {
+
+	private static final Logger LOGGER = Logger.getLogger(BackStab.class);
 
 	class FightActionBackStab extends FightAction {
 
@@ -67,11 +69,19 @@ public class BackStab extends BaseCommand {
 				out("<S-You/NAME> successfully backstabed <T-you/NAME>.");
 
 				int dex = getSelf().getPlayer().getAttributes().getDEX().getValue();
-				
-				DiceRoll damage = new DiceRoll(3,6,dex);
+
+				// source initial damage roll from weapon and modify this by dex and skill
+				Weapon weapon = getSelf().getWeapon();
+
+				if (weapon == null) {
+					out("You can not backstab with no weapon");
+					return;
+				}
+
+				DiceRoll damage = weapon.getDamage();
 				
 				// Could just send this object the FightAction to damage.
-				DamageManager.deal(getSelf(), getTarget(), damage.roll());
+				DamageManager.deal(getSelf(), getTarget(), damage.roll()+dex);
 
 				if (bsAbility.isImproved()) {
 					out("[[[[ Your ability to " + bsAbility.getId()
@@ -98,11 +108,7 @@ public class BackStab extends BaseCommand {
 
 	}
 
-	private boolean checkStatus(Mob mob, Mob target) {
-		return checkMobStatus(mob, target) || checkTargetStatus(mob, target);
-	}
-
-	private boolean checkTargetStatus(Mob mob, Mob target) {
+	private boolean isTargetFighting(Mob mob, Mob target) {
 
 		if (target.getFight().isFighting()) {
 			mob.out(target.getName()
@@ -143,10 +149,16 @@ public class BackStab extends BaseCommand {
 			return;
 		}
 
-		if (checkStatus(mob, target)) {
+		if (!checkMobStatus(mob, target)) {
+			mob.out("Not in the right position to backstab mob");
 			return;
 		}
 
+		if (isTargetFighting(mob, target)) {
+			return;
+		}
+
+		LOGGER.debug("You start to backstab");
 		mob.getFight().add(new FightActionBackStab(mob, target));
 
 	}

@@ -4,6 +4,7 @@ import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.CommandProvider;
 import com.ivstuart.tmud.common.MobState;
 import com.ivstuart.tmud.common.Msg;
+import com.ivstuart.tmud.person.movement.MoveManager;
 import com.ivstuart.tmud.state.util.RoomManager;
 import org.apache.log4j.Logger;
 
@@ -72,12 +73,7 @@ public class EnterNoLook extends BaseCommand {
 
 		Room destination = exit.getDestinationRoom();
 
-		boolean wasRemoved = room.remove(mob);
-
-		// TODO think about this.
-		if (!wasRemoved) {
-			LOGGER.warn("Mob was not present to be removed");
-		}
+		MoveManager.move(mob,room,destination,exit);
 
 		Track track = new Track();
 
@@ -90,8 +86,6 @@ public class EnterNoLook extends BaseCommand {
 		track.setDirection(exit.getId());
 
 		room.addTrack(track);
-
-		destination.add(mob);
 
 		// walk fly swim teleport run sneak etc.....
 		if (mob.isRunning()) {
@@ -108,8 +102,6 @@ public class EnterNoLook extends BaseCommand {
 		}
 		else {
 			mob.out("You walk " + exit.getId());
-			room.out(new Msg(mob,"<S-NAME> walks "+exit.getId()));
-			destination.out(new Msg(mob,"<S-NAME> arrives from the "+RoomManager.reverseDirection(exit.getId())));
 			mob.getMv().deduct(4);
 		}
 		// fly 1 point. walk 4. walk on path 2 points.

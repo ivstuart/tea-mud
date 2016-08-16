@@ -14,19 +14,21 @@ public class MoveManager {
 
 		Room room = mob_.getRoom();
 
-		move(mob_,room,destination);
+		room.remove(mob_);
+
+		destination.add(mob_);
 
 	}
 
-	public static void move(Mob mob_, Room sourceRoom_, Room destinationRoom_) {
+	public static void move(Mob mob_, Room sourceRoom_, Room destinationRoom_, Exit exit_) {
 
 		sourceRoom_.remove(mob_);
 
-		//room.out(new Msg(mob,"<S-NAME> walks "+exit.getId()));
+		sourceRoom_.out(new Msg(mob_,"<S-NAME> walks "+exit_.getId()));
 
 		destinationRoom_.add(mob_);
 
-		//destination.out(new Msg(mob,"<S-NAME> arrives from the "+ RoomManager.reverseDirection(exit.getId())));
+		destinationRoom_.out(new Msg(mob_,"<S-NAME> arrives from the "+ RoomManager.reverseDirection(exit_.getId())));
 
 	}
 
@@ -52,7 +54,7 @@ public class MoveManager {
 
 		Room currentRoom = mob.getRoom();
 
-		MoveManager.move(mob, mob.getRoom(), myExit.getDestinationRoom());
+		MoveManager.move(mob, mob.getRoom(), myExit.getDestinationRoom(),myExit);
 
 		if (currentRoom != mob.getRoom()) {
 			mob.getFight().stopFighting();
