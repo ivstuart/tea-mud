@@ -268,4 +268,13 @@ public class Room extends BasicThing implements Msgable {
 		}
 		return group;
     }
+
+    public ShopKeeper getShopKeeper() {
+		for (Mob mob : _mobs) {
+			if (mob instanceof ShopKeeper) {
+				return (ShopKeeper)mob;
+			}
+		}
+		return null;
+	}
 }

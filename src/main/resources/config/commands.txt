@@ -1,4 +1,4 @@
-# commandlistforplayers className,minimum MobState to use command
+# commandlist for players className,minimum MobState to use command
 command.info.Look,REST
 command.move.South,STAND
 command.move.North,STAND
@@ -112,6 +112,14 @@ command.party.ReportToGroup,STAND
 command.party.Split,STAND
 command.party.Ungroup,STAND
 
+# Shop commands
+command.item.shop.Buy,STAND
+command.item.shop.List,STAND
+command.item.shop.Repair,STAND
+command.item.shop.Resize,STAND
+command.item.shop.Sell,STAND
+command.item.shop.Value,STAND
+
 # Admin Commands
 
 command.admin.AllMobStats,SLEEP
@@ -121,6 +129,8 @@ command.admin.ClearAffects,SLEEP
 command.admin.Debug,SLEEP
 command.admin.Freeze,SLEEP
 command.admin.Level,SLEEP
+# Uses world
+command.admin.MobInfo,SLEEP
 command.admin.PauseTime,SLEEP
 command.admin.Posess,SLEEP
 command.admin.Reload,SLEEP

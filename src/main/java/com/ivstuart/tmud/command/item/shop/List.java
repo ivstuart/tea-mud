@@ -8,6 +8,7 @@ package com.ivstuart.tmud.command.item.shop;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 
 /**
@@ -20,8 +21,22 @@ public class List extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {
-		// TODO
-		mob.out("TODO list items in a shop");
+		Mob shopKeeper = mob.getRoom().getShopKeeper();
+
+		if (shopKeeper == null) {
+			mob.out("There is no shop here to buy and sell from");
+			return;
+		}
+
+		// list
+
+		mob.out("$H~$J");
+
+		for (Item item : shopKeeper.getInventory().getItems()) {
+			mob.out(item.getName()+ " at "+item.getCost());
+		}
+
+		mob.out("$H~$J");
 
 	}
 

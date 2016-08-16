@@ -8,6 +8,7 @@ public class EntityProvider {
 	private static final Logger LOGGER = Logger.getLogger(EntityProvider.class);
 
 	public static Item createItem(String itemId) {
+		LOGGER.debug("Creating instance of item "+itemId);
 		return (Item) World.getItem(itemId).clone();
 	}
 
@@ -22,7 +23,11 @@ public class EntityProvider {
 		// TODO rethink this design as it does not scale for many mob types.
 		if (existingMob.isGuard()) {
 			newMob = new GuardMob(existingMob);
-		} else {
+		} else if (existingMob instanceof ShopKeeper) {
+			LOGGER.debug("Creating instance of a shop keeper!");
+			newMob = new ShopKeeper(existingMob);
+		}
+		else {
 			newMob = new Mob(existingMob);
 		}
 

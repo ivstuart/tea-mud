@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.ivstuart.tmud.person.carried.Money;
+import com.ivstuart.tmud.person.carried.SomeMoney;
 import org.apache.log4j.Logger;
 
 import com.ivstuart.tmud.common.Equipable;
@@ -31,6 +33,7 @@ public class Item extends Prop implements Equipable, Msgable {
 
 	// copper
 	protected int _cost;
+	protected SomeMoney _someMoneyCost;
 
 	// copper
 	protected int _rent;
@@ -112,6 +115,7 @@ public class Item extends Prop implements Equipable, Msgable {
 
 	public void setCost(int cost_) {
 		this._cost = cost_;
+		_someMoneyCost = new Money(Money.COPPER,_cost);
 	}
 
 	public void setEffects(String effects_) {
@@ -189,4 +193,10 @@ public class Item extends Prop implements Equipable, Msgable {
 	public boolean isContainer() {
 		return false;
 	}
+
+    public SomeMoney getCost() {
+    	return _someMoneyCost;
+    	// TODO not make a new object here in code. Do it in setter so once.
+
+    }
 }

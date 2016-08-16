@@ -4,15 +4,10 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import com.ivstuart.tmud.state.*;
 import org.apache.log4j.Logger;
 
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.BasicThing;
-import com.ivstuart.tmud.state.GuardMob;
-import com.ivstuart.tmud.state.Item;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Room;
-import com.ivstuart.tmud.state.World;
 import com.ivstuart.tmud.utils.FileHandle;
 
 public class StateReader {
@@ -47,6 +42,10 @@ public class StateReader {
 
 		if (entity instanceof GuardMob) {
 			return new GuardMob(World.getMob(id));
+		}
+
+		if (entity instanceof ShopKeeper) {
+			return new ShopKeeper(World.getMob(id));
 		}
 
 		if (entity instanceof Mob) {

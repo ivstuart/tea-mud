@@ -8,6 +8,8 @@ package com.ivstuart.tmud.command.item.shop;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.person.carried.SomeMoney;
+import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 
 /**
@@ -20,9 +22,35 @@ public class Sell extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {
-		// TODO
-		mob.out("TODO Buy");
+		Mob shopKeeper = mob.getRoom().getShopKeeper();
 
+		if (shopKeeper == null) {
+			mob.out("There is no shop here to buy and sell from");
+			return;
+		}
+
+
+		Item item = mob.getInventory().get(input);
+
+		// SomeMoney
+		SomeMoney cost = item.getCost();
+
+		if (cost == null) {
+			mob.out("The shop does not want that item its worthless");
+			return;
+		}
+
+		if (!shopKeeper.getInventory().getPurse().remove(cost)) {
+			mob.out("Shopkeeper can not afford "+cost+" of item");
+			return;
+		}
+
+		mob.getInventory().remove(item);
+		mob.getInventory().add(cost);
+
+		shopKeeper.getInventory().add(item);
+
+		mob.out("You sell a "+item.getName());
 	}
 
 }

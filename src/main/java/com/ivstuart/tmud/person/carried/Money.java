@@ -26,6 +26,8 @@ public class Money implements SomeMoney {
 
 	public static final int GOLD = 2;
 
+	public static final Money NO_MONEY = new Money(COPPER,0);
+
 	private int type;
 
 	private int quantity;
@@ -132,6 +134,15 @@ public class Money implements SomeMoney {
 			temp += "s";
 		}
 		return temp;
+	}
+
+	@Override
+	public boolean remove(SomeMoney cash) {
+		if (cash.isBag()) {
+			return this.remove((MoneyBag) cash);
+		} else {
+			return this.remove((Money) cash);
+		}
 	}
 
 	public int getQuantity() {

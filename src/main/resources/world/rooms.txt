@@ -52,7 +52,7 @@ item: scarf-001
 item: scarf-002
 item: scarf-003
 item: scarf-003
-properties: DAR
+properties:
 
 id: R-002-001
 brief: The Dark Inner Sanctum of the White Tower
@@ -61,7 +61,7 @@ look: The dark inner sanctum within the White Tower is made from highly polished
 look: snow white marbled stone. Along the outer walls of the courtyard torches,
 look: held by iron sconces, flicker dim light about the area. 
 exits: east->R-003-001 south->R-002-002 west->R-001-001 
-properties: DARK
+#properties: DARK
 item: knife-001
 mob: dragon-005
 
@@ -132,6 +132,7 @@ look: snow white marbled stone. Along the outer walls of the courtyard torches,
 look: held by iron sconces, flicker dim light about the area. 
 exits: north->R-003-002 west->R-002-003 east->R-004-003
 initdoors:
+mob: shopkeeper-001
 
 id: R-004-003
 brief: The shinny new room in the White Tower

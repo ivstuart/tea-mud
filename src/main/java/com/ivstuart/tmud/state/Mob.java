@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import com.ivstuart.tmud.behaviour.*;
+import com.ivstuart.tmud.state.util.EntityProvider;
 import org.apache.log4j.Logger;
 
 import com.ivstuart.tmud.common.DiceRoll;
@@ -153,6 +154,10 @@ public class Mob extends Prop implements Tickable {
 
 
             }
+        }
+
+        if (!baseMob.getInventory().isEmpty()) {
+            this.getInventory().addAll(baseMob.getInventory().getItems());
         }
 
         if (tickers != null) {
@@ -633,5 +638,10 @@ public class Mob extends Prop implements Tickable {
 
     public List<Tickable> getTickers() {
         return tickers;
+    }
+
+    public void setItem(String id) {
+        Item item = EntityProvider.createItem(id);
+        this.getInventory().add(item);
     }
 }

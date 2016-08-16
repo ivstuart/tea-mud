@@ -33,8 +33,6 @@ public class GuardMob extends Mob {
 		LOGGER.debug("id [ " + id + " ]");
 		LOGGER.debug("exit [ " + exit + " ]");
 
-		// TODO FIXME decide if mob would still be here given mobs with zero
-		// health are replaced with a corpse.
 		if (isDead()) {
 			return false;
 		}

@@ -25,3 +25,16 @@ clone: scarf-001
 brief: black scarf
 clearLook:
 look: black scarf with flowers on it
+
+id: wooden-shield-004
+alias: wooden shield
+brief: wooden shield
+look: wooden shield with fresh axe marks
+action:
+effects: 3
+wear: PRIMARY SECONDARY
+weight: 20
+cost: 10
+rent: 5
+affects:
+armour: 0 0 0 0 0 0 5

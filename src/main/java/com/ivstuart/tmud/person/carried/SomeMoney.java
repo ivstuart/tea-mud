@@ -39,7 +39,9 @@ public interface SomeMoney extends Serializable {
 	@Override
 	public String toString();
 
-	/**
+    boolean remove(SomeMoney cost);
+
+    /**
 	 * @param cash
 	 */
 

@@ -163,6 +163,15 @@ public class MoneyBag implements SomeMoney {
 		return sb.toString();
 	}
 
+	@Override
+	public boolean remove(SomeMoney cash) {
+		if (cash.isBag()) {
+			return this.remove((MoneyBag) cash);
+		} else {
+			return this.remove((Money) cash);
+		}
+	}
+
 	private void validate() {
 		ListIterator<SomeMoney> moneyItr = list.listIterator();
 
