@@ -42,6 +42,8 @@ public class Item extends Prop implements Equipable, Msgable {
 
 	protected int _size;
 
+	protected int _damagedPercentage;
+
 	public Item() {
 	}
 
@@ -199,4 +201,12 @@ public class Item extends Prop implements Equipable, Msgable {
     	// TODO not make a new object here in code. Do it in setter so once.
 
     }
+
+	public int getDamagedPercentage() {
+		return _damagedPercentage;
+	}
+
+	public void setDamagedPercentage(int damagedPercentage) {
+		this._damagedPercentage = damagedPercentage;
+	}
 }

@@ -277,4 +277,14 @@ public class Room extends BasicThing implements Msgable {
 		}
 		return null;
 	}
+
+    public Mob getRepairer() {
+		for (Mob mob : _mobs) {
+			// TODO add a armourer
+			if (mob instanceof ShopKeeper) {
+				return (ShopKeeper)mob;
+			}
+		}
+		return null;
+    }
 }
