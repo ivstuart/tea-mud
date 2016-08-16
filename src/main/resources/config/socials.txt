@@ -4,20 +4,20 @@ bounce,REST,off the walls like a rubber ball
 beg,REST,for some coins
 bleed,REST,blood goes everywhere
 blush,REST,your checks turn red
-bow,STAND
-brb,REST
-cackle,REST
-chuckle,REST
-clap,REST
-code,REST
-comfort,REST
-comb,REST
-cough,REST
-cringe,REST
-cry,REST
-cuddle,REST
-curse,REST
-curtsey,REST
+bow,STAND,you take a bow to impress everyone
+brb,REST,be right back no honestly
+cackle,REST,hahahahhahahaha
+chuckle,REST, he he ha ha he he
+clap,REST,cla the sound of one hand claping
+code,REST,sit down and focus until your eyes bleed and brain expodes not another null pointer
+comfort,REST,someone gentally
+comb,REST,your hair straight
+cough,REST, *cough* *cough*
+cringe,REST, *cringe*
+cry,REST, awwwwwahhhh....
+cuddle,REST, effectionately
+curse,REST, darn it oh bother
+curtsey,REST, down low enough to sit
 dance,STAND
 daydream,REST
 drool,REST

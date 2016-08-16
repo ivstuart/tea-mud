@@ -75,6 +75,7 @@ look: detail. Perhaps spending some time reviewing this mosaic will be beneficia
 look: in gaining an understanding of the lay of the land. 
 exits: south->R-003-002 west->R-002-001
 item: bag-001
+mob: old-man-006
 
 id: R-001-002
 brief: The Inner Sanctum of the White Tower

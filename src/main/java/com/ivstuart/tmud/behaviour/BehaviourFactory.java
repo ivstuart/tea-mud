@@ -29,6 +29,13 @@ public class BehaviourFactory {
             return wander;
         }
 
+        if (behaviour.indexOf("JANITOR") > -1)
+        {
+            Janitor janitor = new Janitor();
+            initBehaviour(behaviour, janitor);
+            return janitor;
+        }
+
         return null;
 
     }

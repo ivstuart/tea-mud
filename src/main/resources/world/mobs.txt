@@ -72,7 +72,7 @@ alias: large cave troll
 short: the large gray cave troll
 long: A large gray cave troll snares at you.
 look: The troll is a common cave troll is and all together unremarkable.
-behaviour: WANDER:100
+#behaviour: WANDER:100
 level: 10
 offensive: 120
 defensive: 50
@@ -145,3 +145,22 @@ state: STANDING
 attackType: punch
 item: wooden-shield-004
 # dice types possible for most fields
+
+id: old-man-006
+name: old man
+alias: old man
+short: the old man
+long: A old man
+look: The old man is a common old man is and all together unremarkable.
+behaviour: WANDER:100
+#behaviour: JANITOR:100
+level: 10
+offensive: 120
+defensive: 50
+armour: 20
+hp: 5d6+50
+damage: 4d6
+copper: 500
+xp: 200
+state: STANDING
+attackType: fist
