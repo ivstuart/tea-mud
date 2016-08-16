@@ -63,4 +63,12 @@ public class Attributes implements Serializable {
                 return getSTR();
         }
     }
+
+    public int getTotal() {
+        return _consitution.getValue() +
+                _dexterity.getValue() +
+                _intelligence.getValue() +
+                _strength.getValue() +
+                _wisdom.getValue();
+    }
 }

@@ -40,7 +40,7 @@ public class Hide extends BaseCommand {
 			return;
 		}
 
-		if (mob.getMv().deduct(10)) {
+		if (!mob.getMv().deduct(10)) {
 			mob.out("You do not have enough movement to hide.");
 			return;
 		}

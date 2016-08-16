@@ -6,6 +6,9 @@
  */
 package com.ivstuart.tmud.person.carried;
 
+import com.ivstuart.tmud.state.Mob;
+import org.apache.log4j.Logger;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -16,6 +19,8 @@ import java.util.List;
 public class Money implements SomeMoney {
 
 	private static final long serialVersionUID = 7446753180088885428L;
+
+	private static final Logger LOGGER = Logger.getLogger(Money.class);
 
 	public static final String[] desc = { "$CCopper$J", "$ESilver$J",
 			"$BGold$J" };
@@ -112,6 +117,9 @@ public class Money implements SomeMoney {
 		if (money.quantity > quantity) {
 			return false;
 		}
+
+		LOGGER.debug("Current quantity is "+quantity+" new quantity is "+(quantity-money.quantity));
+
 		quantity -= money.quantity;
 		return true;
 	}
@@ -123,7 +131,12 @@ public class Money implements SomeMoney {
 	 */
 	@Override
 	public boolean remove(MoneyBag cash) {
-		return cash.remove(this);
+		for (SomeMoney money : cash.getList()) {
+			if(!this.remove(money)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	@Override

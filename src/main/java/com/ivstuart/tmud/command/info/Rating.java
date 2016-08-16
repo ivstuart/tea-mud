@@ -12,14 +12,14 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- * 
+ *
  *         To change the template for this generated type comment go to
  *         Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Rating extends BaseCommand {
 
 	/**
-	 * 
+	 *
 	 */
 	public Rating() {
 		super();
@@ -28,17 +28,27 @@ public class Rating extends BaseCommand {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see command.Command#execute(java.lang.String)
 	 */
 	@Override
 	public void execute(Mob mob, String input) {
-		// TODO Auto-generated method stub
-		// int rating = mob.getStats().getAttributes().getBaseAttack();
-		// mob.out("Your current rating is " + rating);
 
-		mob.out("Not done yet!");
-		// World.getTopTen().add(mob.getName(),rating);
+        int rating = getRating(mob);
+
+		mob.out("Your current rating is " + rating);
+
 	}
+
+    public static int getRating(Mob mob) {
+        int rating = mob.getPlayer().getData().getLevel();
+
+        rating += mob.getPlayer().getAttributes().getTotal();
+
+        if (mob.getMobAffects().hasAffect("sanctury")) { rating += 30; }
+        if (mob.getMobAffects().hasAffect("blur")) { rating += 10; }
+        // etc ....
+        return rating;
+    }
 
 }

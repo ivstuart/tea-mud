@@ -8,6 +8,7 @@ package com.ivstuart.tmud.command.item.shop;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
@@ -32,8 +33,13 @@ public class Sell extends BaseCommand {
 
 		Item item = mob.getInventory().get(input);
 
+		if (item == null) {
+			mob.out("No item to sell "+input);
+			return;
+		}
+
 		// SomeMoney
-		SomeMoney cost = item.getCost();
+		Money cost = (Money) item.getCost();
 
 		if (cost == null) {
 			mob.out("The shop does not want that item its worthless");
