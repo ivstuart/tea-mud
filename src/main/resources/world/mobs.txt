@@ -9,7 +9,8 @@ short: the hooded cobra snake
 long: A cobra snake rears up and opens its fearsome hood.
 look: The cobra snake waves back and forth before you, its hood displaying brilliant
 look: colors designed to serve notice to its prey that it is about to strike.
-behaviour: WANDER AGGRESSIVE STAY SENSE
+behaviour: WANDER:50:2
+behaviour: AGGRO:100
 affects: SANC
 align: 0
 level: 7
@@ -71,7 +72,7 @@ alias: large cave troll
 short: the large gray cave troll
 long: A large gray cave troll snares at you.
 look: The troll is a common cave troll is and all together unremarkable.
-behaviour: WANDER
+behaviour: WANDER:100
 level: 10
 offensive: 120
 defensive: 50
@@ -91,7 +92,7 @@ alias: large red dragon
 short: the large red dragon
 long: A large red dragon snares at you.
 look: The dragon is a common dragon is and all together unremarkable.
-behaviour: AGGRO
+behaviour:
 level: 60
 attacks: 6
 offensive: 1000
@@ -110,7 +111,7 @@ id: zombie-001
 name: zombie
 alias: zombie
 short: the zombie
-long: A zombiesnares at you.
+long: A zombie snares at you.
 look: The zombie is a common zombie is and all together unremarkable.
 level: 6
 offensive: 20

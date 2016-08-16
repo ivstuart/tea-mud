@@ -11,18 +11,39 @@ public class BehaviourFactory {
 
         // TODO use refection instead of if checks.
         if (behaviour.indexOf("AGGRO") > -1) {
-            return new Aggressive();
+            Aggressive aggressive = new Aggressive();
+            initBehaviour(behaviour, aggressive);
+            return aggressive;
         }
 
         if (behaviour.indexOf("SLEEP") > -1) {
-            return new Sleeping();
+            Sleeping sleeping = new Sleeping();
+            initBehaviour(behaviour, sleeping);
+            return sleeping;
         }
 
-        if (behaviour.indexOf("WANDER") > -1) {
-            return new Wander();
+        if (behaviour.indexOf("WANDER") > -1)
+        {
+            Wander wander = new Wander();
+            initBehaviour(behaviour, wander);
+            return wander;
         }
 
         return null;
 
+    }
+
+    private static void initBehaviour(String behaviour, BaseBehaviour aggressive) {
+        if (behaviour.indexOf(":") > -1) {
+            String input[] = behaviour.split(":");
+            if (input.length > 1) {
+                int parameter = Integer.parseInt(input[1]);
+                aggressive.setParameter(parameter);
+            }
+            if (input.length > 2) {
+                int parameter2 = Integer.parseInt(input[2]);
+                aggressive.setParameter2(parameter2);
+            }
+        }
     }
 }

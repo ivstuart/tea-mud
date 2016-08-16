@@ -28,7 +28,7 @@ public class WanderTest {
 		// See MudConnectionTest and create a utility
 		// TestHelper.loadMudServerInstance(); // optionally with a timeout
 
-		Wander wandering = new Wander(mob);
+		Wander wandering = new Wander();
 
 		// Reuse an existing mob or make a lost sheep mob.
 		// Set it to have wandering behaviour

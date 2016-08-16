@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.*;
 
 import org.apache.log4j.Logger;
 
@@ -30,6 +31,8 @@ public class World {
 	private static Set<String> _playerNames;
 
 	private static World INSTANCE = new World();
+
+	private static ScheduledExecutorService scheduledExecutorService;
 
 	public static void add(BaseSkill skill) {
 		LOGGER.info("Adding skill [ " + skill.getId() + "]");
@@ -255,10 +258,16 @@ public class World {
 	}
 
 	private void startTime() {
-		Thread worldTimeThread = new Thread(WorldTime.getInstance());
-		worldTimeThread.setName("WorldTime-" + worldTimeThread.getId());
-		worldTimeThread.setDaemon(true);
-		worldTimeThread.start();
+
+		scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
+
+		ScheduledFuture<?> scheduledFuture = scheduledExecutorService.scheduleAtFixedRate(WorldTime.getInstance(),0,100, TimeUnit.MILLISECONDS);
+
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 
 		LOGGER.info("WorldTime running [ "
 				+ WorldTime.getInstance().isRunning() + " ]");
@@ -283,6 +292,12 @@ public class World {
 			if (aPlayer.isGood() == good) {
 				aPlayer.out(msg);
 			}
+		}
+	}
+
+	public static void shutdown() {
+		if (scheduledExecutorService != null) {
+			scheduledExecutorService.shutdown();
 		}
 	}
 }

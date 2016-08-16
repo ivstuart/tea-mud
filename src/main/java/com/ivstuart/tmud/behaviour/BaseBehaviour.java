@@ -9,7 +9,16 @@ import com.ivstuart.tmud.state.Mob;
 public class BaseBehaviour implements Tickable {
 
     protected Mob mob;
+    protected int parameter;
+    protected int parameter2;
 
+    public int getParameter2() {
+        return parameter2;
+    }
+
+    public void setParameter2(int parameter2) {
+        this.parameter2 = parameter2;
+    }
     @Override
     public String getId() {
         return null;
@@ -22,5 +31,9 @@ public class BaseBehaviour implements Tickable {
 
     public void setMob(Mob mob) {
         this.mob = mob;
+    }
+
+    public void setParameter(int parameter) {
+        this.parameter = parameter;
     }
 }

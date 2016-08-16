@@ -11,6 +11,7 @@ public class Sleeping extends BaseBehaviour {
 	private static Logger LOGGER = Logger.getLogger(Sleeping.class);
 
 	public Sleeping() {
+		parameter=10;
 	}
 
 	@Override
@@ -34,7 +35,8 @@ public class Sleeping extends BaseBehaviour {
 			mob.setState(MobState.SLEEP);
 		}
 		// If nighttime 10 % chance of sleeping else 10 % of awaking
-		if (DiceRoll.ONE_D100.rollMoreThan(10)) {
+		if (DiceRoll.ONE_D100.rollMoreThan(parameter)) {
+			LOGGER.debug(mob.getName()+" is does not feel like being sleepy this tick");
 			return;
 		}
 

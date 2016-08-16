@@ -17,15 +17,10 @@ public class Wander extends BaseBehaviour {
 	private static Logger LOGGER = Logger.getLogger(Wander.class);
 
 	private List<Room> rooms;
-	private int maxDistance;
-
-	public Wander(Mob mob) {
-		this.mob = mob;
-		maxDistance = 2;
-	}
 
 	public Wander() {
-		maxDistance = 2;
+		parameter = 50;
+		parameter2 = 2;
 	}
 
 	@Override
@@ -33,16 +28,8 @@ public class Wander extends BaseBehaviour {
 		return mob.getId();
 	}
 
-	public int getMaxDistance() {
-		return maxDistance;
-	}
-
 	public List<Room> getRooms() {
 		return rooms;
-	}
-
-	public void setMaxDistance(int maxDistance) {
-		this.maxDistance = maxDistance;
 	}
 
 	public void setRooms(List<Room> rooms) {
@@ -58,7 +45,7 @@ public class Wander extends BaseBehaviour {
 		}
 
 		// TODO have this configurable in mob.txt file.
-		if (DiceRoll.ONE_D100.rollMoreThan(50)) {
+		if (DiceRoll.ONE_D100.rollMoreThan(parameter)) {
 			LOGGER.debug(mob.getName()+" is does not feel like wandering this tick");
 			return;
 		}
@@ -71,13 +58,13 @@ public class Wander extends BaseBehaviour {
 			return;
 		}
 
-		LOGGER.info("Mob wanders to a new location");
+		LOGGER.debug("Mob wanders to a new location");
 
 		Room room = mob.getRoom();
 
 		// Lazy init
 		if (rooms == null) {
-			rooms = new ArrayList<Room>(maxDistance);
+			rooms = new ArrayList<Room>(parameter2);
 		}
 
 		int index = rooms.indexOf(room);
@@ -88,7 +75,7 @@ public class Wander extends BaseBehaviour {
 			rooms = rooms.subList(0, index);
 		} else {
 
-			if (rooms.size() > maxDistance) {
+			if (rooms.size() > parameter2) {
 				// Do not wander any more to new locations but can wander to
 				// previous locations
 				

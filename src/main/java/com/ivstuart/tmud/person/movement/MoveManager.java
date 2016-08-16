@@ -2,16 +2,19 @@ package com.ivstuart.tmud.person.movement;
 
 import java.util.List;
 
+import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.state.Exit;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.util.RoomManager;
 
 public class MoveManager {
 
 	public static void move(Mob mob_, Room destination) {
-		mob_.getRoom().remove(mob_);
 
-		destination.add(mob_);
+		Room room = mob_.getRoom();
+
+		move(mob_,room,destination);
 
 	}
 
@@ -19,7 +22,12 @@ public class MoveManager {
 
 		sourceRoom_.remove(mob_);
 
+		//room.out(new Msg(mob,"<S-NAME> walks "+exit.getId()));
+
 		destinationRoom_.add(mob_);
+
+		//destination.out(new Msg(mob,"<S-NAME> arrives from the "+ RoomManager.reverseDirection(exit.getId())));
+
 	}
 
 	// TODO decide if this method should really be here!

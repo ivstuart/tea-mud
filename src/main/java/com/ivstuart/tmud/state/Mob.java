@@ -94,7 +94,7 @@ public class Mob extends Prop implements Tickable {
     private int wimpy;
 
     private boolean undead;
-    private List<String> behaviours;
+    private transient List<String> behaviours;
     private List<Tickable> tickers;
 
     public Mob() {
