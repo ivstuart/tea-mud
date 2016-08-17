@@ -40,13 +40,18 @@ public class Janitor extends BaseBehaviour {
 
         List<Item> items = room.getItems();
 
-        if (items == null) {
+        if (items == null || items.isEmpty()) {
             LOGGER.debug("Nothing to clean up");
             return;
         }
 
+        Item item = null;
 
-        Item item  = items.remove(1);
+        try {
+            item = items.remove(1);
+        } catch (IndexOutOfBoundsException ioobe) {
+            LOGGER.debug("Suddenly nothing to clean up");
+        }
 
         if (item == null) {
             LOGGER.debug("Nothing to clean up.");

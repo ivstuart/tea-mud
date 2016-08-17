@@ -32,8 +32,10 @@ public class List extends BaseCommand {
 
 		mob.out("$H~$J");
 
+		int index = 1;
 		for (Item item : shopKeeper.getInventory().getItems()) {
-			mob.out(item.getName()+ " at "+item.getCost());
+			mob.out("["+index+"] "+item.getName()+ " at "+item.getCost());
+			index++;
 		}
 
 		mob.out("$H~$J");
