@@ -6,7 +6,6 @@
  */
 package com.ivstuart.tmud.person.carried;
 
-import com.ivstuart.tmud.state.Mob;
 import org.apache.log4j.Logger;
 
 import java.util.Collections;
@@ -48,13 +47,22 @@ public class Money implements SomeMoney {
 		quantity = amount;
 	}
 
+	public Money(Money money) {
+		type = money.type;
+		quantity = money.quantity;
+	}
+
 	/**
 	 * @param money
 	 */
-	public void add(Money money) {
+	public boolean add(Money money) {
+		if (money.type != money.type) {
+			return false;
+		}
 		if (money != null) {
 			quantity += money.quantity;
 		}
+		return true;
 	}
 
 
@@ -120,7 +128,7 @@ public class Money implements SomeMoney {
 
 		LOGGER.debug("Current quantity is "+quantity+" new quantity is "+(quantity-money.quantity));
 
-		quantity -= money.quantity;
+		this.quantity -= money.quantity;
 		return true;
 	}
 

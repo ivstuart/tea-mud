@@ -39,7 +39,7 @@ public class MoneyBag implements SomeMoney {
 	}
 
 	@Override
-	public void add(Money money) {
+	public boolean add(Money money) {
 		ListIterator<SomeMoney> moneyItr = list.listIterator();
 
 		while (moneyItr.hasNext()) {
@@ -49,10 +49,11 @@ public class MoneyBag implements SomeMoney {
 				if (aMoney.isEmpty()) {
 					moneyItr.remove();
 				}
-				return;
+				return true;
 			}
 		}
-		moneyItr.add(money);
+		list.add(new Money(money));
+		return false;
 	}
 
 	public void add(MoneyBag bag) {
