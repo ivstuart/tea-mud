@@ -47,10 +47,12 @@ public class ConnectionManager {
 		try {
 			sk.cancel();
 			sk.channel().close();
-			((SocketChannel)sk.channel()).finishConnect();
+			SocketChannel socketChannel = (SocketChannel)sk.channel();
+			if (socketChannel.isConnected()) {
+				socketChannel.finishConnect();
+			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error("Problem closing channel",e);
 		}
 	}
 

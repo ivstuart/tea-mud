@@ -34,7 +34,7 @@ public class MudServer {
 		}
 
 		private void readSocket(SelectionKey sk) throws IOException {
-			
+
 			SocketChannel sc = (SocketChannel) sk.channel();
 
 			buffer.clear();
@@ -77,47 +77,50 @@ public class MudServer {
 				// block until a Channel is ready for I/O
 				while (readSelector.select() > 0) {
 
-					Iterator<SelectionKey> selectionKeyIter = readSelector
-							.selectedKeys().iterator();
+				    try {
+                        Iterator<SelectionKey> selectionKeyIter = readSelector
+                                .selectedKeys().iterator();
 
-					while (selectionKeyIter.hasNext()) {
-						SelectionKey sk = selectionKeyIter.next();
-						selectionKeyIter.remove();
-						if (sk.isAcceptable()) {
+                        while (selectionKeyIter.hasNext()) {
+                            SelectionKey sk = selectionKeyIter.next();
+                            selectionKeyIter.remove();
+                            if (sk.isAcceptable()) {
 
-							// new client connection
-							ServerSocketChannel nextReady = (ServerSocketChannel) sk
-									.channel();
+                                // new client connection
+                                ServerSocketChannel nextReady = (ServerSocketChannel) sk
+                                        .channel();
 
-							SocketChannel channel = nextReady.accept();
+                                SocketChannel channel = nextReady.accept();
 
-							channel.configureBlocking(false);
-							channel.register(readSelector, SelectionKey.OP_READ);
+                                channel.configureBlocking(false);
+                                channel.register(readSelector, SelectionKey.OP_READ);
 
-							writeSelector.wakeup(); // Added as required by
-													// specification
+                                writeSelector.wakeup(); // Added as required by
+                                // specification
 
-							channel.register(writeSelector,
-									SelectionKey.OP_WRITE);
-							ConnectionManager.add(channel);
-						} else if (sk.isConnectable()) {
-							LOGGER.info("SelectionKey is connected");
-						} else if (sk.isReadable()) {
+                                channel.register(writeSelector,
+                                        SelectionKey.OP_WRITE);
+                                ConnectionManager.add(channel);
+                            } else if (sk.isConnectable()) {
+                                LOGGER.info("SelectionKey is connected");
+                            } else if (sk.isReadable()) {
 
-							try {
-								readSocket(sk);
-							} catch (IOException ioe) {
-								ConnectionManager.close(sk);
-								throw ioe;
-							}
-						} else if (sk.isWritable()) {
-							LOGGER.info("SelectionKey is wriable");
-						} else if (!sk.isValid()) {
-							LOGGER.info("SelectionKey is invalid");
-							new MudException("SelectionKey is invalid:");
-						}
-					}
-					
+                                try {
+                                    readSocket(sk);
+                                } catch (IOException ioe) {
+                                    ConnectionManager.close(sk);
+                                    throw ioe;
+                                }
+                            } else if (sk.isWritable()) {
+                                LOGGER.info("SelectionKey is wriable");
+                            } else if (!sk.isValid()) {
+                                LOGGER.info("SelectionKey is invalid");
+                                new MudException("SelectionKey is invalid:");
+                            }
+                        }
+                    } catch (Throwable t) {
+                        LOGGER.error("Problem with communication channel", t);
+                    }
 //					selectionKeyIter.remove();
 				}
 			} catch (Exception e) {

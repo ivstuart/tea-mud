@@ -447,6 +447,13 @@ public class Login implements Readable {
 			out("Name is banned please try another name");
 			return false;
 		}
+
+		if (World.getPlayers().contains(name)) {
+			out("The player with that name is already logged in");
+			out("That player will be kicked off please change your password");
+			World.kickout(name);
+			return false;
+		}
 		
 		return !World.getPlayerNames().contains(name);
 	}

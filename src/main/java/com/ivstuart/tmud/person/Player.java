@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.apache.log4j.Logger;
 
@@ -28,7 +27,7 @@ public class Player implements Serializable, Nameable {
 
 	protected Attributes attributes;
 
-	private transient Connection conn;
+	private transient Connection connection;
 
 	private boolean admin = false;
 
@@ -72,7 +71,7 @@ public class Player implements Serializable, Nameable {
 	}
 
 	public void disconnect() {
-		conn.disconnect();
+		connection.disconnect();
 	}
 
 	public Attributes getAttributes() {
@@ -148,8 +147,8 @@ public class Player implements Serializable, Nameable {
 
 		LOGGER.debug(getName()+" output ["+message+"]");
 
-		if (conn != null) {
-			conn.out(message);
+		if (connection != null) {
+			connection.out(message);
 			return;
 		}
 
@@ -172,7 +171,7 @@ public class Player implements Serializable, Nameable {
 	}
 
 	public void setConnection(Connection connection) {
-		conn = connection;
+		this.connection = connection;
 	}
 
 	/*
@@ -229,4 +228,8 @@ public class Player implements Serializable, Nameable {
 		}
 		return input;
 	}
+
+    public Connection getConnection() {
+        return connection;
+    }
 }

@@ -8,6 +8,7 @@ package com.ivstuart.tmud.command.misc;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.server.Readable;
 import com.ivstuart.tmud.state.Mob;
 
 /**
@@ -23,22 +24,29 @@ public class Password extends BaseCommand {
 
 		mob.out("Enter curent password:");
 
+//		mob.getPlayer().getConnection().setState(new Readable() {
+//			@Override
+//			public void read(String line) {
+//				// Check if password matches
+//			}
+//		});
+
 		/**
 		 * TODO // Save character first String password =
 		 * getConnection().getLine();
-		 * 
+		 *
 		 * if (!password.matches(getCharacter().getStats().getMiscStats().
 		 * getPassword())) { out("Wrong password!"); return; }
-		 * 
+		 *
 		 * String newPassword = getConnection().getLine();
-		 * 
+		 *
 		 * String confirmPassword = getConnection().getLine();
-		 * 
+		 *
 		 * if (!newPassword.matches(confirmPassword)) { out("Passwords do not
 		 * match!"); return; }
-		 * 
+		 *
 		 * getCharacter().getStats().getMiscStats().setPassword(newPassword);
-		 * 
+		 *
 		 */
 
 		mob.out("Password set.");

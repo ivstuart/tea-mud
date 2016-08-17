@@ -8,6 +8,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.*;
 
+import com.ivstuart.tmud.command.CommandProvider;
+import com.ivstuart.tmud.command.misc.ForcedQuit;
+import com.ivstuart.tmud.command.misc.Quit;
 import org.apache.log4j.Logger;
 
 import com.ivstuart.tmud.command.admin.Ban;
@@ -299,5 +302,10 @@ public class World {
 		if (scheduledExecutorService != null) {
 			scheduledExecutorService.shutdown();
 		}
+	}
+
+	public static void kickout(String name) {
+		Mob playerMob =_mobs.get(name.toLowerCase());
+		CommandProvider.getCommand(ForcedQuit.class).execute(playerMob, null);
 	}
 }
