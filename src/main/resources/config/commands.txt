@@ -57,6 +57,9 @@ command.communication.Shout,REST
 command.communication.Tell,REST
 command.communication.WriteOnPaper,REST
 command.communication.Yell,REST
+command.item.bank.Deposit,STAND
+command.item.bank.Withdraw,STAND
+command.item.bank.ListBank,STAND
 command.item.Put,STAND
 command.item.Get,STAND
 command.item.Give,STAND
@@ -114,7 +117,7 @@ command.party.Ungroup,STAND
 
 # Shop commands
 command.item.shop.Buy,STAND
-command.item.shop.List,STAND
+command.item.shop.ListShop,STAND
 command.item.shop.Repair,STAND
 command.item.shop.Resize,STAND
 command.item.shop.Sell,STAND

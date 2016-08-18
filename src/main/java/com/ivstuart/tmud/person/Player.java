@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.ivstuart.tmud.person.carried.Inventory;
 import org.apache.log4j.Logger;
 
 import com.ivstuart.tmud.person.config.ConfigData;
@@ -37,6 +38,8 @@ public class Player implements Serializable, Nameable {
 
 	private transient List<Mob> group;
 
+	private Inventory bank;
+
 	public List<Mob> getGroup() {
 		return group;
 	}
@@ -56,6 +59,7 @@ public class Player implements Serializable, Nameable {
 		playerData = new PlayerData();
 		config = new Config();
 		alias = new HashMap<>();
+		bank = new Inventory();
 	}
 
 	public boolean checkIfLeveled() {
@@ -232,4 +236,11 @@ public class Player implements Serializable, Nameable {
     public Connection getConnection() {
         return connection;
     }
+
+	public Inventory getBank() {
+		if (bank == null) {
+			bank = new Inventory();
+		}
+		return bank;
+	}
 }

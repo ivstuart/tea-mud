@@ -287,4 +287,14 @@ public class Room extends BasicThing implements Msgable {
 		}
 		return null;
     }
+
+    public Mob getBanker() {
+		for (Mob mob : _mobs) {
+			// TODO add a armourer
+			if (mob instanceof Banker) {
+				return (Banker)mob;
+			}
+		}
+		return null;
+    }
 }

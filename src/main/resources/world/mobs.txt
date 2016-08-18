@@ -146,6 +146,7 @@ attackType: punch
 item: wooden-shield-004
 # dice types possible for most fields
 
+class: state.Mob
 id: old-man-006
 name: old man
 alias: old man
@@ -164,3 +165,21 @@ copper: 500
 xp: 200
 state: STANDING
 attackType: fist
+
+class: state.Banker
+id: banker-001
+name: banker
+alias: banker
+short: the banker
+long: A banker snares at you.
+look: The banker is a common banker is and all together unremarkable.
+level: 100
+offensive: 1000
+defensive: 1000
+armour: 50
+hp: 1500
+damage: 1d100+50
+copper: 0
+xp: 20
+state: STANDING
+attackType: punch

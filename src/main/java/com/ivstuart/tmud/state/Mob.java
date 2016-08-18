@@ -644,4 +644,8 @@ public class Mob extends Prop implements Tickable {
         Item item = EntityProvider.createItem(id);
         this.getInventory().add(item);
     }
+
+    public int getCopper() {
+        return copper;
+    }
 }

@@ -2,6 +2,8 @@ package com.ivstuart.tmud.state;
 
 import java.util.List;
 
+import com.ivstuart.tmud.person.carried.Money;
+import com.ivstuart.tmud.person.carried.SomeMoney;
 import org.apache.log4j.Logger;
 
 import com.ivstuart.tmud.common.Equipable;
@@ -36,6 +38,10 @@ public class Corpse extends Item {
 		for (Equipable item : eq) {
 			_inventory.add((Item) item);
 		}
+
+		SomeMoney money = new Money(Money.COPPER, mob_.getCopper());
+
+		_inventory.getPurse().add(money);
 
 	}
 

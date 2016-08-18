@@ -27,6 +27,10 @@ public class EntityProvider {
 			LOGGER.debug("Creating instance of a shop keeper!");
 			newMob = new ShopKeeper(existingMob);
 		}
+		else if (existingMob instanceof Banker) {
+			LOGGER.debug("Creating instance of a Banker!");
+			newMob = new Banker(existingMob);
+		}
 		else {
 			newMob = new Mob(existingMob);
 		}
