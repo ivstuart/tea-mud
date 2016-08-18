@@ -24,33 +24,55 @@ public class Password extends BaseCommand {
 
 		mob.out("Enter curent password:");
 
-//		mob.getPlayer().getConnection().setState(new Readable() {
-//			@Override
-//			public void read(String line) {
-//				// Check if password matches
-//			}
-//		});
+		Readable playing = mob.getPlayer().getConnection().getState();
 
-		/**
-		 * TODO // Save character first String password =
-		 * getConnection().getLine();
-		 *
-		 * if (!password.matches(getCharacter().getStats().getMiscStats().
-		 * getPassword())) { out("Wrong password!"); return; }
-		 *
-		 * String newPassword = getConnection().getLine();
-		 *
-		 * String confirmPassword = getConnection().getLine();
-		 *
-		 * if (!newPassword.matches(confirmPassword)) { out("Passwords do not
-		 * match!"); return; }
-		 *
-		 * getCharacter().getStats().getMiscStats().setPassword(newPassword);
-		 *
-		 */
-
-		mob.out("Password set.");
+		mob.getPlayer().getConnection().setState(new PasswordReadable(mob,playing));
 
 	}
 
+	private class PasswordReadable implements Readable {
+
+		private final Mob mob;
+		private final Readable playing;
+
+
+		public PasswordReadable(Mob mob, Readable playing) {
+			this.mob = mob;
+			this.playing = playing;
+		}
+
+		@Override
+		public void read(String line) {
+
+			// Check if matches.
+
+			if (!mob.getPlayer().getData().isPasswordSame(line)) {
+				mob.out("Your password entered did not match!");
+				mob.getPlayer().getConnection().setState(playing);
+				return;
+			}
+
+			mob.out("Enter your new password.");
+
+			mob.getPlayer().getConnection().setState(new NewPasswordReadable(mob,playing));
+
+		}
+	}
+
+	private class NewPasswordReadable implements Readable {
+		private final Mob mob;
+		private final Readable playing;
+
+		public NewPasswordReadable(Mob mob, Readable playing) {
+			this.mob = mob;
+			this.playing = playing;
+		}
+
+		@Override
+		public void read(String line) {
+
+			mob.getPlayer().getData().setPassword(line);
+			mob.getPlayer().getConnection().setState(playing);
+		}
+	}
 }

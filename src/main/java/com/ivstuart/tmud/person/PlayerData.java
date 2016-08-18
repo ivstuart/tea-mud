@@ -7,6 +7,9 @@
 package com.ivstuart.tmud.person;
 
 import java.io.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 
 import com.ivstuart.tmud.state.Attribute;
 import com.ivstuart.tmud.state.Mob;
@@ -22,7 +25,8 @@ public class PlayerData implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String password;
+	private transient String password;
+	private byte[] passwordDigest;
 
 	private String email;
 
@@ -195,6 +199,26 @@ public class PlayerData implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+		MessageDigest md = null;
+		try {
+			md = MessageDigest.getInstance("SHA-256");
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		md.update(password.getBytes());
+		this.passwordDigest = md.digest();
+	}
+
+	public boolean isPasswordSame(String password) {
+		MessageDigest md = null;
+		try {
+			md = MessageDigest.getInstance("SHA-256");
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		md.update(password.getBytes());
+		byte[] digest = md.digest();
+		return Arrays.equals(digest,passwordDigest);
 	}
 
 	public void setPlayingFor(int playingFor) {

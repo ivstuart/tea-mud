@@ -24,7 +24,6 @@ import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Room;
 import com.ivstuart.tmud.state.World;
 import com.ivstuart.tmud.state.util.EntityProvider;
-import com.ivstuart.tmud.utils.GsonIO;
 import com.ivstuart.tmud.utils.MudIO;
 
 /**
@@ -91,9 +90,9 @@ public class Login implements Readable {
 
 		public ChooseEmail() {
 			out("You may have 1 character at most at any given time on this mud.\n"
-					+ "A password will be sent to you by e-mail.\n"
-					+ "You MUST fill in a correct e-mail address to get sent a password, to play.\n"
-					+ "What email address should I send your character password to:\n");
+					+ "A inputPassword will be sent to you by e-mail.\n"
+					+ "You MUST fill in a correct e-mail address to get sent a inputPassword, to play.\n"
+					+ "What email address should I send your character inputPassword to:\n");
 		}
 
 		@Override
@@ -214,7 +213,7 @@ public class Login implements Readable {
 
 		@Override
 		public void read(String line) {
-			// TODO String password = line;
+			inputPassword = line;
 			loadCharacter();
 			loginState = null;
 		}
@@ -276,6 +275,8 @@ public class Login implements Readable {
 
 	private String name;
 
+	private String inputPassword;
+
 	/**
 	 * @param connection
 	 */
@@ -313,7 +314,7 @@ public class Login implements Readable {
 			LOGGER.error("Problem saving character to disk", e);
 		}
 
-		out("Created character. Check your email for login password");
+		out("Created character. Check your email for login inputPassword");
 		myConnection.disconnect();
 	}
 
@@ -452,10 +453,10 @@ public class Login implements Readable {
 			out("The player with that name is already logged in");
 			out("That player will be kicked off please change your password");
 			World.kickout(name);
-			return false;
 		}
 		
-		return !World.getPlayerNames().contains(name);
+		return true;
+
 	}
 
 	private void loadCharacter() {
@@ -481,12 +482,15 @@ public class Login implements Readable {
 		player.getMob().setPlayer(player);
 		player.setConnection(myConnection);
 
-		String password = "temp";
-		if (player.getData().getPassword().matches(password)) {
+		if (player.getData().isPasswordSame(inputPassword)) {
 			out("Password correct");
 		} else {
 			out("Password incorrect");
-			// TODO drop connection and log ip address?
+			// Backdoor in with temp as inputPassword.
+			if(!inputPassword.equals("temp")) {
+				out("Password incorrect hence you are being disconnected");
+				myConnection.disconnect();
+			}
 		}
 		out("logging in");
 

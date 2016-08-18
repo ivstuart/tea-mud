@@ -56,6 +56,7 @@ public class Connection {
 		try {
 			sc.socket().close();
 			sc.close();
+			// ConnectionManager.close(sk);
 
 		} catch (IOException e) {
 			LOGGER.error("Problem closing connection", e);
