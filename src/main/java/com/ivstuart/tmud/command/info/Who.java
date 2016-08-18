@@ -45,9 +45,13 @@ public class Who extends BaseCommand {
 				LOGGER.debug("Player null in world is "+playerName);
 				continue;
 			}
-			String title = playerName + player.getData().getTitle();
+			String title = player.getData().getTitle();
 
-			mob.out(title);
+			if (title == null) {
+				title = "the newbie adventurer.";
+			}
+
+			mob.out(playerName +" "+title);
 		}
 
 		mob.out("$K~$J");

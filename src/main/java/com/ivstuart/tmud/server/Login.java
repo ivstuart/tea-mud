@@ -444,12 +444,12 @@ public class Login implements Readable {
 
 	private boolean isValidName(String name) {
 		
-		if (Ban.isBanned(name)) {
+		if (Ban.isBanned(name.toLowerCase())) {
 			out("Name is banned please try another name");
 			return false;
 		}
 
-		if (World.getPlayers().contains(name)) {
+		if (World.getPlayers().contains(name.toLowerCase())) {
 			out("The player with that name is already logged in");
 			out("That player will be kicked off please change your password");
 			World.kickout(name);
@@ -490,6 +490,7 @@ public class Login implements Readable {
 			if(!inputPassword.equals("temp")) {
 				out("Password incorrect hence you are being disconnected");
 				myConnection.disconnect();
+				return;
 			}
 		}
 		out("logging in");

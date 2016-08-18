@@ -51,7 +51,14 @@ public class CommandProvider {
 
 		String name = aclass.getSimpleName().toLowerCase();
 
-		return commandHash.get(name);
+		Command command = commandHash.get(name);
+
+//		if (command == null) {
+//			LOGGER.warn("Null command hence creating it on the fly");
+//			command = create(aclass.getCanonicalName());
+//		}
+
+		return command;
 	}
 
 	/**

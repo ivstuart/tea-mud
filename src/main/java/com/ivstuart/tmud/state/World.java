@@ -30,8 +30,7 @@ public class World {
 	private static Map<String, Prop> _props;
 	private static Map<String, BaseSkill> skills;
 	private static Map<String, Spell> spells;
-	private static Set<String> _players;
-	private static Set<String> _playerNames;
+	private static Set<String> _players; // Names in lowercase.
 
 	private static World INSTANCE = new World();
 
@@ -83,7 +82,7 @@ public class World {
 			throw new MudException("Mob is not a player");
 		}
 
-		_players.add(character.getName());
+		_players.add(character.getName().toLowerCase());
 		// TODO review this next line of code.
 		_mobs.put(character.getId().toLowerCase(), character);
 
@@ -135,10 +134,6 @@ public class World {
 		return null;
 	}
 
-	public static Set<String> getPlayerNames() {
-		return _playerNames;
-	}
-
 	public static Set<String> getPlayers() {
 		return _players;
 	}
@@ -184,7 +179,6 @@ public class World {
 	public static void removePlayer(Player player) {
 		LOGGER.info("Removing player with id [ " + player.getName() + "]");
 
-		_playerNames.remove(player.getName());
 		_players.remove(player.getName());
 
 	}
@@ -250,8 +244,6 @@ public class World {
 		skills = new HashMap<String, BaseSkill>();
 		spells = new HashMap<String, Spell>();
 		_players = new HashSet<String>();
-		_playerNames = new HashSet<String>(); // Reserved name for character
-												// creation
 		_props = new HashMap<String, Prop>();
 
 		// Initialise banned list of player names if it exists.
@@ -290,7 +282,7 @@ public class World {
     }
 
 	public static void out(String msg, boolean good) {
-		for (String player : _playerNames) {
+		for (String player : _players) {
 			Mob aPlayer = _mobs.get(player.toLowerCase());
 			if (aPlayer.isGood() == good) {
 				aPlayer.out(msg);
@@ -306,6 +298,6 @@ public class World {
 
 	public static void kickout(String name) {
 		Mob playerMob =_mobs.get(name.toLowerCase());
-		CommandProvider.getCommand(ForcedQuit.class).execute(playerMob, null);
+		new ForcedQuit().execute(playerMob, null);
 	}
 }

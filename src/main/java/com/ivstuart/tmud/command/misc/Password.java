@@ -8,6 +8,7 @@ package com.ivstuart.tmud.command.misc;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.command.CommandProvider;
 import com.ivstuart.tmud.server.Readable;
 import com.ivstuart.tmud.state.Mob;
 
@@ -73,6 +74,12 @@ public class Password extends BaseCommand {
 
 			mob.getPlayer().getData().setPassword(line);
 			mob.getPlayer().getConnection().setState(playing);
+
+			mob.out("Your password has been updated successfully.");
+
+			// SavePlayer
+			Command command = new SavePlayer();
+			command.execute(mob, null);
 		}
 	}
 }

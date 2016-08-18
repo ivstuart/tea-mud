@@ -10,6 +10,8 @@ import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.World;
+import org.apache.log4j.Logger;
 
 /**
  * @author stuarti
@@ -19,17 +21,20 @@ import com.ivstuart.tmud.state.Mob;
  */
 public class Title extends BaseCommand {
 
+	private static final Logger LOGGER = Logger.getLogger(Title.class);
+
 	@Override
 	public void execute(Mob mob, String input) {
-		// TODO Auto-generated method stub
 
-	}
+		Player player = mob.getPlayer();
 
-	public void execute(Player mob, String input) {
+		if (player == null) {
+			LOGGER.warn("A none player called Who command");
+			return;
+		}
 
-		// mob.getStats().getMiscStats().setTitle(input);
-		mob.getData().setTitle(input);
-		mob.out("Setting your title to " + input);
+		player.getData().setTitle(input);
+		player.out("Setting your title to " + input);
 	}
 
 }
