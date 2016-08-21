@@ -208,5 +208,11 @@ exits: north->Z1-007-001 west->Z1-006-002 east->Z1-006-000
 class: state.RoomBuilder
 id: Z1-006-001
 roomPrefix: Z1-
-path: 4x4
+path: seesssenwwws
+execute: notused
+
+class: state.RoomBuilder
+id: Z1-:2:-1:0
+roomPrefix: Z1-
+path: n4x5n4n2x2
 execute: notused

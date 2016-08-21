@@ -37,6 +37,9 @@ public class RoomBuilder {
         this.roomPrefix = roomPrefix;
     }
 
+    /**
+     * DONE 3n3x5 => 3n[3n5e3s5w]
+     */
     public void parseX() {
         StringBuilder sb = new StringBuilder();
         StringBuilder sbNumber = new StringBuilder();
@@ -100,28 +103,24 @@ public class RoomBuilder {
         // DONE eeeennnnwwwwssss
         // 6ne6se4swneesw6nessee4nw23s
 
-        // TODO 3n3x5 => 3n[3n5e3s5w]
+        // DONE 3n3x5 => 3n[3n5e3s5w]
         // 4n4e4s4w fill loop written [4n4e4s4w]
         boolean fillOn = false;
-        roomIdStartFill = new RoomIdentifer();
-        roomIdEndFill = new RoomIdentifer();
-        roomIdStartFill.setRoomPrefix(roomPrefix);
-        roomIdEndFill.setRoomPrefix(roomPrefix);
         int number = 1;
         StringBuilder sbNumber = new StringBuilder();
         for (char aChar : path.toCharArray()) {
 
             if (aChar == '[') {
                 fillOn = true;
+                roomIdStartFill = new RoomIdentifer(roomId.getX(),roomId.getY());
+                roomIdEndFill = new RoomIdentifer(roomId.getX(),roomId.getY());
+                roomIdStartFill.setRoomPrefix(roomPrefix);
+                roomIdEndFill.setRoomPrefix(roomPrefix);
                 continue;
             }
             if (aChar == ']' && fillOn) {
                 doFillArea(startRoom);
                 fillOn = false;
-                roomIdStartFill = new RoomIdentifer();
-                roomIdEndFill = new RoomIdentifer();
-                roomIdStartFill.setRoomPrefix(roomPrefix);
-                roomIdEndFill.setRoomPrefix(roomPrefix);
                 continue;
             }
             if (Character.isDigit(aChar)) {
