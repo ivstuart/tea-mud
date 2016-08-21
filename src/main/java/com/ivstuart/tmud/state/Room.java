@@ -35,6 +35,10 @@ public class Room extends BasicThing implements Msgable {
 	private SomeMoney money;
 
 	public Room() {
+		initRoom();
+	}
+
+	private void initRoom() {
 		_props = new MudArrayList<Prop>();
 		_exits = new MudArrayList<Exit>();
 		_mobs = new MudArrayList<Mob>(true); // matching part of name
@@ -42,7 +46,17 @@ public class Room extends BasicThing implements Msgable {
 		tracks = new ArrayList<Track>(0);
 	}
 
+	public Room(BasicThing basicThing) {
+		super(basicThing);
+		initRoom();
+	}
+
 	public void add(Exit exit_) {
+		String exitString = exit_.getId();
+		if (_exits.get(exitString) != null ) {
+			LOGGER.warn("Adding a duplicate exit to a room !");
+			return;
+		}
 		_exits.add(exit_);
 	}
 

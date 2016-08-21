@@ -1,5 +1,6 @@
 include: teachers.txt
 
+
 class: state.Mob
 
 id: snake-001

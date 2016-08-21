@@ -73,6 +73,11 @@ public class EnterNoLook extends BaseCommand {
 
 		Room destination = exit.getDestinationRoom();
 
+		if (destination == null) {
+			mob.out("The exit in direction " + exit.getId()+" is not built yet!");
+			return;
+		}
+
 		MoveManager.move(mob,room,destination,exit);
 
 		Track track = new Track();

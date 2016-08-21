@@ -10,3 +10,7 @@ include: zone.txt
 # just added spells in
 include: spells.txt
 include: skills.txt
+
+# Newbie zone levels 1-10 recommended
+include: zone-aviary/mobs-aviary.txt
+include: zone-aviary/rooms-aviary.txt

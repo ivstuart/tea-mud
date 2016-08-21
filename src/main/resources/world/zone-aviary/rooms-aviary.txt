@@ -1,0 +1,212 @@
+class: state.Room
+
+id: Z1-001-001
+brief: The Entrance to an Aviary
+type: Chamber
+look: You are in the entrance to an aviary. The chatter of birds can be heard
+look: off to the north ahead of you.
+exits: north->Z1-002-001 south->R-003-001
+
+id: Z1-002-001
+brief: Inside the Entrance cordoor Aviary
+type: Chamber
+look: You are in the entrance to an aviary. The chatter of birds can be heard
+look: off to the north ahead of you.
+exits: south->Z1-001-001 west->Z1-002-002
+
+id: Z1-002-002
+brief: Inside the Entrance corridor Aviary
+type: Chamber
+look: You are in the entrance to an aviary. The chatter of birds can be heard
+look: off to the west ahead of you. The walls have a reddish stone tint to them.
+exits: west->Z1-002-003 east->Z1-002-001
+
+id: Z1-002-003
+brief: Inside the Entrance corridor Aviary
+type: Chamber
+look: You are in the entrance to an aviary. The chatter of birds can be heard
+look: off to the west ahead of you.
+exits: west->Z1-002-004 east->Z1-002-002
+
+id: Z1-002-004
+brief: Inside the Entrance corridor Aviary
+type: Chamber
+look: You are in the entrance to an aviary. The chatter of birds can be heard
+look: off to the west ahead of you.
+exits: west->Z1-002-005 east->Z1-002-003
+
+id: Z1-002-005
+brief: Inside the Entrance corridor Aviary
+type: Chamber
+look: You are in the entrance to an aviary. The chatter of birds can be heard
+look: off to the west ahead of you.
+exits: west->Z1-002-006 east->Z1-002-004
+
+id: Z1-002-006
+brief: Inside the Entrance corridor Aviary
+type: Chamber
+look: You are in the entrance to an aviary. The chatter of birds can be heard
+look: off to the north ahead of you.
+exits: north->Z1-003-006 east->Z1-002-005
+
+id: Z1-003-006
+brief: Inside the Entrance corridor Aviary
+type: Chamber
+look: You are in the entrance to an aviary. The chatter of birds can be heard
+look: off to the north ahead of you.
+exits: north->Z1-004-006 south->Z1-002-006
+
+id: Z1-004-006
+brief: Inside the Entrance corridor Aviary
+type: Chamber
+look: You are in the entrance to an aviary. The chatter of birds can be heard
+look: off to the east ahead of you.
+exits: east->Z1-004-005 south->Z1-003-006
+
+id: Z1-004-005
+brief: Inside the Entrance corridor Aviary
+type: Chamber
+look: You are in the entrance to an aviary. The chatter of birds can be heard
+look: off to the east ahead of you.
+exits: east->Z1-004-004 west->Z1-004-006
+
+id: Z1-004-004
+brief: Inside the Entrance corridor Aviary
+type: Chamber
+look: You are in the entrance to an aviary. The chatter of birds can be heard
+look: off to the east ahead of you.
+exits: east->Z1-004-003 west->Z1-004-005
+
+id: Z1-004-003
+brief: Inside the Entrance corridor Aviary
+type: Chamber
+look: You are in the entrance to an aviary. The chatter of birds can be heard
+look: off to the north ahead of you.
+exits: north->Z1-005-003 east->Z1-004-002 west->Z1-004-004
+
+id: Z1-004-002
+brief: Inside the Aviary
+type: Aviary
+look: You are in the aviary the chatter of birds can be heard all around.
+exits: west->Z1-004-003
+
+id: Z1-005-003
+brief: Inside the Aviary
+type: Aviary
+look: You are in the aviary the chatter of birds can be heard all around.
+exits: north->Z1-006-003 south->Z1-004-003
+
+id: Z1-006-003
+brief: Inside the Aviary
+type: Aviary
+look: You are in the aviary the chatter of birds can be heard all around.
+exits: north->Z1-007-003 south->Z1-005-003 east->Z1-006-002
+
+id: Z1-007-003
+brief: Inside the Aviary
+type: Aviary
+look: You are in the aviary the chatter of birds can be heard all around.
+exits: north->Z1-008-003 south->Z1-006-003 east->Z1-007-002
+
+id: Z1-008-003
+brief: Inside the Aviary
+type: Aviary
+look: You are in the aviary the chatter of birds can be heard all around.
+exits: west->Z1-008-004 south->Z1-007-003 east->Z1-008-002
+
+id: Z1-008-004
+brief: Inside the Aviary
+type: Aviary
+look: You are in the aviary the chatter of birds can be heard all around.
+exits: west->Z1-008-005 east->Z1-008-003
+
+id: Z1-008-005
+brief: Inside the Aviary
+type: Aviary
+look: You are in the aviary the chatter of birds can be heard all around.
+exits: west->Z1-008-006 east->Z1-008-004
+
+id: Z1-008-006
+brief: Inside the Aviary
+type: Aviary
+look: You are in the aviary the chatter of birds can be heard all around.
+exits: west->Z1-008-007 east->Z1-008-005
+
+id: Z1-008-007
+brief: Inside the Aviary
+type: Aviary
+look: You are in the aviary the chatter of birds can be heard all around.
+exits: north->Z1-009-007 south->Z1-007-007 east->Z1-008-006
+
+id: Z1-009-007
+brief: Inside the Aviary
+type: Aviary
+look: You are in the aviary the chatter of birds can be heard all around.
+exits: south->Z1-008-007
+
+id: Z1-007-007
+brief: Inside the Aviary
+type: Aviary
+look: You are in the aviary the chatter of birds can be heard all around.
+exits: north->Z1-008-007 west->Z1-007-008
+
+id: Z1-007-008
+brief: Inside the Aviary
+type: Aviary
+look: You are in the aviary the chatter of birds can be heard all around.
+exits: west->Z1-007-009 east->Z1-007-007
+
+id: Z1-007-009
+brief: Inside the Aviary
+type: Aviary
+look: You are in the aviary the chatter of birds can be heard all around.
+exits: south->Z1-006-009 east->Z1-007-008
+
+id: Z1-006-009
+brief: Inside the Aviary
+type: Aviary
+look: You are in the aviary the chatter of birds can be heard all around.
+exits: north->Z1-007-009 south->Z1-005-009 west->Z1-006-010
+
+id: Z1-006-010
+brief: Inside the Aviary
+type: Aviary
+look: You are in the aviary the chatter of birds can be heard all around.
+exits: east->Z1-006-009
+
+id: Z1-005-009
+brief: Inside the Aviary
+type: Aviary
+look: You are in the aviary the chatter of birds can be heard all around.
+exits: north->Z1-006-009
+
+id: Z1-008-002
+brief: Inside the Aviary
+type: Aviary
+look: You are in the aviary the chatter of birds can be heard all around.
+exits: west->Z1-008-003 south->Z1-007-002 east->Z1-008-001
+
+id: Z1-007-002
+brief: Inside the Aviary
+type: Aviary
+look: You are in the aviary the chatter of birds can be heard all around.
+exits: north->Z1-008-002 west->Z1-007-003 south->Z1-006-002 east->Z1-007-001
+
+id: Z1-006-002
+brief: Inside the Aviary
+type: Aviary
+look: You are in the aviary the chatter of birds can be heard all around.
+exits: north->Z1-007-002 west->Z1-006-003 east->Z1-006-001
+
+id: Z1-006-001
+brief: Inside the Aviary
+type: Aviary
+look: You are in the aviary the chatter of birds can be heard all around.
+look: To the south is an area built using the path command from the RoomBuilder
+exits: north->Z1-007-001 west->Z1-006-002 east->Z1-006-000
+
+class: state.RoomBuilder
+id: Z1-006-001
+roomPrefix: Z1-
+path: 4x4
+execute: notused

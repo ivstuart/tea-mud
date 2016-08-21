@@ -142,6 +142,12 @@ public class StateReader {
 
 			if (method == null) {
 				method = getMethod(obj, methodName, int.class);
+
+				if(method == null) {
+					LOGGER.warn("Class does not have a setter method with name "+methodName+" for param int or string");
+					return methodName;
+				}
+
 				invokeParams = Integer.valueOf(args);
 			}
 
@@ -213,6 +219,7 @@ public class StateReader {
 			}
 
 			if (NEW_OBJECT_ID.equals(tag)) {
+				// TODO check if really new world id if not pull object from World. World.getObject(args);
 				obj = createOrAddNewObject(obj, currentClass, args);
 			}
 

@@ -87,7 +87,11 @@ public class RoomManager {
 
 		Exit exitToFrom = new Exit(reverseDirection(direction), from.getId());
 
-		World.getRoom(toRoomId).add(exitToFrom);
+		Room room = World.getRoom(toRoomId);
+
+		if (room != null ) {
+			room.add(exitToFrom);
+		}
 
 	}
 

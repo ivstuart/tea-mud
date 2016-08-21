@@ -73,7 +73,7 @@ look: charted for the king to sit upon his floor and gaze at his conquests. The
 look: mosaic was painted by the finest artisans of the world in pain-staking
 look: detail. Perhaps spending some time reviewing this mosaic will be beneficial
 look: in gaining an understanding of the lay of the land. 
-exits: south->R-003-002 west->R-002-001
+exits: north->Z1-001-001 south->R-003-002 west->R-002-001
 item: bag-001
 mob: old-man-006
 

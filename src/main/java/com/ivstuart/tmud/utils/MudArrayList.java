@@ -61,7 +61,7 @@ public class MudArrayList<E> extends ArrayList<E> {
 
 	public E get(String value) {
 
-		LOGGER.info("Getting from list for:" + value);
+		LOGGER.debug("Getting from list for:" + value);
 
 		int index = this.stringIndexOf(value);
 

@@ -1,0 +1,306 @@
+class: state.Mob
+id: hummingbird-001
+name: hummingbird
+alias: humming bird
+short: the colourful humming bird flies here
+long: the colourful humming bird flies here
+align: 0
+level: 5
+offensive: 70   
+defensive: 30   
+armour: 10
+hp: 50
+damage: 2d4
+copper: 25
+xp: 20
+state: FLYING
+attackType: claw beak
+
+id: owl-001
+name: owl
+alias: owl bird
+short: the wise old owl flies here
+long: the wise old owl flies here
+align: 0
+level: 5
+offensive: 50
+defensive: 30
+armour: 10
+hp: 50
+damage: 2d4
+copper: 25
+xp: 20
+state: FLYING
+attackType: claw beak
+
+id: finch-001
+name: finch
+alias: finch bird
+short: the finch flies here
+long: the finch flies here
+align: 0
+level: 5
+offensive: 50
+defensive: 30
+armour: 10
+hp: 50
+damage: 2d4
+copper: 25
+xp: 20
+state: FLYING
+attackType: claw beak
+
+id: sparrow-001
+name: sparrow
+alias: sparrow bird
+short: the sparrow flies here
+long: the sparrow flies here
+align: 0
+level: 5
+offensive: 50
+defensive: 30
+armour: 10
+hp: 30
+damage: 2d4
+copper: 25
+xp: 20
+state: FLYING
+attackType: claw beak
+
+id: crane-001
+name: crane
+alias: crane bird
+short: the crane flies here
+long: the crane flies here
+align: 0
+level: 5
+offensive: 50
+defensive: 30
+armour: 10
+hp: 30
+damage: 2d4
+copper: 25
+xp: 20
+state: FLYING
+attackType: claw beak
+
+id: cuckoo-001
+name: cuckoo
+alias: cuckoo bird
+short: the cuckoo flies here
+long: the cuckoo flies here
+align: 0
+level: 5
+offensive: 50
+defensive: 30
+armour: 10
+hp: 30
+damage: 2d4
+copper: 25
+xp: 20
+state: FLYING
+attackType: claw beak
+
+id: kingfisher-001
+name: kingfisher
+alias: kingfisher bird
+short: the kingfisher flies here
+long: the kingfisher flies here
+align: 0
+level: 5
+offensive: 50
+defensive: 30
+armour: 10
+hp: 30
+damage: 2d4
+copper: 25
+xp: 20
+state: FLYING
+attackType: claw beak
+
+id: toucan-001
+name: toucan
+alias: toucan bird
+short: the toucan flies here
+long: the toucan flies here
+align: 0
+level: 5
+offensive: 50
+defensive: 30
+armour: 10
+hp: 30
+damage: 2d4
+copper: 25
+xp: 20
+state: FLYING
+attackType: claw beak
+
+id: bird-of-paradise-001
+name: bird-of-paradise
+alias: paradise bird
+short: the bird of paradise flies here
+long: the bird of paradise flies here
+align: 0
+level: 5
+offensive: 50
+defensive: 30
+armour: 10
+hp: 30
+damage: 2d4
+copper: 25
+xp: 20
+state: FLYING
+attackType: claw beak
+
+id: flamingo-001
+name: flamingo
+alias: flamingo bird
+short: the flamingo flies here
+long: the flamingo flies here
+align: 0
+level: 5
+offensive: 50
+defensive: 30
+armour: 10
+hp: 30
+damage: 2d4
+copper: 25
+xp: 20
+state: FLYING
+attackType: claw beak
+
+id: heron-001
+name: heron
+alias: heron bird
+short: the heron flies here
+long: the heron flies here
+align: 0
+level: 5
+offensive: 50
+defensive: 30
+armour: 10
+hp: 30
+damage: 2d4
+copper: 25
+xp: 20
+state: FLYING
+attackType: claw beak
+
+id: swallow-001
+name: swallow
+alias: swallow bird
+short: the swallow flies here
+long: the swallow flies here
+align: 0
+level: 5
+offensive: 50
+defensive: 30
+armour: 10
+hp: 30
+damage: 2d4
+copper: 25
+xp: 20
+state: FLYING
+attackType: claw beak
+
+id: stork-001
+name: stork
+alias: stork bird
+short: the stork flies here
+long: the stork flies here
+align: 0
+level: 5
+offensive: 50
+defensive: 30
+armour: 10
+hp: 30
+damage: 2d4
+copper: 25
+xp: 20
+state: FLYING
+attackType: claw beak
+
+id: albatros-001
+name: albatros
+alias: albatros bird
+short: the albatros flies here
+long: the albatros flies here
+align: 0
+level: 5
+offensive: 50
+defensive: 30
+armour: 10
+hp: 30
+damage: 2d4
+copper: 25
+xp: 20
+state: FLYING
+attackType: claw beak
+
+id: woodpecker-001
+name: woodpecker
+alias: woodpecker bird
+short: the woodpecker flies here
+long: the woodpecker flies here
+align: 0
+level: 5
+offensive: 50
+defensive: 30
+armour: 10
+hp: 30
+damage: 2d4
+copper: 25
+xp: 20
+state: FLYING
+attackType: claw beak
+
+id: cormorant-001
+name: cormorant
+alias: cormorant bird
+short: the cormorant flies here
+long: the cormorant flies here
+align: 0
+level: 5
+offensive: 50
+defensive: 30
+armour: 10
+hp: 30
+damage: 2d4
+copper: 25
+xp: 20
+state: FLYING
+attackType: claw beak
+
+id: grouse-001
+name: grouse
+alias: grouse bird
+short: the grouse flies here
+long: the grouse flies here
+align: 0
+level: 5
+offensive: 50
+defensive: 30
+armour: 10
+hp: 30
+damage: 2d4
+copper: 25
+xp: 20
+state: FLYING
+attackType: claw beak
+
+id: vulture-001
+name: vulture
+alias: vulture bird
+short: the vulture flies here
+long: the vulture flies here
+align: 0
+level: 5
+offensive: 50
+defensive: 30
+armour: 10
+hp: 300
+damage: 2d4
+copper: 25
+xp: 20
+state: FLYING
+attackType: claw beak

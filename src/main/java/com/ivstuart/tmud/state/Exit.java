@@ -1,13 +1,13 @@
 package com.ivstuart.tmud.state;
 
+import com.ivstuart.tmud.common.ExitEnum;
+
 public class Exit extends BasicThing {
 
 	private static final long serialVersionUID = 520626372370843140L;
 	private String destinationRoomId;
 	private transient Room destinationRoom; // optimization
 	private Door door;
-	
-	private String[] standardExits = {"north","south","east","west","up","down"};
 	private boolean isSpecial;
 
 	public Exit() {
@@ -35,6 +35,10 @@ public class Exit extends BasicThing {
 	}
 
 	public boolean isGuarded() {
+
+		if (getDestinationRoom() == null) {
+			return false;
+		}
 
 		for (Mob mob : getDestinationRoom().getMobs()) {
 			if (mob.isGuarding(this.getId())) {
@@ -80,11 +84,12 @@ public class Exit extends BasicThing {
 		return isSpecial;
 	}
 
-	public boolean isSpecial(String id) {
-		for (String name : standardExits) {
-			if (id.equals(name)) {
+	public boolean isSpecial(String name) {
+		for (ExitEnum exit : ExitEnum.values()) {
+			if (exit.getDesc().equals(name)) {
 				return false;
 			}
+
 		}
 		return true;
 	}
