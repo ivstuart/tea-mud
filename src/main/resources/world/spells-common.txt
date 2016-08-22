@@ -33,7 +33,7 @@ id: word of recall
 level: 10
 cost: 15
 damage: 0
-target: SINGLE
+target: SELF
 speed: 5
 mana: COMMON
 spellEffect: RECALL

@@ -8,7 +8,9 @@ package com.ivstuart.tmud.command.misc;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.server.Playing;
 import com.ivstuart.tmud.state.Mob;
+import org.apache.log4j.Logger;
 
 /**
  * @author stuarti
@@ -18,10 +20,13 @@ import com.ivstuart.tmud.state.Mob;
  */
 public class NullCommand extends BaseCommand {
 
+	private static final Logger LOGGER = Logger.getLogger(NullCommand.class);
+
 	@Override
 	public void execute(Mob mob, String input) {
-		// TODO Auto-generated method stub
 		mob.out("?");
+		LOGGER.debug("NullCommand with input :"+input);
+
 	}
 
 }

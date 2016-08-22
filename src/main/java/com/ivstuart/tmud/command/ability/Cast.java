@@ -55,6 +55,11 @@ public class Cast extends BaseCommand {
         Ability spellAbility = mob_.getLearned().getAbility(concatWords);
 
         if (spellAbility == null || spellAbility.isNull()) {
+            spellAbility = mob_.getLearned().getAbility(input_);
+            concatWords = input_;
+        }
+
+        if (spellAbility == null || spellAbility.isNull()) {
             mob_.out("You have no knowledge of spell " + input_);
             return;
         }
@@ -67,7 +72,7 @@ public class Cast extends BaseCommand {
             return;
         }
 
-        String target = getLastWord(input_,concatWords.length(),"me");
+        String target = getLastWord(input_, concatWords.length(), null);
 
         // check you have mana and a casting level which is required.
         LOGGER.debug("Spell mana type [" + spell.getManaType() + "]");
@@ -94,18 +99,27 @@ public class Cast extends BaseCommand {
         // TODO work out a way to support target value of
         /* me, self, all, good, evil, etc.. */
 
-        if (checkTargetManySpell(mob_, target, spellAbility, spell, mana)) return;
+        Mob targetMob = null;
 
-        if (checkTargetItemSpell(mob_, target, spellAbility, spell, mana)) return;
+        if (target != null) {
+            if (checkTargetManySpell(mob_, target, spellAbility, spell, mana)) return;
 
-        Mob targetMob = mob_.getRoom().getMob(target);
+            if (checkTargetItemSpell(mob_, target, spellAbility, spell, mana)) return;
+
+            targetMob = mob_.getRoom().getMob(target);
+
+        }
+
+        // When fighting can target attacker with damage spell with no target set
+        if (!spell.getSpellEffect().isPositiveEffect() && mob_.getFight().isFighting()) {
+            if (targetMob == null) {
+                LOGGER.debug("Damage spell so targetting current melee target");
+                targetMob = mob_.getFight().getTarget();
+            }
+        }
 
         if (targetMob == null) {
-            // TODO spells need to default targets depending on if they do damage or not.
-            Mob fightTarget = mob_.getFight().getTarget();
-            if (fightTarget != null) {
-                targetMob = fightTarget;
-            } else if (targettingSelf(target)) {
+            if (targettingSelf(target)) {
                 targetMob = mob_;
             } else {
                 if (spell.isAnyTarget()) {
@@ -144,7 +158,6 @@ public class Cast extends BaseCommand {
     }
 
 
-
     private boolean checkTargetSelf(Mob mob_, Spell spell, Mob targetMob) {
         if (spell.getTarget() != null && spell.getTarget().indexOf("SELF") > -1) {
             if (targetMob != mob_) {
@@ -167,7 +180,7 @@ public class Cast extends BaseCommand {
 
             if (item == null) {
                 // TODO decide if props still makes sense to have - danagerous cast.
-                item = (Item)mob_.getRoom().getProps().get(target);
+                item = (Item) mob_.getRoom().getProps().get(target);
                 if (item == null) {
                     // TODO get Item from the World for locate object spell
                     // World.getItem(target);

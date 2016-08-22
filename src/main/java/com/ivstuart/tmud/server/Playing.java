@@ -48,6 +48,8 @@ public class Playing implements Readable {
 		// line = line.replaceAll(regex, replacement);
 		line = player.applyAlias(line);
 
+		LOGGER.debug("Line after alias is: "+line);
+
 		if (player.getSnooper() != null) {
 			player.getSnooper().out("You snoop:"+line);
 		}
