@@ -7,7 +7,6 @@
 package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Exit;
 import com.ivstuart.tmud.state.Item;
@@ -76,7 +75,7 @@ public class Hide extends BaseCommand {
 		// Try object on ground first
 		// then exit
 
-		Item item = mob.getRoom().getItems().get(input);
+		Item item = mob.getRoom().getInventory().get(input);
 
 		if (item != null) {
 			item.setHidden(true);

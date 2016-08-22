@@ -5,8 +5,8 @@ import static com.ivstuart.tmud.constants.RoomEnums.RoomFlag.DARK;
 import java.util.List;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.common.Msg;
+import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.state.Exit;
 import com.ivstuart.tmud.state.GuardMob;
 import com.ivstuart.tmud.state.Item;
@@ -131,7 +131,14 @@ public class Look extends BaseCommand {
 	}
 
 	private void showItems(Mob mob) {
-		MudArrayList<Item> list = mob.getRoom().getItems();
+
+		SomeMoney sm = mob.getRoom().getInventory().getPurse();
+
+		if (sm != null) {
+			mob.out(sm.toString());
+		}
+
+		MudArrayList<Item> list = mob.getRoom().getInventory().getItems();
 
 		if (list.isEmpty()) {
 			return;

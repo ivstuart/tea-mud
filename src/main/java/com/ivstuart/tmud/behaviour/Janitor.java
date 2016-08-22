@@ -2,9 +2,7 @@ package com.ivstuart.tmud.behaviour;
 
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.state.Item;
-import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Room;
-import com.ivstuart.tmud.state.WorldTime;
 import org.apache.log4j.Logger;
 
 import java.util.List;
@@ -38,7 +36,7 @@ public class Janitor extends BaseBehaviour {
             return;
         }
 
-        List<Item> items = room.getItems();
+        List<Item> items = room.getInventory().getItems();
 
         if (items == null || items.isEmpty()) {
             LOGGER.debug("Nothing to clean up");

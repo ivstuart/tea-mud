@@ -11,7 +11,6 @@ import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.state.*;
 import org.apache.log4j.Logger;
 
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.fighting.action.BasicSpell;
 import com.ivstuart.tmud.fighting.action.FightAction;
 import com.ivstuart.tmud.person.statistics.MobMana;
@@ -164,7 +163,7 @@ public class Cast extends BaseCommand {
     // check world
     private boolean checkTargetItemSpell(Mob mob_, String target, Ability spellAbility, Spell spell, MobMana mana) {
         if (spell.getTarget() != null && spell.getTarget().indexOf("ITEM") > -1) {
-            Item item = mob_.getRoom().getItems().get(target);
+            Item item = mob_.getRoom().getInventory().get(target);
 
             if (item == null) {
                 // TODO decide if props still makes sense to have - danagerous cast.

@@ -8,6 +8,7 @@ package com.ivstuart.tmud.command.item;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Torch;
@@ -26,6 +27,14 @@ public class Drop extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {
+
+		SomeMoney sm = mob.getInventory().removeCoins(input);
+
+		if (sm != null) {
+			mob.out("You drop some coins  " + sm);
+			mob.getRoom().getInventory().add(sm);
+			return;
+		}
 
 		Item item = mob.getInventory().remove(input);
 

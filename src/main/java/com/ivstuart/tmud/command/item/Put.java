@@ -7,9 +7,6 @@
 package com.ivstuart.tmud.command.item;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
-import com.ivstuart.tmud.person.carried.Money;
-import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.state.Bag;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
@@ -35,7 +32,7 @@ public class Put extends BaseCommand {
 		Item bag = mob.getInventory().get(bagString);
 
 		if (bag == null) {
-			bag = mob.getRoom().getItems().get(bagString);
+			bag = mob.getRoom().getInventory().get(bagString);
 		}
 
 		if (bag == null) {

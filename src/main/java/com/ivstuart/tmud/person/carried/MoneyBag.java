@@ -158,7 +158,7 @@ public class MoneyBag implements SomeMoney {
 		StringBuilder sb = new StringBuilder();
 
 		for (SomeMoney money : list) {
-			sb.append(money.toString()).append("\n");
+			sb.append(money.toString()).append(" ");
 		}
 
 		return sb.toString();

@@ -7,7 +7,6 @@
 package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Exit;
 import com.ivstuart.tmud.state.Item;
@@ -73,7 +72,7 @@ public class Search extends BaseCommand {
 
 	public void searchRoomForHiddenItems(Mob mob) {
 
-		for (Item item : mob.getRoom().getItems()) {
+		for (Item item : mob.getRoom().getInventory().getItems()) {
 			if (item.isHidden()) {
 				mob.out("You found something!");
 				searchItem(item);

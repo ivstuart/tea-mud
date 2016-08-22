@@ -30,9 +30,7 @@ public class Room extends BasicThing implements Msgable {
 
 	private MudArrayList<Mob> _mobs;
 
-	private MudArrayList<Item> _items;
-
-	private SomeMoney money;
+	private Inventory _items;
 
 	public Room() {
 		initRoom();
@@ -42,7 +40,6 @@ public class Room extends BasicThing implements Msgable {
 		_props = new MudArrayList<Prop>();
 		_exits = new MudArrayList<Exit>();
 		_mobs = new MudArrayList<Mob>(true); // matching part of name
-		_items = new MudArrayList<Item>();
 		tracks = new ArrayList<Track>(0);
 	}
 
@@ -61,7 +58,9 @@ public class Room extends BasicThing implements Msgable {
 	}
 
 	public void add(Item item_) {
-		// TODO think about setting a reference for the item for the room to make it easier to locate.
+		if (_items == null) {
+			_items = new Inventory();
+		}
 		_items.add(item_);
 	}
 
@@ -96,7 +95,10 @@ public class Room extends BasicThing implements Msgable {
 		return null;
 	}
 
-	public MudArrayList<Item> getItems() {
+	public Inventory getInventory() {
+		if (_items == null) {
+			_items = new Inventory();
+		}
 		return _items;
 	}
 
@@ -119,7 +121,7 @@ public class Room extends BasicThing implements Msgable {
 	}
 
 	public SomeMoney getMoney() {
-		return money;
+		return _items.getPurse();
 	}
 
 	@Override
@@ -145,14 +147,10 @@ public class Room extends BasicThing implements Msgable {
 	}
 
 	public boolean hasLightSource() {
+
 		// Check room first
-		for (Item item : _items) {
-			if (item instanceof Torch) {
-				Torch torch = (Torch) item;
-				if (torch.isLit()) {
-					return true;
-				}
-			}
+		if (_items.hasLightSource()) {
+			return true;
 		}
 
 		// Check mobs
@@ -182,8 +180,8 @@ public class Room extends BasicThing implements Msgable {
 	}
 
 	public boolean remove(Money cash) {
-		if (money != null) {
-			return money.remove(cash);
+		if (_items.getPurse() != null) {
+			return _items.getPurse().remove(cash);
 		}
 		return false;
 	}
@@ -265,8 +263,7 @@ public class Room extends BasicThing implements Msgable {
 	}
 
     public void addAll(Inventory inventory) {
-    	_items.addAll(inventory.getItems());
-		inventory.clear();
+    	_items.addAll(inventory);
     }
 
     public List<Mob> getFollowers(Mob mob_) {

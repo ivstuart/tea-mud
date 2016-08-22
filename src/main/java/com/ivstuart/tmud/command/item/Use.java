@@ -7,7 +7,6 @@
 package com.ivstuart.tmud.command.item;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.state.Item;
@@ -77,7 +76,8 @@ public class Use extends BaseCommand {
 			return;
 		}
 
-		MudArrayList<Item> items = mob.getRoom().getItems();
+		MudArrayList<Item> items = mob.getRoom().getInventory().getItems();
+
 		if (items == null) {
 			mob.out(input + " is not here to get!");
 			return;

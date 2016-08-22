@@ -168,16 +168,28 @@ public class Inventory implements Serializable {
 		return items.iterator();
 	}
 
-	public List<Item> getItems() { return items;
+	public MudArrayList<Item> getItems() { return items;
 	}
 
 	public boolean hasMoney(Money money) {
 		return this.getPurse().getValue() >= money.getValue();
 	}
 
+	/**
+	 * get all from corpse
+	 * get coins from corpse
+	 * get all gold from corpse
+	 * get silver corpse
+	 *
+	 * @param input
+	 * @return
+     */
 	public SomeMoney removeCoins(String input) {
 		int type = -1;
 		boolean allCoins=false;
+		if (input.indexOf("coins") > 0) {
+			type = Money.COPPER;
+		}
 		if (input.indexOf("copper") > 0) {
 			type = Money.COPPER;
 		}
@@ -205,6 +217,9 @@ public class Inventory implements Serializable {
 			}
 
 			if (allCoins) {
+				if (purse == null || purse.isEmpty()) {
+					return null;
+				}
 				SomeMoney someMoney = new MoneyBag(purse);
 				purse.clear();
 				return someMoney;
@@ -217,5 +232,10 @@ public class Inventory implements Serializable {
 			}
 		}
 		return null;
+	}
+
+	public void addAll(Inventory inventory) {
+		items.addAll(inventory.getItems());
+		purse.add(inventory.getPurse());
 	}
 }

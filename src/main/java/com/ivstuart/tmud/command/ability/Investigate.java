@@ -7,7 +7,6 @@
 package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Corpse;
 import com.ivstuart.tmud.state.Item;
@@ -32,7 +31,7 @@ public class Investigate extends BaseCommand {
 			return;
 		}
 
-		Item corpseItem = mob.getRoom().getItems().get(input);
+		Item corpseItem = mob.getRoom().getInventory().get(input);
 
 		if (!corpseItem.isCorpse()) {
 			mob.out(input + " is not investigatable");
