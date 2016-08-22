@@ -18,5 +18,15 @@ public class ShowFighting extends AdminCommand {
 			mob.out(fighter.getName() + " is fighting in room "+fighter.getRoom().getId());
 		}
 
+		if (input.length() > 0) {
+			Mob target = mob.getRoom().getMob(input);
+
+			if (target == null) {
+				mob.out(input + " is not here to get fighting stats on!");
+				return;
+			}
+
+			mob.out("Fight = " + target.getFight());
+		}
 	}
 }

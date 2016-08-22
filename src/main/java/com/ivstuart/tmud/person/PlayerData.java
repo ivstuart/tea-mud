@@ -147,7 +147,7 @@ public class PlayerData implements Serializable {
 
 	public void incrementLevel() {
 		level++;
-		toLevelXp += (100 * level ^ 2);
+		toLevelXp += ((10000 * level) ^ 3);
 		learns++;
 		pracs += 3;
 

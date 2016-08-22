@@ -87,7 +87,6 @@ public abstract class FightAction {
 	}
 
 	public void next() {
-		// Log.info("State = "+state);
 
 		if (System.currentTimeMillis() < whenNextStateMillis) {
 			return;
@@ -120,11 +119,13 @@ public abstract class FightAction {
 	}
 
 	@Override
-	public final String toString() {
-		return state.toString() + " " + self.getName() + " -> "
-				+ target.getName();
-
-		// return ToStringBuilder.reflectionToString(this);
+	public String toString() {
+		return "FightAction{" +
+				"whenNextStateMillis=" + whenNextStateMillis +
+				", state=" + state +
+				", self=" + self.getName() +
+				", target=" + target.getName() +
+				'}';
 	}
-	
+
 }

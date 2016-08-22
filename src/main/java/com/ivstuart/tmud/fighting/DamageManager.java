@@ -1,10 +1,14 @@
 package com.ivstuart.tmud.fighting;
 
+import com.ivstuart.tmud.command.CommandProvider;
+import com.ivstuart.tmud.command.item.Get;
+import com.ivstuart.tmud.command.item.Sacrifice;
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.MobState;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.constants.DamageConstants;
 import com.ivstuart.tmud.person.carried.Money;
+import com.ivstuart.tmud.person.config.ConfigData;
 import com.ivstuart.tmud.person.statistics.Affect;
 import com.ivstuart.tmud.person.statistics.BlurAffect;
 import com.ivstuart.tmud.person.statistics.BuffStatsAffect;
@@ -78,6 +82,7 @@ public class DamageManager {
 
 		attacker.getRoom().out(msg);
 
+		// TODO apply xp for combat damage and count this (clear counter on kill) after reporting xp from fighting.
 		defender.getHp().decrease(damage);
 		
 		// TODO if not fighting or a heavy blow defender will target and attack attacker.
@@ -173,7 +178,7 @@ public class DamageManager {
 
 			defender.getFight().clear();
 
-			createCorpse(defender);
+			createCorpse(attacker,defender);
 
 			if (defender.isPlayer()) {
 				World.getRoom("R-P2").add(defender);
@@ -238,7 +243,7 @@ public class DamageManager {
 		}
 	}
 
-	private static void createCorpse(Mob defender) {
+	private static void createCorpse(Mob attacker,Mob defender) {
 		// create corpse and move equipment and inventory to corpse
 		Corpse corpse = new Corpse(defender);
 		corpse.setId("corpse");
@@ -257,12 +262,21 @@ public class DamageManager {
 		corpse.setBrief("The corpse of a filthy " + defender.getName()
                 + " is lying here.");
 
-		// AUTO LOOT
-
-		// AUTO SAC
-
 		defender.getRoom().remove(defender);
 		defender.getRoom().add((Prop)corpse);
+
+		// AUTO LOOT
+		if (attacker.getPlayer().getConfig().getConfigData().is(ConfigData.AUTOLOOT)) {
+			// get all from corpse.
+			CommandProvider.getCommand(Get.class).execute(attacker,"all from corpse");
+		}
+
+		// AUTO SAC
+		if (attacker.getPlayer().getConfig().getConfigData().is(ConfigData.AUTOSAC)) {
+			// get all from corpse.
+			CommandProvider.getCommand(Sacrifice.class).execute(attacker,"corpse");
+		}
+
 	}
 
 	private static int checkForDodge(Mob defender, int damage) {

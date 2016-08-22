@@ -56,7 +56,6 @@ public class Get extends BaseCommand {
 
         if (input.equalsIgnoreCase("all")) {
             getAllCoins(mob);
-            return;
         }
 
         if (checkCashGet(mob, input)) {

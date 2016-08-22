@@ -187,16 +187,19 @@ public class Inventory implements Serializable {
 	public SomeMoney removeCoins(String input) {
 		int type = -1;
 		boolean allCoins=false;
-		if (input.indexOf("coins") > 0) {
+		if (input.indexOf("all") > -1) {
 			type = Money.COPPER;
 		}
-		if (input.indexOf("copper") > 0) {
+		if (input.indexOf("coins") > -1) {
 			type = Money.COPPER;
 		}
-		if (input.indexOf("silver") > 0) {
+		if (input.indexOf("copper") > -1) {
+			type = Money.COPPER;
+		}
+		if (input.indexOf("silver") > -1) {
 			type = Money.SILVER;
 		}
-		if (input.indexOf("gold") > 0) {
+		if (input.indexOf("gold") > -1) {
 			type = Money.GOLD;
 		}
 		if (type > -1) {

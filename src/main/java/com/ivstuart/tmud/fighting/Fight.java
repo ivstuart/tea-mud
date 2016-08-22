@@ -225,8 +225,12 @@ public class Fight {
 	}
 
 	@Override
-	public final String toString() {
-		return ToStringBuilder.reflectionToString(this);
+	public String toString() {
+		return "Fight{" +
+				"fightActions=" + fightActions +
+				", melee=" + melee +
+				", targettedBy=" + targettedBy +
+				'}';
 	}
 
 	public boolean isBeingCircled() {
