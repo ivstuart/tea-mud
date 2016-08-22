@@ -7,7 +7,8 @@
 package com.ivstuart.tmud.fighting.action;
 
 import com.ivstuart.tmud.state.Weapon;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ivstuart.tmud.command.info.Prompt;
 import com.ivstuart.tmud.common.DiceRoll;
@@ -26,7 +27,7 @@ import com.ivstuart.tmud.state.Mob;
  */
 public class BasicAttack extends FightAction {
 
-	private static final Logger LOGGER = Logger.getLogger(BasicAttack.class);
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	/**
 	 * @param character

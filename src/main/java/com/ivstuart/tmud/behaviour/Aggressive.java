@@ -5,13 +5,14 @@ import com.ivstuart.tmud.common.Tickable;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Room;
 import com.ivstuart.tmud.state.WorldTime;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
 public class Aggressive extends BaseBehaviour {
 
-    private static Logger LOGGER = Logger.getLogger(Aggressive.class);
+    private static Logger LOGGER = LogManager.getLogger();
 
 
     public Aggressive() {

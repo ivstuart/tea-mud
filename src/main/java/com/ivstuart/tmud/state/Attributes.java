@@ -2,8 +2,6 @@ package com.ivstuart.tmud.state;
 
 import java.io.Serializable;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-
 public class Attributes implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -20,6 +18,17 @@ public class Attributes implements Serializable {
         _intelligence = new Attribute("Intelligence", values[2]);
         _dexterity = new Attribute("Dexterity", values[3]);
         _wisdom = new Attribute("Wisdom", values[4]);
+    }
+
+    @Override
+    public String toString() {
+        return "Attributes{" +
+                "_strength=" + _strength +
+                ", _consitution=" + _consitution +
+                ", _intelligence=" + _intelligence +
+                ", _dexterity=" + _dexterity +
+                ", _wisdom=" + _wisdom +
+                '}';
     }
 
     public Attribute getCON() {
@@ -40,11 +49,6 @@ public class Attributes implements Serializable {
 
     public Attribute getWIS() {
         return _wisdom;
-    }
-
-    @Override
-    public final String toString() {
-        return ToStringBuilder.reflectionToString(this);
     }
 
     public Attribute get(String stat) {

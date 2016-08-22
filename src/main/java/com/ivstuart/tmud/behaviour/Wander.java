@@ -3,7 +3,8 @@ package com.ivstuart.tmud.behaviour;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.Tickable;
@@ -14,7 +15,7 @@ import com.ivstuart.tmud.state.Room;
 
 public class Wander extends BaseBehaviour {
 
-	private static Logger LOGGER = Logger.getLogger(Wander.class);
+	private static Logger LOGGER = LogManager.getLogger();
 
 	private List<Room> rooms;
 

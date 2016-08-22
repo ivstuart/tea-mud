@@ -4,7 +4,8 @@ import java.util.List;
 
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ivstuart.tmud.common.Equipable;
 import com.ivstuart.tmud.common.Msg;
@@ -14,7 +15,7 @@ public class Corpse extends Item {
 
 	private static final long serialVersionUID = -1665651693089947124L;
 
-	private static final Logger LOGGER = Logger.getLogger(Corpse.class);
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	protected Inventory _inventory;
 	

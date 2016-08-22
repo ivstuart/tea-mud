@@ -6,10 +6,12 @@
  */
 package com.ivstuart.tmud.command;
 
-import org.apache.log4j.Logger;
+
 
 import com.ivstuart.tmud.server.Connection;
 import com.ivstuart.tmud.server.Readable;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @author stuarti
@@ -19,8 +21,7 @@ import com.ivstuart.tmud.server.Readable;
  */
 public class DummyConnection extends Connection {
 
-	private static final Logger LOGGER = Logger
-			.getLogger(DummyConnection.class);
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	/**
 	 * 

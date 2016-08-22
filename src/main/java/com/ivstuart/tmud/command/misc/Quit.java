@@ -9,13 +9,11 @@ package com.ivstuart.tmud.command.misc;
 import java.io.IOException;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import org.apache.log4j.Logger;
-
-import com.ivstuart.tmud.command.Command;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.World;
-import com.ivstuart.tmud.utils.GsonIO;
 import com.ivstuart.tmud.utils.MudIO;
 
 /**
@@ -24,7 +22,7 @@ import com.ivstuart.tmud.utils.MudIO;
  */
 public class Quit extends BaseCommand {
 
-	private static final Logger LOGGER = Logger.getLogger(Quit.class);
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	@Override
 	public void execute(Mob mob_, String input) {

@@ -4,11 +4,12 @@ import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.MobState;
 import com.ivstuart.tmud.common.Tickable;
 import com.ivstuart.tmud.state.Mob;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Sleeping extends BaseBehaviour {
 
-	private static Logger LOGGER = Logger.getLogger(Sleeping.class);
+	private static Logger LOGGER = LogManager.getLogger();
 
 	public Sleeping() {
 		parameter=10;

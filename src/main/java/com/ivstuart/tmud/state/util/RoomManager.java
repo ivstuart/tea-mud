@@ -9,7 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ivstuart.tmud.constants.DoorState;
 import com.ivstuart.tmud.state.Door;
@@ -20,7 +21,7 @@ import com.ivstuart.tmud.state.dao.DoorDAO;
 
 public class RoomManager {
 
-	private static final Logger LOGGER = Logger.getLogger(RoomManager.class);
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	private static Map<String, String> directionMap = new HashMap<String, String>();
 

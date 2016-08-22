@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.ivstuart.tmud.person.carried.Inventory;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ivstuart.tmud.person.config.ConfigData;
 import com.ivstuart.tmud.server.Connection;
@@ -16,7 +17,7 @@ import com.ivstuart.tmud.state.Mob;
 
 public class Player implements Serializable, Nameable {
 
-	private static final Logger LOGGER = Logger.getLogger(Player.class);
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	private static final long serialVersionUID = 1L;
 

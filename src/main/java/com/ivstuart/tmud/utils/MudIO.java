@@ -14,7 +14,8 @@ import java.io.ObjectOutputStream;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ivstuart.tmud.server.LaunchMud;
 
@@ -23,7 +24,7 @@ import com.ivstuart.tmud.server.LaunchMud;
  */
 public class MudIO {
 
-	private static final Logger LOGGER = Logger.getLogger(MudIO.class);
+	private static final Logger LOGGER = LogManager.getLogger();
 	
 	private static final MudIO INSTANCE = new MudIO();
 

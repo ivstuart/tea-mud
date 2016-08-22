@@ -9,8 +9,8 @@ package com.ivstuart.tmud.fighting;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ivstuart.tmud.fighting.action.BasicAttack;
 import com.ivstuart.tmud.fighting.action.FightAction;
@@ -24,7 +24,7 @@ public class Fight {
 
 	private static final int MAX_SIZE = 10;
 	
-	private static final Logger LOGGER = Logger.getLogger(Fight.class);
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	private LinkedList<FightAction> fightActions;
 

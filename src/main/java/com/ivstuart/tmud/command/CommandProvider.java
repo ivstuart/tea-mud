@@ -5,7 +5,8 @@ import java.util.Collection;
 
 import com.ivstuart.tmud.common.MobState;
 import com.ivstuart.tmud.server.LaunchMud;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ivstuart.tmud.command.misc.NullCommand;
 import com.ivstuart.tmud.utils.FileHandle;
@@ -20,8 +21,7 @@ import com.ivstuart.tmud.utils.MudHash;
  */
 public class CommandProvider {
 
-	private static final Logger LOGGER = Logger
-			.getLogger(CommandProvider.class);
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	@SuppressWarnings("unused")
 	private static CommandProvider INSTANCE;

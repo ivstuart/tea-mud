@@ -1,8 +1,7 @@
 package com.ivstuart.tmud.person.config;
 
 import java.io.*;
-
-import org.apache.commons.lang.builder.ToStringBuilder;
+import java.util.Arrays;
 
 import com.ivstuart.tmud.common.Colour;
 
@@ -65,6 +64,13 @@ public class FightData implements Serializable {
 		return mData[index];
 	}
 
+	@Override
+	public String toString() {
+		return "FightData{" +
+				"mData=" + Arrays.toString(mData) +
+				'}';
+	}
+
 	public String look() {
 		StringBuilder sb = new StringBuilder("");
 		sb.append("Groundfighting Options:\n");
@@ -105,11 +111,6 @@ public class FightData implements Serializable {
 			}
 		}
 		return "No such configuration option" + flagName;
-	}
-
-	@Override
-	public final String toString() {
-		return ToStringBuilder.reflectionToString(this);
 	}
 
 	private String toString(int flag) {

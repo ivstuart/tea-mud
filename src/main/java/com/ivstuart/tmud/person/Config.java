@@ -8,8 +8,6 @@ package com.ivstuart.tmud.person;
 
 import java.io.*;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-
 import com.ivstuart.tmud.person.config.*;
 
 /**
@@ -25,6 +23,15 @@ public class Config implements Serializable {
 	private ChannelData channelData;
 
 	private FightData fightData;
+
+	@Override
+	public String toString() {
+		return "Config{" +
+				"configData=" + configData +
+				", channelData=" + channelData +
+				", fightData=" + fightData +
+				'}';
+	}
 
 	/**
 	 * 
@@ -46,11 +53,6 @@ public class Config implements Serializable {
 
 	public FightData getFightData() {
 		return fightData;
-	}
-
-	@Override
-	public final String toString() {
-		return ToStringBuilder.reflectionToString(this);
 	}
 
 }

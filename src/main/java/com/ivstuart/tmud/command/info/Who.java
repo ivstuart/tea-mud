@@ -7,7 +7,8 @@
 package com.ivstuart.tmud.command.info;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.person.Player;
@@ -22,7 +23,7 @@ import com.ivstuart.tmud.state.World;
  */
 public class Who extends BaseCommand {
 
-	private static final Logger LOGGER = Logger.getLogger(Who.class);
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	@Override
 	public void execute(Mob mob, String input) {

@@ -2,7 +2,8 @@ package com.ivstuart.tmud.state;
 
 import com.ivstuart.tmud.common.ExitEnum;
 import com.ivstuart.tmud.state.util.RoomManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +12,7 @@ import java.util.List;
  * Created by Ivan on 20/08/2016.
  */
 public class RoomBuilder {
-    private static final Logger LOGGER = Logger
-            .getLogger(RoomBuilder.class);
+    private static final Logger LOGGER = LogManager.getLogger();
     private String id;
     private String path;
 

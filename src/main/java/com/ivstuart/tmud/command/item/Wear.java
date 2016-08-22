@@ -7,14 +7,11 @@
 package com.ivstuart.tmud.command.item;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.common.Equipable;
-import com.ivstuart.tmud.server.Login;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
-import org.apache.log4j.Logger;
-
-import javax.swing.text.html.HTMLDocument;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.util.Iterator;
 
 /**
@@ -25,7 +22,7 @@ import java.util.Iterator;
  */
 public class Wear extends BaseCommand {
 
-	private static final Logger LOGGER = Logger.getLogger(Wear.class);
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	@Override
 	public void execute(Mob mob, String input) {

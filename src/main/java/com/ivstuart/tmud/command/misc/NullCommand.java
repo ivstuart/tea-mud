@@ -10,7 +10,8 @@ import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.server.Playing;
 import com.ivstuart.tmud.state.Mob;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @author stuarti
@@ -20,7 +21,7 @@ import org.apache.log4j.Logger;
  */
 public class NullCommand extends BaseCommand {
 
-	private static final Logger LOGGER = Logger.getLogger(NullCommand.class);
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	@Override
 	public void execute(Mob mob, String input) {

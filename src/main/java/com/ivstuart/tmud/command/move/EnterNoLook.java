@@ -6,7 +6,8 @@ import com.ivstuart.tmud.common.MobState;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.person.movement.MoveManager;
 import com.ivstuart.tmud.state.util.RoomManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.constants.DoorState;
@@ -18,7 +19,7 @@ import com.ivstuart.tmud.state.Track;
 
 public class EnterNoLook extends BaseCommand {
 
-	private static final Logger LOGGER = Logger.getLogger(EnterNoLook.class);
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	@Override
 	public void execute(Mob mob, String input) {

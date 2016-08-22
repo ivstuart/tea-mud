@@ -5,11 +5,12 @@ import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.person.statistics.MobMana;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.MobStatus;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public abstract class FightAction {
 
-	private static final Logger LOGGER = Logger.getLogger(FightAction.class);
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	private long whenNextStateMillis;
 

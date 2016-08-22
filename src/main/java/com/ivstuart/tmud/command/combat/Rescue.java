@@ -3,7 +3,8 @@ package com.ivstuart.tmud.command.combat;
 import java.util.List;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Ability;
@@ -21,7 +22,7 @@ public class Rescue extends BaseCommand {
 
 	private static final String RESCUE = "rescue";
 	
-	private static final Logger LOGGER = Logger.getLogger(Rescue.class);
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	@Override
 	public void execute(Mob mob, String input) {

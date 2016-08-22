@@ -14,14 +14,15 @@ import com.ivstuart.tmud.fighting.action.FightAction;
 import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Weapon;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @author Ivan Stuart
  */
 public class BackStab extends BaseCommand {
 
-	private static final Logger LOGGER = Logger.getLogger(BackStab.class);
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	class FightActionBackStab extends FightAction {
 

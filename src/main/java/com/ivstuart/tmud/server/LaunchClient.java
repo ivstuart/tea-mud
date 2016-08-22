@@ -8,7 +8,8 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Recommend putty or tintin++ however please please double check site and
@@ -24,7 +25,7 @@ import org.apache.log4j.Logger;
  */
 public class LaunchClient implements Runnable {
 
-	private static final Logger LOGGER = Logger.getLogger(LaunchClient.class);
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	private boolean isRunning = true;
 	private BufferedReader bufferReader = null;

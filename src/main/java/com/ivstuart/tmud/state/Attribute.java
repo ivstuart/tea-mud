@@ -2,9 +2,18 @@ package com.ivstuart.tmud.state;
 
 import java.io.Serializable;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-
 public class Attribute implements Serializable {
+
+	@Override
+	public String toString() {
+		return "Attribute{" +
+				"name='" + name + '\'' +
+				", minimum=" + minimum +
+				", maximum=" + maximum +
+				", current=" + current +
+				", savedMaximum=" + savedMaximum +
+				'}';
+	}
 
 	private static final long serialVersionUID = 1L;
 
@@ -148,12 +157,7 @@ public class Attribute implements Serializable {
 		this.increase(0);
 	}
 
-	@Override
-	public String toString() {
-		return ToStringBuilder.reflectionToString(this);
-	}
-
-    public boolean isMaximum() {
+	public boolean isMaximum() {
     	return current >= maximum;
     }
 

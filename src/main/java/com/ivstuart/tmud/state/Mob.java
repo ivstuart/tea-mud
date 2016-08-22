@@ -6,7 +6,9 @@ import java.util.List;
 
 import com.ivstuart.tmud.behaviour.*;
 import com.ivstuart.tmud.state.util.EntityProvider;
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.Equipable;
@@ -27,7 +29,7 @@ public class Mob extends Prop implements Tickable {
 
     private static final long serialVersionUID = 1L;
 
-    private static final Logger LOGGER = Logger.getLogger(Mob.class);
+    private static final Logger LOGGER = LogManager.getLogger();
 
     private String ability; // base mob
 

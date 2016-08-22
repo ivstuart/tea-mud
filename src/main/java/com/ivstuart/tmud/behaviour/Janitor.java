@@ -3,13 +3,14 @@ package com.ivstuart.tmud.behaviour;
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Room;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
 public class Janitor extends BaseBehaviour {
 
-    private static Logger LOGGER = Logger.getLogger(Janitor.class);
+    private static Logger LOGGER = LogManager.getLogger();
 
 
     public Janitor() {

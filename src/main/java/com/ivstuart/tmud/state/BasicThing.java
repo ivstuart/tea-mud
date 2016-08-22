@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-
 import com.ivstuart.tmud.common.Gender;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.common.Msgable;
@@ -37,6 +35,21 @@ public class BasicThing implements Serializable, Cloneable, Msgable {
 		properties = thing_.properties;
 		detectInvisible = false;
 		detectHidden = false;
+	}
+
+	@Override
+	public String toString() {
+		return "BasicThing{" +
+				"id='" + id + '\'' +
+				", brief='" + brief + '\'' +
+				", verbose='" + verbose + '\'' +
+				", look='" + look + '\'' +
+				", properties='" + properties + '\'' +
+				", hidden=" + hidden +
+				", invisible=" + invisible +
+				", detectInvisible=" + detectInvisible +
+				", detectHidden=" + detectHidden +
+				'}';
 	}
 
 	@Override
@@ -183,11 +196,6 @@ public class BasicThing implements Serializable, Cloneable, Msgable {
 
 	public void setShort(String brief) {
 		this.brief = brief;
-	}
-
-	@Override
-	public final String toString() {
-		return ToStringBuilder.reflectionToString(this);
 	}
 
 }

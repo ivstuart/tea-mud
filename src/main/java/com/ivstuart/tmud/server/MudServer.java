@@ -16,13 +16,14 @@ import java.nio.channels.SocketChannel;
 import java.nio.channels.spi.SelectorProvider;
 import java.util.Iterator;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ivstuart.tmud.exceptions.MudException;
 
 public class MudServer {
 
-	private static final Logger LOGGER = Logger.getLogger(MudServer.class);
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	/** Thread which runs the Selector */
 	private class SelectorThread extends Thread {

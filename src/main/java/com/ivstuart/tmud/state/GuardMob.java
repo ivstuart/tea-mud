@@ -1,6 +1,7 @@
 package com.ivstuart.tmud.state;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class GuardMob extends Mob {
 
@@ -9,7 +10,7 @@ public class GuardMob extends Mob {
 	 */
 	private static final long serialVersionUID = -3758337691304906202L;
 
-	private static final Logger LOGGER = Logger.getLogger(GuardMob.class);
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	private String exit;
 

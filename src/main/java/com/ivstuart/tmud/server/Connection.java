@@ -12,7 +12,8 @@ import java.io.*;
 import java.nio.CharBuffer;
 import java.nio.channels.SocketChannel;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @author stuarti
@@ -20,7 +21,7 @@ import org.apache.log4j.Logger;
  */
 public class Connection {
 
-	private static final Logger LOGGER = Logger.getLogger(Connection.class);
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	private static Charset charset = Charset.forName("ISO-8859-1");
 

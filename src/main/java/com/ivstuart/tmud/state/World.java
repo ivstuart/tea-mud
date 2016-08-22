@@ -11,7 +11,8 @@ import java.util.concurrent.*;
 import com.ivstuart.tmud.command.CommandProvider;
 import com.ivstuart.tmud.command.misc.ForcedQuit;
 import com.ivstuart.tmud.command.misc.Quit;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ivstuart.tmud.command.admin.Ban;
 import com.ivstuart.tmud.common.Tickable;
@@ -20,7 +21,7 @@ import com.ivstuart.tmud.person.Player;
 
 public class World {
 
-	private static final Logger LOGGER = Logger.getLogger(World.class);
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	private static Map<String, Tickable> tickers;
 	private static Map<String, Zone> _zones;

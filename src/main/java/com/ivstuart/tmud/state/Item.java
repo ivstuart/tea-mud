@@ -6,7 +6,8 @@ import java.util.List;
 
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ivstuart.tmud.common.Equipable;
 import com.ivstuart.tmud.common.Gender;
@@ -18,7 +19,7 @@ public class Item extends Prop implements Equipable, Msgable {
 
 	private static final long serialVersionUID = 2149506293102292040L;
 
-	private static final Logger LOGGER = Logger.getLogger(Item.class);
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	protected String _action;
 

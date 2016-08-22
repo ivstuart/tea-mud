@@ -5,7 +5,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 import com.ivstuart.tmud.state.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ivstuart.tmud.server.LaunchMud;
 import com.ivstuart.tmud.utils.FileHandle;
@@ -20,7 +21,7 @@ public class StateReader {
 
 	private static StateReader loader = new StateReader();
 
-	private static final Logger LOGGER = Logger.getLogger(StateReader.class);
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	private static final String NEW_OBJECT_ID = "id";
 

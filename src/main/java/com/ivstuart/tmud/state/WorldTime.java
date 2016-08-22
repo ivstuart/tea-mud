@@ -5,7 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ivstuart.tmud.common.Tickable;
 import com.ivstuart.tmud.fighting.Fight;
@@ -13,7 +14,7 @@ import com.ivstuart.tmud.state.util.EntityProvider;
 
 public class WorldTime implements Runnable {
 
-    private static final Logger LOGGER = Logger.getLogger(WorldTime.class);
+    private static final Logger LOGGER = LogManager.getLogger();
 
     private static List<Mob> fighting;
 
@@ -116,11 +117,9 @@ public class WorldTime implements Runnable {
     }
 
     /**
-     * Resolve commbat and remove from combat any that are not fighting
+     * Resolve combat and remove from combat any that are not fighting
      */
     public void resolveCombat() {
-
-        // LOGGER.debug("resolveCombat");
 
         if (fighting.isEmpty()) {
             return;
@@ -169,8 +168,6 @@ public class WorldTime implements Runnable {
         }
 
         for (Tickable tickable : tickables) {
-            // Noisey logging not ideal for testing
-            // LOGGER.debug("Tick for " + tickable.getId());
             tickable.tick();
         }
 

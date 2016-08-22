@@ -8,7 +8,8 @@ package com.ivstuart.tmud.server;
 
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.common.MobState;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ivstuart.tmud.command.CommandProvider;
 import com.ivstuart.tmud.person.Player;
@@ -22,7 +23,7 @@ import com.ivstuart.tmud.state.Mob;
  */
 public class Playing implements Readable {
 
-	private static final Logger LOGGER = Logger.getLogger(Playing.class);
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	private Player player;
 	private Mob mob;

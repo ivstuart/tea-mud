@@ -7,9 +7,14 @@ import java.util.Map.Entry;
 
 import static com.ivstuart.tmud.state.MobCombatState.*;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-
 public class MobStatus {
+
+	@Override
+	public String toString() {
+		return "MobStatus{" +
+				"stateMap=" + stateMap +
+				'}';
+	}
 
 	private Map<MobCombatState, MobStateDuration> stateMap = new HashMap<MobCombatState, MobStateDuration>();
 
@@ -127,11 +132,6 @@ public class MobStatus {
 
 	public void setOffBalance(int durationInSeconds) {
 		add(OFFBALANCE, durationInSeconds);
-	}
-
-	@Override
-	public final String toString() {
-		return ToStringBuilder.reflectionToString(this);
 	}
 
 	public boolean isCircling() {

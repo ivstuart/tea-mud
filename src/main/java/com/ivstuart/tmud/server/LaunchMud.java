@@ -12,7 +12,8 @@ import java.io.Reader;
 import java.net.URISyntaxException;
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ivstuart.tmud.state.util.StateReader;
 
@@ -22,7 +23,7 @@ import com.ivstuart.tmud.state.util.StateReader;
  */
 public class LaunchMud {
 
-	private static final Logger LOGGER = Logger.getLogger(LaunchMud.class);
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	public static Properties mudServerProperties;
 	

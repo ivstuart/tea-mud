@@ -1,11 +1,12 @@
 package com.ivstuart.tmud.state.util;
 
 import com.ivstuart.tmud.state.*;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class EntityProvider {
 
-	private static final Logger LOGGER = Logger.getLogger(EntityProvider.class);
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	public static Item createItem(String itemId) {
 		LOGGER.debug("Creating instance of item "+itemId);
