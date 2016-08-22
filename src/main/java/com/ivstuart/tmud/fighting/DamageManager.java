@@ -38,6 +38,8 @@ public class DamageManager {
 			// Check saves first
 			damage = checkForDodge(defender, damage);
 
+			damage = checkForParry(defender, damage);
+
 			// 10% save chance
 			damage = checkForBlurDodge(attacker, defender, damage);
 		}
@@ -266,7 +268,8 @@ public class DamageManager {
 	private static int checkForDodge(Mob defender, int damage) {
 		Ability dodge = defender.getLearned().getAbility("dodge");
 
-		if (dodge != null && dodge.isSuccessful()) {
+		// Reduce dodging to 30% of the time.
+		if (dodge != null && dodge.isSuccessful() && DiceRoll.ONE_D_SIX.rollMoreThan(4)) {
 			defender.out("<S-You/NAME> successfully dodge missing most of the attack.");
 
 			damage = (int) damage / 10;
@@ -275,6 +278,26 @@ public class DamageManager {
 				defender.out("[[[[ Your ability to " + dodge.getId()
 						+ " has improved ]]]]");
 				dodge.improve();
+			}
+		}
+
+		return damage;
+
+	}
+
+	private static int checkForParry(Mob defender, int damage) {
+		Ability parry = defender.getLearned().getAbility("parry");
+
+		// Reduce parry to 50% of the time.
+		if (parry != null && parry.isSuccessful() && DiceRoll.ONE_D_SIX.rollMoreThan(2)) {
+			defender.out("<S-You/NAME> successfully parry missing most of the attack.");
+
+			damage = (int) damage / 5;
+
+			if (parry.isImproved()) {
+				defender.out("[[[[ Your ability to " + parry.getId()
+						+ " has improved ]]]]");
+				parry.improve();
 			}
 		}
 

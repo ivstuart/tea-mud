@@ -29,7 +29,7 @@ public class AllRoomStats extends AdminCommand {
 			return;
 		}
 
-		mob.out("ID = "+target.getId());
+		mob.out("id: "+target.getId()); // Useful for building mobs to which room.
 
 		mob.out(target.toString());
 

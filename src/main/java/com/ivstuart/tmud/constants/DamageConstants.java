@@ -34,8 +34,10 @@ public class DamageConstants {
 
 	public static String help() {
 		StringBuilder sb = new StringBuilder();
+		int index=1;
 		for (String element : message) {
-			sb.append(element + "\n");
+			sb.append((index*index)+"-"+((1+index)*(1+index)-1) + ": " + element + "\n");
+			index++;
 		}
 		return sb.toString();
 	}

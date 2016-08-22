@@ -19,3 +19,36 @@ id: Z2-:0:-1:0
 roomPrefix: Z2-
 path: 4s4x5s2s3w5s4x5w8s3x3n6s5x2
 execute: notused
+
+class: state.Room
+id: Z2-:1:-1:0
+mob: fire-sprite-001
+
+id: Z2-:2:-2:0
+mob: fire-sprite-001
+
+id: Z2-:2:-4:0
+mob: fire-sprite-001
+
+id: Z2-:0:-10:0
+mob: fire-sprite-001
+mob: fire-sprite-001
+
+id: Z2-:-2:-11:0
+mob: fire-sprite-001
+
+id: Z2-:-2:-13:0
+mob: fire-sprite-001
+
+id: Z2-:-3:-15:0
+mob: fire-sprite-001
+mob: fire-sprite-001
+mob: fire-sprite-001
+
+id: Z2-:0:-16:0
+mob: fire-sprite-001
+
+
+
+
+

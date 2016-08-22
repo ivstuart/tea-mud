@@ -2,7 +2,7 @@ class: state.Spell
 id: burning hands
 level: 1
 cost: 5
-damage: 2d6
+damage: 3d6+30
 target: SINGLE
 speed: 5
 mana: FIRE
@@ -10,7 +10,7 @@ mana: FIRE
 id: flame ray
 level: 10
 cost: 5
-damage: 3d6
+damage: 3d50+60
 target: SINGLE
 speed: 5
 mana: FIRE
@@ -18,7 +18,7 @@ mana: FIRE
 id: fireball
 level: 4
 cost: 15
-damage: 4d6
+damage: 1d100+120
 target: MANY
 speed: 5
 mana: FIRE
@@ -27,7 +27,7 @@ prereq: burning hands
 id: flame strike
 level: 40
 cost: 40
-damage: 6d6
+damage: 2d100+120
 target: MANY
 speed: 5
 mana: FIRE
@@ -36,7 +36,7 @@ prereq: burning hands
 id: meteor storm
 level: 40
 cost: 40
-damage: 6d6
+damage: 2d100+150
 target: MANY
 speed: 5
 mana: FIRE
@@ -45,7 +45,7 @@ prereq: burning hands
 id: disintegrate
 level: 40
 cost: 40
-damage: 6d6+50
+damage: 2d100+150
 target: SINGLE
 speed: 5
 mana: FIRE
@@ -54,7 +54,7 @@ prereq: burning hands
 id: searing orb
 level: 40
 cost: 40
-damage: 6d6
+damage: 2d100+300
 target: MANY
 speed: 5
 mana: FIRE
@@ -63,7 +63,7 @@ prereq: burning hands
 id: falling star
 level: 40
 cost: 40
-damage: 6d6+100
+damage: 3d100+400
 target: SINGLE
 speed: 5
 mana: FIRE

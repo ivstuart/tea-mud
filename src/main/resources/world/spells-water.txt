@@ -3,13 +3,13 @@ id: chill touch
 level: 3
 cost: 5
 mana: WATER
-damage: 2d6
+damage: 2d6+10
 speed: 5
 
 id: ice blast
 level: 10
 cost: 5
-damage: 2d6
+damage: 2d6+80
 speed: 5
 mana: WATER
 prereq: chill touch
@@ -17,7 +17,7 @@ prereq: chill touch
 id: acid arrow
 level: 10
 cost: 5
-damage: 2d6
+damage: 2d6+120
 speed: 5
 mana: WATER
 prereq: chill touch
@@ -25,7 +25,7 @@ prereq: chill touch
 id: acid rain
 level: 10
 cost: 5
-damage: 2d6
+damage: 2d6+200
 target: MANY
 speed: 5
 mana: WATER
@@ -34,7 +34,7 @@ prereq: acid arrow
 id: cone of cold
 level: 20
 cost: 5
-damage: 2d6
+damage: 2d6+400
 speed: 5
 mana: WATER
 prereq: ice blast

@@ -228,7 +228,7 @@ public class Player implements Serializable, Nameable {
 			return input;
 		}
 		for (Map.Entry<String,String> set : alias.entrySet()) {
-			input = input.replaceFirst("^"+set.getKey(),set.getValue());
+			input = input.replaceFirst("^"+set.getKey()+"$",set.getValue());
 		}
 		return input;
 	}

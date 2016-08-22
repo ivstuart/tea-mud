@@ -22,7 +22,7 @@ spellEffect: BUFF
 id: dust devil
 level: 7
 cost: 17
-damage: 1d6
+damage: 1d6+10
 target: SINGLE
 speed: 5
 mana: AIR
@@ -30,7 +30,7 @@ mana: AIR
 id: lightning
 level: 15
 cost: 22
-damage: 2d6
+damage: 2d50+50
 target: SINGLE
 speed: 5
 mana: AIR
@@ -39,7 +39,7 @@ prereq: dust devil
 id: vortex
 level: 25
 cost: 26
-damage: 3d6
+damage: 3d60+50
 target: SINGLE
 speed: 5
 mana: AIR
@@ -48,7 +48,7 @@ prereq: dust devil
 id: whirlwind
 level: 40
 cost: 40
-damage: 5d6
+damage: 5d60+100
 target: SINGLE
 speed: 10
 mana: AIR
@@ -57,8 +57,17 @@ prereq: vortex
 id: chain lightning
 level: 60
 cost: 60
-damage: 5d6+20
+damage: 5d60+200
 target: SINGLE
 speed: 10
 mana: AIR
 prereq: lightning
+
+id: advanced lightning
+level: 80
+cost: 80
+damage: 5d60+400
+target: SINGLE
+speed: 10
+mana: AIR
+prereq: chain lightning
