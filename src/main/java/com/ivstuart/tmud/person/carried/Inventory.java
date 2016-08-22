@@ -124,6 +124,14 @@ public class Inventory implements Serializable {
 		return false;
 	}
 
+	@Override
+	public String toString() {
+		return "Inventory{" +
+				"items=" + items +
+				", purse=" + purse +
+				'}';
+	}
+
 	public boolean isEmpty() {
 
 		if (purse == null && items == null) {
@@ -165,5 +173,49 @@ public class Inventory implements Serializable {
 
 	public boolean hasMoney(Money money) {
 		return this.getPurse().getValue() >= money.getValue();
+	}
+
+	public SomeMoney removeCoins(String input) {
+		int type = -1;
+		boolean allCoins=false;
+		if (input.indexOf("copper") > 0) {
+			type = Money.COPPER;
+		}
+		if (input.indexOf("silver") > 0) {
+			type = Money.SILVER;
+		}
+		if (input.indexOf("gold") > 0) {
+			type = Money.GOLD;
+		}
+		if (type > -1) {
+			String inputSplit[] = input.split(" ");
+			if (inputSplit == null) {
+				return null;
+			}
+			int coins = 0;
+			try {
+				coins = Integer.parseInt(inputSplit[0]);
+			} catch (NumberFormatException e) {
+				if (inputSplit[0].equals("all")) {
+					allCoins=true;
+				}
+				else {
+					return null;
+				}
+			}
+
+			if (allCoins) {
+				SomeMoney someMoney = new MoneyBag(purse);
+				purse.clear();
+				return someMoney;
+			}
+
+			Money cash = new Money(type, coins);
+
+			if (purse.remove(cash)) {
+				return cash;
+			}
+		}
+		return null;
 	}
 }

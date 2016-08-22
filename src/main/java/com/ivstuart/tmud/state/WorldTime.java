@@ -169,7 +169,8 @@ public class WorldTime implements Runnable {
         }
 
         for (Tickable tickable : tickables) {
-            LOGGER.debug("Tick for " + tickable.getId());
+            // Noisey logging not ideal for testing
+            // LOGGER.debug("Tick for " + tickable.getId());
             tickable.tick();
         }
 

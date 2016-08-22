@@ -65,6 +65,15 @@ public class StateReader {
 			addToWorld(obj);
 		}
 
+		// TODO check for World.getObject
+		if (currentClass.equals("state.Room")) {
+			Room room = World.getRoom(args);
+			if (room != null) {
+				LOGGER.info("Editing an existing object again:" + args);
+				return room;
+			}
+		}
+
 		if (currentClass != null) {
 			try {
 				LOGGER.info("Creating instance of class type [ " + currentClass

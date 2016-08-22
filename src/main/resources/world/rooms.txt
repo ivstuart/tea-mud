@@ -75,7 +75,8 @@ look: detail. Perhaps spending some time reviewing this mosaic will be beneficia
 look: in gaining an understanding of the lay of the land. 
 exits: north->Z1-001-001 south->R-003-002 west->R-002-001
 item: bag-001
-mob: old-man-006
+# can put old man back in any time just that he wanders so creates noise in logging.
+#mob: old-man-006
 
 id: R-001-002
 brief: The Inner Sanctum of the White Tower
@@ -142,6 +143,7 @@ type: Chamber Alcove
 look: The inner sanctum within the White Tower is made from highly polished
 look: snow white marbled stone. Light streams in from the window into this alcove.
 look: The breeze is refreshing and moved the purple and orange curtains adorning the small window.
-exits: west->R-003-003
+# Connects to zone 2 salt mine to the south
+exits: west->R-003-003 south->Z2-:0:0:0
 initdoors:
 mob: troll-004

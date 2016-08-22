@@ -34,6 +34,15 @@ public class Look extends BaseCommand {
 		}
 
 		if (input_.length() > 0) {
+			Prop prop = mob_.getRoom().getProps().get(input_);
+
+			if (prop != null) {
+				mob_.out("Prop info " + prop);
+				return;
+			}
+		}
+
+		if (input_.length() > 0) {
 			Mob mob = mob_.getRoom().getMob(input_);
 			if (mob != null) {
 				mob_.out("Info mob id       = " + mob.getId());

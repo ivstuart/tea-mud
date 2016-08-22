@@ -30,6 +30,9 @@ public class Withdraw extends BaseCommand {
 			return;
 		}
 
+		if (checkCashWithdraw(mob,banker,input)) {
+			return;
+		}
 		// items and cash amounts.
 
 		Item item = mob.getPlayer().getBank().get(input);
@@ -61,4 +64,19 @@ public class Withdraw extends BaseCommand {
 
 	}
 
+	private boolean checkCashWithdraw(Mob mob, Mob banker, String input) {
+
+		SomeMoney cash = banker.getInventory().removeCoins(input);
+
+		if (cash == null) {
+			return false;
+		}
+
+		mob.getInventory().add(cash);
+
+		mob.out("You withdraw "+cash+" from the bank");
+
+		return true;
+
+	}
 }

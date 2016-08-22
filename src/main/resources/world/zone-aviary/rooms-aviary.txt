@@ -101,102 +101,170 @@ brief: Inside the Aviary
 type: Aviary
 look: You are in the aviary the chatter of birds can be heard all around.
 exits: north->Z1-007-003 south->Z1-005-003 east->Z1-006-002
+mob: hummingbird-001
+mob: owl-001
+mob: finch-001
+mob: sparrow-001
+mob: crane-001
 
 id: Z1-007-003
 brief: Inside the Aviary
 type: Aviary
 look: You are in the aviary the chatter of birds can be heard all around.
 exits: north->Z1-008-003 south->Z1-006-003 east->Z1-007-002
+mob: cuckoo-001
+mob: kingfisher-001
+mob: toucan-001
+mob: bird-of-paradise-001
+mob: flamingo-001
 
 id: Z1-008-003
 brief: Inside the Aviary
 type: Aviary
 look: You are in the aviary the chatter of birds can be heard all around.
 exits: west->Z1-008-004 south->Z1-007-003 east->Z1-008-002
+mob: heron-001
+mob: swallow-001
+mob: stork-001
+mob: albatros-001
+mob: woodpecker-001
 
 id: Z1-008-004
 brief: Inside the Aviary
 type: Aviary
 look: You are in the aviary the chatter of birds can be heard all around.
 exits: west->Z1-008-005 east->Z1-008-003
+mob: cuckoo-001
+mob: kingfisher-001
+mob: toucan-001
 
 id: Z1-008-005
 brief: Inside the Aviary
 type: Aviary
 look: You are in the aviary the chatter of birds can be heard all around.
 exits: west->Z1-008-006 east->Z1-008-004
+mob: cuckoo-001
+mob: kingfisher-001
+mob: toucan-001
+mob: grouse-001
+mob: vulture-001
+
 
 id: Z1-008-006
 brief: Inside the Aviary
 type: Aviary
 look: You are in the aviary the chatter of birds can be heard all around.
 exits: west->Z1-008-007 east->Z1-008-005
+mob: toucan-001
+mob: grouse-001
 
 id: Z1-008-007
 brief: Inside the Aviary
 type: Aviary
 look: You are in the aviary the chatter of birds can be heard all around.
 exits: north->Z1-009-007 south->Z1-007-007 east->Z1-008-006
+mob: heron-001
+mob: swallow-001
+mob: stork-001
+mob: albatros-001
 
 id: Z1-009-007
 brief: Inside the Aviary
 type: Aviary
 look: You are in the aviary the chatter of birds can be heard all around.
 exits: south->Z1-008-007
+mob: cuckoo-001
+mob: kingfisher-001
+mob: toucan-001
+mob: bird-of-paradise-001
+mob: flamingo-001
 
 id: Z1-007-007
 brief: Inside the Aviary
 type: Aviary
 look: You are in the aviary the chatter of birds can be heard all around.
 exits: north->Z1-008-007 west->Z1-007-008
+mob: cuckoo-001
+mob: kingfisher-001
+mob: toucan-001
+mob: bird-of-paradise-001
+mob: flamingo-001
 
 id: Z1-007-008
 brief: Inside the Aviary
 type: Aviary
 look: You are in the aviary the chatter of birds can be heard all around.
 exits: west->Z1-007-009 east->Z1-007-007
+mob: cuckoo-001
+mob: kingfisher-001
+mob: toucan-001
+mob: bird-of-paradise-001
+mob: flamingo-001
 
 id: Z1-007-009
 brief: Inside the Aviary
 type: Aviary
 look: You are in the aviary the chatter of birds can be heard all around.
 exits: south->Z1-006-009 east->Z1-007-008
+mob: cuckoo-001
+mob: kingfisher-001
+mob: toucan-001
+mob: grouse-001
+mob: vulture-001
 
 id: Z1-006-009
 brief: Inside the Aviary
 type: Aviary
 look: You are in the aviary the chatter of birds can be heard all around.
 exits: north->Z1-007-009 south->Z1-005-009 west->Z1-006-010
+mob: cuckoo-001
+mob: kingfisher-001
+mob: toucan-001
+mob: grouse-001
+mob: vulture-001
 
 id: Z1-006-010
 brief: Inside the Aviary
 type: Aviary
 look: You are in the aviary the chatter of birds can be heard all around.
 exits: east->Z1-006-009
+mob: cuckoo-001
+mob: kingfisher-001
+mob: toucan-001
+mob: grouse-001
+mob: vulture-001
 
 id: Z1-005-009
 brief: Inside the Aviary
 type: Aviary
 look: You are in the aviary the chatter of birds can be heard all around.
 exits: north->Z1-006-009
+mob: grouse-001
+mob: vulture-001
 
 id: Z1-008-002
 brief: Inside the Aviary
 type: Aviary
 look: You are in the aviary the chatter of birds can be heard all around.
 exits: west->Z1-008-003 south->Z1-007-002 east->Z1-008-001
+mob: cuckoo-001
+mob: kingfisher-001
 
 id: Z1-007-002
 brief: Inside the Aviary
 type: Aviary
 look: You are in the aviary the chatter of birds can be heard all around.
 exits: north->Z1-008-002 west->Z1-007-003 south->Z1-006-002 east->Z1-007-001
+mob: cuckoo-001
+mob: kingfisher-001
 
 id: Z1-006-002
 brief: Inside the Aviary
 type: Aviary
 look: You are in the aviary the chatter of birds can be heard all around.
 exits: north->Z1-007-002 west->Z1-006-003 east->Z1-006-001
+mob: cuckoo-001
+mob: kingfisher-001
 
 id: Z1-006-001
 brief: Inside the Aviary
@@ -204,6 +272,8 @@ type: Aviary
 look: You are in the aviary the chatter of birds can be heard all around.
 look: To the south is an area built using the path command from the RoomBuilder
 exits: north->Z1-007-001 west->Z1-006-002 east->Z1-006-000
+mob: cuckoo-001
+mob: kingfisher-001
 
 class: state.RoomBuilder
 id: Z1-006-001
@@ -216,3 +286,45 @@ id: Z1-:2:-1:0
 roomPrefix: Z1-
 path: n4x5n4n2x2
 execute: notused
+
+class: state.Room
+id: Z1-:2:-1:0
+mob: cuckoo-001
+mob: kingfisher-001
+
+id: Z1-:0:2:0
+mob: cuckoo-001
+mob: kingfisher-001
+
+id: Z1-:1:4:0
+mob: cuckoo-001
+mob: kingfisher-001
+
+id: Z1-:2:5:0
+mob: cuckoo-001
+mob: kingfisher-001
+mob: toucan-001
+mob: grouse-001
+mob: vulture-001
+
+id: Z1-:4:4:0
+mob: cuckoo-001
+mob: kingfisher-001
+mob: toucan-001
+mob: grouse-001
+mob: vulture-001
+
+id:Z1-:0:10:0
+mob: cuckoo-001
+mob: kingfisher-001
+mob: toucan-001
+mob: grouse-001
+mob: vulture-001
+
+id:Z1-:2:12:0
+mob: cuckoo-001
+mob: kingfisher-001
+mob: toucan-001
+mob: grouse-001
+mob: vulture-001
+

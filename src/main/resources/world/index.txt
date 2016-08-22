@@ -14,3 +14,7 @@ include: skills.txt
 # Newbie zone levels 1-10 recommended
 include: zone-aviary/mobs-aviary.txt
 include: zone-aviary/rooms-aviary.txt
+
+# Zone 2 levels 20-30 recommended
+include: zone-salt-mine/mobs-salt-mine.txt
+include: zone-salt-mine/rooms-salt-mine.txt

@@ -10,8 +10,10 @@ import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
+import com.ivstuart.tmud.state.Corpse;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.Prop;
 import com.ivstuart.tmud.utils.*;
 
 /**
@@ -65,8 +67,6 @@ public class Sacrifice extends BaseCommand {
 	@Override
 	public void execute(Mob mob, String input) {
 
-		// TODO Auto-generated method stub
-
 		if (input.equalsIgnoreCase("all")) {
 			getAllCoins(mob);
 			return;
@@ -76,18 +76,31 @@ public class Sacrifice extends BaseCommand {
 			return;
 		}
 
+		String lastWord = StringUtil.getLastWord(input);
+		Prop prop = mob.getRoom().getProps().get(lastWord);
+
+		if (prop != null) {
+			if (prop instanceof Corpse) {
+				Corpse corpse = (Corpse) prop;
+				mob.getRoom().remove(corpse);
+				mob.out("You sacrifice an " + corpse.getName());
+				return;
+			}
+		}
+
 		MudArrayList<Item> items = mob.getRoom().getItems();
 		if (items == null) {
 			mob.out(input + " is not here to sacrifice!");
 			return;
 		}
+
 		Item anItem = items.remove(input);
 
 		if (anItem == null) {
 			mob.out("Can not sacrifice " + input + " it is not here!");
 			return;
 		}
-		// mob.getInventory().add(anItem);
+
 		mob.out("You sacrifice an " + anItem);
 	}
 
@@ -97,7 +110,6 @@ public class Sacrifice extends BaseCommand {
 		SomeMoney money = mob.getRoom().getMoney();
 
 		if (money != null) {
-			// mob.getInventory().add(money);
 			money.clear();
 		}
 	}

@@ -1,0 +1,17 @@
+class: state.Mob
+id: fire-sprite-001
+name: fire sprite
+alias: fire sprite
+short: the fire sprite
+long: the fire sprite
+align: 0
+level: 5
+offensive: 120
+defensive: 100
+armour: 20
+hp: 250
+damage: 2d8
+copper: 50
+xp: 50
+state: FLYING
+attackType: claw beak

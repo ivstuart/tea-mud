@@ -45,6 +45,9 @@ public class ListBank extends BaseCommand {
 			index++;
 		}
 
+
+		mob.out("Funds: "+banker.getInventory().getPurseString());
+
 		mob.out("$H~$J");
 
 	}

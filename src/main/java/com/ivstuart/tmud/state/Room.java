@@ -238,9 +238,6 @@ public class Room extends BasicThing implements Msgable {
 
 	public void setMob(String mobId_) {
 		Mob mob = EntityProvider.createMob(mobId_, getId());
-
-		LOGGER.info("debug-" + mob);
-
 		this.add(mob);
 	}
 
@@ -304,11 +301,14 @@ public class Room extends BasicThing implements Msgable {
 
     public Mob getBanker() {
 		for (Mob mob : _mobs) {
-			// TODO add a armourer
 			if (mob instanceof Banker) {
 				return (Banker)mob;
 			}
 		}
 		return null;
+    }
+
+    public void remove(Prop corpse) {
+    	_props.remove(corpse);
     }
 }

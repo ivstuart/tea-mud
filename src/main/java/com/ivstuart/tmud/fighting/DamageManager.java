@@ -4,6 +4,7 @@ import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.MobState;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.constants.DamageConstants;
+import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.statistics.Affect;
 import com.ivstuart.tmud.person.statistics.BlurAffect;
 import com.ivstuart.tmud.person.statistics.BuffStatsAffect;
@@ -169,16 +170,8 @@ public class DamageManager {
 			defender.out("You have been killed!\n\n");
 
 			defender.getFight().clear();
-			// create corpse and move equipment and inventory to corpse
-			Prop corpse = new Corpse(defender);
-			corpse.setId("corpse");
 
-			// corpse.setShort("Corpse of "+defender.getName());
-			corpse.setBrief("The corpse of a filthy " + defender.getName()
-					+ " is lying here.");
-
-			defender.getRoom().remove(defender);
-			defender.getRoom().add(corpse);
+			createCorpse(defender);
 
 			if (defender.isPlayer()) {
 				World.getRoom("R-P2").add(defender);
@@ -241,6 +234,33 @@ public class DamageManager {
 			defender.getFight().stopFighting();
 			//
 		}
+	}
+
+	private static void createCorpse(Mob defender) {
+		// create corpse and move equipment and inventory to corpse
+		Corpse corpse = new Corpse(defender);
+		corpse.setId("corpse");
+
+		// Items
+		corpse.getInventory().addAll(defender.getInventory().getItems());
+		defender.getInventory().clear();
+
+		// Coins
+		corpse.getInventory().add(defender.getInventory().getPurse());
+		defender.getInventory().getPurse().clear();
+		Money money = new Money(Money.COPPER,defender.getCopper());
+		corpse.getInventory().add(money);
+
+		// corpse.setShort("Corpse of "+defender.getName());
+		corpse.setBrief("The corpse of a filthy " + defender.getName()
+                + " is lying here.");
+
+		// AUTO LOOT
+
+		// AUTO SAC
+
+		defender.getRoom().remove(defender);
+		defender.getRoom().add((Prop)corpse);
 	}
 
 	private static int checkForDodge(Mob defender, int damage) {

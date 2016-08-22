@@ -10,13 +10,12 @@ import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
-import com.ivstuart.tmud.state.Bag;
-import com.ivstuart.tmud.state.Item;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.*;
 import com.ivstuart.tmud.utils.*;
 import static com.ivstuart.tmud.utils.StringUtil.*;
 
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author stuarti
@@ -31,7 +30,6 @@ public class Get extends BaseCommand {
 	 * @return
 	 */
 	private boolean checkCashGet(Mob mob, String input) {
-		// TODO Auto-generated method stub
 		int type = -1;
 		if (input.indexOf("copper") > 0) {
 			type = Money.COPPER;
@@ -65,7 +63,11 @@ public class Get extends BaseCommand {
 	}
 
 	/**
-	 * > get sword corpse > get all corpse > get all all.bag > get all.bread
+	 * > get sword corpse
+	 * > get all corpse
+	 * > get all from corpse
+	 * > get all all.bag
+	 * > get all.bread
 	 * all.bag
 	 */
 	@Override
@@ -80,6 +82,32 @@ public class Get extends BaseCommand {
 
 		if (checkCashGet(mob, input)) {
 			return;
+		}
+
+		String lastWord = StringUtil.getLastWord(input);
+		Prop prop = mob.getRoom().getProps().get(lastWord);
+
+		if (prop != null) {
+			if (prop instanceof Corpse) {
+				Corpse corpse = (Corpse) prop;
+				String target = StringUtil.getFirstFewWords(input);
+				SomeMoney sm = corpse.getInventory().removeCoins(target);
+
+				if( sm != null) {
+					mob.getInventory().add(sm);
+					mob.out("You get "+sm+" from "+corpse.getName());
+					return;
+				}
+
+				Item item = corpse.getInventory().get(target);
+
+				if (item != null) {
+					corpse.getInventory().remove(item);
+					mob.getInventory().add(item);
+					mob.out("You get "+item+" from "+corpse.getName());
+				}
+
+			}
 		}
 
 		MudArrayList<Item> items = mob.getRoom().getItems();

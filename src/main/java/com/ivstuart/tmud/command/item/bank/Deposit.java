@@ -7,7 +7,7 @@
 package com.ivstuart.tmud.command.item.bank;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.person.carried.Money;
+import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 
@@ -29,6 +29,9 @@ public class Deposit extends BaseCommand {
 			return;
 		}
 
+		if (checkCashDeposit(mob, banker, input)) {
+			return;
+		}
 
 		Item item = mob.getInventory().get(input);
 
@@ -42,6 +45,21 @@ public class Deposit extends BaseCommand {
 		mob.getPlayer().getBank().add(item);
 
 		mob.out("You deposit a "+item.getName());
+	}
+
+	private boolean checkCashDeposit(Mob mob, Mob banker, String input) {
+
+		SomeMoney cash = mob.getInventory().removeCoins(input);
+
+		if (cash == null) {
+			return false;
+		}
+
+		banker.getInventory().add(cash);
+
+		mob.out("You deposit "+cash+" into the bank");
+
+		return true;
 	}
 
 }
