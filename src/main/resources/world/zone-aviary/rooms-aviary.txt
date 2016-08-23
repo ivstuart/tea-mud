@@ -314,14 +314,19 @@ mob: toucan-001
 mob: grouse-001
 mob: vulture-001
 
-id:Z1-:0:10:0
+id: Z1-:0:10:0
+mob: cuckoo-001
+mob: cuckoo-001
+mob: cuckoo-001
+mob: cuckoo-001
+mob: cuckoo-001
 mob: cuckoo-001
 mob: kingfisher-001
 mob: toucan-001
 mob: grouse-001
 mob: vulture-001
 
-id:Z1-:2:12:0
+id: Z1-:2:12:0
 mob: cuckoo-001
 mob: kingfisher-001
 mob: toucan-001

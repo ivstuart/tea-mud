@@ -76,7 +76,7 @@ look: in gaining an understanding of the lay of the land.
 exits: north->Z1-001-001 south->R-003-002 west->R-002-001
 item: bag-001
 # can put old man back in any time just that he wanders so creates noise in logging.
-#mob: old-man-006
+mob: old-man-006
 
 id: R-001-002
 brief: The Inner Sanctum of the White Tower

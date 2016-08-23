@@ -36,6 +36,13 @@ public class BehaviourFactory {
             return janitor;
         }
 
+        if (behaviour.indexOf("STEAL") > -1)
+        {
+            Stealer stealer = new Stealer();
+            initBehaviour(behaviour, stealer);
+            return stealer;
+        }
+
         return null;
 
     }

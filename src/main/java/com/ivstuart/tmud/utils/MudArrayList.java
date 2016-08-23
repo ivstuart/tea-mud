@@ -136,6 +136,9 @@ public class MudArrayList<E> extends ArrayList<E> {
 		for (int index = 0; index < this.size(); index++) {
 
 			// TODO merge Prop with BasicThing
+//			E object this.get(index);
+//
+//			if (object instanceof Prop)
 			// String shortName = ((Prop) this.get(index)).getAlias();
 
 //			if (shortName == null) {

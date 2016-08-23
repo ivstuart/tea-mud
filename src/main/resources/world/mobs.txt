@@ -10,8 +10,8 @@ short: the hooded cobra snake
 long: A cobra snake rears up and opens its fearsome hood.
 look: The cobra snake waves back and forth before you, its hood displaying brilliant
 look: colors designed to serve notice to its prey that it is about to strike.
-#behaviour: WANDER:50:2
-#behaviour: AGGRO:100
+behaviour: WANDER:50:2
+behaviour: AGGRO:100
 affects: SANC
 align: 0
 level: 7
@@ -154,8 +154,9 @@ alias: old man
 short: the old man
 long: A old man
 look: The old man is a common old man is and all together unremarkable.
-behaviour: WANDER:100
+#behaviour: WANDER:100
 #behaviour: JANITOR:100
+#behaviour: STEAL:100
 level: 10
 offensive: 120
 defensive: 50
