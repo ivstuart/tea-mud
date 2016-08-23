@@ -33,6 +33,8 @@ public class Room extends BasicThing implements Msgable {
 
 	private Inventory _items;
 
+	private boolean isRegen;
+
 	public Room() {
 		initRoom();
 	}
@@ -42,6 +44,7 @@ public class Room extends BasicThing implements Msgable {
 		_exits = new MudArrayList<Exit>();
 		_mobs = new MudArrayList<Mob>(true); // matching part of name
 		tracks = new ArrayList<Track>(0);
+		isRegen=false;
 	}
 
 	public Room(BasicThing basicThing) {
@@ -308,5 +311,14 @@ public class Room extends BasicThing implements Msgable {
 
     public void remove(Prop corpse) {
     	_props.remove(corpse);
+    }
+
+    public void setRegen(String arg) {
+    	isRegen=true;
+	}
+
+
+    public boolean isRegen() {
+    	return isRegen;
     }
 }

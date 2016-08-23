@@ -295,4 +295,13 @@ public class World {
 		Mob playerMob =_mobs.get(name.toLowerCase());
 		new ForcedQuit().execute(playerMob, null);
 	}
+
+	public static Room getPortal(Mob defender) {
+		if (defender.isGood()) {
+			return World.getRoom("R-P1");
+		}
+		else {
+			return World.getRoom("R-P2");
+		}
+	}
 }

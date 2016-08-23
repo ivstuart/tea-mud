@@ -143,6 +143,11 @@ public class BasicSpell extends FightAction {
     @Override
     public void happen() {
 
+        // Start fight if aggressive action
+        if (!isSpellEffectPositive()) {
+            // TODO initialise combat from here.
+        }
+
         if (_ability.isImproved()) {
             getSelf().out(
                     ">>>>> [You have become better at " + _spell.getId()

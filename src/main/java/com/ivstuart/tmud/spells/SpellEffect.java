@@ -4,7 +4,9 @@ import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Spell;
 
-public interface SpellEffect {
+import java.io.Serializable;
+
+public interface SpellEffect extends Serializable {
 
 	public void effect(Mob caster, Mob target, Spell spell, Item targetItem);
 

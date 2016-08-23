@@ -280,7 +280,7 @@ public class BasicAttack extends FightAction {
 	}
 
 	protected boolean outcomeOfChance(int chance) {
-		return !DiceRoll.ONE_D100.rollLessThanOrEqualTo(chance);
+		return DiceRoll.ONE_D100.rollLessThanOrEqualTo(chance);
 
 	}
 

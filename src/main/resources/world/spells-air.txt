@@ -65,7 +65,7 @@ prereq: lightning
 
 id: advanced lightning
 level: 80
-cost: 80
+cost: 40
 damage: 5d60+400
 target: SINGLE
 speed: 10

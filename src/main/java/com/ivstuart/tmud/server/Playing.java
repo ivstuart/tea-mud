@@ -27,7 +27,8 @@ public class Playing implements Readable {
 
 	private Player player;
 	private Mob mob;
-	
+	private String previousCommandLine;
+
 	/**
 	 * 
 	 */
@@ -44,9 +45,10 @@ public class Playing implements Readable {
 	@Override
 	public void read(String line) {
 
-		// TODO Apply any alias's
+		if (line.equals("!")) {
+			line = previousCommandLine;
+		}
 
-		// line = line.replaceAll(regex, replacement);
 		line = player.applyAlias(line);
 
 		LOGGER.debug("Line after alias is: "+line);
@@ -88,5 +90,6 @@ public class Playing implements Readable {
 			mob.out(e.getMessage());
 		}
 
+		previousCommandLine = line;
 	}
 }

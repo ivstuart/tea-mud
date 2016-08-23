@@ -99,6 +99,7 @@ public class Mob extends Prop implements Tickable {
     private boolean undead;
     private transient List<String> behaviours;
     private List<Tickable> tickers;
+    private int RATE_OF_REGEN_3_PERCENT = 3;
 
     public Mob() {
         fight = new Fight(this);
@@ -556,25 +557,29 @@ public class Mob extends Prop implements Tickable {
 
     private void tickRegenerate() {
 
-        if (health != null) {
-            health.increase(1);
-        }
-        if (moves != null) {
-            moves.increase(1);
-        }
-        if (mana != null) {
-            mana.increase(1);
-        }
+        if (state != null) {
 
-        // int con = this.player.getAttributes().getCON().getValue();
-        // _moves.increase(_state.getMoveMod());
-        // _state.getManaMod());
+            if (room.isRegen()) {
+                RATE_OF_REGEN_3_PERCENT=9;
+            }
+            else {
+                RATE_OF_REGEN_3_PERCENT=3;
+            }
+
+            if (health != null) {
+                health.increasePercentage(RATE_OF_REGEN_3_PERCENT * state.getHpMod());
+            }
+            if (moves != null) {
+                moves.increasePercentage(RATE_OF_REGEN_3_PERCENT * state.getMoveMod());
+            }
+            if (mana != null) {
+                mana.increasePercentage(RATE_OF_REGEN_3_PERCENT * state.getManaMod());
+            }
+        }
 
         if (null != mobAffects) {
             mobAffects.tick();
         }
-
-        // out("tick");
 
     }
 

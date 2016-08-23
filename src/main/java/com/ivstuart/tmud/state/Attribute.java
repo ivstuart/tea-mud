@@ -1,8 +1,13 @@
 package com.ivstuart.tmud.state;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.Serializable;
 
 public class Attribute implements Serializable {
+
+	private static final Logger LOGGER = LogManager.getLogger();
 
 	@Override
 	public String toString() {
@@ -169,4 +174,10 @@ public class Attribute implements Serializable {
 		maximum = savedMaximum;
 		increase(0);
 	}
+
+    public void increasePercentage(int i) {
+    	int inc = 1+ (int) (i * maximum) / 100;
+		// LOGGER.debug("Increasing "+name+" by "+inc+" which is "+i+" % of maximum");
+		increase(inc);
+    }
 }

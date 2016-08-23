@@ -45,7 +45,7 @@ public class DamageConstants {
 	public static String toString(int damage) {
 		int index = (int) Math.sqrt(damage);
 		// int index = damage / 20;
-		if (index > message.length) {
+		if (index >= message.length) {
 			index = message.length - 1;
 		}
 		return message[index];

@@ -430,11 +430,11 @@ public class Login implements Readable {
 		player.getMob().getInventory().add(item);
 
 		// gems
-		item = Login.getItemClone("fire-40");
+		item = Login.getItemClone("fire-80");
 		player.getMob().getInventory().add(item);
-		item = Login.getItemClone("water-20");
+		item = Login.getItemClone("water-80");
 		player.getMob().getInventory().add(item);
-		item = Login.getItemClone("air-60");
+		item = Login.getItemClone("air-80");
 		player.getMob().getInventory().add(item);
 		item = Login.getItemClone("earth-80");
 		player.getMob().getInventory().add(item);

@@ -136,4 +136,10 @@ public class MobMana implements Serializable {
 			manaAtt.setCastlevel(castLevel);
 		}
 	}
+
+    public void increasePercentage(int i) {
+		for (ManaAttribute manaAtt : _mana) {
+			manaAtt.increase(i);
+		}
+    }
 }

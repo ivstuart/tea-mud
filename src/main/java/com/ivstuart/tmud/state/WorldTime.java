@@ -128,7 +128,12 @@ public class WorldTime implements Runnable {
                 // LOGGER.debug("Is fighting " + fight.isFighting() + " has fight actions " + fight.hasFightActions());
 
                 if (fight.isFighting() || fight.hasFightActions()) {
-                    fight.resolveCombat();
+                    try {
+                        fight.resolveCombat();
+                    }
+                    catch (RuntimeException re) {
+                        LOGGER.error("Problem in resolveCombat",re);
+                    }
                 } else {
                     LOGGER.debug("removing from fighting [ " + mob.getName()
                             + " ]");

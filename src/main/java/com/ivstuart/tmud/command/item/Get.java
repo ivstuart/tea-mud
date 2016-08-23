@@ -15,6 +15,7 @@ import com.ivstuart.tmud.utils.*;
 import static com.ivstuart.tmud.utils.StringUtil.*;
 
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author stuarti
@@ -34,7 +35,7 @@ public class Get extends BaseCommand {
 
         if (sm != null) {
             mob.getInventory().add(sm);
-            mob.out("You get "+sm);
+            mob.out("You get " + sm);
             return true;
         }
 
@@ -69,6 +70,15 @@ public class Get extends BaseCommand {
             if (prop instanceof Corpse) {
                 Corpse corpse = (Corpse) prop;
                 String target = StringUtil.getFirstFewWords(input);
+
+                if (target.indexOf("all") > -1) {
+                    List<Item> items = corpse.getInventory().getItems();
+                    mob.getInventory().addAll(items);
+                    for (Item item : items) {
+                        mob.out("You get " + item.getName() + " from " + corpse.getName());
+                    }
+                    items.clear();
+                }
                 SomeMoney sm = corpse.getInventory().removeCoins(target);
 
                 if (sm != null) {
@@ -82,7 +92,7 @@ public class Get extends BaseCommand {
                 if (item != null) {
                     corpse.getInventory().remove(item);
                     mob.getInventory().add(item);
-                    mob.out("You get " + item + " from " + corpse.getName());
+                    mob.out("You get " + item.getName() + " from " + corpse.getName());
                 }
 
             }

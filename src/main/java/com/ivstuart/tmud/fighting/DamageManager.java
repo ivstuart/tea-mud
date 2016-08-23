@@ -14,13 +14,7 @@ import com.ivstuart.tmud.person.statistics.BlurAffect;
 import com.ivstuart.tmud.person.statistics.BuffStatsAffect;
 import com.ivstuart.tmud.person.statistics.SancAffect;
 import com.ivstuart.tmud.spells.Blur;
-import com.ivstuart.tmud.state.Ability;
-import com.ivstuart.tmud.state.Armour;
-import com.ivstuart.tmud.state.Corpse;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Prop;
-import com.ivstuart.tmud.state.World;
-import com.ivstuart.tmud.state.WorldTime;
+import com.ivstuart.tmud.state.*;
 
 public class DamageManager {
 
@@ -31,6 +25,14 @@ public class DamageManager {
 			defender.getFight().stopFighting();
 			attacker.out("Your target is in another room!");
 			return ;
+		}
+
+		// Give creatures that are spell casted at a chance to fight back.
+		if (!defender.getFight().isFighting() && damage > 0) {
+			if (attacker != defender) {
+				defender.getFight().getMelee().setTarget(attacker);
+				WorldTime.addFighting(defender);
+			}
 		}
 
 		if (checkIfTargetSleeping(defender)) {
@@ -181,7 +183,9 @@ public class DamageManager {
 			createCorpse(attacker,defender);
 
 			if (defender.isPlayer()) {
-				World.getRoom("R-P2").add(defender);
+				Room portal = World.getPortal(defender);
+				portal.add(defender);
+				defender.setRoom(portal);
 				defender.getHp().setValue(1);
 			} else {
 				// Add mob to list of the dead ready for repopulation after a
@@ -266,15 +270,17 @@ public class DamageManager {
 		defender.getRoom().add((Prop)corpse);
 
 		// AUTO LOOT
-		if (attacker.getPlayer().getConfig().getConfigData().is(ConfigData.AUTOLOOT)) {
-			// get all from corpse.
-			CommandProvider.getCommand(Get.class).execute(attacker,"all from corpse");
-		}
+		if (attacker.getPlayer() != null){
+			if (attacker.getPlayer().getConfig().getConfigData().is(ConfigData.AUTOLOOT)) {
+				// get all from corpse.
+				CommandProvider.getCommand(Get.class).execute(attacker, "all from corpse");
+			}
 
-		// AUTO SAC
-		if (attacker.getPlayer().getConfig().getConfigData().is(ConfigData.AUTOSAC)) {
-			// get all from corpse.
-			CommandProvider.getCommand(Sacrifice.class).execute(attacker,"corpse");
+			// AUTO SAC
+			if (attacker.getPlayer().getConfig().getConfigData().is(ConfigData.AUTOSAC)) {
+				// get all from corpse.
+				CommandProvider.getCommand(Sacrifice.class).execute(attacker, "corpse");
+			}
 		}
 
 	}
