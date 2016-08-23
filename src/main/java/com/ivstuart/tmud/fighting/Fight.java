@@ -163,7 +163,7 @@ public class Fight {
 
 		if (fightActions.isEmpty()) {
 
-			// LOGGER.info("Fight action is empty foe "+this.getMelee().getSelf().getName()+" target is "+this.getTarget().getName());
+			//LOGGER.debug("Fight action is empty foe "+this.getMelee().getSelf().getName()+" target is "+this.getTarget().getName());
 
 			resolveMelee();
 
@@ -172,11 +172,13 @@ public class Fight {
 			FightAction fightAction = fightActions.getFirst();
 
 			if (fightAction.isFinished()) {
+				//LOGGER.debug("fightAction.isFinished() hence removing action");
 				fightActions.remove();
 			}
 
 			if (fightAction.isMeleeEnabled()) {
-				// out("Melee enabled so one round of melee fighting");
+				//LOGGER.debug("Melee enabled so one round of melee fighting");
+
 				resolveMelee();
 
 			}
@@ -188,13 +190,11 @@ public class Fight {
 	}
 
 	private void resolveMelee() {
-		// TODO allow kill command to do this but not cast blur for example.
+
 		if (melee.getSelf() == melee.getTarget()) {
-			// stop fighting self.
 			this.stopFighting();
 			return;
 		}
-		// Log.info("resolveMelee "+this.getMelee().getSelf().getName()+" is targeting "+melee.getTarget().getName());
 
 		if (melee.getTarget() != null) {
 			melee.next();

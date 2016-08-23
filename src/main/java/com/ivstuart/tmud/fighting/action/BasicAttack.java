@@ -245,6 +245,11 @@ public class BasicAttack extends FightAction {
 	 * skill * attack / (attack+defence)
 	 */
 	private boolean isSuccess() {
+		if (getTarget() == null) {
+			LOGGER.debug("Target already been killed");
+			return true;
+		}
+
 		int attack = CombatCal.getAttack(getSelf());
 
 		int defence = CombatCal.getDefence(getTarget());

@@ -31,8 +31,10 @@ public class WorldTime implements Runnable {
     private int counter = 0;
 
     public static void addFighting(Mob mob_) {
-        // TODO should I have a Set<Fight> for this instead?
-        // if (!mob_.getFight().isFighting()) {}
+        if (fighting.contains(mob_)) {
+            LOGGER.debug("Mob already fighting no need to add");
+            return;
+        }
         fighting.add(mob_);
     }
 
@@ -83,17 +85,8 @@ public class WorldTime implements Runnable {
         deadMobs.add(dead);
     }
 
-    public static void setRunning() {
-        _running = true;
-    }
-
     private WorldTime() {
         WorldTime.init();
-    }
-
-
-    public boolean isRunning() {
-        return _running;
     }
 
     public void repopulateMobs() {
@@ -122,6 +115,7 @@ public class WorldTime implements Runnable {
     public void resolveCombat() {
 
         if (fighting.isEmpty()) {
+            // LOGGER.debug("Fighting is empty so no combat to resolve");
             return;
         }
 
@@ -130,6 +124,8 @@ public class WorldTime implements Runnable {
             Mob mob = fightingIter.next();
             if (mob != null) {
                 Fight fight = mob.getFight();
+
+                // LOGGER.debug("Is fighting " + fight.isFighting() + " has fight actions " + fight.hasFightActions());
 
                 if (fight.isFighting() || fight.hasFightActions()) {
                     fight.resolveCombat();
@@ -147,18 +143,19 @@ public class WorldTime implements Runnable {
 
     @Override
     public void run() {
+        try {
 
-        setRunning();
+            counter = ++counter % tickSpeed;
+            if (counter == 1) {
 
-        counter = ++counter % tickSpeed;
-        if (counter == 1) {
+                sendHeartBeat();
+                repopulateMobs();
+            }
 
-            sendHeartBeat();
-            repopulateMobs();
+            resolveCombat();
+        } catch (Throwable t) {
+            LOGGER.error("Problem in fighting thread", t);
         }
-
-        resolveCombat();
-
     }
 
     public void sendHeartBeat() {

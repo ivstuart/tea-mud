@@ -259,14 +259,8 @@ public class World {
 
 		ScheduledFuture<?> scheduledFuture = scheduledExecutorService.scheduleAtFixedRate(WorldTime.getInstance(),0,100, TimeUnit.MILLISECONDS);
 
-		try {
-			Thread.sleep(200);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-
 		LOGGER.info("WorldTime running [ "
-				+ WorldTime.getInstance().isRunning() + " ]");
+				+ (!scheduledFuture.isCancelled()) + " ]");
 	}
 
 	
