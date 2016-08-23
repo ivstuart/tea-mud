@@ -249,4 +249,7 @@ public class PlayerData implements Serializable {
 		this.totalXp = totalXp;
 	}
 
+	public void setLevel(int level) {
+		this.level = level;
+	}
 }

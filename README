@@ -34,7 +34,12 @@ However no ansi colour supported on simple Java LaunchClient.
 > look
 > config ansi
 
-This toggles off the ansi colour. In game. Note that passwords are not being checked so ignore the failure message.
+This toggles off the ansi colour. In game.
+
+Note that passwords are being checking now. However this is a backdoor to login as anyone use the password
+"temp" to skip the password checking logic. Developers out there remember to remove this backdoor before going
+live with this code base.
+
 Just type look or 'l' to see your surroundings.
 
 Contacting the Author

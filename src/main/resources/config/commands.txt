@@ -79,6 +79,7 @@ command.misc.Brief,REST
 command.misc.Verbose,REST
 command.misc.Title,REST
 command.misc.Death,REST
+command.misc.Remort,STAND
 command.misc.Quit,SLEEP
 command.misc.Password,SLEEP
 command.ability.BackStab,STAND

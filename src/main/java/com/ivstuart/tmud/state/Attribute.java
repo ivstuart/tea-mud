@@ -180,4 +180,9 @@ public class Attribute implements Serializable {
 		// LOGGER.debug("Increasing "+name+" by "+inc+" which is "+i+" % of maximum");
 		increase(inc);
     }
+
+	public void increaseToMaximum(int amount) {
+		maximum += amount;
+		current = maximum;
+	}
 }
