@@ -298,10 +298,10 @@ public class World {
 
 	public static Room getPortal(Mob defender) {
 		if (defender.isGood()) {
-			return World.getRoom("R-P1");
+			return World.getRoom("R-P2");
 		}
 		else {
-			return World.getRoom("R-P2");
+			return World.getRoom("R-P1");
 		}
 	}
 }
