@@ -101,6 +101,8 @@ public class Mob extends Prop implements Tickable {
     private List<Tickable> tickers;
     private int RATE_OF_REGEN_3_PERCENT = 3;
 
+    private String patrolPath;
+
     public Mob() {
         fight = new Fight(this);
     }
@@ -153,6 +155,12 @@ public class Mob extends Prop implements Tickable {
                     }
                     LOGGER.debug("Adding behaviour ["+bb.getId()+"] for mob "+this.getName());
                     tickers.add(bb);
+
+                    // TODO rethink this
+                    if (patrolPath != null && bb instanceof Patrol) {
+                        ((Patrol) bb).setPath(baseMob.patrolPath);
+                    }
+
                 }
 
 
@@ -654,5 +662,9 @@ public class Mob extends Prop implements Tickable {
 
     public int getCopper() {
         return copper;
+    }
+
+    public void setPatrolPath(String path) {
+        this.patrolPath = path;
     }
 }

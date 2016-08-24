@@ -42,7 +42,7 @@ public class EnterNoLook extends BaseCommand {
 			return;
 		}
 
-		if (mob.getMv().getValue() < 0) {
+		if (mob.getMv() != null && mob.getMv().getValue() < 0) {
 			mob.out("You can not move you are out of movement and too tired!");
 			return;
 		}
@@ -93,22 +93,21 @@ public class EnterNoLook extends BaseCommand {
 
 		room.addTrack(track);
 
-		// walk fly swim teleport run sneak etc.....
-		if (mob.isRunning()) {
-			mob.out("You run " + exit.getId());
-			mob.getMv().deduct(10);
-		}
-		else if (mob.isSneaking()) {
-			mob.out("You sneak " + exit.getId());
-			mob.getMv().deduct(5);
-		}
-		else if (mob.isFlying()) {
-			mob.out("You fly " + exit.getId());
-			mob.getMv().deduct(1);
-		}
-		else {
-			mob.out("You walk " + exit.getId());
-			mob.getMv().deduct(4);
+		if (mob.getMv() != null) {
+			// walk fly swim teleport run sneak etc.....
+			if (mob.isRunning()) {
+				mob.out("You run " + exit.getId());
+				mob.getMv().deduct(10);
+			} else if (mob.isSneaking()) {
+				mob.out("You sneak " + exit.getId());
+				mob.getMv().deduct(5);
+			} else if (mob.isFlying()) {
+				mob.out("You fly " + exit.getId());
+				mob.getMv().deduct(1);
+			} else {
+				mob.out("You walk " + exit.getId());
+				mob.getMv().deduct(4);
+			}
 		}
 		// fly 1 point. walk 4. walk on path 2 points.
 

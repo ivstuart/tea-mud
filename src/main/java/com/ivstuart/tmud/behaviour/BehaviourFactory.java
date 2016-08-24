@@ -1,49 +1,27 @@
 package com.ivstuart.tmud.behaviour;
 
-import com.ivstuart.tmud.common.Tickable;
+import com.ivstuart.tmud.server.LaunchMud;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Created by Ivan on 15/08/2016.
  */
 public class BehaviourFactory {
 
+    private static final Logger LOGGER = LogManager.getLogger();
+
     public static BaseBehaviour create(String behaviour) {
 
-        // TODO use refection instead of if checks.
-        if (behaviour.indexOf("AGGRO") > -1) {
-            Aggressive aggressive = new Aggressive();
-            initBehaviour(behaviour, aggressive);
-            return aggressive;
+        String className = behaviour;
+        if (behaviour.indexOf(":") > -1) {
+            className = behaviour.split(":",2)[0];
         }
 
-        if (behaviour.indexOf("SLEEP") > -1) {
-            Sleeping sleeping = new Sleeping();
-            initBehaviour(behaviour, sleeping);
-            return sleeping;
-        }
+        BaseBehaviour bb = createClass(className);
+        initBehaviour(behaviour, bb);
 
-        if (behaviour.indexOf("WANDER") > -1)
-        {
-            Wander wander = new Wander();
-            initBehaviour(behaviour, wander);
-            return wander;
-        }
-
-        if (behaviour.indexOf("JANITOR") > -1)
-        {
-            Janitor janitor = new Janitor();
-            initBehaviour(behaviour, janitor);
-            return janitor;
-        }
-
-        if (behaviour.indexOf("STEAL") > -1)
-        {
-            Stealer stealer = new Stealer();
-            initBehaviour(behaviour, stealer);
-            return stealer;
-        }
-
-        return null;
+        return bb;
 
     }
 
@@ -59,5 +37,18 @@ public class BehaviourFactory {
                 aggressive.setParameter2(parameter2);
             }
         }
+    }
+
+    private static BaseBehaviour createClass(String name) {
+        try {
+            String classprefix = LaunchMud.getMudServerClassPrefix() + "behaviour.";
+            return (BaseBehaviour) Class.forName(classprefix + name).newInstance();
+        } catch (Exception e) {
+            LOGGER.error("Problem creating new behaviour instance", e);
+        }
+
+        LOGGER.warn("Behaviour [" + name + "] does not exists");
+
+        return null;
     }
 }

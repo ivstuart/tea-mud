@@ -10,8 +10,8 @@ short: the hooded cobra snake
 long: A cobra snake rears up and opens its fearsome hood.
 look: The cobra snake waves back and forth before you, its hood displaying brilliant
 look: colors designed to serve notice to its prey that it is about to strike.
-behaviour: WANDER:50:2
-behaviour: AGGRO:100
+behaviour: Wander:50:2
+behaviour: Aggressive:100
 affects: SANC
 align: 0
 level: 7
@@ -32,7 +32,6 @@ alias: small cobra snake
 short: the small green snake
 long: A small snake hisses at you mencingly.
 look: The snake is a common garden snake is and all together unremarkable.
-behaviour:  STAY 
 level: 1
 offensive: 70   
 defensive: 20   
@@ -52,7 +51,6 @@ alias: small official guard
 short: the small guard
 long: A small guard paces up and down
 look: The guard resembles a typical palace guard, complete with hat and spear
-behaviour:  STAY 
 level: 1
 offensive: 70   
 defensive: 20   
@@ -73,7 +71,10 @@ alias: large cave troll
 short: the large gray cave troll
 long: A large gray cave troll snares at you.
 look: The troll is a common cave troll is and all together unremarkable.
-#behaviour: WANDER:100
+#behaviour: Follow:100
+#behaviour: Wimpy:100:50
+behaviour: Patrol:100
+patrolPath: wwweee
 level: 10
 offensive: 120
 defensive: 50
@@ -93,7 +94,7 @@ alias: large red dragon
 short: the large red dragon
 long: A large red dragon snares at you.
 look: The dragon is a common dragon is and all together unremarkable.
-behaviour:
+#behaviour:
 level: 60
 attacks: 6
 offensive: 1000
@@ -154,9 +155,9 @@ alias: old man
 short: the old man
 long: A old man
 look: The old man is a common old man is and all together unremarkable.
-#behaviour: WANDER:100
-#behaviour: JANITOR:100
-#behaviour: STEAL:100
+#behaviour: Wander:100
+#behaviour: Janitor:100
+#behaviour: Stealer:100
 level: 10
 offensive: 120
 defensive: 50

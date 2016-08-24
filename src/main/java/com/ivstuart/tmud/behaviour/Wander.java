@@ -45,6 +45,11 @@ public class Wander extends BaseBehaviour {
 			return;
 		}
 
+		if (mob.getFight().isEngaged()) {
+			LOGGER.debug(mob.getName()+" is engaged and hence will not wander away");
+			return;
+		}
+
 		// TODO have this configurable in mob.txt file.
 		if (DiceRoll.ONE_D100.rollMoreThan(parameter)) {
 			LOGGER.debug(mob.getName()+" is does not feel like wandering this tick");

@@ -89,6 +89,7 @@ name: cuckoo
 alias: cuckoo bird
 short: the cuckoo flies here
 long: the cuckoo flies here
+#behaviour: Assist:100
 align: 0
 level: 5
 offensive: 50
