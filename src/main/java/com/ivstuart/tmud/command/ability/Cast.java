@@ -232,7 +232,7 @@ public class Cast extends BaseCommand {
     }
 
     private boolean targettingSelf(String target) {
-        return target.length() == 0 || target.equalsIgnoreCase("me") || target.equalsIgnoreCase("self");
+        return target == null || target.length() == 0 || target.equalsIgnoreCase("me") || target.equalsIgnoreCase("self");
     }
 
 }

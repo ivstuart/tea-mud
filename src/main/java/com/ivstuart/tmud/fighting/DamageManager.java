@@ -175,75 +175,77 @@ public class DamageManager {
 
 	public static void checkForDefenderDeath(Mob attacker, Mob defender) {
 		// check for defender death!
-		if (defender.getHp().getValue() <= 0) {
-			defender.out("You have been killed!\n\n");
+		synchronized (defender) {
+			if (defender.getHp().getValue() <= 0) {
+				defender.out("You have been killed!\n\n");
 
-			defender.getFight().clear();
+				attacker.getFight().clear();
+				defender.getFight().clear();
 
-			createCorpse(attacker,defender);
+				createCorpse(attacker, defender);
 
-			if (defender.isPlayer()) {
-				Room portal = World.getPortal(defender);
-				portal.add(defender);
-				defender.setRoom(portal);
-				defender.getHp().setValue(1);
-			} else {
-				// Add mob to list of the dead ready for repopulation after a
-				// timer.
-				WorldTime.scheduleMobForRepopulation(defender);
+				if (defender.isPlayer()) {
+					Room portal = World.getPortal(defender);
+					portal.add(defender);
+					defender.setRoom(portal);
+					defender.getHp().setValue(1);
+				} else {
+					// Add mob to list of the dead ready for repopulation after a
+					// timer.
+					WorldTime.scheduleMobForRepopulation(defender);
 
-				// Award xp to killing mob.
-				int xp = defender.getXp();
+					// Award xp to killing mob.
+					int xp = defender.getXp();
 
-				if (attacker.isPlayer()) {
-					attacker.getPlayer().getData().addKill(defender);
+					if (attacker.isPlayer()) {
+						attacker.getPlayer().getData().addKill(defender);
 
-					if (null != attacker.getPlayer().getGroup()) {
-						int totalLevel=0;
-						for (Mob aMob : attacker.getPlayer().getGroup()) {
-							if (aMob.getRoom() != defender.getRoom()) {
-								continue;
+						if (null != attacker.getPlayer().getGroup()) {
+							int totalLevel = 0;
+							for (Mob aMob : attacker.getPlayer().getGroup()) {
+								if (aMob.getRoom() != defender.getRoom()) {
+									continue;
+								}
+								totalLevel += aMob.getPlayer().getData().getLevel();
 							}
-							totalLevel += aMob.getPlayer().getData().getLevel();
+
+							// Have to be in the same room to gain the xp from the group kill
+							for (Mob aMob : attacker.getPlayer().getGroup()) {
+								if (aMob.getRoom() != defender.getRoom()) {
+									continue;
+								}
+								int level = aMob.getPlayer().getData().getLevel();
+
+								int xpSplit = (level * xp) / totalLevel;
+
+								aMob.out("You gained [" + xpSplit + "] total experience for the kill by being in a group.");
+
+								aMob.getPlayer().getData().addXp(xpSplit);
+
+								aMob.getPlayer().checkIfLeveled();
+
+							}
+
+
+						} else {
+							attacker.out("You gained [" + xp
+									+ "] total experience for the kill.");
+
+							attacker.getPlayer().getData().addXp(xp);
 						}
 
-						// Have to be in the same room to gain the xp from the group kill
-						for (Mob aMob : attacker.getPlayer().getGroup()) {
-							if (aMob.getRoom() != defender.getRoom()) {
-								continue;
-							}
-							int level = aMob.getPlayer().getData().getLevel();
+						attacker.getPlayer().checkIfLeveled();
 
-							int xpSplit = (level * xp) / totalLevel;
-
-							aMob.out("You gained ["+xpSplit+"] total experience for the kill by being in a group.");
-
-							aMob.getPlayer().getData().addXp(xpSplit);
-
-							aMob.getPlayer().checkIfLeveled();
-
-						}
-
-
-					}
-					else {
-						attacker.out("You gained [" + xp
-								+ "] total experience for the kill.");
-
-						attacker.getPlayer().getData().addXp(xp);
+						attacker.out("You hear a filthy rat's death cry.");
 					}
 
-					attacker.getPlayer().checkIfLeveled();
-
-					attacker.out("You hear a filthy rat's death cry.");
 				}
 
+				// clear any affects
+				attacker.getFight().stopFighting();
+				defender.getFight().stopFighting();
+				//
 			}
-
-			// clear any affects
-			attacker.getFight().stopFighting();
-			defender.getFight().stopFighting();
-			//
 		}
 	}
 
