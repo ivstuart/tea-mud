@@ -1,0 +1,17 @@
+class: state.Mob
+id: crocodile-001
+name: crocodile
+alias: crocodile
+short: the crocodile
+long: the crocodile
+align: 0
+level: 20
+offensive: 80
+defensive: 60
+armour: 8
+hp: 90
+damage: 2d8+40
+copper: 15
+xp: 550
+state: STAND
+attackType: claw bite

@@ -1,0 +1,17 @@
+class: state.Mob
+id: lion-001
+name: lion
+alias: lion
+short: the lion
+long: the lion
+align: 0
+level: 20
+offensive: 80
+defensive: 60
+armour: 8
+hp: 90
+damage: 2d8+40
+copper: 15
+xp: 550
+state: STAND
+attackType: claw bite

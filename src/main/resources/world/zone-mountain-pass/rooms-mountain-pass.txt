@@ -1,0 +1,34 @@
+class: state.Room
+
+id: Z8-:0:0:0
+brief: A dark path winding through the mountain
+type: Outside
+look: A dark path winding through the mountain
+exists: north->Z0-:-5:-19:-3
+
+class: state.RoomBuilder
+id: Z8-:0:0:0
+roomPrefix: Z8-
+path: 3sesswwwwnnwwwwnnnn
+execute: notused
+
+class: state.RoomBuilder
+id: Z8-:0:0:0
+roomPrefix: Z8-
+path: 3sesswwwwnnssseeessss
+execute: notused
+
+class: state.RoomBuilder
+id: Z8-:0:0:0
+roomPrefix: Z8-
+path: 3sesseeennnneeessssswwwsseeeeeennnnwnnssssssnneeeenn6swww5snesss
+execute: notused
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,26 @@
+class: state.Room
+
+id: Z9-:0:0:0
+brief: A yellow and grey desert
+type: Outside
+look: A yellow and grey desert
+
+class: state.RoomBuilder
+id: Z9-:0:0:0
+roomPrefix: Z9-
+# TODO
+path: neswnnnnnnnnnnnnnnneeeeeeeeeeeeeeessssssssssssswwwwwwwwwwwwwwww
+execute: notused
+
+## Linkage to road to bal
+class: state.Room
+id: Z9-:0:0:0
+exits: north->Z5-:28:18:0
+
+
+#id: Z0-:0:-6:-3
+
+
+
+
+

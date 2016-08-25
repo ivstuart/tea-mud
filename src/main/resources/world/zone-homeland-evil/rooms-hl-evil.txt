@@ -34,9 +34,9 @@ roomPrefix: Z6-
 path: ssww4x4sd
 execute: notused
 
+## Link to caverns
 class: state.Room
 id: Z6-:0:-4:-3
-# TODO link to caverns
 exits: north->Z4-:0:0:0
 
 

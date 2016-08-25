@@ -49,6 +49,27 @@ roomPrefix: Z0-
 path: 10s5w10x5w5w3x5e5e5s
 execute: notused
 
+## Linkage room
+class: state.Room
+id: Z0-:0:-12:-3
+exits: east->Z5-:0:0:0
+
+## Linkage to aviary
+class: state.Room
+id: Z0-:0:-6:-3
+exits: west->Z1-001-001
+
+## Linkage to salt mine
+class: state.Room
+id: Z0-:0:-14:-3
+exits: east->Z2-:0:0:0
+
+## Linkage to mountain pass
+class: state.Room
+id: Z0-:-5:-19:-3
+exits: south->Z8-:0:0:0
+
+
 
 
 

@@ -48,7 +48,10 @@ roomPrefix: Z4-
 path: n4w2n3w2s4w2nw3n3w3e3x5s3s3e3e2n2w2n3x5s2e3n4ese3s2e4s3e5
 execute: notused
 
-
+## Linkage to swamp
+class: state.Room
+id: Z4-:3:16:0
+exits: north->Z10-:1:0:0
 
 
 

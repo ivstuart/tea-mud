@@ -34,6 +34,8 @@ properties: NOMobS
 keywords: dragon
 description: a huge sleeping dragon. Crikey! thats lucky hes asleep.
 
+# The following rooms can only be reached via teleport spell now
+# admin testing area.
 id: R-001-001
 # Beneath the Portal of Eternal Light
 brief: A room near a dark portal

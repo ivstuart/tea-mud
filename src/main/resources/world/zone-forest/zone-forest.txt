@@ -1,0 +1,7 @@
+include: zone-forest/mobs-forest.txt
+include: zone-forest/rooms-forest.txt
+
+class: state.Zone
+
+#id: 7
+#propInRoom: teacher-002 Z6-:-2:0:-1

@@ -1,0 +1,21 @@
+class: state.Room
+
+id: Z8-:0:0:0
+brief: A green and lush savannah
+type: Outside
+look: A green and lush savannah
+
+class: state.RoomBuilder
+id: Z8-:0:0:0
+roomPrefix: Z8-
+path: nesw
+execute: notused
+
+
+
+
+
+
+
+
+

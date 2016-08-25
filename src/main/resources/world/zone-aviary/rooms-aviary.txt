@@ -5,7 +5,7 @@ brief: The Entrance to an Aviary
 type: Chamber
 look: You are in the entrance to an aviary. The chatter of birds can be heard
 look: off to the north ahead of you.
-exits: north->Z1-002-001 south->R-003-001
+exits: north->Z1-002-001 south->R-003-001 east->Z0-:0:-6:-3
 
 id: Z1-002-001
 brief: Inside the Entrance cordoor Aviary

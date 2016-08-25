@@ -12,7 +12,13 @@ include: zone-homeland-good/mobs-hl-good.txt
 include: zone-homeland-good/rooms-hl-good.txt
 include: zone-homeland-good/zone-hl-good.txt
 
+# Zone file has the include for mobs and rooms
 include: zone-road-to-bal/zone-road2bal.txt
+include: zone-desert/zone-desert.txt
+include: zone-forest/zone-forest.txt
+include: zone-mountain-pass/zone-mountain-pass.txt
+include: zone-savannah/zone-savannah.txt
+include: zone-swamp/zone-swamp.txt
 
 # Newbie zone levels 1-10 recommended
 include: zone-homeland-evil/mobs-hl-evil.txt

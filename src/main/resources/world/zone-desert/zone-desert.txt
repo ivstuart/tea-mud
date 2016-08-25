@@ -1,0 +1,7 @@
+include: zone-desert/mobs-desert.txt
+include: zone-desert/rooms-desert.txt
+
+class: state.Zone
+
+#id: 9
+#propInRoom: teacher-002 Z6-:-2:0:-1

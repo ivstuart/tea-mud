@@ -125,7 +125,7 @@ command.item.shop.Sell,STAND
 command.item.shop.Value,STAND
 
 # Admin Commands
-
+command.admin.AllWorldStats,SLEEP
 command.admin.AllMobStats,SLEEP
 command.admin.AllItemStats,SLEEP
 command.admin.AllRoomStats,SLEEP
@@ -135,6 +135,7 @@ command.admin.ClearAffects,SLEEP
 command.admin.Debug,SLEEP
 command.admin.Freeze,SLEEP
 command.admin.Level,SLEEP
+
 # Uses world
 command.admin.MobInfo,SLEEP
 command.admin.PauseTime,SLEEP

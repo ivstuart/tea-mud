@@ -55,7 +55,8 @@ public class Room extends BasicThing implements Msgable {
 	public void add(Exit exit_) {
 		String exitString = exit_.getId();
 		if (_exits.get(exitString) != null ) {
-			LOGGER.warn("Adding a duplicate exit to a room !");
+			// This is normal now during to building paths that overlap.
+			// LOGGER.warn("Adding a duplicate exit to a room !");
 			return;
 		}
 		_exits.add(exit_);

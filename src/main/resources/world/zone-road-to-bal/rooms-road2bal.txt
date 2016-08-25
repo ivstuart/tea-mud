@@ -6,6 +6,7 @@ type: Outside
 look: The road is a well travelled and well keep road. There are grass verges either side
 look: Every hundred yards or so you can see recently watered hanging baskets of flowers.
 look: Further out the landscape breaks into rolling hills and meadows.
+exits: west->Z0-:0:-12:-3
 
 class: state.RoomBuilder
 id: Z5-:0:0:0
@@ -24,6 +25,21 @@ id: Z5-:0:0:0
 roomPrefix: Z5-
 path: 8e2nu2w2n2e2su2e2ndnw2neue3sw2su4n3e2s
 execute: notused
+
+## Linkage to Swamp
+class: state.Room
+id: Z5-:35:6:0
+exits: east->Z10-:0:0:0
+
+## Linkage to Forset
+class: state.Room
+id: Z5-:28:18:0
+exits: north->Z7-:0:0:0
+
+## Linkage to Desert
+class: state.Room
+id: Z5-:28:18:0
+exits: south->Z9-:0:0:0
 
 
 

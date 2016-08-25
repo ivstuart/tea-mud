@@ -1,23 +1,18 @@
 package com.ivstuart.tmud.state;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.*;
-
-import com.ivstuart.tmud.command.CommandProvider;
-import com.ivstuart.tmud.command.misc.ForcedQuit;
-import com.ivstuart.tmud.command.misc.Quit;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.ivstuart.tmud.command.admin.Ban;
+import com.ivstuart.tmud.command.misc.ForcedQuit;
 import com.ivstuart.tmud.common.Tickable;
 import com.ivstuart.tmud.exceptions.MudException;
 import com.ivstuart.tmud.person.Player;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
 public class World {
 
@@ -59,7 +54,7 @@ public class World {
 	}
 
 	public static void add(Room room) {
-		LOGGER.debug("Adding room [ " + room.getId() + "]");
+		// TODO LOGGER.debug("Adding room [ " + room.getId() + "]");
 		_rooms.put(room.getId(), room);
 	}
 
@@ -183,7 +178,11 @@ public class World {
 		_players.remove(player.getName());
 
 	}
-	
+
+	public static Map<String,Room> getRooms() {
+		return _rooms;
+	}
+
 	public void addToWorld(Object object) {
 
 		if (object instanceof Room) {
@@ -223,6 +222,11 @@ public class World {
 
 		if (object instanceof Prop) {
 			World.add((Prop) object);
+			return;
+		}
+
+		if (object instanceof RoomBuilder) {
+			// This is fine.
 			return;
 		}
 		

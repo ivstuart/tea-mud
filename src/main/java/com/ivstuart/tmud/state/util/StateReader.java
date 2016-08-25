@@ -254,7 +254,7 @@ public class StateReader {
 		try {
 			file.read();
 		} catch (IOException e) {
-			LOGGER.debug("Problem loading state file", e);
+			LOGGER.error("Problem loading state file", e);
 		}
 
 		load(file);
