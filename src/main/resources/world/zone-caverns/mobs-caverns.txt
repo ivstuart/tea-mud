@@ -1,0 +1,108 @@
+class: state.Mob
+id: rat-001
+name: rat
+alias: rat
+short: the rat
+long: the rat
+align: 0
+level: 10
+offensive: 100
+defensive: 20
+armour: 10
+hp: 40
+damage: 2d8
+copper: 0
+xp: 55
+state: STAND
+attackType: bite claw
+
+class: state.Mob
+# poison
+id: spider-001
+name: spider
+alias: spider
+short: the spider
+long: the spider
+align: 0
+level: 10
+offensive: 150
+defensive: 100
+armour: 20
+hp: 100
+damage: 2d8
+copper: 150
+xp: 150
+state: STAND
+attackType: sting bite
+
+class: state.Mob
+id: snake-caverns-001
+name: snake
+alias: snake
+short: the snake
+long: the snake
+align: 0
+level: 40
+offensive: 200
+defensive: 200
+armour: 40
+hp: 400
+damage: 2d8+40
+copper: 150
+xp: 50
+state: STAND
+attackType: bite
+
+class: state.Mob
+id: bat-001
+name: bat
+alias: bat
+short: the bat
+long: the bat
+align: 0
+level: 10
+offensive: 20
+defensive: 20
+armour: 4
+hp: 40
+damage: 2d8+4
+copper: 150
+xp: 50
+state: STAND
+attackType: bite claw
+
+class: state.Mob
+id: goo-001
+name: goo
+alias: goo
+short: the goo
+long: the goo
+align: 0
+level: 10
+offensive: 200
+defensive: 200
+armour: 40
+hp: 40
+damage: 2d8+4
+copper: 150
+xp: 50
+state: STAND
+attackType: burn
+
+class: state.Mob
+id: giant-spider-001
+name: giant-spider
+alias: giant spider
+short: the giant spider
+long: the giant spider
+align: 0
+level: 50
+offensive: 300
+defensive: 300
+armour: 50
+hp: 800
+damage: 2d8+50
+copper: 150
+xp: 1000
+state: STAND
+attackType: punch grab

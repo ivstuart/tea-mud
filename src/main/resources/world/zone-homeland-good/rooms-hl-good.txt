@@ -1,0 +1,57 @@
+class: state.Room
+
+id: Z0-:0:0:0
+brief: A room near a dark portal
+type: Chamber
+look: This room has been ornately decorated with murals and tapestries
+look: depicting glorious battles fought by the army of light. To the east the
+look: inner sanctum of the White Tower flickers with bright torches. The portal of
+look: eternal light ends in a bright point of light.
+exits: east->Z0-:1:0:0
+
+id: Z0-:1:0:0
+brief: The Dark Inner Sanctum of the White Tower
+type: Chamber
+look: The dark inner sanctum within the White Tower is made from highly polished
+look: snow white marbled stone. Along the outer walls of the courtyard torches,
+look: held by iron sconces, flicker dim light about the area.
+
+class: state.RoomBuilder
+id: Z0-:1:0:0
+roomPrefix: Z0-
+path: wee2s2w2n2sdu2e2nd
+execute: notused
+
+class: state.RoomBuilder
+id: Z0-:0:-2:-1
+roomPrefix: Z0-
+path: 3x3nwwnseeeed
+execute: notused
+
+class: state.RoomBuilder
+id: Z0-:2:-1:-2
+roomPrefix: Z0-
+path: ssww4x4sd
+execute: notused
+
+class: state.Room
+id: Z0-:0:-4:-3
+brief: The lovely grasslands of rolling meadows.
+type: Outside
+lookClear:
+look: The tall dark grass hides a myriad of grassland creatures.
+look: The winds swirls through the grass creating an effect of a sea of green
+look: waves lapping across the meadows.
+
+class: state.RoomBuilder
+id: Z0-:0:-4:-3
+roomPrefix: Z0-
+path: 10s5w10x5w5w3x5e5e5s
+execute: notused
+
+
+
+
+
+
+

@@ -1,9 +1,9 @@
 class: state.Zone
 
 id: 1
-name: Northern Midgaard Main City
-short: Northern Midgaard Main City
-look: Northern Midgaard Main City
+name: Northern Bal Main City
+short: Northern Bal Main City
+look: Northern Bal Main City
 lifespan: 300
 reset: 0
 itemInRoom: sword-001 R-003-001

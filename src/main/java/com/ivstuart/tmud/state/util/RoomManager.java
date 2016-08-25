@@ -120,7 +120,7 @@ public class RoomManager {
 
 		String reversed = directionMap.get(direction);
 
-		LOGGER.debug("direction " + direction + " becomes " + reversed);
+		// LOGGER.debug("direction " + direction + " becomes " + reversed);
 
 		return (reversed != null ? reversed : direction);
 

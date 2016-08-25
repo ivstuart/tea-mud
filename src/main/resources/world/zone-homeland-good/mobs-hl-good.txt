@@ -1,0 +1,85 @@
+class: state.Mob
+id: mouse-001
+name: mouse
+alias: mouse
+short: the mouse
+long: the mouse
+align: 0
+level: 10
+offensive: 20
+defensive: 20
+armour: 4
+hp: 40
+damage: 2d8+4
+copper: 15
+xp: 55
+state: STAND
+attackType: bite claw
+
+id: hare-001
+name: hare
+alias: hare
+short: the hare
+long: the hare
+align: 0
+level: 10
+offensive: 20
+defensive: 20
+armour: 4
+hp: 40
+damage: 2d8+4
+copper: 15
+xp: 55
+state: STAND
+attackType: bite claw
+
+id: hawk-001
+name: hawk
+alias: hawk
+short: the hawk
+long: the hawk
+align: 0
+level: 10
+offensive: 20
+defensive: 20
+armour: 4
+hp: 40
+damage: 2d8+4
+copper: 15
+xp: 55
+state: FLYING
+attackType: bite claw
+
+id: mole-001
+name: mole
+alias: mole
+short: the mole
+long: the mole
+align: 0
+level: 10
+offensive: 20
+defensive: 20
+armour: 4
+hp: 40
+damage: 2d8+4
+copper: 15
+xp: 55
+state: STAND
+attackType: bite claw
+
+id: sheep-001
+name: sheep
+alias: sheep
+short: the sheep
+long: the sheep
+align: 0
+level: 10
+offensive: 20
+defensive: 20
+armour: 4
+hp: 400
+damage: 2d8+4
+copper: 15
+xp: 55
+state: STAND
+attackType: bite kick

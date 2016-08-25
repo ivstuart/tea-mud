@@ -208,7 +208,8 @@ public class StateReader {
 
 			String args = getArgs(line, delimPos);
 
-			LOGGER.debug("tag [ " + tag + " ] args [ " + args + " ]");
+			// TODO comment out to speed up launch time.
+			// LOGGER.debug("tag [ " + tag + " ] args [ " + args + " ]");
 
 			if (CLASS.equals(tag)) {
 				currentClass = args;

@@ -4,12 +4,29 @@ include: mobs.txt
 include: rooms.txt
 include: zone.txt
 
-include: spells.txt
+include: spells/spells.txt
 include: skills.txt
+
+# Newbie zone levels 1-10 recommended
+include: zone-homeland-good/mobs-hl-good.txt
+include: zone-homeland-good/rooms-hl-good.txt
+include: zone-homeland-good/zone-hl-good.txt
+
+include: zone-road-to-bal/zone-road2bal.txt
+
+# Newbie zone levels 1-10 recommended
+include: zone-homeland-evil/mobs-hl-evil.txt
+include: zone-homeland-evil/rooms-hl-evil.txt
+include: zone-homeland-evil/zone-hl-evil.txt
 
 # Newbie zone levels 1-10 recommended
 include: zone-aviary/mobs-aviary.txt
 include: zone-aviary/rooms-aviary.txt
+
+# Newbie zone levels 1-10 recommended
+include: zone-caverns/mobs-caverns.txt
+include: zone-caverns/rooms-caverns.txt
+include: zone-caverns/zone-caverns.txt
 
 # Zone 2 levels 20-30 recommended
 include: zone-salt-mine/mobs-salt-mine.txt

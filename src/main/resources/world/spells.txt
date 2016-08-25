@@ -1,5 +1,0 @@
-include: spells-air.txt
-include: spells-common.txt
-include: spells-earth.txt
-include: spells-fire.txt
-include: spells-water.txt

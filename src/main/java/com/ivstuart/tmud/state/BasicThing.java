@@ -190,6 +190,11 @@ public class BasicThing implements Serializable, Cloneable, Msgable {
 		look += look_;
 	}
 
+	public void setLookClear(String look_) {
+		look = "";
+	}
+
+
 	public void setProperties(String properties_) {
 		properties = properties_;
 	}

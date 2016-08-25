@@ -1,0 +1,31 @@
+class: state.Zone
+
+id: 4
+mobInRoom: rat-001 Z4-:-6:5:0
+mobInRoom: rat-001 Z4-:-5:6:0
+mobInRoom: rat-001 Z4-:-2:5:0
+mobInRoom: rat-001 Z4-:2:-1:0
+mobInRoom: rat-001 Z4-:-5:8:0
+mobInRoom: rat-001 Z4-:-4:10:0
+mobInRoom: rat-001 Z4-:-3:11:0
+mobInRoom: rat-001 Z4-:-4:17:0
+mobInRoom: rat-001 Z4-:-5:20:0
+mobInRoom: rat-001 Z4-:-9:22:0
+mobInRoom: rat-001 Z4-:5:11:0
+
+mobInRoom: spider-001 Z4-:-6:5:0
+mobInRoom: spider-001 Z4-:1:3:0
+mobInRoom: spider-001 Z4-:4:-1:0
+mobInRoom: spider-001 Z4-:0:10:0
+mobInRoom: spider-001 Z4-:-5:20:0
+
+mobInRoom: bat-001 Z4-:-1:6:0
+mobInRoom: bat-001 Z4-:5:11:0
+mobInRoom: bat-001 Z4-:2:15:0
+
+mobInRoom: goo-001 Z4-:2:15:0
+
+mobInRoom: snake-caverns-001 Z4-:2:15:0
+
+mobInRoom: giant-spider-001 Z4-:2:14:0
+mobInRoom: giant-spider-001 Z4-:2:14:0

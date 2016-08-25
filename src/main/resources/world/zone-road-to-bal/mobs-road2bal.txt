@@ -1,0 +1,17 @@
+class: state.Mob
+id: fire-fly-001
+name: fire-fly
+alias: fire fly
+short: the fire fly
+long: the fire fly
+align: 0
+level: 10
+offensive: 20
+defensive: 20
+armour: 8
+hp: 90
+damage: 2d8+4
+copper: 15
+xp: 55
+state: FLYING
+attackType: bite sting

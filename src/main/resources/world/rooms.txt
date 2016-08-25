@@ -11,7 +11,7 @@ look: misty tendrils form clouds. It seems the blackness brings with it great, y
 look: wonderous feelings of evil. Tainted only by the white tendrils persistance
 look: at a heavenly conception of righteousness. Far off you see a form, thats calls 
 look: to you.
-exits: body->R-001-001
+exits: body->Z6-:0:0:0
 key: gold7
 properties: NOMobS 
 keywords: dragon
@@ -28,7 +28,7 @@ look: misty tendrils form clouds. It seems the blackness brings with it great, y
 look: wonderous feelings of evil. Tainted only by the white tendrils persistance
 look: at a heavenly conception of righteousness. Far off you see a form, thats calls 
 look: to you.
-exits: body->R-001-001
+exits: body->Z0-:0:0:0
 key: gold7
 properties: NOMobS 
 keywords: dragon

@@ -15,9 +15,14 @@ public class EntityProvider {
 
 	public static Mob createMob(String mobId_, String _id) {
 
-		LOGGER.info("Creating mob with id [ " + mobId_ + "]");
+		// LOGGER.info("Creating mob with id [ " + mobId_ + "]");
 
 		Mob existingMob = World.getMobs().get(mobId_);
+
+		if (existingMob == null) {
+			LOGGER.error("No mob found for mob id:"+mobId_);
+			return null;
+		}
 
 		Mob newMob = null;
 

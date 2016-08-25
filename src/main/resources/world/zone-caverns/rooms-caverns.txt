@@ -1,0 +1,55 @@
+class: state.Room
+
+id: Z4-:0:0:0
+brief: The Entrance to caverns
+type: Chamber
+look: You are in the entrance to an caverns.
+exits: south->Z6-:0:-4:-3 north->Z4-:0:-1:0
+
+id: Z4-:0:-1:0
+brief: Inside the caverns
+type: Chamber
+look: You are in the caverns.
+exits: north->Z4-:0:0:0
+
+class: state.RoomBuilder
+id: Z4-:0:-1:0
+roomPrefix: Z4-
+path: n4w2n3w2s4w2nw3x5s3n3w3e3s3e3e2n3x5s2w2n2e3n4e2n4w3x5s2ne5n2w3ne3ne3n
+execute: notused
+
+class: state.RoomBuilder
+id: Z4-:0:-1:0
+roomPrefix: Z4-
+path: ne3n3e4ne4n3n2wn4w2s3x5s3w3n2w2n3e3n3w2n3wnw3n2
+execute: notused
+
+class: state.RoomBuilder
+id: Z4-:0:-1:0
+roomPrefix: Z4-
+path: n4w2n3wn4e2n4e3n6w2n3x5s
+execute: notused
+
+class: state.RoomBuilder
+id: Z4-:0:-1:0
+roomPrefix: Z4-
+path: ne3n3e4ne4n3n2ws3w3s3
+execute: notused
+
+class: state.RoomBuilder
+id: Z4-:0:-1:0
+roomPrefix: Z4-
+path: ne3n3e4nw3sw3
+execute: notused
+
+class: state.RoomBuilder
+id: Z4-:0:-1:0
+roomPrefix: Z4-
+path: n4w2n3w2s4w2nw3n3w3e3x5s3s3e3e2n2w2n3x5s2e3n4ese3s2e4s3e5
+execute: notused
+
+
+
+
+
+

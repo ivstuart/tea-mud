@@ -1,6 +1,5 @@
 include: teachers.txt
 
-
 class: state.Mob
 
 id: snake-001
@@ -10,8 +9,8 @@ short: the hooded cobra snake
 long: A cobra snake rears up and opens its fearsome hood.
 look: The cobra snake waves back and forth before you, its hood displaying brilliant
 look: colors designed to serve notice to its prey that it is about to strike.
-behaviour: Wander:50:2
-behaviour: Aggressive:100
+#behaviour: Wander:50:2
+#behaviour: Aggressive:100
 affects: SANC
 align: 0
 level: 7
@@ -73,8 +72,8 @@ long: A large gray cave troll snares at you.
 look: The troll is a common cave troll is and all together unremarkable.
 #behaviour: Follow:100
 #behaviour: Wimpy:100:50
-behaviour: Patrol:100
-patrolPath: wwweee
+#behaviour: Patrol:100
+#patrolPath: wwweee
 level: 10
 offensive: 120
 defensive: 50

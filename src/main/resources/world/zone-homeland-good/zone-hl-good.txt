@@ -1,0 +1,21 @@
+class: state.Zone
+
+id: 0
+propInRoom: teacher-002 Z0-:-2:0:-1
+
+mobInRoom: mouse-001 Z0-:0:-12:-3
+mobInRoom: mouse-001 Z0-:0:-9:-3
+mobInRoom: mouse-001 Z0-:0:-7:-3
+
+mobInRoom: hawk-001 Z0-:0:-7:-3
+mobInRoom: hawk-001 Z0-:0:-6:-3
+mobInRoom: hawk-001 Z0-:0:-5:-3
+
+mobInRoom: mole-001 Z0-:0:-4:-3
+mobInRoom: mole-001 Z0-:0:-4:-3
+mobInRoom: mole-001 Z0-:0:-4:-3
+mobInRoom: mole-001 Z0-:0:-4:-3
+
+mobInRoom: hare-001 Z0-:0:-7:-3
+mobInRoom: hare-001 Z0-:0:-7:-3
+
