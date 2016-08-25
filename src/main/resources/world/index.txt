@@ -4,10 +4,6 @@ include: mobs.txt
 include: rooms.txt
 include: zone.txt
 
-#include: items.txt
-#include: mobs.txt
-#include: zone.txt
-# just added spells in
 include: spells.txt
 include: skills.txt
 
@@ -18,3 +14,8 @@ include: zone-aviary/rooms-aviary.txt
 # Zone 2 levels 20-30 recommended
 include: zone-salt-mine/mobs-salt-mine.txt
 include: zone-salt-mine/rooms-salt-mine.txt
+
+# Zone 3 levels 40 recommended
+include: zone-pyramid/mobs-pyramid.txt
+include: zone-pyramid/rooms-pyramid.txt
+include: zone-pyramid/zone-pyramid.txt

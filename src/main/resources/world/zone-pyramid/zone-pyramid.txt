@@ -1,0 +1,30 @@
+class: state.Zone
+
+id: 1
+mobInRoom: mummy-001 Z3-:-17:0:0
+mobInRoom: mummy-001 Z3-:-11:4:2
+mobInRoom: mummy-001 Z3-:-8:2:3
+mobInRoom: mummy-001 Z3-:-8:2:3
+mobInRoom: mummy-001 Z3-:-1:7:0
+mobInRoom: mummy-001 Z3-:-17:7:0
+mobInRoom: mummy-001 Z3-:-14:0:1
+mobInRoom: mummy-001 Z3-:0:-6:1
+mobInRoom: mummy-001 Z3-:-14:4:1
+mobInRoom: mummy-001 Z3-:-1:-9:0
+mobInRoom: mummy-001 Z3-:-17:-9:0
+
+mobInRoom: scorpion-001 Z3-:-1:2:0
+mobInRoom: scorpion-001 Z3-:-17:4:0
+mobInRoom: scorpion-001 Z3-:-7:8:1
+mobInRoom: scorpion-001 Z3-:-11:-6:1
+mobInRoom: scorpion-001 Z3-:-11:-6:1
+
+mobInRoom: snake-pyramid-001 Z3-:-4:7:0
+mobInRoom: snake-pyramid-001 Z3-:-14:-3:1
+mobInRoom: snake-pyramid-001 Z3-:-12:4:1
+
+mobInRoom: skeleton-001 Z3-:-16:0:0
+
+mobInRoom: scarab-001 Z3-:-7:8:1
+
+mobInRoom: pharaoh-001 Z3-:-12:7:2

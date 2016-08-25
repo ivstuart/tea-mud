@@ -93,7 +93,14 @@ public class RoomBuilder {
         LOGGER.debug("Building area using path :"+path);
 
         Room startRoom = World.getRoom(id);
-        roomId = new RoomIdentifer();
+
+        if (startRoom == null) {
+            LOGGER.error("Room id: "+id+" not found!");
+            return;
+        }
+
+        roomId = RoomIdentifer.getRoomId(startRoom);
+        // roomId = new RoomIdentifer(); Was a bug starting from room 0 0 0 each time.
         roomId.setRoomPrefix(roomPrefix);
         if (startRoom == null) {
             LOGGER.warn("No start room " + this.id + " aborting path create");
@@ -159,6 +166,7 @@ public class RoomBuilder {
                 startRoom = nextRoom;
                 roomId = destRoomId;
             }
+            number=1;
 
         }
     }

@@ -1,7 +1,7 @@
 id: 1
-name: Northern Midgaard Main City
-short: Northern Midgaard Main City
-long: Northern Midgaard Main City
+name: Northern Bal Main City
+short: Northern Bal Main City
+long: Northern Bal Main City
 lifespan: 300 // seconds?
 reset: NEVER
 mobInRoom: snake-001 R-003-001

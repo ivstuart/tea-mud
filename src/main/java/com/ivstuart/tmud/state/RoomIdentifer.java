@@ -1,11 +1,15 @@
 package com.ivstuart.tmud.state;
 
 import com.ivstuart.tmud.common.ExitEnum;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Created by Ivan on 20/08/2016.
  */
 public class RoomIdentifer {
+
+    private static final Logger LOGGER = LogManager.getLogger();
 
     public RoomIdentifer() {
     }
@@ -70,6 +74,11 @@ public class RoomIdentifer {
 
     public static RoomIdentifer getRoomId(Room room) {
         String[] tokens = room.getId().split(":");
+
+        if (tokens.length != 4) {
+            return new RoomIdentifer();
+        }
+
         RoomIdentifer newRoomId = new RoomIdentifer();
         newRoomId.setRoomPrefix(tokens[0]);
         newRoomId.x = Integer.parseInt(tokens[1]);

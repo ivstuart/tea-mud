@@ -1,0 +1,108 @@
+class: state.Mob
+id: mummy-001
+name: mummy
+alias: mummy
+short: the mummy
+long: the mummy
+align: 0
+level: 40
+offensive: 200
+defensive: 200
+armour: 40
+hp: 400
+damage: 2d8+40
+copper: 150
+xp: 550
+state: STAND
+attackType: punch grab
+
+class: state.Mob
+# poison
+id: scorpion-001
+name: scorpion
+alias: scorpion
+short: the scorpion
+long: the scorpion
+align: 0
+level: 40
+offensive: 200
+defensive: 200
+armour: 40
+hp: 100
+damage: 2d8+20
+copper: 150
+xp: 50
+state: STAND
+attackType: punch grab
+
+class: state.Mob
+id: snake-pyramid-001
+name: snake
+alias: snake
+short: the snake
+long: the snake
+align: 0
+level: 40
+offensive: 200
+defensive: 200
+armour: 40
+hp: 400
+damage: 2d8+40
+copper: 150
+xp: 50
+state: STAND
+attackType: bite
+
+class: state.Mob
+id: skeleton-001
+name: skeleton
+alias: skeleton
+short: the skeleton
+long: the skeleton
+align: 0
+level: 40
+offensive: 200
+defensive: 200
+armour: 40
+hp: 400
+damage: 2d8+40
+copper: 150
+xp: 50
+state: STAND
+attackType: punch
+
+class: state.Mob
+id: scarab-001
+name: scarab
+alias: scarab
+short: the scarab
+long: the scarab
+align: 0
+level: 40
+offensive: 200
+defensive: 200
+armour: 40
+hp: 400
+damage: 2d8+40
+copper: 150
+xp: 50
+state: STAND
+attackType: punch grab
+
+class: state.Mob
+id: pharaoh-001
+name: pharaoh
+alias: pharaoh
+short: the pharaoh
+long: the pharaoh
+align: 0
+level: 50
+offensive: 300
+defensive: 300
+armour: 50
+hp: 800
+damage: 2d8+50
+copper: 150
+xp: 1000
+state: STAND
+attackType: punch grab
