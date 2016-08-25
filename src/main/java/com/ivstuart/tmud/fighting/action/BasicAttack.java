@@ -106,6 +106,12 @@ public class BasicAttack extends FightAction {
 	@Override
 	public void happen() {
 
+		// check if currently bashed.
+		if (getSelf().getMobStatus().isBashed()) {
+			LOGGER.debug("Can not deal any damage because I am bashed");
+			return;
+		}
+
 		out(new Msg(getSelf(), getTarget(),
 				"<S-You are/NAME is> attacking <T-you/NAME>."));
 

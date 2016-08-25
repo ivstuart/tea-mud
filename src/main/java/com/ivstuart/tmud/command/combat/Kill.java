@@ -2,6 +2,7 @@ package com.ivstuart.tmud.command.combat;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.WorldTime;
 
@@ -16,13 +17,7 @@ public class Kill extends BaseCommand {
 			return;
 		}
 
-		mob.getFight().getMelee().setTarget(target);
-
-		target.getFight().getMelee().setTarget(mob);
-
-		WorldTime.addFighting(mob);
-		
-		WorldTime.addFighting(target);
+		Fight.startCombat(mob,target);
 
 	}
 

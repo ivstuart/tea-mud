@@ -111,7 +111,7 @@ public class Kick extends BaseCommand {
 	@Override
 	public void execute(Mob mob, String input) {
 
-		if (!mob.getLearned().hasLearned("bash")) {
+		if (!mob.getLearned().hasLearned("kick")) {
 			mob.out("You have no knowledge of kick");
 			return;
 		}
@@ -134,7 +134,9 @@ public class Kick extends BaseCommand {
 	private void setKicked(Mob mob, Mob target) {
 		mob.getMobStatus().setOffBalance(2);
 
-		DamageManager.deal(mob, target, DiceRoll.ONE_D_SIX.roll());
+		int level = mob.getPlayer().getData().getLevel();
+
+		DamageManager.deal(mob, target, level * DiceRoll.ONE_D_SIX.roll());
 
 	}
 

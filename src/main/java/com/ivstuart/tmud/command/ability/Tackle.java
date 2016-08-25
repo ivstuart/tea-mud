@@ -8,6 +8,9 @@ package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.common.DiceRoll;
+import com.ivstuart.tmud.common.Msg;
+import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.fighting.action.FightAction;
 import com.ivstuart.tmud.fighting.action.GroundFighting;
 import com.ivstuart.tmud.state.Ability;
@@ -36,7 +39,7 @@ public class Tackle extends BaseCommand {
 			}
 
 			durationMillis(500);
-			out("<S-You prepare your/NAME prepares GEN-him>self to tackle <T-you/NAME>.");
+			out(new Msg(getSelf(), getTarget(),"<S-You prepare your/NAME prepares GEN-him>self to tackle <T-you/NAME>."));
 
 			if (isMobUnableTo(getSelf(), getTarget())) {
 				this.finished();
@@ -58,14 +61,17 @@ public class Tackle extends BaseCommand {
 
 		@Override
 		public void happen() {
+
 			if (isMobUnableTo(getSelf(), getTarget())) {
 				this.finished();
 			}
 
+			Fight.startCombat(getSelf(), getTarget());
+
 			// Success or fail
 			Ability ability = getSelf().getLearned().getAbility("tackle");
-			if (ability.isSuccessful()) {
-				out("<S-You/NAME> successfully tackled <T-you/NAME> to the ground.");
+			if (ability.isSuccessful() && DiceRoll.ONE_D100.rollMoreThan(50)) {
+				out(new Msg(getSelf(), getTarget(),"<S-You/NAME> successfully tackled <T-you/NAME> to the ground."));
 				setTackled(getSelf(), getTarget());
 				if (ability.isImproved()) {
 					out("[[[[ Your ability to " + ability.getId()
@@ -73,7 +79,7 @@ public class Tackle extends BaseCommand {
 					ability.improve();
 				}
 			} else {
-				out("<S-You/NAME> miss<S-/es> bashing <T-you/NAME>.");
+				out(new Msg(getSelf(), getTarget(),"<S-You/NAME> miss<S-/es> tackling <T-you/NAME>."));
 			}
 
 			durationMillis(2500);

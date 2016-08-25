@@ -66,6 +66,13 @@ public class Remort extends BaseCommand {
 			return;
 		}
 
+		int totalPoint = str+con+dex+intelligence+wis;
+
+		if (totalPoint != 6) {
+			mob.out(" You have exactly 6 points to spend.");
+			return;
+		}
+
 		mob.getMobAffects().removeAll();
 
 		mob.getPlayer().getAttributes().getSTR().increaseToMaximum(str);

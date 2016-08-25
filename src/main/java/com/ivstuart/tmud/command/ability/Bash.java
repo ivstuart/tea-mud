@@ -8,10 +8,12 @@ package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.fighting.action.FightAction;
 import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.MobStatus;
+import com.ivstuart.tmud.state.WorldTime;
 
 /**
  * @author Ivan Stuart
@@ -33,7 +35,7 @@ public class Bash extends BaseCommand {
 				this.finished();
 			}
 
-			durationMillis(500);
+			durationMillis(3000);
 			out("<S-You prepare your/NAME prepares GEN-him>self to bash <T-you/NAME>.");
 
 			if (checkMobStatus(getSelf(), getTarget())) {
@@ -54,6 +56,10 @@ public class Bash extends BaseCommand {
 
 		@Override
 		public void happen() {
+
+			// TODO initiate combat if not already started.
+			Fight.startCombat(getSelf(), getTarget());
+
 			if (checkMobStatus(getSelf(), getTarget())) {
 				this.finished();
 			}
@@ -145,7 +151,10 @@ public class Bash extends BaseCommand {
 
 		mob.getFight().add(new FightActionBash(mob, target));
 
+
 	}
+
+
 
 	private void setBashed(Mob mob, Mob target) {
 		mob.getMobStatus().setBashLagged(2);

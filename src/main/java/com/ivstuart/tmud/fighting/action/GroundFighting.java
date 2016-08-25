@@ -128,31 +128,17 @@ public class GroundFighting extends FightAction {
 
 	private void hit() {
 
-		// out("You hit someone called " + character.getName());
-
-		// Dodging?
-
 		BasicDamage damage = new BasicDamage();
 
-		// Weapon roll
-		// damage.setRoll(1,400,0);
-		getSelf().getWeapon();
 
-		damage.setRoll(1, 6, 0);
+		int level = getSelf().getMobLevel();
 
-		// APB - default 3 multiplier
+		if (getSelf().isPlayer()) {
+			level = getSelf().getPlayer().getData().getLevel();
+		}
 
-		// Stat based damage modifier.
+		damage.setRoll(1, level, 0);
 
-		// Fumbles. Criticals.
-
-		// Hit location
-
-		// Take off armour
-
-		// Saves
-
-		// Could just send this object the FightAction to damage.
 		DamageManager.deal(getSelf(), getTarget(), damage.roll());
 
 	}

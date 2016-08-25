@@ -12,7 +12,7 @@ public class Flurry extends BaseCommand {
 		// 1st check already fighting
 
 		if (mob.getFight().isEngaged() == false) {
-			mob.out("You must be figthing someone to flurry!");
+			mob.out("You must be fighting someone to flurry!");
 			return;
 		}
 		Mob target = mob.getRoom().getMob(input);

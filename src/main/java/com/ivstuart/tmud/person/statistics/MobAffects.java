@@ -78,6 +78,8 @@ public class MobAffects implements Serializable {
 			Affect affect = affIter.next();
 			affect.removeEffect();
 		}
+
+		affects.clear();
 	}
 
     public boolean hasAffect(String levitate) {

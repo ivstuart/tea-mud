@@ -135,14 +135,13 @@ command.admin.ClearAffects,SLEEP
 command.admin.Debug,SLEEP
 command.admin.Freeze,SLEEP
 command.admin.Level,SLEEP
-
-# Uses world
 command.admin.MobInfo,SLEEP
 command.admin.PauseTime,SLEEP
 command.admin.Posess,SLEEP
 command.admin.Reload,SLEEP
 command.admin.Repopulate,SLEEP
 command.admin.ShowFighting,SLEEP
+command.admin.ShowMobState,SLEEP
 command.admin.Shutdown,SLEEP
 command.admin.StopFighting,SLEEP
 command.admin.Smite,SLEEP

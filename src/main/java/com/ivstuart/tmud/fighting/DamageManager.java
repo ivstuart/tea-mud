@@ -10,342 +10,358 @@ import com.ivstuart.tmud.constants.DamageConstants;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.config.ConfigData;
 import com.ivstuart.tmud.person.statistics.Affect;
-import com.ivstuart.tmud.person.statistics.BlurAffect;
-import com.ivstuart.tmud.person.statistics.BuffStatsAffect;
-import com.ivstuart.tmud.person.statistics.SancAffect;
-import com.ivstuart.tmud.spells.Blur;
 import com.ivstuart.tmud.state.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class DamageManager {
 
-	public static void deal(Mob attacker, Mob defender, int damage) {
+    private static final Logger LOGGER = LogManager.getLogger();
 
-		if (!checkInSameRoom(attacker,defender)) {
-			attacker.getFight().stopFighting();
-			defender.getFight().stopFighting();
-			attacker.out("Your target is in another room!");
-			return ;
-		}
+    public static void deal(Mob attacker, Mob defender, int damage) {
 
-		// Give creatures that are spell casted at a chance to fight back.
-		if (!defender.getFight().isFighting() && damage > 0) {
-			if (attacker != defender) {
-				defender.getFight().getMelee().setTarget(attacker);
-				WorldTime.addFighting(defender);
-			}
-		}
+        if (!checkInSameRoom(attacker, defender)) {
+            if (attacker != null) {
+                attacker.getFight().stopFighting();
+                attacker.out("Your target is in another room!");
+            }
+            if (defender != null) {
+                defender.getFight().stopFighting();
+            }
+            return;
+        }
 
-		if (checkIfTargetSleeping(defender)) {
-			damage *= 2;
-			defender.setState(MobState.WAKE);
-		}
-		else {
+        // Give creatures that are spell casted at a chance to fight back.
+        if (!defender.getFight().isFighting() && damage > 0) {
+            if (attacker != defender) {
+                defender.getFight().getMelee().setTarget(attacker);
+                WorldTime.addFighting(defender);
+            }
+        }
 
-			// Check saves first
-			damage = checkForDodge(defender, damage);
+        if (checkIfTargetSleeping(defender)) {
+            damage *= 2;
+            defender.setState(MobState.WAKE);
+        } else {
 
-			damage = checkForParry(defender, damage);
+            // Check saves first
+            damage = checkForDodge(defender, damage);
 
-			// 10% save chance
-			damage = checkForBlurDodge(attacker, defender, damage);
-		}
+            damage = checkForParry(defender, damage);
 
-		// Half damage
-		damage = checkForSancDodge(attacker,defender,damage);
-		
-		damage = checkForShieldBlocking(defender, damage);
+            // 10% save chance
+            damage = checkForBlurDodge(attacker, defender, damage);
+        }
 
-		// Combat sense
-		damage = checkForCombatSense(attacker, damage);
-		
-		// Take off armour at hit location
-		//   if melee the armor at location 
-		//      apply any armor peneration skills or specials to counter armour saves
-		//   if spell damage the average armour minus any special elemental saves
-		// TODO 	
-		int armour = checkArmourAtHitLocation(defender);
-		
-		if (armour > 0) {
-			// TODO no arm pen for spells
-			armour = checkForArmourPenetration(attacker, armour);
-		}
-		
-		damage = damage - armour;
-		
-		if (damage < 1) {
-			attacker.out("Your feeble blow is deflected by their armour");
-			return;
-		}
-		
-		// TODO
-		checkMagicalDamageSaves();
+        // Half damage
+        damage = checkForSancDodge(attacker, defender, damage);
 
-		Msg msg = new Msg(attacker, defender, DamageConstants.toString(damage));
+        damage = checkForShieldBlocking(defender, damage);
 
-		attacker.getRoom().out(msg);
+        // Combat sense
+        damage = checkForCombatSense(attacker, damage);
 
-		// TODO apply xp for combat damage and count this (clear counter on kill) after reporting xp from fighting.
-		defender.getHp().decrease(damage);
-		
-		// TODO if not fighting or a heavy blow defender will target and attack attacker.
+        // Take off armour at hit location
+        //   if melee the armor at location
+        //      apply any armor peneration skills or specials to counter armour saves
+        //   if spell damage the average armour minus any special elemental saves
+        // TODO
+        int armour = checkArmourAtHitLocation(defender);
 
-		checkForDefenderDeath(attacker, defender);
+        if (armour > 0) {
+            // TODO no arm pen for spells
+            armour = checkForArmourPenetration(attacker, armour);
+        }
 
-	}
+        damage = damage - armour;
 
-	private static boolean checkIfTargetSleeping(Mob defender) {
-		return defender.getState().isSleeping();
-	}
+        if (damage < 1) {
+            attacker.out("Your feeble blow is deflected by their armour");
+            return;
+        }
 
-	// 20% more damage with combat sense.
-	private static int checkForCombatSense(Mob attacker, int damage) {
+        // TODO
+        checkMagicalDamageSaves();
 
-		Affect buff = attacker.getMobAffects().getAffect("combat sense");
+        Msg msg = new Msg(attacker, defender, DamageConstants.toString(damage));
 
-		if (buff != null) {
-			damage *= 1.2;
-		}
+        attacker.getRoom().out(msg);
 
-		return damage;
-	}
+        // TODO apply xp for combat damage and count this (clear counter on kill) after reporting xp from fighting.
+        defender.getHp().decrease(damage);
 
-	private static int checkForSancDodge(Mob attacker, Mob defender, int damage) {
-		Affect sanc = defender.getMobAffects().getAffect("sanctury");
+        // TODO if not fighting or a heavy blow defender will target and attack attacker.
 
-		if (sanc == null) {
-			return damage;
-		}
+        checkForDefenderDeath(attacker, defender);
 
-		return sanc.onHit(attacker, defender, damage);
-	}
+    }
 
+    private static boolean checkIfTargetSleeping(Mob defender) {
+        return defender.getState().isSleeping();
+    }
 
-	private static int checkForBlurDodge(Mob attacker, Mob defender, int damage) {
-		Affect blur = defender.getMobAffects().getAffect("blur");
+    // 20% more damage with combat sense.
+    private static int checkForCombatSense(Mob attacker, int damage) {
 
-		if (blur == null) {
-			return damage;
-		}
+        Affect buff = attacker.getMobAffects().getAffect("combat sense");
 
-		return blur.onHit(attacker, defender, damage);
+        if (buff != null) {
+            damage *= 1.2;
+        }
 
-	}
+        return damage;
+    }
 
-	private static boolean checkInSameRoom(Mob attacker, Mob defender) {
-		return attacker.getRoom() == defender.getRoom();
-	}
+    private static int checkForSancDodge(Mob attacker, Mob defender, int damage) {
+        Affect sanc = defender.getMobAffects().getAffect("sanctury");
 
-	private static void checkMagicalDamageSaves() {
-		// TODO Fire Water Earth Air and Magic saves to check
-		// acts rather like armour
-		
-	}
+        if (sanc == null) {
+            return damage;
+        }
 
-	private static int checkArmourAtHitLocation(Mob defender) {
-		// TODO FIXME
-		Armour armour = defender.getEquipment().getTotalArmour();
-		try {
-			return armour.getRandomSlot();
-		} catch (ArrayIndexOutOfBoundsException e) {
-			return 0;
-		}
-	}
-
-	private static int checkForArmourPenetration(Mob attacker, int armour) {
-		if (armour < 1) {
-			return armour;
-		}
-		
-		// TODO armour penetration
-		Ability penetration = attacker.getLearned().getAbility("armour penetration");
-
-		if (penetration != null && penetration.isSuccessful()) {
-			attacker.out("<S-You/NAME> skillfully hit between your opponents armour");
-
-			armour -= DiceRoll.ONE_D_SIX.roll();
-
-			if (penetration.isImproved()) {
-				attacker.out("[[[[ Your ability to " + attacker.getId()
-						+ " has improved ]]]]");
-				penetration.improve();
-			}
-		}
-		return Math.max(armour,0);
-	}
-
-	public static void checkForDefenderDeath(Mob attacker, Mob defender) {
-		// check for defender death!
-		synchronized (defender) {
-			if (defender.getHp().getValue() <= 0) {
-				defender.out("You have been killed!\n\n");
-
-				attacker.getFight().clear();
-				defender.getFight().clear();
-
-				createCorpse(attacker, defender);
-
-				if (defender.isPlayer()) {
-					Room portal = World.getPortal(defender);
-					portal.add(defender);
-					defender.setRoom(portal);
-					defender.getHp().setValue(1);
-				} else {
-					// Add mob to list of the dead ready for repopulation after a
-					// timer.
-					WorldTime.scheduleMobForRepopulation(defender);
-
-					// Award xp to killing mob.
-					int xp = defender.getXp();
-
-					if (attacker.isPlayer()) {
-						attacker.getPlayer().getData().addKill(defender);
-
-						if (null != attacker.getPlayer().getGroup()) {
-							int totalLevel = 0;
-							for (Mob aMob : attacker.getPlayer().getGroup()) {
-								if (aMob.getRoom() != defender.getRoom()) {
-									continue;
-								}
-								totalLevel += aMob.getPlayer().getData().getLevel();
-							}
-
-							// Have to be in the same room to gain the xp from the group kill
-							for (Mob aMob : attacker.getPlayer().getGroup()) {
-								if (aMob.getRoom() != defender.getRoom()) {
-									continue;
-								}
-								int level = aMob.getPlayer().getData().getLevel();
-
-								int xpSplit = (level * xp) / totalLevel;
-
-								aMob.out("You gained [" + xpSplit + "] total experience for the kill by being in a group.");
-
-								aMob.getPlayer().getData().addXp(xpSplit);
-
-								aMob.getPlayer().checkIfLeveled();
-
-							}
+        return sanc.onHit(attacker, defender, damage);
+    }
 
 
-						} else {
-							attacker.out("You gained [" + xp
-									+ "] total experience for the kill.");
+    private static int checkForBlurDodge(Mob attacker, Mob defender, int damage) {
+        Affect immortalBlur = defender.getMobAffects().getAffect("improved blur");
 
-							attacker.getPlayer().getData().addXp(xp);
-						}
+        if (immortalBlur != null) {
+            LOGGER.debug("Cheating with improved blur");
+            return 0;
+        }
 
-						attacker.getPlayer().checkIfLeveled();
+        Affect blur = defender.getMobAffects().getAffect("blur");
 
-						attacker.out("You hear a filthy rat's death cry.");
-					}
+        if (blur == null) {
+            return damage;
+        }
 
-				}
+        return blur.onHit(attacker, defender, damage);
 
-				// clear any affects
-				attacker.getFight().stopFighting();
-				defender.getFight().stopFighting();
-				//
-			}
-		}
-	}
+    }
 
-	private static void createCorpse(Mob attacker,Mob defender) {
-		// create corpse and move equipment and inventory to corpse
-		Corpse corpse = new Corpse(defender);
-		corpse.setId("corpse");
-		corpse.setAlias("corpse");
+    private static boolean checkInSameRoom(Mob attacker, Mob defender) {
+        if (attacker == null || defender == null) {
+            return false;
+        }
+        return attacker.getRoom() == defender.getRoom();
+    }
 
-		// Items
-		corpse.getInventory().addAll(defender.getInventory().getItems());
-		defender.getInventory().clear();
+    private static void checkMagicalDamageSaves() {
+        // TODO Fire Water Earth Air and Magic saves to check
+        // acts rather like armour
 
-		// Coins
-		corpse.getInventory().add(defender.getInventory().getPurse());
-		defender.getInventory().getPurse().clear();
-		Money money = new Money(Money.COPPER,defender.getCopper());
-		corpse.getInventory().add(money);
+    }
 
-		// corpse.setShort("Corpse of "+defender.getName());
-		corpse.setBrief("The corpse of a filthy " + defender.getName()
+    private static int checkArmourAtHitLocation(Mob defender) {
+        // TODO FIXME
+        Armour armour = defender.getEquipment().getTotalArmour();
+        try {
+            return armour.getRandomSlot();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return 0;
+        }
+    }
+
+    private static int checkForArmourPenetration(Mob attacker, int armour) {
+        if (armour < 1) {
+            return armour;
+        }
+
+        // TODO armour penetration
+        Ability penetration = attacker.getLearned().getAbility("armour penetration");
+
+        if (penetration != null && penetration.isSuccessful()) {
+            attacker.out("<S-You/NAME> skillfully hit between your opponents armour");
+
+            armour -= DiceRoll.ONE_D_SIX.roll();
+
+            if (penetration.isImproved()) {
+                attacker.out("[[[[ Your ability to " + attacker.getId()
+                        + " has improved ]]]]");
+                penetration.improve();
+            }
+        }
+        return Math.max(armour, 0);
+    }
+
+    public static void checkForDefenderDeath(Mob attacker, Mob defender) {
+        // check for defender death!
+        synchronized (defender) {
+            if (defender.getHp().getValue() <= 0) {
+                defender.out("You have been killed!\n\n");
+
+                attacker.getFight().clear();
+                defender.getFight().clear();
+
+                attacker.getMobStatus().clear();
+                defender.getMobStatus().clear();
+
+                createCorpse(attacker, defender);
+
+                if (defender.isPlayer()) {
+                    Room portal = World.getPortal(defender);
+                    portal.add(defender);
+                    defender.setRoom(portal);
+                    defender.getHp().setValue(1);
+                } else {
+                    // Add mob to list of the dead ready for repopulation after a
+                    // timer.
+                    WorldTime.scheduleMobForRepopulation(defender);
+
+                    // Award xp to killing mob.
+                    int xp = defender.getXp();
+
+                    if (attacker.isPlayer()) {
+                        attacker.getPlayer().getData().addKill(defender);
+
+                        if (null != attacker.getPlayer().getGroup()) {
+                            int totalLevel = 0;
+                            for (Mob aMob : attacker.getPlayer().getGroup()) {
+                                if (aMob.getRoom() != defender.getRoom()) {
+                                    continue;
+                                }
+                                totalLevel += aMob.getPlayer().getData().getLevel();
+                            }
+
+                            // Have to be in the same room to gain the xp from the group kill
+                            for (Mob aMob : attacker.getPlayer().getGroup()) {
+                                if (aMob.getRoom() != defender.getRoom()) {
+                                    continue;
+                                }
+                                int level = aMob.getPlayer().getData().getLevel();
+
+                                int xpSplit = (level * xp) / totalLevel;
+
+                                aMob.out("You gained [" + xpSplit + "] total experience for the kill by being in a group.");
+
+                                aMob.getPlayer().getData().addXp(xpSplit);
+
+                                aMob.getPlayer().checkIfLeveled();
+
+                            }
+
+
+                        } else {
+                            attacker.out("You gained [" + xp
+                                    + "] total experience for the kill.");
+
+                            attacker.getPlayer().getData().addXp(xp);
+                        }
+
+                        attacker.getPlayer().checkIfLeveled();
+
+                        attacker.out("You hear a filthy rat's death cry.");
+                    }
+
+                }
+
+                // clear any affects
+                attacker.getFight().stopFighting();
+                defender.getFight().stopFighting();
+                //
+            }
+        }
+    }
+
+    private static void createCorpse(Mob attacker, Mob defender) {
+        // create corpse and move equipment and inventory to corpse
+        Corpse corpse = new Corpse(defender);
+        corpse.setId("corpse");
+        corpse.setAlias("corpse");
+
+        // Items
+        corpse.getInventory().addAll(defender.getInventory().getItems());
+        defender.getInventory().clear();
+
+        // Coins
+        corpse.getInventory().add(defender.getInventory().getPurse());
+        defender.getInventory().getPurse().clear();
+        Money money = new Money(Money.COPPER, defender.getCopper());
+        corpse.getInventory().add(money);
+
+        // corpse.setShort("Corpse of "+defender.getName());
+        corpse.setBrief("The corpse of a filthy " + defender.getName()
                 + " is lying here.");
 
-		defender.getRoom().remove(defender);
-		defender.getRoom().add((Prop)corpse);
+        defender.getRoom().remove(defender);
+        defender.getRoom().add((Prop) corpse);
 
-		// AUTO LOOT
-		if (attacker.getPlayer() != null){
-			if (attacker.getPlayer().getConfig().getConfigData().is(ConfigData.AUTOLOOT)) {
-				// get all from corpse.
-				CommandProvider.getCommand(Get.class).execute(attacker, "all from corpse");
-			}
+        // AUTO LOOT
+        if (attacker.getPlayer() != null) {
+            if (attacker.getPlayer().getConfig().getConfigData().is(ConfigData.AUTOLOOT)) {
+                // get all from corpse.
+                CommandProvider.getCommand(Get.class).execute(attacker, "all from corpse");
+            }
 
-			// AUTO SAC
-			if (attacker.getPlayer().getConfig().getConfigData().is(ConfigData.AUTOSAC)) {
-				// get all from corpse.
-				CommandProvider.getCommand(Sacrifice.class).execute(attacker, "corpse");
-			}
-		}
+            // AUTO SAC
+            if (attacker.getPlayer().getConfig().getConfigData().is(ConfigData.AUTOSAC)) {
+                // get all from corpse.
+                CommandProvider.getCommand(Sacrifice.class).execute(attacker, "corpse");
+            }
+        }
 
-	}
+    }
 
-	private static int checkForDodge(Mob defender, int damage) {
-		Ability dodge = defender.getLearned().getAbility("dodge");
+    private static int checkForDodge(Mob defender, int damage) {
+        Ability dodge = defender.getLearned().getAbility("dodge");
 
-		// Reduce dodging to 30% of the time.
-		if (dodge != null && dodge.isSuccessful() && DiceRoll.ONE_D_SIX.rollMoreThan(4)) {
-			defender.out("<S-You/NAME> successfully dodge missing most of the attack.");
+        // Reduce dodging to 30% of the time.
+        if (dodge != null && dodge.isSuccessful() && DiceRoll.ONE_D_SIX.rollMoreThan(4)) {
+            defender.out("<S-You/NAME> successfully dodge missing most of the attack.");
 
-			damage = (int) damage / 10;
+            damage = (int) damage / 10;
 
-			if (dodge.isImproved()) {
-				defender.out("[[[[ Your ability to " + dodge.getId()
-						+ " has improved ]]]]");
-				dodge.improve();
-			}
-		}
+            if (dodge.isImproved()) {
+                defender.out("[[[[ Your ability to " + dodge.getId()
+                        + " has improved ]]]]");
+                dodge.improve();
+            }
+        }
 
-		return damage;
+        return damage;
 
-	}
+    }
 
-	private static int checkForParry(Mob defender, int damage) {
-		Ability parry = defender.getLearned().getAbility("parry");
+    private static int checkForParry(Mob defender, int damage) {
+        Ability parry = defender.getLearned().getAbility("parry");
 
-		// Reduce parry to 50% of the time.
-		if (parry != null && parry.isSuccessful() && DiceRoll.ONE_D_SIX.rollMoreThan(2)) {
-			defender.out("<S-You/NAME> successfully parry missing most of the attack.");
+        // Reduce parry to 50% of the time.
+        if (parry != null && parry.isSuccessful() && DiceRoll.ONE_D_SIX.rollMoreThan(2)) {
+            defender.out("<S-You/NAME> successfully parry missing most of the attack.");
 
-			damage = (int) damage / 5;
+            damage = (int) damage / 5;
 
-			if (parry.isImproved()) {
-				defender.out("[[[[ Your ability to " + parry.getId()
-						+ " has improved ]]]]");
-				parry.improve();
-			}
-		}
+            if (parry.isImproved()) {
+                defender.out("[[[[ Your ability to " + parry.getId()
+                        + " has improved ]]]]");
+                parry.improve();
+            }
+        }
 
-		return damage;
+        return damage;
 
-	}
+    }
 
-	public static int checkForShieldBlocking(Mob defender, int damage) {
-		Ability shieldBlock = defender.getLearned().getAbility("shield block");
+    public static int checkForShieldBlocking(Mob defender, int damage) {
+        Ability shieldBlock = defender.getLearned().getAbility("shield block");
 
-		if (shieldBlock != null) {
-			if (defender.getEquipment().hasShieldEquiped()) {
-				if (shieldBlock.isSuccessful()) {
-					defender.out("<S-You/NAME> successfully shield block <T-you/NAME>.");
+        if (shieldBlock != null) {
+            if (defender.getEquipment().hasShieldEquiped()) {
+                if (shieldBlock.isSuccessful()) {
+                    defender.out("<S-You/NAME> successfully shield block <T-you/NAME>.");
 
-					damage -= 5;
+                    damage -= 5;
 
-					if (shieldBlock.isImproved()) {
-						defender.out("[[[[ Your ability to "
-								+ shieldBlock.getId() + " has improved ]]]]");
-						shieldBlock.improve();
-					}
-				}
-			}
-		}
-		return damage;
-	}
+                    if (shieldBlock.isImproved()) {
+                        defender.out("[[[[ Your ability to "
+                                + shieldBlock.getId() + " has improved ]]]]");
+                        shieldBlock.improve();
+                    }
+                }
+            }
+        }
+        return damage;
+    }
 }

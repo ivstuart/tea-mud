@@ -42,8 +42,6 @@ prereq: ice blast
 id: blur
 level: 6
 cost: 5
-damage: 100
-# damage is duration
 target: SELF
 speed: 5
 mana: WATER
@@ -112,3 +110,14 @@ target: SINGLE
 speed: 5
 mana: WATER
 spellEffect: BUFF
+
+id: improved blur
+level: 60
+cost: 5
+damage: 0
+target: SELF
+speed: 5
+mana: WATER
+spellEffect: BLUR
+# Has a 10% dodge chance when hit with basic attack.
+duration: 2d6+100

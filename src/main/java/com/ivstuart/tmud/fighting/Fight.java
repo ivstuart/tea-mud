@@ -242,4 +242,13 @@ public class Fight {
 		return false;
 	}
 
+	public static void startCombat(Mob mob, Mob target) {
+		mob.getFight().getMelee().setTarget(target);
+
+		target.getFight().getMelee().setTarget(mob);
+
+		WorldTime.addFighting(mob);
+
+		WorldTime.addFighting(target);
+	}
 }
