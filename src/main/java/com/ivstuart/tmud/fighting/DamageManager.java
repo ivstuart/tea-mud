@@ -253,6 +253,7 @@ public class DamageManager {
 		// create corpse and move equipment and inventory to corpse
 		Corpse corpse = new Corpse(defender);
 		corpse.setId("corpse");
+		corpse.setAlias("corpse");
 
 		// Items
 		corpse.getInventory().addAll(defender.getInventory().getItems());
