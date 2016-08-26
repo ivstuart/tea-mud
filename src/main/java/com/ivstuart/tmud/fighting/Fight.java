@@ -6,249 +6,248 @@
  */
 package com.ivstuart.tmud.fighting;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.ivstuart.tmud.fighting.action.BasicAttack;
 import com.ivstuart.tmud.fighting.action.FightAction;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.WorldTime;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author Ivan Stuart
  */
 public class Fight {
 
-	private static final int MAX_SIZE = 10;
-	
-	private static final Logger LOGGER = LogManager.getLogger();
+    private static final int MAX_SIZE = 10;
 
-	private LinkedList<FightAction> fightActions;
+    private static final Logger LOGGER = LogManager.getLogger();
 
-	private FightAction melee;
+    private LinkedList<FightAction> fightActions;
 
-	private List<Mob> targettedBy;
+    private FightAction melee;
 
-	/**
-	 * 
-	 */
-	public Fight(FightAction melee) {
-		this.melee = melee;
-		fightActions = new LinkedList<FightAction>();
-		targettedBy = new LinkedList<Mob>();
-	}
+    private List<Mob> targettedBy;
 
-	public Fight(Mob mob) {
-		this(new BasicAttack(mob, null));
-	}
+    /**
+     *
+     */
+    public Fight(FightAction melee) {
+        this.melee = melee;
+        fightActions = new LinkedList<FightAction>();
+        targettedBy = new LinkedList<Mob>();
+    }
 
-	public void add(FightAction action) {
+    public Fight(Mob mob) {
+        this(new BasicAttack(mob, null));
+    }
 
-		if (fightActions.size() > MAX_SIZE) {
-			out("Ignoring command as too many have been queued.");
-			return;
-		}
+    public void add(FightAction action) {
 
-		// i.e. for bash want to start the combat. Cast blur we do not want to start combat against self.
-		// same goes for healing spells they should not start melee combat.
-		if (fightActions.isEmpty()) {
+        if (fightActions.size() > MAX_SIZE) {
+            out("Ignoring command as too many have been queued.");
+            return;
+        }
 
-			if (melee.getTarget() == null) {
-				// Check not targetting self
-				if (melee.getSelf() == action.getTarget() || !action.isMeleeEnabled()) {
-					out("Not setting target");
-				}
-				else {
-					melee.setTarget(action.getTarget());
-				}
-			}
-		}
+        // i.e. for bash want to start the combat. Cast blur we do not want to start combat against self.
+        // same goes for healing spells they should not start melee combat.
+        if (fightActions.isEmpty()) {
 
-		fightActions.add(action);
+            if (melee.getTarget() == null) {
+                // Check not targetting self
+                if (melee.getSelf() == action.getTarget()) {
+                    LOGGER.debug("Not setting target target is self");
+                } else if (!action.isMeleeEnabled()) {
+                    LOGGER.debug("Not setting target not a melee enabled action");
+                } else {
+                    melee.setTarget(action.getTarget());
+                }
+            }
+        }
 
-		WorldTime.addFighting(action.getSelf());
-	}
+        fightActions.add(action);
 
-	private boolean addTargettedBy(Mob mob) {
-		return targettedBy.add(mob);
-	}
+        WorldTime.addFighting(action.getSelf());
+    }
 
-	public void changeTarget(Mob newTargetMob) {
+    private boolean addTargettedBy(Mob mob) {
+        return targettedBy.add(mob);
+    }
 
-		Mob ownTarget = melee.getTarget();
+    public void changeTarget(Mob newTargetMob) {
 
-		if (ownTarget != null) {
-			ownTarget.getFight().removeTargettedBy(melee.getSelf());
-			
-			LOGGER.debug(ownTarget.getName()+" target removed from "+melee.getSelf().getName());
-		}
+        Mob ownTarget = melee.getTarget();
 
-		melee.setTarget(newTargetMob);
+        if (ownTarget != null) {
+            ownTarget.getFight().removeTargettedBy(melee.getSelf());
 
-		if (newTargetMob != null) {
+            LOGGER.debug(ownTarget.getName() + " target removed from " + melee.getSelf().getName());
+        }
 
-			newTargetMob.getFight().addTargettedBy(melee.getSelf());
-			
-			LOGGER.debug(newTargetMob.getName()+" is changing target to "+melee.getSelf().getName());
+        melee.setTarget(newTargetMob);
 
-		}
+        if (newTargetMob != null) {
 
-	}
+            newTargetMob.getFight().addTargettedBy(melee.getSelf());
 
-	/**
-	 * 
-	 */
-	public void clear() {
-		targettedBy.clear();
-		fightActions.clear();
+            LOGGER.debug(newTargetMob.getName() + " is changing target to " + melee.getSelf().getName());
 
-	}
+        }
 
-	public FightAction getMelee() {
-		return melee;
-	}
+    }
 
-	public Mob getSelf() {
-		return melee.getSelf();
-	}
+    /**
+     *
+     */
+    public void clear() {
+        targettedBy.clear();
+        fightActions.clear();
 
-	public Mob getTarget() {
-		return melee.getTarget();
-	}
+    }
 
-	public List<Mob> getTargettedBy() {
-		return targettedBy;
-	}
+    public FightAction getMelee() {
+        return melee;
+    }
 
-	/**
-	 * 
-	 * @return
-	 */
-	public boolean isEngaged() {
-		return !targettedBy.isEmpty();
-	}
+    public Mob getSelf() {
+        return melee.getSelf();
+    }
 
-	public boolean isEngaged(Mob combatent) {
-		return targettedBy.contains(combatent);
-	}
+    public Mob getTarget() {
+        return melee.getTarget();
+    }
 
-	public boolean isFighting() {
-		return melee.getTarget() != null;
-	}
+    public List<Mob> getTargettedBy() {
+        return targettedBy;
+    }
 
-	public boolean hasFightActions() {
-		return !fightActions.isEmpty();
-	}
+    /**
+     * @return
+     */
+    public boolean isEngaged() {
+        return !targettedBy.isEmpty();
+    }
 
-	public boolean isGroundFighting() {
-		return melee.isGroundFighting();
-	}
+    public boolean isEngaged(Mob combatent) {
+        return targettedBy.contains(combatent);
+    }
 
-	private void out(String message) {
-		melee.getSelf().out(message);
-	}
+    public boolean isFighting() {
+        return melee.getTarget() != null;
+    }
 
-	public FightAction remove() {
-		return fightActions.remove();
-	}
+    public boolean hasFightActions() {
+        return !fightActions.isEmpty();
+    }
 
-	private boolean removeTargettedBy(Mob mob) {
-		return targettedBy.remove(mob);
-	}
+    public boolean isGroundFighting() {
+        return melee.isGroundFighting();
+    }
 
-	public void resolveCombat() {
+    private void out(String message) {
+        melee.getSelf().out(message);
+    }
 
-		if (fightActions.isEmpty()) {
+    public FightAction remove() {
+        return fightActions.remove();
+    }
 
-			//LOGGER.debug("Fight action is empty foe "+this.getMelee().getSelf().getName()+" target is "+this.getTarget().getName());
+    private boolean removeTargettedBy(Mob mob) {
+        return targettedBy.remove(mob);
+    }
 
-			resolveMelee();
+    public void resolveCombat() {
 
-		} else {
+        if (fightActions.isEmpty()) {
 
-			FightAction fightAction = fightActions.getFirst();
+            //LOGGER.debug("Fight action is empty foe "+this.getMelee().getSelf().getName()+" target is "+this.getTarget().getName());
 
-			if (fightAction.isFinished()) {
-				//LOGGER.debug("fightAction.isFinished() hence removing action");
-				fightActions.remove();
-			}
+            resolveMelee();
 
-			if (fightAction.isMeleeEnabled()) {
-				//LOGGER.debug("Melee enabled so one round of melee fighting");
+        } else {
 
-				resolveMelee();
+            FightAction fightAction = fightActions.getFirst();
 
-			}
+            if (fightAction.isFinished()) {
+                //LOGGER.debug("fightAction.isFinished() hence removing action");
+                fightActions.remove();
+            }
 
-			fightAction.next();
+            if (fightAction.isMeleeEnabled()) {
+                //LOGGER.debug("Melee enabled so one round of melee fighting");
 
-		}
+                resolveMelee();
 
-	}
+            }
 
-	private void resolveMelee() {
+            fightAction.next();
 
-		if (melee.getSelf() == melee.getTarget()) {
-			this.stopFighting();
-			return;
-		}
+        }
 
-		if (melee.getTarget() != null) {
-			melee.next();
-			if (melee.isFinished()) {
-				melee.restart();
+    }
 
-			}
-		}
-	}
+    private void resolveMelee() {
 
-	public void setMelee(FightAction melee) {
-		this.melee = melee;
-	}
+        if (melee.getSelf() == melee.getTarget()) {
+            this.stopFighting();
+            return;
+        }
 
-	public void setMeleeToBasicAttack() {
-		this.melee = new BasicAttack(melee.getSelf(), melee.getTarget());
-	}
+        if (melee.getTarget() != null) {
+            melee.next();
+            if (melee.isFinished()) {
+                melee.restart();
 
-	public boolean stopFighting() {
+            }
+        }
+    }
 
-		if (melee.getTarget() == null) {
-			return false;
-		}
+    public void setMelee(FightAction melee) {
+        this.melee = melee;
+    }
 
-		changeTarget(null);
+    public void setMeleeToBasicAttack() {
+        this.melee = new BasicAttack(melee.getSelf(), melee.getTarget());
+    }
 
-		return true;
-	}
+    public boolean stopFighting() {
 
-	@Override
-	public String toString() {
-		return "Fight{" +
-				"fightActions=" + fightActions +
-				", melee=" + melee +
-				", targettedBy=" + targettedBy +
-				'}';
-	}
+        if (melee.getTarget() == null) {
+            return false;
+        }
 
-	public boolean isBeingCircled() {
-		for (Mob mob : targettedBy) {
-			if (mob.getMobStatus().isCircling()) {
-				return true;
-			}
-		}
-		return false;
-	}
+        changeTarget(null);
 
-	public static void startCombat(Mob mob, Mob target) {
-		mob.getFight().getMelee().setTarget(target);
+        return true;
+    }
 
-		target.getFight().getMelee().setTarget(mob);
+    @Override
+    public String toString() {
+        return "Fight{" +
+                "fightActions=" + fightActions +
+                ", melee=" + melee +
+                ", targettedBy=" + targettedBy +
+                '}';
+    }
 
-		WorldTime.addFighting(mob);
+    public boolean isBeingCircled() {
+        for (Mob mob : targettedBy) {
+            if (mob.getMobStatus().isCircling()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-		WorldTime.addFighting(target);
-	}
+    public static void startCombat(Mob mob, Mob target) {
+        mob.getFight().getMelee().setTarget(target);
+
+        target.getFight().getMelee().setTarget(mob);
+
+        WorldTime.addFighting(mob);
+
+        WorldTime.addFighting(target);
+    }
 }

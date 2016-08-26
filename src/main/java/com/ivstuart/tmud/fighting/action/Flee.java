@@ -8,6 +8,8 @@ package com.ivstuart.tmud.fighting.action;
 
 import com.ivstuart.tmud.state.Exit;
 import com.ivstuart.tmud.state.Mob;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import static com.ivstuart.tmud.person.movement.MoveManager.random;
 
@@ -21,6 +23,7 @@ import static com.ivstuart.tmud.person.movement.MoveManager.random;
  */
 public class Flee extends FightAction {
 
+	private static final Logger LOGGER = LogManager.getLogger();
 	/**
 	 * @param character
 	 */
@@ -89,7 +92,14 @@ public class Flee extends FightAction {
 	@Override
 	public void happen() {
 		// TODO Change to get flee chance based on attacker and defender
-		if (isSuccess(50)) {
+
+		int successChance = 50;
+		if (getSelf().getMobStatus().isGroundFighting()) {
+			LOGGER.debug("Harder to flee when ground fighting better to try to stand first");
+			successChance = 30;
+		}
+
+		if (isSuccess(successChance)) {
 			success();
 		} else {
 			fail();

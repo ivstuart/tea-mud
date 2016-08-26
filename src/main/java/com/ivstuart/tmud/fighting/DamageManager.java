@@ -39,10 +39,18 @@ public class DamageManager {
             }
         }
 
+        // Skip saves for ground fighting
+        if (defender.getMobStatus().isGroundFighting()) {
+            defender.getHp().decrease(damage);
+            checkForDefenderDeath(attacker, defender);
+            return;
+        }
+
         if (checkIfTargetSleeping(defender)) {
             damage *= 2;
             defender.setState(MobState.WAKE);
         } else {
+
 
             // Check saves first
             damage = checkForDodge(defender, damage);
@@ -252,7 +260,7 @@ public class DamageManager {
 
                         attacker.getPlayer().checkIfLeveled();
 
-                        attacker.out("You hear a filthy rat's death cry.");
+                        attacker.out("You hear a " + defender.getName() + "'s death cry.");
                     }
 
                 }
@@ -329,7 +337,7 @@ public class DamageManager {
 
         // Reduce parry to 50% of the time.
         if (parry != null && parry.isSuccessful() && DiceRoll.ONE_D_SIX.rollMoreThan(2)) {
-            defender.out("<S-You/NAME> successfully parry missing most of the attack.");
+            defender.out(new Msg(defender, "<S-You/NAME> successfully parry missing most of the attack."));
 
             damage = (int) damage / 5;
 

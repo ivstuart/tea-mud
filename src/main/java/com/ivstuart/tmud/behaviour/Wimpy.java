@@ -3,9 +3,6 @@ package com.ivstuart.tmud.behaviour;
 import com.ivstuart.tmud.command.CommandProvider;
 import com.ivstuart.tmud.command.combat.Flee;
 import com.ivstuart.tmud.common.DiceRoll;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Room;
-import com.ivstuart.tmud.state.WorldTime;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,7 +12,7 @@ public class Wimpy extends BaseBehaviour {
 
 
     public Wimpy() {
-        parameter = 50; //aggro precentage
+        parameter = 50;
     }
 
     @Override

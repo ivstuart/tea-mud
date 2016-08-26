@@ -44,8 +44,8 @@ public class DiceRoll implements Serializable {
 		int result = 0;
 
 		for (int index = 0; index < number; index++) {
-			result += (int) (Math.random() * sides);
-		}
+            result += 1 + (int) (Math.random() * sides);
+        }
 
 		result += bonus;
 

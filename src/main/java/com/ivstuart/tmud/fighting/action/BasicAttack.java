@@ -6,10 +6,6 @@
  */
 package com.ivstuart.tmud.fighting.action;
 
-import com.ivstuart.tmud.state.Weapon;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.ivstuart.tmud.command.info.Prompt;
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.Msg;
@@ -18,6 +14,9 @@ import com.ivstuart.tmud.fighting.CombatCal;
 import com.ivstuart.tmud.fighting.DamageManager;
 import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.Weapon;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @author stuarti
@@ -173,11 +172,6 @@ public class BasicAttack extends FightAction {
 			out("Target is null hence your hit now misses");
 			return;
 		}
-		
-	
-		if (parrySuccessful()) {
-			return;
-		}
 
 		BasicDamage damage = new BasicDamage();
 
@@ -226,22 +220,6 @@ public class BasicAttack extends FightAction {
 
 		DamageManager.deal(getSelf(), getTarget(), damage.roll());
 
-	}
-
-	private boolean parrySuccessful() {
-		Ability parry = getTarget().getLearned().getAbility("parry");
-		
-		if (parry != null && parry.isSuccessful()) {
-			getTarget().out("<S-You/NAME> successfully parry the blow <T-you/NAME>.");
-
-			if (parry.isImproved()) {
-				getTarget().out("[[[[ Your ability to "
-						+ parry.getId() + " has improved ]]]]");
-				parry.improve();
-			}
-		}
-		
-		return false;
 	}
 
 	/*

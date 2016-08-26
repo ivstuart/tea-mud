@@ -7,7 +7,6 @@
 package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.fighting.Fight;
@@ -178,9 +177,9 @@ public class Tackle extends BaseCommand {
 
 	private void setTackled(Mob mob, Mob target) {
 		mob.getFight().setMelee(new GroundFighting(mob, target));
-		mob.getMobStatus().setGroundFighting(100);
+		mob.getMobStatus().setGroundFighting(10);
 		target.getFight().setMelee(new GroundFighting(target, mob));
-		target.getMobStatus().setGroundFighting(100);
+		target.getMobStatus().setGroundFighting(10);
 
 	}
 

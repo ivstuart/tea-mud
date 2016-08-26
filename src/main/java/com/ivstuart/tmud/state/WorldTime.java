@@ -1,16 +1,15 @@
 package com.ivstuart.tmud.state;
 
+import com.ivstuart.tmud.common.Tickable;
+import com.ivstuart.tmud.fighting.Fight;
+import com.ivstuart.tmud.state.util.EntityProvider;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import com.ivstuart.tmud.common.Tickable;
-import com.ivstuart.tmud.fighting.Fight;
-import com.ivstuart.tmud.state.util.EntityProvider;
 
 public class WorldTime implements Runnable {
 
@@ -31,11 +30,13 @@ public class WorldTime implements Runnable {
     private int counter = 0;
 
     public static void addFighting(Mob mob_) {
-        if (fighting.contains(mob_)) {
-            LOGGER.debug("Mob already fighting no need to add");
-            return;
+        synchronized (fighting) {
+            if (fighting.contains(mob_)) {
+                LOGGER.debug("Mob already fighting no need to add");
+                return;
+            }
+            fighting.add(mob_);
         }
-        fighting.add(mob_);
     }
 
     public static void addTickable(Tickable item_) {
@@ -113,37 +114,36 @@ public class WorldTime implements Runnable {
      * Resolve combat and remove from combat any that are not fighting
      */
     public void resolveCombat() {
-
-        if (fighting.isEmpty()) {
-            // LOGGER.debug("Fighting is empty so no combat to resolve");
-            return;
-        }
-
-        ListIterator<Mob> fightingIter = fighting.listIterator();
-        while (fightingIter.hasNext()) {
-            Mob mob = fightingIter.next();
-            if (mob != null) {
-                Fight fight = mob.getFight();
-
-                // LOGGER.debug("Is fighting " + fight.isFighting() + " has fight actions " + fight.hasFightActions());
-
-                if (fight.isFighting() || fight.hasFightActions()) {
-                    try {
-                        fight.resolveCombat();
-                    }
-                    catch (RuntimeException re) {
-                        LOGGER.error("Problem in resolveCombat",re);
-                    }
-                } else {
-                    LOGGER.debug("removing from fighting [ " + mob.getName()
-                            + " ]");
-
-                    fightingIter.remove();
-                }
+        synchronized (fighting) {
+            if (fighting.isEmpty()) {
+                // LOGGER.debug("Fighting is empty so no combat to resolve");
+                return;
             }
 
-        }
+            ListIterator<Mob> fightingIter = fighting.listIterator();
+            while (fightingIter.hasNext()) {
+                Mob mob = fightingIter.next();
+                if (mob != null) {
+                    Fight fight = mob.getFight();
 
+                    // LOGGER.debug("Is fighting " + fight.isFighting() + " has fight actions " + fight.hasFightActions());
+
+                    if (fight.isFighting() || fight.hasFightActions()) {
+                        try {
+                            fight.resolveCombat();
+                        } catch (RuntimeException re) {
+                            LOGGER.error("Problem in resolveCombat", re);
+                        }
+                    } else {
+                        LOGGER.debug("removing from fighting [ " + mob.getName()
+                                + " ]");
+
+                        fightingIter.remove();
+                    }
+                }
+
+            }
+        }
     }
 
     @Override

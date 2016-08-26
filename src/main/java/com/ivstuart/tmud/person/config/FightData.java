@@ -1,9 +1,9 @@
 package com.ivstuart.tmud.person.config;
 
-import java.io.*;
-import java.util.Arrays;
-
 import com.ivstuart.tmud.common.Colour;
+
+import java.io.Serializable;
+import java.util.Arrays;
 
 /* TODO pull out enums and config to resource files.
  * This class is simple a data class to store the configuration 
@@ -118,5 +118,21 @@ public class FightData implements Serializable {
 			return TRUE_DESCRIPTION[flag];
 		}
 		return FALSE_DESCRIPTION[flag];
+	}
+
+	public int getRandomAttackType() {
+		int index = (int) (Math.random() * 6);
+
+		LOOP:
+		for (int i = 0; i < 6; i++) {
+			if (!this.is(index)) {
+				index++;
+				index = index % 6;
+				continue LOOP;
+			}
+			return index;
+		}
+
+		return index;
 	}
 }
