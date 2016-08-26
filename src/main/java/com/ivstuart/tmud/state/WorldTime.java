@@ -9,7 +9,6 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 public class WorldTime implements Runnable {
 
@@ -120,9 +119,9 @@ public class WorldTime implements Runnable {
                 return;
             }
 
-            ListIterator<Mob> fightingIter = fighting.listIterator();
-            while (fightingIter.hasNext()) {
-                Mob mob = fightingIter.next();
+            // Iterator would throw a ConcurrentModification Exception
+            for (int index = 0; index < fighting.size(); index++) {
+                Mob mob = fighting.get(index);
                 if (mob != null) {
                     Fight fight = mob.getFight();
 
@@ -138,7 +137,7 @@ public class WorldTime implements Runnable {
                         LOGGER.debug("removing from fighting [ " + mob.getName()
                                 + " ]");
 
-                        fightingIter.remove();
+                        fighting.remove(mob);
                     }
                 }
 

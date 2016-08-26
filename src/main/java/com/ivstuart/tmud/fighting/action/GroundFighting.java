@@ -6,11 +6,14 @@
  */
 package com.ivstuart.tmud.fighting.action;
 
+import com.ivstuart.tmud.command.CommandProvider;
 import com.ivstuart.tmud.command.info.Prompt;
+import com.ivstuart.tmud.command.state.Stand;
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.fighting.BasicDamage;
 import com.ivstuart.tmud.fighting.DamageManager;
+import com.ivstuart.tmud.person.config.FightData;
 import com.ivstuart.tmud.state.Mob;
 
 /**
@@ -188,6 +191,27 @@ public class GroundFighting extends FightAction {
         Prompt.show(getSelf());
 
         durationMillis(2100);
+
+
+        if (getSelf().isPlayer()) {
+
+            tryToStandUp();
+        }
+
+    }
+
+    private void tryToStandUp() {
+        if (!getSelf().getMobStatus().isGroundFighting()) {
+
+            if (!getSelf().getPlayer().getConfig().getFightData().is(FightData.GROUND)) {
+
+                out("You try and stand to avoid continuing to ground fight");
+
+                CommandProvider.getCommand(Stand.class).execute(getSelf(), null);
+
+            }
+
+        }
     }
 
     private void miss() {
