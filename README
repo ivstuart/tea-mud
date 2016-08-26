@@ -6,8 +6,8 @@ What is tea-mud?
 ---------------
 
 A text based Multi-User Dungeon (MUD) along the lines of Rite of Passage (ROP), Fate and other Diku / Circle muds.
-The code base is very much a work in progress with more focus on package and class structure than
-working code. Having said that I am confident with approximate 6 months of effort this code base
+The code base is very much a work in progress with more focus on package and class structure and
+design. Having said that I am confident with approximate 6 months of effort this code base
 code be stabilized to be ready to host a real mud.
 
 There is a lack of unit test for classes. This is historical and will continue given the amount of state that is
@@ -18,6 +18,8 @@ Setup Instructions
 ------------------
 
 I recommended using the latest version of IntelliJ for development. The console supports ANSI text.
+
+Install maven.
 
 Right click on pom.xml and download external libraries required. I also recommend Java 8.
 
@@ -36,9 +38,8 @@ However no ansi colour supported on simple Java LaunchClient.
 
 This toggles off the ansi colour. In game.
 
-Note that passwords are being checking now. However this is a backdoor to login as anyone use the password
-"temp" to skip the password checking logic. Developers out there remember to remove this backdoor before going
-live with this code base.
+Note that passwords are being checking now.
+There is an easy option 5 which has been added to login as the admin user Ivan.
 
 Just type look or 'l' to see your surroundings.
 
