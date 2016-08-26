@@ -7,20 +7,20 @@
 package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.BaseCommand;
+import com.ivstuart.tmud.fighting.action.BasicSpell;
+import com.ivstuart.tmud.fighting.action.FightAction;
 import com.ivstuart.tmud.person.Player;
+import com.ivstuart.tmud.person.statistics.MobMana;
 import com.ivstuart.tmud.state.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import com.ivstuart.tmud.fighting.action.BasicSpell;
-import com.ivstuart.tmud.fighting.action.FightAction;
-import com.ivstuart.tmud.person.statistics.MobMana;
 
 import java.util.List;
 
 import static com.ivstuart.tmud.common.MobState.FLYING;
 import static com.ivstuart.tmud.common.MobState.STAND;
-import static com.ivstuart.tmud.utils.StringUtil.*;
+import static com.ivstuart.tmud.utils.StringUtil.getFirstFewWords;
+import static com.ivstuart.tmud.utils.StringUtil.getLastWord;
 
 /**
  * @author stuarti
@@ -96,6 +96,10 @@ public class Cast extends BaseCommand {
             return;
         }
 
+        if (mob_.getFight().isGroundFighting()) {
+            mob_.out("You can not cast spells while ground fighting");
+            return;
+        }
 
         // TODO work out a way to support target value of
         /* me, self, all, good, evil, etc.. */

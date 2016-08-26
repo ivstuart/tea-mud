@@ -23,7 +23,7 @@ public class Stand extends BaseCommand {
 			// chance to scramble up ?
 			// effect if winning or losing gf if fails ?
 			// use movement points
-			if (!mob.getMv().deduct(5)) {
+			if (mob.getMv() == null || !mob.getMv().deduct(5)) {
 				mob.out("You dont have enough movement available to stand");
 				return;
 			}

@@ -196,6 +196,8 @@ public class GroundFighting extends FightAction {
         if (getSelf().isPlayer()) {
 
             tryToStandUp();
+        } else if (DiceRoll.ONE_D100.rollLessThan(10)) {
+            CommandProvider.getCommand(Stand.class).execute(getSelf(), null);
         }
 
     }

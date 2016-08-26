@@ -7,8 +7,9 @@
 package com.ivstuart.tmud.command.info;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Mob;
+
+import static com.ivstuart.tmud.constants.SpellNames.*;
 
 /**
  * @author stuarti
@@ -45,9 +46,23 @@ public class Rating extends BaseCommand {
 
         rating += mob.getPlayer().getAttributes().getTotal();
 
-        if (mob.getMobAffects().hasAffect("sanctury")) { rating += 30; }
-        if (mob.getMobAffects().hasAffect("blur")) { rating += 10; }
-        // etc ....
+		if (mob.getMobAffects().hasAffect(SANCTURY)) {
+			rating += 30;
+		}
+		if (mob.getMobAffects().hasAffect(BLUR)) {
+			rating += 10;
+		}
+		if (mob.getMobAffects().hasAffect(STONE_SKIN)) {
+			rating += 10;
+		}
+		if (mob.getMobAffects().hasAffect(BARRIER)) {
+			rating += 10;
+		}
+		if (mob.getMobAffects().hasAffect(PROTECTION)) {
+			rating += 10;
+		}
+
+
         return rating;
     }
 

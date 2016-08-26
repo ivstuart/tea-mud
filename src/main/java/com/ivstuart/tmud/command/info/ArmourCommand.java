@@ -7,11 +7,11 @@
 package com.ivstuart.tmud.command.info;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.person.statistics.Affect;
 import com.ivstuart.tmud.state.Armour;
 import com.ivstuart.tmud.state.Mob;
 
+import static com.ivstuart.tmud.constants.SpellNames.PROTECTION;
 import static com.ivstuart.tmud.constants.UsefulContants.armourString;
 
 /**
@@ -36,7 +36,7 @@ public class ArmourCommand extends BaseCommand {
 
 		Armour armour = mob.getEquipment().getTotalArmour(); // .armourAt(HEAD);
 
-		Affect armourBuff = mob.getMobAffects().getAffect("protection");
+        Affect armourBuff = mob.getMobAffects().getAffect(PROTECTION);
 
 		int buff = 0;
 		if (armourBuff != null) {

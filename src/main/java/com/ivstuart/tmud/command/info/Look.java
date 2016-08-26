@@ -1,19 +1,15 @@
 package com.ivstuart.tmud.command.info;
 
-import static com.ivstuart.tmud.constants.RoomEnums.RoomFlag.DARK;
-
-import java.util.List;
-
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.person.carried.SomeMoney;
-import com.ivstuart.tmud.state.Exit;
-import com.ivstuart.tmud.state.GuardMob;
-import com.ivstuart.tmud.state.Item;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Prop;
-import com.ivstuart.tmud.state.Track;
+import com.ivstuart.tmud.state.*;
 import com.ivstuart.tmud.utils.MudArrayList;
+
+import java.util.List;
+
+import static com.ivstuart.tmud.constants.RoomEnums.RoomFlag.DARK;
+import static com.ivstuart.tmud.constants.SpellNames.BLINDNESS;
 
 public class Look extends BaseCommand {
 	/*
@@ -28,7 +24,7 @@ public class Look extends BaseCommand {
 			return;
 		}
 
-		if (mob_.getMobAffects().hasAffect("blindness")) {
+		if (mob_.getMobAffects().hasAffect(BLINDNESS)) {
 			mob_.out("Can not not see anything while blinded!");
 			return;
 		}

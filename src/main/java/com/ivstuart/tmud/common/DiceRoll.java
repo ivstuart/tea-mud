@@ -172,8 +172,8 @@ public class DiceRoll implements Serializable {
 		int result = 0;
 
 		for (int index = 0; index < diceNumber; index++) {
-			result += (int) (Math.random() * diceSides);
-		}
+            result += 1 + (int) (Math.random() * diceSides);
+        }
 
 		result += diceBonus;
 

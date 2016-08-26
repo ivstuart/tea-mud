@@ -6,13 +6,13 @@
  */
 package com.ivstuart.tmud.person;
 
-import java.io.*;
+import com.ivstuart.tmud.state.Attribute;
+import com.ivstuart.tmud.state.Mob;
+
+import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
-
-import com.ivstuart.tmud.state.Attribute;
-import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
@@ -49,6 +49,8 @@ public class PlayerData implements Serializable {
 	private int learns;
 	private int pracs;
 	private int level;
+
+	private String height;
 
 	private Attribute thirstAttribute;
 	private Attribute hungerAttribute;
@@ -251,5 +253,9 @@ public class PlayerData implements Serializable {
 
 	public void setLevel(int level) {
 		this.level = level;
+	}
+
+	public String getHeight() {
+		return height;
 	}
 }

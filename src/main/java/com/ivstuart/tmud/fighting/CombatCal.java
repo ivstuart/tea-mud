@@ -9,6 +9,9 @@ package com.ivstuart.tmud.fighting;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Weapon;
 
+import static com.ivstuart.tmud.constants.SpellNames.BLINDNESS;
+import static com.ivstuart.tmud.constants.SpellNames.COMBAT_SENSE;
+
 /**
  * @author stuarti
  * 
@@ -41,6 +44,15 @@ public class CombatCal {
 			total += mob_.getPlayer().getAttributes().getDEX().getValue();
 			total += mob_.getPlayer().getAttributes().getINT().getValue();
 		}
+
+		if (mob_.getMobAffects().hasAffect(BLINDNESS)) {
+			total /= 2;
+		}
+
+		if (mob_.getMobAffects().hasAffect(COMBAT_SENSE)) {
+			total += 20;
+		}
+
 		return total;
 	}
 
@@ -54,6 +66,15 @@ public class CombatCal {
 			total += mob_.getPlayer().getAttributes().getDEX().getValue() * 2;
 			total += mob_.getPlayer().getAttributes().getINT().getValue();
 		}
+
+		if (mob_.getMobAffects().hasAffect(BLINDNESS)) {
+			total /= 2;
+		}
+
+		if (mob_.getMobAffects().hasAffect(COMBAT_SENSE)) {
+			total += 20;
+		}
+
 		return total;
 	}
 

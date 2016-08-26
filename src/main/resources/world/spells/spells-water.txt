@@ -70,6 +70,15 @@ mana: WATER
 spellEffect: SANC
 duration: 2d6+100
 
+id: barrier
+level: 30
+cost: 50
+target: SELF
+speed: 5
+mana: WATER
+spellEffect: SANC
+duration: 2d6+100
+
 id: invisiblity
 level: 10
 cost: 20

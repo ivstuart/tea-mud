@@ -1,21 +1,9 @@
 package com.ivstuart.tmud.state;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import com.ivstuart.tmud.behaviour.*;
-import com.ivstuart.tmud.state.util.EntityProvider;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import com.ivstuart.tmud.common.DiceRoll;
-import com.ivstuart.tmud.common.Equipable;
-import com.ivstuart.tmud.common.Gender;
-import com.ivstuart.tmud.common.MobState;
-import com.ivstuart.tmud.common.Msg;
-import com.ivstuart.tmud.common.Tickable;
+import com.ivstuart.tmud.behaviour.BaseBehaviour;
+import com.ivstuart.tmud.behaviour.BehaviourFactory;
+import com.ivstuart.tmud.behaviour.Patrol;
+import com.ivstuart.tmud.common.*;
 import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.person.Learned;
 import com.ivstuart.tmud.person.Player;
@@ -24,6 +12,13 @@ import com.ivstuart.tmud.person.carried.Inventory;
 import com.ivstuart.tmud.person.statistics.Affect;
 import com.ivstuart.tmud.person.statistics.MobAffects;
 import com.ivstuart.tmud.person.statistics.MobMana;
+import com.ivstuart.tmud.state.util.EntityProvider;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Mob extends Prop implements Tickable {
 
@@ -34,7 +29,7 @@ public class Mob extends Prop implements Tickable {
     private String ability; // base mob
 
     private int align; // base mob
-    private String armour;
+    private int armour;
 
     private String attackType; // base mob
     private int copper;
@@ -416,7 +411,7 @@ public class Mob extends Prop implements Tickable {
     }
 
     public void setArmour(String armour_) {
-        this.armour = armour_;
+        this.armour = Integer.parseInt(armour_);
     }
 
     public void setAttackType(String types) {
@@ -666,5 +661,9 @@ public class Mob extends Prop implements Tickable {
 
     public void setPatrolPath(String path) {
         this.patrolPath = path;
+    }
+
+    public int getArmour() {
+        return armour;
     }
 }

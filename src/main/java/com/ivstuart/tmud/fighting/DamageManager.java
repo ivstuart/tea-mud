@@ -14,6 +14,8 @@ import com.ivstuart.tmud.state.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import static com.ivstuart.tmud.constants.SpellNames.*;
+
 public class DamageManager {
 
     private static final Logger LOGGER = LogManager.getLogger();
@@ -58,11 +60,13 @@ public class DamageManager {
             damage = checkForParry(defender, damage);
 
             // 10% save chance
-            damage = checkForBlurDodge(attacker, defender, damage);
+            damage = checkForBlur(attacker, defender, damage);
         }
 
         // Half damage
-        damage = checkForSancDodge(attacker, defender, damage);
+        damage = checkForSanctury(attacker, defender, damage, SANCTURY);
+        damage = checkForSanctury(attacker, defender, damage, STONE_SKIN);
+        damage = checkForSanctury(attacker, defender, damage, BARRIER);
 
         damage = checkForShieldBlocking(defender, damage);
 
@@ -73,7 +77,7 @@ public class DamageManager {
         //   if melee the armor at location
         //      apply any armor peneration skills or specials to counter armour saves
         //   if spell damage the average armour minus any special elemental saves
-        // TODO
+
         int armour = checkArmourAtHitLocation(defender);
 
         if (armour > 0) {
@@ -111,7 +115,7 @@ public class DamageManager {
     // 20% more damage with combat sense.
     private static int checkForCombatSense(Mob attacker, int damage) {
 
-        Affect buff = attacker.getMobAffects().getAffect("combat sense");
+        Affect buff = attacker.getMobAffects().getAffect(COMBAT_SENSE);
 
         if (buff != null) {
             damage *= 1.2;
@@ -120,8 +124,8 @@ public class DamageManager {
         return damage;
     }
 
-    private static int checkForSancDodge(Mob attacker, Mob defender, int damage) {
-        Affect sanc = defender.getMobAffects().getAffect("sanctury");
+    private static int checkForSanctury(Mob attacker, Mob defender, int damage, String affect) {
+        Affect sanc = defender.getMobAffects().getAffect(affect);
 
         if (sanc == null) {
             return damage;
@@ -131,15 +135,15 @@ public class DamageManager {
     }
 
 
-    private static int checkForBlurDodge(Mob attacker, Mob defender, int damage) {
-        Affect immortalBlur = defender.getMobAffects().getAffect("improved blur");
+    private static int checkForBlur(Mob attacker, Mob defender, int damage) {
+        Affect immortalBlur = defender.getMobAffects().getAffect(IMP_BLUR);
 
         if (immortalBlur != null) {
             LOGGER.debug("Cheating with improved blur");
             return 0;
         }
 
-        Affect blur = defender.getMobAffects().getAffect("blur");
+        Affect blur = defender.getMobAffects().getAffect(BLUR);
 
         if (blur == null) {
             return damage;
@@ -163,7 +167,11 @@ public class DamageManager {
     }
 
     private static int checkArmourAtHitLocation(Mob defender) {
-        // TODO FIXME
+
+        if (!defender.isPlayer()) {
+            return defender.getArmour();
+        }
+
         Armour armour = defender.getEquipment().getTotalArmour();
         try {
             return armour.getRandomSlot();
@@ -181,9 +189,9 @@ public class DamageManager {
         Ability penetration = attacker.getLearned().getAbility("armour penetration");
 
         if (penetration != null && penetration.isSuccessful()) {
-            attacker.out("<S-You/NAME> skillfully hit between your opponents armour");
+            attacker.out(new Msg(attacker, "<S-You/NAME> skillfully hit between your opponents armour"));
 
-            armour -= DiceRoll.ONE_D_SIX.roll();
+            armour /= DiceRoll.ONE_D_SIX.roll();
 
             if (penetration.isImproved()) {
                 attacker.out("[[[[ Your ability to " + attacker.getId()
@@ -317,7 +325,7 @@ public class DamageManager {
 
         // Reduce dodging to 30% of the time.
         if (dodge != null && dodge.isSuccessful() && DiceRoll.ONE_D_SIX.rollMoreThan(4)) {
-            defender.out("<S-You/NAME> successfully dodge missing most of the attack.");
+            defender.out(new Msg(defender, "<S-You/NAME> successfully dodge missing most of the attack."));
 
             damage = (int) damage / 10;
 
@@ -358,7 +366,7 @@ public class DamageManager {
         if (shieldBlock != null) {
             if (defender.getEquipment().hasShieldEquiped()) {
                 if (shieldBlock.isSuccessful()) {
-                    defender.out("<S-You/NAME> successfully shield block <T-you/NAME>.");
+                    defender.out(new Msg(defender, "<S-You/NAME> successfully shield block <T-you/NAME>."));
 
                     damage -= 5;
 
