@@ -50,7 +50,12 @@ public class PlayerData implements Serializable {
 	private int pracs;
 	private int level;
 
+	// New attributes since 2016
 	private String height;
+	private int evasion;
+	private int stealth;
+	private int perception;
+	private int deaths;
 
 	private Attribute thirstAttribute;
 	private Attribute hungerAttribute;
@@ -257,5 +262,41 @@ public class PlayerData implements Serializable {
 
 	public String getHeight() {
 		return height;
+	}
+
+	public int getEvasion() {
+		return evasion;
+	}
+
+	public void setHeight(String height) {
+		this.height = height;
+	}
+
+	public void setEvasion(int evasion) {
+		this.evasion = evasion;
+	}
+
+	public void setStealth(int stealth) {
+		this.stealth = stealth;
+	}
+
+	public void setPerception(int perception) {
+		this.perception = perception;
+	}
+
+	public void setDeaths(int deaths) {
+		this.deaths = deaths;
+	}
+
+	public int getStealth() {
+		return stealth;
+	}
+
+	public int getPerception() {
+		return perception;
+	}
+
+	public int getDeaths() {
+		return deaths;
 	}
 }

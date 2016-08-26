@@ -76,26 +76,28 @@ public class Score extends BaseCommand {
             mob.out(String
                     .format("  %1$2s Fire  Save : %2$6s    Ranged Attack: %3$6s    Rating      : %4$6s",
                             RED.toString(), mana.get(FIRE).getPrompt(), mBatt,
-                            "rating"));
+                            Rating.getRating(mob)));
             mob.out(String
                     .format("  %1$2s Earth Save : %2$6s    Evasion      : %3$6s    Remorts     : %4$6s",
                             BROWN.toString(), mana.get(EARTH).getPrompt(),
-                            "EVASION", "REMORTS"));
+                            mob.getPlayer().getData().getEvasion(),
+                            mob.getPlayer().getData().getRemorts()));
             mob.out(String
                     .format("  %1$2s Water Save : %2$6s    Stealth      : %3$6s    Level       : %4$6s",
                             BLUE.toString(), mana.get(WATER).getPrompt(),
-                            "STEALTH", data.getLevel()));
+                            mob.getPlayer().getData().getStealth(), data.getLevel()));
             mob.out(String
                     .format("  %1$2s Air   Sav  : %2$6s    Perception   : %3$6s    Deaths      : %4$6s",
                             YELLOW.toString(), mana.get(AIR).getPrompt(),
-                            "PERCEPTION", "DEATHS"));
+                            mob.getPlayer().getData().getPerception(),
+                            mob.getPlayer().getData().getDeaths()));
 
         }
 
         mob.out("" + WHITE);
 
-        mob.out("   You have 0 copper banked, and carry 0 platinum, 0 gold and 0 copper.");
-        mob.out("   You carry 20.411 kgs of weight. You are unburdened.");
+        mob.out("   You have " + mob.getPlayer().getBank().getPurseString() + " banked, and carry " + mob.getInventory().getPurseString());
+        mob.out("   You carry xxx.xxx kgs of weight. You are unburdened.");
         mob.out("");
 
         mob.out(Info.BAR);
