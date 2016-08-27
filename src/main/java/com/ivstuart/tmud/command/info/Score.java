@@ -47,7 +47,7 @@ public class Score extends BaseCommand {
         mob.out("   You are " + player.getData().getAge() + " years of age ("
                 + player.getData().getPlayingFor() + " Days, "
                 + player.getData().getPlayingFor() + " Hours) old. You are "
-                + player.getData().getHeight() + " tall.");
+                + mob.getHeight() + "cm's tall.");
         mob.out("   You have gained " + player.getData().getTotalXp()
                 + " experience points " + player.getData().getRemorts()
                 + " remort.");
@@ -57,10 +57,16 @@ public class Score extends BaseCommand {
 
         mob.out(String
                 .format("  %1$2s Health     : %2$6s    Damage Bonus : %3$6s    War Points  : %4$6s",
-                        WHITE.toString(), mob.getHp().getValue(), "3", "0"));
+                        WHITE.toString(),
+                        mob.getHp().getValue(),
+                        player.getAPB(),
+                        data.getWarpoints()));
         mob.out(String
                 .format("  %1$2s Stamina    : %2$6s    Melee Attack : %3$6s    Kill Points : %4$6s",
-                        WHITE.toString(), mob.getMv().getValue(), mAtt, "0"));
+                        WHITE.toString(),
+                        mob.getMv().getValue(),
+                        mAtt,
+                        data.getKillpoints()));
 
         MobMana mana = mob.getMana();
 
@@ -71,21 +77,29 @@ public class Score extends BaseCommand {
 
             mob.out(String
                     .format("  %1$2s Mana       : %2$6s    Melee Defence: %3$6s    Ability Pts : %4$6s",
-                            WHITE.toString(), mana.getPrompt(), mDef, "0"));
+                            WHITE.toString(),
+                            mana.getPrompt(),
+                            mDef,
+                            mob.getLearned().getAbilityPoints()));
 
             mob.out(String
                     .format("  %1$2s Fire  Save : %2$6s    Ranged Attack: %3$6s    Rating      : %4$6s",
-                            RED.toString(), mana.get(FIRE).getPrompt(), mBatt,
+                            RED.toString(),
+                            mana.get(FIRE).getPrompt(),
+                            mBatt,
                             Rating.getRating(mob)));
             mob.out(String
                     .format("  %1$2s Earth Save : %2$6s    Evasion      : %3$6s    Remorts     : %4$6s",
-                            BROWN.toString(), mana.get(EARTH).getPrompt(),
+                            BROWN.toString(),
+                            mana.get(EARTH).getPrompt(),
                             mob.getPlayer().getData().getEvasion(),
                             mob.getPlayer().getData().getRemorts()));
             mob.out(String
                     .format("  %1$2s Water Save : %2$6s    Stealth      : %3$6s    Level       : %4$6s",
-                            BLUE.toString(), mana.get(WATER).getPrompt(),
-                            mob.getPlayer().getData().getStealth(), data.getLevel()));
+                            BLUE.toString(),
+                            mana.get(WATER).getPrompt(),
+                            mob.getPlayer().getData().getStealth(),
+                            data.getLevel()));
             mob.out(String
                     .format("  %1$2s Air   Save : %2$6s    Perception   : %3$6s    Deaths      : %4$6s",
                             YELLOW.toString(), mana.get(AIR).getPrompt(),
@@ -96,12 +110,22 @@ public class Score extends BaseCommand {
 
         mob.out("" + WHITE);
 
-        mob.out("   You have " + mob.getPlayer().getBank().getPurseString() + " banked, and carry " + mob.getInventory().getPurseString());
-        mob.out("   You carry xxx.xxx kgs of weight. You are unburdened.");
+        mob.out(String
+                .format("   You have %1$s banked, and carry %2$s",
+                        mob.getPlayer().getBank().getPurseString(),
+                        mob.getInventory().getPurseString()));
+        mob.out(String
+                .format("   You carry %1.4f kgs of weight. You are %2$10s",
+                        mob.getWeightCarried() / 1000.0,
+                        getBurdenString()));
+
         mob.out("");
 
         mob.out(Info.BAR);
 
     }
 
+    public String getBurdenString() {
+        return "unburdened.";
+    }
 }

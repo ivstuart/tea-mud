@@ -1,19 +1,18 @@
 package com.ivstuart.tmud.state;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.ivstuart.tmud.person.carried.Inventory;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.common.Msgable;
+import com.ivstuart.tmud.person.carried.Inventory;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.state.util.EntityProvider;
 import com.ivstuart.tmud.state.util.RoomManager;
 import com.ivstuart.tmud.utils.MudArrayList;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Room extends BasicThing implements Msgable {
 
@@ -293,10 +292,9 @@ public class Room extends BasicThing implements Msgable {
 
     public Mob getRepairer() {
 		for (Mob mob : _mobs) {
-			// TODO add a armourer
-			if (mob instanceof ShopKeeper) {
-				return (ShopKeeper)mob;
-			}
+            if (mob instanceof Armourer) {
+                return (Armourer) mob;
+            }
 		}
 		return null;
     }

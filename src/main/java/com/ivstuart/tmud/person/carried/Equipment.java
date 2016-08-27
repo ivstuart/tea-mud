@@ -272,4 +272,22 @@ public class Equipment implements Serializable {
 		return false; 
 	}
 
+	public int getAPB() {
+		int apb = 0;
+		for (Equipable eq : _equipment) {
+			apb += eq.getAPB();
+		}
+
+		return apb;
+	}
+
+	public int getWeight() {
+		int grams = 0;
+		for (Equipable eq : _equipment) {
+			Item item = (Item) eq;
+			grams += item.getWeight();
+		}
+
+		return grams;
+	}
 }

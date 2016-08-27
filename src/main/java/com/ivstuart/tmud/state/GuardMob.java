@@ -18,9 +18,9 @@ public class GuardMob extends Mob {
 		return isAlignmentGuard;
 	}
 
-	public void setAlignmentGuard(String alignmentGuard) {
-		isAlignmentGuard = Boolean.valueOf(alignmentGuard);
-		;
+	public void setAlignmentGuard(boolean alignmentGuard) {
+		isAlignmentGuard = alignmentGuard;
+
 	}
 
 	private boolean isAlignmentGuard;

@@ -142,6 +142,7 @@ command.admin.Reload,SLEEP
 command.admin.Repopulate,SLEEP
 command.admin.ShowFighting,SLEEP
 command.admin.ShowMobState,SLEEP
+command.admin.ShowRace,SLEEP
 command.admin.Shutdown,SLEEP
 command.admin.StopFighting,SLEEP
 command.admin.Smite,SLEEP

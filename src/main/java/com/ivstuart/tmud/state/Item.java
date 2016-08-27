@@ -1,19 +1,18 @@
 package com.ivstuart.tmud.state;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import com.ivstuart.tmud.person.carried.Money;
-import com.ivstuart.tmud.person.carried.SomeMoney;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.ivstuart.tmud.common.Equipable;
 import com.ivstuart.tmud.common.Gender;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.common.Msgable;
 import com.ivstuart.tmud.constants.EquipLocation;
+import com.ivstuart.tmud.person.carried.Money;
+import com.ivstuart.tmud.person.carried.SomeMoney;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Item extends Prop implements Equipable, Msgable {
 
@@ -44,6 +43,16 @@ public class Item extends Prop implements Equipable, Msgable {
 	protected int _size;
 
 	protected int _damagedPercentage;
+
+	public int getAPB() {
+		return apb;
+	}
+
+	public void setAPB(int apb) {
+		this.apb = apb;
+	}
+
+	protected int apb;
 
 	public Item() {
 	}

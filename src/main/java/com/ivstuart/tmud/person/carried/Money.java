@@ -31,6 +31,8 @@ public class Money implements SomeMoney {
 
 	public static final int GOLD = 2;
 
+	public static final int PLATINUM = 3;
+
 	public static final Money NO_MONEY = new Money(COPPER,0);
 
 	private int type;
@@ -165,6 +167,11 @@ public class Money implements SomeMoney {
 		} else {
 			return this.remove((Money) cash);
 		}
+	}
+
+	@Override
+	public int getWeight() {
+		return (type + 1) * quantity;
 	}
 
 	public int getQuantity() {

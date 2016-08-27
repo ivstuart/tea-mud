@@ -7,11 +7,8 @@
 package com.ivstuart.tmud.command.item;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
-import com.ivstuart.tmud.state.Attribute;
-import com.ivstuart.tmud.state.Item;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Waterskin;
+import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.utils.StringUtil;
 
 /**
  * @author stuarti
@@ -23,6 +20,19 @@ public class Drink extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob_, String input_) {
+
+		String target = StringUtil.getLastWord(input_);
+		// Check for fountain first of all
+		Prop fountain = mob_.getRoom().getProps().get(target);
+
+		if (fountain != null) {
+			if (fountain.isWaterSource()) {
+				mob_.out("You drink some liquard from " + fountain.getName());
+				Attribute thirst = mob_.getPlayer().getData().getThirst();
+				thirst.increase(500);
+				return;
+			}
+		}
 
 		Item item = mob_.getInventory().get(input_);
 

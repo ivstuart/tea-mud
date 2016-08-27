@@ -1,0 +1,233 @@
+class: state.Race
+id: 1
+name: Human
+desc: Human
+alignment: true
+# str con dex int wis
+#stats: 0 0 0 0 0
+#undead: true
+#fly: true
+#infravison: true
+#armour: 0
+#movement: 0
+#regenHp: 0
+#regenMv: 0
+#regenMn: 0
+#stoneskin: true
+#waterbreath: true
+
+id: 2
+name: Human
+desc: Human
+alignment: false
+
+id: 3
+name: Half-Elf
+desc: Half-Elf
+alignment: true
+# str con dex int wis
+stats: -1 0 1 1 -1
+
+id: 4
+name: Troll
+desc: Troll
+alignment: false
+regenHp: 20
+# str con dex int wis
+stats: 3 5 -2 -3 -3
+
+id: 5
+name: Wood-Elf
+desc: Wood-Elf
+alignment: true
+# str con dex int wis
+stats: -2 -2 3 3 0
+
+id: 6
+name: Ogre
+desc: Ogre
+alignment: false
+# str con dex int wis
+stats: 3 5 -2 -3 -3
+
+id: 7
+name: Storm-Giant
+desc: Storm-Giant
+alignment: true
+armour: 10
+# str con dex int wis
+stats: 3 5 -3 -3 -5
+
+id: 8
+name: Orc
+desc: Orc
+alignment: false
+infravison: true
+armour: 5
+# str con dex int wis
+stats: 2 2 -1 -2 -2
+
+id: 9
+name: Stone-Giant
+desc: Stone-Giant
+alignment: true
+stoneskin: true
+# str con dex int wis
+stats: 3 3 -3 -5 -5
+
+id: 10
+name: Half-Orc
+desc: Half-Orc
+alignment: false
+armour: 3
+# str con dex int wis
+stats: 1 1 0 -1 -1
+
+id: 11
+name: Dwarf
+desc: Dwarf
+alignment: true
+# str con dex int wis
+stats: 1 1 0 -1 1
+height: 100
+
+id: 12
+name: Skaven
+desc: Skaven
+alignment: false
+infravison: true
+# str con dex int wis
+stats: 1 1 3 -1 -1
+height: 100
+
+id: 13
+name: Centaur
+desc: Centaur
+alignment: true
+infravison: true
+# str con dex int wis
+stats: 1 1 1 -1 -1
+
+id: 14
+name: Drow
+desc: Drow
+alignment: false
+infravison: true
+# str con dex int wis
+stats: -1 -1 1 1 1
+
+id: 15
+name: Triton
+desc: Triton
+alignment: true
+waterbreath: true
+
+id: 16
+name: Yuan-ti
+desc: Yuan-ti
+alignment: false
+
+id: 17
+name: Halfling
+desc: Halfling
+alignment: true
+# str con dex int wis
+stats: -3 -3 3 1 1
+
+id: 18
+name: Sahuagin
+desc: Sahuagin
+alignment: false
+waterbreath: true
+
+id: 19
+name: Gnome
+desc: Gnome
+alignment: true
+
+id: 20
+name: Gnoll
+desc: Gnoll
+alignment: false
+
+id: 21
+name: Treant
+desc: Treant
+alignment: true
+armour: 8
+
+id: 22
+name: Bugbear
+desc: Bugbear
+alignment: false
+
+id: 23
+name: Sea-Sprite
+desc: Sea-Sprite
+alignment: true
+waterbreath: true
+
+id: 24
+name: Gargoygle
+desc: Gargoygle
+alignment: false
+stoneskin: true
+
+id: 25
+name: High-Elf
+desc: High-Elf
+alignment: true
+
+id: 26
+name: Wraith
+desc: Wraith
+alignment: false
+undead: true
+infravison: true
+# str con dex int wis
+stats: 0 -2 -1 3 3
+
+id: 27
+name: Fairy
+desc: Fairy
+alignment: true
+fly: true
+# str con dex int wis
+stats: -2 -2 -1 5 3
+
+id: 28
+name: Imp
+desc: Imp
+alignment: false
+infravison: true
+fly: true
+# str con dex int wis
+stats: -2 -2 -1 5 3
+
+id: 29
+name: Azer
+desc: Azer
+alignment: true
+
+id: 30
+name: Revenant
+desc: Revenant
+alignment: false
+undead: true
+infravison: true
+# str con dex int wis
+stats: 2 3 1 -3 -3
+
+id: 31
+name: Dryad
+desc: Dryad
+alignment: true
+
+id: 32
+name: Ghoul
+desc: Ghoul
+alignment: false
+undead: true
+infravison: true
+# str con dex int wis
+stats: 2 3 1 -3 -3

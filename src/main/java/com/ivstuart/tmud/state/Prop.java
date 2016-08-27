@@ -11,6 +11,8 @@ public class Prop extends BasicThing {
 
 	protected String affects;
 
+	protected boolean waterSource;
+
 	public Prop() {
 	}
 
@@ -22,6 +24,7 @@ public class Prop extends BasicThing {
 		super(prop_);
 		alias = prop_.alias;
 		affects = prop_.affects;
+		waterSource = false;
 	}
 
 	public String getAffects() {
@@ -45,4 +48,11 @@ public class Prop extends BasicThing {
 		alias = alias_;
 	}
 
+	public void setWaterSource(String waterSource) {
+		this.waterSource = true;
+	}
+
+	public boolean isWaterSource() {
+		return waterSource;
+	}
 }

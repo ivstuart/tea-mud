@@ -1,19 +1,21 @@
 package com.ivstuart.tmud.common;
 
-import java.util.List;
-
 import com.ivstuart.tmud.state.Mob;
+
+import java.util.List;
 
 // TODO <T>
 public interface Equipable extends Comparable {
 
-	public void equip(Mob mob);
+    void equip(Mob mob);
 
-	public List<Integer> getWear();
+    List<Integer> getWear();
 
-	public int getWorn();
+    int getWorn();
 
-	public boolean setWorn(int location);
+    boolean setWorn(int location);
 
-	public void unequip(Mob mob);
+    void unequip(Mob mob);
+
+    int getAPB();
 }

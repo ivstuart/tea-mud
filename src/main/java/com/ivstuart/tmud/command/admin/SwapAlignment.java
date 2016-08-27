@@ -45,7 +45,7 @@ public class SwapAlignment extends AdminCommand {
             return;
         }
 
-        target.setAlignment(String.valueOf(!target.isGood()));
+        target.setAlignment(!target.isGood());
 
         mob.out("You feel " + mob.getName() + " alignment flip over");
     }

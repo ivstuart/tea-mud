@@ -7,6 +7,7 @@
 package com.ivstuart.tmud.server;
 
 import com.ivstuart.tmud.command.admin.Ban;
+import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.constants.AttributeType;
 import com.ivstuart.tmud.exceptions.MudException;
 import com.ivstuart.tmud.person.Player;
@@ -342,6 +343,8 @@ public class Login implements Readable {
 
         mob.setGender(gender);
 
+        mob.setHeight(170 + DiceRoll.TWO_D_SIX.roll());
+
         mob.setRace(RaceData.RACE_NAME[choice]);
 
         Attribute alignment = new Attribute("Alignment", -5000, 5000);
@@ -525,6 +528,8 @@ public class Login implements Readable {
         character.setRoom(newRoom);
 
         newRoom.add(character);
+
+        player.getData().setLoginTime(System.currentTimeMillis());
 
         LOGGER.warn("Attempting to add player to the world!");
         try {

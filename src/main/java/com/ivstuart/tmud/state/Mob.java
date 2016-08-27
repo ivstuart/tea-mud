@@ -102,8 +102,8 @@ public class Mob extends Prop implements Tickable {
         return alignment;
     }
 
-    public void setAlignment(String alignment) {
-        this.alignment = Boolean.valueOf(alignment);
+    public void setAlignment(boolean alignment) {
+        this.alignment = alignment;
     }
 
     private boolean alignment;
@@ -677,5 +677,15 @@ public class Mob extends Prop implements Tickable {
 
     public int getArmour() {
         return armour;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWeightCarried() {
+        int grams = inventory.getWeight();
+        grams += equipment.getWeight();
+        return grams;
     }
 }

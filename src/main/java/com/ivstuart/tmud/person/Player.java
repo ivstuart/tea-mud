@@ -1,19 +1,18 @@
 package com.ivstuart.tmud.person;
 
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.ivstuart.tmud.person.carried.Inventory;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.ivstuart.tmud.person.config.ConfigData;
 import com.ivstuart.tmud.server.Connection;
 import com.ivstuart.tmud.server.Output;
 import com.ivstuart.tmud.state.Attributes;
 import com.ivstuart.tmud.state.Mob;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Player implements Serializable, Nameable {
 
@@ -243,5 +242,14 @@ public class Player implements Serializable, Nameable {
 			bank = new Inventory();
 		}
 		return bank;
+	}
+
+	public int getAPB() {
+
+		int apb = this.getAttributes().getSTR().getValue() / 5;
+
+		apb += mob.getEquipment().getAPB();
+
+		return apb;
 	}
 }

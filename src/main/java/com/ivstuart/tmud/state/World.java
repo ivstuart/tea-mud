@@ -32,6 +32,8 @@ public class World {
 
 	private static ScheduledExecutorService scheduledExecutorService;
 
+	private static List<Race> races;
+
 	public static void add(BaseSkill skill) {
 		LOGGER.info("Adding skill [ " + skill.getId() + "]");
 		skills.put(skill.getId(), skill);
@@ -225,6 +227,11 @@ public class World {
 			return;
 		}
 
+		if (object instanceof Race) {
+			World.add((Race) object);
+			return;
+		}
+
 		if (object instanceof RoomBuilder) {
 			// This is fine.
 			return;
@@ -240,6 +247,10 @@ public class World {
 
 	}
 
+	private static void add(Race race) {
+		races.add(race);
+	}
+
 	private World() {
 		tickers = new HashMap<String, Tickable>();
 		_zones = new HashMap<String, Zone>();
@@ -250,6 +261,7 @@ public class World {
 		spells = new HashMap<String, Spell>();
 		_players = new HashSet<String>();
 		_props = new HashMap<String, Prop>();
+		races = new ArrayList<Race>();
 
 		// Initialise banned list of player names if it exists.
 		Ban.init();
@@ -272,6 +284,10 @@ public class World {
 		return INSTANCE;
 	}
 
+	// Yes I know I am not using a map here. Loading in order
+	public Race getRace(int id) {
+		return races.get(id - 1);
+	}
 
     public static boolean isAdmin(String name) {
     	// TODO have a resource file.

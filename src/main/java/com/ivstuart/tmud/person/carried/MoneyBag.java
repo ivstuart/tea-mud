@@ -173,6 +173,15 @@ public class MoneyBag implements SomeMoney {
 		}
 	}
 
+    @Override
+    public int getWeight() {
+        int weight = 0;
+        for (SomeMoney money : list) {
+            weight += money.getWeight();
+        }
+        return weight;
+    }
+
 	private void validate() {
 		ListIterator<SomeMoney> moneyItr = list.listIterator();
 

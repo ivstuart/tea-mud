@@ -6,14 +6,13 @@
  */
 package com.ivstuart.tmud.person.carried;
 
-import java.io.Serializable;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Torch;
 import com.ivstuart.tmud.utils.MudArrayList;
+
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.Iterator;
 
 /**
  * @author stuarti
@@ -240,5 +239,15 @@ public class Inventory implements Serializable {
 	public void addAll(Inventory inventory) {
 		items.addAll(inventory.getItems());
 		purse.add(inventory.getPurse());
+	}
+
+	public int getWeight() {
+		int grams = purse.getWeight();
+
+		for (Item item : items) {
+			grams += item.getWeight();
+		}
+
+		return grams;
 	}
 }

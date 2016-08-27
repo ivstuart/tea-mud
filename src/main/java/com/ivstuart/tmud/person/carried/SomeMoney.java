@@ -41,6 +41,8 @@ public interface SomeMoney extends Serializable {
 
     boolean remove(SomeMoney cost);
 
+    int getWeight();
+
     /**
 	 * @param cash
 	 */

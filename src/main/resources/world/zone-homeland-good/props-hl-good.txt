@@ -1,0 +1,8 @@
+class: state.Prop
+
+id: fountain-001
+alias: fountain water
+brief: A marble fountain spewing fresh clean water
+short: fountain
+look: A marble fountain spewing fresh clean water
+waterSource: true

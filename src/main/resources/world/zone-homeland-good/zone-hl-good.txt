@@ -1,7 +1,16 @@
+include: zone-homeland-good/mobs-hl-good.txt
+include: zone-homeland-good/rooms-hl-good.txt
+include: zone-homeland-good/props-hl-good.txt
+
 class: state.Zone
 
 id: 0
 propInRoom: teacher-002 Z0-:-2:0:-1
+propInRoom: fountain-001 Z0-:1:-1:-1
+
+mobInRoom: shopkeeper-001 Z0-:0:0:-1
+mobInRoom: banker-001 Z0-:3:1:-1
+mobInRoom: armourer-001 Z0-:3:-2:-1
 
 mobInRoom: mouse-001 Z0-:0:-12:-3
 mobInRoom: mouse-001 Z0-:0:-9:-3

@@ -70,6 +70,38 @@ public class EnterNoLook extends BaseCommand {
 			return;
 		}
 
+        if (mob.getMv() != null) {
+            // walk fly swim teleport run sneak etc.....
+            if (mob.isRunning()) {
+                if (!mob.getMv().deduct(10)) {
+                    mob.out("You can not move you are out of movement and too tired!");
+                    return;
+                }
+                mob.out("You run " + exit.getId());
+            } else if (mob.isSneaking()) {
+                if (!mob.getMv().deduct(4)) {
+                    mob.out("You can not move you are out of movement and too tired!");
+                    return;
+                }
+                mob.out("You sneak " + exit.getId());
+
+            } else if (mob.isFlying()) {
+                if (!mob.getMv().deduct(1)) {
+                    mob.out("You can not move you are out of movement and too tired!");
+                    return;
+                }
+                mob.out("You fly " + exit.getId());
+
+            } else {
+                if (!mob.getMv().deduct(2)) {
+                    mob.out("You can not move you are out of movement and too tired!");
+                    return;
+                }
+                mob.out("You walk " + exit.getId());
+
+            }
+        }
+
 		MoveManager.move(mob,room,destination,exit);
 
 		Track track = new Track();
@@ -84,23 +116,8 @@ public class EnterNoLook extends BaseCommand {
 
 		room.addTrack(track);
 
-		if (mob.getMv() != null) {
-			// walk fly swim teleport run sneak etc.....
-			if (mob.isRunning()) {
-				mob.out("You run " + exit.getId());
-				mob.getMv().deduct(10);
-			} else if (mob.isSneaking()) {
-				mob.out("You sneak " + exit.getId());
-				mob.getMv().deduct(5);
-			} else if (mob.isFlying()) {
-				mob.out("You fly " + exit.getId());
-				mob.getMv().deduct(1);
-			} else {
-				mob.out("You walk " + exit.getId());
-				mob.getMv().deduct(4);
-			}
-		}
-		// fly 1 point. walk 4. walk on path 2 points.
+
+        // fly 1 point. walk 4. walk on path 2 points.
 
 		// check room for followers and issue move command to any followers.
 		for (Mob follower : room.getFollowers(mob)) {

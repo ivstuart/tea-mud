@@ -1,15 +1,14 @@
 package com.ivstuart.tmud.state.util;
 
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-
+import com.ivstuart.tmud.server.LaunchMud;
 import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.utils.FileHandle;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.utils.FileHandle;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 public class StateReader {
 
@@ -105,7 +104,6 @@ public class StateReader {
 
 					LOGGER.debug(params[0] + params[1]);
 
-					// TODO decide if enum is better to model SHIELD_BLOCK
 					Field field = Class.forName(getClassPrefix() + params[0])
 							.getDeclaredField(params[1]);
 
@@ -145,16 +143,25 @@ public class StateReader {
 		String methodName = getMethodName(tag);
 
 		try {
-
-			Method method = getMethod(obj, methodName, String.class);
+			Method method = null;
 
 			Object invokeParams = args;
+
+			// New in 2016 introduced with race class.
+			if (args.equals("true") || args.equals("false")) {
+				method = getMethod(obj, methodName, boolean.class);
+
+				invokeParams = Boolean.valueOf(args);
+			} else {
+
+				method = getMethod(obj, methodName, String.class);
+			}
 
 			if (method == null) {
 				method = getMethod(obj, methodName, int.class);
 
 				if(method == null) {
-					LOGGER.warn("Class does not have a setter method with name "+methodName+" for param int or string");
+					LOGGER.warn("Class does not have a setter method with name " + methodName + " for param boolean, int or string");
 					return methodName;
 				}
 
@@ -230,7 +237,6 @@ public class StateReader {
 			}
 
 			if (NEW_OBJECT_ID.equals(tag)) {
-				// TODO check if really new world id if not pull object from World. World.getObject(args);
 				obj = createOrAddNewObject(obj, currentClass, args);
 			}
 

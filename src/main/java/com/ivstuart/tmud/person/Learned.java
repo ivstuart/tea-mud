@@ -6,12 +6,12 @@
  */
 package com.ivstuart.tmud.person;
 
-import java.io.*;
+import com.ivstuart.tmud.state.Ability;
+
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-
-import com.ivstuart.tmud.state.Ability;
 
 /**
  * @author stuarti
@@ -82,4 +82,13 @@ public class Learned implements Serializable {
 		return abilities.remove(name);
 	}
 
+	public int getAbilityPoints() {
+		int abilityPoints = 0;
+
+		for (Ability ab : abilities.values()) {
+			abilityPoints += ab.getSkill();
+		}
+
+		return abilityPoints;
+	}
 }
