@@ -185,3 +185,4 @@ copper: 0
 xp: 20
 state: STANDING
 attackType: punch
+

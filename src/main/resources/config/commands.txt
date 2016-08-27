@@ -146,6 +146,7 @@ command.admin.Shutdown,SLEEP
 command.admin.StopFighting,SLEEP
 command.admin.Smite,SLEEP
 command.admin.Snoop,SLEEP
+command.admin.SwapAlignment,SLEEP
 command.admin.Teleport,SLEEP
 command.admin.TestLearn,SLEEP
 command.admin.TestPoison,SLEEP

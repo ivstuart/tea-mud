@@ -10,7 +10,7 @@ look: eternal light ends in a bright point of light.
 exits: east->Z6-:1:0:0
 
 id: Z6-:1:0:0
-brief: The Dark Inner Sanctum of the White Tower
+brief: The Dark Inner Sanctum of the Black Tower
 type: Chamber
 look: The dark inner sanctum within the Black Tower is made from highly polished
 look: snow white marbled stone. Along the outer walls of the courtyard torches,

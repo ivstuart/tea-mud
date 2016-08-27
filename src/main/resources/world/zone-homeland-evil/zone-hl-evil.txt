@@ -2,3 +2,8 @@ class: state.Zone
 
 id: 0
 propInRoom: teacher-002 Z6-:-2:0:-1
+
+mobInRoom: guard-evil-60 Z6-:0:-4:-2
+mobInRoom: guard-evil-60 Z6-:0:-4:-2
+mobInRoom: guard-evil-60 Z6-:0:-4:-2
+mobInRoom: guard-evil-60 Z6-:0:-4:-2

@@ -19,3 +19,7 @@ mobInRoom: mole-001 Z0-:0:-4:-3
 mobInRoom: hare-001 Z0-:0:-7:-3
 mobInRoom: hare-001 Z0-:0:-7:-3
 
+mobInRoom: guard-good-60 Z0-:0:-4:-2
+mobInRoom: guard-good-60 Z0-:0:-4:-2
+mobInRoom: guard-good-60 Z0-:0:-4:-2
+mobInRoom: guard-good-60 Z0-:0:-4:-2

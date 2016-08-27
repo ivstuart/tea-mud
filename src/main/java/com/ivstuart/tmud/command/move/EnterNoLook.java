@@ -2,20 +2,11 @@ package com.ivstuart.tmud.command.move;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.CommandProvider;
-import com.ivstuart.tmud.common.MobState;
-import com.ivstuart.tmud.common.Msg;
+import com.ivstuart.tmud.constants.DoorState;
 import com.ivstuart.tmud.person.movement.MoveManager;
-import com.ivstuart.tmud.state.util.RoomManager;
+import com.ivstuart.tmud.state.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import com.ivstuart.tmud.command.Command;
-import com.ivstuart.tmud.constants.DoorState;
-import com.ivstuart.tmud.state.Door;
-import com.ivstuart.tmud.state.Exit;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Room;
-import com.ivstuart.tmud.state.Track;
 
 public class EnterNoLook extends BaseCommand {
 
@@ -67,8 +58,8 @@ public class EnterNoLook extends BaseCommand {
 			return;
 		}
 
-		if (exit.isGuarded()) {
-			mob.out("The exit in direction " + exit.getId() + " is guarded.");
+        if (exit.isGuarded(mob)) {
+            mob.out("The exit in direction " + exit.getId() + " is guarded.");
 			return;
 		}
 

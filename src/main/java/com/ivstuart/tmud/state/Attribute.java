@@ -185,4 +185,8 @@ public class Attribute implements Serializable {
 		maximum += amount;
 		current = maximum;
 	}
+
+	public void invert() {
+		current = -current;
+	}
 }

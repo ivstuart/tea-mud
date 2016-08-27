@@ -83,3 +83,26 @@ copper: 15
 xp: 55
 state: STAND
 attackType: bite kick
+
+class: state.GuardMob
+
+id: guard-evil-60
+name: large official looking guard
+alias: large official guard
+short: the large guard
+long: A large guard paces up and down
+look: The guard resembles a typical palace guard, complete with hat and spear
+level: 60
+#behaviour: Assist:100
+offensive: 570
+defensive: 520
+armour: 50
+hp: 5000
+damage: 1d100+100
+copper: 5
+xp: 20
+state: STANDING
+attackType: punch
+guardExit: north
+alignment: false
+alignmentGuard: true

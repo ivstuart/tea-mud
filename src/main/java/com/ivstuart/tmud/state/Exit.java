@@ -34,15 +34,15 @@ public class Exit extends BasicThing {
 		return door;
 	}
 
-	public boolean isGuarded() {
+    public boolean isGuarded(Mob mob_) {
 
 		if (getDestinationRoom() == null) {
 			return false;
 		}
 
 		for (Mob mob : getDestinationRoom().getMobs()) {
-			if (mob.isGuarding(this.getId())) {
-				return true;
+            if (mob.isGuarding(mob_, this.getId())) {
+                return true;
 			}
 		}
 		return false;

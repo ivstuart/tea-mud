@@ -98,6 +98,16 @@ public class Mob extends Prop implements Tickable {
 
     private String patrolPath;
 
+    public boolean isAlignment() {
+        return alignment;
+    }
+
+    public void setAlignment(String alignment) {
+        this.alignment = Boolean.valueOf(alignment);
+    }
+
+    private boolean alignment;
+
     public Mob() {
         fight = new Fight(this);
     }
@@ -138,6 +148,8 @@ public class Mob extends Prop implements Tickable {
         room = baseMob.room;
 
         repopRoomID = baseMob.repopRoomID;
+
+        alignment = baseMob.alignment;
 
         if (baseMob.behaviours != null) {
             for (String behaviour : baseMob.behaviours) {
@@ -350,7 +362,7 @@ public class Mob extends Prop implements Tickable {
         return false;
     }
 
-    public boolean isGuarding(String id) {
+    public boolean isGuarding(Mob mob_, String id) {
         return false;
     }
 
@@ -613,7 +625,7 @@ public class Mob extends Prop implements Tickable {
         if (this.isPlayer()) {
             return (player.getData().getAlignment().getValue() >= 0);
         }
-        return true; // TODO have a mob parameter
+        return alignment;
     }
 
     public boolean isFollowing(Mob mob_) {

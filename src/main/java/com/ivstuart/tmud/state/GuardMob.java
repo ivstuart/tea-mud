@@ -14,6 +14,17 @@ public class GuardMob extends Mob {
 
 	private String exit;
 
+	public boolean isAlignmentGuard() {
+		return isAlignmentGuard;
+	}
+
+	public void setAlignmentGuard(String alignmentGuard) {
+		isAlignmentGuard = Boolean.valueOf(alignmentGuard);
+		;
+	}
+
+	private boolean isAlignmentGuard;
+
 	public GuardMob() {
 		super();
 	}
@@ -21,6 +32,7 @@ public class GuardMob extends Mob {
 	public GuardMob(Mob baseMob) {
 		super(baseMob);
 		this.exit = ((GuardMob) baseMob).exit;
+		isAlignmentGuard = false;
 	}
 
 	@Override
@@ -29,12 +41,16 @@ public class GuardMob extends Mob {
 	}
 
 	@Override
-	public boolean isGuarding(String id) {
+	public boolean isGuarding(Mob mob_, String id) {
 
-		LOGGER.debug("id [ " + id + " ]");
-		LOGGER.debug("exit [ " + exit + " ]");
+		LOGGER.debug("id [ " + id + " ] exit [ " + exit + " ]");
 
 		if (isDead()) {
+			return false;
+		}
+
+		if (isAlignmentGuard && mob_.isGood() == this.isGood()) {
+			LOGGER.debug("Alignment guard and they match so may pass");
 			return false;
 		}
 
