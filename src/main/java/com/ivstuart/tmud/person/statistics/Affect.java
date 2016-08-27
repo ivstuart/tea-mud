@@ -11,11 +11,13 @@ public class Affect implements Serializable {
 	protected Mob _mob;
 	protected String _desc;
 	protected int _duration;
+	protected int _amount;
 
 	public Affect(Mob mob_, String desc_, int duration_) {
 		_mob = mob_;
 		_duration = duration_;
 		_desc = desc_;
+		_amount = 15;
 	}
 
 	public void applyEffect() {
@@ -51,8 +53,12 @@ public class Affect implements Serializable {
 		return _desc + " " + affDuration[index] + " (" + _duration + ")";
 	}
 
-	public int getBuff() {
-		return 15;
+	public int getAmount() {
+		return _amount;
+	}
+
+	public void setAmount(int amount) {
+		this._amount = amount;
 	}
 
 	// Default no change in damage

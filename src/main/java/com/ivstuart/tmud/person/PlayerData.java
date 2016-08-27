@@ -299,4 +299,8 @@ public class PlayerData implements Serializable {
 	public int getDeaths() {
 		return deaths;
 	}
+
+    public void incrementDeaths() {
+        deaths++;
+    }
 }

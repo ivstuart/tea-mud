@@ -6,19 +6,23 @@
  */
 package com.ivstuart.tmud.person.carried;
 
-import java.io.*;
+import com.ivstuart.tmud.common.Equipable;
+import com.ivstuart.tmud.constants.EquipLocation;
+import com.ivstuart.tmud.constants.EquipmentConstants;
+import com.ivstuart.tmud.person.statistics.Affect;
+import com.ivstuart.tmud.state.Armour;
+import com.ivstuart.tmud.state.Item;
+import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.Weapon;
+import com.ivstuart.tmud.utils.MudArrayList;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import com.ivstuart.tmud.common.Equipable;
-import com.ivstuart.tmud.constants.EquipLocation;
-import com.ivstuart.tmud.constants.EquipmentConstants;
-import com.ivstuart.tmud.state.Armour;
-import com.ivstuart.tmud.state.Item;
-import com.ivstuart.tmud.state.Weapon;
-import com.ivstuart.tmud.utils.MudArrayList;
+import static com.ivstuart.tmud.constants.SpellNames.PROTECTION;
 
 /**
  * @author stuarti
@@ -44,13 +48,11 @@ public class Equipment implements Serializable {
 	// Used to work out if we have space at that location to put on said item.
 	private int _slots[] = new int[EquipmentConstants.location.length];
 
-	/**
-	 * PRIMARY = 14; SECONDARY = 15; TWO_HANDED= 16;
-	 */
-	public Equipment() {
-		super();
-		_equipment = new MudArrayList<Equipable>();
+	private Mob mob;
 
+	public Equipment(Mob mob) {
+		this.mob = mob;
+		_equipment = new MudArrayList<Equipable>();
 	}
 
 	public boolean add(Equipable eq) {
@@ -143,6 +145,7 @@ public class Equipment implements Serializable {
 	}
 
 	public Armour getTotalArmour() {
+
 		// Need to factor in any damage to armour.
 		// Would it be better to add and remove armour on an item per item
 		// basis?
@@ -151,6 +154,16 @@ public class Equipment implements Serializable {
 			if (eq instanceof Armour) {
 				((Armour) eq).add(totalArmour);
 			}
+		}
+
+		Affect armourBuff = mob.getMobAffects().getAffect(PROTECTION);
+
+		int buff = 0;
+		if (armourBuff != null) {
+			buff = armourBuff.getAmount();
+			Armour protection = new Armour();
+			protection.setArmourBuff(buff);
+			totalArmour.add(protection);
 		}
 
 		return totalArmour;

@@ -7,6 +7,7 @@
 package com.ivstuart.tmud.command.info;
 
 import com.ivstuart.tmud.command.BaseCommand;
+import com.ivstuart.tmud.state.Armour;
 import com.ivstuart.tmud.state.Mob;
 
 import static com.ivstuart.tmud.constants.SpellNames.*;
@@ -66,6 +67,9 @@ public class Rating extends BaseCommand {
         if (mob.getMobAffects().hasAffect(IMP_BLUR)) {
             rating += 100;
         }
+
+        Armour armour = mob.getEquipment().getTotalArmour();
+        rating += armour.getAverage();
 
         return rating;
     }

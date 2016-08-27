@@ -206,7 +206,7 @@ public class Mob extends Prop implements Tickable {
 
     public Equipment getEquipment() {
         if (equipment == null) {
-            equipment = new Equipment();
+            equipment = new Equipment(this);
         }
         return equipment;
     }

@@ -1,7 +1,6 @@
 package com.ivstuart.tmud.command.combat;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.fighting.action.AttackFlurry;
 import com.ivstuart.tmud.state.Mob;
 
@@ -19,6 +18,11 @@ public class Flurry extends BaseCommand {
 
 		if (target == null) {
 			mob.out(input + " is not here to kill!");
+			return;
+		}
+
+		if (mob.getFight().isGroundFighting()) {
+			mob.out("You can not flurry you are ground fighting");
 			return;
 		}
 

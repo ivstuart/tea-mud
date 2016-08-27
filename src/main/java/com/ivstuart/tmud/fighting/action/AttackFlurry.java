@@ -6,11 +6,7 @@
  */
 package com.ivstuart.tmud.fighting.action;
 
-import com.ivstuart.tmud.command.info.Prompt;
-import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.Msg;
-import com.ivstuart.tmud.fighting.CombatCal;
-import com.ivstuart.tmud.fighting.DamageManager;
 import com.ivstuart.tmud.state.Mob;
 
 /**
@@ -40,6 +36,8 @@ public class AttackFlurry extends BasicAttack {
 			out("You do not have enough movement available to flurry");
 			this.finished();
 		}
+
+        getSelf().out("You open out with a flurry of attacks doubling you chances to hit");
 
 		super.happen();
 		super.happen();

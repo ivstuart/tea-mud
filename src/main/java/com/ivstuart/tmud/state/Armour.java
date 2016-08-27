@@ -72,4 +72,10 @@ public class Armour extends Item {
 		}
 		return total / ALL;
     }
+
+	public void setArmourBuff(int armourBuff) {
+		for (int i = HEAD; i < ALL; i++) {
+			slots[i] += armourBuff;
+		}
+	}
 }

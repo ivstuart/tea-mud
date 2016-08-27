@@ -7,11 +7,9 @@
 package com.ivstuart.tmud.command.info;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.person.statistics.Affect;
 import com.ivstuart.tmud.state.Armour;
 import com.ivstuart.tmud.state.Mob;
 
-import static com.ivstuart.tmud.constants.SpellNames.PROTECTION;
 import static com.ivstuart.tmud.constants.UsefulContants.armourString;
 
 /**
@@ -22,8 +20,8 @@ import static com.ivstuart.tmud.constants.UsefulContants.armourString;
  */
 public class ArmourCommand extends BaseCommand {
 
-	private String desc(int value_,int buff) {
-		int index = value_ + buff / 5;
+	private String desc(int value_) {
+		int index = value_;
 
 		if (index > armourString.length - 1) {
 			index = armourString.length - 1;
@@ -36,22 +34,15 @@ public class ArmourCommand extends BaseCommand {
 
 		Armour armour = mob.getEquipment().getTotalArmour(); // .armourAt(HEAD);
 
-        Affect armourBuff = mob.getMobAffects().getAffect(PROTECTION);
-
-		int buff = 0;
-		if (armourBuff != null) {
-			buff = armourBuff.getBuff();
-		}
-
 		String data = "$K~$J";
-		data += "\n   O      <---   Head/Neck: " + desc(armour.getHead(),buff);
-		data += "\n /-|-\\    <---  Upper Body: " + desc(armour.getBody(),buff);
-		data += "\n | | |    <---   Arms/Body: " + desc(armour.getArms(),buff);
-		data += "\n ! | !    <--- Hands/Waist: " + desc(armour.getWaist(),buff);
-		data += "\n  / \\     <---        Legs: " + desc(armour.getLegs(),buff);
-		data += "\n_/   \\_   <--- Ankles/Feet: " + desc(armour.getFeet(),buff);
+		data += "\n   O      <---   Head/Neck: " + desc(armour.getHead());
+		data += "\n /-|-\\    <---  Upper Body: " + desc(armour.getBody());
+		data += "\n | | |    <---   Arms/Body: " + desc(armour.getArms());
+		data += "\n ! | !    <--- Hands/Waist: " + desc(armour.getWaist());
+		data += "\n  / \\     <---        Legs: " + desc(armour.getLegs());
+		data += "\n_/   \\_   <--- Ankles/Feet: " + desc(armour.getFeet());
 		data += "\n$K~$J";
-		data += "\n               Overall ---> " + desc(armour.getAverage(),buff);
+		data += "\n               Overall ---> " + desc(armour.getAverage());
 		data += "\n$K~$J";
 
 		mob.out(data);

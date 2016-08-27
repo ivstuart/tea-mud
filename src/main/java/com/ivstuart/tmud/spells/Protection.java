@@ -14,6 +14,8 @@ public class Protection implements SpellEffect {
 
 		Affect armorAffect = new ArmourBuff(target, spell.getId(),spell.getDuration().roll());
 
+		armorAffect.setAmount(spell.getAmount());
+
 		target.addAffect(spell.getId(),armorAffect);
 
 		target.out("Armor buff applied!");

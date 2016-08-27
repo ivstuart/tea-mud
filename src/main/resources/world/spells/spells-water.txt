@@ -52,7 +52,8 @@ duration: 2d6+100
 id: protection
 level: 10
 cost: 5
-damage: 100
+damage: 0
+amount: 17
 target: SELF
 speed: 5
 mana: WATER

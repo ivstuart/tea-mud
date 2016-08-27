@@ -214,6 +214,10 @@ public class DamageManager {
                 attacker.getMobStatus().clear();
                 defender.getMobStatus().clear();
 
+                if (defender.isPlayer()) {
+                    defender.getPlayer().getData().incrementDeaths();
+                }
+
                 createCorpse(attacker, defender);
 
                 if (defender.isPlayer()) {

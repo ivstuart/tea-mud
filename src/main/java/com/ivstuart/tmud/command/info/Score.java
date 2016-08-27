@@ -87,7 +87,7 @@ public class Score extends BaseCommand {
                             BLUE.toString(), mana.get(WATER).getPrompt(),
                             mob.getPlayer().getData().getStealth(), data.getLevel()));
             mob.out(String
-                    .format("  %1$2s Air   Sav  : %2$6s    Perception   : %3$6s    Deaths      : %4$6s",
+                    .format("  %1$2s Air   Save : %2$6s    Perception   : %3$6s    Deaths      : %4$6s",
                             YELLOW.toString(), mana.get(AIR).getPrompt(),
                             mob.getPlayer().getData().getPerception(),
                             mob.getPlayer().getData().getDeaths()));

@@ -22,6 +22,8 @@ public class Spell extends BaseSkill {
 	// Default is damage
 	private String _stat;
 
+	private int amount;
+
 	/**
 	 * Cost of spell is double when your level is the same as the spell and this
 	 * drop by .2 for next 4 level until it drops to base cost.
@@ -100,5 +102,13 @@ public class Spell extends BaseSkill {
     		return false;
 		}
     	return _targets.indexOf("ANY") > -1;
-    }
+	}
+
+	public void setAmount(String amount) {
+		this.amount = Integer.parseInt(amount);
+	}
+
+	public int getAmount() {
+		return amount;
+	}
 }
