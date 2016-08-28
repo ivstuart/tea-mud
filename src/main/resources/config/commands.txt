@@ -140,6 +140,7 @@ command.admin.PauseTime,SLEEP
 command.admin.Posess,SLEEP
 command.admin.Reload,SLEEP
 command.admin.Repopulate,SLEEP
+command.admin.SetRace,SLEEP
 command.admin.ShowFighting,SLEEP
 command.admin.ShowMobState,SLEEP
 command.admin.ShowRace,SLEEP

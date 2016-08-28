@@ -25,8 +25,25 @@ public class Zone extends BasicThing {
 
 	}
 
+	/**
+	 * Mob then item space seperated then load percentage for item
+	 *
+	 * @param give_
+	 */
 	public void setGive(String give_) {
+		String elements[] = give_.split(" ");
 
+		if (elements.length < 2) {
+			LOGGER.error("Give needs to be [mob] [item] <load percentage>");
+			return;
+		}
+		Mob mob = World.getMob(elements[0]);
+		Item item = EntityProvider.createItem(elements[1]);
+		mob.getInventory().add(item); // Gives to template mob only
+
+		if (elements.length == 3) {
+			item.setLoadPercentage(Integer.parseInt(elements[2]));
+		}
 	}
 
 	public void setItemInRoom(String itemAndRoom_) {
@@ -35,6 +52,28 @@ public class Zone extends BasicThing {
 		Room room = World.getRoom(elements[1]);
 		room.add(item);
 	}
+
+	public void setGiveItem(String give_) {
+		String elements[] = give_.split(" ");
+
+		if (elements.length < 3) {
+			LOGGER.error("Give needs to be [mob] [room] [item] <load percentage>");
+			return;
+		}
+
+		Mob mob = World.getRoom(elements[1]).getMob(elements[0]);
+
+		Item item = EntityProvider.createItem(elements[2]);
+
+		if (elements.length == 4) {
+			item.setLoadPercentage(Integer.parseInt(elements[3]));
+		}
+
+		if (item.isLoaded()) {
+			mob.getInventory().add(item); // Gives to room mob only.
+		}
+	}
+
 
 	public void setLifespan(String lifespan_) {
 		_lifespan = Integer.parseInt(lifespan_);

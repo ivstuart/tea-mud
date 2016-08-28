@@ -382,8 +382,6 @@ public class Login implements Readable {
             player.setAdmin(false);
         }
 
-        mob.setHeight(6);
-
         data.setPlayingFor(0);
 
         data.setTotalXp(0);

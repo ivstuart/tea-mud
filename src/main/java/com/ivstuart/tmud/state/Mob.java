@@ -683,8 +683,15 @@ public class Mob extends Prop implements Tickable {
         return tickers;
     }
 
-    public void setItem(String id) {
-        Item item = EntityProvider.createItem(id);
+    public void setItem(String input) {
+        String elements[] = input.split(" ");
+
+        Item item = EntityProvider.createItem(elements[0]);
+
+        if (elements.length == 2) {
+            item.setLoadPercentage(Integer.parseInt(elements[1]));
+        }
+
         this.getInventory().add(item);
     }
 

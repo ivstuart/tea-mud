@@ -286,6 +286,9 @@ public class World {
 
 	// Yes I know I am not using a map here. Loading in order
 	public Race getRace(int id) {
+		if (id == 0) {
+			id = 1;
+		} // Default to human when no race set.
 		return races.get(id - 1);
 	}
 

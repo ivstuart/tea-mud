@@ -1,9 +1,6 @@
 package com.ivstuart.tmud.state;
 
-import com.ivstuart.tmud.common.Equipable;
-import com.ivstuart.tmud.common.Gender;
-import com.ivstuart.tmud.common.Msg;
-import com.ivstuart.tmud.common.Msgable;
+import com.ivstuart.tmud.common.*;
 import com.ivstuart.tmud.constants.EquipLocation;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
@@ -218,5 +215,15 @@ public class Item extends Prop implements Equipable, Msgable {
 
 	public void setDamagedPercentage(int damagedPercentage) {
 		this._damagedPercentage = damagedPercentage;
+	}
+
+	public void setLoadPercentage(int loadPercentage) {
+		this.loadPercentage = loadPercentage;
+	}
+
+	int loadPercentage = 1;
+
+	public boolean isLoaded() {
+		return DiceRoll.ONE_D100.rollLessThanOrEqualTo(loadPercentage);
 	}
 }

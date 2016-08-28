@@ -42,7 +42,7 @@ public class Score extends BaseCommand {
         mob.out("                      --- Pattern Character Sheet ---");
         mob.out(Info.BAR);
         mob.out("   You are " + mob.getId() + ", level " + data.getLevel()
-                + " amongst your " + mob.getRace() + " ancestors.\n");
+                + " amongst your " + mob.getRace().getName() + " ancestors.\n");
 
         mob.out("   You are " + player.getData().getAge() + " years of age ("
                 + player.getData().getPlayingFor() + " Days, "

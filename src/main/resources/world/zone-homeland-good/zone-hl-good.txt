@@ -27,7 +27,11 @@ mobInRoom: mole-001 Z0-:0:-4:-3
 
 mobInRoom: blue-dragon-001 Z0-:-2:6:-3
 
-water-40
+# All dragons also can use item: in mob.txt file
+give: blue-dragon-001 water-60 50
+
+# Mob in room only - one off no repop
+giveItem: blue-dragon-001 Z0-:-2:6:-3 water-80 20
 
 mobInRoom: hare-001 Z0-:0:-7:-3
 mobInRoom: hare-001 Z0-:0:-7:-3

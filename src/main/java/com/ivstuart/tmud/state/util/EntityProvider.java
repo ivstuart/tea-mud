@@ -4,6 +4,8 @@ import com.ivstuart.tmud.state.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Iterator;
+
 public class EntityProvider {
 
     private static final Logger LOGGER = LogManager.getLogger();
@@ -45,6 +47,15 @@ public class EntityProvider {
         // this newMob is a new instance of Mob from world with its own repop
         // room
         newMob.setRepopRoomId(_id);
+
+        Item item = null;
+        // Remove items based on load percentage
+        for (Iterator<Item> itemIter = newMob.getInventory().getItems().iterator(); itemIter.hasNext(); ) {
+            item = itemIter.next();
+            if (!item.isLoaded()) {
+                itemIter.remove();
+            }
+        }
 
         return newMob;
     }

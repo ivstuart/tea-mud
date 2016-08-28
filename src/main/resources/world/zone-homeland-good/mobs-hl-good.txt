@@ -113,6 +113,7 @@ alias: large blue dragon
 short: the large blue dragon
 long: A large blue dragon snares at you.
 look: The dragon is a common dragon is and all together unremarkable.
+item: water-40 100
 level: 40
 attacks: 3
 offensive: 500
