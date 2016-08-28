@@ -5,9 +5,8 @@ import java.util.Map;
 
 public class SpellEffectFactory {
 
-	private static Map<String, SpellEffect> spellEffectMap = new HashMap<String, SpellEffect>();
-
 	public final static SpellEffect DAMAGE = new Damage();
+	private static Map<String, SpellEffect> spellEffectMap = new HashMap<String, SpellEffect>();
 
 	static {
 		spellEffectMap.put("HEAL", new Heal());
@@ -31,6 +30,7 @@ public class SpellEffectFactory {
 		spellEffectMap.put("ENCHANT", new EnchantWeapon());
 		spellEffectMap.put("CONTROL-WEATHER", new ControlWeather());
 		spellEffectMap.put("CLONE", new CloneMob());
+		spellEffectMap.put("BLINDNESS", new Blindness());
 		spellEffectMap.put("CURE-BLINDNESS", new CureBlindness());
 		spellEffectMap.put("ANIMATE-DEAD", new AnimateDead());
 

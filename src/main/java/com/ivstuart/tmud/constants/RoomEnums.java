@@ -1,5 +1,8 @@
 package com.ivstuart.tmud.constants;
 
+/**
+ * Enum is not used. Please delete this class.
+ */
 public class RoomEnums {
 
 	public enum RoomFlag {

@@ -24,6 +24,11 @@ public class Summon implements SpellEffect {
             return;
         }
 
+        if (target.isNoSummon()) {
+            caster.out("Your target is no summon your spell fizzles uselessly");
+            return;
+        }
+
 
         Room toRoom = caster.getRoom();
 

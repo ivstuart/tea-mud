@@ -8,7 +8,6 @@ import com.ivstuart.tmud.utils.MudArrayList;
 
 import java.util.List;
 
-import static com.ivstuart.tmud.constants.RoomEnums.RoomFlag.DARK;
 import static com.ivstuart.tmud.constants.SpellNames.BLINDNESS;
 import static com.ivstuart.tmud.constants.SpellNames.INFRAVISION;
 
@@ -42,6 +41,7 @@ public class Look extends BaseCommand {
 		if (input_.length() > 0) {
 			Mob mob = mob_.getRoom().getMob(input_);
 			if (mob != null) {
+				// TODO peek at mob
 				mob_.out("Info mob id       = " + mob.getId());
 				mob_.out("Info mob repop id = " + mob.getRepopRoomId());
 				mob_.out("Type :" + mob_.getClass().getSimpleName());
@@ -50,7 +50,7 @@ public class Look extends BaseCommand {
 			return;
 		}
 
-		if (mob_.getRoom().hasProperty(DARK.toString())) {
+		if (mob_.getRoom().isDark()) {
 			// Can mob see in the dark?
 			if (mob_.getMobAffects().hasAffect(INFRAVISION) || mob_.getRace().isInfravison()) {
 				mob_.out("You can see in the dark");

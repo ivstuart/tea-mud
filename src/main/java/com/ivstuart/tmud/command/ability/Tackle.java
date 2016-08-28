@@ -21,78 +21,6 @@ import com.ivstuart.tmud.state.MobStatus;
  */
 public class Tackle extends BaseCommand {
 
-	class FightActionTackle extends FightAction {
-
-		public FightActionTackle(Mob me, Mob target) {
-			super(me, target);
-		}
-
-		@Override
-		public void begin() {
-			super.begin();
-
-			// TODO review and test this
-			if (!getSelf().getMv().deduct(10)) {
-				out("You do not have enough movement left to tackle");
-				this.finished();
-			}
-
-			durationMillis(500);
-			out(new Msg(getSelf(), getTarget(),"<S-You prepare your/NAME prepares GEN-him>self to tackle <T-you/NAME>."));
-
-			if (isMobUnableTo(getSelf(), getTarget())) {
-				this.finished();
-			}
-
-		}
-
-		@Override
-		public void changed() {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void ended() {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void happen() {
-
-			if (isMobUnableTo(getSelf(), getTarget())) {
-				this.finished();
-			}
-
-			Fight.startCombat(getSelf(), getTarget());
-
-			// Success or fail
-			Ability ability = getSelf().getLearned().getAbility("tackle");
-
-			// Always successful against a sleeping opponent
-			if (ability.isSuccessful() && DiceRoll.ONE_D100.rollMoreThan(50) || getTarget().getState().isSleeping()) {
-				out(new Msg(getSelf(), getTarget(),"<S-You/NAME> successfully tackled <T-you/NAME> to the ground."));
-				setTackled(getSelf(), getTarget());
-				if (ability.isImproved()) {
-					out("[[[[ Your ability to " + ability.getId()
-							+ " has improved ]]]]");
-					ability.improve();
-				}
-			} else {
-				out(new Msg(getSelf(), getTarget(),"<S-You/NAME> miss<S-/es> tackling <T-you/NAME>."));
-			}
-
-			durationMillis(2500);
-		}
-
-		@Override
-		public boolean isMeleeEnabled() {
-			return false;
-		}
-
-	}
-
 	private static final String TACKLE = "tackle";
 
 	private boolean checkStatus(Mob mob, Mob target) {
@@ -121,6 +49,11 @@ public class Tackle extends BaseCommand {
 
 		if (!mob.getLearned().hasLearned(TACKLE)) {
 			mob.out("You have no knowledge of " + TACKLE);
+			return;
+		}
+
+		if (mob.getRoom().isPeaceful()) {
+			mob.out("You can not be aggressive in this room");
 			return;
 		}
 
@@ -182,6 +115,78 @@ public class Tackle extends BaseCommand {
 		mob.getMobStatus().setGroundFighting(10);
 		target.getFight().setMelee(new GroundFighting(target, mob));
 		target.getMobStatus().setGroundFighting(10);
+
+	}
+
+	class FightActionTackle extends FightAction {
+
+		public FightActionTackle(Mob me, Mob target) {
+			super(me, target);
+		}
+
+		@Override
+		public void begin() {
+			super.begin();
+
+			// TODO review and test this
+			if (!getSelf().getMv().deduct(10)) {
+				out("You do not have enough movement left to tackle");
+				this.finished();
+			}
+
+			durationMillis(500);
+			out(new Msg(getSelf(), getTarget(), "<S-You prepare your/NAME prepares GEN-him>self to tackle <T-you/NAME>."));
+
+			if (isMobUnableTo(getSelf(), getTarget())) {
+				this.finished();
+			}
+
+		}
+
+		@Override
+		public void changed() {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void ended() {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void happen() {
+
+			if (isMobUnableTo(getSelf(), getTarget())) {
+				this.finished();
+			}
+
+			Fight.startCombat(getSelf(), getTarget());
+
+			// Success or fail
+			Ability ability = getSelf().getLearned().getAbility("tackle");
+
+			// Always successful against a sleeping opponent
+			if (ability.isSuccessful() && DiceRoll.ONE_D100.rollMoreThan(50) || getTarget().getState().isSleeping()) {
+				out(new Msg(getSelf(), getTarget(), "<S-You/NAME> successfully tackled <T-you/NAME> to the ground."));
+				setTackled(getSelf(), getTarget());
+				if (ability.isImproved()) {
+					out("[[[[ Your ability to " + ability.getId()
+							+ " has improved ]]]]");
+					ability.improve();
+				}
+			} else {
+				out(new Msg(getSelf(), getTarget(), "<S-You/NAME> miss<S-/es> tackling <T-you/NAME>."));
+			}
+
+			durationMillis(2500);
+		}
+
+		@Override
+		public boolean isMeleeEnabled() {
+			return false;
+		}
 
 	}
 

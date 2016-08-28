@@ -46,6 +46,10 @@ public class Cast extends BaseCommand {
             return;
         }
 
+        if (mob_.getRoom().isNoMagic()) {
+            mob_.out("You can not use magic in this room");
+            return;
+        }
         // cast magic missile at target
         // cast smite <defaults to current target>
         // cast acid rain <defaults to enemies??>
@@ -70,6 +74,11 @@ public class Cast extends BaseCommand {
         if (spell == null) {
             LOGGER.warn("Spell ability:" + spellAbility.getId());
             mob_.out("You know " + input_ + " which is not castable according to world list");
+            return;
+        }
+
+        if (mob_.getRoom().isPeaceful() && !spell.getSpellEffect().isPositiveEffect()) {
+            mob_.out("You can not use offensive magic in this room");
             return;
         }
 

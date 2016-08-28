@@ -8,6 +8,11 @@ public class Flurry extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {
+
+		if (mob.getRoom().isPeaceful()) {
+			mob.out("You can not be aggressive in this room");
+			return;
+		}
 		// 1st check already fighting
 
 		if (mob.getFight().isEngaged() == false) {

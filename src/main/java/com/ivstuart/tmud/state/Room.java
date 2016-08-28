@@ -34,6 +34,135 @@ public class Room extends BasicThing implements Msgable {
 
     private boolean isRegen;
     private boolean isUnderWater;
+    private boolean isDark;
+    private boolean isWater;
+    private boolean isFlying;
+    // DARK, DEATH, NO_MOB, INDOORS, PEACEFUL, SOUND_PROOF, NO_TRACK, NO_MAGIC, TUNNEL, PRIVATE, GOD_ROOM, HOUSE
+    private boolean isDeath;
+    private boolean isNoMob;
+    private boolean isIndoors;
+    private boolean isPeaceful;
+    private boolean isSoundProof;
+    private boolean isNoTrack;
+    private boolean isNoMagic;
+    private boolean isTunnel;
+    private boolean isPrivate;
+    private boolean isGodRoom;
+    private boolean isHouse;
+    private boolean isClimb;
+
+    public Room() {
+        initRoom();
+    }
+
+    public Room(BasicThing basicThing) {
+        super(basicThing);
+        initRoom();
+    }
+
+    public boolean isClimb() {
+        return isClimb;
+    }
+
+    public void setClimb(boolean climb) {
+        isClimb = climb;
+    }
+
+    public boolean isDeath() {
+        return isDeath;
+    }
+
+    public void setDeath(boolean death) {
+        isDeath = death;
+    }
+
+    public boolean isNoMob() {
+        return isNoMob;
+    }
+
+    public void setNoMob(boolean noMob) {
+        isNoMob = noMob;
+    }
+
+    public boolean isIndoors() {
+        return isIndoors;
+    }
+
+    public void setIndoors(boolean indoors) {
+        isIndoors = indoors;
+    }
+
+    public boolean isPeaceful() {
+        return isPeaceful;
+    }
+
+    public void setPeaceful(boolean peaceful) {
+        isPeaceful = peaceful;
+    }
+
+    public boolean isSoundProof() {
+        return isSoundProof;
+    }
+
+    public void setSoundProof(boolean soundProof) {
+        isSoundProof = soundProof;
+    }
+
+    public boolean isNoTrack() {
+        return isNoTrack;
+    }
+
+    public void setNoTrack(boolean noTrack) {
+        isNoTrack = noTrack;
+    }
+
+    public boolean isNoMagic() {
+        return isNoMagic;
+    }
+
+    public void setNoMagic(boolean noMagic) {
+        isNoMagic = noMagic;
+    }
+
+    public boolean isTunnel() {
+        return isTunnel;
+    }
+
+    public void setTunnel(boolean tunnel) {
+        isTunnel = tunnel;
+    }
+
+    public boolean isPrivate() {
+        return isPrivate;
+    }
+
+    public void setPrivate(boolean aPrivate) {
+        isPrivate = aPrivate;
+    }
+
+    public boolean isGodRoom() {
+        return isGodRoom;
+    }
+
+    public void setGodRoom(boolean godRoom) {
+        isGodRoom = godRoom;
+    }
+
+    public boolean isHouse() {
+        return isHouse;
+    }
+
+    public void setHouse(boolean house) {
+        isHouse = house;
+    }
+
+    public boolean isDark() {
+        return isDark;
+    }
+
+    public void setDark(boolean dark) {
+        isDark = dark;
+    }
 
     public boolean isWater() {
         return isWater;
@@ -43,12 +172,6 @@ public class Room extends BasicThing implements Msgable {
         isWater = water;
     }
 
-    private boolean isWater;
-
-    public Room() {
-        initRoom();
-    }
-
     private void initRoom() {
         _props = new MudArrayList<Prop>();
         _exits = new MudArrayList<Exit>();
@@ -56,11 +179,6 @@ public class Room extends BasicThing implements Msgable {
         tracks = new ArrayList<Track>(0);
         isRegen = false;
         isUnderWater = false;
-    }
-
-    public Room(BasicThing basicThing) {
-        super(basicThing);
-        initRoom();
     }
 
     public void add(Exit exit_) {
@@ -90,8 +208,10 @@ public class Room extends BasicThing implements Msgable {
     }
 
     public void addTrack(Track track) {
-        tracks.remove(track);
-        tracks.add(track);
+        if (!isNoTrack) {
+            tracks.remove(track);
+            tracks.add(track);
+        }
     }
 
     public Exit getExit(String exit_) {
@@ -100,6 +220,10 @@ public class Room extends BasicThing implements Msgable {
 
     public List<Exit> getExits() {
         return _exits;
+    }
+
+    public void setExits(String exits_) {
+        RoomManager.createExits(this, exits_);
     }
 
     public Teacher getFirstTeacher() {
@@ -160,6 +284,10 @@ public class Room extends BasicThing implements Msgable {
 
     public String getType() {
         return _type;
+    }
+
+    public void setType(String type_) {
+        _type = type_;
     }
 
     public boolean hasLightSource() {
@@ -229,10 +357,6 @@ public class Room extends BasicThing implements Msgable {
         }
     }
 
-    public void setExits(String exits_) {
-        RoomManager.createExits(this, exits_);
-    }
-
     public void setInitdoors(String notused_) {
         RoomManager.setDoorOnEndOfExit();
     }
@@ -259,10 +383,6 @@ public class Room extends BasicThing implements Msgable {
         Prop prop = EntityProvider.createProp(propID_);
 
         this.add(prop);
-    }
-
-    public void setType(String type_) {
-        _type = type_;
     }
 
     public Mob getRandomPlayer() {
@@ -324,20 +444,19 @@ public class Room extends BasicThing implements Msgable {
         _props.remove(corpse);
     }
 
-    public void setRegen(String arg) {
-        isRegen = true;
-    }
-
-
     public boolean isRegen() {
         return isRegen;
     }
 
-    public void setUnderWater(boolean underWater) {
-        isUnderWater = underWater;
+    public void setRegen(String arg) {
+        isRegen = true;
     }
 
     public boolean isUnderWater() {
         return isUnderWater;
+    }
+
+    public void setUnderWater(boolean underWater) {
+        isUnderWater = underWater;
     }
 }

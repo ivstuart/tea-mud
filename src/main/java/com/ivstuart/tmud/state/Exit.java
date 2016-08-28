@@ -34,6 +34,10 @@ public class Exit extends BasicThing {
 		return door;
 	}
 
+	public void setDoor(Door door_) {
+		door = door_;
+	}
+
     public boolean isGuarded(Mob mob_) {
 
 		if (getDestinationRoom() == null) {
@@ -72,12 +76,12 @@ public class Exit extends BasicThing {
 			exitDescription += "(invisible)";
 		}
 
+		if (destinationRoom.isWater()) {
+			exitDescription = "<" + exitDescription + ">";
+		}
+
 		return exitDescription;
 
-	}
-
-	public void setDoor(Door door_) {
-		door = door_;
 	}
 	
 	public boolean isSpecial() {

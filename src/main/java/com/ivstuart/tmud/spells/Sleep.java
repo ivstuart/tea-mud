@@ -8,6 +8,8 @@ import com.ivstuart.tmud.state.Spell;
 public class Sleep implements SpellEffect {
 
 
+	private String stat;
+
 	public String getStat() {
 		return stat;
 	}
@@ -16,10 +18,13 @@ public class Sleep implements SpellEffect {
 		this.stat = stat;
 	}
 
-	private String stat;
-
 	@Override
 	public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
+
+		if (target_.isNoSleep()) {
+			caster_.out("Your target is no sleep your spell fizzles uselessly");
+			return;
+		}
 
 		SleepAffect affect = (SleepAffect)target_.getMobAffects().getAffect(spell.getId());
 
