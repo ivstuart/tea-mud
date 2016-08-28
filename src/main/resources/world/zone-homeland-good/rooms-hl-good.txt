@@ -79,6 +79,7 @@ exits: west->Z0-:-1:-4:-3 east->Z0-:1:-4:-3
 id: Z0-:-1:-4:-3
 brief: A moat outside a white castle.
 type: Outside
+lookClear:
 look: A moat outside a white castle on the west side of the bridge
 water: true
 
@@ -92,6 +93,7 @@ class: state.Room
 id: Z0-:1:-4:-3
 brief: A moat outside a white castle.
 type: Outside
+lookClear:
 look: A moat outside a white castle on the east side of the bridge
 water: true
 

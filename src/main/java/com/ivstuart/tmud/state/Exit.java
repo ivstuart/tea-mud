@@ -80,6 +80,10 @@ public class Exit extends BasicThing {
 			exitDescription = "<" + exitDescription + ">";
 		}
 
+		if (destinationRoom.isClimb()) {
+			exitDescription = "/" + exitDescription + "/";
+		}
+
 		return exitDescription;
 
 	}

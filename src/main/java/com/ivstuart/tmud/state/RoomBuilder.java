@@ -151,7 +151,7 @@ public class RoomBuilder {
                 Room nextRoom = World.getRoom(destRoomId.toString());
 
                 if (nextRoom == null) {
-                    nextRoom = new Room((BasicThing) startRoom);
+                    nextRoom = new Room(startRoom);
                     nextRoom.setType(startRoom.getType());
                     nextRoom.setId(destRoomId.toString());
                     World.add(nextRoom);
@@ -186,7 +186,7 @@ public class RoomBuilder {
                 // TODO determine the edge and skip fill
                 if (roomCounter % 2 == 1) {
                     if (nextRoom == null) {
-                        nextRoom = new Room((BasicThing) startRoom);
+                        nextRoom = new Room(startRoom);
                         nextRoom.setId(roomId.toString());
                         World.add(nextRoom);
                         addedRooms.add(nextRoom);

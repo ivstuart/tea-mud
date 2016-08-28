@@ -55,9 +55,26 @@ public class Room extends BasicThing implements Msgable {
         initRoom();
     }
 
-    public Room(BasicThing basicThing) {
-        super(basicThing);
+    public Room(Room room) {
+        super(room);
         initRoom();
+        this.isRegen = room.isRegen;
+        this.isUnderWater = room.isUnderWater;
+        this.isDark = room.isDark;
+        this.isWater = room.isWater;
+        this.isFlying = room.isFlying;
+        this.isDeath = room.isDeath;
+        this.isNoMob = room.isNoMob;
+        this.isIndoors = room.isIndoors;
+        this.isPeaceful = room.isPeaceful;
+        this.isSoundProof = room.isSoundProof;
+        this.isNoTrack = room.isNoTrack;
+        this.isNoMagic = room.isNoMagic;
+        this.isTunnel = room.isTunnel;
+        this.isPrivate = room.isPrivate;
+        this.isGodRoom = room.isGodRoom;
+        this.isHouse = room.isHouse;
+        this.isClimb = room.isClimb;
     }
 
     public boolean isClimb() {
