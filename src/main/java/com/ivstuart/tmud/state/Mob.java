@@ -738,7 +738,7 @@ public class Mob extends Prop implements Tickable {
         int index = kgs * CarriedEnum.values().length / maxCarry;
 
         if (index >= CarriedEnum.values().length) {
-            index = CarriedEnum.values().length;
+            index = CarriedEnum.values().length - 1;
         }
 
         return CarriedEnum.get(index);

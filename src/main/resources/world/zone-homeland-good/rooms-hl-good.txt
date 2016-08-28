@@ -88,6 +88,7 @@ roomPrefix: Z0-
 path: wwwnwnwnnnwnnneneneee
 execute: notused
 
+class: state.Room
 id: Z0-:1:-4:-3
 brief: A moat outside a white castle.
 type: Outside
