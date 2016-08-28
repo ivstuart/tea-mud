@@ -55,7 +55,9 @@ public class Deposit extends BaseCommand {
 			return false;
 		}
 
-		banker.getInventory().add(cash);
+		mob.getPlayer().getBank().add(cash);
+
+		// banker.getInventory().add(cash);
 
 		mob.out("You deposit "+cash+" into the bank");
 

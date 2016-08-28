@@ -18,23 +18,15 @@ import java.util.List;
  */
 public class Money implements SomeMoney {
 
-	private static final long serialVersionUID = 7446753180088885428L;
-
-	private static final Logger LOGGER = LogManager.getLogger();
-
 	public static final String[] desc = { "$CCopper$J", "$ESilver$J",
-			"$BGold$J" };
-
+			"$BGold$J", "$EPlatinum$J"};
 	public static final int COPPER = 0;
-
 	public static final int SILVER = 1;
-
 	public static final int GOLD = 2;
-
 	public static final int PLATINUM = 3;
-
 	public static final Money NO_MONEY = new Money(COPPER,0);
-
+	private static final long serialVersionUID = 7446753180088885428L;
+	private static final Logger LOGGER = LogManager.getLogger();
 	private int type;
 
 	private int quantity;
@@ -91,7 +83,7 @@ public class Money implements SomeMoney {
 
 	@Override
 	public int getValue() {
-		return ((10 ^ type) * quantity);
+		return (int) Math.pow(10, type) * quantity;
 	}
 
 	@Override

@@ -56,22 +56,10 @@ public class PlayerData implements Serializable {
     private int perception;
     private int deaths;
     private int warpoints;
-
-    public int getKillpoints() {
-        return killpoints;
-    }
-
-    public void setKillpoints(int killpoints) {
-        this.killpoints = killpoints;
-    }
-
     private int killpoints;
-
     private Attribute thirstAttribute;
     private Attribute hungerAttribute;
-
     private Attribute alignment;
-
     /**
      *
      */
@@ -80,6 +68,14 @@ public class PlayerData implements Serializable {
         hungerAttribute = new Attribute("Thirst", 500);
         level = 1;
 
+    }
+
+    public int getKillpoints() {
+        return killpoints;
+    }
+
+    public void setKillpoints(int killpoints) {
+        this.killpoints = killpoints;
     }
 
     public void addKill(Mob defender) {
@@ -102,44 +98,96 @@ public class PlayerData implements Serializable {
         return age;
     }
 
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     public Attribute getAlignment() {
         return alignment;
+    }
+
+    public void setAlignment(Attribute alignment) {
+        this.alignment = alignment;
     }
 
     public String getEmail() {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public Attribute getHunger() {
         return hungerAttribute;
+    }
+
+    public void setHunger(int hunger_) {
+        hungerAttribute.setValue(hunger_);
     }
 
     public int getKills() {
         return kills;
     }
 
+    public void setKills(int kills) {
+        this.kills = kills;
+    }
+
     public String getLastToldBy() {
         return lastToldBy;
+    }
+
+    public void setLastToldBy(String lastToldBy) {
+        this.lastToldBy = lastToldBy;
     }
 
     public int getLearns() {
         return learns;
     }
 
+    public void setLearns(int learns_) {
+        learns = learns_;
+    }
+
     public int getLevel() {
         return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     public String getPassword() {
         return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        md.update(password.getBytes());
+        this.passwordDigest = md.digest();
+    }
+
     public int getPlayingFor() {
         return playingFor;
     }
 
+    public void setPlayingFor(int playingFor) {
+        this.playingFor = playingFor;
+    }
+
     public int getPracs() {
         return pracs;
+    }
+
+    public void setPracs(int sp_) {
+        pracs = sp_;
     }
 
     public int getRemorts() {
@@ -150,21 +198,37 @@ public class PlayerData implements Serializable {
         return thirstAttribute;
     }
 
+    public void setThirst(int thirst_) {
+        thirstAttribute.setValue(thirst_);
+    }
+
     public String getTitle() {
         return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public int getToLevelXp() {
         return toLevelXp;
     }
 
+    public void setToLevelXp(int toLevelXp) {
+        this.toLevelXp = toLevelXp;
+    }
+
     public int getTotalXp() {
         return totalXp;
     }
 
+    public void setTotalXp(int totalXp) {
+        this.totalXp = totalXp;
+    }
+
     public void incrementLevel() {
         level++;
-        toLevelXp += (10000 * level ^ 4);
+        toLevelXp += 10000 * Math.pow(level, 3);
         learns++;
         pracs += 3;
 
@@ -186,46 +250,6 @@ public class PlayerData implements Serializable {
         return false;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setAlignment(Attribute alignment) {
-        this.alignment = alignment;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setHunger(int hunger_) {
-        hungerAttribute.setValue(hunger_);
-    }
-
-    public void setKills(int kills) {
-        this.kills = kills;
-    }
-
-    public void setLastToldBy(String lastToldBy) {
-        this.lastToldBy = lastToldBy;
-    }
-
-    public void setLearns(int learns_) {
-        learns = learns_;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-        MessageDigest md = null;
-        try {
-            md = MessageDigest.getInstance("SHA-256");
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        md.update(password.getBytes());
-        this.passwordDigest = md.digest();
-    }
-
     public boolean isPasswordSame(String password) {
         MessageDigest md = null;
         try {
@@ -238,36 +262,8 @@ public class PlayerData implements Serializable {
         return Arrays.equals(digest, passwordDigest);
     }
 
-    public void setPlayingFor(int playingFor) {
-        this.playingFor = playingFor;
-    }
-
-    public void setPracs(int sp_) {
-        pracs = sp_;
-    }
-
     public void setRemort(int remorts_) {
         remorts = remorts_;
-    }
-
-    public void setThirst(int thirst_) {
-        thirstAttribute.setValue(thirst_);
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setToLevelXp(int toLevelXp) {
-        this.toLevelXp = toLevelXp;
-    }
-
-    public void setTotalXp(int totalXp) {
-        this.totalXp = totalXp;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
     }
 
     public int getEvasion() {
@@ -278,28 +274,28 @@ public class PlayerData implements Serializable {
         this.evasion = evasion;
     }
 
-    public void setStealth(int stealth) {
-        this.stealth = stealth;
-    }
-
-    public void setPerception(int perception) {
-        this.perception = perception;
-    }
-
-    public void setDeaths(int deaths) {
-        this.deaths = deaths;
-    }
-
     public int getStealth() {
         return stealth;
+    }
+
+    public void setStealth(int stealth) {
+        this.stealth = stealth;
     }
 
     public int getPerception() {
         return perception;
     }
 
+    public void setPerception(int perception) {
+        this.perception = perception;
+    }
+
     public int getDeaths() {
         return deaths;
+    }
+
+    public void setDeaths(int deaths) {
+        this.deaths = deaths;
     }
 
     public void incrementDeaths() {

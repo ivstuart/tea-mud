@@ -27,4 +27,15 @@ public class TestSomeMoney {
 
         System.out.println("Money :"+money);
     }
+
+    @Test
+    public void convertSomeMoney() {
+        SomeMoney money = new MoneyBag();
+
+        Money copper = new Money(Money.COPPER, 1234);
+
+        MoneyBag moneyBag = new MoneyBag(copper.getValue());
+
+        System.out.println("Money :" + moneyBag);
+    }
 }

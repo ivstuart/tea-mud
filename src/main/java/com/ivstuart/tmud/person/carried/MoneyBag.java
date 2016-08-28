@@ -38,6 +38,23 @@ public class MoneyBag implements SomeMoney {
 
 	}
 
+	public MoneyBag(int value) {
+		list = new ArrayList<SomeMoney>(4);
+		int remainder = create(value, Money.PLATINUM);
+		remainder = create(remainder, Money.GOLD);
+		remainder = create(remainder, Money.SILVER);
+		create(remainder, Money.COPPER);
+	}
+
+	private int create(int value, int currency) {
+		int coins = value / (int) Math.pow(10, currency);
+		if (coins > 0) {
+			list.add(new Money(currency, coins));
+			value -= coins * (int) Math.pow(10, currency);
+		}
+		return value;
+	}
+
 	@Override
 	public boolean add(Money money) {
 		ListIterator<SomeMoney> moneyItr = list.listIterator();

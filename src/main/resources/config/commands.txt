@@ -57,6 +57,7 @@ command.communication.Shout,REST
 command.communication.Tell,REST
 command.communication.WriteOnPaper,REST
 command.communication.Yell,REST
+command.item.bank.Convert,STAND
 command.item.bank.Deposit,STAND
 command.item.bank.Withdraw,STAND
 command.item.bank.ListBank,STAND

@@ -56,7 +56,7 @@ public class Withdraw extends BaseCommand {
 		}
 
 		mob.getPlayer().getBank().remove(item);
-		mob.getPlayer().getBank().add(cost);
+		banker.getInventory().add(cost);
 
 		mob.getInventory().add(item);
 
@@ -66,7 +66,7 @@ public class Withdraw extends BaseCommand {
 
 	private boolean checkCashWithdraw(Mob mob, Mob banker, String input) {
 
-		SomeMoney cash = banker.getInventory().removeCoins(input);
+		SomeMoney cash = mob.getPlayer().getBank().removeCoins(input);
 
 		if (cash == null) {
 			return false;

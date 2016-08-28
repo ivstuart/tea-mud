@@ -47,7 +47,7 @@ public class Room extends BasicThing implements Msgable {
     private boolean isNoMagic;
     private boolean isTunnel;
     private boolean isPrivate;
-    private boolean isGodRoom;
+    private boolean isGodRoom; // Admin only rooms
     private boolean isHouse;
     private boolean isClimb;
 
