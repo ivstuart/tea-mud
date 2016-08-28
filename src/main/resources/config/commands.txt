@@ -130,6 +130,7 @@ command.admin.AllMobStats,SLEEP
 command.admin.AllItemStats,SLEEP
 command.admin.AllRoomStats,SLEEP
 command.admin.At,SLEEP
+command.admin.AddAdmin,SLEEP
 command.admin.Ban,SLEEP
 command.admin.ClearAffects,SLEEP
 command.admin.Debug,SLEEP

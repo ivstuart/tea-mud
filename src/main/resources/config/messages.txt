@@ -1,4 +1,6 @@
-"untrained", 
+#Not used safe to remove file.
+
+"untrained",
 "unskilled",
 "pathetic",
 "bad", 

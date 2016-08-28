@@ -1,5 +1,6 @@
 package com.ivstuart.tmud.state;
 
+import com.ivstuart.tmud.command.admin.AddAdmin;
 import com.ivstuart.tmud.command.admin.Ban;
 import com.ivstuart.tmud.command.misc.ForcedQuit;
 import com.ivstuart.tmud.common.Tickable;
@@ -265,6 +266,7 @@ public class World {
 
 		// Initialise banned list of player names if it exists.
 		Ban.init();
+		AddAdmin.init();
 		
 		startTime();
 	}
@@ -293,11 +295,8 @@ public class World {
 	}
 
     public static boolean isAdmin(String name) {
-    	// TODO have a resource file.
-    	List adminNames = new ArrayList();
-		adminNames.add("Ivan");
-		return adminNames.contains(name);
-    }
+		return AddAdmin.isAdmin(name);
+	}
 
 	public static void out(String msg, boolean good) {
 		for (String player : _players) {
