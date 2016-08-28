@@ -72,30 +72,37 @@ public class EnterNoLook extends BaseCommand {
 
         if (mob.getMv() != null) {
             // walk fly swim teleport run sneak etc.....
-            if (mob.isRunning()) {
+			if (room.isWater() || exit.isSwim() && !mob.isFlying()) {
+				if (!mob.getMv().deduct(10)) {
+					mob.out("You can not swim you are out of movement and too tired!");
+					return;
+				}
+				mob.out("You swim " + exit.getId());
+			}
+			if (mob.isRunning()) {
                 if (!mob.getMv().deduct(10)) {
-                    mob.out("You can not move you are out of movement and too tired!");
-                    return;
+					mob.out("You can not run you are out of movement and too tired!");
+					return;
                 }
                 mob.out("You run " + exit.getId());
             } else if (mob.isSneaking()) {
                 if (!mob.getMv().deduct(4)) {
-                    mob.out("You can not move you are out of movement and too tired!");
-                    return;
+					mob.out("You can not sneak you are out of movement and too tired!");
+					return;
                 }
                 mob.out("You sneak " + exit.getId());
 
             } else if (mob.isFlying()) {
                 if (!mob.getMv().deduct(1)) {
-                    mob.out("You can not move you are out of movement and too tired!");
-                    return;
+					mob.out("You can not fly you are out of movement and too tired!");
+					return;
                 }
                 mob.out("You fly " + exit.getId());
 
             } else {
                 if (!mob.getMv().deduct(2)) {
-                    mob.out("You can not move you are out of movement and too tired!");
-                    return;
+					mob.out("You can not walk you are out of movement and too tired!");
+					return;
                 }
                 mob.out("You walk " + exit.getId());
 

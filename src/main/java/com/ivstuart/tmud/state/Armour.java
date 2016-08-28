@@ -16,6 +16,13 @@ public class Armour extends Item {
 
 	private int[] slots = new int[6];
 
+	public Armour() {
+	}
+
+	public Armour(int armour) {
+		setArmourBuff(armour);
+	}
+
 	public void add(Armour armour) {
 		for (int i = HEAD; i < ALL; i++) {
 			slots[i] += armour.slots[i];

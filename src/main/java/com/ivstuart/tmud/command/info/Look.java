@@ -10,6 +10,7 @@ import java.util.List;
 
 import static com.ivstuart.tmud.constants.RoomEnums.RoomFlag.DARK;
 import static com.ivstuart.tmud.constants.SpellNames.BLINDNESS;
+import static com.ivstuart.tmud.constants.SpellNames.INFRAVISION;
 
 public class Look extends BaseCommand {
 	/*
@@ -51,7 +52,7 @@ public class Look extends BaseCommand {
 
 		if (mob_.getRoom().hasProperty(DARK.toString())) {
 			// Can mob see in the dark?
-			if (mob_.getMobAffects().hasAffect("infravision")) {
+			if (mob_.getMobAffects().hasAffect(INFRAVISION) || mob_.getRace().isInfravison()) {
 				mob_.out("You can see in the dark");
 			}
 			else {

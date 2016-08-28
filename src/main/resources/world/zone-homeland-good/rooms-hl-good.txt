@@ -69,7 +69,36 @@ class: state.Room
 id: Z0-:-5:-19:-3
 exits: south->Z8-:0:0:0
 
+id: Z0-:0:-4:-3
+brief: A draw bridge outside a white castle.
+type: Outside
+lookClear:
+look: A draw bridge outside a white castle
+exits: west->Z0-:-1:-4:-3 east->Z0-:1:-4:-3
 
+id: Z0-:-1:-4:-3
+brief: A moat outside a white castle.
+type: Outside
+look: A moat outside a white castle on the west side of the bridge
+water: true
+
+class: state.RoomBuilder
+id: Z0-:-1:-4:-3
+roomPrefix: Z0-
+path: wwwnwnwnnnwnnneneneee
+execute: notused
+
+id: Z0-:1:-4:-3
+brief: A moat outside a white castle.
+type: Outside
+look: A moat outside a white castle on the east side of the bridge
+water: true
+
+class: state.RoomBuilder
+id: Z0-:1:-4:-3
+roomPrefix: Z0-
+path: eeenennnennnwnwwww
+execute: notused
 
 
 

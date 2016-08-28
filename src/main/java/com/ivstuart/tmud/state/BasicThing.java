@@ -1,12 +1,12 @@
 package com.ivstuart.tmud.state;
 
-import java.io.Serializable;
-import java.util.Collections;
-import java.util.List;
-
 import com.ivstuart.tmud.common.Gender;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.common.Msgable;
+
+import java.io.Serializable;
+import java.util.Collections;
+import java.util.List;
 
 public class BasicThing implements Serializable, Cloneable, Msgable {
 
@@ -153,7 +153,7 @@ public class BasicThing implements Serializable, Cloneable, Msgable {
 	}
 
 	@Override
-	public String getRace() {
+	public String getRaceName() {
 		return null;
 	}
 

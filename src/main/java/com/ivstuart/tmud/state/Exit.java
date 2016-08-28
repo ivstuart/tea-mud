@@ -93,4 +93,8 @@ public class Exit extends BasicThing {
 		}
 		return true;
 	}
+
+	public boolean isSwim() {
+		return destinationRoom.isWater();
+	}
 }

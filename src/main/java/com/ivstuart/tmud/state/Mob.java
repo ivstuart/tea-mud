@@ -4,6 +4,7 @@ import com.ivstuart.tmud.behaviour.BaseBehaviour;
 import com.ivstuart.tmud.behaviour.BehaviourFactory;
 import com.ivstuart.tmud.behaviour.Patrol;
 import com.ivstuart.tmud.common.*;
+import com.ivstuart.tmud.fighting.DamageManager;
 import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.person.Learned;
 import com.ivstuart.tmud.person.Player;
@@ -19,6 +20,8 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import static com.ivstuart.tmud.constants.SpellNames.UNDERWATER_BREATH;
 
 public class Mob extends Prop implements Tickable {
 
@@ -82,7 +85,10 @@ public class Mob extends Prop implements Tickable {
 
     // TODO this should be transient for mobs and players?
     protected transient Player player;
+
     protected String race; // base mob
+    private int raceId;
+
     protected String repopRoomID;
 
     protected Room room;
@@ -141,6 +147,7 @@ public class Mob extends Prop implements Tickable {
 
         gender = baseMob.gender;
         race = baseMob.race;
+        raceId = baseMob.raceId;
 
         height = baseMob.height;
         weight = baseMob.weight;
@@ -160,7 +167,7 @@ public class Mob extends Prop implements Tickable {
                     if (tickers == null) {
                         tickers = new ArrayList<>();
                     }
-                    LOGGER.debug("Adding behaviour ["+bb.getId()+"] for mob "+this.getName());
+                    LOGGER.debug("Adding behaviour [" + bb.getId() + "] for mob " + this.getName());
                     tickers.add(bb);
 
                     // TODO rethink this
@@ -179,7 +186,7 @@ public class Mob extends Prop implements Tickable {
         }
 
         if (tickers != null) {
-            LOGGER.debug("Adding to world time for mob "+this.getName());
+            LOGGER.debug("Adding to world time for mob " + this.getName());
             WorldTime.addTickable(this);
         }
 
@@ -295,7 +302,7 @@ public class Mob extends Prop implements Tickable {
         return player;
     }
 
-    public String getRace() {
+    public String getRaceName() {
         return race;
     }
 
@@ -572,24 +579,38 @@ public class Mob extends Prop implements Tickable {
 
     private void tickRegenerate() {
 
+        MobState currentState = MobState.STAND;
+
         if (state != null) {
+            currentState = state;
+        }
 
-            if (room.isRegen()) {
-                RATE_OF_REGEN_3_PERCENT=9;
-            }
-            else {
-                RATE_OF_REGEN_3_PERCENT=3;
-            }
+        if (room.isRegen()) {
+            RATE_OF_REGEN_3_PERCENT = 9;
+        } else {
+            RATE_OF_REGEN_3_PERCENT = 3;
+        }
 
-            if (health != null) {
-                health.increasePercentage(RATE_OF_REGEN_3_PERCENT * state.getHpMod());
+        if (health != null) {
+
+            if (room.isUnderWater() &&
+                    !getRace().isWaterbreath() &&
+                    !mobAffects.hasAffect(UNDERWATER_BREATH)) {
+                out("You begin to drown as you can not breath underwater");
+                health.increasePercentage(-20);
+                DamageManager.checkForDefenderDeath(this, this);
+            } else {
+                health.increasePercentage(RATE_OF_REGEN_3_PERCENT * currentState.getHpMod());
+                health.increase(this.getRace().getRegenHp());
             }
-            if (moves != null) {
-                moves.increasePercentage(RATE_OF_REGEN_3_PERCENT * state.getMoveMod());
-            }
-            if (mana != null) {
-                mana.increasePercentage(RATE_OF_REGEN_3_PERCENT * state.getManaMod());
-            }
+        }
+        if (moves != null) {
+            moves.increasePercentage(RATE_OF_REGEN_3_PERCENT * currentState.getMoveMod());
+            moves.increase(this.getRace().getRegenMv());
+        }
+        if (mana != null) {
+            mana.increasePercentage(RATE_OF_REGEN_3_PERCENT * currentState.getManaMod());
+            mana.increase(this.getRace().getRegenMn());
         }
 
         if (null != mobAffects) {
@@ -687,5 +708,17 @@ public class Mob extends Prop implements Tickable {
         int grams = inventory.getWeight();
         grams += equipment.getWeight();
         return grams;
+    }
+
+    public void setRaceId(int raceId) {
+        this.raceId = raceId;
+    }
+
+    public Race getRace() {
+        return World.getInstance().getRace(raceId);
+    }
+
+    public void setUndead(boolean undead) {
+        this.undead = undead;
     }
 }

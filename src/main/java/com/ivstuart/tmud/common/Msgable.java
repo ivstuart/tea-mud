@@ -32,5 +32,5 @@ public interface Msgable {
 
 	public boolean isGood();
 
-	public String getRace();
+	public String getRaceName();
 }

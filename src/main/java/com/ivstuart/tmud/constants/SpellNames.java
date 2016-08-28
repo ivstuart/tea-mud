@@ -17,5 +17,8 @@ public class SpellNames {
 
     public static final String IMP_BLUR = "improved blur";
 
+    public static final String INFRAVISION = "infravision";
+    public static final String UNDERWATER_BREATH = "underwater breath";
+
 
 }

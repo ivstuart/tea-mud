@@ -10,24 +10,18 @@ public class Recall implements SpellEffect {
     public void effect(Mob caster, Mob target, Spell spell, Item targetItem) {
 
         if (caster.getFight().isEngaged()) {
-            caster.out("You world of recall fizzles uselessly can not be used in combat");
+            caster.out("You word of recall fizzles uselessly can not be used in combat");
             return;
         }
 
-        String input = "R-P1";// R-P2 need to check alignment for correct portal
-        if (caster.getPlayer().getData().getAlignment().getValue() > 0) {
-            input = "R-P2";
-        }
-
-
-        Room toRoom = World.getRoom(input);
+        Room toRoom = World.getPortal(caster);
 
         if (toRoom != null) {
-            caster.out("You world of recall to " + toRoom.getId());
+            caster.out("You word of recall to " + toRoom.getId());
             caster.getRoom().remove(caster);
             toRoom.add(caster);
         } else {
-            caster.out("Room " + input + " not found!");
+            caster.out("Portal room not found! Please report bug to admin on bug channel");
         }
     }
 

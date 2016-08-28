@@ -65,7 +65,14 @@ public class DamageManager {
 
         // Half damage
         damage = checkForSanctury(attacker, defender, damage, SANCTURY);
-        damage = checkForSanctury(attacker, defender, damage, STONE_SKIN);
+
+        // Stoneskin does not stack with spell stoneskin
+        if (defender.getRace().isStoneskin()) {
+            damage /= 2;
+        } else {
+            damage = checkForSanctury(attacker, defender, damage, STONE_SKIN);
+        }
+
         damage = checkForSanctury(attacker, defender, damage, BARRIER);
 
         damage = checkForShieldBlocking(defender, damage);

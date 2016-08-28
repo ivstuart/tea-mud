@@ -128,6 +128,8 @@ public class Player implements Serializable, Nameable {
 
 		int dMv = (attributes.getDEX().getMaximum() + (int) (Math.random() * 5))/ 5;
 
+		dMv += mob.getRace().getMovement();
+
 		mob.getMv().increaseMaximum(dMv);
 		mob.getMv().restore();
 

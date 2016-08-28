@@ -156,6 +156,9 @@ public class Equipment implements Serializable {
 			}
 		}
 
+		Armour skin = new Armour(mob.getRace().getArmour());
+		totalArmour.add(skin);
+
 		Affect armourBuff = mob.getMobAffects().getAffect(PROTECTION);
 
 		int buff = 0;

@@ -106,3 +106,22 @@ attackType: punch
 guardExit: north
 alignment: true
 alignmentGuard: true
+
+id: blue-dragon-001
+name: blue dragon
+alias: large blue dragon
+short: the large blue dragon
+long: A large blue dragon snares at you.
+look: The dragon is a common dragon is and all together unremarkable.
+level: 40
+attacks: 3
+offensive: 500
+defensive: 300
+armour: 50
+hp: 5d6+2000
+damage: 1d60+80
+copper: 500
+xp: 20000
+state: STANDING
+attackType: claw tail bite breath
+# dice types possible for most fields

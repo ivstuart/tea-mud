@@ -16,308 +16,328 @@ import java.util.List;
 
 public class Room extends BasicThing implements Msgable {
 
-	private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private transient List<Track> tracks;
+    private transient List<Track> tracks;
 
-	private String _type;
+    private String _type;
 
-	private MudArrayList<Prop> _props;
+    private MudArrayList<Prop> _props;
 
-	private MudArrayList<Exit> _exits;
+    private MudArrayList<Exit> _exits;
 
-	private MudArrayList<Mob> _mobs;
+    private MudArrayList<Mob> _mobs;
 
-	private Inventory _items;
+    private Inventory _items;
 
-	private boolean isRegen;
+    private boolean isRegen;
+    private boolean isUnderWater;
 
-	public Room() {
-		initRoom();
-	}
+    public boolean isWater() {
+        return isWater;
+    }
 
-	private void initRoom() {
-		_props = new MudArrayList<Prop>();
-		_exits = new MudArrayList<Exit>();
-		_mobs = new MudArrayList<Mob>(true); // matching part of name
-		tracks = new ArrayList<Track>(0);
-		isRegen=false;
-	}
+    public void setWater(boolean water) {
+        isWater = water;
+    }
 
-	public Room(BasicThing basicThing) {
-		super(basicThing);
-		initRoom();
-	}
+    private boolean isWater;
 
-	public void add(Exit exit_) {
-		String exitString = exit_.getId();
-		if (_exits.get(exitString) != null ) {
-			// This is normal now during to building paths that overlap.
-			// LOGGER.warn("Adding a duplicate exit to a room !");
-			return;
-		}
-		_exits.add(exit_);
-	}
+    public Room() {
+        initRoom();
+    }
 
-	public void add(Item item_) {
-		if (_items == null) {
-			_items = new Inventory();
-		}
-		_items.add(item_);
-	}
+    private void initRoom() {
+        _props = new MudArrayList<Prop>();
+        _exits = new MudArrayList<Exit>();
+        _mobs = new MudArrayList<Mob>(true); // matching part of name
+        tracks = new ArrayList<Track>(0);
+        isRegen = false;
+        isUnderWater = false;
+    }
 
-	public void add(Mob mob_) {
-		_mobs.add(mob_);
-		mob_.setRoom(this);
-	}
+    public Room(BasicThing basicThing) {
+        super(basicThing);
+        initRoom();
+    }
 
-	public void add(Prop p_) {
-		_props.add(p_);
-	}
+    public void add(Exit exit_) {
+        String exitString = exit_.getId();
+        if (_exits.get(exitString) != null) {
+            // This is normal now during to building paths that overlap.
+            // LOGGER.warn("Adding a duplicate exit to a room !");
+            return;
+        }
+        _exits.add(exit_);
+    }
 
-	public void addTrack(Track track) {
-		tracks.remove(track);
-		tracks.add(track);
-	}
+    public void add(Item item_) {
+        if (_items == null) {
+            _items = new Inventory();
+        }
+        _items.add(item_);
+    }
 
-	public Exit getExit(String exit_) {
-		return _exits.get(exit_);
-	}
+    public void add(Mob mob_) {
+        _mobs.add(mob_);
+        mob_.setRoom(this);
+    }
 
-	public List<Exit> getExits() {
-		return _exits;
-	}
+    public void add(Prop p_) {
+        _props.add(p_);
+    }
 
-	public Teacher getFirstTeacher() {
-		for (Prop prop : _props) {
-			if (prop.isTeacher()) {
-				return (Teacher) prop;
-			}
-		}
-		return null;
-	}
+    public void addTrack(Track track) {
+        tracks.remove(track);
+        tracks.add(track);
+    }
 
-	public Inventory getInventory() {
-		if (_items == null) {
-			_items = new Inventory();
-		}
-		return _items;
-	}
+    public Exit getExit(String exit_) {
+        return _exits.get(exit_);
+    }
 
-	public Mob getMob(String input_) {
-		return _mobs.get(input_);
-	}
+    public List<Exit> getExits() {
+        return _exits;
+    }
 
-	public List<Mob> getMobs(String target) {
-		List<Mob> mobs = new ArrayList<Mob>();
-		for (Mob mob :_mobs) {
-			if (mob.getName().indexOf(target) > -1 || "all".equalsIgnoreCase(target)) {
-				mobs.add(mob);
-			}
-		}
-		return mobs;
-	}
+    public Teacher getFirstTeacher() {
+        for (Prop prop : _props) {
+            if (prop.isTeacher()) {
+                return (Teacher) prop;
+            }
+        }
+        return null;
+    }
 
-	public MudArrayList<Mob> getMobs() {
-		return _mobs;
-	}
+    public Inventory getInventory() {
+        if (_items == null) {
+            _items = new Inventory();
+        }
+        return _items;
+    }
 
-	public SomeMoney getMoney() {
-		return _items.getPurse();
-	}
+    public Mob getMob(String input_) {
+        return _mobs.get(input_);
+    }
 
-	@Override
-	public String getName() {
-		return this.getId();
-	}
+    public List<Mob> getMobs(String target) {
+        List<Mob> mobs = new ArrayList<Mob>();
+        for (Mob mob : _mobs) {
+            if (mob.getName().indexOf(target) > -1 || "all".equalsIgnoreCase(target)) {
+                mobs.add(mob);
+            }
+        }
+        return mobs;
+    }
 
-	public MudArrayList<Prop> getProps() {
-		return _props;
-	}
+    public MudArrayList<Mob> getMobs() {
+        return _mobs;
+    }
 
-	@Override
-	public List<String> getSenseFlags() {
-		return null;
-	}
+    public SomeMoney getMoney() {
+        return _items.getPurse();
+    }
 
-	public List<Track> getTracks() {
-		return tracks;
-	}
+    @Override
+    public String getName() {
+        return this.getId();
+    }
 
-	public String getType() {
-		return _type;
-	}
+    public MudArrayList<Prop> getProps() {
+        return _props;
+    }
 
-	public boolean hasLightSource() {
+    @Override
+    public List<String> getSenseFlags() {
+        return null;
+    }
 
-		// Check room first
-		if (_items.hasLightSource()) {
-			return true;
-		}
+    public List<Track> getTracks() {
+        return tracks;
+    }
 
-		// Check mobs
-		for (Mob mob : _mobs) {
-			if (mob.getInventory().hasLightSource()) {
-				return true;
-			}
-		}
+    public String getType() {
+        return _type;
+    }
 
-		return false;
-	}
+    public boolean hasLightSource() {
 
-	@Override
-	public void out(Msg message) {
-		for (Mob mob : _mobs) {
-			mob.out(message);
-		}
-	}
+        // Check room first
+        if (_items.hasLightSource()) {
+            return true;
+        }
 
-	public void out(String message) {
-		this.out(new Msg(message));
-	}
+        // Check mobs
+        for (Mob mob : _mobs) {
+            if (mob.getInventory().hasLightSource()) {
+                return true;
+            }
+        }
 
-	public boolean remove(Mob mob_) {
-		return _mobs.remove(mob_);
+        return false;
+    }
 
-	}
+    @Override
+    public void out(Msg message) {
+        for (Mob mob : _mobs) {
+            mob.out(message);
+        }
+    }
 
-	public boolean remove(Money cash) {
-		if (_items.getPurse() != null) {
-			return _items.getPurse().remove(cash);
-		}
-		return false;
-	}
+    public void out(String message) {
+        this.out(new Msg(message));
+    }
 
-	/**
-	 * Why would you ever what to do this?
-	 * 
-	 * @deprecated
-	 * @param id_
-	 * @return
-	 */
-	@Deprecated
-	public Mob remove(String id_) {
-		return _mobs.remove(id_);
-	}
+    public boolean remove(Mob mob_) {
+        return _mobs.remove(mob_);
 
-	public void setDescription(String desc_) {
-		// TODO set prop description
-	}
+    }
 
-	public void setDoors(String doors_) {
-		RoomManager.createDoors(this.getId(), doors_);
-	}
+    public boolean remove(Money cash) {
+        if (_items.getPurse() != null) {
+            return _items.getPurse().remove(cash);
+        }
+        return false;
+    }
 
-	public void setExitHidden(String id) {
-		Exit exit = _exits.get(id);
-		if (exit != null) {
-			exit.setHidden(true);
-		}
-	}
+    /**
+     * Why would you ever what to do this?
+     *
+     * @param id_
+     * @return
+     * @deprecated
+     */
+    @Deprecated
+    public Mob remove(String id_) {
+        return _mobs.remove(id_);
+    }
 
-	public void setExits(String exits_) {
-		RoomManager.createExits(this, exits_);
-	}
+    public void setDescription(String desc_) {
+        // TODO set prop description
+    }
 
-	public void setInitdoors(String notused_) {
-		RoomManager.setDoorOnEndOfExit();
-	}
+    public void setDoors(String doors_) {
+        RoomManager.createDoors(this.getId(), doors_);
+    }
 
-	public void setItem(String id) {
-		Item item = EntityProvider.createItem(id);
-		this.add(item);
-	}
+    public void setExitHidden(String id) {
+        Exit exit = _exits.get(id);
+        if (exit != null) {
+            exit.setHidden(true);
+        }
+    }
 
-	public void setKey(String keys_) {
-		RoomManager.setDoorKeys(keys_);
-	}
+    public void setExits(String exits_) {
+        RoomManager.createExits(this, exits_);
+    }
 
-	public void setKeywords(String words_) {
-		// TODO create a prop
-	}
+    public void setInitdoors(String notused_) {
+        RoomManager.setDoorOnEndOfExit();
+    }
 
-	public void setMob(String mobId_) {
-		Mob mob = EntityProvider.createMob(mobId_, getId());
-		this.add(mob);
-	}
+    public void setItem(String id) {
+        Item item = EntityProvider.createItem(id);
+        this.add(item);
+    }
 
-	public void setProp(String propID_) {
-		Prop prop = EntityProvider.createProp(propID_);
+    public void setKey(String keys_) {
+        RoomManager.setDoorKeys(keys_);
+    }
 
-		this.add(prop);
-	}
+    public void setKeywords(String words_) {
+        // TODO create a prop
+    }
 
-	public void setType(String type_) {
-		_type = type_;
-	}
+    public void setMob(String mobId_) {
+        Mob mob = EntityProvider.createMob(mobId_, getId());
+        this.add(mob);
+    }
+
+    public void setProp(String propID_) {
+        Prop prop = EntityProvider.createProp(propID_);
+
+        this.add(prop);
+    }
+
+    public void setType(String type_) {
+        _type = type_;
+    }
 
     public Mob getRandomPlayer() {
-    	List<Mob> playerList = new ArrayList<Mob>();
-    	for (Mob mob : _mobs) {
-    		if (mob.isPlayer()) {
-				playerList.add(mob);
-			}
-		}
-		if (!playerList.isEmpty()) {
-			return playerList.get((int)(playerList.size() * Math.random()));
-		}
-		return null;
-	}
+        List<Mob> playerList = new ArrayList<Mob>();
+        for (Mob mob : _mobs) {
+            if (mob.isPlayer()) {
+                playerList.add(mob);
+            }
+        }
+        if (!playerList.isEmpty()) {
+            return playerList.get((int) (playerList.size() * Math.random()));
+        }
+        return null;
+    }
 
     public void addAll(Inventory inventory) {
-    	_items.addAll(inventory);
+        _items.addAll(inventory);
     }
 
     public List<Mob> getFollowers(Mob mob_) {
-    	List<Mob> group = new ArrayList<>();
-		for (Mob mob : _mobs) {
-			// Alignment must be the same to form a group
-			if (mob.isFollowing(mob_) && (mob.isAlignmentSame(mob_))) {
-				group.add(mob);
-			}
-		}
-		return group;
+        List<Mob> group = new ArrayList<>();
+        for (Mob mob : _mobs) {
+            // Alignment must be the same to form a group
+            if (mob.isFollowing(mob_) && (mob.isAlignmentSame(mob_))) {
+                group.add(mob);
+            }
+        }
+        return group;
     }
 
     public ShopKeeper getShopKeeper() {
-		for (Mob mob : _mobs) {
-			if (mob instanceof ShopKeeper) {
-				return (ShopKeeper)mob;
-			}
-		}
-		return null;
-	}
+        for (Mob mob : _mobs) {
+            if (mob instanceof ShopKeeper) {
+                return (ShopKeeper) mob;
+            }
+        }
+        return null;
+    }
 
     public Mob getRepairer() {
-		for (Mob mob : _mobs) {
+        for (Mob mob : _mobs) {
             if (mob instanceof Armourer) {
                 return (Armourer) mob;
             }
-		}
-		return null;
+        }
+        return null;
     }
 
     public Mob getBanker() {
-		for (Mob mob : _mobs) {
-			if (mob instanceof Banker) {
-				return (Banker)mob;
-			}
-		}
-		return null;
+        for (Mob mob : _mobs) {
+            if (mob instanceof Banker) {
+                return (Banker) mob;
+            }
+        }
+        return null;
     }
 
     public void remove(Prop corpse) {
-    	_props.remove(corpse);
+        _props.remove(corpse);
     }
 
     public void setRegen(String arg) {
-    	isRegen=true;
-	}
+        isRegen = true;
+    }
 
 
     public boolean isRegen() {
-    	return isRegen;
+        return isRegen;
+    }
+
+    public void setUnderWater(boolean underWater) {
+        isUnderWater = underWater;
+    }
+
+    public boolean isUnderWater() {
+        return isUnderWater;
     }
 }

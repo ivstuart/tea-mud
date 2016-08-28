@@ -25,6 +25,10 @@ mobInRoom: mole-001 Z0-:0:-4:-3
 mobInRoom: mole-001 Z0-:0:-4:-3
 mobInRoom: mole-001 Z0-:0:-4:-3
 
+mobInRoom: blue-dragon-001 Z0-:-2:6:-3
+
+water-40
+
 mobInRoom: hare-001 Z0-:0:-7:-3
 mobInRoom: hare-001 Z0-:0:-7:-3
 

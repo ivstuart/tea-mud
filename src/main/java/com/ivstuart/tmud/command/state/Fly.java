@@ -7,10 +7,9 @@
 package com.ivstuart.tmud.command.state;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Mob;
 
-import static com.ivstuart.tmud.common.MobState.*;
+import static com.ivstuart.tmud.common.MobState.FLYING;
 
 public class Fly extends BaseCommand {
 
@@ -23,11 +22,14 @@ public class Fly extends BaseCommand {
 			return;
 		}
 
-		// Check allowed to change state
-		if(!mob_.getMobAffects().hasAffect("levitate")) {
-			mob_.out("You do not have that spell active");
-			return;
+		if (!mob_.getRace().isFly()) {
+			// Check allowed to change state
+			if (!mob_.getMobAffects().hasAffect("levitate")) {
+				mob_.out("You do not have that spell active");
+				return;
+			}
 		}
+
 		// Change state and notify mob and room
 		mob_.getRoom().out("You start flying"); // TODO Msg text
 		mob_.out("You fly");

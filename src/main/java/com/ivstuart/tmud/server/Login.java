@@ -76,9 +76,22 @@ public class Login implements Readable {
             }
             out("Total stats = " + total);
 
+            applyRaceModification();
+
             createCharacter();
 
             loginState = null;
+        }
+
+        private void applyRaceModification() {
+
+            Race race = World.getInstance().getRace(choice);
+
+            int[] mod = race.getStats();
+            for (int i = 0; i < att.length; i++) {
+                att[i] += mod[i];
+            }
+
         }
     }
 
@@ -345,7 +358,12 @@ public class Login implements Readable {
 
         mob.setHeight(170 + DiceRoll.TWO_D_SIX.roll());
 
+        // TODO wire in race changes to stats.
         mob.setRace(RaceData.RACE_NAME[choice]);
+
+        mob.setRaceId(choice);
+
+        mob.setUndead(mob.getRace().isUndead());
 
         Attribute alignment = new Attribute("Alignment", -5000, 5000);
 

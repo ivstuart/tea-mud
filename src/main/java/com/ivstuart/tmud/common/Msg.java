@@ -1,9 +1,9 @@
 package com.ivstuart.tmud.common;
 
-import java.text.ParseException;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.text.ParseException;
 
 public class Msg {
 
@@ -246,9 +246,9 @@ public class Msg {
 
     private String assignNameBasedOnAlignment(Msgable tagMsgable) {
 
-        if (tagMsgable.getRace() != null && target != null) {
+        if (tagMsgable.getRaceName() != null && target != null) {
             if (source.isGood() != target.isGood()) {
-                return "+* " + tagMsgable.getRace() + " *+";
+                return "+* " + tagMsgable.getRaceName() + " *+";
             }
         }
 
