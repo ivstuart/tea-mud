@@ -44,6 +44,10 @@ public class Stand extends BaseCommand {
 		}
 
 		// Check allowed to change state
+		if (mob.getRoom().isFlying()) {
+			mob.out("You must continue to fly here");
+			return;
+		}
 
 		// Change state and notify mob and room
 

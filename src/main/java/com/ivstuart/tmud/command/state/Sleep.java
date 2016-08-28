@@ -6,11 +6,10 @@
  */
 package com.ivstuart.tmud.command.state;
 
-import static com.ivstuart.tmud.common.MobState.SLEEP;
-
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Mob;
+
+import static com.ivstuart.tmud.common.MobState.SLEEP;
 
 public class Sleep extends BaseCommand {
 
@@ -28,7 +27,15 @@ public class Sleep extends BaseCommand {
 		}
 
 		// Check allowed to change state
+		if (mob_.getRoom().isFlying()) {
+			mob_.out("You can not sleep here you must continue to fly");
+			return;
+		}
 
+		if (mob_.getRoom().isWater()) {
+			mob_.out("You can not sleep here you must continue to swim");
+			return;
+		}
 		// Change state and notify mob and room
 
 		// mob_.out("You stop "+mob_.getState().getDesc()+" and stand.");

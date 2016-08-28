@@ -1,12 +1,12 @@
 package com.ivstuart.tmud.person.movement;
 
-import java.util.List;
-
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.state.Exit;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Room;
 import com.ivstuart.tmud.state.util.RoomManager;
+
+import java.util.List;
 
 public class MoveManager {
 
@@ -20,11 +20,16 @@ public class MoveManager {
 
 	}
 
+	// TODO fix all calling code to provide the movementType this is a hack
 	public static void move(Mob mob_, Room sourceRoom_, Room destinationRoom_, Exit exit_) {
+		move(mob_, sourceRoom_, destinationRoom_, exit_, "walks");
+	}
+
+	public static void move(Mob mob_, Room sourceRoom_, Room destinationRoom_, Exit exit_, String movementType) {
 
 		sourceRoom_.remove(mob_);
 
-		sourceRoom_.out(new Msg(mob_,"<S-NAME> walks "+exit_.getId()));
+		sourceRoom_.out(new Msg(mob_, "<S-NAME> " + movementType + " " + exit_.getId()));
 
 		destinationRoom_.add(mob_);
 

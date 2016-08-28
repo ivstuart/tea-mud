@@ -70,6 +70,7 @@ exits: east->R-003-001 south->R-002-002 west->R-001-001
 item: knife-001
 mob: dragon-005
 dark: true
+water: true
 
 id: R-003-001
 brief: The Mosaic Covered Floor in the White Tower

@@ -116,7 +116,15 @@ public class Look extends BaseCommand {
 		} else {
 			for (Exit exit : exits) {
 				if (!exit.isHidden() || mob.hasDetectHidden()) {
-					sb.append(exit.look()).append(" ");
+
+					String exitLook = exit.look();
+
+					if (mob.getRoom().isWater()) {
+						sb.append("<" + exitLook).append("> ");
+					} else {
+						sb.append(exitLook).append(" ");
+					}
+
 				}
 
 			}

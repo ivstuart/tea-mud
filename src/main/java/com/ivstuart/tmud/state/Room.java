@@ -193,6 +193,35 @@ public class Room extends BasicThing implements Msgable {
         isDark = dark;
     }
 
+    @Override
+    public String toString() {
+        return "Room{" +
+                "tracks=" + tracks +
+                ", _type='" + _type + '\'' +
+                ", _props=" + _props +
+                ", _exits=" + _exits +
+                ", _mobs=" + _mobs +
+                ", _items=" + _items +
+                ", isRegen=" + isRegen +
+                ", isUnderWater=" + isUnderWater +
+                ", isDark=" + isDark +
+                ", isWater=" + isWater +
+                ", isFlying=" + isFlying +
+                ", isDeath=" + isDeath +
+                ", isNoMob=" + isNoMob +
+                ", isIndoors=" + isIndoors +
+                ", isPeaceful=" + isPeaceful +
+                ", isSoundProof=" + isSoundProof +
+                ", isNoTrack=" + isNoTrack +
+                ", isNoMagic=" + isNoMagic +
+                ", isTunnel=" + isTunnel +
+                ", isPrivate=" + isPrivate +
+                ", isGodRoom=" + isGodRoom +
+                ", isHouse=" + isHouse +
+                ", isClimb=" + isClimb +
+                '}';
+    }
+
     public boolean isWater() {
         return isWater;
     }
