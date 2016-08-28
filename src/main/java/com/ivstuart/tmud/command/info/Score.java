@@ -117,7 +117,7 @@ public class Score extends BaseCommand {
         mob.out(String
                 .format("   You carry %1.4f kgs of weight. You are %2$10s",
                         mob.getWeightCarried() / 1000.0,
-                        getBurdenString()));
+                        mob.getBurden().getDesc()));
 
         mob.out("");
 
@@ -125,7 +125,5 @@ public class Score extends BaseCommand {
 
     }
 
-    public String getBurdenString() {
-        return "unburdened.";
-    }
+
 }

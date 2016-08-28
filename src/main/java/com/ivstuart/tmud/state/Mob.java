@@ -4,6 +4,7 @@ import com.ivstuart.tmud.behaviour.BaseBehaviour;
 import com.ivstuart.tmud.behaviour.BehaviourFactory;
 import com.ivstuart.tmud.behaviour.Patrol;
 import com.ivstuart.tmud.common.*;
+import com.ivstuart.tmud.constants.CarriedEnum;
 import com.ivstuart.tmud.fighting.DamageManager;
 import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.person.Learned;
@@ -728,4 +729,19 @@ public class Mob extends Prop implements Tickable {
     public void setUndead(boolean undead) {
         this.undead = undead;
     }
+
+    public CarriedEnum getBurden() {
+        int maxCarry = 80 * this.getPlayer().getAttributes().getSTR().getValue() / 15;
+
+        int kgs = this.getWeightCarried() / 1000;
+
+        int index = kgs * CarriedEnum.values().length / maxCarry;
+
+        if (index >= CarriedEnum.values().length) {
+            index = CarriedEnum.values().length;
+        }
+
+        return CarriedEnum.get(index);
+    }
+
 }

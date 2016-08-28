@@ -6,13 +6,12 @@
  */
 package com.ivstuart.tmud.command.item;
 
-import java.util.List;
-
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.common.Equipable;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
+
+import java.util.List;
 
 /**
  * @author stuarti
@@ -52,7 +51,7 @@ public class Remove extends BaseCommand {
 		}
 
 		for (Equipable eq : equipment) {
-			mob.out("You remove an " + eq);
+			mob.out("You remove an " + ((Item) eq).getName());
 		}
 	}
 

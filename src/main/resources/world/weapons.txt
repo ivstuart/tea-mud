@@ -53,3 +53,16 @@ weight: 15
 cost: 15
 rent: 5
 affects:
+
+id: thors-hammer-001
+alias: thors hammer
+short: thors hammer
+look: thors hammer
+skill: crushing
+type: weapon
+damage: 3d60+800
+wear: PRIMARY
+weight: 40000
+cost: 15000
+rent: 50000
+affects:

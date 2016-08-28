@@ -1,4 +1,0 @@
-name: magic missile
-cost: 5
-damage: 2d6
-speed: 5
