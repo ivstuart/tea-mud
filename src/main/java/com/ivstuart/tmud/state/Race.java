@@ -7,6 +7,23 @@ import java.util.Arrays;
  */
 public class Race {
 
+    String id;
+    String name;
+    String desc;
+    boolean alignment;
+    int[] stats = new int[5];
+    int armour;
+    int movement;
+    int regenHp;
+    int regenMv;
+    int regenMn;
+    int height;
+    boolean undead = false;
+    boolean fly = false;
+    boolean infravison = false;
+    boolean stoneskin = false;
+    boolean waterbreath = false;
+
     public String getId() {
         return id;
     }
@@ -154,22 +171,12 @@ public class Race {
         this.waterbreath = waterbreath;
     }
 
-    String id;
-    String name;
-    String desc;
-    boolean alignment;
-    int[] stats = new int[5];
+    public int getHeight() {
+        return height;
+    }
 
-    int armour;
-    int movement;
-    int regenHp;
-    int regenMv;
-    int regenMn;
-
-    boolean undead = false;
-    boolean fly = false;
-    boolean infravison = false;
-    boolean stoneskin = false;
-    boolean waterbreath = false;
+    public void setHeight(int height) {
+        this.height = height;
+    }
 
 }

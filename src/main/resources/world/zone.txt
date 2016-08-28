@@ -4,10 +4,10 @@ id: 1
 name: Northern Bal Main City
 short: Northern Bal Main City
 look: Northern Bal Main City
-lifespan: 300
-reset: 0
-itemInRoom: sword-001 R-003-001
-mobInRoom: snake-001 R-003-001
+#lifespan: 300
+#reset: 0
+#itemInRoom: sword-001 R-003-001
+#mobInRoom: snake-001 R-003-001
 #mob: snakehunter-001 R-003-001
 #give: sword-001 
 #room: sword R-003-002

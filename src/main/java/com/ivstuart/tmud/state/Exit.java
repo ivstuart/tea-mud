@@ -76,12 +76,14 @@ public class Exit extends BasicThing {
 			exitDescription += "(invisible)";
 		}
 
-		if (destinationRoom.isWater()) {
-			exitDescription = "<" + exitDescription + ">";
-		}
+		if (destinationRoom != null) {
+			if (destinationRoom.isWater()) {
+				exitDescription = "<" + exitDescription + ">";
+			}
 
-		if (destinationRoom.isClimb()) {
-			exitDescription = "/" + exitDescription + "/";
+			if (destinationRoom.isClimb()) {
+				exitDescription = "/" + exitDescription + "/";
+			}
 		}
 
 		return exitDescription;

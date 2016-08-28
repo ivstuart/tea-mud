@@ -16,10 +16,6 @@ public class Prop extends BasicThing {
 	public Prop() {
 	}
 
-	public String getAlias() {
-		return alias;
-	}
-
 	public Prop(Prop prop_) {
 		super(prop_);
 		alias = prop_.alias;
@@ -27,8 +23,20 @@ public class Prop extends BasicThing {
 		waterSource = false;
 	}
 
+	public String getAlias() {
+		return alias;
+	}
+
+	public void setAlias(String alias_) {
+		alias = alias_;
+	}
+
 	public String getAffects() {
 		return affects;
+	}
+
+	public void setAffects(String affects_) {
+		this.affects = affects_;
 	}
 
 	public boolean isTeacher() {
@@ -40,19 +48,11 @@ public class Prop extends BasicThing {
 		return this.getBrief();
 	}
 
-	public void setAffects(String affects_) {
-		this.affects = affects_;
-	}
-
-	public void setAlias(String alias_) {
-		alias = alias_;
-	}
-
-	public void setWaterSource(String waterSource) {
-		this.waterSource = true;
-	}
-
 	public boolean isWaterSource() {
 		return waterSource;
+	}
+
+	public void setWaterSource(boolean waterSource) {
+		this.waterSource = waterSource;
 	}
 }

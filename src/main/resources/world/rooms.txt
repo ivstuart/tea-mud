@@ -16,6 +16,8 @@ key: gold7
 properties: NOMobS 
 keywords: dragon
 description: a huge sleeping dragon. Crikey! thats lucky he is asleep.
+peaceful: true
+noMagic: true
 
 id: R-P2
 brief: The Portal of Eternal Light
@@ -33,6 +35,8 @@ key: gold7
 properties: NOMobS 
 keywords: dragon
 description: a huge sleeping dragon. Crikey! thats lucky hes asleep.
+peaceful: true
+noMagic: true
 
 # The following rooms can only be reached via teleport spell now
 # admin testing area.
@@ -62,10 +66,10 @@ type: Chamber
 look: The dark inner sanctum within the White Tower is made from highly polished
 look: snow white marbled stone. Along the outer walls of the courtyard torches,
 look: held by iron sconces, flicker dim light about the area. 
-exits: east->R-003-001 south->R-002-002 west->R-001-001 
-#properties: DARK
+exits: east->R-003-001 south->R-002-002 west->R-001-001
 item: knife-001
 mob: dragon-005
+dark: true
 
 id: R-003-001
 brief: The Mosaic Covered Floor in the White Tower
@@ -79,6 +83,7 @@ exits: north->Z1-001-001 south->R-003-002 west->R-002-001
 item: bag-001
 # can put old man back in any time just that he wanders so creates noise in logging.
 mob: old-man-006
+water: true
 
 id: R-001-002
 brief: The Inner Sanctum of the White Tower
@@ -89,6 +94,7 @@ look: victorious battles and conquests for the army of the light. To the west a
 look: small stairwell ascends to the roof of the tower. 
 exits: north->R-001-001 east->R-002-002 south->R-001-003 
 prop: teacher-001
+flying: true
 
 id: R-002-002
 brief: The Inner Sanctum of the White Tower
@@ -102,6 +108,7 @@ exits: north->R-002-001 east->R-003-002 south->R-002-003 west->R-001-002
 prop: teacher-002
 mob: guard-003
 mob: guard-003
+climb: true
 
 id: R-003-002
 brief: The Inner Sanctum of the White Tower

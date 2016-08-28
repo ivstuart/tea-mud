@@ -1,13 +1,16 @@
 package com.ivstuart.tmud.utils;
 
-import java.io.*;
-import java.nio.*;
-import java.nio.channels.*;
-import java.nio.charset.*;
-import java.util.StringTokenizer;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.io.*;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
+import java.nio.charset.CharsetDecoder;
+import java.nio.charset.CharsetEncoder;
+import java.util.StringTokenizer;
 
 
 /**
@@ -127,5 +130,9 @@ public class FileHandle {
 
 	public void writeln(String content) throws IOException {
 		this.write(content + "\n", true);
+	}
+
+	public String getName() {
+		return file.getName();
 	}
 }

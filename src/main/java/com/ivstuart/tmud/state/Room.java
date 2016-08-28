@@ -77,6 +77,18 @@ public class Room extends BasicThing implements Msgable {
         this.isClimb = room.isClimb;
     }
 
+    public void setRegen(boolean regen) {
+        isRegen = regen;
+    }
+
+    public boolean isFlying() {
+        return isFlying;
+    }
+
+    public void setFlying(boolean flying) {
+        isFlying = flying;
+    }
+
     public boolean isClimb() {
         return isClimb;
     }

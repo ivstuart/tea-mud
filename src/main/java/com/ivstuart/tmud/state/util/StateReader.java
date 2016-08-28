@@ -17,12 +17,9 @@ public class StateReader {
 	private static final String CLONE = "clone";
 
 	private static final String INCLUDE = "include";
-
-	private static StateReader loader = new StateReader();
-
 	private static final Logger LOGGER = LogManager.getLogger();
-
 	private static final String NEW_OBJECT_ID = "id";
+	private static StateReader loader = new StateReader();
 
 	public static StateReader getInstance() {
 		return loader;
@@ -244,7 +241,13 @@ public class StateReader {
 
 		}
 
-		addToWorld(obj);
+		if (obj != null) {
+			addToWorld(obj);
+		} else {
+			LOGGER.debug("File " + file.getName() + " has no objects to create");
+		}
+
+
 	}
 
 	public void load(String fileName) throws Exception {
