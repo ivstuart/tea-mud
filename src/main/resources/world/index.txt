@@ -43,3 +43,4 @@ include: zone-pyramid/zone-pyramid.txt
 
 
 include: races.txt
+include: tier-armour.txt

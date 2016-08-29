@@ -120,6 +120,7 @@ look: victorious battles and conquests for the army of the light. To the west a
 look: small stairwell ascends to the roof of the tower. 
 exits: north->R-003-001 south->R-003-003 west->R-002-002
 mob: banker-001
+mob: warmaster-001
 
 id: R-001-003
 brief: The Inner Sanctum of the White Tower

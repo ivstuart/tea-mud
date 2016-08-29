@@ -1,0 +1,72 @@
+#Armour
+class: state.Armour
+
+id: tier-001
+alias: talisman
+brief: red talisman
+look: red talisman with a central circle of gold
+action:
+effects: 3 
+wear: NECK
+weight: 2
+cost: 10
+rent: 5
+affects:
+armour: 0 2 0 0 0 0 0
+APB: 1
+
+id: tier-002
+alias: leggings
+brief: red leggings
+look: red leggings with a central circle of gold
+action:
+effects: 3
+wear: LEGS
+weight: 2
+cost: 10
+rent: 5
+affects:
+armour: 0 0 0 0 0 10 0
+APB: 1
+
+id: tier-003
+alias: boots
+brief: red boots
+look: red boots with a central circle of gold
+action:
+effects: 3
+wear: FEET
+weight: 2
+cost: 10
+rent: 5
+affects:
+armour: 0 0 0 0 0 10 0
+APB: 1
+
+id: tier-004
+alias: cloak
+brief: red cloak
+look: red cloak with a central circle of gold design
+action:
+effects: 3
+wear: ABOUT_BODY
+weight: 2
+cost: 10
+rent: 5
+affects:
+armour: 0 0 0 0 0 0 10
+APB: 1
+
+id: tier-005
+alias: aura
+brief: red aura
+look: red aura
+action:
+effects: 3
+wear: AURA
+weight: 2
+cost: 10
+rent: 5
+affects:
+armour: 0 0 0 0 0 0 10
+APB: 1

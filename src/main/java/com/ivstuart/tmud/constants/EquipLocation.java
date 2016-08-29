@@ -11,7 +11,7 @@ public enum EquipLocation {
     EYES(1, "worn on eyes"),
     FACE(1, "worn on face"),
     NECK(2, "worn on neck"),
-    SHOLDER(2,"worn on sholder"),
+    SHOULDER(2, "worn on shoulder"),
     ABOUT_BODY(1, "worn about body"),
     BODY(1, "worn on body"),
     ARMS(1, "worn on arms"),

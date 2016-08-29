@@ -171,8 +171,8 @@ public class Look extends BaseCommand {
 			// TODO should be all done as part of Msg command
 			if (mob.isPlayer()) {
 				if(!mob.isAlignmentSame(mob_)) {
-					sb.append("$H "+mob.getSize()+" +* "+mob.getRace()+" *+");
-				}
+                    sb.append("$H +* " + mob.getSize() + " " + mob.getRace().getName() + " *+");
+                }
 				else {
 					sb.append("$H" + mob.getBrief());
 				}

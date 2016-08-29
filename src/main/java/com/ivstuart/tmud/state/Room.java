@@ -517,4 +517,13 @@ public class Room extends BasicThing implements Msgable {
     public void setUnderWater(boolean underWater) {
         isUnderWater = underWater;
     }
+
+    public Mob getWarMaster() {
+        for (Mob mob : _mobs) {
+            if (mob instanceof WarMaster) {
+                return (WarMaster) mob;
+            }
+        }
+        return null;
+    }
 }

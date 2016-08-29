@@ -29,6 +29,311 @@ import java.util.StringTokenizer;
 public class Login implements Readable {
 
     private static final Logger LOGGER = LogManager.getLogger();
+    private int att[] = new int[5];
+    private int choice;
+    private String email;
+    private String gender;
+    private Readable loginState;
+    private Connection myConnection;
+    private String name;
+    private String inputPassword;
+
+    /**
+     * @param connection
+     */
+    public Login(Connection connection) {
+        myConnection = connection;
+        welcome();
+        loginState = new MainMenu();
+    }
+
+    public static Item getItemClone(String id_) {
+        return EntityProvider.createItem(id_);
+    }
+
+    private void createCharacter() {
+
+        String password = createPassword();
+        out("Password:" + password);
+
+        Mob mob = new Mob();
+        Player player = new Player();
+
+        initializeCharacter(password, att, mob, player);
+
+        initialEquipment(player);
+
+        if (!isValidName(name)) {
+            out("Someone just created a character with your name!");
+            out("Exiting create character process, please try again");
+            myConnection.disconnect();
+            return;
+        }
+
+        try {
+            MudIO.getInstance().save(player, player.getName() + ".sav");
+            // FIXME More problems then it solves.
+            // GsonIO gio = new GsonIO();
+            // gio.save(player, player.getName() + ".sav");
+        } catch (IOException e) {
+            LOGGER.error("Problem saving character to disk", e);
+        }
+
+        out("Created character. Check your email for login inputPassword");
+        myConnection.disconnect();
+    }
+
+    public void initializeCharacter(String password, int[] attributes, Mob mob,
+                                    Player player) {
+        mob.setId(name);
+        mob.setBrief(name);
+        mob.setName(name);
+        mob.setAlias(name.toLowerCase());
+
+        PlayerData data = player.getData();
+
+        mob.setPlayer(player);
+
+        player.setMob(mob);
+
+        data.setEmail(email);
+        data.setPassword(password);
+
+        // Str Con Dex Int Wis - Set
+        player.setAttributes(attributes);
+
+        mob.setGender(gender);
+
+        mob.setHeight(170 + DiceRoll.TWO_D_SIX.roll());
+
+        // TODO wire in race changes to stats.
+        mob.setRace(RaceData.RACE_NAME[choice]);
+
+        mob.setRaceId(choice);
+
+        mob.setUndead(mob.getRace().isUndead());
+
+        Attribute alignment = new Attribute("Alignment", -5000, 5000);
+
+        if (choice % 2 == 1) {
+            alignment.setValue(1000);
+        } else {
+            alignment.setValue(-1000);
+        }
+
+        player.getData().setAlignment(alignment);
+
+        if (mob.isGood()) {
+            mob.setAlias(mob.getAlias() + " good all");
+        } else {
+            mob.setAlias(mob.getAlias() + " evil all");
+        }
+
+
+        if (World.isAdmin(player.getName())) {
+            player.setAdmin(true);
+            mob.out("Setting admin true");
+        } else {
+            player.setAdmin(false);
+        }
+
+        data.setPlayingFor(0);
+
+        data.setTotalXp(0);
+        data.setRemort(0);
+        data.setPracs(0);
+
+        mob.setLevel(1);
+
+        data.setAge(16 + (int) (Math.random() * 5));
+
+        mob.setHp("10");
+        mob.setMv("50");
+        mob.setMana(new MobMana(true));
+
+        // int + wis / 2 to set casting level
+        mob.getMana().setCastLevel((att[3] + att[2]) / 2);
+
+        data.setThirst(500);
+        data.setHunger(500);
+    }
+
+    private String createPassword() {
+        StringBuilder sb = new StringBuilder();
+        for (int numberOfCharacters = 0; numberOfCharacters < 8; numberOfCharacters++) {
+
+            int index = 48 + (int) (Math.random() * 62);
+
+            if (index > 57) {
+                index = index + 7;
+            }
+            if (index > 90) {
+                index = index + 6;
+            }
+            char aChar = (char) index;
+            sb.append(aChar);
+        }
+        return sb.toString();
+    }
+
+    private int getNumber(String number) {
+        int aNumber = -1;
+
+        try {
+            aNumber = Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            LOGGER.error("Problem parsing number", e);
+            aNumber = -1;
+        }
+
+        return aNumber;
+    }
+
+    private void initialEquipment(Player player) {
+        Item item = Login.getItemClone("tinder-box-001");
+        player.getMob().getInventory().add(item);
+
+        item = Login.getItemClone("torch-001");
+        player.getMob().getInventory().add(item);
+
+        item = Login.getItemClone("waterskin-001");
+        player.getMob().getInventory().add(item);
+
+        item = Login.getItemClone("sword-001");
+        player.getMob().getInventory().add(item);
+
+        item = Login.getItemClone("club-001");
+        player.getMob().getInventory().add(item);
+
+        // gems
+        item = Login.getItemClone("fire-80");
+        player.getMob().getInventory().add(item);
+        item = Login.getItemClone("water-80");
+        player.getMob().getInventory().add(item);
+        item = Login.getItemClone("air-80");
+        player.getMob().getInventory().add(item);
+        item = Login.getItemClone("earth-80");
+        player.getMob().getInventory().add(item);
+
+        player.getMob().getInventory().add(new Money(Money.COPPER, 50));
+
+    }
+
+    private boolean isValidName(String name) {
+
+        if (Ban.isBanned(name.toLowerCase())) {
+            out("Name is banned please try another name");
+            return false;
+        }
+
+        if (World.getPlayers().contains(name.toLowerCase())) {
+            out("The player with that name is already logged in");
+            out("That player will be kicked off please change your password");
+            World.kickout(name);
+        }
+
+        return true;
+
+    }
+
+    private void loadCharacter() {
+
+        Player player = null;
+
+        try {
+            player = (Player) MudIO.getInstance().load(name + ".sav");
+            // FIXME more problems than it solves.
+            // String fileName = name + ".sav";
+            // GsonIO gio = new GsonIO();
+            // player = gio.loadPlayer(fileName);
+        } catch (Exception e) {
+            LOGGER.error("Problem loading character from disk", e);
+            out("Failed logging in");
+            myConnection.disconnect();
+            return;
+        }
+
+        LOGGER.info("Loaded player object succesfully");
+
+        // This is transient as not required by most mob objects only a player.
+        player.getMob().setPlayer(player);
+        player.setConnection(myConnection);
+
+        if (player.getData().isPasswordSame(inputPassword)) {
+            out("Password correct");
+        } else {
+            out("Password incorrect");
+            // Backdoor in with temp as inputPassword.
+            if (!inputPassword.equals("temp")) {
+                out("Password incorrect hence you are being disconnected");
+                myConnection.disconnect();
+                return;
+            }
+        }
+        out("logging in");
+
+		/* Room object needs to be taken from world hash */
+
+        Mob character = player.getMob();
+
+        // Null pointer ! System.out.println("Alignment =" +
+        // character.getStats().get("ALIGNMENT").getValue());
+
+        Room oldRoom = character.getRoom();
+
+        String roomId = null;
+
+        if (oldRoom == null) {
+            roomId = "unknown";
+        } else {
+            roomId = oldRoom.getId();
+        }
+
+        Room newRoom = World.getRoom(roomId);
+
+        if (newRoom == null) {
+            LOGGER.warn("Could not find players room!");
+            newRoom = World.getPortal(character);
+        }
+
+        character.setRoom(newRoom);
+
+        newRoom.add(character);
+
+        player.getData().setLoginTime(System.currentTimeMillis());
+
+        LOGGER.warn("Attempting to add player to the world!");
+        try {
+            World.addPlayer(character);
+        } catch (MudException e) {
+            LOGGER.error("Problem adding player to world", e);
+            return;
+        }
+
+        myConnection.setState(new Playing(player));
+
+        loginState = null;
+
+    }
+
+    private void out(String message) {
+        myConnection.out(message);
+    }
+
+    @Override
+    public void read(String line) {
+        // TODO work out how the multi-threading...
+        if (loginState != null) {
+            loginState.read(line);
+        }
+
+    }
+
+    private void welcome() {
+        out("--------------------------\n" + "Welcome to Rite Of Balance\n"
+                + "--------------------------\n" + "Credits:\n\n"
+                + "Code Base: Ivan Stuart\n" + "--------------------------\n");
+    }
 
     private class ChooseAttributes implements Readable {
 
@@ -273,311 +578,6 @@ public class Login implements Readable {
 
             }
         }
-    }
-
-    public static Item getItemClone(String id_) {
-        return EntityProvider.createItem(id_);
-    }
-
-    private int att[] = new int[5];
-
-    private int choice;
-
-    private String email;
-
-    private String gender;
-
-    private Readable loginState;
-
-    private Connection myConnection;
-
-    private String name;
-
-    private String inputPassword;
-
-    /**
-     * @param connection
-     */
-    public Login(Connection connection) {
-        myConnection = connection;
-        welcome();
-        loginState = new MainMenu();
-    }
-
-    private void createCharacter() {
-
-        String password = createPassword();
-        out("Password:" + password);
-
-        Mob mob = new Mob();
-        Player player = new Player();
-
-        initializeCharacter(password, att, mob, player);
-
-        initialEquipment(player);
-
-        if (!isValidName(name)) {
-            out("Someone just created a character with your name!");
-            out("Exiting create character process, please try again");
-            myConnection.disconnect();
-            return;
-        }
-
-        try {
-            MudIO.getInstance().save(player, player.getName() + ".sav");
-            // FIXME More problems then it solves.
-            // GsonIO gio = new GsonIO();
-            // gio.save(player, player.getName() + ".sav");
-        } catch (IOException e) {
-            LOGGER.error("Problem saving character to disk", e);
-        }
-
-        out("Created character. Check your email for login inputPassword");
-        myConnection.disconnect();
-    }
-
-    public void initializeCharacter(String password, int[] attributes, Mob mob,
-                                    Player player) {
-        mob.setId(name);
-        mob.setBrief(name);
-        mob.setName(name);
-
-        PlayerData data = player.getData();
-
-        mob.setPlayer(player);
-
-        player.setMob(mob);
-
-        data.setEmail(email);
-        data.setPassword(password);
-
-        // Str Con Dex Int Wis - Set
-        player.setAttributes(attributes);
-
-        mob.setGender(gender);
-
-        mob.setHeight(170 + DiceRoll.TWO_D_SIX.roll());
-
-        // TODO wire in race changes to stats.
-        mob.setRace(RaceData.RACE_NAME[choice]);
-
-        mob.setRaceId(choice);
-
-        mob.setUndead(mob.getRace().isUndead());
-
-        Attribute alignment = new Attribute("Alignment", -5000, 5000);
-
-        if (choice % 2 == 1) {
-            alignment.setValue(1000);
-        } else {
-            alignment.setValue(-1000);
-        }
-
-        player.getData().setAlignment(alignment);
-
-        if (World.isAdmin(player.getName())) {
-            player.setAdmin(true);
-            mob.out("Setting admin true");
-        } else {
-            player.setAdmin(false);
-        }
-
-        data.setPlayingFor(0);
-
-        data.setTotalXp(0);
-        data.setRemort(0);
-        data.setPracs(0);
-
-        mob.setLevel(1);
-
-        data.setAge(16 + (int) (Math.random() * 5));
-
-        mob.setHp("10");
-        mob.setMv("10");
-        mob.setMana(new MobMana(true));
-
-        // int + wis / 2 to set casting level
-        mob.getMana().setCastLevel((att[3] + att[2]) / 2);
-
-        data.setThirst(500);
-        data.setHunger(500);
-    }
-
-    private String createPassword() {
-        StringBuilder sb = new StringBuilder();
-        for (int numberOfCharacters = 0; numberOfCharacters < 8; numberOfCharacters++) {
-
-            int index = 48 + (int) (Math.random() * 62);
-
-            if (index > 57) {
-                index = index + 7;
-            }
-            if (index > 90) {
-                index = index + 6;
-            }
-            char aChar = (char) index;
-            sb.append(aChar);
-        }
-        return sb.toString();
-    }
-
-    private int getNumber(String number) {
-        int aNumber = -1;
-
-        try {
-            aNumber = Integer.parseInt(number);
-        } catch (NumberFormatException e) {
-            LOGGER.error("Problem parsing number", e);
-            aNumber = -1;
-        }
-
-        return aNumber;
-    }
-
-    private void initialEquipment(Player player) {
-        Item item = Login.getItemClone("tinder-box-001");
-        player.getMob().getInventory().add(item);
-
-        item = Login.getItemClone("torch-001");
-        player.getMob().getInventory().add(item);
-
-        item = Login.getItemClone("waterskin-001");
-        player.getMob().getInventory().add(item);
-
-        item = Login.getItemClone("sword-001");
-        player.getMob().getInventory().add(item);
-
-        item = Login.getItemClone("club-001");
-        player.getMob().getInventory().add(item);
-
-        // gems
-        item = Login.getItemClone("fire-80");
-        player.getMob().getInventory().add(item);
-        item = Login.getItemClone("water-80");
-        player.getMob().getInventory().add(item);
-        item = Login.getItemClone("air-80");
-        player.getMob().getInventory().add(item);
-        item = Login.getItemClone("earth-80");
-        player.getMob().getInventory().add(item);
-
-        player.getMob().getInventory().add(new Money(Money.COPPER, 50));
-
-    }
-
-    private boolean isValidName(String name) {
-
-        if (Ban.isBanned(name.toLowerCase())) {
-            out("Name is banned please try another name");
-            return false;
-        }
-
-        if (World.getPlayers().contains(name.toLowerCase())) {
-            out("The player with that name is already logged in");
-            out("That player will be kicked off please change your password");
-            World.kickout(name);
-        }
-
-        return true;
-
-    }
-
-    private void loadCharacter() {
-
-        Player player = null;
-
-        try {
-            player = (Player) MudIO.getInstance().load(name + ".sav");
-            // FIXME more problems than it solves.
-            // String fileName = name + ".sav";
-            // GsonIO gio = new GsonIO();
-            // player = gio.loadPlayer(fileName);
-        } catch (Exception e) {
-            LOGGER.error("Problem loading character from disk", e);
-            out("Failed logging in");
-            myConnection.disconnect();
-            return;
-        }
-
-        LOGGER.info("Loaded player object succesfully");
-
-        // This is transient as not required by most mob objects only a player.
-        player.getMob().setPlayer(player);
-        player.setConnection(myConnection);
-
-        if (player.getData().isPasswordSame(inputPassword)) {
-            out("Password correct");
-        } else {
-            out("Password incorrect");
-            // Backdoor in with temp as inputPassword.
-            if (!inputPassword.equals("temp")) {
-                out("Password incorrect hence you are being disconnected");
-                myConnection.disconnect();
-                return;
-            }
-        }
-        out("logging in");
-
-		/* Room object needs to be taken from world hash */
-
-        Mob character = player.getMob();
-
-        // Null pointer ! System.out.println("Alignment =" +
-        // character.getStats().get("ALIGNMENT").getValue());
-
-        Room oldRoom = character.getRoom();
-
-        String roomId = null;
-
-        if (oldRoom == null) {
-            roomId = "R-P2";
-        } else {
-            roomId = oldRoom.getId();
-        }
-
-        Room newRoom = World.getRoom(roomId);
-
-        if (newRoom == null) {
-            LOGGER.warn("Could not find players room!");
-            newRoom = World.getRoom("R-P2");
-        }
-
-        character.setRoom(newRoom);
-
-        newRoom.add(character);
-
-        player.getData().setLoginTime(System.currentTimeMillis());
-
-        LOGGER.warn("Attempting to add player to the world!");
-        try {
-            World.addPlayer(character);
-        } catch (MudException e) {
-            LOGGER.error("Problem adding player to world", e);
-            return;
-        }
-
-        myConnection.setState(new Playing(player));
-
-        loginState = null;
-
-    }
-
-    private void out(String message) {
-        myConnection.out(message);
-    }
-
-    @Override
-    public void read(String line) {
-        // TODO work out how the multi-threading...
-        if (loginState != null) {
-            loginState.read(line);
-        }
-
-    }
-
-    private void welcome() {
-        out("--------------------------\n" + "Welcome to Rite Of Balance\n"
-                + "--------------------------\n" + "Credits:\n\n"
-                + "Code Base: Ivan Stuart\n" + "--------------------------\n");
     }
 
 }

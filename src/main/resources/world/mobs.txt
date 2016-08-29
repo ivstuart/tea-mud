@@ -204,3 +204,22 @@ xp: 20
 state: STANDING
 attackType: punch
 
+class: state.WarMaster
+
+id: warmaster-001
+name: warmaster
+alias: warmaster
+short: the warmaster
+long: A warmaster snares at you.
+look: The warmaster is a common warmaster is and all together unremarkable.
+level: 100
+offensive: 1000
+defensive: 1000
+armour: 50
+hp: 1500
+damage: 1d100+1050
+copper: 0
+xp: 20
+state: STANDING
+attackType: punch
+

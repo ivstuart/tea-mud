@@ -56,6 +56,7 @@ public class PlayerData implements Serializable {
     private int perception;
     private int deaths;
     private int warpoints;
+    private int tier;
     private int killpoints;
     private Attribute thirstAttribute;
     private Attribute hungerAttribute;
@@ -312,5 +313,17 @@ public class PlayerData implements Serializable {
 
     public void setLoginTime(long loginTime) {
         this.loginTime = loginTime;
+    }
+
+    public int getTier() {
+        return tier;
+    }
+
+    public void setTier(int tier) {
+        this.tier = tier;
+    }
+
+    public void incrementWarpoints(int points) {
+        warpoints += points;
     }
 }

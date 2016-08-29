@@ -40,6 +40,9 @@ public class EntityProvider {
         } else if (existingMob instanceof Armourer) {
             LOGGER.debug("Creating instance of a Armourer!");
             newMob = new Armourer(existingMob);
+        } else if (existingMob instanceof WarMaster) {
+            LOGGER.debug("Creating instance of a Warmaster!");
+            newMob = new WarMaster(existingMob);
         } else {
             newMob = new Mob(existingMob);
         }

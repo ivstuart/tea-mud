@@ -232,6 +232,10 @@ public class DamageManager {
                     portal.add(defender);
                     defender.setRoom(portal);
                     defender.getHp().setValue(1);
+
+                    // Allocate WP's for opposite alignment kill
+                    allocateWarpoints(attacker, defender);
+
                 } else {
                     // Add mob to list of the dead ready for repopulation after a
                     // timer.
@@ -290,6 +294,33 @@ public class DamageManager {
                 //
             }
         }
+    }
+
+    private static void allocateWarpoints(Mob attacker, Mob defender) {
+        int level = 0;
+        if (attacker.isGood() != defender.isGood()) {
+            level = defender.getPlayer().getData().getLevel();
+
+            if (null != attacker.getPlayer().getGroup()) {
+                int numberInGroup = 0;
+                for (Mob aMob : attacker.getPlayer().getGroup()) {
+                    if (aMob.getRoom() != defender.getRoom()) {
+                        continue;
+                    }
+                    numberInGroup++;
+                }
+                level /= numberInGroup;
+
+                for (Mob aMob : attacker.getPlayer().getGroup()) {
+                    aMob.getPlayer().getData().incrementWarpoints(level);
+                }
+
+
+            } else {
+                attacker.getPlayer().getData().incrementWarpoints(level);
+            }
+        }
+
     }
 
     private static void createCorpse(Mob attacker, Mob defender) {
