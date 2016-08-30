@@ -17,7 +17,7 @@ duration: 200
 target: SINGLE
 speed: 5
 mana: AIR
-spellEffect: BUFF
+spellEffect: FLY
 
 id: dust devil
 level: 7

@@ -18,3 +18,14 @@ weight: 5
 cost: 10
 rent: 5
 affects:
+
+id: packed-lunches-001
+alias: a packed lunch
+short: a packed lunch
+look: a packed lunch
+type: food
+weight: 5
+cost: 10
+rent: 5
+affects:
+shopSupplied: true

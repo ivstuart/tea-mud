@@ -7,10 +7,10 @@
 package com.ivstuart.tmud.command.item.shop;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.util.EntityProvider;
 
 /**
  * @author stuarti
@@ -52,6 +52,12 @@ public class Buy extends BaseCommand {
 
 		shopKeeper.getInventory().remove(item);
 		shopKeeper.getInventory().add(cost);
+
+		// Infinite supply of items flag
+		if (item.isShopSupplied()) {
+			Item newItem = EntityProvider.createItem(item.getId());
+			shopKeeper.getInventory().add(newItem);
+		}
 
 		mob.getInventory().add(item);
 

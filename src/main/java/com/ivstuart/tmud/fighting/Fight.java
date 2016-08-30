@@ -28,7 +28,7 @@ public class Fight {
     private LinkedList<FightAction> fightActions;
 
     private FightAction melee;
-
+    private Mob lastMobAttackedMe;
     private List<Mob> targettedBy;
 
     /**
@@ -42,6 +42,24 @@ public class Fight {
 
     public Fight(Mob mob) {
         this(new BasicAttack(mob, null));
+    }
+
+    public static void startCombat(Mob mob, Mob target) {
+        mob.getFight().getMelee().setTarget(target);
+
+        target.getFight().getMelee().setTarget(mob);
+
+        WorldTime.addFighting(mob);
+
+        WorldTime.addFighting(target);
+    }
+
+    public Mob getLastMobAttackedMe() {
+        return lastMobAttackedMe;
+    }
+
+    public void setLastMobAttackedMe(Mob lastMobAttackedMe) {
+        this.lastMobAttackedMe = lastMobAttackedMe;
     }
 
     public void add(FightAction action) {
@@ -109,6 +127,10 @@ public class Fight {
 
     public FightAction getMelee() {
         return melee;
+    }
+
+    public void setMelee(FightAction melee) {
+        this.melee = melee;
     }
 
     public Mob getSelf() {
@@ -204,10 +226,6 @@ public class Fight {
         }
     }
 
-    public void setMelee(FightAction melee) {
-        this.melee = melee;
-    }
-
     public void setMeleeToBasicAttack() {
         this.melee = new BasicAttack(melee.getSelf(), melee.getTarget());
     }
@@ -239,15 +257,5 @@ public class Fight {
             }
         }
         return false;
-    }
-
-    public static void startCombat(Mob mob, Mob target) {
-        mob.getFight().getMelee().setTarget(target);
-
-        target.getFight().getMelee().setTarget(mob);
-
-        WorldTime.addFighting(mob);
-
-        WorldTime.addFighting(target);
     }
 }

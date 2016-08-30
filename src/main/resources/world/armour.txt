@@ -38,3 +38,17 @@ cost: 10
 rent: 5
 affects:
 armour: 0 0 0 0 0 0 5
+
+id: climbing-boots-001
+alias: climbing boots
+brief: green climbing boots
+look: green climbing boots
+action:
+effects: 3
+wear: FEET
+weight: 2
+cost: 10
+rent: 5
+affects:
+armour: 0 0 0 0 0 10 0
+climbing: true

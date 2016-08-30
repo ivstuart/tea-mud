@@ -7,10 +7,10 @@
 package com.ivstuart.tmud.command.item;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.Room;
 import com.ivstuart.tmud.state.Torch;
 
 /**
@@ -49,7 +49,14 @@ public class Drop extends BaseCommand {
 			torch.setMsgable(mob.getRoom());
 		}
 
-		mob.getRoom().add(item);
+		Room room = null;
+		if (mob.getRoom().isFlying()) {
+			room = mob.getRoom().getGroundRoom();
+		} else {
+			room = mob.getRoom();
+		}
+
+		room.add(item);
 
 		mob.out("You drop an " + item);
 	}

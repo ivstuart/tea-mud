@@ -11,6 +11,7 @@ import com.ivstuart.tmud.person.Learned;
 import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.person.carried.Equipment;
 import com.ivstuart.tmud.person.carried.Inventory;
+import com.ivstuart.tmud.person.movement.MoveManager;
 import com.ivstuart.tmud.person.statistics.Affect;
 import com.ivstuart.tmud.person.statistics.MobAffects;
 import com.ivstuart.tmud.person.statistics.MobMana;
@@ -86,6 +87,9 @@ public class Mob extends Prop implements Tickable {
     private boolean isNoBash;
     private boolean isNoBlind;
     private String returnRoom; // After battleground will be returned here.
+    private int fallingCounter;
+    private boolean veryAggressive;
+    private boolean isMemory;
 
     public Mob() {
         fight = new Fight(this);
@@ -136,6 +140,8 @@ public class Mob extends Prop implements Tickable {
         isNoSleep = baseMob.isNoSleep;
         isNoBash = baseMob.isNoBash;
         isNoBlind = baseMob.isNoBlind;
+        veryAggressive = baseMob.veryAggressive;
+        isMemory = baseMob.isMemory;
 
         if (baseMob.behaviours != null) {
             for (String behaviour : baseMob.behaviours) {
@@ -628,6 +634,32 @@ public class Mob extends Prop implements Tickable {
             mobAffects.tick();
         }
 
+        checkForFalling();
+
+    }
+
+    private void checkForFalling() {
+        if (this.isFlying() && fallingCounter > 0) {
+            fallingCounter = 0;
+        }
+
+        // Falling from the sky. 30% damage per room
+        if (room.isFlying() && !this.isFlying() && !getState().isMeditate()) {
+            this.out("You are in free fall while not flying");
+            fallingCounter++;
+            MoveManager.move(this, "down");
+        }
+
+        if (!room.isFlying() && fallingCounter > 0) {
+            this.out("Ouch, you hit the ground hard!");
+            if (room.isWater()) {
+                health.increasePercentage(-10 * fallingCounter);
+            } else {
+                health.increasePercentage(-30 * fallingCounter);
+            }
+
+            DamageManager.checkForDefenderDeath(this, this);
+        }
     }
 
     public boolean isSneaking() {
@@ -778,5 +810,21 @@ public class Mob extends Prop implements Tickable {
 
     public String getReturnRoom() {
         return returnRoom;
+    }
+
+    public boolean isVeryAggressive() {
+        return veryAggressive;
+    }
+
+    public void setVeryAggressive(boolean veryAggressive) {
+        this.veryAggressive = veryAggressive;
+    }
+
+    public boolean isMemory() {
+        return isMemory;
+    }
+
+    public void setMemory(boolean memory) {
+        isMemory = memory;
     }
 }

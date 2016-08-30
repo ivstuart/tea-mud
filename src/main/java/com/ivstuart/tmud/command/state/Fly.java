@@ -22,6 +22,11 @@ public class Fly extends BaseCommand {
 			return;
 		}
 
+		if (mob_.getRoom().isTunnel()) {
+			mob_.out("You can not fly here inside a tunnel");
+			return;
+		}
+
 		if (!mob_.getRace().isFly()) {
 			// Check allowed to change state
 			if (!mob_.getMobAffects().hasAffect("levitate")) {

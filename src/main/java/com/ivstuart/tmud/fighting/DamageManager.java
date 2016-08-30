@@ -22,6 +22,10 @@ public class DamageManager {
 
     public static void deal(Mob attacker, Mob defender, int damage) {
 
+        if (defender.isMemory()) {
+            defender.getFight().setLastMobAttackedMe(attacker);
+        }
+
         if (!checkInSameRoom(attacker, defender)) {
             if (attacker != null) {
                 attacker.getFight().stopFighting();

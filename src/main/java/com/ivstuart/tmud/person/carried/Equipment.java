@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import static com.ivstuart.tmud.constants.EquipLocation.LEGS;
 import static com.ivstuart.tmud.constants.SpellNames.PROTECTION;
 
 /**
@@ -292,5 +293,20 @@ public class Equipment implements Serializable {
 		}
 
 		return grams;
+	}
+
+	public boolean hasClimbingBoots() {
+		if (_slots[LEGS.ordinal()] == 0) {
+			return false;
+		}
+
+		for (Equipable eq : _equipment) {
+			Item item = (Item) eq;
+			if (item.getWorn() == LEGS.ordinal()) {
+				return item.isClimbing();
+			}
+		}
+
+		return false;
 	}
 }

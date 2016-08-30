@@ -6,20 +6,10 @@ public enum MobState {
             "being wide awake", 1, 1, 1, true), WAKE("being wide awake", 1, 1,
             1, true); // remove this one??
 
-    public static MobState getMobState(String state_) {
-        try {
-            return MobState.valueOf(state_);
-        } catch (IllegalArgumentException e) {
-
-        }
-        return null;
-    }
-
     private final String _desc;
     private short _hpMod;
     private short _mvMod;
     private short _manaMod;
-
     private boolean canMove;
 
     MobState(String desc_, int hp_, int mv_, int mana_) {
@@ -33,6 +23,15 @@ public enum MobState {
     MobState(String desc_, int hp_, int mv_, int mana_, boolean canMove) {
         this(desc_, hp_, mv_, mana_);
         this.canMove = true;
+    }
+
+    public static MobState getMobState(String state_) {
+        try {
+            return MobState.valueOf(state_);
+        } catch (IllegalArgumentException e) {
+
+        }
+        return null;
     }
 
     public boolean canMove() {
@@ -68,5 +67,9 @@ public enum MobState {
     }
 
     public boolean lessThan(MobState minState) { return minState.ordinal() > this.ordinal();
+    }
+
+    public boolean isMeditate() {
+        return this == MEDITATE;
     }
 }

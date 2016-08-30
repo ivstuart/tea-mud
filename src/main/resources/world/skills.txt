@@ -29,6 +29,9 @@ level: 1
 id: unarmed
 level: 1
 
+id: climbing
+level: 1
+
 id: bash
 cost: 10
 level: 5

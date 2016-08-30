@@ -23,7 +23,13 @@ public class SleepAffect extends Affect {
 		_mob.out("You feel the affects of " + _desc);
 
 		if (_mob.getFight().isEngaged()) {
-			_mob.out("There is no effect from sleep while fighting" + _desc);
+
+			if (!spell.getName().equals("improved sleep")) {
+				_mob.out("There is no effect from sleep while fighting" + _desc);
+			} else {
+				_mob.getFight().stopFighting();
+				_mob.setState(MobState.SLEEP);
+			}
 		}
 		else {
 			_mob.setState(MobState.SLEEP);

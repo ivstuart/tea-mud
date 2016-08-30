@@ -70,4 +70,15 @@ public class MoveManager {
 
 	}
 
+	public static void move(Mob mob, String down) {
+
+		Exit exit = mob.getRoom().getExit(down);
+
+		if (exit == null) {
+			mob.out("Strong winds buffet you around and you fail to fall straight down");
+			return;
+		}
+
+		MoveManager.move(mob, mob.getRoom(), exit.getDestinationRoom(), exit, "falling");
+	}
 }

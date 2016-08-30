@@ -2,11 +2,16 @@ package com.ivstuart.tmud.command.move;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.CommandProvider;
+import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.constants.DoorState;
+import com.ivstuart.tmud.fighting.DamageManager;
+import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.person.movement.MoveManager;
 import com.ivstuart.tmud.state.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import static com.ivstuart.tmud.common.MobState.STAND;
 
 public class EnterNoLook extends BaseCommand {
 
@@ -70,11 +75,44 @@ public class EnterNoLook extends BaseCommand {
             return;
         }
 
+        if (destination.isClimb() && !mob.isFlying()) {
+            // check for climbing skill and boots
+            Ability climbing = mob.getLearned().getAbility("climbing");
+
+            if (climbing == null) {
+                mob.out("You have no climbing ability to go that direction");
+                return;
+            }
+
+            if (!mob.getEquipment().hasClimbingBoots()) {
+                mob.out("You have no climbing boots to go that direction");
+                return;
+            }
+
+            if (!DiceRoll.ONE_D100.rollLessThanOrEqualTo(climbing.getSkill())) {
+                mob.out("You fail to climb that exit");
+                return;
+            }
+
+            if (climbing.isImproved()) {
+                mob.out(">>>>> [You have become better at " + climbing.getId() + "!] <<<<<");
+                climbing.improve();
+            }
+
+        }
+
+        if (destination.isAdminRoom() && !mob.isAdmin()) {
+            mob.out("You must be admin to enter that location");
+            return;
+        }
+
         if (destination.isFlying() && !mob.isFlying()) {
             mob.out("You must be flying to enter that location");
             return;
         }
 
+        // TODO get sector type and apply movement cost
+        int sectorMovement = destination.getSectorType().getMoveModify();
         String movement = "walk";
 
         if (mob.getMv() != null) {
@@ -110,7 +148,7 @@ public class EnterNoLook extends BaseCommand {
                 movement = "fly";
 
             } else {
-                if (!mob.getMv().deduct(2 * movemod)) {
+                if (!mob.getMv().deduct(sectorMovement * movemod)) {
                     mob.out("You can not walk you are out of movement and too tired!");
                     return;
                 }
@@ -121,6 +159,17 @@ public class EnterNoLook extends BaseCommand {
 
 
         MoveManager.move(mob, room, destination, exit, movement);
+
+        if (destination.isTunnel() && mob.isFlying()) {
+            mob.out("You have entered a tunnel so stop flying for now.");
+            mob.setState(STAND);
+        }
+
+        if (destination.isDeath() && !mob.isAdmin()) {
+            mob.getHp().setValue(-1);
+            mob.out("You walk into a death trap and have been killed");
+            DamageManager.checkForDefenderDeath(mob, mob);
+        }
 
         Track track = new Track();
 
@@ -138,6 +187,20 @@ public class EnterNoLook extends BaseCommand {
             follower.out("You follow " + mob.getName() + " out of the room");
             CommandProvider.getCommand(EnterNoLook.class).execute(follower, exit.getId());
         }
+
+        // Check if any aggro or very aggressive mobs should attack you
+        for (Mob mobInRoom : destination.getMobs()) {
+            if (mobInRoom.isVeryAggressive()) {
+                LOGGER.debug("A very aggressive mob is here which launches into attack");
+                Fight.startCombat(mobInRoom, mob);
+            }
+            if (mobInRoom.getFight().getLastMobAttackedMe() == mob) {
+                LOGGER.debug("A mob remembers you from before and launches into attack");
+                Fight.startCombat(mobInRoom, mob);
+            }
+
+        }
+
     }
 
 }

@@ -18,7 +18,8 @@ public class SpellEffectFactory {
 		spellEffectMap.put("RECALL", new Recall());
 		spellEffectMap.put("SUMMON", new Summon());
 		spellEffectMap.put("BUFF", new BuffStats());
-		spellEffectMap.put("DETECT", new DetectInvisible());
+        spellEffectMap.put("FLY", new Levitate());
+        spellEffectMap.put("DETECT", new DetectInvisible());
 		spellEffectMap.put("INVISIBLITY", new BuffStats());
 		spellEffectMap.put("DEBUFF", new BuffStats());
 		spellEffectMap.put("SLEEP", new Sleep());

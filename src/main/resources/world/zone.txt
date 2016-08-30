@@ -7,6 +7,7 @@ look: Northern Bal Main City
 #lifespan: 300
 #reset: 0
 #itemInRoom: sword-001 R-003-001
+itemInRoom: climbing-boots-001 R-003-001
 #mobInRoom: snake-001 R-003-001
 #mob: snakehunter-001 R-003-001
 #give: sword-001 

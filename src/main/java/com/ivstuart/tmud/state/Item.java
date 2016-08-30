@@ -40,6 +40,13 @@ public class Item extends Prop implements Equipable, Msgable {
 	protected int _size;
 
 	protected int _damagedPercentage;
+	protected int apb;
+	protected boolean isClimbing;
+	protected boolean isShopSupplied;
+	int loadPercentage = 1;
+
+	public Item() {
+	}
 
 	public int getAPB() {
 		return apb;
@@ -49,9 +56,20 @@ public class Item extends Prop implements Equipable, Msgable {
 		this.apb = apb;
 	}
 
-	protected int apb;
+	public boolean isClimbing() {
+		return isClimbing;
+	}
 
-	public Item() {
+	public void setClimbing(boolean climbing) {
+		isClimbing = climbing;
+	}
+
+	public boolean isShopSupplied() {
+		return isShopSupplied;
+	}
+
+	public void setShopSupplied(boolean shopSupplied) {
+		isShopSupplied = shopSupplied;
 	}
 
 	@Override
@@ -88,8 +106,16 @@ public class Item extends Prop implements Equipable, Msgable {
 		return _size;
 	}
 
+	public void setSize(int size_) {
+		_size = size_;
+	}
+
 	public String getType() {
 		return _type;
+	}
+
+	public void setType(String type_) {
+		this._type = type_;
 	}
 
 	@Override
@@ -98,6 +124,20 @@ public class Item extends Prop implements Equipable, Msgable {
 			return Collections.emptyList();
 		}
 		return _wear;
+	}
+
+	// HEAD NECK for a scarf
+	public void setWear(String wear_) {
+		this._wear = new ArrayList<Integer>(1);
+
+		for (String loc : wear_.split(" ")) {
+			EquipLocation eqLoc = EquipLocation.valueOf(loc);
+			if (eqLoc != null) {
+				_wear.add(eqLoc.ordinal());
+			} else {
+				LOGGER.warn("Item location = " + loc + " not known!");
+			}
+		}
 	}
 
 	@Override
@@ -122,43 +162,12 @@ public class Item extends Prop implements Equipable, Msgable {
 		this._action = action_;
 	}
 
-	public void setCost(int cost_) {
-		this._cost = cost_;
-		_someMoneyCost = new Money(Money.COPPER,_cost);
-	}
-
 	public void setEffects(String effects_) {
 		this._effects = effects_;
 	}
 
 	public void setRent(int rent_) {
 		this._rent = rent_;
-	}
-
-	public void setSize(int size_) {
-		_size = size_;
-	}
-
-	public void setType(String type_) {
-		this._type = type_;
-	}
-
-	// HEAD NECK for a scarf
-	public void setWear(String wear_) {
-		this._wear = new ArrayList<Integer>(1);
-
-		for (String loc : wear_.split(" ")) {
-			EquipLocation eqLoc = EquipLocation.valueOf(loc);
-			if (eqLoc != null) {
-				_wear.add(eqLoc.ordinal());
-			} else {
-				LOGGER.warn("Item location = " + loc + " not known!");
-			}
-		}
-	}
-
-	public void setWeight(int weight_) {
-		this._weight = weight_;
 	}
 
 	@Override
@@ -179,6 +188,10 @@ public class Item extends Prop implements Equipable, Msgable {
 
 	public int getWeight() {
 		return _weight;
+	}
+
+	public void setWeight(int weight_) {
+		this._weight = weight_;
 	}
 
 	public boolean isCorpse() {
@@ -209,6 +222,11 @@ public class Item extends Prop implements Equipable, Msgable {
 
     }
 
+	public void setCost(int cost_) {
+		this._cost = cost_;
+		_someMoneyCost = new Money(Money.COPPER, _cost);
+	}
+
 	public int getDamagedPercentage() {
 		return _damagedPercentage;
 	}
@@ -220,8 +238,6 @@ public class Item extends Prop implements Equipable, Msgable {
 	public void setLoadPercentage(int loadPercentage) {
 		this.loadPercentage = loadPercentage;
 	}
-
-	int loadPercentage = 1;
 
 	public boolean isLoaded() {
 		return DiceRoll.ONE_D100.rollLessThanOrEqualTo(loadPercentage);

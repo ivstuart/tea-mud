@@ -2,6 +2,7 @@ package com.ivstuart.tmud.state;
 
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.common.Msgable;
+import com.ivstuart.tmud.constants.SectorType;
 import com.ivstuart.tmud.person.carried.Inventory;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
@@ -51,6 +52,7 @@ public class Room extends BasicThing implements Msgable {
     private boolean isHouse;
     private boolean isClimb;
     private boolean isNoDrop;
+    private SectorType sectorType;
 
     public Room() {
         initRoom();
@@ -77,6 +79,17 @@ public class Room extends BasicThing implements Msgable {
         this.isHouse = room.isHouse;
         this.isClimb = room.isClimb;
         this.isNoDrop = room.isNoDrop;
+    }
+
+    public SectorType getSectorType() {
+        if (sectorType == null) {
+            return SectorType.INSIDE;
+        }
+        return sectorType;
+    }
+
+    public void setSectorType(String sectorType) {
+        this.sectorType = SectorType.valueOf(sectorType);
     }
 
     @Override
@@ -536,5 +549,16 @@ public class Room extends BasicThing implements Msgable {
             }
         }
         return null;
+    }
+
+    public Room getGroundRoom() {
+        Room room = this;
+        Exit exit = this.getExit("down");
+        while (room.isFlying() && exit != null) {
+            room = exit.getDestinationRoom();
+            exit = this.getExit("down");
+        }
+
+        return room;
     }
 }
