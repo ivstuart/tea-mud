@@ -330,7 +330,7 @@ public class DamageManager {
 
     private static void createCorpse(Mob attacker, Mob defender) {
         // create corpse and move equipment and inventory to corpse
-        Corpse corpse = new Corpse(defender);
+        Corpse corpse = new Corpse();
         corpse.setId("corpse");
         corpse.setAlias("corpse");
 
@@ -364,6 +364,9 @@ public class DamageManager {
     }
 
     private static void inveToCorpse(Mob defender, Corpse corpse) {
+
+        LOGGER.debug("Moving inventory to corpse");
+
         // Items
         corpse.getInventory().addAll(defender.getInventory().getItems());
         defender.getInventory().clear();

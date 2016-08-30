@@ -1,6 +1,5 @@
 package com.ivstuart.tmud.command.admin;
 
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Mob;
 
 public class Level extends AdminCommand {
@@ -19,7 +18,7 @@ public class Level extends AdminCommand {
 
 		while (numberOfLevels-- > 0) {
 
-			int xp = mob_.getPlayer().getData().getToLevelXp();
+			long xp = mob_.getPlayer().getData().getToLevelXp();
 
 			mob_.getPlayer().getData().addXp(xp);
 

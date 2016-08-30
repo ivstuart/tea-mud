@@ -33,7 +33,7 @@ public class PlayerData implements Serializable {
 
     private int totalXp; // TODO refactor into a statistic object
 
-    private int toLevelXp;
+    private long toLevelXp;
 
     private int age; // years
 
@@ -85,7 +85,7 @@ public class PlayerData implements Serializable {
         learns++;
     }
 
-    public void addXp(int xp_) {
+    public void addXp(long xp_) {
         totalXp += xp_;
         toLevelXp -= xp_;
     }
@@ -198,11 +198,11 @@ public class PlayerData implements Serializable {
         this.title = title;
     }
 
-    public int getToLevelXp() {
+    public long getToLevelXp() {
         return toLevelXp;
     }
 
-    public void setToLevelXp(int toLevelXp) {
+    public void setToLevelXp(long toLevelXp) {
         this.toLevelXp = toLevelXp;
     }
 
@@ -216,7 +216,7 @@ public class PlayerData implements Serializable {
 
     public void incrementLevel() {
         level++;
-        toLevelXp += 10000 * Math.pow(level, 3);
+        toLevelXp += 1000 * Math.pow(level, 2);
         learns++;
         pracs += 3;
 
