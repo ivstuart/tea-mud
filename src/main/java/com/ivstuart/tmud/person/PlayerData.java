@@ -37,19 +37,14 @@ public class PlayerData implements Serializable {
 
     private int age; // years
 
-    private int playingFor; // Minutes?
     private long loginTime;
-
+    private long playingTime;
     private int kills;
-
     private int remorts;
-
     private String lastToldBy; // Should be in the communicate code.
-
     private int learns;
     private int pracs;
     private int level;
-
     // New attributes since 2016
     private int evasion;
     private int stealth;
@@ -173,14 +168,6 @@ public class PlayerData implements Serializable {
         }
         md.update(password.getBytes());
         this.passwordDigest = md.digest();
-    }
-
-    public int getPlayingFor() {
-        return playingFor;
-    }
-
-    public void setPlayingFor(int playingFor) {
-        this.playingFor = playingFor;
     }
 
     public int getPracs() {
@@ -315,6 +302,10 @@ public class PlayerData implements Serializable {
         this.loginTime = loginTime;
     }
 
+    public long getPlayingTime() {
+        return System.currentTimeMillis() - loginTime + playingTime;
+    }
+
     public int getTier() {
         return tier;
     }
@@ -325,5 +316,9 @@ public class PlayerData implements Serializable {
 
     public void incrementWarpoints(int points) {
         warpoints += points;
+    }
+
+    public void setPlayingTime() {
+        playingTime = this.getPlayingTime();
     }
 }

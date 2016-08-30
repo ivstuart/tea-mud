@@ -12,51 +12,19 @@ import java.io.Serializable;
  */
 public class DiceRoll implements Serializable {
 
+	public static final DiceRoll ONE_D_TEN = new DiceRoll((short) 1, (short) 10);
+	public static final DiceRoll THREE_D_SIX = new DiceRoll((short) 3, (short) 6);
+	public static final DiceRoll TWO_D_SIX = new DiceRoll((short) 2, (short) 6);
+	public static final DiceRoll ONE_D_SIX = new DiceRoll();
+	public static final DiceRoll ONE_D_FOUR = new DiceRoll((short) 1, (short) 4);
+	public static final DiceRoll ONE_D100 = new DiceRoll((short) 1, (short) 100);
+	public static final DiceRoll DEFAULT_HP = new DiceRoll((short)2,(short)10,(short)50);
 	private static final long serialVersionUID = 1L;
-
 	private static short DEFAULT_NUMBER_OF_SIDES = 6;
 	private static short DEFAULT_BOUNUS = 0;
 	private static short DEFAULT_NUMBER_OF_DICE = 1;
-
-	public static final DiceRoll _3D6 = new DiceRoll((short) 3, (short) 6);
-
-	public static final DiceRoll TWO_D_SIX = new DiceRoll((short) 2, (short) 6);
-	public static final DiceRoll ONE_D_SIX = new DiceRoll();
-	public static final DiceRoll ONE_D_FOUR = new DiceRoll((short) 4);
-	public static final DiceRoll ONE_D100 = new DiceRoll((short) 100);
-	
-	public static final DiceRoll DEFAULT_HP = new DiceRoll((short)2,(short)10,(short)50);
-
-	public static void main(String args[]) {
-		DiceRoll d = new DiceRoll("3d6+1");
-		System.out.println("Roll for " + d + "=" + d.roll());
-		d = new DiceRoll("3d6+1");
-		System.out.println("Roll for " + d + "=" + d.roll());
-		d = new DiceRoll("3d8");
-		System.out.println("Roll for " + d + "=" + d.roll());
-		d = new DiceRoll("0d6+5");
-		System.out.println("Roll for " + d + "=" + d.roll());
-		d = new DiceRoll("-4d6+50");
-		System.out.println("Roll for " + d + "=" + d.roll());
-	}
-
-	public static int roll(int number, int sides, int bonus) {
-		int result = 0;
-
-		for (int index = 0; index < number; index++) {
-            result += 1 + (int) (Math.random() * sides);
-        }
-
-		result += bonus;
-
-		return result;
-
-	}
-
 	private final short diceNumber;
-
 	private final short diceSides;
-
 	private final short diceBonus;
 
 	public DiceRoll() {
@@ -82,14 +50,14 @@ public class DiceRoll implements Serializable {
 		diceSides = sides;
 		diceBonus = adder;
 	}
-	
+
 	public DiceRoll(int number, int sides, int adder) {
 		this((short)number,(short)sides,(short)adder);
 	}
 
 	/**
 	 * Must be of the form 0d0+0 with + being optimal.
-	 * 
+	 *
 	 * @param xdx_
 	 */
 	public DiceRoll(String xdx_) {
@@ -133,6 +101,31 @@ public class DiceRoll implements Serializable {
 		diceBonus = Short.parseShort(param3);
 	}
 
+	public static void main(String args[]) {
+		DiceRoll d = new DiceRoll("3d6+1");
+		System.out.println("Roll for " + d + "=" + d.roll());
+		d = new DiceRoll("3d6+1");
+		System.out.println("Roll for " + d + "=" + d.roll());
+		d = new DiceRoll("3d8");
+		System.out.println("Roll for " + d + "=" + d.roll());
+		d = new DiceRoll("0d6+5");
+		System.out.println("Roll for " + d + "=" + d.roll());
+		d = new DiceRoll("-4d6+50");
+		System.out.println("Roll for " + d + "=" + d.roll());
+	}
+
+	public static int roll(int number, int sides, int bonus) {
+		int result = 0;
+
+		for (int index = 0; index < number; index++) {
+			result += 1 + (int) (Math.random() * sides);
+		}
+
+		result += bonus;
+
+		return result;
+
+	}
 
 	@Override
 	public boolean equals(Object obj) {

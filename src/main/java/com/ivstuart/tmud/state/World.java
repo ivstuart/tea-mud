@@ -35,6 +35,25 @@ public class World {
 
 	private static List<Race> races;
 
+    private World() {
+        tickers = new HashMap<String, Tickable>();
+        _zones = new HashMap<String, Zone>();
+        _rooms = new HashMap<String, Room>();
+        _mobs = new HashMap<String, Mob>();
+        _items = new HashMap<String, Item>();
+        skills = new HashMap<String, BaseSkill>();
+        spells = new HashMap<String, Spell>();
+        _players = new HashSet<String>();
+        _props = new HashMap<String, Prop>();
+        races = new ArrayList<Race>();
+
+        // Initialise banned list of player names if it exists.
+        Ban.init();
+        AddAdmin.init();
+
+        startTime();
+    }
+
 	public static void add(BaseSkill skill) {
 		LOGGER.info("Adding skill [ " + skill.getId() + "]");
 		skills.put(skill.getId(), skill);
@@ -164,8 +183,8 @@ public class World {
 	/**
 	 * TODO work out if I should expose reference. I should make the list
 	 * immutable once loaded.
-	 * 
-	 * @return
+     *
+     * @return
 	 */
 	public static Map<String, Spell> getSpells() {
 		return spells;
@@ -185,6 +204,53 @@ public class World {
 	public static Map<String,Room> getRooms() {
 		return _rooms;
 	}
+
+    private static void add(Race race) {
+        races.add(race);
+    }
+
+    public static World getInstance() {
+        return INSTANCE;
+    }
+
+    public static boolean isAdmin(String name) {
+        return AddAdmin.isAdmin(name);
+    }
+
+    public static void out(String msg) {
+        for (String player : _players) {
+            Mob aPlayer = _mobs.get(player.toLowerCase());
+            aPlayer.out(msg);
+        }
+    }
+
+    public static void out(String msg, boolean good) {
+        for (String player : _players) {
+            Mob aPlayer = _mobs.get(player.toLowerCase());
+            if (aPlayer.isGood() == good) {
+                aPlayer.out(msg);
+            }
+        }
+    }
+
+    public static void shutdown() {
+        if (scheduledExecutorService != null) {
+            scheduledExecutorService.shutdown();
+        }
+    }
+
+    public static void kickout(String name) {
+        Mob playerMob = _mobs.get(name.toLowerCase());
+        new ForcedQuit().execute(playerMob, null);
+    }
+
+    public static Room getPortal(Mob defender) {
+        if (defender.isGood()) {
+            return World.getRoom("R-P2");
+        } else {
+            return World.getRoom("R-P1");
+        }
+    }
 
 	public void addToWorld(Object object) {
 
@@ -237,8 +303,8 @@ public class World {
 			// This is fine.
 			return;
 		}
-		
-		if (object != null) {
+
+        if (object != null) {
 			LOGGER.warn("Unknow object type ["+object.getClass().getSimpleName()+"]");
 		}
 		else {
@@ -246,29 +312,6 @@ public class World {
 		}
 		// TODO throw new IllegalArgumentException("Unknow object type ["+object.getClass().getSimpleName()+"]");
 
-	}
-
-	private static void add(Race race) {
-		races.add(race);
-	}
-
-	private World() {
-		tickers = new HashMap<String, Tickable>();
-		_zones = new HashMap<String, Zone>();
-		_rooms = new HashMap<String, Room>();
-		_mobs = new HashMap<String, Mob>();
-		_items = new HashMap<String, Item>();
-		skills = new HashMap<String, BaseSkill>();
-		spells = new HashMap<String, Spell>();
-		_players = new HashSet<String>();
-		_props = new HashMap<String, Prop>();
-		races = new ArrayList<Race>();
-
-		// Initialise banned list of player names if it exists.
-		Ban.init();
-		AddAdmin.init();
-		
-		startTime();
 	}
 
 	private void startTime() {
@@ -281,49 +324,11 @@ public class World {
 				+ (!scheduledFuture.isCancelled()) + " ]");
 	}
 
-	
-	public static World getInstance() {
-		return INSTANCE;
-	}
-
 	// Yes I know I am not using a map here. Loading in order
 	public Race getRace(int id) {
 		if (id == 0) {
 			id = 1;
 		} // Default to human when no race set.
 		return races.get(id - 1);
-	}
-
-    public static boolean isAdmin(String name) {
-		return AddAdmin.isAdmin(name);
-	}
-
-	public static void out(String msg, boolean good) {
-		for (String player : _players) {
-			Mob aPlayer = _mobs.get(player.toLowerCase());
-			if (aPlayer.isGood() == good) {
-				aPlayer.out(msg);
-			}
-		}
-	}
-
-	public static void shutdown() {
-		if (scheduledExecutorService != null) {
-			scheduledExecutorService.shutdown();
-		}
-	}
-
-	public static void kickout(String name) {
-		Mob playerMob =_mobs.get(name.toLowerCase());
-		new ForcedQuit().execute(playerMob, null);
-	}
-
-	public static Room getPortal(Mob defender) {
-		if (defender.isGood()) {
-			return World.getRoom("R-P2");
-		}
-		else {
-			return World.getRoom("R-P1");
-		}
 	}
 }

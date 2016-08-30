@@ -32,6 +32,8 @@ public class ForcedQuit extends BaseCommand {
 
 		Player player = mob_.getPlayer();
 
+        player.getData().setPlayingTime();
+
 		try {
 			MudIO.getInstance().save(player, mob_.getId() + ".sav");
 		} catch (IOException e) {

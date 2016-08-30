@@ -1,7 +1,5 @@
 package com.ivstuart.tmud.utils;
 
-import java.io.IOException;
-
 import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.person.PlayerData;
 import com.ivstuart.tmud.person.statistics.MobMana;
@@ -10,6 +8,8 @@ import com.ivstuart.tmud.server.LaunchMud;
 import com.ivstuart.tmud.state.Attribute;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.WorldTime;
+
+import java.io.IOException;
 
 public class TestHelper {
 	
@@ -37,8 +37,6 @@ public class TestHelper {
 		player.getData().setAlignment(new Attribute("Alignment", 1000));
 
 		mob.setHeight(6);
-
-		data.setPlayingFor(0);
 
 		data.setTotalXp(0);
 		data.setRemort(0);
@@ -74,32 +72,11 @@ public class TestHelper {
 		WorldTime.getInstance().repopulateMobs();
 	}
 	
-	class LaunchMudRunnable implements Runnable {
-
-		boolean isRunning = true;
-
-		@Override
-		public void run() {
-
-			LaunchMud.main(new String[0]);
-
-			try {
-				Thread.sleep(15 * 60 * 1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} // 15 minutes no shutdown coded yet.
-
-			isRunning = false;
-		}
-
-	}
-	
 	public LaunchMudClient startClient() {
 		LaunchMudClient client = new LaunchMudClient();
 		Thread clientThread = new Thread(client);
 		clientThread.start();
-		
+
 		return client;
 	}
 	
@@ -116,6 +93,27 @@ public class TestHelper {
 	
 	public boolean stopServer() {
 		return LaunchMud.stop();
+    }
+
+    class LaunchMudRunnable implements Runnable {
+
+        boolean isRunning = true;
+
+        @Override
+        public void run() {
+
+            LaunchMud.main(new String[0]);
+
+            try {
+                Thread.sleep(15 * 60 * 1000);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } // 15 minutes no shutdown coded yet.
+
+            isRunning = false;
+        }
+
 	}
 
     class LaunchMudClient implements Runnable {

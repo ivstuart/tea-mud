@@ -124,9 +124,9 @@ public class Login implements Readable {
         player.getData().setAlignment(alignment);
 
         if (mob.isGood()) {
-            mob.setAlias(mob.getAlias() + " good all");
+            mob.setAlias(mob.getAlias() + " " + mob.getRace().getName() + " good all");
         } else {
-            mob.setAlias(mob.getAlias() + " evil all");
+            mob.setAlias(mob.getAlias() + " " + mob.getRace().getName() + " evil all");
         }
 
 
@@ -136,8 +136,6 @@ public class Login implements Readable {
         } else {
             player.setAdmin(false);
         }
-
-        data.setPlayingFor(0);
 
         data.setTotalXp(0);
         data.setRemort(0);

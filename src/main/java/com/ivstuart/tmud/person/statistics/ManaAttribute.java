@@ -1,8 +1,8 @@
 package com.ivstuart.tmud.person.statistics;
 
-import java.io.Serializable;
-
 import com.ivstuart.tmud.constants.ManaType;
+
+import java.io.Serializable;
 
 public class ManaAttribute implements Serializable {
 
@@ -66,6 +66,10 @@ public class ManaAttribute implements Serializable {
 		return _castlevel;
 	}
 
+	public void setCastlevel(int castlevel) {
+		this._castlevel = castlevel;
+	}
+
 	private String getColour(int current_, int max_) {
 		if (_current < _maximum) {
 			return "$G";
@@ -100,6 +104,12 @@ public class ManaAttribute implements Serializable {
 		return _current;
 	}
 
+	public void setValue(int value) {
+		_current = value;
+		this.decrease(0);
+		this.increase(0);
+	}
+
 	public void increase(int value) {
 		_current += value;
 		if (_current > _maximum) {
@@ -120,14 +130,7 @@ public class ManaAttribute implements Serializable {
 		_current = _maximum;
 	}
 
-	public void setCastlevel(int castlevel) {
-		this._castlevel = castlevel;
+	public void increaseToMaximum() {
+		_current = _maximum;
 	}
-
-	public void setValue(int value) {
-		_current = value;
-		this.decrease(0);
-		this.increase(0);
-	}
-
 }

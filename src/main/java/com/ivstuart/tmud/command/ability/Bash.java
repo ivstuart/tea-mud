@@ -73,7 +73,13 @@ public class Bash extends BaseCommand {
 			return;
 		}
 
-		Mob target = mob.getRoom().getMob(input);
+		Mob target = null;
+
+		if (input.length() == 0 && mob.getFight().getTarget() != null) {
+			target = mob.getFight().getTarget();
+		} else {
+			target = mob.getRoom().getMob(input);
+		}
 
 		if (target == null) {
 			mob.out(input + " is not here to bash!");

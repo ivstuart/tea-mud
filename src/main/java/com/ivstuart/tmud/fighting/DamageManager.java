@@ -1,13 +1,13 @@
 package com.ivstuart.tmud.fighting;
 
 import com.ivstuart.tmud.command.CommandProvider;
+import com.ivstuart.tmud.command.admin.Battleground;
 import com.ivstuart.tmud.command.item.Get;
 import com.ivstuart.tmud.command.item.Sacrifice;
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.MobState;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.constants.DamageConstants;
-import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.config.ConfigData;
 import com.ivstuart.tmud.person.statistics.Affect;
 import com.ivstuart.tmud.state.*;
@@ -236,6 +236,9 @@ public class DamageManager {
                     // Allocate WP's for opposite alignment kill
                     allocateWarpoints(attacker, defender);
 
+                    // Update counters to battle ground if one is running
+                    Battleground.deathOf(defender);
+
                 } else {
                     // Add mob to list of the dead ready for repopulation after a
                     // timer.
@@ -312,11 +315,13 @@ public class DamageManager {
                 level /= numberInGroup;
 
                 for (Mob aMob : attacker.getPlayer().getGroup()) {
+                    aMob.out("You gain " + level + " warpoints.");
                     aMob.getPlayer().getData().incrementWarpoints(level);
                 }
 
 
             } else {
+                attacker.out("You gain " + level + " warpoints.");
                 attacker.getPlayer().getData().incrementWarpoints(level);
             }
         }
@@ -329,15 +334,11 @@ public class DamageManager {
         corpse.setId("corpse");
         corpse.setAlias("corpse");
 
-        // Items
-        corpse.getInventory().addAll(defender.getInventory().getItems());
-        defender.getInventory().clear();
-
-        // Coins
-        corpse.getInventory().add(defender.getInventory().getPurse());
-        defender.getInventory().getPurse().clear();
-        Money money = new Money(Money.COPPER, defender.getCopper());
-        corpse.getInventory().add(money);
+        if (defender.getRoom().isNoDrop() == false) {
+            inveToCorpse(defender, corpse);
+        } else {
+            LOGGER.debug("No drop has been set for this room so eq will not be dropped to corpse");
+        }
 
         // corpse.setShort("Corpse of "+defender.getName());
         corpse.setBrief("The corpse of a filthy " + defender.getName()
@@ -360,6 +361,18 @@ public class DamageManager {
             }
         }
 
+    }
+
+    private static void inveToCorpse(Mob defender, Corpse corpse) {
+        // Items
+        corpse.getInventory().addAll(defender.getInventory().getItems());
+        defender.getInventory().clear();
+
+        // Coins
+        corpse.getInventory().add(defender.getInventory().getPurse());
+        defender.getInventory().getPurse().clear();
+        //Money money = new Money(Money.COPPER, defender.getCopper());
+        //corpse.getInventory().add(money);
     }
 
     private static int checkForDodge(Mob defender, int damage) {

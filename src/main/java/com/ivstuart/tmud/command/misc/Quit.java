@@ -6,15 +6,15 @@
  */
 package com.ivstuart.tmud.command.misc;
 
-import java.io.IOException;
-
 import com.ivstuart.tmud.command.BaseCommand;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.World;
 import com.ivstuart.tmud.utils.MudIO;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.io.IOException;
 
 /**
  * @author stuarti
@@ -35,6 +35,8 @@ public class Quit extends BaseCommand {
 		mob_.out("Thankyou for playing");
 
 		Player player = mob_.getPlayer();
+
+        player.getData().setPlayingTime();
 
 		// Save character first
 		try {

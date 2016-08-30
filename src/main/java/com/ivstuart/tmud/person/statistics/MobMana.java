@@ -1,9 +1,9 @@
 package com.ivstuart.tmud.person.statistics;
 
-import java.io.Serializable;
-
 import com.ivstuart.tmud.constants.ManaType;
 import com.ivstuart.tmud.state.Spell;
+
+import java.io.Serializable;
 
 public class MobMana implements Serializable {
 
@@ -140,6 +140,12 @@ public class MobMana implements Serializable {
     public void increasePercentage(int i) {
 		for (ManaAttribute manaAtt : _mana) {
 			manaAtt.increase(i);
-		}
+        }
+    }
+
+    public void restore() {
+        for (ManaAttribute manaAtt : _mana) {
+            manaAtt.increaseToMaximum();
+        }
     }
 }

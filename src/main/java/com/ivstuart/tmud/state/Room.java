@@ -47,9 +47,10 @@ public class Room extends BasicThing implements Msgable {
     private boolean isNoMagic;
     private boolean isTunnel;
     private boolean isPrivate;
-    private boolean isGodRoom; // Admin only rooms
+    private boolean isAdminRoom;
     private boolean isHouse;
     private boolean isClimb;
+    private boolean isNoDrop;
 
     public Room() {
         initRoom();
@@ -72,9 +73,48 @@ public class Room extends BasicThing implements Msgable {
         this.isNoMagic = room.isNoMagic;
         this.isTunnel = room.isTunnel;
         this.isPrivate = room.isPrivate;
-        this.isGodRoom = room.isGodRoom;
+        this.isAdminRoom = room.isAdminRoom;
         this.isHouse = room.isHouse;
         this.isClimb = room.isClimb;
+        this.isNoDrop = room.isNoDrop;
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "tracks=" + tracks +
+                ", _type='" + _type + '\'' +
+                ", _props=" + _props +
+                ", _exits=" + _exits +
+                ", _mobs=" + _mobs +
+                ", _items=" + _items +
+                ", isRegen=" + isRegen +
+                ", isUnderWater=" + isUnderWater +
+                ", isDark=" + isDark +
+                ", isWater=" + isWater +
+                ", isFlying=" + isFlying +
+                ", isDeath=" + isDeath +
+                ", isNoMob=" + isNoMob +
+                ", isIndoors=" + isIndoors +
+                ", isPeaceful=" + isPeaceful +
+                ", isSoundProof=" + isSoundProof +
+                ", isNoTrack=" + isNoTrack +
+                ", isNoMagic=" + isNoMagic +
+                ", isTunnel=" + isTunnel +
+                ", isPrivate=" + isPrivate +
+                ", isAdminRoom=" + isAdminRoom +
+                ", isHouse=" + isHouse +
+                ", isClimb=" + isClimb +
+                ", isNoDrop=" + isNoDrop +
+                '}';
+    }
+
+    public boolean isNoDrop() {
+        return isNoDrop;
+    }
+
+    public void setNoDrop(boolean noDrop) {
+        isNoDrop = noDrop;
     }
 
     public void setRegen(boolean regen) {
@@ -169,12 +209,12 @@ public class Room extends BasicThing implements Msgable {
         isPrivate = aPrivate;
     }
 
-    public boolean isGodRoom() {
-        return isGodRoom;
+    public boolean isAdminRoom() {
+        return isAdminRoom;
     }
 
-    public void setGodRoom(boolean godRoom) {
-        isGodRoom = godRoom;
+    public void setAdminRoom(boolean adminRoom) {
+        isAdminRoom = adminRoom;
     }
 
     public boolean isHouse() {
@@ -191,35 +231,6 @@ public class Room extends BasicThing implements Msgable {
 
     public void setDark(boolean dark) {
         isDark = dark;
-    }
-
-    @Override
-    public String toString() {
-        return "Room{" +
-                "tracks=" + tracks +
-                ", _type='" + _type + '\'' +
-                ", _props=" + _props +
-                ", _exits=" + _exits +
-                ", _mobs=" + _mobs +
-                ", _items=" + _items +
-                ", isRegen=" + isRegen +
-                ", isUnderWater=" + isUnderWater +
-                ", isDark=" + isDark +
-                ", isWater=" + isWater +
-                ", isFlying=" + isFlying +
-                ", isDeath=" + isDeath +
-                ", isNoMob=" + isNoMob +
-                ", isIndoors=" + isIndoors +
-                ", isPeaceful=" + isPeaceful +
-                ", isSoundProof=" + isSoundProof +
-                ", isNoTrack=" + isNoTrack +
-                ", isNoMagic=" + isNoMagic +
-                ", isTunnel=" + isTunnel +
-                ", isPrivate=" + isPrivate +
-                ", isGodRoom=" + isGodRoom +
-                ", isHouse=" + isHouse +
-                ", isClimb=" + isClimb +
-                '}';
     }
 
     public boolean isWater() {

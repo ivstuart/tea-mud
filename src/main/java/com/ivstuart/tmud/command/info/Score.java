@@ -26,6 +26,9 @@ import static com.ivstuart.tmud.constants.ManaType.*;
  */
 public class Score extends BaseCommand {
 
+    public static final int DAYS = 1000 * 60 * 60 * 24;
+    public static final int HOURS = 1000 * 60 * 60;
+
     @Override
     public void execute(Mob mob, String input) {
 
@@ -44,9 +47,14 @@ public class Score extends BaseCommand {
         mob.out("   You are " + mob.getId() + ", level " + data.getLevel()
                 + " amongst your " + mob.getRace().getName() + " ancestors.\n");
 
+        long playingTime = player.getData().getPlayingTime();
+
+        int days = (int) playingTime / DAYS;
+        int hours = (int) (playingTime - days * DAYS) / HOURS;
+
         mob.out("   You are " + player.getData().getAge() + " years of age ("
-                + player.getData().getPlayingFor() + " Days, "
-                + player.getData().getPlayingFor() + " Hours) old. You are "
+                + days + " Days, "
+                + hours + " Hours) old. You are "
                 + mob.getHeight() + "cm's tall.");
         mob.out("   You have gained " + player.getData().getTotalXp()
                 + " experience points " + player.getData().getRemorts()

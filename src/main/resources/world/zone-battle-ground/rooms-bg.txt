@@ -1,0 +1,19 @@
+class: state.Room
+
+id: ZBG-:0:0:0
+brief: The fighting pits of Carg-re
+type: Outside
+look: The fighting pits of Carg-re
+noDrop: true
+
+class: state.RoomBuilder
+id: ZBG-:0:0:0
+roomPrefix: ZBG-
+path: [10s10e10n10w]
+execute: notused
+#noDrop: true
+
+
+
+
+
