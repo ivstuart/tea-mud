@@ -2,6 +2,7 @@ package com.ivstuart.tmud.state;
 
 import com.ivstuart.tmud.command.admin.AddAdmin;
 import com.ivstuart.tmud.command.admin.Ban;
+import com.ivstuart.tmud.command.communication.AuctionItem;
 import com.ivstuart.tmud.command.misc.ForcedQuit;
 import com.ivstuart.tmud.common.Tickable;
 import com.ivstuart.tmud.exceptions.MudException;
@@ -34,18 +35,20 @@ public class World {
 	private static ScheduledExecutorService scheduledExecutorService;
 
 	private static List<Race> races;
+	private static Map<String, AuctionItem> auction;
 
-    private World() {
-        tickers = new HashMap<String, Tickable>();
-        _zones = new HashMap<String, Zone>();
-        _rooms = new HashMap<String, Room>();
-        _mobs = new HashMap<String, Mob>();
-        _items = new HashMap<String, Item>();
-        skills = new HashMap<String, BaseSkill>();
-        spells = new HashMap<String, Spell>();
-        _players = new HashSet<String>();
-        _props = new HashMap<String, Prop>();
-        races = new ArrayList<Race>();
+	private World() {
+		tickers = new HashMap<>();
+		_zones = new HashMap<>();
+		_rooms = new HashMap<>();
+		_mobs = new HashMap<>();
+		_items = new HashMap<>();
+		skills = new HashMap<>();
+		spells = new HashMap<>();
+		_players = new HashSet<>();
+		_props = new HashMap<>();
+		races = new ArrayList<>();
+		auction = new HashMap<>();
 
         // Initialise banned list of player names if it exists.
         Ban.init();
@@ -251,6 +254,18 @@ public class World {
             return World.getRoom("R-P1");
         }
     }
+
+	public static void registerAuction(Mob seller, AuctionItem auctionItem) {
+		auction.put(seller.getName(), auctionItem);
+	}
+
+	public static AuctionItem getAuction(String sellerName) {
+		return auction.get(sellerName);
+	}
+
+	public static AuctionItem removeAuction(Mob seller) {
+		return auction.remove(seller.getName());
+	}
 
 	public void addToWorld(Object object) {
 

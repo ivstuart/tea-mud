@@ -44,6 +44,7 @@ public class Item extends Prop implements Equipable, Msgable {
 	protected boolean isClimbing;
 	protected boolean isShopSupplied;
 	int loadPercentage = 1;
+	private boolean isNoDrop;
 
 	public Item() {
 	}
@@ -202,7 +203,6 @@ public class Item extends Prop implements Equipable, Msgable {
 		return (_type.indexOf("SHIELD") != -1);
 	}
 
-
 	public Room getRoom() {
 		// TODO need for locate object spell
 		return null;
@@ -241,5 +241,13 @@ public class Item extends Prop implements Equipable, Msgable {
 
 	public boolean isLoaded() {
 		return DiceRoll.ONE_D100.rollLessThanOrEqualTo(loadPercentage);
+	}
+
+	public boolean isNoDrop() {
+		return isNoDrop;
+	}
+
+	public void setNoDrop(boolean noDrop) {
+		isNoDrop = noDrop;
 	}
 }

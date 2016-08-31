@@ -5,14 +5,19 @@ import com.ivstuart.tmud.command.admin.Battleground;
 import com.ivstuart.tmud.command.item.Get;
 import com.ivstuart.tmud.command.item.Sacrifice;
 import com.ivstuart.tmud.common.DiceRoll;
+import com.ivstuart.tmud.common.Equipable;
 import com.ivstuart.tmud.common.MobState;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.constants.DamageConstants;
+import com.ivstuart.tmud.person.carried.Money;
+import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.person.config.ConfigData;
 import com.ivstuart.tmud.person.statistics.Affect;
 import com.ivstuart.tmud.state.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.List;
 
 import static com.ivstuart.tmud.constants.SpellNames.*;
 
@@ -378,8 +383,26 @@ public class DamageManager {
         // Coins
         corpse.getInventory().add(defender.getInventory().getPurse());
         defender.getInventory().getPurse().clear();
-        //Money money = new Money(Money.COPPER, defender.getCopper());
-        //corpse.getInventory().add(money);
+
+        // Equip
+        List<Equipable> equipables = defender.getEquipment().removeAll();
+
+        for (Equipable eq : equipables) {
+            Item item = (Item) eq;
+            if (item.isNoDrop()) {
+                // defender.getInventory().add(item);
+                defender.getEquipment().add(item);
+            } else {
+                corpse.getInventory().add(item);
+            }
+        }
+
+        // Mob copper
+        if (!defender.isPlayer()) {
+            SomeMoney money = new Money(Money.COPPER, defender.getCopper());
+            corpse.getInventory().getPurse().add(money);
+        }
+
     }
 
     private static int checkForDodge(Mob defender, int damage) {

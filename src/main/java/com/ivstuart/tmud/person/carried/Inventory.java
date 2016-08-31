@@ -201,6 +201,9 @@ public class Inventory implements Serializable {
 		if (input.indexOf("gold") > -1) {
 			type = Money.GOLD;
 		}
+		if (input.indexOf("plati") > -1) {
+			type = Money.PLATINUM;
+		}
 		if (type > -1) {
 			String inputSplit[] = input.split(" ");
 			if (inputSplit == null) {

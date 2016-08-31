@@ -43,6 +43,8 @@ command.info.SpellsInfo,REST
 command.info.AbilityInfo,REST
 command.info.CommandList,REST
 command.communication.Auction,REST
+command.communication.AuctionItem,REST
+command.communication.Bid,REST
 command.communication.Bug,REST
 command.communication.Chat,REST
 command.communication.Emote,REST
@@ -83,6 +85,7 @@ command.misc.Title,REST
 command.misc.Death,REST
 command.misc.Remort,STAND
 command.misc.Quit,SLEEP
+command.misc.SavePlayer,SLEEP
 command.misc.Password,SLEEP
 command.ability.BackStab,STAND
 command.ability.Bash,STAND
