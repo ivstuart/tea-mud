@@ -18,6 +18,7 @@ keywords: dragon
 description: a huge sleeping dragon. Crikey! thats lucky he is asleep.
 peaceful: true
 noMagic: true
+auctionHouse: true
 
 id: R-P2
 brief: The Portal of Eternal Light
@@ -37,6 +38,7 @@ keywords: dragon
 description: a huge sleeping dragon. Crikey! thats lucky hes asleep.
 peaceful: true
 noMagic: true
+auctionHouse: true
 
 # The following rooms can only be reached via teleport spell now
 # admin testing area.

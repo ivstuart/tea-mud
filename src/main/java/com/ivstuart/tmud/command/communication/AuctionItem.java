@@ -40,6 +40,16 @@ public class AuctionItem extends AdminCommand implements Runnable {
 
         super.execute(mob, input);
 
+        if (!mob.getRoom().isAuctionHouse()) {
+            mob.out("You MUST be in an auction house in order to auction");
+            return;
+        }
+
+        if (mob.getFight().isEngaged() || mob.getFight().isFighting()) {
+            mob.out("You can not auction while engaged in fighting!");
+            return;
+        }
+
         if (mob.getInventory().getPurse().getValue() < 500) {
             mob.out("You do not have sufficient funds to auction an item 500 copper required");
             return;

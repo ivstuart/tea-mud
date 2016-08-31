@@ -16,6 +16,7 @@ look: The dark inner sanctum within the White Tower is made from highly polished
 look: snow white marbled stone. Along the outer walls of the courtyard torches,
 look: held by iron sconces, flicker dim light about the area.
 
+
 class: state.RoomBuilder
 id: Z0-:1:0:0
 roomPrefix: Z0-

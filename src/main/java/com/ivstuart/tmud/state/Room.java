@@ -52,12 +52,12 @@ public class Room extends BasicThing implements Msgable {
     private boolean isHouse;
     private boolean isClimb;
     private boolean isNoDrop;
+    private boolean isAuctionHouse;
     private SectorType sectorType;
 
     public Room() {
         initRoom();
     }
-
     public Room(Room room) {
         super(room);
         initRoom();
@@ -79,6 +79,15 @@ public class Room extends BasicThing implements Msgable {
         this.isHouse = room.isHouse;
         this.isClimb = room.isClimb;
         this.isNoDrop = room.isNoDrop;
+        this.isAuctionHouse = room.isAuctionHouse;
+    }
+
+    public boolean isAuctionHouse() {
+        return isAuctionHouse;
+    }
+
+    public void setAuctionHouse(boolean auctionHouse) {
+        isAuctionHouse = auctionHouse;
     }
 
     public SectorType getSectorType() {
