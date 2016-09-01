@@ -7,7 +7,6 @@
 package com.ivstuart.tmud.command.communication;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.world.Channel;
 import com.ivstuart.tmud.world.ChannelHistory;
@@ -31,10 +30,10 @@ public class Raid extends BaseCommand {
 
 		if (input.length() > 0) {
 
-			c.add("$G[" + mob.getId() + "] " + input + "$J");
+			c.add((String) ("$G[" + mob.getId() + "] " + input + "$J"), mob.isGood());
 		} else {
 			mob.out("$H<------------  RAID HISTORY  ------------>$J");
-			mob.out(c.toString(0));
+			mob.out(c.toString(mob.isGood()));
 		}
 	}
 

@@ -7,7 +7,6 @@
 package com.ivstuart.tmud.command.communication;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.World;
 import com.ivstuart.tmud.world.Channel;
@@ -35,12 +34,11 @@ public class Auction extends BaseCommand {
 
 			String msg = "$H(" + mob.getId() + ") " + input + "$J";
 
-			c.add(msg);
-			mob.out(msg);
+			c.add(msg, mob.isGood());
 			World.out(msg,mob.isGood());
 		} else {
 			mob.out("$H------------( Auction History  )------------$J");
-			mob.out(c.toString(0));
+			mob.out(c.toString(mob.isGood()));
 		}
 
 	}

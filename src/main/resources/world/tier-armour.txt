@@ -70,3 +70,4 @@ rent: 5
 affects:
 armour: 0 0 0 0 0 0 10
 APB: 1
+noDrop: true
