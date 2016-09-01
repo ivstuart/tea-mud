@@ -1,0 +1,84 @@
+=== EBOOK - How to build your own Mud ===
+
+== Table Of Contents
+
+ 1. Introduction
+   i. What is a mud
+  ii. History of muds
+ 2. Main object relationships
+ 3. Client server communication
+ 4. MudIO the persistence layer
+ 5. SomeMoney explained
+ 6. FightActions explained
+ 7. Spells and Buffs
+ 8. Mob Behaviour
+ 9. World building
+10. Conclusion
+
+== Introduction
+= What is a mud
+
+A mud or multi-user dungeon is a game in which the player takes on an avatar or character in order to play the game.
+This alter ego is very much like playing a character in an RPG (Role Playing Game). In the game world players have hp or
+health points to record damage against them that they receive from monsters or mobs (mobile objects) or other players.
+When hp is less than zero you are killed and respawn back to the starting portal.
+
+When you are killed your equipment and items drop onto your corpse which fell where you were killed. You then have the
+task to walk back to the location to retrieve your equipment. However other players may get there first and steal your
+belongings. This is allowed on a player killing mud. Or PVP mud (player verses player).
+
+In order to move from room to room you have mv points or movement points. Depending on the terrain room type and
+movement method will determine the total cost of the movement out of a room to another one. Being a fantasy game players
+also have mana or mn points to cast spells with.
+
+Hp, Mv, Mn all regenerate over time. The speed depends on what state your character is in. i.e. They will recover more
+quickly if the character is sleeping. However being asleep makes you very vulnerable to attack. The game has a passage
+of time every 100 milliseconds to resolve combat turns and every 15 seconds players regain a percentage of these stats.
+
+A player advances through the game by killing mobs. Mobs on death provide xp points and a chance to find new equipment
+via equipment drops. Eq or equipment when rare or powerful is known as leet equipment. One goal of the game is to
+collect as much leet eq as the character can equip. Another is to reach the maximum level for the game typically level
+90. Another is to collect gold and become wealth. Another is to kill as many opposite alignment players as you can and
+be rating top player killer in war points. At the end of the day its all about having fun and making new friends that
+are met online. In order to most efficiently xp or hunt down other players players need to get into a group and work
+together. The game can be played solo but most fun is to be had from working together in teams of players.
+
+At level 60 it is possible to remort, to increase racial stats such that strength, constitution, intelligence, dexterity
+, wisdom are increased by up to 6 points. This is done at the cost of returning the character to level 1 to start over
+the game but with a more powerful character. This can be done 6 times and provides the players with the repeat play
+experience of returning to zones for lower level characters.
+
+Players can group up to share xp for killing mobs or war points for killing players. However the xp is split by level
+of each player to keep it fair as the higher level players are likely to be dealing out the majority of the damage.
+Players can use war points to tier at there war master to receive special leet equipment.
+
+= History of muds
+
+TODO
+
+==  Main object relationships
+
+[PlayerData]
+   |
+[Player: (Mob) (Connection)]  /---[Equipment]
+   |                         /
+ [Mob: (Room) (Race) (Flags)]-----[Inventory]-----[Room (Flags)]-----[Exit]-----[Door]
+   |         |          |               |*
+ [Race]   [Fight]     [Prop]----------[Item (Flags)]
+             |           |
+          [FightAction]  [Basic Thing]
+           |         |
+  [BasicAttack]  [BasicSpell]
+                     |
+                 [Spell Effect]
+
+  [World]
+
+  [Commands]
+       /|\
+  [Enter][North][South][West][East][Up][Down][Kill]
+
+  == How to obtain the rest of this eBook
+
+  Firstly I have to write it. But I want to gauge interest first. Pledge 99p to me at Ivan.Stuart@gmail.com
+  When I have at least 10 pledges I will go ahead with the rest of this eBook.
