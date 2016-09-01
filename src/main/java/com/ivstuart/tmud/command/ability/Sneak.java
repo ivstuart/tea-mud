@@ -7,7 +7,7 @@
 package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Mob;
 
@@ -36,7 +36,7 @@ public class Sneak extends BaseCommand {
 		}
 
 		if (sneak.isSuccessful()) {
-			mob.out("<S-You/NAME> successfully start to sneak");
+			mob.out(new Msg(mob, "<S-You/NAME> successfully start to sneak"));
 
 			mob.getMobStatus().setSneaking(60);// 1 minute of sneaking around.
 

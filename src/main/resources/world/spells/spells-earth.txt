@@ -67,7 +67,7 @@ duration: 2d6+100
 id: earthen strength
 level: 4
 cost: 10
-damage: 3
+amount: 3
 target: SINGLE
 speed: 5
 mana: EARTH

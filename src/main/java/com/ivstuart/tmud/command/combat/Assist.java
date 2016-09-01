@@ -1,7 +1,7 @@
 package com.ivstuart.tmud.command.combat;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.state.Mob;
 
 public class Assist extends BaseCommand {
@@ -19,8 +19,7 @@ public class Assist extends BaseCommand {
 
 		mob.getFight().changeTarget(targetTarget);
 
-		mob.out("<S-You/NAME> assist " + target.getName() + " by attacking "
-				+ targetTarget.getName());
+        mob.out(new Msg(mob, targetTarget, ("<S-You/NAME> assist " + target.getName() + " by attacking <T-NAME>")));
 
 	}
 

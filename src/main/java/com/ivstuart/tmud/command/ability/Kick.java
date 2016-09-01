@@ -8,6 +8,7 @@ package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.common.DiceRoll;
+import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.fighting.DamageManager;
 import com.ivstuart.tmud.fighting.action.FightAction;
 import com.ivstuart.tmud.state.Ability;
@@ -100,7 +101,7 @@ public class Kick extends BaseCommand {
 		public void begin() {
 			super.begin();
 			durationMillis(500);
-			out("<S-You prepare your/NAME prepares GEN-him>self to kick <T-you/NAME>.");
+            out(new Msg(getSelf(), getTarget(), "<S-You prepare your/NAME prepares GEN-him>self to kick <T-you/NAME>."));
 
 			if (checkMobStatus(getSelf(), getTarget())) {
 				this.finished();
@@ -129,16 +130,16 @@ public class Kick extends BaseCommand {
 			// Success or fail
 			Ability kickAbility = getSelf().getLearned().getAbility("kick");
 			if (kickAbility.isSuccessful()) {
-				out("<S-You/NAME> successfully kicked <T-you/NAME>.");
-				setKicked(getSelf(), getTarget());
+                out(new Msg(getSelf(), getTarget(), "<S-You/NAME> successfully kicked <T-you/NAME>."));
+                setKicked(getSelf(), getTarget());
 				if (kickAbility.isImproved()) {
 					out("[[[[ Your ability to " + kickAbility.getId()
 							+ " has improved ]]]]");
 					kickAbility.improve();
 				}
 			} else {
-				out("<S-You/NAME> miss<S-/es> kicking <T-you/NAME>.");
-			}
+                out(new Msg(getSelf(), getTarget(), "<S-You/NAME> miss<S-/es> kicking <T-you/NAME>."));
+            }
 
 			durationMillis(1500);
 		}

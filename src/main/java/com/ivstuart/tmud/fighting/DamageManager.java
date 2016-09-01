@@ -9,6 +9,7 @@ import com.ivstuart.tmud.common.Equipable;
 import com.ivstuart.tmud.common.MobState;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.constants.DamageConstants;
+import com.ivstuart.tmud.constants.SkillNames;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.person.config.ConfigData;
@@ -201,8 +202,7 @@ public class DamageManager {
             return armour;
         }
 
-        // TODO armour penetration
-        Ability penetration = attacker.getLearned().getAbility("armour penetration");
+        Ability penetration = attacker.getLearned().getAbility(SkillNames.ARMOUR_PENETRATION);
 
         if (penetration != null && penetration.isSuccessful()) {
             attacker.out(new Msg(attacker, "<S-You/NAME> skillfully hit between your opponents armour"));
@@ -446,7 +446,7 @@ public class DamageManager {
     }
 
     public static int checkForShieldBlocking(Mob defender, int damage) {
-        Ability shieldBlock = defender.getLearned().getAbility("shield block");
+        Ability shieldBlock = defender.getLearned().getAbility(SkillNames.SHIELD_BLOCK);
 
         if (shieldBlock != null) {
             if (defender.getEquipment().hasShieldEquiped()) {

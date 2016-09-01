@@ -7,6 +7,7 @@
 package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.BaseCommand;
+import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.fighting.action.FightAction;
 import com.ivstuart.tmud.state.Ability;
@@ -125,7 +126,7 @@ public class Bash extends BaseCommand {
 			}
 
 			durationMillis(3000);
-			out("<S-You prepare your/NAME prepares GEN-him>self to bash <T-you/NAME>.");
+            out(new Msg(getSelf(), getTarget(), "<S-You prepare your/NAME prepares GEN-him>self to bash <T-you/NAME>."));
 
 			if (checkMobStatus(getSelf(), getTarget())) {
 				this.finished();
@@ -156,16 +157,16 @@ public class Bash extends BaseCommand {
 			// Success or fail
 			Ability bashAbility = getSelf().getLearned().getAbility("bash");
 			if (bashAbility.isSuccessful()) {
-				out("<S-You/NAME> successfully bashed <T-you/NAME>.");
-				setBashed(getSelf(), getTarget());
+                out(new Msg(getSelf(), getTarget(), "<S-You/NAME> successfully bashed <T-you/NAME>."));
+                setBashed(getSelf(), getTarget());
 				if (bashAbility.isImproved()) {
 					out("[[[[ Your ability to " + bashAbility.getId()
 							+ " has improved ]]]]");
 					bashAbility.improve();
 				}
 			} else {
-				out("<S-You/NAME> miss<S-/es> bashing <T-you/NAME>.");
-			}
+                out(new Msg(getSelf(), getTarget(), "<S-You/NAME> miss<S-/es> bashing <T-you/NAME>."));
+            }
 
 			durationMillis(2500);
 		}

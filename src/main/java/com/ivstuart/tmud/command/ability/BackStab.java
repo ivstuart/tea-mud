@@ -9,6 +9,7 @@ package com.ivstuart.tmud.command.ability;
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.Equipable;
+import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.fighting.DamageManager;
 import com.ivstuart.tmud.fighting.action.FightAction;
 import com.ivstuart.tmud.state.Ability;
@@ -111,7 +112,7 @@ public class BackStab extends BaseCommand {
 			}
 
 			durationMillis(500);
-			out("<S-You prepare your/NAME prepares GEN-him>self to backstab <T-you/NAME>.");
+            out(new Msg(getSelf(), getTarget(), ("<S-You prepare your/NAME prepares GEN-him>self to backstab <T-you/NAME>.")));
 
 			if (checkMobStatus(getSelf(), getTarget())) {
 				this.finished();
@@ -138,7 +139,7 @@ public class BackStab extends BaseCommand {
 			// Success or fail
 			Ability bsAbility = getSelf().getLearned().getAbility("backstab");
 			if (bsAbility.isSuccessful()) {
-				out("<S-You/NAME> successfully backstabed <T-you/NAME>.");
+                out(new Msg(getSelf(), getTarget(), ("<S-You/NAME> successfully backstabed <T-you/NAME>.")));
 
 				int dex = getSelf().getPlayer().getAttributes().getDEX().getValue();
 
@@ -161,8 +162,8 @@ public class BackStab extends BaseCommand {
 					bsAbility.improve();
 				}
 			} else {
-				out("<S-You/NAME> miss<S-/es> backstab <T-you/NAME>.");
-			}
+                out(new Msg(getSelf(), getTarget(), ("<S-You/NAME> miss<S-/es> backstab <T-you/NAME>.")));
+            }
 
 			durationMillis(2500);
 		}

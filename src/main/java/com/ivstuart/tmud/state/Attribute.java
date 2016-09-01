@@ -8,28 +8,11 @@ import java.io.Serializable;
 public class Attribute implements Serializable {
 
 	private static final Logger LOGGER = LogManager.getLogger();
-
-	@Override
-	public String toString() {
-		return "Attribute{" +
-				"name='" + name + '\'' +
-				", minimum=" + minimum +
-				", maximum=" + maximum +
-				", current=" + current +
-				", savedMaximum=" + savedMaximum +
-				'}';
-	}
-
 	private static final long serialVersionUID = 1L;
-
 	protected final String name;
-
 	protected int minimum;
-
 	protected int maximum;
-
 	protected int current;
-
 	protected int savedMaximum;
 
 	public Attribute(Attribute oldAttribute_) {
@@ -59,6 +42,17 @@ public class Attribute implements Serializable {
 		current = value;
 		minimum = min;
 	}
+
+    @Override
+    public String toString() {
+        return "Attribute{" +
+                "name='" + name + '\'' +
+                ", minimum=" + minimum +
+                ", maximum=" + maximum +
+                ", current=" + current +
+                ", savedMaximum=" + savedMaximum +
+                '}';
+    }
 
 	/*
 	 * (non-Javadoc)
@@ -132,10 +126,21 @@ public class Attribute implements Serializable {
 	}
 
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see person.statistics.AttributeInterface#increase(int)
+     * (non-Javadoc)
+	 *
+	 * @see person.statistics.AttributeInterface#setValue(int)
 	 */
+    public void setValue(int value) {
+        current = value;
+        this.decrease(0);
+        this.increase(0);
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see person.statistics.AttributeInterface#increase(int)
+     */
 	public void increase(int value) {
 		current += value;
 		if (current > maximum) {
@@ -151,29 +156,10 @@ public class Attribute implements Serializable {
 		current = maximum;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see person.statistics.AttributeInterface#setValue(int)
-	 */
-	public void setValue(int value) {
-		current = value;
-		this.decrease(0);
-		this.increase(0);
-	}
-
 	public boolean isMaximum() {
     	return current >= maximum;
     }
 
-    public void savePoint() {
-		savedMaximum = maximum;
-    }
-
-	public void rollback() {
-		maximum = savedMaximum;
-		increase(0);
-	}
 
     public void increasePercentage(int i) {
     	int inc = 1+ (int) (i * maximum) / 100;

@@ -7,6 +7,7 @@
 package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.BaseCommand;
+import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Corpse;
 import com.ivstuart.tmud.state.Item;
@@ -44,7 +45,7 @@ public class Investigate extends BaseCommand {
 		Ability ability = mob.getLearned().getAbility("investigate");
 
 		if (ability.isSuccessful()) {
-			mob.out("<S-You/NAME> successfully investigated.");
+			mob.out(new Msg(mob, ("<S-You/NAME> successfully investigated.")));
 			
 			mob.out(corpse.investigation());
 	
@@ -54,7 +55,7 @@ public class Investigate extends BaseCommand {
 				ability.improve();
 			}
 		} else {
-			mob.out("<S-You/NAME> failed to investigate.");
+			mob.out(new Msg(mob, ("<S-You/NAME> failed to investigate.")));
 		}
 	}
 

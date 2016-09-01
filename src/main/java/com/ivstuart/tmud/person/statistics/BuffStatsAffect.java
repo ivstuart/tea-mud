@@ -26,9 +26,8 @@ public class BuffStatsAffect extends Affect {
 			_mob.out("You feel the affects of zero stat buff " + _desc);
 			return;
 		}
-		int amount = spell.getDamage().roll();
-		_mob.getPlayer().getAttributes().get(stat).savePoint();
-		_mob.getPlayer().getAttributes().get(stat).increaseMaximum(amount);
+        int amount = spell.getAmount();
+        _mob.getPlayer().getAttributes().get(stat).increaseMaximum(amount);
 		_mob.getPlayer().getAttributes().get(stat).increase(amount);
 	}
 
@@ -40,7 +39,9 @@ public class BuffStatsAffect extends Affect {
 			_mob.out("You feel the affects of zero stat buff wear off " + _desc);
 			return;
 		}
-		_mob.getPlayer().getAttributes().get(stat).rollback();
+        int amount = spell.getAmount();
+        _mob.getPlayer().getAttributes().get(stat).increaseMaximum(-amount);
+        _mob.getPlayer().getAttributes().get(stat).decrease(amount);
 
 	}
 

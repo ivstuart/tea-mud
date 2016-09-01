@@ -7,8 +7,8 @@
 package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.common.DiceRoll;
+import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Mob;
@@ -55,7 +55,7 @@ public class Steal extends BaseCommand {
 
 
 		if (steal.isSuccessful()) {
-			mob.out("<S-You/NAME> successfully pilfer something...");
+			mob.out(new Msg(mob, ("<S-You/NAME> successfully pilfer something...")));
 
 			// TODO optional make it possible to steal other inventory items.
 			int amount = DiceRoll.ONE_D100.roll();

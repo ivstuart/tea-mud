@@ -1,15 +1,14 @@
 package com.ivstuart.tmud.command.combat;
 
-import java.util.List;
-
 import com.ivstuart.tmud.command.BaseCommand;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.WorldTime;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.List;
 
 /**
  * TODO rescue <mob> rescue <mob> [from <mob>] rescue <mob> [from all] rescue
@@ -66,9 +65,9 @@ public class Rescue extends BaseCommand {
 
 		Ability ability = mob.getLearned().getAbility(RESCUE);
 		if (ability.isSuccessful()) {
-			// mob.out("<S-You/NAME> successfully rescue <T-you/NAME>.");
-			mob.getRoom().out("<S-You/NAME> successfully rescue <T-you/NAME>.");
-			if (!mob.getFight().isFighting()) {
+
+            mob.getRoom().out(new Msg(mob, aggressor, ("<S-You/NAME> successfully rescue <T-you/NAME>.")));
+            if (!mob.getFight().isFighting()) {
 				mob.getFight().getMelee().setTarget(aggressor);
 				WorldTime.addFighting(mob);
 			}
@@ -82,8 +81,8 @@ public class Rescue extends BaseCommand {
 				ability.improve();
 			}
 		} else {
-			mob.out("<S-You/NAME> fail to rescue <T-you/NAME>.");
-		}
+            mob.out(new Msg(mob, aggressor, ("<S-You/NAME> fail to rescue <T-you/NAME>.")));
+        }
 
 	}
 
