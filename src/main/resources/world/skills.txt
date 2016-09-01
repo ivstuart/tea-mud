@@ -74,6 +74,10 @@ level: 1
 id: enhanced damage
 level: 1
 
+id: disarm
+level: 10
+prof: FIGHTER
+
 #Thief skills
 id: sneak
 level: 1
