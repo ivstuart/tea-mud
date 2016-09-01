@@ -9,6 +9,7 @@ package com.ivstuart.tmud.command.communication;
 import com.ivstuart.tmud.command.admin.AdminCommand;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
+import com.ivstuart.tmud.person.config.ChannelData;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.World;
@@ -123,9 +124,9 @@ public class AuctionItem extends AdminCommand implements Runnable {
         countDown--;
 
         if (currentBid != null && highestBidder != null) {
-            World.out("<" + countDown + "> <" + seller.getName() + "> Item " + item.getName() + " current bidding is <" + highestBidder.getName() + "> " + currentBid, seller.isGood());
+            World.out("<" + countDown + "> <" + seller.getName() + "> Item " + item.getName() + " current bidding is <" + highestBidder.getName() + "> " + currentBid, seller.isGood(), ChannelData.AUCTION);
         } else {
-            World.out("<" + countDown + "> <" + seller.getName() + "> Item " + item.getName(), seller.isGood());
+            World.out("<" + countDown + "> <" + seller.getName() + "> Item " + item.getName(), seller.isGood(), ChannelData.AUCTION);
         }
 
         if (countDown <= 0) {

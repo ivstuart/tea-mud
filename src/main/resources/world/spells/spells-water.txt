@@ -80,14 +80,14 @@ mana: WATER
 spellEffect: SANC
 duration: 2d6+100
 
-id: invisiblity
+id: invisibility
 level: 10
 cost: 20
 damage: 0
 target: SINGLE
 speed: 5
 mana: WATER
-spellEffect: INVISIBLITY
+spellEffect: INVIS
 duration: 2d6+10
 
 id: weaken

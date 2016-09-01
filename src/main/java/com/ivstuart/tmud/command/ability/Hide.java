@@ -7,10 +7,13 @@
 package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.BaseCommand;
+import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Exit;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @author stuarti
@@ -20,11 +23,20 @@ import com.ivstuart.tmud.state.Mob;
  */
 public class Hide extends BaseCommand {
 
-	/*
-	 * 2ndary action?
+	private static final Logger LOGGER = LogManager.getLogger();
+
+	/**
+	 * @param mob
+	 * @param input calling code ensures that null is never passed in
 	 */
 	@Override
 	public void execute(Mob mob, String input) {
+
+
+		if (mob.getFight().isEngaged() || mob.getFight().isFighting()) {
+			mob.out("You can not hide while engaged in combat");
+			return;
+		}
 
 		// TODO can hide self
 		// hide objects
@@ -49,14 +61,17 @@ public class Hide extends BaseCommand {
 			return;
 		}
 
+		// TODO hide a mob
+
 		if (mob.getMobStatus().isHidden()) {
 			mob.out("You are already hidden.");
 			return;
 		}
 
 		if (ability.isSuccessful()) {
-			mob.out("<S-You/NAME> successfully hide.");
+			mob.out(new Msg(mob, "<S-You/NAME> successfully hide."));
 			mob.getMobStatus().setHidden(30);
+			mob.setHidden(true);
 
 			if (ability.isImproved()) {
 				mob.out("[[[[ Your ability to " + ability.getId()
@@ -64,7 +79,7 @@ public class Hide extends BaseCommand {
 				ability.improve();
 			}
 		} else {
-			mob.out("<S-You/NAME> failed to hide");
+			mob.out(new Msg(mob, "<S-You/NAME> failed to hide."));
 		}
 
 		// Do "search" in collaboration with this command.
@@ -84,6 +99,8 @@ public class Hide extends BaseCommand {
 			return;
 		}
 
+		LOGGER.debug("Item was null hence trying to hide a special exit instead");
+
 		Exit exit = mob.getRoom().getExit(input);
 
 		if (exit != null) {
@@ -93,9 +110,11 @@ public class Hide extends BaseCommand {
 				mob.getRoom().out(
 						"<S-You/NAME> hide " + exit.getName()
 								+ " to throw off pursuit!");
+				return;
 			}
 		}
 
+		mob.out("You failing to find any " + input + " to hide");
 	}
 
 }

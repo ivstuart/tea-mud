@@ -1,10 +1,12 @@
 package com.ivstuart.tmud.state;
 
-import java.io.Serializable;
-
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.constants.ManaType;
 import com.ivstuart.tmud.person.Player;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.io.Serializable;
 
 /**
  * A skill or spell can extend from this.
@@ -14,12 +16,10 @@ import com.ivstuart.tmud.person.Player;
  */
 public class Ability implements Serializable {
 
-	private static final long serialVersionUID = -5422068126244012518L;
-
 	public static final int MAX_PRACTICE = 50;
-
 	public static final Ability NULL_ABILITY = new Ability("NULL");
-
+	private static final long serialVersionUID = -5422068126244012518L;
+	private static final Logger LOGGER = LogManager.getLogger();
 	private String id;
 
 	private int skill = 0;
@@ -69,6 +69,10 @@ public class Ability implements Serializable {
 		return World.getSkills().containsKey(id);
 	}
 
+	public void setSkill(int skill_) {
+		skill = skill_;
+	}
+
 	public boolean isSpell() {
 		return World.getSpells().containsKey(id);
 	}
@@ -81,6 +85,9 @@ public class Ability implements Serializable {
 		} else if (roll > 95) {
 			return false;
 		}
+
+		LOGGER.debug("Rolling for success for " + this.getId() + " with skill = " + skill);
+
 		return roll < skill;
 	}
 
@@ -90,10 +97,6 @@ public class Ability implements Serializable {
 		}
 		skill += player_.getAttributes().getINT().getValue();
 		return true;
-	}
-
-	public void setSkill(int skill_) {
-		skill = skill_;
 	}
 
 	public boolean isNull() {

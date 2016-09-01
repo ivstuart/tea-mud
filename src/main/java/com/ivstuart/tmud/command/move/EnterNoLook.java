@@ -155,6 +155,11 @@ public class EnterNoLook extends BaseCommand {
             }
         }
 
+        // Clear any hidding flags when move to new location
+        if (mob.isHidden()) {
+            mob.setHidden(false);
+        }
+
         mob.out("You " + movement + " " + exit.getId());
 
 

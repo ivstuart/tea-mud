@@ -19,6 +19,9 @@ public class SpellNames {
 
     public static final String INFRAVISION = "infravision";
     public static final String UNDERWATER_BREATH = "underwater breath";
+    public static final String DETECT_HIDDEN = "detect hidden";
+    public static final String DETECT_INVISIBLE = "detect invisible";
+    public static final String INVISIBILITY = "invisibility";
 
 
 }

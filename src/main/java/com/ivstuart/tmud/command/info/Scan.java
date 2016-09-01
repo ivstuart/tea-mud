@@ -1,20 +1,18 @@
 package com.ivstuart.tmud.command.info;
 
-import java.util.List;
-
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Exit;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.utils.MudArrayList;
 
-public class Scan extends BaseCommand {
+import java.util.List;
 
-	private Mob myMob;
+public class Scan extends BaseCommand {
 
 	private static final String DISTANCE[] = { "is pretty close by",
 			"is close by", "is not far off", "is a long way off",
 			"is very distant" };
+	private Mob myMob;
 
 	@Override
 	public void execute(Mob mob, String input) {
@@ -53,8 +51,12 @@ public class Scan extends BaseCommand {
 
 	private void showCharacters(MudArrayList<Mob> mobs, int distance, Exit exit) {
 		for (Mob mob : mobs) {
-			out(mob.getName() + " " + DISTANCE[distance] + " to the "
-					+ exit.getId() + "\n");
+			if (myMob.hasDetectHidden() || !mob.isHidden()) {
+				if (myMob.hasDetectInvisible() || !mob.isInvisible()) {
+					out(mob.getName() + " " + DISTANCE[distance] + " to the "
+							+ exit.getId() + "\n");
+				}
+			}
 		}
 	}
 

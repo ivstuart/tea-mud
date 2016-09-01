@@ -20,8 +20,8 @@ public class SpellEffectFactory {
 		spellEffectMap.put("BUFF", new BuffStats());
         spellEffectMap.put("FLY", new Levitate());
         spellEffectMap.put("DETECT", new DetectInvisible());
-		spellEffectMap.put("INVISIBLITY", new BuffStats());
-		spellEffectMap.put("DEBUFF", new BuffStats());
+        spellEffectMap.put("INVIS", new BuffStats());
+        spellEffectMap.put("DEBUFF", new BuffStats());
 		spellEffectMap.put("SLEEP", new Sleep());
 		spellEffectMap.put("REFRESH", new Refresh());
 		spellEffectMap.put("IDENT", new Identify());

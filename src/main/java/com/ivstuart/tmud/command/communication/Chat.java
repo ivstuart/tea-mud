@@ -7,6 +7,7 @@
 package com.ivstuart.tmud.command.communication;
 
 import com.ivstuart.tmud.command.BaseCommand;
+import com.ivstuart.tmud.person.config.ChannelData;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.World;
 import com.ivstuart.tmud.world.Channel;
@@ -32,7 +33,7 @@ public class Chat extends BaseCommand {
 		if (input.length() > 0) {
 
 			c.add("$B(" + mob.getId() + ") " + input + "$J", mob.isGood());
-			World.out(input,mob.isGood());
+			World.out(input, mob.isGood(), ChannelData.CHAT);
 		} else {
 			mob.out("$H------------( Chat History  )------------$J");
 			mob.out(c.toString(mob.isGood()));

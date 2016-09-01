@@ -21,11 +21,6 @@ public class BuffStatsAffect extends Affect {
 	public void applyEffect() {
 		_mob.out("You feel the affects of " + _desc);
 
-		// Hack
-//		if (spell.getId().equalsIgnoreCase("detect invisible")) {
-//			_mob.setDetectInvisible(true);
-//		}
-
 		String stat = spell.getStat();
 		if (stat == null) {
 			_mob.out("You feel the affects of zero stat buff " + _desc);

@@ -28,7 +28,7 @@ public class Search extends BaseCommand {
 	@Override
 	public void execute(Mob mob, String input) {
 
-		Ability ability = mob.getLearned().getAbility("search");
+		Ability ability = mob.getLearned().getAbility("searching");
 
 		if (ability == null) {
 			mob.out("You have no knowledge of how to search!");
@@ -45,24 +45,30 @@ public class Search extends BaseCommand {
 			return;
 		}
 
-		searchRoomForHiddenMobs(mob, ability);
+		boolean foundSomething = false;
 
-		searchRoomForHiddenItems(mob);
+		foundSomething = foundSomething || searchRoomForHiddenMobs(mob, ability);
 
-		searchRoomForHiddenExits(mob);
+		foundSomething = foundSomething || searchRoomForHiddenItems(mob);
 
-		mob.out("Nothing here hidden to find");
+		foundSomething = foundSomething || searchRoomForHiddenExits(mob);
+
+		if (!foundSomething) {
+			mob.out("Nothing here hidden to find");
+		}
+
 
 	}
 
-	public void searchRoomForHiddenExits(Mob mob) {
+	public boolean searchRoomForHiddenExits(Mob mob) {
 		for (Exit exit : mob.getRoom().getExits()) {
 			if (exit.isHidden()) {
 				mob.out("You found some additional way out!");
 				searchExit(exit);
-				return;
+				return true;
 			}
 		}
+		return false;
 	}
 
 	private void searchExit(Exit exit) {
@@ -70,22 +76,23 @@ public class Search extends BaseCommand {
 
 	}
 
-	public void searchRoomForHiddenItems(Mob mob) {
+	public boolean searchRoomForHiddenItems(Mob mob) {
 
 		for (Item item : mob.getRoom().getInventory().getItems()) {
 			if (item.isHidden()) {
 				mob.out("You found something!");
 				searchItem(item);
-				return;
+				return true;
 			}
 		}
+		return false;
 	}
 
 	private void searchItem(Item item) {
 		item.setHidden(false);
 	}
 
-	public void searchRoomForHiddenMobs(Mob mob, Ability ability) {
+	public boolean searchRoomForHiddenMobs(Mob mob, Ability ability) {
 		for (Mob roomMob : mob.getRoom().getMobs()) {
 			if (roomMob.isHidden()) {
 				mob.out("You found someone!");
@@ -97,9 +104,10 @@ public class Search extends BaseCommand {
 				}
 
 				searchMob(roomMob);
-				return;
+				return true;
 			}
 		}
+		return false;
 	}
 
 	private void searchMob(Mob roomMob) {

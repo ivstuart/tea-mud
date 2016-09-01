@@ -17,7 +17,7 @@ public class Recall implements SpellEffect {
         Room toRoom = World.getPortal(caster);
 
         if (toRoom != null) {
-            caster.out("You word of recall to " + toRoom.getId());
+            caster.out("You word of recall to your portal");
             caster.getRoom().remove(caster);
             toRoom.add(caster);
         } else {

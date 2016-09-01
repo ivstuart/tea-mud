@@ -58,7 +58,7 @@ public class Drop extends BaseCommand {
 
 		room.add(item);
 
-		mob.out("You drop an " + item);
+		mob.out("You drop an " + item.getBrief());
 	}
 
 }

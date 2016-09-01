@@ -151,7 +151,10 @@ public class Look extends BaseCommand {
 
 		StringBuilder sb = new StringBuilder();
 		for (int index = 0; index < list.size(); index++) {
-			sb.append("$IA " + list.get(index).getLook() + " lies here.\n");
+			Item item = list.get(index);
+			if (!item.isHidden() || mob.hasDetectHidden()) {
+				sb.append("$IA " + item.getLook() + " lies here.\n");
+			}
 		}
 		sb.append("$J");
 		mob.out(sb.toString());
@@ -162,9 +165,23 @@ public class Look extends BaseCommand {
 
 		for (Mob mob : mob_.getRoom().getMobs()) {
 
+			if (mob_.hasDetectHidden()) {
+				if (mob.isHidden()) {
+					sb.append("(hidden)");
+				}
+			} else {
+				if (mob.isHidden()) {
+					continue;
+				}
+			}
+
 			if (mob_.hasDetectInvisible()) {
 				if (mob.isInvisible()) {
 					sb.append("(invis)");
+				}
+			} else {
+				if (mob.isInvisible()) {
+					continue;
 				}
 			}
 

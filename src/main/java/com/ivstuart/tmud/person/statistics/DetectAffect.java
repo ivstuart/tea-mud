@@ -2,9 +2,14 @@ package com.ivstuart.tmud.person.statistics;
 
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Spell;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import static com.ivstuart.tmud.constants.SpellNames.DETECT_INVISIBLE;
 
 public class DetectAffect extends Affect {
 
+	private static final Logger LOGGER = LogManager.getLogger();
 	private final Spell spell;
 
 	public DetectAffect(Mob mob_, String desc_, int duration_) {
@@ -21,8 +26,9 @@ public class DetectAffect extends Affect {
 	public void applyEffect() {
 		_mob.out("You feel the affects of " + _desc);
 
-		if (spell.getId().equalsIgnoreCase("detect invisible")) {
-			_mob.getSenseFlags().add("invis");
+		// LOGGER.debug("Spell id :"+spell.getId());
+
+		if (spell.getId().equalsIgnoreCase(DETECT_INVISIBLE)) {
 			_mob.setDetectInvisible(true);
 		}
 	}
@@ -31,7 +37,7 @@ public class DetectAffect extends Affect {
 	public void removeEffect() {
 		_mob.out("The affects of " + _desc + " wear off");
 
-		if (spell.getId().equalsIgnoreCase("detect invisible")) {
+		if (spell.getId().equalsIgnoreCase(DETECT_INVISIBLE)) {
 			_mob.setDetectInvisible(false);
 		}
 

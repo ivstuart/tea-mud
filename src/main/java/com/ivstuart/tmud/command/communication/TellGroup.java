@@ -7,10 +7,8 @@
 package com.ivstuart.tmud.command.communication;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
-import com.ivstuart.tmud.command.info.Prompt;
+import com.ivstuart.tmud.person.config.ChannelData;
 import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.World;
 
 import java.util.List;
 
@@ -43,7 +41,10 @@ public class TellGroup extends BaseCommand {
 		}
 
 		for (Mob mob : group) {
-			mob.out("<"+mob_.getName()+"> say's "+input);
+
+			if (mob.getPlayer().getConfig().getChannelData().is(ChannelData.GROUP)) {
+				mob.out("<" + mob_.getName() + "> say's " + input);
+			}
 		}
 
 	}

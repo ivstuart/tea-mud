@@ -7,6 +7,7 @@
 package com.ivstuart.tmud.command.communication;
 
 import com.ivstuart.tmud.command.BaseCommand;
+import com.ivstuart.tmud.person.config.ChannelData;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.World;
 import com.ivstuart.tmud.world.Channel;
@@ -31,8 +32,11 @@ public class Newbie extends BaseCommand {
 
 		if (input.length() > 0) {
 
-			c.add((String) ("$K(" + mob.getId() + ") " + input + "$J"), mob.isGood());
-			World.out(input,mob.isGood());
+			String msg = "$K(" + mob.getId() + ") " + input + "$J";
+
+			c.add(msg, mob.isGood());
+
+			World.out(msg, mob.isGood(), ChannelData.NEWBIE);
 		} else {
 			mob.out("$H>>>>>>>>>>>>>>> Newbie History <<<<<<<<<<<<<<<$J");
 			mob.out(c.toString(mob.isGood()));

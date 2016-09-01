@@ -23,6 +23,7 @@ public class Race {
     boolean infravison = false;
     boolean stoneskin = false;
     boolean waterbreath = false;
+    private boolean detectHidden;
 
     public String getId() {
         return id;
@@ -179,4 +180,11 @@ public class Race {
         this.height = height;
     }
 
+    public boolean isDetectHidden() {
+        return detectHidden;
+    }
+
+    public void setDetectHidden(boolean detectHidden) {
+        this.detectHidden = detectHidden;
+    }
 }

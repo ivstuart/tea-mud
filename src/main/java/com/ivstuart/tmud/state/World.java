@@ -267,6 +267,17 @@ public class World {
 		return auction.remove(seller.getName());
 	}
 
+	public static void out(String msg, boolean good, int channelData) {
+		for (String player : _players) {
+			Mob aPlayer = _mobs.get(player.toLowerCase());
+			if (aPlayer.isGood() == good) {
+				if (aPlayer.getPlayer().getConfig().getChannelData().is(channelData)) {
+					aPlayer.out(msg);
+				}
+			}
+		}
+	}
+
 	public void addToWorld(Object object) {
 
 		if (object instanceof Room) {
