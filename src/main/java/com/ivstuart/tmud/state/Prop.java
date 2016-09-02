@@ -12,6 +12,8 @@ public class Prop extends BasicThing {
 	protected String affects;
 
 	protected boolean waterSource;
+	protected boolean isSittable;
+	protected boolean isSleepable;
 
 	public Prop() {
 	}
@@ -21,6 +23,22 @@ public class Prop extends BasicThing {
 		alias = prop_.alias;
 		affects = prop_.affects;
 		waterSource = false;
+	}
+
+	public boolean isSittable() {
+		return isSittable;
+	}
+
+	public void setSittable(boolean sittable) {
+		isSittable = sittable;
+	}
+
+	public boolean isSleepable() {
+		return isSleepable;
+	}
+
+	public void setSleepable(boolean sleepable) {
+		isSleepable = sleepable;
 	}
 
 	public String getAlias() {

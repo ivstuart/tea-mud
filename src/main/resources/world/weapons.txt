@@ -41,6 +41,19 @@ cost: 2
 rent: 1
 affects:
 
+id: dagger-001
+alias: dagger
+short: dagger
+look: dagger
+skill: piercing
+type: weapon SHARP
+damage: 3d2+1
+wear: PRIMARY
+weight: 1
+cost: 2
+rent: 1
+affects:
+
 id: morning-star-001
 alias: morning star
 short: morning star
@@ -54,15 +67,82 @@ cost: 15
 rent: 5
 affects:
 
+# Make admin only
 id: thors-hammer-001
 alias: thors hammer
 short: thors hammer
 look: thors hammer
 skill: crushing
 type: weapon
-damage: 3d60+800
+damage: 1d60+200
 wear: PRIMARY
 weight: 40000
 cost: 15000
 rent: 50000
+affects:
+noDrop: true
+
+id: axe-001
+alias: axe
+short: axe
+look: axe which looks well worn
+skill: slashing chopping
+type: weapon
+damage: 3d6+2
+wear: PRIMARY
+weight: 15
+cost: 15
+rent: 5
+affects:
+
+id: mace-001
+alias: mace
+short: mace
+look: mace which looks well worn
+skill: crushing
+type: weapon
+damage: 2d8+2
+wear: PRIMARY
+weight: 15
+cost: 15
+rent: 5
+affects:
+
+id: warhammer-001
+alias: warhammer
+short: warhammer
+look: warhammer which looks well worn
+skill: crushing
+type: weapon
+damage: 3d8+2
+wear: BOTH
+weight: 25000
+cost: 15
+rent: 5
+affects:
+
+id: battleaxe-001
+alias: battleaxe
+short: battleaxe
+look: battleaxe which looks well worn
+skill: crushing
+type: weapon
+damage: 4d6+2
+wear: BOTH
+weight: 25000
+cost: 15
+rent: 5
+affects:
+
+id: greatsword-001
+alias: greatsword
+short: greatsword
+look: greatsword which looks well worn
+skill: crushing
+type: weapon
+damage: 4d6+1
+wear: BOTH
+weight: 15000
+cost: 15
+rent: 5
 affects:

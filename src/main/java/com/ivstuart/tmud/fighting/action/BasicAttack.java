@@ -198,18 +198,14 @@ public class BasicAttack extends FightAction {
 		Ability armourPeneration = getSelf().getLearned().getAbility(
 				"armour penetration");
 
-		// APB - default 3 multiplier
+		int damageAmount = damage.roll();
 
-		// Stat based damage modifier.
-
-		// Fumbles. Criticals.
-
-		// Hit location
+		if (getSelf().isPlayer()) {
+			LOGGER.debug("Applying APB bonus multiplier of "+ getSelf().getPlayer().getAPB()+" to damage");
+			damageAmount *= getSelf().getPlayer().getAPB();
+		}
 
 		// Mobs can have multiple attacks.
-
-		// LOGGER.debug(getSelf().getName()+" "+getTarget().getName()+" will deal "+damage.getRoll().toString());
-
 		if (!getSelf().isPlayer()) {
 			int attacks = getSelf().getAttacks();
 
@@ -218,7 +214,7 @@ public class BasicAttack extends FightAction {
 			}
 		}
 
-		DamageManager.deal(getSelf(), getTarget(), damage.roll());
+		DamageManager.deal(getSelf(), getTarget(), damageAmount);
 
 	}
 

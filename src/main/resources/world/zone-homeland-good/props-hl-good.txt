@@ -6,3 +6,36 @@ brief: A marble fountain spewing fresh clean water
 short: fountain
 look: A marble fountain spewing fresh clean water
 waterSource: true
+
+id: chair-001
+alias: chair
+brief: A chair
+short: chair
+look: A chair
+sittable: true
+sleepable: false
+
+id: bed-001
+alias: bed
+brief: A bed
+short: bed
+look: A bed
+sittable: true
+sleepable: true
+
+
+id: bench-001
+alias: bench
+brief: A bench
+short: bench
+look: A bench
+sittable: true
+sleepable: false
+
+id: sleeping-roll-001
+alias: sleeping roll
+brief: A sleeping roll
+short: sleeping roll
+look: A sleeping roll
+sittable: true
+sleepable: true

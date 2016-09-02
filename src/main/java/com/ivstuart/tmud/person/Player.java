@@ -260,7 +260,7 @@ public class Player implements Serializable, Nameable {
 
 	public int getAPB() {
 
-		int apb = this.getAttributes().getSTR().getValue() / 5;
+		int apb = 1 + this.getAttributes().getSTR().getValue() / 5;
 
 		apb += mob.getEquipment().getAPB();
 

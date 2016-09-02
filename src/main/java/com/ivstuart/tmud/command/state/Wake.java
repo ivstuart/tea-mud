@@ -7,11 +7,12 @@
 package com.ivstuart.tmud.command.state;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.person.statistics.SleepAffect;
 import com.ivstuart.tmud.state.Mob;
 
-import static com.ivstuart.tmud.common.MobState.*;
+import static com.ivstuart.tmud.common.MobState.SLEEP;
+import static com.ivstuart.tmud.common.MobState.SLEEP_ON;
+import static com.ivstuart.tmud.common.MobState.STAND;
 
 public class Wake extends BaseCommand {
 
@@ -26,7 +27,7 @@ public class Wake extends BaseCommand {
 				return;
 			}
 
-			if (mobToWake.getState() != SLEEP) {
+			if (mobToWake.getState() != SLEEP && mobToWake.getState() != SLEEP_ON) {
 				mob_.out(mob_.getName() + " is already awake!");
 				return;
 			}
@@ -39,7 +40,7 @@ public class Wake extends BaseCommand {
 		}
 
 		// Check current state
-		if (mob_.getState() != SLEEP) {
+		if (mob_.getState() != SLEEP && mob_.getState() != SLEEP_ON) {
 			mob_.out("You are already awake!");
 			return;
 		}

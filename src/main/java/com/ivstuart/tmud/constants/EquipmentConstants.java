@@ -12,6 +12,8 @@ public class EquipmentConstants {
 
 	public final static int TWO_HANDED = 16;
 
+	public final static int LEGS = 21;
+
 	public final static int locationLimits[] = { 1, 1, 1, 2, 1, 1, 2, 2, 1, 1,
 			1, 1, 1, 3, 1, 1, 1, 1, 2, 1, 2, 1 };
 

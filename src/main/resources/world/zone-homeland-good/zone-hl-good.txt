@@ -7,6 +7,10 @@ class: state.Zone
 id: 0
 propInRoom: teacher-002 Z0-:-2:0:-1
 propInRoom: fountain-001 Z0-:1:-1:-1
+propInRoom: chair-001 Z0-:1:-1:-1
+propInRoom: bed-001 Z0-:1:-1:-1
+propInRoom: bench-001 Z0-:1:-1:-1
+propInRoom: sleeping-roll-001 Z0-:1:-1:-1
 
 mobInRoom: shopkeeper-001 Z0-:0:0:-1
 mobInRoom: banker-001 Z0-:3:1:-1

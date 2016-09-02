@@ -8,8 +8,11 @@ package com.ivstuart.tmud.command.state;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.Prop;
+import com.ivstuart.tmud.utils.StringUtil;
 
 import static com.ivstuart.tmud.common.MobState.SLEEP;
+import static com.ivstuart.tmud.common.MobState.SLEEP_ON;
 
 public class Sleep extends BaseCommand {
 
@@ -36,13 +39,35 @@ public class Sleep extends BaseCommand {
 			mob_.out("You can not sleep here you must continue to swim");
 			return;
 		}
-		// Change state and notify mob and room
 
-		// mob_.out("You stop "+mob_.getState().getDesc()+" and stand.");
+		if (checkSleepOn(mob_, input_)) return;
 
 		mob_.setState(SLEEP);
 
 		mob_.out("You sleep");
 	}
 
+	private boolean checkSleepOn(Mob mob_, String input_) {
+		String target = StringUtil.getLastWord(input_);
+
+		if (target != null && target.length() > 0) {
+			Prop prop = mob_.getRoom().getProps().get(target);
+
+			if (prop == null) {
+				mob_.out("There is no "+target+" to sleep on here.");
+				return true;
+			}
+
+			if (!prop.isSleepable()) {
+				mob_.out("You can not sleep on a "+target);
+				return true;
+			}
+
+			mob_.out("You sleep on a "+prop.getBrief());
+
+			mob_.setState(SLEEP_ON);
+			return true;
+		}
+		return false;
+	}
 }

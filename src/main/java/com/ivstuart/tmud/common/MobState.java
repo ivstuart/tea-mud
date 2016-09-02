@@ -1,10 +1,17 @@
 package com.ivstuart.tmud.common;
 
 public enum MobState {
-    SLEEP("sleeping", 3, 3, 2), REST("resting", 2, 2, 2), MEDITATE("mediating",
-            1, 1, 3), SIT("sitting", 2, 2, 1), STAND("standing", 1, 1, 1, true), FLYING(
-            "being wide awake", 1, 1, 1, true), WAKE("being wide awake", 1, 1,
-            1, true); // remove this one??
+
+    SLEEP("sleeping", 3, 3, 2),
+    SLEEP_ON("sleeping", 5, 5, 5),
+    REST("resting", 2, 2, 2),
+    REST_ON("resting", 3, 3, 3),
+    MEDITATE("mediating", 1, 1, 3),
+    SIT("sitting", 2, 2, 1),
+    SIT_ON("sitting", 3, 3, 3),
+    STAND("standing", 1, 1, 1, true),
+    FLYING("being wide awake", 1, 1, 1, true),
+    WAKE("being wide awake", 1, 1, 1, true); // remove this one??
 
     private final String _desc;
     private short _hpMod;
@@ -66,7 +73,8 @@ public enum MobState {
         return minState.ordinal() < this.ordinal();
     }
 
-    public boolean lessThan(MobState minState) { return minState.ordinal() > this.ordinal();
+    public boolean lessThan(MobState minState) {
+        return minState.ordinal() > this.ordinal();
     }
 
     public boolean isMeditate() {

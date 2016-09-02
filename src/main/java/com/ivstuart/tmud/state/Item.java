@@ -28,6 +28,28 @@ public class Item extends Prop implements Equipable, Msgable {
 	// in grams
 	protected int _weight;
 
+	@Override
+	public String toString() {
+		return "Item{" +
+				"_action='" + _action + '\'' +
+				", _type='" + _type + '\'' +
+				", _effects='" + _effects + '\'' +
+				", _wear=" + _wear +
+				", _weight=" + _weight +
+				", _cost=" + _cost +
+				", _someMoneyCost=" + _someMoneyCost +
+				", _rent=" + _rent +
+				", _worn=" + _worn +
+				", _size=" + _size +
+				", _damagedPercentage=" + _damagedPercentage +
+				", apb=" + apb +
+				", isClimbing=" + isClimbing +
+				", isShopSupplied=" + isShopSupplied +
+				", loadPercentage=" + loadPercentage +
+				", isNoDrop=" + isNoDrop +
+				'}';
+	}
+
 	// copper
 	protected int _cost;
 	protected SomeMoney _someMoneyCost;
