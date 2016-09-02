@@ -34,7 +34,18 @@ public class TestSomeMoney {
 
         Money copper = new Money(Money.COPPER, 1234);
 
-        MoneyBag moneyBag = new MoneyBag(copper.getValue());
+        MoneyBag moneyBag = new MoneyBag(copper.getValue(),Money.PLATINUM, true);
+
+        System.out.println("Money :" + moneyBag);
+    }
+
+    @Test
+    public void convertSomeMoneyGold() {
+        SomeMoney money = new MoneyBag();
+
+        Money copper = new Money(Money.COPPER, 1234);
+
+        MoneyBag moneyBag = new MoneyBag(copper.getValue(),Money.GOLD, true);
 
         System.out.println("Money :" + moneyBag);
     }

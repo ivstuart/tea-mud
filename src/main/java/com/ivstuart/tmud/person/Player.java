@@ -1,5 +1,6 @@
 package com.ivstuart.tmud.person;
 
+import com.ivstuart.tmud.constants.Profession;
 import com.ivstuart.tmud.person.carried.Inventory;
 import com.ivstuart.tmud.person.config.ConfigData;
 import com.ivstuart.tmud.server.Connection;
@@ -35,6 +36,7 @@ public class Player implements Serializable, Nameable {
 
 	private Inventory bank;
 	private Guilds guilds;
+	private Profession profession;
 
 	public Player() {
 		playerData = new PlayerData();
@@ -42,6 +44,14 @@ public class Player implements Serializable, Nameable {
 		alias = new HashMap<>();
 		bank = new Inventory();
 		guilds = new Guilds();
+	}
+
+	public Profession getProfession() {
+		return profession;
+	}
+
+	public void setProfession(Profession profession) {
+		this.profession = profession;
 	}
 
 	public Guilds getGuilds() {

@@ -38,11 +38,18 @@ public class MoneyBag implements SomeMoney {
 
 	}
 
-	public MoneyBag(int value) {
+	public MoneyBag(int value, int type, boolean convert) {
 		list = new ArrayList<SomeMoney>(4);
-		int remainder = create(value, Money.PLATINUM);
-		remainder = create(remainder, Money.GOLD);
-		remainder = create(remainder, Money.SILVER);
+		int remainder = value;
+		if (type == Money.PLATINUM) {
+			remainder = create(remainder, Money.PLATINUM);
+		}
+		if (type >= Money.GOLD) {
+			remainder = create(remainder, Money.GOLD);
+		}
+		if (type >= Money.SILVER) {
+			remainder = create(remainder, Money.SILVER);
+		}
 		create(remainder, Money.COPPER);
 	}
 

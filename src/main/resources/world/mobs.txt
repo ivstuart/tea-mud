@@ -244,3 +244,22 @@ state: STANDING
 attackType: punch
 mages: true
 
+class: state.ProfessionMaster
+id: prof-mages
+name: mages profession master
+alias: mages profession master
+short: the mages profession master
+long: A mages guild profession snares at you.
+look: The mages guild profession.
+level: 100
+offensive: 1000
+defensive: 1000
+armour: 50
+hp: 15000
+damage: 1d100+1050
+copper: 0
+xp: 20
+state: STANDING
+attackType: punch
+prof: MAGE
+

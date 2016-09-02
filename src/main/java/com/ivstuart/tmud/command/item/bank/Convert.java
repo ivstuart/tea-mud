@@ -7,6 +7,7 @@
 package com.ivstuart.tmud.command.item.bank;
 
 import com.ivstuart.tmud.command.BaseCommand;
+import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.MoneyBag;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.state.Mob;
@@ -44,7 +45,9 @@ public class Convert extends BaseCommand {
             return false;
         }
 
-        MoneyBag moneyBag = new MoneyBag(cash.getValue());
+        int type = Money.getType(input);
+
+        MoneyBag moneyBag = new MoneyBag(cash.getValue(),type,true);
 
         mob.getInventory().add(moneyBag);
 

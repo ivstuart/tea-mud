@@ -63,7 +63,17 @@ public class Zone extends BasicThing {
 
 		Mob mob = World.getRoom(elements[1]).getMob(elements[0]);
 
+		if (mob == null) {
+			LOGGER.error("Mob was null for id: "+elements[0]);
+			return;
+		}
+
 		Item item = EntityProvider.createItem(elements[2]);
+
+		if (item == null) {
+			LOGGER.error("Item was null for id: "+elements[2]);
+			return;
+		}
 
 		if (elements.length == 4) {
 			item.setLoadPercentage(Integer.parseInt(elements[3]));

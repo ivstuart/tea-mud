@@ -7,12 +7,8 @@
 package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
-import com.ivstuart.tmud.state.Ability;
-import com.ivstuart.tmud.state.BaseSkill;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Teacher;
-import com.ivstuart.tmud.state.World;
+import com.ivstuart.tmud.constants.Profession;
+import com.ivstuart.tmud.state.*;
 
 /**
  * @author stuarti
@@ -77,6 +73,17 @@ public class Learn extends BaseCommand {
 		if (theAbility == null) {
 			mob.out("That ability is not known to this world");
 			return;
+		}
+
+		String prof = theAbility.getProf();
+
+		if (prof != null) {
+			Profession profession = mob.getPlayer().getProfession();
+
+			if (!profession.equals(Profession.valueOf(prof))) {
+				mob.out("You require profession "+prof+" to learn that ability");
+				return;
+			}
 		}
 
 		// Check you have learned and praced the prereq to talented.

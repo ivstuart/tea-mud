@@ -570,4 +570,13 @@ public class Room extends BasicThing implements Msgable {
 
         return room;
     }
+
+    public ProfessionMaster getProfessionMaster() {
+        for (Mob mob : _mobs) {
+            if (mob instanceof ProfessionMaster) {
+                return (ProfessionMaster) mob;
+            }
+        }
+        return null;
+    }
 }

@@ -8,6 +8,7 @@ package com.ivstuart.tmud.command.info;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.common.Info;
+import com.ivstuart.tmud.constants.Profession;
 import com.ivstuart.tmud.fighting.CombatCal;
 import com.ivstuart.tmud.person.Guilds;
 import com.ivstuart.tmud.person.Player;
@@ -130,10 +131,20 @@ public class Score extends BaseCommand {
 
         showGuilds(mob);
 
+        showProfession(mob);
+
         mob.out("");
 
         mob.out(Info.BAR);
 
+    }
+
+    private void showProfession(Mob mob) {
+        Profession profession = mob.getPlayer().getProfession();
+
+        if (profession != null) {
+            mob.out("   Your current profession is:"+profession.toString().toLowerCase());
+        }
     }
 
     private void showGuilds(Mob mob) {

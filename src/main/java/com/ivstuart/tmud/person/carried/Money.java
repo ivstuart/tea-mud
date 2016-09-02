@@ -169,4 +169,21 @@ public class Money implements SomeMoney {
 	public int getQuantity() {
 		return quantity;
 	}
+
+	public static int getType(String input) {
+		int type = Money.COPPER;
+		if (input.indexOf("copper") > -1) {
+			type = Money.COPPER;
+		}
+		if (input.indexOf("silver") > -1) {
+			type = Money.SILVER;
+		}
+		if (input.indexOf("gold") > -1) {
+			type = Money.GOLD;
+		}
+		if (input.indexOf("plati") > -1) {
+			type = Money.PLATINUM;
+		}
+		return type;
+	}
 }

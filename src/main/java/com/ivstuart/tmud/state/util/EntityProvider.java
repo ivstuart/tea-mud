@@ -46,6 +46,9 @@ public class EntityProvider {
         } else if (existingMob instanceof GuildMaster) {
             LOGGER.debug("Creating instance of a GuildMaster!");
             newMob = new GuildMaster(existingMob);
+        } else if (existingMob instanceof ProfessionMaster) {
+            LOGGER.debug("Creating instance of a ProfessionMaster!");
+            newMob = new ProfessionMaster((ProfessionMaster) existingMob);
         }
         else {
             newMob = new Mob(existingMob);
