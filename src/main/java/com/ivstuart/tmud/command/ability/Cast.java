@@ -110,7 +110,7 @@ public class Cast extends BaseCommand {
             return;
         }
 
-        // TODO work out a way to support target value of
+        // Alias is used to support target value of
         /* me, self, all, good, evil, etc.. */
 
         Mob targetMob = null;
@@ -182,7 +182,6 @@ public class Cast extends BaseCommand {
         return false;
     }
 
-    // TODO
     // check equip
     // check inve
     // check room props
@@ -203,7 +202,11 @@ public class Cast extends BaseCommand {
                 }
             }
 
-            // TODO check is item visible to player
+            if (item.isInvisible() && !mob_.hasDetectInvisible()) {
+                mob_.out("The item " + target + " is not seen here to target");
+                return true;
+            }
+
             mana.cast(spell);
 
             mob_.out("You begin to chant and make very complex gestures");

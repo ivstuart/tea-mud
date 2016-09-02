@@ -5,7 +5,7 @@ import com.ivstuart.tmud.common.Colour;
 import java.io.Serializable;
 import java.util.Arrays;
 
-/* TODO pull out enums and config to resource files.
+/*
  * This class is simple a data class to store the configuration 
  * for the players character
  */

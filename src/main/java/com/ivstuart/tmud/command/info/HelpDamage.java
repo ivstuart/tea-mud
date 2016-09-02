@@ -22,8 +22,8 @@ public class HelpDamage extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {
-		// TODO Auto-generated method stub
-		Msg output = new Msg(mob, DamageConstants.help());
+
+        Msg output = new Msg(mob, DamageConstants.help());
 
 		mob.out(output);
 	}

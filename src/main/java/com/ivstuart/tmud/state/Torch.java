@@ -43,14 +43,14 @@ public class Torch extends Item implements Tickable {
 		return _isLit;
 	}
 
-	@Override
-	public boolean isTorch() {
-		return true;
-	}
-
 	public void setLit(boolean isLit_) {
 		_isLit = isLit_;
 
+	}
+
+	@Override
+	public boolean isTorch() {
+		return true;
 	}
 
 	public void setMsgable(Msgable mob_) {
@@ -60,8 +60,6 @@ public class Torch extends Item implements Tickable {
 	@Override
 	public void tick() {
 		if (_isLit) {
-			// TODO A torch is near which flickers as it burns.
-			// TODO Your torch flickers as it burns
 			_msg.out(new Msg("<S-Your/NAME> light source flickers!"));
 			_fuel--;
 			if (_fuel <= 0) {

@@ -8,7 +8,6 @@ import com.ivstuart.tmud.state.Track;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Tracker extends BaseBehaviour {
@@ -56,7 +55,6 @@ public class Tracker extends BaseBehaviour {
 			return;
 		}
 
-		// TODO have this configurable in mob.txt file.
 		if (DiceRoll.ONE_D100.rollMoreThan(parameter)) {
 			LOGGER.debug(mob.getName()+" is does not feel like tracking this tick");
 			return;

@@ -19,8 +19,8 @@ public class CommandList extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {
-		// TODO Auto-generated method stub
-		for (Object command : CommandProvider.getCommands()) {
+
+        for (Object command : CommandProvider.getCommands()) {
 			mob.out(command.toString());
 		}
 	}

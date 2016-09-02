@@ -21,7 +21,7 @@ import com.ivstuart.tmud.utils.StringUtil;
 public class Bid extends BaseCommand {
 
     /**
-     * TODO Store these as emails or reports to separate location
+     *
      */
     @Override
     public void execute(Mob mob, String input) {

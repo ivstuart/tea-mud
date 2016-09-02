@@ -38,7 +38,6 @@ public class Hide extends BaseCommand {
 			return;
 		}
 
-		// TODO can hide self
 		// hide objects
 		// hide exits or props only if they where hidden in the first place and
 		// made visible.

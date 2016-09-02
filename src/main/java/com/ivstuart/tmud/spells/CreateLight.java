@@ -10,8 +10,6 @@ public class CreateLight implements SpellEffect {
 	@Override
 	public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
 
-		// TODO create an orb of light in casters hands that can be worn as an aura
-
 		Item item = EntityProvider.createItem("orb-of-light-001");
 		caster_.getInventory().add(item);
 

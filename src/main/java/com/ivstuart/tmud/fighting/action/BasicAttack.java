@@ -93,7 +93,7 @@ public class BasicAttack extends FightAction {
 	 */
 	@Override
 	public void ended() {
-		// TODO Auto-generated method stub
+
 		// out("You end from punching someone");
 		durationMillis(100);
 	}

@@ -26,9 +26,9 @@ public class Affects extends BaseCommand {
 	 */
 	@Override
 	public void execute(Mob mob, String input) {
-		// TODO Auto-generated method stub
 
-		Mob self = mob;
+
+        Mob self = mob;
 
 		// get any mob affects
 		self.out(mob.showMobAffects());

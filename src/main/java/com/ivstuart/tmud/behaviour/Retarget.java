@@ -3,7 +3,6 @@ package com.ivstuart.tmud.behaviour;
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Room;
-import com.ivstuart.tmud.state.WorldTime;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -41,7 +40,6 @@ public class Retarget extends BaseBehaviour {
             return;
         }
 
-        // TODO aggro by alignment or other criteria
         Mob target = room.getRandomPlayer();
 
         if (target == null) {

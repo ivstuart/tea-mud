@@ -180,14 +180,13 @@ public class Player implements Serializable, Nameable {
 		int dMana = (attributes.getINT().getMaximum()
 				+ attributes.getWIS().getMaximum() + (int) (Math.random() * 9)) / 9;
 
-		mob.getMana().addMaximum(dMana);
+		mob.getMana().addMaximumAndRestore(dMana);
 
 		out("You gained " + dHP + " hitpoints, " + dMv + " moves and [" + dMana
 				+ "] mana.");
 
 		out("You feel restored!");
 
-		// TODO decide about this.
 		checkIfLeveled();
 	}
 

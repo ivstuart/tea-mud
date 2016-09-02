@@ -21,8 +21,8 @@ public class Brief extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {
-		// TODO Auto-generated method stub
-		mob.out("Setting room decriptions to brief");
+
+        mob.out("Setting room decriptions to brief");
 		mob.getPlayer().getConfig().getConfigData()
 				.set(ConfigData.VERBOSE, false);
 	}

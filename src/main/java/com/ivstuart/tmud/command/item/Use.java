@@ -29,7 +29,7 @@ public class Use extends BaseCommand {
 	 * @return
 	 */
 	private boolean checkCashGet(Mob mob, String input) {
-		// TODO Auto-generated method stub
+
 		int type = -1;
 		if (input.indexOf("copper") > 0) {
 			type = Money.COPPER;
@@ -65,7 +65,6 @@ public class Use extends BaseCommand {
 	@Override
 	public void execute(Mob mob, String input) {
 
-		// TODO Auto-generated method stub
 
 		if (input.equalsIgnoreCase("all")) {
 			getAllCoins(mob);

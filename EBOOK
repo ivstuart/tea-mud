@@ -54,7 +54,61 @@ Players can use war points to tier at there war master to receive special leet e
 
 = History of muds
 
-TODO
+https://en.wikipedia.org/wiki/MUD
+
+= Origins
+
+Colossal Cave Adventure, created in 1975 by Will Crowther on a DEC PDP-10 computer, was the first widely used adventure
+game. The game was significantly expanded in 1976 by Don Woods. Also called Adventure, it contained many D&D features
+and references, including a computer controlled dungeon master.
+
+Numerous graphical MUDs were created on the PLATO system at the University of Illinois and other American universities
+that used PLATO, beginning in 1975. Among them were "pedit5," "oubliette," "moria," "avathar," "krozair," "dungeon,"
+"dnd," "crypt," and "drygulch." By 1978-79, PLATO MUDs were heavily in use on various PLATO systems, and exhibited a
+marked increase in sophistication in terms of 3D graphics, storytelling, user involvement, team play, and depth of
+objects and monsters in the dungeons. PLATO MUDs are often ignored by historians and by the creators of other MUDs
+whose work came later.
+
+Inspired by Adventure, a group of students at MIT in the summer of 1977 wrote a game for the PDP-10 minicomputer; called
+Zork, it became quite popular on the ARPANET. Zork was ported, under the filename DUNGEN ("dungeon"), to FORTRAN by a
+programmer working at DEC in 1978.
+
+In 1978 Roy Trubshaw, a student at Essex University in the UK, started working on a multi-user adventure game in the
+MACRO-10 assembly language for a DEC PDP-10. He named the game MUD (Multi-User Dungeon), in tribute to the Dungeon
+variant of Zork, which Trubshaw had greatly enjoyed playing. Trubshaw converted MUD to BCPL (the predecessor of C),
+before handing over development to Richard Bartle, a fellow student at Essex University, in 1980. The game revolved
+around gaining points till one achieved the Wizard rank, giving the character immortality and special powers over
+mortals.
+
+= Wider access and early derivatives
+
+MUD, better known as Essex MUD and MUD1 in later years, ran on the Essex University network, and became more widely
+accessible when a guest account was set up that allowed users on JANET (a British academic X.25 computer network) to
+connect on weekends and between the hours of 2 AM and 8 AM on weekdays.[22] It became the first Internet multiplayer
+online role-playing game in 1980, when Essex University connected its internal network to ARPANet.
+
+The original MUD game was closed down in late 1987,[24] reportedly under pressure from CompuServe, to whom
+Richard Bartle had licensed the game. This left MIST, a derivative of MUD1 with similar gameplay, as the only
+remaining MUD running on the Essex University network, becoming one of the first of its kind to attain broad popularity.
+ MIST ran until the machine that hosted it, a PDP-10, was superseded in early 1991.
+
+1985 saw the origin of a number of projects inspired by the original MUD. These included Gods by Ben Laurie, a MUD1
+clone that included online creation in its endgame, and which became a commercial MUD in 1988; and MirrorWorld,
+a tolkienesque MUD started by Pip Cordrey who gathered some people on a BBS he ran to create a MUD1 clone that would
+run on a home computer.
+
+Neil Newell, an avid MUD1 player, started programming his own MUD called SHADES during Christmas 1985, because MUD1
+was closed down during the holidays. Starting out as a hobby, SHADES became accessible in the UK as a commercial MUD
+via British Telecom's Prestel and Micronet networks. A scandal on SHADES led to the closure of Micronet, as
+described in Indra Sinha's net-memoir, The Cybergypsies.
+
+At the same time, Compunet started a project named Multi-User Galaxy Game as a Science Fiction alternative to MUD1, a
+copy of which they were running on their system at the time. When one of the two programmers left CompuNet, the
+remaining programmer, Alan Lenton, decided to rewrite the game from scratch and named it Federation II (at the time no
+Federation I existed). The MUD was officially launched in 1989. Federation II was later picked up by AOL, where it
+became known simply as "Federation: Adult Space Fantasy". Federation later left AOL to run on its own after AOL began
+offering unlimited service.
+
 
 ==  Main object relationships
 

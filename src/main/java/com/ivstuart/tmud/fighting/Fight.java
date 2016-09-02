@@ -45,9 +45,16 @@ public class Fight {
     }
 
     public static void startCombat(Mob mob, Mob target) {
+        startCombat(mob, target, false);
+    }
+
+    public static void startCombat(Mob mob, Mob target, boolean retarget) {
+
         mob.getFight().getMelee().setTarget(target);
 
-        target.getFight().getMelee().setTarget(mob);
+        if (retarget || target.getFight().getMelee().getTarget() == null) {
+            target.getFight().getMelee().setTarget(mob);
+        }
 
         WorldTime.addFighting(mob);
 

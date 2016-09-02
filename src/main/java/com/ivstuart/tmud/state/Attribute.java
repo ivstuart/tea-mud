@@ -74,11 +74,8 @@ public class Attribute implements Serializable {
 		return false;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see person.statistics.AttributeInterface#toString() TODO this is not the
-	 * place for such presentation logic
+	/**
+	 * @return
 	 */
 	public String getDescription() {
 		String colour = "$J";
@@ -91,8 +88,6 @@ public class Attribute implements Serializable {
 		return String.format("   %1$14s:" + colour + "%2$4s$J/%3$4s", name,
 				current, maximum);
 
-		// return Padding.pad(name, 12) + ":" + colour + Padding.ppad(current,
-		// 4) + "$J/" + Padding.ppad(maximum, 4) + "  ";
 	}
 
 	/*
@@ -168,7 +163,6 @@ public class Attribute implements Serializable {
 
     public void increasePercentage(int i) {
     	int inc = 1+ (int) (i * maximum) / 100;
-		// LOGGER.debug("Increasing "+name+" by "+inc+" which is "+i+" % of maximum");
 		increase(inc);
     }
 

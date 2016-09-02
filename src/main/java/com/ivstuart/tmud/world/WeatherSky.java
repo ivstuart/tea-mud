@@ -2,15 +2,15 @@ package com.ivstuart.tmud.world;
 
 public enum WeatherSky {
 
-	CLOUDLESS(990, 1010, "The clouds disappear"), CLOUDY(970, 990,
-			"The sky starts to get cloudy"), RAINING(1010, 1030,
-			"It starts to rain"), LIGHTNING(990, 1010,
-			"Lightning starts to show in the sky");
+	CLOUDLESS(990, 1010, "The clouds disappear"),
+	CLOUDY(970, 990, "The sky starts to get cloudy"),
+	RAINING(1010, 1030, "It starts to rain"),
+	LIGHTNING(990, 1010, "Lightning starts to show in the sky");
 
 	/**
 	 * TODO consider the transitions "The rain stops"; "The lightning stops";
-	 * 
-	 * HAIL SNOW DOWNPOUR WINDY HURRICANE BLIZZARD
+	 *
+	 * HAIL SNOW DOWNPOUR WINDY HURRICANE BLIZZARD FOG SLEET
 	 */
 
 	private String desc;

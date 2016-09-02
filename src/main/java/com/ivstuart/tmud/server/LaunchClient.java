@@ -1,15 +1,11 @@
 package com.ivstuart.tmud.server;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.net.InetAddress;
-import java.net.Socket;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.io.*;
+import java.net.InetAddress;
+import java.net.Socket;
 
 /**
  * Recommend putty or tintin++ however please please double check site and
@@ -31,22 +27,6 @@ public class LaunchClient implements Runnable {
 	private BufferedReader bufferReader = null;
 	private PrintWriter pw = null;
 	private Socket socket = null;
-
-	public static void main(String argv[]) throws IOException {
-
-		LaunchClient client = init();
-		client.readWriteStreams();
-
-	}
-
-	public static LaunchClient init() throws IOException {
-		LaunchClient client = new LaunchClient();
-		
-		Thread responseThread = new Thread(client);
-		responseThread.start();
-		
-		return client;
-	}
 
 	public LaunchClient() throws IOException {
 		super();
@@ -70,6 +50,22 @@ public class LaunchClient implements Runnable {
 		pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()),
 				true);
 	}
+
+    public static void main(String argv[]) throws IOException {
+
+        LaunchClient client = init();
+        client.readWriteStreams();
+
+    }
+
+    public static LaunchClient init() throws IOException {
+        LaunchClient client = new LaunchClient();
+
+        Thread responseThread = new Thread(client);
+        responseThread.start();
+
+        return client;
+    }
 
 	private void readWriteStreams() throws IOException {
 
@@ -104,9 +100,8 @@ public class LaunchClient implements Runnable {
 					System.out.println(bufferReader.readLine());
 				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				isRunning = false;
+                LOGGER.error(e);
+                isRunning = false;
 			}
 		}
 	}
@@ -117,15 +112,15 @@ public class LaunchClient implements Runnable {
 			try {
 				socket.close();
 			} catch (IOException e) {
-				e.printStackTrace();
-			}
+                LOGGER.error(e);
+            }
 		}
 		if (bufferReader != null) {
 			try {
 				bufferReader.close();
 			} catch (IOException e) {
-				e.printStackTrace();
-			}
+                LOGGER.error(e);
+            }
 		}
 		if (pw != null) {
 			pw.close();

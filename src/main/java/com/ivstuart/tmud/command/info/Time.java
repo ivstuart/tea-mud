@@ -21,9 +21,9 @@ public class Time extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {
-		// TODO Auto-generated method stub
 
-		mob.out(WorldTime.getTime());
+
+        mob.out(WorldTime.getTime());
 	}
 
 }

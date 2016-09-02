@@ -7,6 +7,7 @@
 package com.ivstuart.tmud.command.state;
 
 import com.ivstuart.tmud.command.BaseCommand;
+import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.state.Mob;
 
 import static com.ivstuart.tmud.common.MobState.FLYING;
@@ -36,10 +37,8 @@ public class Fly extends BaseCommand {
 		}
 
 		// Change state and notify mob and room
-		mob_.getRoom().out("You start flying"); // TODO Msg text
-		mob_.out("You fly");
-
-		mob_.setState(FLYING);
+        mob_.getRoom().out(new Msg(mob_, "<S-Name> start flying"));
+        mob_.setState(FLYING);
 
 	}
 

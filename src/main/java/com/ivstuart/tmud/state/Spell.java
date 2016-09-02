@@ -16,11 +16,8 @@ public class Spell extends BaseSkill {
 
 	private String _targets;
 
-	// TODO new - so think about this design
-	private SpellEffect _spellEffect; // Note a spell behaviour can reference
-										// another spell behaviour
+	private SpellEffect _spellEffect;
 
-	// Default is damage
 	private String _stat;
 
 	private DiceRoll amount;
@@ -60,8 +57,17 @@ public class Spell extends BaseSkill {
 		return _spellEffect;
 	}
 
+	public void setSpellEffect(String txt_) {
+		_spellEffect = SpellEffectFactory.get(txt_.trim());
+	}
+
 	public String getTarget() {
 		return _targets;
+	}
+
+	public void setTarget(String targets_) {
+		_targets = targets_;
+
 	}
 
 	@Override
@@ -73,13 +79,11 @@ public class Spell extends BaseSkill {
 		_mana = ManaType.valueOf(mana_);
 	}
 
-	public void setSpellEffect(String txt_) {
-		_spellEffect = SpellEffectFactory.get(txt_.trim());
-	}
-
-	public void setTarget(String targets_) {
-		_targets = targets_;
-
+	public String getStat() {
+		if (_spellEffect != null && _spellEffect instanceof BuffStats) {
+			return ((BuffStats) _spellEffect).getStat();
+		}
+		return null;
 	}
 
 	public void setStat(String stat_) {
@@ -91,13 +95,6 @@ public class Spell extends BaseSkill {
 
 	}
 
-	public String getStat() {
-		if (_spellEffect != null && _spellEffect instanceof BuffStats) {
-			return ((BuffStats)_spellEffect).getStat();
-		}
-		return null;
-	}
-
     public boolean isAnyTarget() {
     	if (_targets == null) {
     		return false;
@@ -105,11 +102,11 @@ public class Spell extends BaseSkill {
     	return _targets.indexOf("ANY") > -1;
 	}
 
-	public void setAmount(String amount) {
-		this.amount = new DiceRoll(amount);
-	}
-
 	public int getAmount() {
 		return amount.roll();
+	}
+
+	public void setAmount(String amount) {
+		this.amount = new DiceRoll(amount);
 	}
 }

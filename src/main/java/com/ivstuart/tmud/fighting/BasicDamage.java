@@ -18,24 +18,20 @@ public class BasicDamage implements Damage {
 
 	@Override
 	public String getDescription() {
-		// TODO Auto-generated method stub
+
 		return description;
 	}
 
 	@Override
 	public String getType() {
-		// TODO Auto-generated method stub
-		return type;
+
+        return type;
 	}
 
 	@Override
 	public int roll() {
 		return multiplier * roll.roll();
 
-	}
-
-	public void setRoll(DiceRoll dice) {
-		roll = dice;
 	}
 
 	@Override
@@ -49,5 +45,9 @@ public class BasicDamage implements Damage {
 
 	public DiceRoll getRoll() {
 		return roll;
-	}
+    }
+
+    public void setRoll(DiceRoll dice) {
+        roll = dice;
+    }
 }

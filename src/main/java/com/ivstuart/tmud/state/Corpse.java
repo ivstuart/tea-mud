@@ -70,7 +70,7 @@ public class Corpse extends Item {
 	}
 
 	public String investigation() {
-		// TODO Auto-generated method stub
-		return "Killed by "+whoKilledMe+" , "+whenIwasKilled;
+
+        return "Killed by "+whoKilledMe+" , "+whenIwasKilled;
 	}
 }

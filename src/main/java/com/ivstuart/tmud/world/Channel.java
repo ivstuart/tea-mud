@@ -21,7 +21,6 @@ public class Channel {
 
     private List<String> good;
 
-    // TODO
     private List<String> evil;
 
     /**

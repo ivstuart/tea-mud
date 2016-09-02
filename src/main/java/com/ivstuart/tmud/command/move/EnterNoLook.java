@@ -111,7 +111,6 @@ public class EnterNoLook extends BaseCommand {
             return;
         }
 
-        // TODO get sector type and apply movement cost
         int sectorMovement = destination.getSectorType().getMoveModify();
         String movement = "walk";
 

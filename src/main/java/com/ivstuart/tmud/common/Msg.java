@@ -19,7 +19,7 @@ public class Msg {
 
     // "<S-You/NAME> injure<S-/s> <T-you/NAME> with <S-your/GEN-his> forceful <I-NAME> attack"
 
-    // TODO FIXME
+
     // How to handle sleeping, room only, hidden, invisible, dark rooms and
     // blindness or infravision
 
@@ -233,7 +233,6 @@ public class Msg {
 
                 }
 
-                // TODO decide on debug / trace here.
                 LOGGER.trace(requester.getName() + " replacing [" + output.substring(index, endIndex + 1) + "]  with [" + replacement + "]");
 
                 output.replace(index, endIndex + 1, replacement);

@@ -21,12 +21,11 @@ import java.util.Map;
  */
 public class Learned implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Map<String, Ability> abilities = null;
 
-	private static final long serialVersionUID = 1L;
-
 	public Learned() {
-		// TODO lazy initialisation of this as most mobs will have no skills.
+		// lazy initialisation of this as most mobs will have no skills.
 		abilities = new HashMap<String, Ability>();
 	}
 

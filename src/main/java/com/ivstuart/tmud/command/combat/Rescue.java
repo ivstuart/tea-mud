@@ -10,16 +10,18 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
+import static com.ivstuart.tmud.constants.SkillNames.RESCUE;
+
 /**
- * TODO rescue <mob> rescue <mob> [from <mob>] rescue <mob> [from all] rescue
- * <mob> [from 1.good] TODO make into a fight action like bash
+ *     rescue <mob>
+ *     rescue <mob> [from <mob>]
+ *     rescue <mob> [from all] rescue
+ * <mob> [from 1.good]
  * 
  * @author Ivan Stuart
  * 
  */
 public class Rescue extends BaseCommand {
-
-	private static final String RESCUE = "rescue";
 	
 	private static final Logger LOGGER = LogManager.getLogger();
 

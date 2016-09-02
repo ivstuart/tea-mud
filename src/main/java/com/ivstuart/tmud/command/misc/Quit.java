@@ -40,8 +40,9 @@ public class Quit extends BaseCommand {
 
 		// Save character first
 		try {
-			// TODO remove this
+
 			MudIO.getInstance().save(player, mob_.getId() + ".sav");
+
 			// FIXME more issues then it solves.
 			// GsonIO gio = new GsonIO();
 			// gio.save(player, player.getName() + ".sav");
@@ -56,7 +57,6 @@ public class Quit extends BaseCommand {
 		mob_.getFight().stopFighting();
 		mob_.getFight().clear();
 
-		// TODO
 		// Remove from World (Delay if recently been flagged)
 		player.disconnect();
 		World.removePlayer(player);

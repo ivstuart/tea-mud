@@ -6,7 +6,7 @@
  */
 package com.ivstuart.tmud.command.admin;
 
-import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.fighting.DamageManager;
 import com.ivstuart.tmud.state.Mob;
 
@@ -37,9 +37,8 @@ public class Smite extends AdminCommand {
 		target.getHp().setValue(-1);
 		DamageManager.checkForDefenderDeath(mob, target);
 
-		// TODO use Msg and room output
-		mob.out("You smite " + target.getName() + " to a pile of ash!");
-		target.out("You are hit with a bolt of pure light lightning and crumble to ash!");
+        mob.getRoom().out(new Msg(mob, target, "<S-You/NAME> smites <T-you/NAME> to a pile of ash, with a pure bolt of lightning!"));
+
 	}
 
 }

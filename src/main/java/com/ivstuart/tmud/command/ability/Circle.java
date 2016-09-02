@@ -10,6 +10,7 @@ import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.fighting.DamageManager;
+import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.fighting.action.FightAction;
 import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Mob;
@@ -80,7 +81,6 @@ public class Circle extends BaseCommand {
 
 			getSelf().getMobStatus().setCircling(10000);
 
-			// TODO review and test this
 			if (!getSelf().getMv().deduct(15)) {
 				out("You do not have enough movement left to circle");
 				this.finished();
@@ -103,7 +103,6 @@ public class Circle extends BaseCommand {
 
 		@Override
 		public void ended() {
-			// TODO Auto-generated method stub
 
 		}
 
@@ -130,7 +129,8 @@ public class Circle extends BaseCommand {
 			if (ability.isSuccessful()) {
 				out(new Msg(getSelf(), getTarget(), ("<S-You/NAME> successfully circled <T-you/NAME>.")));
 
-				// TODO assign damage and if not fighting target each other
+                Fight.startCombat(getSelf(), getTarget(), true);
+
 				int dex = getSelf().getPlayer().getAttributes().getDEX().getValue();
 
 				DiceRoll damage = new DiceRoll(3,5,dex);

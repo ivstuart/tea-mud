@@ -62,6 +62,35 @@ public class Disarm extends BaseCommand {
 
 	}
 
+    @Override
+    public void execute(Mob mob, String input) {
+
+        if (!mob.getLearned().hasLearned(DISARM)) {
+            mob.out("You have no knowledge of disarm");
+            return;
+        }
+
+        Mob target;
+
+        if (input.length() == 0 && mob.getFight().isFighting()) {
+            target = mob.getFight().getTarget();
+        } else {
+            target = mob.getRoom().getMob(input);
+        }
+
+        if (target == null) {
+            mob.out(input + " is not here to disarm!");
+            return;
+        }
+
+        if (checkMobStatus(mob, target)) {
+            return;
+        }
+
+        mob.getFight().add(new FightActionDisarm(mob, target));
+
+    }
+
 	class FightActionDisarm extends FightAction {
 
 		public FightActionDisarm(Mob me, Mob target) {
@@ -72,7 +101,6 @@ public class Disarm extends BaseCommand {
 		public void begin() {
 			super.begin();
 
-			// TODO review and test this
 			if (!getSelf().getMv().deduct(1)) {
 				out("You do not have enough movement left to disarm");
 				this.finished();
@@ -89,13 +117,11 @@ public class Disarm extends BaseCommand {
 
 		@Override
 		public void changed() {
-			// TODO Auto-generated method stub
 
 		}
 
 		@Override
 		public void ended() {
-			// TODO Auto-generated method stub
 
 		}
 
@@ -121,36 +147,6 @@ public class Disarm extends BaseCommand {
 
 			durationMillis(1000);
 		}
-
-	}
-
-	@Override
-	public void execute(Mob mob, String input) {
-
-		if (!mob.getLearned().hasLearned(DISARM)) {
-			mob.out("You have no knowledge of disarm");
-			return;
-		}
-
-		Mob target;
-
-		if (input.length() == 0 && mob.getFight().isFighting()) {
-			target = mob.getFight().getTarget();
-		}
-		else {
-			target = mob.getRoom().getMob(input);
-		}
-
-		if (target == null) {
-			mob.out(input + " is not here to disarm!");
-			return;
-		}
-
-		if (checkMobStatus(mob, target)) {
-			return;
-		}
-
-		mob.getFight().add(new FightActionDisarm(mob, target));
 
 	}
 

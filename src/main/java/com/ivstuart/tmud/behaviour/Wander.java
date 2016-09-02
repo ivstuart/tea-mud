@@ -1,17 +1,14 @@
 package com.ivstuart.tmud.behaviour;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.ivstuart.tmud.common.DiceRoll;
+import com.ivstuart.tmud.person.movement.MoveManager;
+import com.ivstuart.tmud.state.Exit;
+import com.ivstuart.tmud.state.Room;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.ivstuart.tmud.common.DiceRoll;
-import com.ivstuart.tmud.common.Tickable;
-import com.ivstuart.tmud.person.movement.MoveManager;
-import com.ivstuart.tmud.state.Exit;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Room;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Wander extends BaseBehaviour {
 
@@ -50,7 +47,6 @@ public class Wander extends BaseBehaviour {
 			return;
 		}
 
-		// TODO have this configurable in mob.txt file.
 		if (DiceRoll.ONE_D100.rollMoreThan(parameter)) {
 			LOGGER.debug(mob.getName()+" is does not feel like wandering this tick");
 			return;

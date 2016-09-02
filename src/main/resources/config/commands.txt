@@ -84,6 +84,7 @@ command.misc.Join,REST
 command.misc.Leave,REST
 command.misc.Verbose,REST
 command.misc.Title,REST
+command.misc.TrackCommand,REST
 command.misc.Remort,STAND
 command.misc.Quit,SLEEP
 command.misc.SavePlayer,SLEEP
@@ -162,7 +163,7 @@ command.admin.TestLearn,SLEEP
 command.admin.TestPoison,SLEEP
 
 
-# Building Commands TODO
+# Building Commands
 
 
 

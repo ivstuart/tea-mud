@@ -1,14 +1,12 @@
 package com.ivstuart.tmud.utils;
 
-import static org.junit.Assert.assertEquals;
+import com.ivstuart.tmud.person.Player;
+import com.ivstuart.tmud.state.Mob;
+import org.junit.Test;
 
 import java.io.IOException;
 
-import org.junit.Test;
-
-import com.ivstuart.tmud.person.Player;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.World;
+import static org.junit.Assert.assertEquals;
 
 public class SaveGsonTest {
 
@@ -24,7 +22,6 @@ public class SaveGsonTest {
 		try {
 			saveGson.save(player, "testplayer");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -22,9 +22,9 @@ public class HelpSpells extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {
-		// TODO Auto-generated method stub
 
-		for (Spell spell : World.getSpells().values()) {
+
+        for (Spell spell : World.getSpells().values()) {
 
 			mob.out(spell.getId());
 

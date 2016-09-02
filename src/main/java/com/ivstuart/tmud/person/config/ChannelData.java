@@ -8,25 +8,17 @@ import java.io.*;
  */
 public class ChannelData implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -4084243242625557108L;
-
-	// TODO - rather old school - an enum would be better
 	public static final int AUCTION = 0;
-
 	public static final int CLAN = 1;
-
 	public static final int CHAT = 2;
-
 	public static final int GROUP = 3;
-
 	public static final int NEWBIE = 4;
-
 	public static final int RAID = 5;
-
-	private static final String FLAG_NAME[] = { "AUCTION", "CLAN", "CHAT",
+    /**
+     *
+     */
+    private static final long serialVersionUID = -4084243242625557108L;
+    private static final String FLAG_NAME[] = { "AUCTION", "CLAN", "CHAT",
 			"GROUP", "NEWBIE", "RAID" };
 
 	private static final String TRUE_DESCRIPTION[] = {

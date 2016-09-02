@@ -29,7 +29,7 @@ public class Question implements Readable {
 	 */
 	@Override
 	public void read(String line) {
-		// TODO Auto-generated method stub
+
 
 	}
 
@@ -39,7 +39,7 @@ public class Question implements Readable {
 	 * @see server.Read#setConnection(server.Connection)
 	 */
 	public void setConnection(Connection con) {
-		// TODO Auto-generated method stub
+
 
 	}
 

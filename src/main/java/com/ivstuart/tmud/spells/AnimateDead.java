@@ -8,7 +8,6 @@ public class AnimateDead implements SpellEffect {
 	@Override
 	public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
 
-		// TODO target items specially a corpse
 		if (targetItem == null) {
 			caster_.out("No corpse selected to animate");
 			return;

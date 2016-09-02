@@ -43,7 +43,6 @@ public class Patrol extends BaseBehaviour {
 			return;
 		}
 
-		// TODO have this configurable in mob.txt file.
 		if (DiceRoll.ONE_D100.rollMoreThan(parameter)) {
 			LOGGER.debug(mob.getName()+" is does not feel like patrol");
 			return;

@@ -15,8 +15,8 @@ public class Poison implements SpellEffect {
 	@Override
 	public void effect(Mob giver_, Mob reciever_, Spell spell, Item targetItem) {
 
-		// TODO Auto-generated method stub
-		DamageManager.deal(giver_, reciever_, spell.getDamage().roll());
+
+        DamageManager.deal(giver_, reciever_, spell.getDamage().roll());
 
 		Affect poisonAffect = new DamageOverTime(reciever_, POISON, 14,
 				DiceRoll.ONE_D_SIX);

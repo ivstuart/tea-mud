@@ -50,9 +50,6 @@ public class Mob extends Prop implements Tickable {
     protected Room room;
     protected int weight; // kg base mob
 
-    // TODO extract out static data for say n x snakes to reference 1 base snake
-    // object
-    // protected BaseMob _baseMob;
     private String ability; // base mob
     private int align; // base mob
     private int armour;
@@ -252,12 +249,12 @@ public class Mob extends Prop implements Tickable {
         return damage;
     }
 
-    public void setDamage(String damage_) {
-        this.damage = new DiceRoll(damage_);
-    }
-
     public void setDamage(DiceRoll damage) {
         this.damage = damage;
+    }
+
+    public void setDamage(String damage_) {
+        this.damage = new DiceRoll(damage_);
     }
 
     public int getDefence() {
@@ -272,7 +269,6 @@ public class Mob extends Prop implements Tickable {
     }
 
     public Fight getFight() {
-        // TODO change this.
         if (fight == null) {
             fight = new Fight(this);
         }
@@ -289,16 +285,16 @@ public class Mob extends Prop implements Tickable {
 
     @Override
     public Gender getGender() {
-        // TODO Auto-generated method stub
-        return gender;
-    }
 
-    public void setGender(String gender_) {
-        gender = Gender.valueOf(gender_.toUpperCase());
+        return gender;
     }
 
     public void setGender(Gender g) {
         gender = g;
+    }
+
+    public void setGender(String gender_) {
+        gender = Gender.valueOf(gender_.toUpperCase());
     }
 
     public Attribute getHp() {
@@ -413,13 +409,13 @@ public class Mob extends Prop implements Tickable {
         return state;
     }
 
-    public void setState(String state_) {
-        state = MobState.getMobState(state_);
-    }
-
     public void setState(MobState state_) {
         LOGGER.debug("You set state to " + state_.name());
         state = state_;
+    }
+
+    public void setState(String state_) {
+        state = MobState.getMobState(state_);
     }
 
     public Fight getTargetFight() {
@@ -565,8 +561,7 @@ public class Mob extends Prop implements Tickable {
         this.level = level_;
     }
 
-    // TODO FIXME sort out if id and name is required for Mobs
-    //  i.e is id, short and long descriptions sufficient.
+    // Alias will be used in MudArrayList
     public void setNameAndId(String name_) {
         name = name_;
         this.setId(name_);

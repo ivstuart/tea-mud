@@ -27,12 +27,11 @@ public class MobMana implements Serializable {
 	}
 
 	/**
-	 * TODO does a restore too (bad design)
-	 * 
-	 * @param magic
+     *
+     * @param magic
 	 */
-	public void addMaximum(int magic) {
-		for (ManaAttribute mana : _mana) {
+    public void addMaximumAndRestore(int magic) {
+        for (ManaAttribute mana : _mana) {
 			mana.addMaximum(magic);
 			mana.restore();
 		}
@@ -61,8 +60,8 @@ public class MobMana implements Serializable {
 	}
 
 	public String getPrompt() {
-		// TODO Auto-generated method stub
-		return _mana[0].getPrompt();
+
+        return _mana[0].getPrompt();
 	}
 
 	public boolean hasEnoughManaToCast(Spell spell_) {

@@ -4,7 +4,6 @@ import com.ivstuart.tmud.state.Mob;
 
 public class Level extends AdminCommand {
 
-	/** TODO refactor this as it not great ! */
 	@Override
 	public void execute(Mob mob_, String input_) {
 

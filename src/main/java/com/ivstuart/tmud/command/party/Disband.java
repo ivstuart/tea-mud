@@ -7,9 +7,9 @@
 package com.ivstuart.tmud.command.party;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Mob;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -50,7 +50,20 @@ public class Disband extends BaseCommand {
 			group.clear();
 		}
 
-		// TODO code to disband a single member of the group.
+        if (input.length() > 0) {
+            Iterator<Mob> mobIterator = mob_.getPlayer().getGroup().iterator();
+
+            for (; mobIterator.hasNext(); ) {
+                Mob mob = mobIterator.next();
+
+                if (mob.getName().equals(input)) {
+                    mobIterator.remove();
+                    mob.getPlayer().setGroup(null);
+                }
+            }
+
+        }
+
 
 	}
 

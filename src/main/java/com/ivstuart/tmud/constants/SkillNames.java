@@ -10,4 +10,5 @@ public class SkillNames {
     public static final String SHIELD_BLOCK = "shield block";
 
     public static final String TRACKING = "tracking";
+    public static final String RESCUE = "rescue";
 }

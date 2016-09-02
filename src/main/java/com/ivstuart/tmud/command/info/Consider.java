@@ -7,54 +7,53 @@
 package com.ivstuart.tmud.command.info;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- * 
+ *         <p>
  *         To change the template for this generated type comment go to
  *         Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Consider extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    public static final String[] compare = {
+            "Now where did that chicken go?",
+            "You could do it with a needle!",
+            "Easy.",
+            "The perfect match!",
+            "You would need some luck!",
+            "You would need a lot of luck and great equipment!",
+            "Do you feel lucky, punk?",
+            "Are you mad!?",
+            "You ARE mad!"
+    };
 
-		mob.out("Consider not implemented yet");
+    @Override
+    public void execute(Mob mob, String input) {
 
-		// Level difference is no good enough todo a comparison.
-		// Use Hp + Arm + dam at least to provide a rating.
+        Mob target = mob.getRoom().getMob(input);
 
-		// Consider killing who?
+        if (target == null) {
+            mob.out(input + " is not here to consider!");
+            return;
+        }
 
-		// You can not kill yourself (maybe allow this)
+        // TODO factor in damage and shield spells.
 
-		// Would you like to borrow a cross and a shovel?
+        int index1 = 4 * target.getHp().getValue() / mob.getHp().getValue();
 
-		/**
-		 * if (diff <= -10) send_to_char(ch,
-		 * "Now where did that chicken go?\r\n"); else if (diff <= -5)
-		 * send_to_char(ch, "You could do it with a needle!\r\n"); else if (diff
-		 * <= -2) send_to_char(ch, "Easy.\r\n"); else if (diff <= -1)
-		 * send_to_char(ch, "Fairly easy.\r\n"); else if (diff == 0)
-		 * send_to_char(ch, "The perfect match!\r\n"); else if (diff <= 1)
-		 * send_to_char(ch, "You would need some luck!\r\n"); else if (diff <=
-		 * 2) send_to_char(ch, "You would need a lot of luck!\r\n"); else if
-		 * (diff <= 3) send_to_char(ch,
-		 * "You would need a lot of luck and great equipment!\r\n"); else if
-		 * (diff <= 5) send_to_char(ch, "Do you feel lucky, punk?\r\n"); else if
-		 * (diff <= 10) send_to_char(ch, "Are you mad!?\r\n"); else if (diff <=
-		 * 100) send_to_char(ch, "You ARE mad!\r\n");
-		 */
+        int index2 = 4 * target.getMobLevel() / mob.getPlayer().getData().getLevel();
 
-		/**
-		 * Mob target = getTarget();
-		 * 
-		 * if (target == null) { out(input + " is not here to consider!");
-		 * return; } // Get own stats (i.e. hp) and conpare them with monster //
-		 * target.getStats();
-		 */
-	}
+        int compareIndex = (index1 + index2) / 2;
+
+        if (compareIndex >= compare.length) {
+            compareIndex = compare.length - 1;
+        }
+
+        mob.out(compare[compareIndex]);
+
+
+    }
 
 }

@@ -38,7 +38,7 @@ public class Flee extends FightAction {
 	 */
 	@Override
 	public void begin() {
-		// TODO Auto-generated method stub
+
 		out("You start looking for an opening to flee");
 		duration(1);
 
@@ -51,7 +51,7 @@ public class Flee extends FightAction {
 	 */
 	@Override
 	public void changed() {
-		// TODO Auto-generated method stub
+
 		out("You change from fleeing from someone");
 		// duration(2000);
 
@@ -64,7 +64,7 @@ public class Flee extends FightAction {
 	 */
 	@Override
 	public void destory() {
-		// TODO Auto-generated method stub
+
 
 	}
 
@@ -75,7 +75,7 @@ public class Flee extends FightAction {
 	 */
 	@Override
 	public void ended() {
-		// TODO Auto-generated method stub
+
 		out("You end from fleeing");
 		duration(5);
 	}

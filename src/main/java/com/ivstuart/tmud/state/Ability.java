@@ -59,7 +59,7 @@ public class Ability implements Serializable {
 		try {
 			difficulty = World.getAbility(id).getDifficulty();
 		} catch (NullPointerException e) {
-			// TODO log warning message diff
+			LOGGER.error("Problem getting ability " + id, e);
 		}
 
 		return roll < difficulty;

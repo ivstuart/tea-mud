@@ -78,6 +78,16 @@ public class Kick extends BaseCommand {
 			return;
 		}
 
+		if (target.isInvisible() && !mob.hasDetectInvisible()) {
+			mob.out(input + " is not seen here to kick!");
+			return;
+		}
+
+		if (target.isHidden() && !mob.hasDetectHidden()) {
+			mob.out(input + " is not seen here to kick!");
+			return;
+		}
+
 		mob.getFight().add(new FightActionKick(mob, target));
 
 	}
@@ -111,13 +121,11 @@ public class Kick extends BaseCommand {
 
 		@Override
 		public void changed() {
-			// TODO Auto-generated method stub
 
 		}
 
 		@Override
 		public void ended() {
-			// TODO Auto-generated method stub
 
 		}
 

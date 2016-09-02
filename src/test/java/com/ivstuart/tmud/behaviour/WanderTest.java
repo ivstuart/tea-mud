@@ -1,39 +1,28 @@
 package com.ivstuart.tmud.behaviour;
 
-import static org.junit.Assert.fail;
-
-import org.junit.Test;
-
 import com.ivstuart.tmud.server.LaunchMud;
 import com.ivstuart.tmud.state.Mob;
+import org.junit.Test;
+
+import static org.junit.Assert.fail;
 
 public class WanderTest {
 
 	/**
-	 * TODO
-	 */
+     *
+     */
 	@Test
 	public void testMoveRandomly() {
 
 		Mob mob = new Mob();
 		mob.setNameAndId("wanderingMob");
 
-		// TODO create a set of rooms and exits for the Mob to be tested in
-		// OR load default test world and use the state from that in which to
-		// test (more of an integration test then)
-
-		LaunchMud.main(new String[0]); // TODO set thread to exit when test
-										// does.
+        LaunchMud.main(new String[0]);
 
 		// See MudConnectionTest and create a utility
 		// TestHelper.loadMudServerInstance(); // optionally with a timeout
 
 		Wander wandering = new Wander();
-
-		// Reuse an existing mob or make a lost sheep mob.
-		// Set it to have wandering behaviour
-
-		// TestHelper.tick();;;;;
 
 		wandering.tick();
 		wandering.tick();
@@ -44,7 +33,8 @@ public class WanderTest {
 
 		System.out.println("Rooms been to" + wandering.getRooms());
 
-	}
+
+    }
 
 	/**
 	 * TODO

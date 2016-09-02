@@ -17,9 +17,9 @@ public class Close extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {
-		// TODO Auto-generated method stub
 
-		Exit exit = mob.getRoom().getExit(input);
+
+        Exit exit = mob.getRoom().getExit(input);
 
 		if (exit == null) {
 			mob.out("No visiable exit in direction " + input);

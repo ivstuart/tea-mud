@@ -59,6 +59,8 @@ public class Buy extends BaseCommand {
 			shopKeeper.getInventory().add(newItem);
 		}
 
+        item.setShopSupplied(false);
+
 		mob.getInventory().add(item);
 
 		mob.out("You buy a "+item.getName());

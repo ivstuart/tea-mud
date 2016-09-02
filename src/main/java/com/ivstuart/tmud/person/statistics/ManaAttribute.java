@@ -38,8 +38,8 @@ public class ManaAttribute implements Serializable {
 		_maximum = 10;
 		_current = 10;
 		_minimum = 0;
-		_castlevel = 18; // TODO take int + wis / 2
-	}
+        _castlevel = 18;
+    }
 
 	public void addCastLevel(int level_) {
 		_castlevel += level_;

@@ -54,7 +54,7 @@ public class Get extends BaseCommand {
     @Override
     public void execute(Mob mob, String input) {
 
-        // TODO Auto-generated method stub
+
 
         if (input.equalsIgnoreCase("all")) {
             getAllCoins(mob);
@@ -107,7 +107,7 @@ public class Get extends BaseCommand {
             return;
         }
 
-        // TODO this is broken
+        // TODO fix the bug with get all
         if (input.equalsIgnoreCase("all")) {
             Iterator<Item> itemIter = items.iterator();
             for (Item item = itemIter.next(); itemIter.hasNext(); item = itemIter.next()) {
@@ -154,7 +154,6 @@ public class Get extends BaseCommand {
         mob.out("You get an " + anItem.getName());
     }
 
-    // TODO threadsafety
     private void getAllCoins(Mob mob) {
 
         SomeMoney money = mob.getRoom().getMoney();

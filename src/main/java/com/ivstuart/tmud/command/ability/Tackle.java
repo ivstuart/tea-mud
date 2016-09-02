@@ -128,7 +128,6 @@ public class Tackle extends BaseCommand {
 		public void begin() {
 			super.begin();
 
-			// TODO review and test this
 			if (!getSelf().getMv().deduct(10)) {
 				out("You do not have enough movement left to tackle");
 				this.finished();
@@ -145,15 +144,15 @@ public class Tackle extends BaseCommand {
 
 		@Override
 		public void changed() {
-			// TODO Auto-generated method stub
 
-		}
+
+        }
 
 		@Override
 		public void ended() {
-			// TODO Auto-generated method stub
 
-		}
+
+        }
 
 		@Override
 		public void happen() {

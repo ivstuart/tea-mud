@@ -86,7 +86,6 @@ public class TestHelper {
 		try {
 			Thread.sleep(200); // Give server time to come up.
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

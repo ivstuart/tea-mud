@@ -7,7 +7,6 @@
 package com.ivstuart.tmud.command.info;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.constants.FightConstants;
 import com.ivstuart.tmud.person.statistics.ManaAttribute;
 import com.ivstuart.tmud.person.statistics.MobMana;
@@ -93,19 +92,16 @@ public class Prompt extends BaseCommand {
 
 		sb.append(mob.getPlayer().getData().getToLevelXp());
 
-		// TODO
-		// sb.append(ent.getStats().getMiscStats().getToLevelXp());
 		sb.append(")");
 
-		// [Oppnt: good]
 		if (mob.getFight() != null) {
 			Mob target = mob.getFight().getTarget();
 			if (target != null) {
-				// sb.append(" [Oppnt: ");
+
 				sb.append(" [Op: ");
 				sb.append(getLifeStatus(target));
-				// TODO refactor
-				sb.append(target.getMobStatus().getPrompt());
+
+                sb.append(target.getMobStatus().getPrompt());
 				sb.append("]");
 			}
 		}
@@ -114,13 +110,13 @@ public class Prompt extends BaseCommand {
 
 	}
 
+    public static void show(Mob self) {
+        self.out(Prompt.getPrompt(self));
+    }
+
 	@Override
 	public void execute(Mob mob_, String input_) {
 
 		mob_.out(Prompt.getPrompt(mob_));
-	}
-
-	public static void show(Mob self) {
-		self.out(Prompt.getPrompt(self));
 	}
 }

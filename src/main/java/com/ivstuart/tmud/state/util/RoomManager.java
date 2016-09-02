@@ -34,6 +34,17 @@ public class RoomManager {
 		new RoomManager();
 	}
 
+	public RoomManager() {
+		directionMap.put("north", "south");
+		directionMap.put("east", "west");
+		directionMap.put("south", "north");
+		directionMap.put("west", "east");
+		directionMap.put("up", "down");
+		directionMap.put("down", "up");
+
+		exitsWithDoors = new ArrayList<DoorDAO>();
+	}
+
 	public static void createDoors(String roomId_, String exit_) {
 
 		LOGGER.info("Creating door in room [ " + roomId_ + " ] for [ " + exit_
@@ -155,17 +166,5 @@ public class RoomManager {
 		}
 
 		exitsWithDoors.clear();
-	}
-
-	public RoomManager() {
-		// TODO enum to replace this?
-		directionMap.put("north", "south");
-		directionMap.put("east", "west");
-		directionMap.put("south", "north");
-		directionMap.put("west", "east");
-		directionMap.put("up", "down");
-		directionMap.put("down", "up");
-
-		exitsWithDoors = new ArrayList<DoorDAO>();
 	}
 }

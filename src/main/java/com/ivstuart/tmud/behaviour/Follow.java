@@ -41,7 +41,6 @@ public class Follow extends BaseBehaviour {
             return;
         }
 
-        // TODO aggro by alignment or other criteria
         Mob target = room.getRandomPlayer();
 
         if (target == null) {

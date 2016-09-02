@@ -10,8 +10,8 @@ public class Damage implements SpellEffect {
 	@Override
 	public void effect(Mob giver_, Mob reciever, Spell spell, Item targetItem) {
 
-		// TODO Auto-generated method stub
-		DamageManager.deal(giver_, reciever, spell.getDamage().roll());
+
+        DamageManager.deal(giver_, reciever, spell.getDamage().roll());
 	}
 
 	public boolean isPositiveEffect() {

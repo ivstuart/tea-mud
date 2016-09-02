@@ -15,10 +15,8 @@ import com.ivstuart.tmud.state.Prop;
 import com.ivstuart.tmud.utils.*;
 
 /**
- * @author stuarti TODO check for containers to ensure they are empty 1st check
- *         flag for none sac items... maybe gems should be none sacable and
- *         other powerful items. To encourge players to donate or at least auction items.
- * 
+ * @author stuarti
+ *
  *         To change the template for this generated type comment go to
  *         Window>Preferences>Java>Code Generation>Code and Comments
  */

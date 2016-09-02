@@ -147,7 +147,6 @@ public class Bash extends BaseCommand {
 		@Override
 		public void happen() {
 
-			// TODO initiate combat if not already started.
 			Fight.startCombat(getSelf(), getTarget());
 
 			if (checkMobStatus(getSelf(), getTarget())) {

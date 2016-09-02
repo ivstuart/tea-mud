@@ -1,24 +1,12 @@
 package com.ivstuart.tmud.command;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Test;
-
 import com.ivstuart.tmud.command.combat.Kill;
 import com.ivstuart.tmud.command.combat.Rescue;
-import com.ivstuart.tmud.person.Player;
-import com.ivstuart.tmud.person.PlayerData;
-import com.ivstuart.tmud.person.statistics.MobMana;
-import com.ivstuart.tmud.state.Ability;
-import com.ivstuart.tmud.state.Attribute;
-import com.ivstuart.tmud.state.BaseSkill;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Room;
-import com.ivstuart.tmud.state.World;
+import com.ivstuart.tmud.state.*;
 import com.ivstuart.tmud.utils.TestHelper;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class TestRescue {
 
@@ -33,8 +21,8 @@ public class TestRescue {
 		player2Mob.getLearned().add(rescueAbility);
 		World.add(new BaseSkill("rescue"));
 
-		// TODO have test resource file to load in a mob sheep and mob player
-		// test files.
+        // have test resource file to load in a mob sheep and mob player
+        // test files.
 		Mob sheepMob = new Mob();
 		sheepMob.setNameAndId("sheep");
 		sheepMob.setHp("2d10+50");

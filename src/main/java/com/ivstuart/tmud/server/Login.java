@@ -99,17 +99,26 @@ public class Login implements Readable {
         data.setEmail(email);
         data.setPassword(password);
 
-        // Str Con Dex Int Wis - Set
-        player.setAttributes(attributes);
+
 
         mob.setGender(gender);
 
         mob.setHeight(170 + DiceRoll.TWO_D_SIX.roll());
 
-        // TODO wire in race changes to stats.
         mob.setRace(RaceData.RACE_NAME[choice]);
 
         mob.setRaceId(choice);
+
+        Race race = mob.getRace();
+
+        int[] statModifications = race.getStats();
+
+        for (int index = 0; index < statModifications.length; index++) {
+            attributes[index] += statModifications[index];
+        }
+
+        // Str Con Dex Int Wis - Set
+        player.setAttributes(attributes);
 
         mob.setUndead(mob.getRace().isUndead());
 
@@ -320,7 +329,7 @@ public class Login implements Readable {
 
     @Override
     public void read(String line) {
-        // TODO work out how the multi-threading...
+
         if (loginState != null) {
             loginState.read(line);
         }

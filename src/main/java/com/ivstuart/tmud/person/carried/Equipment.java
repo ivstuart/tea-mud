@@ -58,7 +58,6 @@ public class Equipment implements Serializable {
 
 	public boolean add(Equipable eq) {
 		if (this.equip(eq)) {
-			// TODO
 			sortEquipment();
 			return true;
 		}

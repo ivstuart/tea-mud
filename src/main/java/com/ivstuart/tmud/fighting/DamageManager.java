@@ -104,13 +104,11 @@ public class DamageManager {
 
         damage = damage - armour;
 
-        // TODO test healing spells which are negative damage
         if (damage < 1) {
             attacker.out("Your feeble blow is deflected by their armour");
             return;
         }
 
-        // TODO
         checkMagicalDamageSaves();
 
         Msg msg = new Msg(attacker, defender, DamageConstants.toString(damage));
@@ -119,8 +117,6 @@ public class DamageManager {
 
         // TODO apply xp for combat damage and count this (clear counter on kill) after reporting xp from fighting.
         defender.getHp().decrease(damage);
-
-        // TODO if not fighting or a heavy blow defender will target and attack attacker.
 
         checkForDefenderDeath(attacker, defender);
 

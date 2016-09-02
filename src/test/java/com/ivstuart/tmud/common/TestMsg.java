@@ -1,20 +1,14 @@
 package com.ivstuart.tmud.common;
 
-import java.text.ParseException;
-
-import junit.framework.TestCase;
-
-import org.junit.Test;
-
-import com.ivstuart.tmud.common.Gender;
-import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.state.BasicThing;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
+import junit.framework.TestCase;
+import org.junit.Test;
+
+import java.text.ParseException;
 
 public class TestMsg extends TestCase {
-
-	// FIXME TODO add lots of other test cases.
 
 	private Mob source = null;
 	private Mob target = null;

@@ -79,7 +79,6 @@ public class World {
 	}
 
 	public static void add(Room room) {
-		// TODO LOGGER.debug("Adding room [ " + room.getId() + "]");
 		_rooms.put(room.getId(), room);
 	}
 
@@ -104,7 +103,7 @@ public class World {
 		}
 
 		_players.add(character.getName().toLowerCase());
-		// TODO review this next line of code.
+
 		_mobs.put(character.getId().toLowerCase(), character);
 
 		WorldTime.addTickable(character);
@@ -183,12 +182,6 @@ public class World {
 
 	}
 
-	/**
-	 * TODO work out if I should expose reference. I should make the list
-	 * immutable once loaded.
-     *
-     * @return
-	 */
 	public static Map<String, Spell> getSpells() {
 		return spells;
 	}
@@ -336,7 +329,6 @@ public class World {
 		else {
 			LOGGER.warn("Object of null reference attempted to add to the world!");
 		}
-		// TODO throw new IllegalArgumentException("Unknow object type ["+object.getClass().getSimpleName()+"]");
 
 	}
 

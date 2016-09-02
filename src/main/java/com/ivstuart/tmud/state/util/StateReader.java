@@ -62,7 +62,6 @@ public class StateReader {
 			addToWorld(obj);
 		}
 
-		// TODO check for World.getObject
 		if (currentClass.equals("state.Room")) {
 			Room room = World.getRoom(args);
 			if (room != null) {

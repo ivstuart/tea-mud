@@ -20,9 +20,9 @@ public class WeatherInfo extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {
-		// TODO Auto-generated method stub
 
-		mob.out("Weather details not done yet!");
+
+        mob.out("Weather details not done yet!");
 	}
 
 }

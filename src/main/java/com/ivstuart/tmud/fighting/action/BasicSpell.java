@@ -8,6 +8,7 @@ package com.ivstuart.tmud.fighting.action;
 
 import com.ivstuart.tmud.command.info.Prompt;
 import com.ivstuart.tmud.common.Msg;
+import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.state.*;
 import com.ivstuart.tmud.utils.MudArrayList;
 
@@ -36,7 +37,7 @@ public class BasicSpell extends FightAction {
     }
 
     public BasicSpell(Ability ability_, Spell spell_, Mob me_, Item item_) {
-        super(me_, me_); // TODO maybe target should be null here.
+        super(me_, me_);
         _ability = ability_;
         _spell = spell_;
         _item = item_;
@@ -145,7 +146,7 @@ public class BasicSpell extends FightAction {
 
         // Start fight if aggressive action
         if (!isSpellEffectPositive()) {
-            // TODO initialise combat from here.
+            Fight.startCombat(getSelf(), getTarget());
         }
 
         if (_ability.isImproved()) {

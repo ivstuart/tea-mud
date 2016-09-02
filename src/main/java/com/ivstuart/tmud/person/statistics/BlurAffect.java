@@ -1,7 +1,7 @@
 package com.ivstuart.tmud.person.statistics;
 
 import com.ivstuart.tmud.common.DiceRoll;
-import com.ivstuart.tmud.spells.SpellEffect;
+import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.state.Mob;
 
 public class BlurAffect extends Affect {
@@ -29,10 +29,7 @@ public class BlurAffect extends Affect {
 			return amount_;
 		}
 
-		// TODO source target Msg text to room here instead.
-		caster_.out("Your blurred image save you from this hit");
-		target_.out("You miss due to targets blurry image");
-		target_.getRoom().out("Blur saves the day for "+target_.getName());
+        target_.getRoom().out(new Msg(caster_, target_, "Blur saves the day for <S-NAME> from <T-NAME>"));
 
 		return 0;
 

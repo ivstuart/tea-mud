@@ -4,7 +4,6 @@ import com.ivstuart.tmud.state.Mob;
 
 import java.util.List;
 
-// TODO <T>
 public interface Equipable extends Comparable {
 
     void equip(Mob mob);

@@ -9,8 +9,8 @@ public class Channel extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {
-		// TODO Auto-generated method stub
-		execute(mob.getPlayer(), input);
+
+        execute(mob.getPlayer(), input);
 
 	}
 

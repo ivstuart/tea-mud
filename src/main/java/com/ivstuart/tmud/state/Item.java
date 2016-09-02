@@ -27,6 +27,22 @@ public class Item extends Prop implements Equipable, Msgable {
 
 	// in grams
 	protected int _weight;
+	// copper
+	protected int _cost;
+	protected SomeMoney _someMoneyCost;
+	// copper
+	protected int _rent;
+	protected int _worn;
+	protected int _size;
+	protected int _damagedPercentage;
+	protected int apb;
+	protected boolean isClimbing;
+	protected boolean isShopSupplied;
+	int loadPercentage = 1;
+	private boolean isNoDrop;
+
+	public Item() {
+	}
 
 	@Override
 	public String toString() {
@@ -48,27 +64,6 @@ public class Item extends Prop implements Equipable, Msgable {
 				", loadPercentage=" + loadPercentage +
 				", isNoDrop=" + isNoDrop +
 				'}';
-	}
-
-	// copper
-	protected int _cost;
-	protected SomeMoney _someMoneyCost;
-
-	// copper
-	protected int _rent;
-
-	protected int _worn;
-
-	protected int _size;
-
-	protected int _damagedPercentage;
-	protected int apb;
-	protected boolean isClimbing;
-	protected boolean isShopSupplied;
-	int loadPercentage = 1;
-	private boolean isNoDrop;
-
-	public Item() {
 	}
 
 	public int getAPB() {
@@ -109,13 +104,13 @@ public class Item extends Prop implements Equipable, Msgable {
 
 	@Override
 	public void equip(Mob mob) {
-		// TODO Auto-generated method stub
+
 
 	}
 
 	@Override
 	public Gender getGender() {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
@@ -201,7 +196,7 @@ public class Item extends Prop implements Equipable, Msgable {
 
 	@Override
 	public void unequip(Mob mob) {
-		// TODO Auto-generated method stub
+
 
 	}
 

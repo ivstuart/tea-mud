@@ -20,8 +20,6 @@ import java.util.Iterator;
  */
 public class Inventory implements Serializable {
 
-	// TODO - Weight allowance for what can be carried?
-
 	/**
 	 * 
 	 */
@@ -85,8 +83,6 @@ public class Inventory implements Serializable {
 
 		for (Item item : items) {
 			sb.append(item.getBrief() + "\n");
-			// TODO debug an issue
-			// sb.append(" Alias is "+item.getAlias() + "\n");
 		}
 
 		return sb.toString();

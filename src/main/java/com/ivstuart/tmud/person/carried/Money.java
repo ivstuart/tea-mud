@@ -1,7 +1,7 @@
 /*
  * Created on Nov 23, 2004
  *
- * TODO To change the template for this generated file go to
+ *  To change the template for this generated file go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
 package com.ivstuart.tmud.person.carried;
@@ -47,6 +47,23 @@ public class Money implements SomeMoney {
 		quantity = money.quantity;
 	}
 
+    public static int getType(String input) {
+        int type = Money.PLATINUM;
+        if (input.indexOf("copper") > -1) {
+            type = Money.COPPER;
+        }
+        if (input.indexOf("silver") > -1) {
+            type = Money.SILVER;
+        }
+        if (input.indexOf("gold") > -1) {
+            type = Money.GOLD;
+        }
+        if (input.indexOf("plat") > -1) {
+            type = Money.PLATINUM;
+        }
+        return type;
+    }
+
 	/**
 	 * @param money
 	 */
@@ -59,7 +76,6 @@ public class Money implements SomeMoney {
 		}
 		return true;
 	}
-
 
 	public void add(MoneyBag moneyBag) {
 		moneyBag.add(this);
@@ -108,8 +124,8 @@ public class Money implements SomeMoney {
 	}
 
 	/*
-	 * (non-Javadoc)
-	 * 
+     * (non-Javadoc)
+	 *
 	 * @see person.carried.SomeMoney#remove(person.carried.Money)
 	 */
 	@Override
@@ -128,8 +144,8 @@ public class Money implements SomeMoney {
 	}
 
 	/*
-	 * (non-Javadoc)
-	 * 
+     * (non-Javadoc)
+	 *
 	 * @see person.carried.SomeMoney#remove(person.carried.MoneyBag)
 	 */
 	@Override
@@ -168,22 +184,5 @@ public class Money implements SomeMoney {
 
 	public int getQuantity() {
 		return quantity;
-	}
-
-	public static int getType(String input) {
-		int type = Money.PLATINUM;
-		if (input.indexOf("copper") > -1) {
-			type = Money.COPPER;
-		}
-		if (input.indexOf("silver") > -1) {
-			type = Money.SILVER;
-		}
-		if (input.indexOf("gold") > -1) {
-			type = Money.GOLD;
-		}
-		if (input.indexOf("plat") > -1) {
-			type = Money.PLATINUM;
-		}
-		return type;
 	}
 }
