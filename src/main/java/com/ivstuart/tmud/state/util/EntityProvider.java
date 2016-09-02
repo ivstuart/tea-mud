@@ -43,7 +43,11 @@ public class EntityProvider {
         } else if (existingMob instanceof WarMaster) {
             LOGGER.debug("Creating instance of a Warmaster!");
             newMob = new WarMaster(existingMob);
-        } else {
+        } else if (existingMob instanceof GuildMaster) {
+            LOGGER.debug("Creating instance of a GuildMaster!");
+            newMob = new GuildMaster(existingMob);
+        }
+        else {
             newMob = new Mob(existingMob);
         }
 

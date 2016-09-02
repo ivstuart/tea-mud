@@ -7,15 +7,16 @@
 package com.ivstuart.tmud.command.item;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.state.*;
-import com.ivstuart.tmud.utils.*;
-
-import static com.ivstuart.tmud.utils.StringUtil.*;
+import com.ivstuart.tmud.utils.MudArrayList;
+import com.ivstuart.tmud.utils.StringUtil;
 
 import java.util.Iterator;
 import java.util.List;
+
+import static com.ivstuart.tmud.utils.StringUtil.getFirstWord;
+import static com.ivstuart.tmud.utils.StringUtil.getLastWord;
 
 /**
  * @author stuarti
@@ -93,6 +94,7 @@ public class Get extends BaseCommand {
                     corpse.getInventory().remove(item);
                     mob.getInventory().add(item);
                     mob.out("You get " + item.getName() + " from " + corpse.getName());
+                    item.setHidden(false);
                 }
 
             }
@@ -113,6 +115,7 @@ public class Get extends BaseCommand {
 
                 mob.out("You get an " + item.getName());
                 itemIter.remove();
+                item.setHidden(false);
             }
             return;
         }

@@ -104,6 +104,7 @@ public class DamageManager {
 
         damage = damage - armour;
 
+        // TODO test healing spells which are negative damage
         if (damage < 1) {
             attacker.out("Your feeble blow is deflected by their armour");
             return;

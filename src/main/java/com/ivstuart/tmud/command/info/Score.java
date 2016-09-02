@@ -9,6 +9,7 @@ package com.ivstuart.tmud.command.info;
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.common.Info;
 import com.ivstuart.tmud.fighting.CombatCal;
+import com.ivstuart.tmud.person.Guilds;
 import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.person.PlayerData;
 import com.ivstuart.tmud.person.statistics.MobMana;
@@ -127,9 +128,40 @@ public class Score extends BaseCommand {
                         mob.getWeightCarried() / 1000.0,
                         mob.getBurden().getDesc()));
 
+        showGuilds(mob);
+
         mob.out("");
 
         mob.out(Info.BAR);
+
+    }
+
+    private void showGuilds(Mob mob) {
+        Guilds guilds = mob.getPlayer().getGuilds();
+        StringBuilder sb = new StringBuilder();
+
+        if (guilds.isMages()) {
+            sb.append("mages ");
+        }
+        if (guilds.isFighters()) {
+            sb.append("fighters ");
+        }
+        if (guilds.isThieves()) {
+            sb.append("thieves ");
+        }
+        if (guilds.isRangers()) {
+            sb.append("rangers ");
+        }
+        if (guilds.isTinkers()) {
+            sb.append("tinkers ");
+        }
+        if (guilds.isHealers()) {
+            sb.append("healers ");
+        }
+
+        if (sb.length() >0) {
+            mob.out("   Guilds: "+sb.toString());
+        }
 
     }
 

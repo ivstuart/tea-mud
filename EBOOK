@@ -82,3 +82,104 @@ TODO
 
   Firstly I have to write it. But I want to gauge interest first. Pledge 99p to me at Ivan.Stuart@gmail.com
   When I have at least 10 pledges I will go ahead with the rest of this eBook.
+
+  ==  Client server communication
+
+The server which listens for telnet socket connections runs in its own thread. It uses a Selector to wait and block on
+a channel until input output is available then the read selector selects that socket. From the read selector we obtain
+selection keys from which a ServerSocketChannel can be obtained once the key is acceptable. From the ServerSocketChannel
+we accept a SocketChannel which we set to be non-blocking and read only. We also register a write selector with the
+channel. This channel is then added to the ConnectionManager which maintains a map of these to connections.
+
+Then if the key is readable we try to read into a buffer. We read from the socket channel until there are no more bytes
+to read. This input is then passed to the ConnectionManager which passes on the processing to the connection that action
+via a read method. The data is passed as a string which the carriage return filtered away.
+
+If there is a invalid socket or any type of Exception then the socket connection will be closed by the ConnectionManager
+. It does this by canceling the key and closing the channel. If the socket channel is still connected it will call
+finish on it. There is no getline() method to read in a line of input. In order to get a line of input you have to wait
+for it to be pushed to the process method. Hence the state for playing has to be changed to capture each line of input
+with different outcomes depending on the input and how far along in the process the user is. Example of how this is done
+is in both the Login code and the Password changing classes.
+
+== MudIO the persistence layer
+
+Player files are stored using the default serialisation mechanism in Java. The byte streams are also compressed to keep
+the sizes smaller. This is done by using a GZIPInputStream. MudIO is the class with the methods to both save and load
+objects using this strategy. Transient attributes of the players domain classes are not stored.
+
+The ban list and admin list are both stored as an ArrayList of String using GSON this allows for manual editing of the
+save files which is a nice feature should you want to disable the addAdmin command.
+
+The main properties file mudserver.properties file contains the location of the save players ban list and world state
+files. The world state will be discussed in more details in a later chapter of this eBook. However in short a simple
+file handle is used to read the data in line by line. There is a special tag for comments '#' and for including new
+files the include: tag is used. This allows for the files to be split out by naming convention that makes it easier to
+location the data.
+
+== SomeMoney
+
+SomeMoney is an interface which allows you to hide entirely whether you are dealing with one sum of money or a batch
+of different currencies. Having change available to make purchases should be hidden from the code which does the buying
+and selling. There are four supported currency types copper, silver, gold and platinum and they are exchanged in a ratio
+of 1:10 in that order. Hence 100 copper is 1 gold and vice versa. Why would you want to switch coins into higher
+denominations, the answer to that is the weight of the coins it is less weight to carry 10 plat then 10000 copper.
+At the bank coins can be converted into there highest denominations.
+
+== Fight Actions
+
+These a real time based sequences of steps. They have state such that they start at begin() and then transition to
+happen(), changed(), done(), finished(). These methods are called after a duration in milliseconds has elapsed. There
+is a thread in WorldTime which is checking every 100 milliseconds the status of all fight actions and if any of them are
+ready to go to the next status. Fight actions also track who the source and target is for the fighting. BasicAttack
+and BasicSpell inherit from FightAction.
+
+== Spells and Buffs
+
+BasicSpell is the main fight action for spells which are Cast. However there effect which is by default is damage can be
+modified to various other behaviors. A spell has a spell effect which may resolve immediately or could result in a buff
+being applied to the character. You can check buffs which the Affects command and see how long there is left on a given
+buff. The buffs themselves extend Affect. The spell factory provides a mapping between which spells have what spell
+effects. This may change in the future to use refection directly to avoid adding to the mapping, but its alright for now
+.
+
+==  Mob Behaviour
+
+This uses reflection to match the name of the behaviour in the mob text file to the behaviours in the behaviour package.
+They extend BaseBehaviour and come with two free parameters to configure. Typically the first is the chance of the
+behaviour happening per game tick of 15 seconds. The second parameter can be used in lots of different ways.
+To pass more params into behaviours is a little tricky and the code for this pollutes the mob object. See Patrol for how
+a path was added.
+
+== World building
+
+Everything that is clever is done via the StateReader which uses the tags in the state files to drive object creation.
+The one exception to the rule is room which can be revisited by id and further edited which allows them to be created by
+the roomBuilder code and further modified. The state reader uses refection to create new objects of the type class as
+specified in the state files. New objects are created when the id: tag is used and every other tag is a setter for the
+class of object it is. It will try first to all a boolean method and then String and then int which minimises the amount
+of boiler plate code required in the state files. Its a bit like simple Spring injection without the xml and all the
+config options. But it benefits from being vastly simpler. It does couple the state files to the code but that is
+intentional and its better than having all the data in class files.
+
+By convention the root index file is a zone text file which then references rooms and mob files. Items can also be added
+. These can be either added in the zone or mob files depending on how you want the items to load.
+When you build a room is comes with exits to configure and these need to be done in both directions from the target room
+then back in the opposite direction to the source room. This is done automatically by the room builder. In the future
+there will also be a mob and item builder to generate random mobs and items. This is to help deal with the gulf of
+effort required in area building. Sometimes you just want to be able to set a population density and have a spread of
+mobs without having to specify each and every detail.
+
+== Conclusion
+
+There is a mountain of work to write a well written MUD in the first place. Then configuring all the state for the mobs,
+ room and items this is why sites recruit builds and get 10-50 people to build areas. Each 50 room area takes 4-8 hours
+ of work to hand crank. I hope to cut this down with clever room builder and mob building code which has yet to be
+ added.
+
+ How long until we have a fully working and hosted MUD. I would say we are about 5 months away from having the finished
+ article. Finding somewhere cheep and easy to host is going to be one challenge. Then security needs to be managed to
+ ensure that admin accounts are not hacked into. Logins should display last login and history the last history of
+ commands entered. To make it very easy to spot if an account has been compromised.
+
+

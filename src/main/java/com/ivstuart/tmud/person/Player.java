@@ -19,15 +19,10 @@ public class Player implements Serializable, Nameable {
 	private static final Logger LOGGER = LogManager.getLogger();
 
 	private static final long serialVersionUID = 1L;
-
-	private Mob mob;
-
-	private Config config;
-
-	private PlayerData playerData;
-
 	protected Attributes attributes;
-
+	private Mob mob;
+	private Config config;
+	private PlayerData playerData;
 	private transient Connection connection;
 
 	private boolean admin = false;
@@ -39,6 +34,19 @@ public class Player implements Serializable, Nameable {
 	private transient List<Mob> group;
 
 	private Inventory bank;
+	private Guilds guilds;
+
+	public Player() {
+		playerData = new PlayerData();
+		config = new Config();
+		alias = new HashMap<>();
+		bank = new Inventory();
+		guilds = new Guilds();
+	}
+
+	public Guilds getGuilds() {
+		return guilds;
+	}
 
 	public List<Mob> getGroup() {
 		return group;
@@ -47,19 +55,13 @@ public class Player implements Serializable, Nameable {
 	public void setGroup(List<Mob> group) {
 		this.group = group;
 	}
-	public void setSnooper(Mob snooper) {
-		this.snooper = snooper;
-	}
 
 	public Mob getSnooper() {
 		return snooper;
 	}
 
-	public Player() {
-		playerData = new PlayerData();
-		config = new Config();
-		alias = new HashMap<>();
-		bank = new Inventory();
+	public void setSnooper(Mob snooper) {
+		this.snooper = snooper;
 	}
 
 	public boolean checkIfLeveled() {
@@ -82,9 +84,14 @@ public class Player implements Serializable, Nameable {
 		return attributes;
 	}
 
+	public void setAttributes(int[] att) {
+		attributes = new Attributes(att);
+
+	}
+
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see person.Player#getConfig()
 	 */
 	public Config getConfig() {
@@ -93,7 +100,16 @@ public class Player implements Serializable, Nameable {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
+	 * @see person.Player#setConfig(person.Config)
+	 */
+	public void setConfig(Config config) {
+		this.config = config;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see person.Player#getData()
 	 */
 	public PlayerData getData() {
@@ -102,11 +118,29 @@ public class Player implements Serializable, Nameable {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
+	 * @see person.Player#setData(person.PlayerData)
+	 */
+	public void setData(PlayerData data) {
+		this.playerData = data;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see person.Player#getCharacter()
 	 */
 	public Mob getMob() {
 		return mob;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see person.Player#setCharacter(person.Mob)
+	 */
+	public void setMob(Mob me) {
+		this.mob = me;
 	}
 
 	@Override
@@ -162,42 +196,6 @@ public class Player implements Serializable, Nameable {
 
 	}
 
-	public void setAttributes(int[] att) {
-		attributes = new Attributes(att);
-
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see person.Player#setConfig(person.Config)
-	 */
-	public void setConfig(Config config) {
-		this.config = config;
-	}
-
-	public void setConnection(Connection connection) {
-		this.connection = connection;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see person.Player#setData(person.PlayerData)
-	 */
-	public void setData(PlayerData data) {
-		this.playerData = data;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see person.Player#setCharacter(person.Mob)
-	 */
-	public void setMob(Mob me) {
-		this.mob = me;
-	}
-
 	public boolean isAdmin() {
 		return admin;
 	}
@@ -238,6 +236,10 @@ public class Player implements Serializable, Nameable {
     public Connection getConnection() {
         return connection;
     }
+
+	public void setConnection(Connection connection) {
+		this.connection = connection;
+	}
 
 	public Inventory getBank() {
 		if (bank == null) {

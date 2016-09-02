@@ -101,7 +101,7 @@ defensive: 500
 armour: 50
 hp: 5d6+5000
 damage: 1d60+100
-copper: 1000
+copper: 10000
 xp: 200000
 state: STANDING
 attackType: claw tail bite breath
@@ -146,6 +146,7 @@ state: STANDING
 attackType: punch
 item: wooden-shield-004
 item: packed-lunches-001
+item: guild-token-001
 # dice types possible for most fields
 
 class: state.Mob
@@ -217,10 +218,29 @@ level: 100
 offensive: 1000
 defensive: 1000
 armour: 50
-hp: 1500
+hp: 15000
 damage: 1d100+1050
 copper: 0
 xp: 20
 state: STANDING
 attackType: punch
+
+class: state.GuildMaster
+id: mages-guildmaster
+name: mages guild master
+alias: mages guild master
+short: the mages guild master
+long: A mages guild master snares at you.
+look: The mages guild master is a common mages guild master is and all together unremarkable.
+level: 100
+offensive: 1000
+defensive: 1000
+armour: 50
+hp: 15000
+damage: 1d100+1050
+copper: 0
+xp: 20
+state: STANDING
+attackType: punch
+mages: true
 

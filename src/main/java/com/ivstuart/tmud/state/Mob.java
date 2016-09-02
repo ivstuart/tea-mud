@@ -734,7 +734,7 @@ public class Mob extends Prop implements Tickable {
         if (elements.length == 2) {
             item.setLoadPercentage(Integer.parseInt(elements[1]));
         }
-
+        // LOGGER.debug(("Adding item "+item.getId()+" to mob "+this.getId()));
         this.getInventory().add(item);
     }
 

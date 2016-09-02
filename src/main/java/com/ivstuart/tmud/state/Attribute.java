@@ -152,6 +152,11 @@ public class Attribute implements Serializable {
 		maximum += value;
 	}
 
+	public void increaseCurrentAndMaximum(int value) {
+		maximum += value;
+		current += value;
+	}
+
 	public void restore() {
 		current = maximum;
 	}

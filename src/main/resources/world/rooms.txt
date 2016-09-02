@@ -71,6 +71,7 @@ look: held by iron sconces, flicker dim light about the area.
 exits: east->R-003-001 south->R-002-002 west->R-001-001
 item: knife-001
 mob: dragon-005
+mob: mages-guildmaster
 dark: true
 water: true
 
@@ -84,6 +85,7 @@ look: detail. Perhaps spending some time reviewing this mosaic will be beneficia
 look: in gaining an understanding of the lay of the land. 
 exits: north->Z1-001-001 south->R-003-002 west->R-002-001
 item: bag-001
+item: guild-token-001
 # can put old man back in any time just that he wanders so creates noise in logging.
 mob: old-man-006
 water: true

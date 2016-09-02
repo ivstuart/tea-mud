@@ -70,5 +70,16 @@ type: BUTCHERABLE
 # coffee - think caffine verses sleep spell
 # pets?
 
+class: state.Item
+id: guild-token-001
+alias: small guild token
+short: small guild token
+look: small gold guild token
+wear: PRIMARY SECONDARY
+cost: 10000
+weight: 1
+shopSupplied: true
+
+
 
 
