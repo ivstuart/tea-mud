@@ -171,7 +171,7 @@ public class Money implements SomeMoney {
 	}
 
 	public static int getType(String input) {
-		int type = Money.COPPER;
+		int type = Money.PLATINUM;
 		if (input.indexOf("copper") > -1) {
 			type = Money.COPPER;
 		}
@@ -181,7 +181,7 @@ public class Money implements SomeMoney {
 		if (input.indexOf("gold") > -1) {
 			type = Money.GOLD;
 		}
-		if (input.indexOf("plati") > -1) {
+		if (input.indexOf("plat") > -1) {
 			type = Money.PLATINUM;
 		}
 		return type;

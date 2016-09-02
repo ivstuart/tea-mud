@@ -1,5 +1,6 @@
 package com.ivstuart.tmud.state;
 
+import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.constants.ManaType;
 import com.ivstuart.tmud.spells.BuffStats;
 import com.ivstuart.tmud.spells.SpellEffect;
@@ -22,7 +23,7 @@ public class Spell extends BaseSkill {
 	// Default is damage
 	private String _stat;
 
-	private int amount;
+	private DiceRoll amount;
 
 	/**
 	 * Cost of spell is double when your level is the same as the spell and this
@@ -105,10 +106,10 @@ public class Spell extends BaseSkill {
 	}
 
 	public void setAmount(String amount) {
-		this.amount = Integer.parseInt(amount);
+		this.amount = new DiceRoll(amount);
 	}
 
 	public int getAmount() {
-		return amount;
+		return amount.roll();
 	}
 }

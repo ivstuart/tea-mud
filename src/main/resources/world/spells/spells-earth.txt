@@ -20,8 +20,9 @@ spellEffect: CURE
 id: lesser healing
 level: 4
 cost: 5
-damage: -2d6
+amount: 2d6
 target: SELF
+spellEffect: HEAL
 speed: 5
 mana: EARTH
 prereq:
@@ -29,35 +30,36 @@ prereq:
 id: healing touch
 level: 4
 cost: 5
-damage: -4d6
+amount: 4d6
 target: SELF
 speed: 5
 mana: EARTH
+spellEffect: HEAL
 prereq: lesser healing
 
 id: greater healing
 level: 4
 cost: 5
-damage: -6d6
+amount: 6d6
 target: SELF
 speed: 5
 mana: EARTH
+spellEffect: HEAL
 prereq: healing touch
 
 id: mass healing
 level: 16
 cost: 50
-damage: -6d6
+amount: 6d6
 target: MANY
 speed: 5
 mana: EARTH
+spellEffect: HEAL
 prereq: healing touch
 
 id: stoneskin
 level: 10
 cost: 5
-damage: 500
-# damage is duration
 target: SELF
 speed: 5
 mana: EARTH

@@ -58,12 +58,15 @@ public class EntityProvider {
         // room
         newMob.setRepopRoomId(_id);
 
-        Item item = null;
-        // Remove items based on load percentage
-        for (Iterator<Item> itemIter = newMob.getInventory().getItems().iterator(); itemIter.hasNext(); ) {
-            item = itemIter.next();
-            if (!item.isLoaded()) {
-                itemIter.remove();
+
+        if (!(newMob instanceof ShopKeeper)) {
+            Item item = null;
+            // Remove items based on load percentage default 1% load chance
+            for (Iterator<Item> itemIter = newMob.getInventory().getItems().iterator(); itemIter.hasNext(); ) {
+                item = itemIter.next();
+                if (!item.isLoaded()) {
+                    itemIter.remove();
+                }
             }
         }
 

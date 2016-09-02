@@ -9,9 +9,9 @@ package com.ivstuart.tmud.command.item;
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.person.carried.SomeMoney;
-import com.ivstuart.tmud.state.GuildMaster;
-import com.ivstuart.tmud.state.Item;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.*;
+
+import static com.ivstuart.tmud.constants.SkillNames.TRACKING;
 
 /**
  * @author stuarti
@@ -113,6 +113,12 @@ public class Give extends BaseCommand {
 		if (guildMaster.isRangers() && !player.getGuilds().isRangers()) {
 			player.getGuilds().setRangers(true);
 			player.getAttributes().getDEX().increaseCurrentAndMaximum(1);
+			BaseSkill baseSkill = World.getAbility(TRACKING);
+			Ability ability = mob.getLearned().getAbility(TRACKING);
+			if (ability == null) {
+				mob.getLearned().add(new Ability(baseSkill.getId()));
+			}
+			mob.getLearned().getAbility(TRACKING).setSkill(100);
 			return true;
 		}
 		if (guildMaster.isHealers() && !player.getGuilds().isHealers()) {

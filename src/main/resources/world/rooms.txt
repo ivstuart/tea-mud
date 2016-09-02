@@ -53,13 +53,19 @@ look: eternal light ends in a bright point of light.
 exits: east->R-002-001 south->R-001-002 
 doors: [east]
 exitHidden: east
-mob: snake-002
-mob: snake-002
-item: sword-001
-item: scarf-001
-item: scarf-002
-item: scarf-003
-item: scarf-003
+#mob: snake-002
+#mob: snake-002
+mob: mages-guildmaster
+mob: ranger-guildmaster
+mob: fighters-guildmaster
+mob: thieves-guildmaster
+mob: healers-guildmaster
+mob: tinkers-guildmaster
+#item: sword-001
+#item: scarf-001
+#item: scarf-002
+#item: scarf-003
+#item: scarf-003
 properties:
 
 id: R-002-001
@@ -71,7 +77,6 @@ look: held by iron sconces, flicker dim light about the area.
 exits: east->R-003-001 south->R-002-002 west->R-001-001
 item: knife-001
 mob: dragon-005
-mob: mages-guildmaster
 dark: true
 water: true
 

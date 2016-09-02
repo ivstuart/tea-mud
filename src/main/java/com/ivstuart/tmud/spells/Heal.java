@@ -9,7 +9,12 @@ public class Heal implements SpellEffect {
 	@Override
 	public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
 
-		target_.getHp().increase(spell.getDamage().roll());
+		int ammount = spell.getAmount();
+		if (caster_.getPlayer().getGuilds().isHealers()) {
+			ammount *= 2;
+		}
+
+		target_.getHp().increase(ammount);
 	}
 
 	public boolean isPositiveEffect() {
