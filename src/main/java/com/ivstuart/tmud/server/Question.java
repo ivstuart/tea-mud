@@ -19,7 +19,6 @@ public class Question implements Readable {
 	 */
 	public Question() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/*

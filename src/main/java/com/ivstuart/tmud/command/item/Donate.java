@@ -31,7 +31,7 @@ public class Donate extends BaseCommand {
 		SomeMoney sm = mob.getRoom().getInventory().removeCoins(input);
 
 		if (sm != null) {
-			mob.out("You sacrifice " + sm);
+			mob.out("You donate " + sm);
 			World.getDonateRoom(mob).getInventory().add(sm);
 			return true;
 		}
@@ -73,7 +73,7 @@ public class Donate extends BaseCommand {
 		}
 
 		World.getDonateRoom(mob).add(anItem);
-		mob.out("You donate an " + anItem);
+		mob.out("You donate an " + anItem.getBrief());
 	}
 
 }

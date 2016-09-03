@@ -37,6 +37,7 @@ public class Room extends BasicThing implements Msgable {
     private boolean isUnderWater;
     private boolean isDark;
     private boolean isWater;
+    private boolean isDeepWater;
     private boolean isFlying;
     // DARK, DEATH, NO_MOB, INDOORS, PEACEFUL, SOUND_PROOF, NO_TRACK, NO_MAGIC, TUNNEL, PRIVATE, GOD_ROOM, HOUSE
     private boolean isDeath;
@@ -54,7 +55,6 @@ public class Room extends BasicThing implements Msgable {
     private boolean isNoDrop;
     private boolean isAuctionHouse;
     private SectorType sectorType;
-
     public Room() {
         initRoom();
     }
@@ -80,6 +80,15 @@ public class Room extends BasicThing implements Msgable {
         this.isClimb = room.isClimb;
         this.isNoDrop = room.isNoDrop;
         this.isAuctionHouse = room.isAuctionHouse;
+        this.isDeepWater = room.isDeepWater;
+    }
+
+    public boolean isDeepWater() {
+        return isDeepWater;
+    }
+
+    public void setDeepWater(boolean deepWater) {
+        isDeepWater = deepWater;
     }
 
     public boolean isAuctionHouse() {
@@ -434,6 +443,7 @@ public class Room extends BasicThing implements Msgable {
     }
 
     public void setDescription(String desc_) {
+        LOGGER.error("setDescription " + desc_ + " not yet implemented");
         // TODO set prop description
     }
 
@@ -462,6 +472,7 @@ public class Room extends BasicThing implements Msgable {
     }
 
     public void setKeywords(String words_) {
+        LOGGER.error("setKeywords " + words_ + " not yet implemented");
         // TODO create a prop
     }
 

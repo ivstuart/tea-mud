@@ -358,3 +358,29 @@ state: STANDING
 attackType: punch
 prof: MAGE
 
+class: state.ShopKeeper
+
+id: barkeep-001
+name: barkeep
+alias: barkeep
+short: the barkeep
+long: A barkeep snares at you.
+look: The barkeep is a common barkeep is and all together unremarkable.
+level: 100
+offensive: 1000
+defensive: 1000
+armour: 50
+hp: 1500
+damage: 1d100+50
+copper: 0
+xp: 20
+state: STANDING
+attackType: punch
+item: bottle-of-beer-001
+item: bottle-of-wine-001
+item: bottle-of-ale-001
+item: bottle-of-whisky-001
+item: cup-of-tea-001
+item: draft-salt-water-001
+item: poison-water-001
+

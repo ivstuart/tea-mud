@@ -185,4 +185,13 @@ public class Money implements SomeMoney {
 	public int getQuantity() {
 		return quantity;
 	}
+
+    @Override
+    public SomeMoney removeAndConvert(int copper) {
+        if (getValue() < copper) {
+            return null;
+        }
+        int remainder = getValue() - copper;
+        return new Money(remainder, Money.COPPER);
+    }
 }

@@ -65,11 +65,13 @@ public class Drink extends BaseCommand {
 				return;
 			}
 
-			mob_.out("You drink some liquard from " + waterskin);
+			mob_.out("You drink some liquard from " + waterskin.getBrief());
 
-			// TODO make decision about balancing it.
+			thirst.increase(waterskin.getLiquardType().getThirst());
 
-			thirst.increase(100);
+			mob_.getPlayer().getData().getHunger().increase(waterskin.getLiquardType().getFood());
+			mob_.getPlayer().getData().getDrunkAttribute().increase(waterskin.getLiquardType().getAlcohol());
+			mob_.getPlayer().getData().getPoisonAttribute().increase(waterskin.getLiquardType().getPoison());
 
 			waterskin.drink();
 		} else {

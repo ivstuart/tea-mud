@@ -55,15 +55,36 @@ public class PlayerData implements Serializable {
     private int killpoints;
     private Attribute thirstAttribute;
     private Attribute hungerAttribute;
+    private Attribute drunkAttribute;
+    private Attribute poisonAttribute;
     private Attribute alignment;
+
     /**
      *
      */
     public PlayerData() {
         thirstAttribute = new Attribute("Thirst", 500);
-        hungerAttribute = new Attribute("Thirst", 500);
+        hungerAttribute = new Attribute("Hunger", 500);
+        drunkAttribute = new Attribute("Drunk", 0, 500, 0);
+        poisonAttribute = new Attribute("Poison", 0, 500, 0);
         level = 1;
 
+    }
+
+    public Attribute getDrunkAttribute() {
+        return drunkAttribute;
+    }
+
+    public void setDrunkAttribute(Attribute drunkAttribute) {
+        this.drunkAttribute = drunkAttribute;
+    }
+
+    public Attribute getPoisonAttribute() {
+        return poisonAttribute;
+    }
+
+    public void setPoisonAttribute(Attribute poisonAttribute) {
+        this.poisonAttribute = poisonAttribute;
     }
 
     public int getKillpoints() {

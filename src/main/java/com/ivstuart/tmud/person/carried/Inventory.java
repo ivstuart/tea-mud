@@ -92,6 +92,10 @@ public class Inventory implements Serializable {
 		return purse;
 	}
 
+	public void setPurse(SomeMoney purse) {
+		this.purse = purse;
+	}
+
 	public String getPurseString() {
 		return purse.toString();
 	}

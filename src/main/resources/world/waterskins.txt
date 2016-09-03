@@ -8,3 +8,109 @@ weight: 5
 cost: 10
 rent: 5
 affects:
+# poison, alcohol, food, thirst
+liquardType: 0:0:10:100
+
+id: bottle-of-beer-001
+alias: bottle beer
+short: bottle beer
+look: bottle beer
+type: drinkable
+weight: 5
+cost: 10
+rent: 5
+affects:
+# poison, alcohol, food, thirst
+liquardType: 0:30:20:50
+shopSupplied: true
+
+id: bottle-of-wine-001
+alias: bottle wine
+short: bottle wine
+look: bottle wine
+type: drinkable
+weight: 5
+cost: 10
+rent: 5
+affects:
+# poison, alcohol, food, thirst
+liquardType: 0:90:20:50
+shopSupplied: true
+
+id: bottle-of-ale-001
+alias: bottle ale
+short: bottle ale
+look: bottle ale
+type: drinkable
+weight: 5
+cost: 10
+rent: 5
+affects:
+# poison, alcohol, food, thirst
+liquardType: 0:20:20:50
+shopSupplied: true
+
+id: bottle-of-whisky-001
+alias: bottle whisky
+short: bottle whisky
+look: bottle whisky
+type: drinkable
+weight: 5
+cost: 10
+rent: 5
+affects:
+# poison, alcohol, food, thirst
+liquardType: 0:300:20:50
+shopSupplied: true
+
+id: cup-of-tea-001
+alias: cup tea
+short: cup tea
+look: cup tea
+type: drinkable
+weight: 5
+cost: 10
+rent: 5
+affects:
+# poison, alcohol, food, thirst
+liquardType: 0:0:10:50
+shopSupplied: true
+
+id: cup-of-coffee-001
+alias: cup coffee
+short: cup of coffee
+look: cup of coffee
+type: drinkable
+weight: 5
+cost: 10
+rent: 5
+affects:
+# poison, alcohol, food, thirst
+liquardType: 0:0:10:50
+shopSupplied: true
+
+id: draft-salt-water-001
+alias: salt water
+short: salt water
+look: salt water
+type: drinkable
+weight: 5
+cost: 10
+rent: 5
+affects:
+# poison, alcohol, food, thirst
+liquardType: 0:0:10:-50
+shopSupplied: true
+
+id: poison-water-001
+alias: green water
+short: green water
+look: green water
+type: drinkable
+weight: 5
+cost: 10
+rent: 5
+affects:
+# poison, alcohol, food, thirst
+liquardType: 50:0:10:50
+shopSupplied: true

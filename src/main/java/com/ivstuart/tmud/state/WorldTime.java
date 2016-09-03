@@ -7,26 +7,26 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
 public class WorldTime implements Runnable {
 
     private static final Logger LOGGER = LogManager.getLogger();
-
+    private static final WorldTime INSTANCE = new WorldTime();
     private static List<Mob> fighting;
-
     // TODO Should this not just be handled by the mobs list?
     private static List<DeadMob> deadMobs;
-
     private static List<Tickable> tickables;
-
     private static boolean _running = false;
     private static boolean pauseTime = false;
-
-    private static final WorldTime INSTANCE = new WorldTime();
     private final int tickSpeed = 150;
     private int counter = 0;
+
+    private WorldTime() {
+        WorldTime.init();
+    }
 
     public static void addFighting(Mob mob_) {
         synchronized (fighting) {
@@ -60,9 +60,8 @@ public class WorldTime implements Runnable {
     }
 
     public static String getTime() {
-        // TODO This needs to be updated
-        long time = System.currentTimeMillis() / 1000;
-        return "Time is : " + time;
+        Calendar calendar = Calendar.getInstance();
+        return "Time is : " + calendar;
     }
 
     public static void init() {
@@ -85,8 +84,9 @@ public class WorldTime implements Runnable {
         deadMobs.add(dead);
     }
 
-    private WorldTime() {
-        WorldTime.init();
+    public static boolean togglePauseTime() {
+        pauseTime = !pauseTime;
+        return pauseTime;
     }
 
     public void repopulateMobs() {
@@ -178,11 +178,5 @@ public class WorldTime implements Runnable {
         sendHeartBeat();
         repopulateMobs();
         resolveCombat();
-    }
-
-
-    public static boolean togglePauseTime() {
-        pauseTime = !pauseTime;
-        return pauseTime;
     }
 }

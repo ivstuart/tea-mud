@@ -66,6 +66,9 @@ public class EntityProvider {
                 item = itemIter.next();
                 if (!item.isLoaded()) {
                     itemIter.remove();
+                } else {
+                    // Equip items.
+                    newMob.getEquipment().add(item);
                 }
             }
         }

@@ -46,6 +46,8 @@ mobInRoom: guard-good-60 Z0-:0:-4:-2
 mobInRoom: guard-good-60 Z0-:0:-4:-2
 mobInRoom: guard-good-60 Z0-:0:-4:-2
 
+mobInRoom: barkeep-001 Z0-:0:-4:-2
+
 itemInRoom: dagger-001 Z0-:1:-1:-1
 itemInRoom: morning-star-001 Z0-:1:-1:-1
 itemInRoom: axe-001 Z0-:1:-1:-1

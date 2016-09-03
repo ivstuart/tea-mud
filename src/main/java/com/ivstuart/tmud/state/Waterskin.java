@@ -1,50 +1,61 @@
 package com.ivstuart.tmud.state;
 
+import static com.ivstuart.tmud.state.LiquardType.WATER;
+
 public class Waterskin extends Item {
 
-	private static final long serialVersionUID = -4557556852795411856L;
+    private static final long serialVersionUID = -4557556852795411856L;
 
-	// TODO do we want to have difficult qualities of water...
-	private int capacity = 4;
-	private int drafts = 4;
+    private int capacity = 4;
+    private int drafts = 4;
+    private LiquardType liquardType;
 
-	public Waterskin() {
+    public Waterskin() {
 
-	}
+    }
 
-	public void drink() {
-		drafts--;
-	}
+    public LiquardType getLiquardType() {
+        if (liquardType == null) {
+            return WATER;
+        }
+        return liquardType;
+    }
 
-	public void empty() {
-		drafts = 0;
-	}
+    public void setLiquardType(String liquardType) {
+        String params[] = liquardType.split(":");
+        this.liquardType = new LiquardType(
+                Integer.parseInt(params[0]),
+                Integer.parseInt(params[1]),
+                Integer.parseInt(params[2]),
+                Integer.parseInt(params[3]));
+    }
 
-	public void fill() {
-		drafts = capacity;
-	}
+    public void drink() {
+        drafts--;
+    }
 
-	public int getCapacity() {
-		return capacity;
-	}
+    public void empty() {
+        drafts = 0;
+    }
 
-	public int getDrafts() {
-		return drafts;
-	}
+    public void fill() {
+        drafts = capacity;
+    }
 
-	public void setCapacity(int capacity_) {
-		capacity = capacity_;
-	}
+    public int getCapacity() {
+        return capacity;
+    }
 
-	public void setCapacity(String capacity_) {
-		capacity = Integer.parseInt(capacity_.trim());
-	}
+    public void setCapacity(int capacity_) {
+        capacity = capacity_;
+    }
 
-	public void setDrafts(int drafts_) {
-		drafts = drafts_;
-	}
+    public int getDrafts() {
+        return drafts;
+    }
 
-	public void setDrafts(String drafts_) {
-		drafts = Integer.parseInt(drafts_.trim());
-	}
+    public void setDrafts(int drafts_) {
+        drafts = drafts_;
+    }
+
 }

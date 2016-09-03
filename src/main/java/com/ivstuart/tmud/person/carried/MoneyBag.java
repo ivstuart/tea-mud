@@ -206,6 +206,15 @@ public class MoneyBag implements SomeMoney {
         return weight;
     }
 
+	@Override
+	public SomeMoney removeAndConvert(int copper) {
+		if (getValue() < copper) {
+			return null;
+		}
+		int remainder = getValue() - copper;
+		return new MoneyBag(remainder, Money.PLATINUM, true);
+	}
+
 	private void validate() {
 		ListIterator<SomeMoney> moneyItr = list.listIterator();
 

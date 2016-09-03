@@ -87,6 +87,7 @@ public class Mob extends Prop implements Tickable {
     private int fallingCounter;
     private boolean veryAggressive;
     private boolean isMemory;
+    private boolean isPeekAggro;
 
     public Mob() {
         fight = new Fight(this);
@@ -172,6 +173,14 @@ public class Mob extends Prop implements Tickable {
             WorldTime.addTickable(this);
         }
 
+    }
+
+    public boolean isPeekAggro() {
+        return isPeekAggro;
+    }
+
+    public void setPeekAggro(boolean peekAggro) {
+        isPeekAggro = peekAggro;
     }
 
     public boolean isAlignment() {
@@ -593,8 +602,6 @@ public class Mob extends Prop implements Tickable {
 
         tickRegenerate();
 
-        // TODO Check affects
-
         if (tickers != null) {
             for (Tickable ticker : tickers) {
                 ticker.tick();
@@ -645,6 +652,36 @@ public class Mob extends Prop implements Tickable {
 
         checkForFalling();
 
+        checkHungerAndThirst();
+
+    }
+
+    private void checkHungerAndThirst() {
+        if (isPlayer() && !getRace().isUndead()) {
+            Attribute thirst = getPlayer().getData().getThirst();
+            thirst.decrease(1);
+            Attribute hunger = getPlayer().getData().getHunger();
+            hunger.decrease(1);
+            if (thirst.getValue() <= 0) {
+                out("You hurt from thirst!");
+                health.increasePercentage(-15);
+            }
+            if (hunger.getValue() <= 0) {
+                out("You hurt from hunger!");
+                health.increasePercentage(-10);
+            }
+
+            Attribute drunk = getPlayer().getData().getDrunkAttribute();
+            Attribute poison = getPlayer().getData().getPoisonAttribute();
+
+            if (poison.getValue() > 0) {
+                out("You hurt from poison!");
+                health.increasePercentage(-10);
+                poison.decrease(1);
+            }
+
+            // TODO add drunk behaviour - slurr words, fall over, go thru wrong exit
+        }
     }
 
     private void checkForFalling() {
@@ -710,8 +747,7 @@ public class Mob extends Prop implements Tickable {
     }
 
     /**
-     * Based on level and remorts.
-     * TODO add remorts
+     * Based on level
      *
      * @return
      */
@@ -729,6 +765,34 @@ public class Mob extends Prop implements Tickable {
         } else {
             return "massive";
         }
+    }
+
+    /**
+     * @return
+     */
+    public String getAge() {
+        if (isPlayer()) {
+            int remorts = getPlayer().getData().getRemorts();
+            switch (remorts) {
+                case 0:
+                    return "young";
+                case 1:
+                    return "youthful";
+                case 2:
+                    return "middle aged";
+                case 3:
+                    return "mature";
+                case 4:
+                    return "old";
+                case 5:
+                    return "very old";
+                case 6:
+                    return "ancient";
+                default:
+                    return "unknown";
+            }
+        }
+        return "";
     }
 
     public List<Tickable> getTickers() {
@@ -870,5 +934,8 @@ public class Mob extends Prop implements Tickable {
     }
 
 
-
+    public boolean hasBoat() {
+        // TODO check inventory for a boat.
+        return false;
+    }
 }

@@ -111,6 +111,16 @@ public class EnterNoLook extends BaseCommand {
             return;
         }
 
+        if (destination.isPrivate() && destination.getMobs().size() > 1) {
+            mob.out("That destination is a private room which is already occupied.");
+            return;
+        }
+
+        if (destination.isDeepWater() && !mob.hasBoat()) {
+            mob.out("You need a boat to cross that type of water");
+            return;
+        }
+
         int sectorMovement = destination.getSectorType().getMoveModify();
         String movement = "walk";
 

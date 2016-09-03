@@ -43,6 +43,8 @@ public interface SomeMoney extends Serializable {
 
     int getWeight();
 
+    SomeMoney removeAndConvert(int copper);
+
     /**
 	 * @param cash
 	 */

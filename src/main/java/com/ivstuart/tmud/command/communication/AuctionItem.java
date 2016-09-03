@@ -7,7 +7,6 @@
 package com.ivstuart.tmud.command.communication;
 
 import com.ivstuart.tmud.command.admin.AdminCommand;
-import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.person.config.ChannelData;
 import com.ivstuart.tmud.state.Item;
@@ -75,15 +74,12 @@ public class AuctionItem extends AdminCommand implements Runnable {
             return;
         }
 
-        // TODO I dislike this code block need a removeValue method on moneyBag
-        if (!mob.getInventory().getPurse().remove(new Money(Money.COPPER, 500))) {
-            if (!mob.getInventory().getPurse().remove(new Money(Money.SILVER, 50))) {
-                if (!mob.getInventory().getPurse().remove(new Money(Money.GOLD, 5))) {
-                    mob.out("You do not have sufficient funds to auction an item");
-                    return;
-                }
-            }
+        SomeMoney cash = mob.getInventory().getPurse().removeAndConvert(500);
+        if (cash == null) {
+            mob.out("You do not have sufficient funds to auction an item");
+            return;
         }
+        mob.getInventory().setPurse(cash);
 
         // seller = mob;
         auctionItem.setSeller(mob);

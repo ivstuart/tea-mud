@@ -2,6 +2,7 @@ package com.ivstuart.tmud.command.info;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.common.Msg;
+import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.state.*;
 import com.ivstuart.tmud.utils.MudArrayList;
@@ -41,11 +42,18 @@ public class Look extends BaseCommand {
 		if (input_.length() > 0) {
 			Mob mob = mob_.getRoom().getMob(input_);
 			if (mob != null) {
-				// TODO peek at mob
-				mob_.out("Info mob id       = " + mob.getId());
-				mob_.out("Info mob repop id = " + mob.getRepopRoomId());
-				mob_.out("Type :" + mob_.getClass().getSimpleName());
-				mob_.out("instanceof GuardMob:" + (mob_ instanceof GuardMob));
+				mob_.out(mob.getLook());
+				mob_.out(mob.getEquipment().toString());
+
+				if (mob.isPeekAggro()) {
+					Fight.startCombat(mob_, mob);
+				}
+
+				if (mob_.getPlayer().isAdmin()) {
+					mob_.out("Info mob id       = " + mob.getId());
+					mob_.out("Info mob repop id = " + mob.getRepopRoomId());
+					mob_.out("Type :" + mob_.getClass().getCanonicalName());
+				}
 			}
 			return;
 		}
