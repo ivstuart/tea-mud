@@ -69,6 +69,7 @@ command.item.Get,STAND
 command.item.Give,STAND
 command.item.Drop,STAND
 command.item.Sacrifice,STAND
+command.item.Donate,STAND
 command.item.Wear,STAND
 command.item.Remove,STAND
 command.item.Swap,STAND

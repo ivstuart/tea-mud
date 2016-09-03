@@ -96,6 +96,16 @@ public class Bash extends BaseCommand {
 			return;
 		}
 
+		if (target.isInvisible() && !mob.hasDetectInvisible()) {
+			mob.out(input + " is not seen here to bash!");
+			return;
+		}
+
+		if (target.isHidden() && !mob.hasDetectHidden()) {
+			mob.out(input + " is not seen here to bash!");
+			return;
+		}
+
 		mob.getFight().add(new FightActionBash(mob, target));
 
 

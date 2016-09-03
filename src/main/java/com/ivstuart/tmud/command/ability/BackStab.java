@@ -91,6 +91,16 @@ public class BackStab extends BaseCommand {
 			return;
 		}
 
+		if (target.isInvisible() && !mob.hasDetectInvisible()) {
+			mob.out(input + " is not seen here to backstab!");
+			return;
+		}
+
+		if (target.isHidden() && !mob.hasDetectHidden()) {
+			mob.out(input + " is not seen here to backstab!");
+			return;
+		}
+
 		LOGGER.debug("You start to backstab");
 		mob.getFight().add(new FightActionBackStab(mob, target));
 

@@ -55,12 +55,10 @@ public class Hide extends BaseCommand {
 			return;
 		}
 
-		if (input.length() > 0) {
+		if (input.length() > 0 && ability.isSuccessful()) {
 			executeHideObject(mob, input);
 			return;
 		}
-
-		// TODO hide a mob
 
 		if (mob.getMobStatus().isHidden()) {
 			mob.out("You are already hidden.");
@@ -111,6 +109,14 @@ public class Hide extends BaseCommand {
 								+ " to throw off pursuit!");
 				return;
 			}
+		}
+
+		Mob aMobToHide = mob.getRoom().getMob(input);
+
+		if (aMobToHide != null) {
+			mob.out("You hide mob " + aMobToHide.getName());
+			aMobToHide.setHidden(true);
+			return;
 		}
 
 		mob.out("You failing to find any " + input + " to hide");

@@ -8,9 +8,9 @@ id: 0
 propInRoom: teacher-002 Z0-:-2:0:-1
 propInRoom: fountain-001 Z0-:1:-1:-1
 propInRoom: chair-001 Z0-:1:-1:-1
-propInRoom: bed-001 Z0-:1:-1:-1
-propInRoom: bench-001 Z0-:1:-1:-1
-propInRoom: sleeping-roll-001 Z0-:1:-1:-1
+#propInRoom: bed-001 Z0-:1:-1:-1
+#propInRoom: bench-001 Z0-:1:-1:-1
+#propInRoom: sleeping-roll-001 Z0-:1:-1:-1
 
 mobInRoom: shopkeeper-001 Z0-:0:0:-1
 mobInRoom: banker-001 Z0-:3:1:-1
@@ -45,3 +45,10 @@ mobInRoom: guard-good-60 Z0-:0:-4:-2
 mobInRoom: guard-good-60 Z0-:0:-4:-2
 mobInRoom: guard-good-60 Z0-:0:-4:-2
 mobInRoom: guard-good-60 Z0-:0:-4:-2
+
+itemInRoom: dagger-001 Z0-:1:-1:-1
+itemInRoom: morning-star-001 Z0-:1:-1:-1
+itemInRoom: axe-001 Z0-:1:-1:-1
+itemInRoom: mace-001 Z0-:1:-1:-1
+itemInRoom: warhammer-001 Z0-:1:-1:-1
+

@@ -9,7 +9,7 @@ look: rusty sword which looks well worn
 skill: slashing
 type: weapon SHARP
 damage: 1d6+1
-wear: PRIMARY
+wear: PRIMARY SECONDARY
 weight: 5
 cost: 10
 rent: 5
@@ -22,7 +22,7 @@ look: rusty club which looks well worn
 skill: crushing
 type: weapon
 damage: 1d6+2
-wear: PRIMARY
+wear: PRIMARY SECONDARY
 weight: 5
 cost: 10
 rent: 5
@@ -35,7 +35,7 @@ look: small hunting knife ideal for butchering small animals
 skill: piercing
 type: weapon SHARP
 damage: 1d2+1
-wear: PRIMARY
+wear: PRIMARY SECONDARY
 weight: 1
 cost: 2
 rent: 1
@@ -48,7 +48,7 @@ look: dagger
 skill: piercing
 type: weapon SHARP
 damage: 3d2+1
-wear: PRIMARY
+wear: PRIMARY SECONDARY
 weight: 1
 cost: 2
 rent: 1
@@ -102,8 +102,8 @@ look: mace which looks well worn
 skill: crushing
 type: weapon
 damage: 2d8+2
-wear: PRIMARY
-weight: 15
+wear: PRIMARY SECONDARY
+weight: 10000
 cost: 15
 rent: 5
 affects:

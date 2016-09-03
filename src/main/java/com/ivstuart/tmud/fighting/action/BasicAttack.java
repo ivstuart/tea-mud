@@ -120,18 +120,25 @@ public class BasicAttack extends FightAction {
 			out(getTarget().getId() + " is no longer here to attack!");
 			// TODO decided if we need to disengage at this point if no other attackers then can leave aggro on last attacker
 			// if other attackers pick one at random to target.
-			getSelf().getFight().stopFighting(); // TODO keep aggro on last attacker
+			getSelf().getFight().stopFighting();
 			finished();
 			return;
 		}
 
 		Ability dualWield = getSelf().getLearned().getAbility("dual wield");
 
+		Weapon secondaryWeapon = null;
+
 		if (dualWield != null) {
 			// Check has two weapons to hand.
 			// Get 2nd weapon details.
 			if (dualWield.isSuccessful()) {
-				// TODO
+
+				secondaryWeapon = getSelf().getSecondaryWeapon();
+
+				if (secondaryWeapon != null && isSuccess()) {
+					hit(secondaryWeapon);
+				}
 			}
 			// call happen(weapon2)
 		}
@@ -141,22 +148,33 @@ public class BasicAttack extends FightAction {
 				"second attack");
 		Ability thirdAttack = getSelf().getLearned().getAbility("third attack");
 
-		if (secondAttack != null && secondAttack.isSuccessful()) {
+		Weapon weapon = getSelf().getWeapon();
+
+		if (secondAttack != null && secondAttack.isSuccessful() && isSuccess()) {
 			LOGGER.info("I am [ " + getSelf().getId()
 					+ " ] hit hitting my target");
-			hit();
+			hit(weapon);
+
+			if (secondaryWeapon != null && isSuccess()) {
+				hit(secondaryWeapon);
+			}
+
 		}
 
-		if (thirdAttack != null && thirdAttack.isSuccessful()) {
+		if (thirdAttack != null && thirdAttack.isSuccessful() && isSuccess()) {
 			LOGGER.info("I am [ " + getSelf().getId()
 					+ " ] hit hitting my target");
-			hit();
+			hit(weapon);
+
+			if (secondaryWeapon != null && isSuccess()) {
+				hit(secondaryWeapon);
+			}
 		}
 
 		if (isSuccess()) {
 			LOGGER.info("I am [" + getSelf().getId()
 					+ "] hit hitting my target");
-			hit();
+			hit(weapon);
 		} else {
 			miss();
 			LOGGER.info("I am [" + getSelf().getId()
@@ -166,7 +184,7 @@ public class BasicAttack extends FightAction {
 		durationMillis(2100);
 	}
 
-	private void hit() {
+	private void hit(Weapon weapon) {
 
 		if (this.getTarget() == null) {
 			out("Target is null hence your hit now misses");
@@ -174,8 +192,6 @@ public class BasicAttack extends FightAction {
 		}
 
 		BasicDamage damage = new BasicDamage();
-
-		Weapon weapon = getSelf().getWeapon();
 
 		if (weapon != null) {
 			damage.setRoll(weapon.getDamage());
@@ -242,7 +258,7 @@ public class BasicAttack extends FightAction {
 
 		int chance = this.clipRange((attack * 100) / (divisor));
 
-		LOGGER.info("hit chance is ["+chance+"] attack is [" + attack + "] defence is [" + defence + "]");
+		LOGGER.debug("hit chance is [" + chance + "] attack is [" + attack + "] defence is [" + defence + "]");
 
 		return outcomeOfChance(chance);
 

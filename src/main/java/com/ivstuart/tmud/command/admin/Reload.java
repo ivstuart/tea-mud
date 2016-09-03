@@ -6,7 +6,6 @@
  */
 package com.ivstuart.tmud.command.admin;
 
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.command.CommandProvider;
 import com.ivstuart.tmud.state.Mob;
 
@@ -23,8 +22,8 @@ public class Reload extends AdminCommand {
 
 		super.execute(mob,input);
 		
-		// TODO DOES NOT WORK - See ClassLoader code.
 		mob.out("Reloading command " + input);
+
 		CommandProvider.reloadCommand(input);
 	}
 

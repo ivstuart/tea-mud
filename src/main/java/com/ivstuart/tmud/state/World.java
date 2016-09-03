@@ -271,6 +271,14 @@ public class World {
 		}
 	}
 
+	public static Room getDonateRoom(Mob mob) {
+		if (mob.isGood()) {
+			return World.getRoom("Z0-:2:0:-1");
+		} else {
+			return World.getRoom("Z6-:2:0:-1");
+		}
+	}
+
 	public void addToWorld(Object object) {
 
 		if (object instanceof Room) {

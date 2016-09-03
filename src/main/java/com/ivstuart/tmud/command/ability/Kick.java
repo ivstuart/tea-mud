@@ -52,7 +52,6 @@ public class Kick extends BaseCommand {
 		return checkMobStatus(mob, target);
 	}
 
-	// TODO vis hiden checks?
 	@Override
 	public void execute(Mob mob, String input) {
 
