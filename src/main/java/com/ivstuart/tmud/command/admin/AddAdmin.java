@@ -6,11 +6,12 @@
  */
 package com.ivstuart.tmud.command.admin;
 
-import com.ivstuart.tmud.person.Player;
+import com.ivstuart.tmud.server.LaunchMud;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.World;
 import com.ivstuart.tmud.utils.GsonIO;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,44 +29,6 @@ public class AddAdmin extends AdminCommand {
 
     private static String fileName = "admin";
 
-    @Override
-    public void execute(Mob mob, String input) {
-
-        super.execute(mob, input);
-
-        String name = input;
-
-        // TODO check for a sav file instead
-        Player player = World.getPlayer(name.toLowerCase());
-
-        if (player != null) {
-
-            if (player.isAdmin()) {
-                player.out("You have been demoted from admin!");
-                adminNames.remove(name);
-                player.setAdmin(false);
-            } else {
-                player.out("You have been promoted to admin!");
-                adminNames.add(name);
-                player.setAdmin(true);
-            }
-        } else {
-            mob.out("No player found of the name" + name);
-        }
-
-
-        GsonIO io = new GsonIO();
-
-        try {
-            io.save(adminNames, fileName);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-    }
-
-
     public static boolean isAdmin(String name) {
         return adminNames.contains(name);
     }
@@ -80,6 +43,48 @@ public class AddAdmin extends AdminCommand {
             adminNames = new ArrayList<String>();
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void execute(Mob mob, String input) {
+
+        super.execute(mob, input);
+
+        String name = input;
+
+        String path = LaunchMud.mudServerProperties.getProperty("player.save.dir");
+        File file = new File(path + name.toLowerCase() + ".sav");
+        if (!file.exists() || file.isDirectory()) {
+            mob.out("There is no file " + file.getAbsolutePath());
+            return;
+        }
+
+        if (adminNames.contains(name)) {
+            mob.out(name + " have been demoted from admin!");
+            adminNames.remove(name);
+            Mob aMob = World.getMob(name);
+
+            if (aMob != null) {
+                aMob.getPlayer().setAdmin(false);
+            }
+        } else {
+            mob.out(name + " have been promoted to admin!");
+            adminNames.add(name);
+            Mob aMob = World.getMob(name);
+            if (aMob != null) {
+                aMob.getPlayer().setAdmin(true);
+            }
+        }
+
+        GsonIO io = new GsonIO();
+
+        try {
+            io.save(adminNames, fileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 }

@@ -7,9 +7,9 @@
 package com.ivstuart.tmud.command.item.shop;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.ShopKeeper;
 
 /**
  * @author stuarti
@@ -21,12 +21,24 @@ public class ListShop extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {
-		Mob shopKeeper = mob.getRoom().getShopKeeper();
+		ShopKeeper shopKeeper = mob.getRoom().getShopKeeper();
 
 		if (shopKeeper == null) {
 			mob.out("There is no shop here to buy and sell from");
 			return;
 		}
+
+		if (mob.isGood() && shopKeeper.isNoGood() ||
+				(!mob.isGood() && shopKeeper.isNoEvil())) {
+			mob.out("This shop will not sell to the likes of you");
+			return;
+		}
+
+		if (shopKeeper.isNoProfession(mob.getPlayer().getProfession())) {
+			mob.out("This shop will not sell to your profession");
+			return;
+		}
+
 
 		// list
 

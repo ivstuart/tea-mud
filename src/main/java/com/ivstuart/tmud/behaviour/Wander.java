@@ -88,6 +88,7 @@ public class Wander extends BaseBehaviour {
 
 			}
 			rooms.add(room);
+			LOGGER.debug("Wandering at a distance of " + rooms.size() + " from source");
 		}
 
 	}

@@ -184,7 +184,8 @@ public class Equipment implements Serializable {
 	}
 
 	public Equipable remove(String item) {
-		Equipable eq = _equipment.remove(item);
+
+        Equipable eq = _equipment.remove(item);
 
 		if (eq == null) {
 			EquipLocation el = EquipLocation.valueOf(item.toUpperCase());

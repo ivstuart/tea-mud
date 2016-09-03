@@ -116,6 +116,11 @@ public class EnterNoLook extends BaseCommand {
             return;
         }
 
+        if (destination.isTunnel() && destination.getMobs().size() != 0) {
+            mob.out("That destination is a tunnel room, which is already occupied.");
+            return;
+        }
+
         if (destination.isDeepWater() && !mob.hasBoat()) {
             mob.out("You need a boat to cross that type of water");
             return;

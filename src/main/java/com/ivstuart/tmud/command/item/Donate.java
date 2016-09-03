@@ -72,6 +72,12 @@ public class Donate extends BaseCommand {
 			return;
 		}
 
+		if (anItem.isNoDonate()) {
+			mob.out("Can not not donate this item its flagged as no donation");
+			items.add(anItem);
+			return;
+		}
+
 		World.getDonateRoom(mob).add(anItem);
 		mob.out("You donate an " + anItem.getBrief());
 	}

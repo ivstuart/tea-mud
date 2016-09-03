@@ -38,6 +38,10 @@ public class Wear extends BaseCommand {
 			}
 
 			for (Item item = itemIter.next();itemIter.hasNext();item = itemIter.next()) {
+				if (item.isAntiProfession(mob.getPlayer().getProfession())) {
+					mob.out("You can not wear that item its not for your profession");
+					continue;
+				}
 				if (mob.getEquipment().add(item)) {
 					itemIter.remove();
 					item.equip(mob);
@@ -55,6 +59,11 @@ public class Wear extends BaseCommand {
 
 		if (item == null) {
 			mob.out("You are not carrying a " + input);
+			return;
+		}
+
+		if (item.isAntiProfession(mob.getPlayer().getProfession())) {
+			mob.out("You can not wear that item its not for your profession");
 			return;
 		}
 

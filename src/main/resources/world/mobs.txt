@@ -72,8 +72,7 @@ long: A large gray cave troll snares at you.
 look: The troll is a common cave troll is and all together unremarkable.
 #behaviour: Follow:100
 #behaviour: Wimpy:100:50
-#behaviour: Patrol:100
-#patrolPath: wwweee
+#behaviour: Patrol:100:wwweee
 level: 10
 offensive: 120
 defensive: 50

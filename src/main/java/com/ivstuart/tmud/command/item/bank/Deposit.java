@@ -40,6 +40,11 @@ public class Deposit extends BaseCommand {
 			return;
 		}
 
+		if (item.isNoBank()) {
+			mob.out("The bank will not accept these items");
+			return;
+		}
+
 		mob.getInventory().remove(item);
 
 		mob.getPlayer().getBank().add(item);

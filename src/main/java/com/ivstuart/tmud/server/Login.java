@@ -553,7 +553,8 @@ public class Login implements Readable {
                     "3. Guest login\n" +
                     "4. Quit\n" +
                     "5. Tester login as Ivan\n" +
-                    "6. Tester login as Ste\n"
+                    "6. Tester login as Ste\n" +
+                    "7. Tester login as Rob\n"
             );
         }
 
@@ -581,6 +582,11 @@ public class Login implements Readable {
                     break;
                 case 6:
                     name = "Ste";
+                    inputPassword = "temp";
+                    loadCharacter();
+                    break;
+                case 7:
+                    name = "Rob";
                     inputPassword = "temp";
                     loadCharacter();
                     break;

@@ -37,7 +37,6 @@ public class MoveManager {
 
 	}
 
-	// TODO decide if this method should really be here!
 	public static Exit random(Mob mob) {
 
 		if (mob.getRoom() == null) {

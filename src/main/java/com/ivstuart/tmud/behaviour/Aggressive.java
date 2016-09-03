@@ -1,14 +1,11 @@
 package com.ivstuart.tmud.behaviour;
 
 import com.ivstuart.tmud.common.DiceRoll;
-import com.ivstuart.tmud.common.Tickable;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Room;
 import com.ivstuart.tmud.state.WorldTime;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.List;
 
 public class Aggressive extends BaseBehaviour {
 
@@ -33,7 +30,7 @@ public class Aggressive extends BaseBehaviour {
         }
 
         if (DiceRoll.ONE_D100.rollMoreThan(parameter)) {
-            LOGGER.debug(mob.getName()+" is does not feel like being aggressive this tick");
+            LOGGER.debug(mob.getName() + " is does not feel like being aggressive this tick");
             return;
         }
 
@@ -44,8 +41,12 @@ public class Aggressive extends BaseBehaviour {
             return;
         }
 
-        // TODO aggro by alignment or other criteria
-        Mob target = room.getRandomPlayer();
+        Mob target;
+        if (parameter3 != null) {
+            target = room.getMobs().get(parameter3);
+        } else {
+            target = room.getRandomPlayer();
+        }
 
         if (target == null) {
             LOGGER.debug(mob.getName() + " has no players to attack");

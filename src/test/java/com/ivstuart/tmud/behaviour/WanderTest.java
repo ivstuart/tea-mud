@@ -37,8 +37,8 @@ public class WanderTest {
     }
 
 	/**
-	 * TODO
-	 * [ ]-[ ]-[ ]-[ start pos ]-[ ]-[ ]
+     *
+     * [ ]-[ ]-[ ]-[ start pos ]-[ ]-[ ]
 	 * 
 	 * Confirm that the lost sheep can get at most 2 rooms away from start
 	 * position.

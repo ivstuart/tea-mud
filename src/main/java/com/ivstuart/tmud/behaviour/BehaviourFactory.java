@@ -25,16 +25,20 @@ public class BehaviourFactory {
 
     }
 
-    private static void initBehaviour(String behaviour, BaseBehaviour aggressive) {
+    private static void initBehaviour(String behaviour, BaseBehaviour baseBehaviour) {
         if (behaviour.indexOf(":") > -1) {
             String input[] = behaviour.split(":");
             if (input.length > 1) {
                 int parameter = Integer.parseInt(input[1]);
-                aggressive.setParameter(parameter);
+                baseBehaviour.setParameter(parameter);
             }
             if (input.length > 2) {
                 int parameter2 = Integer.parseInt(input[2]);
-                aggressive.setParameter2(parameter2);
+                baseBehaviour.setParameter2(parameter2);
+            }
+            if (input.length > 3) {
+                int parameter3 = Integer.parseInt(input[3]);
+                baseBehaviour.setParameter2(parameter3);
             }
         }
     }

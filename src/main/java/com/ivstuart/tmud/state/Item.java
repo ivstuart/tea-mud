@@ -2,6 +2,7 @@ package com.ivstuart.tmud.state;
 
 import com.ivstuart.tmud.common.*;
 import com.ivstuart.tmud.constants.EquipLocation;
+import com.ivstuart.tmud.constants.Profession;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import org.apache.logging.log4j.LogManager;
@@ -40,8 +41,43 @@ public class Item extends Prop implements Equipable, Msgable {
 	protected boolean isShopSupplied;
 	int loadPercentage = 1;
 	private boolean isNoDrop;
+	private boolean isNoRemove;
+	private boolean isNoBank;
+	private boolean isNoDonate;
+	private boolean isNoInvisible;
+	private List<Profession> antiProfession;
 
 	public Item() {
+	}
+
+	public boolean isNoDonate() {
+		return isNoDonate;
+	}
+
+	public void setNoDonate(boolean noDonate) {
+		isNoDonate = noDonate;
+	}
+
+	public boolean isNoInvisible() {
+		return isNoInvisible;
+	}
+
+	public void setNoInvisible(boolean noInvisible) {
+		isNoInvisible = noInvisible;
+	}
+
+	public boolean isAntiProfession(Profession profession) {
+		if (antiProfession == null) {
+			return false;
+		}
+		return antiProfession.contains(profession);
+	}
+
+	public void setAntiProfession(String antiProfession) {
+		if (this.antiProfession == null) {
+			this.antiProfession = new ArrayList<>(4);
+		}
+		this.antiProfession.add(Profession.valueOf(antiProfession));
 	}
 
 	@Override
@@ -63,7 +99,28 @@ public class Item extends Prop implements Equipable, Msgable {
 				", isShopSupplied=" + isShopSupplied +
 				", loadPercentage=" + loadPercentage +
 				", isNoDrop=" + isNoDrop +
+				", isNoRemove=" + isNoRemove +
+				", isNoBank=" + isNoBank +
+				", isNoDonate=" + isNoDonate +
+				", isNoInvisible=" + isNoInvisible +
+				", antiProfession=" + antiProfession +
 				'}';
+	}
+
+	public boolean isNoBank() {
+		return isNoBank;
+	}
+
+	public void setNoBank(boolean noBank) {
+		isNoBank = noBank;
+	}
+
+	public boolean isNoRemove() {
+		return isNoRemove;
+	}
+
+	public void setNoRemove(boolean noRemove) {
+		isNoRemove = noRemove;
 	}
 
 	public int getAPB() {
@@ -235,7 +292,6 @@ public class Item extends Prop implements Equipable, Msgable {
 
     public SomeMoney getCost() {
     	return _someMoneyCost;
-    	// TODO not make a new object here in code. Do it in setter so once.
 
     }
 
@@ -266,5 +322,11 @@ public class Item extends Prop implements Equipable, Msgable {
 
 	public void setNoDrop(boolean noDrop) {
 		isNoDrop = noDrop;
+	}
+
+	public void setInvisible(boolean flag) {
+		if (isNoInvisible == false) {
+			super.setInvisible(flag);
+		}
 	}
 }

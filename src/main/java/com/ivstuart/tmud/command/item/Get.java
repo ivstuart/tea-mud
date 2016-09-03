@@ -107,10 +107,10 @@ public class Get extends BaseCommand {
             return;
         }
 
-        // TODO fix the bug with get all
         if (input.equalsIgnoreCase("all")) {
             Iterator<Item> itemIter = items.iterator();
-            for (Item item = itemIter.next(); itemIter.hasNext(); item = itemIter.next()) {
+            for (; itemIter.hasNext(); ) {
+                Item item = itemIter.next();
                 mob.getInventory().add(item);
 
                 mob.out("You get an " + item.getName());

@@ -11,6 +11,15 @@ public class BaseBehaviour implements Tickable {
     protected Mob mob;
     protected int parameter;
     protected int parameter2;
+    protected String parameter3;
+
+    public String getParameter3() {
+        return parameter3;
+    }
+
+    public void setParameter3(String parameter3) {
+        this.parameter3 = parameter3;
+    }
 
     public int getParameter2() {
         return parameter2;

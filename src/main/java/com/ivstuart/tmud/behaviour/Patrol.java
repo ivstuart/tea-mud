@@ -12,17 +12,12 @@ public class Patrol extends BaseBehaviour {
 
 	private static Logger LOGGER = LogManager.getLogger();
 
-	private String path;
 	private int indexOfPath;
 
 	public Patrol() {
 		parameter = 50;
 		parameter2 = 2;
-		path = "nnneeessswww";
-	}
-
-	public void setPath(String path) {
-		this.path = path;
+		parameter3 = "nnneeessswww";
 	}
 
 	@Override
@@ -50,10 +45,10 @@ public class Patrol extends BaseBehaviour {
 
 		Room currentRoom = mob.getRoom();
 
-		String exitString = path.substring(indexOfPath,indexOfPath+1);
+		String exitString = parameter3.substring(indexOfPath, indexOfPath + 1);
 
 		indexOfPath++;
-		if (indexOfPath >= path.length()) {
+		if (indexOfPath >= parameter3.length()) {
 			indexOfPath=0;
 		}
 

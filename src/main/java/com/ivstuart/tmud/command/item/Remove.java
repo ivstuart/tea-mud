@@ -36,6 +36,12 @@ public class Remove extends BaseCommand {
 			return;
 		}
 
+		if (item.isNoRemove()) {
+			mob.getEquipment().add(item);
+			mob.out("This item is cursed and will not be removed");
+			return;
+		}
+
 		item.unequip(mob);
 
 		mob.getInventory().add(item);
