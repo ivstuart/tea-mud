@@ -16,7 +16,6 @@ public class WorldTime implements Runnable {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final WorldTime INSTANCE = new WorldTime();
     private static List<Mob> fighting;
-    // TODO Should this not just be handled by the mobs list?
     private static List<DeadMob> deadMobs;
     private static List<Tickable> tickables;
     private static boolean _running = false;

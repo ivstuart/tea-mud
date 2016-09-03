@@ -5,6 +5,10 @@ package com.ivstuart.tmud.server;
  * There are two threads running Selectors() each registered for READ and WRITE respectively
  */
 
+import com.ivstuart.tmud.exceptions.MudException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -16,14 +20,76 @@ import java.nio.channels.SocketChannel;
 import java.nio.channels.spi.SelectorProvider;
 import java.util.Iterator;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import com.ivstuart.tmud.exceptions.MudException;
-
 public class MudServer {
 
 	private static final Logger LOGGER = LogManager.getLogger();
+	/**
+	 * Single selector for accepts, reads
+	 */
+	private Selector readSelector = null;
+	/**
+	 * Single selector for writes
+	 */
+	private Selector writeSelector = null;
+	/**
+	 * ServerSocketChannel which listens for client connections
+	 */
+	private ServerSocketChannel ssch = null;
+	/**
+	 * The thread that waits for ready Channels - accept / read
+	 */
+	private SelectorThread readThread = null;
+
+	protected void startListening(String port) {
+		startListening(Integer.parseInt(port));
+	}
+
+	/**
+	 * Sets up the selectors and starts listening
+	 */
+	protected void startListening(int port) {
+		LOGGER.info("Starting read write networking for the mud server");
+		try {
+			// create the selector and the ServerSocket
+			readSelector = SelectorProvider.provider().openSelector();
+			writeSelector = SelectorProvider.provider().openSelector();
+			ssch = ServerSocketChannel.open();
+
+			// Non-blocking
+			ssch.configureBlocking(false);
+			InetSocketAddress isa = new InetSocketAddress(
+					InetAddress.getLocalHost(), port);
+
+			LOGGER.info("Started listening on [ " + InetAddress.getLocalHost()
+					+ ":" + port + " ]");
+
+			ssch.socket().bind(isa);
+			ssch.register(readSelector, SelectionKey.OP_ACCEPT);
+			ssch.register(writeSelector, SelectionKey.OP_ACCEPT);
+
+		} catch (Exception e) {
+			LOGGER.error("Problem with starting selector thread", e);
+		}
+
+		this.readThread = new SelectorThread();
+		this.readThread.setDaemon(true);
+		this.readThread.start();
+	}
+
+	/**
+	 * Stop the selector thread
+	 */
+	public synchronized void stop() {
+		LOGGER.info("Starting shutdown of the mud server");
+		try {
+			ssch.socket().close();
+			ssch.close();
+		} catch (Exception e) {
+			LOGGER.error("Problem with stopping selector thread", e);
+		}
+		this.ssch = null;
+		LOGGER.info("Finished shutdown of the mud server");
+	}
 
 	/** Thread which runs the Selector */
 	private class SelectorThread extends Thread {
@@ -56,7 +122,7 @@ public class MudServer {
 			for (int i = 0; i < count2; i++) {
 				char c = (char) buffer.get();
 
-				// TODO think about other filtering!!
+				// Consider other filtering!!
 				if (c != '\r' && c != '\n') {
 					sb.append(c);
 				}
@@ -130,66 +196,5 @@ public class MudServer {
 		} // end run()
 
 	} // end class
-
-	/** Single selector for accepts, reads */
-	private Selector readSelector = null;
-
-	/** Single selector for writes */
-	private Selector writeSelector = null;
-
-	/** ServerSocketChannel which listens for client connections */
-	private ServerSocketChannel ssch = null;
-
-	/** The thread that waits for ready Channels - accept / read */
-	private SelectorThread readThread = null;
-
-	protected void startListening(String port) {
-		startListening(Integer.parseInt(port));
-	}
-
-	/**
-	 * Sets up the selectors and starts listening
-	 */
-	protected void startListening(int port) {
-		LOGGER.info("Starting read write networking for the mud server");
-		try {
-			// create the selector and the ServerSocket
-			readSelector = SelectorProvider.provider().openSelector();
-			writeSelector = SelectorProvider.provider().openSelector();
-			ssch = ServerSocketChannel.open();
-
-			// Non-blocking
-			ssch.configureBlocking(false);
-			InetSocketAddress isa = new InetSocketAddress(
-					InetAddress.getLocalHost(), port);
-
-			LOGGER.info("Started listening on [ " + InetAddress.getLocalHost()
-					+ ":" + port + " ]");
-
-			ssch.socket().bind(isa);
-			ssch.register(readSelector, SelectionKey.OP_ACCEPT);
-			ssch.register(writeSelector, SelectionKey.OP_ACCEPT);
-
-		} catch (Exception e) {
-			LOGGER.error("Problem with starting selector thread", e);
-		}
-
-		this.readThread = new SelectorThread();
-		this.readThread.setDaemon(true);
-		this.readThread.start();
-	}
-
-	/** Stop the selector thread */
-	public synchronized void stop() {
-		LOGGER.info("Starting shutdown of the mud server");
-		try {
-			ssch.socket().close();
-			ssch.close();
-		} catch (Exception e) {
-			LOGGER.error("Problem with stopping selector thread", e);
-		}
-		this.ssch = null;
-		LOGGER.info("Finished shutdown of the mud server");
-	}
 
 }

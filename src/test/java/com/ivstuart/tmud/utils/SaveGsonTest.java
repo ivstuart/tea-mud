@@ -36,20 +36,4 @@ public class SaveGsonTest {
 
 	}
 
-	// TODO this failed due with stack overflow - either cyclic references or another issue. Transient fields need to be excluded.
-//	@Test
-//	public void testSavingRoom() {
-//		help.startServer();
-//
-//		GsonIO saveGson = new GsonIO();
-//
-//		try {
-//			saveGson.save(World.getRoom("R-001-001"), "testroom");
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//		help.stopServer();
-//	}
 }

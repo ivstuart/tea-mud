@@ -14,7 +14,7 @@ import java.util.StringTokenizer;
 
 
 /**
- * Point of this is that it is making use of new File NIO Java 1.4 code!! TODO
+ * Point of this is that it is making use of new File NIO Java 1.4 code!!
  * update this to use a JDK7 mechanism to read files.
  */
 public class FileHandle {

@@ -72,9 +72,8 @@ public class Login implements Readable {
 
         try {
             MudIO.getInstance().save(player, player.getName() + ".sav");
-            // FIXME More problems then it solves.
-            // GsonIO gio = new GsonIO();
-            // gio.save(player, player.getName() + ".sav");
+            // Gson does not work for file IO out of the box.
+
         } catch (IOException e) {
             LOGGER.error("Problem saving character to disk", e);
         }
@@ -249,10 +248,7 @@ public class Login implements Readable {
 
         try {
             player = (Player) MudIO.getInstance().load(name + ".sav");
-            // FIXME more problems than it solves.
-            // String fileName = name + ".sav";
-            // GsonIO gio = new GsonIO();
-            // player = gio.loadPlayer(fileName);
+            // Gson does not work for file IO out of the box.
         } catch (Exception e) {
             LOGGER.error("Problem loading character from disk", e);
             out("Failed logging in");

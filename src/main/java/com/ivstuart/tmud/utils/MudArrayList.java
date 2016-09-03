@@ -1,13 +1,12 @@
 package com.ivstuart.tmud.utils;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
+import com.ivstuart.tmud.state.BasicThing;
 import com.ivstuart.tmud.state.Prop;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.ivstuart.tmud.state.BasicThing;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Decorator of List to allow following additional look up logic
@@ -135,7 +134,6 @@ public class MudArrayList<E> extends ArrayList<E> {
 
 		for (int index = 0; index < this.size(); index++) {
 
-			// TODO merge Prop with BasicThing
 			E object = this.get(index);
 
 			String shortName = null;
