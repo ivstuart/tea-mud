@@ -16,12 +16,14 @@ import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.MobStatus;
 
+import static com.ivstuart.tmud.constants.SkillNames.TACKLE;
+
 /**
  * @author Ivan Stuart
  */
 public class Tackle extends BaseCommand {
 
-	private static final String TACKLE = "tackle";
+
 
 	private boolean checkStatus(Mob mob, Mob target) {
 		return isMobUnableTo(mob, target) || checkTargetStatus(mob, target);
@@ -164,7 +166,7 @@ public class Tackle extends BaseCommand {
 			Fight.startCombat(getSelf(), getTarget());
 
 			// Success or fail
-			Ability ability = getSelf().getLearned().getAbility("tackle");
+            Ability ability = getSelf().getLearned().getAbility(TACKLE);
 
 			// Always successful against a sleeping opponent
 			if (ability.isSuccessful() && DiceRoll.ONE_D100.rollMoreThan(50) || getTarget().getState().isSleeping()) {

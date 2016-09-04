@@ -13,6 +13,8 @@ import com.ivstuart.tmud.state.Corpse;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 
+import static com.ivstuart.tmud.constants.SkillNames.INVESTIGATE;
+
 /**
  * @author stuarti
  * 
@@ -27,8 +29,8 @@ public class Investigate extends BaseCommand {
 	@Override
 	public void execute(Mob mob, String input) {
 
-		if (!mob.getLearned().hasLearned("investigate")) {
-			mob.out("You have no knowledge of Investigate");
+        if (!mob.getLearned().hasLearned("INVESTIGATE")) {
+            mob.out("You have no knowledge of Investigate");
 			return;
 		}
 
@@ -42,7 +44,12 @@ public class Investigate extends BaseCommand {
 		Corpse corpse = (Corpse)corpseItem;
 		
 		// Success or fail
-		Ability ability = mob.getLearned().getAbility("investigate");
+        Ability ability = mob.getLearned().getAbility(INVESTIGATE);
+
+        if (ability.isNull()) {
+            mob.out("You have no ability to INVESTIGATE");
+            return;
+        }
 
 		if (ability.isSuccessful()) {
 			mob.out(new Msg(mob, ("<S-You/NAME> successfully investigated.")));
@@ -55,8 +62,8 @@ public class Investigate extends BaseCommand {
 				ability.improve();
 			}
 		} else {
-			mob.out(new Msg(mob, ("<S-You/NAME> failed to investigate.")));
-		}
+            mob.out(new Msg(mob, ("<S-You/NAME> failed to INVESTIGATE.")));
+        }
 	}
 
 }

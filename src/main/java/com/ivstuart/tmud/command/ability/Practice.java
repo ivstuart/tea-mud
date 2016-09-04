@@ -7,7 +7,6 @@
 package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Teacher;
@@ -63,6 +62,11 @@ public class Practice extends BaseCommand {
 		// Check skill or spell is available in this world
 
 		Ability theAbility = mob.getLearned().getAbility(ability);
+
+        if (theAbility.isNull()) {
+            mob.out("There is no ability " + input + " to learn");
+            return;
+        }
 
 		if (theAbility.practice(mob.getPlayer())) {
 			mob.out("You practice " + theAbility);

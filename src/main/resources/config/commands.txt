@@ -43,12 +43,14 @@ command.info.SpellsInfo,REST
 command.info.AbilityInfo,REST
 command.info.CommandList,REST
 command.info.Consider,REST
+command.info.Users,REST
 command.communication.Auction,REST
 command.communication.AuctionItem,REST
 command.communication.Bid,REST
 command.communication.Bug,REST
 command.communication.Chat,REST
 command.communication.Emote,REST
+command.communication.Tell,REST
 command.communication.TellGroup,REST
 command.communication.Newbie,REST
 command.communication.QuestTell,REST
@@ -57,7 +59,6 @@ command.communication.Reply,REST
 command.communication.Roll,REST
 command.communication.Say,REST
 command.communication.Shout,REST
-command.communication.Tell,REST
 command.communication.WriteOnPaper,REST
 command.communication.Yell,REST
 command.item.bank.Convert,STAND
@@ -91,6 +92,7 @@ command.misc.Remort,STAND
 command.misc.Quit,SLEEP
 command.misc.SavePlayer,SLEEP
 command.misc.Password,SLEEP
+command.misc.PickLocks,STAND
 command.ability.BackStab,STAND
 command.ability.Bash,STAND
 command.ability.Cast,STAND

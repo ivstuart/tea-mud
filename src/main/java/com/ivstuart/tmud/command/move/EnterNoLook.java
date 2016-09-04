@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import static com.ivstuart.tmud.common.MobState.STAND;
+import static com.ivstuart.tmud.constants.SkillNames.CLIMBING;
 
 public class EnterNoLook extends BaseCommand {
 
@@ -77,9 +78,9 @@ public class EnterNoLook extends BaseCommand {
 
         if (destination.isClimb() && !mob.isFlying()) {
             // check for climbing skill and boots
-            Ability climbing = mob.getLearned().getAbility("climbing");
+            Ability climbing = mob.getLearned().getAbility(CLIMBING);
 
-            if (climbing == null) {
+            if (climbing == null || climbing.isNull()) {
                 mob.out("You have no climbing ability to go that direction");
                 return;
             }

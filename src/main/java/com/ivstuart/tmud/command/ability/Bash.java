@@ -14,6 +14,8 @@ import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.MobStatus;
 
+import static com.ivstuart.tmud.constants.SkillNames.BASH;
+
 /**
  * @author Ivan Stuart
  */
@@ -164,8 +166,8 @@ public class Bash extends BaseCommand {
 			}
 
 			// Success or fail
-			Ability bashAbility = getSelf().getLearned().getAbility("bash");
-			if (bashAbility.isSuccessful()) {
+            Ability bashAbility = getSelf().getLearned().getAbility(BASH);
+            if (bashAbility.isSuccessful()) {
                 out(new Msg(getSelf(), getTarget(), "<S-You/NAME> successfully bashed <T-you/NAME>."));
                 setBashed(getSelf(), getTarget());
 				if (bashAbility.isImproved()) {

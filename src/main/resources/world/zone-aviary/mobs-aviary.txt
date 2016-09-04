@@ -95,7 +95,7 @@ level: 5
 offensive: 50
 defensive: 30
 armour: 10
-hp: 30
+hp: 300
 damage: 2d4
 copper: 25
 xp: 20

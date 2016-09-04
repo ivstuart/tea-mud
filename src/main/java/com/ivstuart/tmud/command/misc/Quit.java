@@ -38,6 +38,8 @@ public class Quit extends BaseCommand {
 
         player.getData().setPlayingTime();
 
+        mob_.setRoomId(mob_.getRoom().getId());
+
 		// Save character first
 		try {
 

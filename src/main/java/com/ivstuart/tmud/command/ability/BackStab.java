@@ -18,6 +18,8 @@ import com.ivstuart.tmud.state.Weapon;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import static com.ivstuart.tmud.constants.SkillNames.BACKSTAB;
+
 /**
  * @author Ivan Stuart
  */
@@ -147,8 +149,8 @@ public class BackStab extends BaseCommand {
 			}
 
 			// Success or fail
-			Ability bsAbility = getSelf().getLearned().getAbility("backstab");
-			if (bsAbility.isSuccessful()) {
+            Ability bsAbility = getSelf().getLearned().getAbility(BACKSTAB);
+            if (bsAbility.isSuccessful()) {
                 out(new Msg(getSelf(), getTarget(), ("<S-You/NAME> successfully backstabed <T-you/NAME>.")));
 
 				int dex = getSelf().getPlayer().getAttributes().getDEX().getValue();

@@ -7,8 +7,7 @@
 package com.ivstuart.tmud.command.misc;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
-import com.ivstuart.tmud.person.config.*;
+import com.ivstuart.tmud.person.config.ConfigData;
 import com.ivstuart.tmud.state.Mob;
 
 /**
@@ -19,11 +18,9 @@ import com.ivstuart.tmud.state.Mob;
  */
 public class Compact extends BaseCommand {
 
-	// TODO
 	@Override
 	public void execute(Mob mob, String input) {
 
-		mob.out("TODO compact");
 		mob.getPlayer().getConfig().getConfigData().toggle(ConfigData.COMBINE);
 	}
 

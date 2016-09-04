@@ -31,6 +31,12 @@ public class TrackCommand extends BaseCommand {
 
 		// Success or fail
 		Ability ability = mob.getLearned().getAbility(TRACKING);
+
+        if (ability.isNull()) {
+            mob.out("You have no such ability to do tracking");
+            return;
+        }
+
 		if (ability.isSuccessful()) {
 
 			if (mob.getRoom().getTracks() == null) {

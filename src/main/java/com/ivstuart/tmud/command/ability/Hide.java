@@ -45,8 +45,8 @@ public class Hide extends BaseCommand {
 		// Success or fail
 		Ability ability = mob.getLearned().getAbility("hide");
 
-		if (ability == null) {
-			mob.out("You have no knowledge of how to hide!");
+        if (ability == null || ability.isNull()) {
+            mob.out("You have no knowledge of how to hide!");
 			return;
 		}
 

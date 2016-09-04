@@ -27,27 +27,31 @@ public class ForcedQuit extends BaseCommand {
 	@Override
 	public void execute(Mob mob_, String input) {
 
-		mob_.out("Thankyou for playing you have been forced to quit");
-		mob_.out("If you did not just login on a second client please login in again and update your password.");
-
 		Player player = mob_.getPlayer();
 
+		if (player.getConnection().isConnected()) {
+			mob_.out("Thank you for playing you have been forced to quit");
+			mob_.out("If you did not just login on a second client please login in again and update your password.");
+		}
+
         player.getData().setPlayingTime();
+
+		mob_.setRoomId(mob_.getRoom().getId());
 
 		try {
 			MudIO.getInstance().save(player, mob_.getId() + ".sav");
 		} catch (IOException e) {
 			LOGGER.error("Problem saving character", e);
-			mob_.out("Problem saving character!");
 			return;
 		}
 
 		mob_.getRoom().remove(mob_);
 		mob_.getFight().stopFighting();
 		mob_.getFight().clear();
+		World.removePlayer(player);
 
 		player.disconnect();
-		World.removePlayer(player);
+
 
 	}
 

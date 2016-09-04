@@ -15,6 +15,8 @@ import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 
+import static com.ivstuart.tmud.constants.SkillNames.STEAL;
+
 /**
  * @author stuarti
  * 
@@ -52,10 +54,10 @@ public class Steal extends BaseCommand {
 			return;
 		}
 
-		Ability steal = mob.getLearned().getAbility("steal");
+        Ability steal = mob.getLearned().getAbility(STEAL);
 
-		if (steal == null) {
-			mob.out("You have no knowledge of steal");
+        if (steal == null || steal.isNull()) {
+            mob.out("You have no knowledge of steal");
 			return;
 		}
 

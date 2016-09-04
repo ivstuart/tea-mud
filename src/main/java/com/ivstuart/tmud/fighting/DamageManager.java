@@ -20,6 +20,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
+import static com.ivstuart.tmud.constants.SkillNames.DODGE;
+import static com.ivstuart.tmud.constants.SkillNames.PARRY;
 import static com.ivstuart.tmud.constants.SpellNames.*;
 
 public class DamageManager {
@@ -122,8 +124,10 @@ public class DamageManager {
 
         defender.getHp().decrease(damage);
 
-        attacker.getPlayer().getData().addXp(damage);
-        attacker.getPlayer().getData().addXpForFighting(damage); // reporting only.
+        if (attacker.isPlayer()) {
+            attacker.getPlayer().getData().addXp(damage);
+            attacker.getPlayer().getData().addXpForFighting(damage); // reporting only.
+        }
 
         checkForDefenderDeath(attacker, defender);
 
@@ -417,10 +421,10 @@ public class DamageManager {
     }
 
     private static int checkForDodge(Mob defender, int damage) {
-        Ability dodge = defender.getLearned().getAbility("dodge");
+        Ability dodge = defender.getLearned().getAbility(DODGE);
 
         // Reduce dodging to 30% of the time.
-        if (dodge != null && dodge.isSuccessful() && DiceRoll.ONE_D_SIX.rollMoreThan(4)) {
+        if (dodge != null && dodge != Ability.NULL_ABILITY && dodge.isSuccessful() && DiceRoll.ONE_D_SIX.rollMoreThan(4)) {
             defender.out(new Msg(defender, "<S-You/NAME> successfully dodge missing most of the attack."));
 
             damage = (int) damage / 10;
@@ -437,7 +441,7 @@ public class DamageManager {
     }
 
     private static int checkForParry(Mob defender, int damage) {
-        Ability parry = defender.getLearned().getAbility("parry");
+        Ability parry = defender.getLearned().getAbility(PARRY);
 
         // Reduce parry to 50% of the time.
         if (parry != null && parry.isSuccessful() && DiceRoll.ONE_D_SIX.rollMoreThan(2)) {

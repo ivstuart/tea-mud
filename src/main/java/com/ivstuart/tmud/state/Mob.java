@@ -2,6 +2,7 @@ package com.ivstuart.tmud.state;
 
 import com.ivstuart.tmud.behaviour.BaseBehaviour;
 import com.ivstuart.tmud.behaviour.BehaviourFactory;
+import com.ivstuart.tmud.command.misc.ForcedQuit;
 import com.ivstuart.tmud.common.*;
 import com.ivstuart.tmud.constants.CarriedEnum;
 import com.ivstuart.tmud.fighting.DamageManager;
@@ -45,10 +46,9 @@ public class Mob extends Prop implements Tickable {
     protected transient Player player;
     protected String race; // base mob
     protected String repopRoomID;
-    // TODO room should be transient apart from room id
-    protected Room room;
+    protected transient Room room;
+    protected String roomId;
     protected int weight; // kg base mob
-
     private String ability; // base mob
     private int align; // base mob
     private int armour;
@@ -69,12 +69,10 @@ public class Mob extends Prop implements Tickable {
     private int xp;
     private int raceId;
     private int wimpy;
-
     private boolean undead;
     private transient List<String> behaviours;
     private List<Tickable> tickers;
     private int RATE_OF_REGEN_3_PERCENT = 3;
-
     private String patrolPath;
     private boolean alignment;
     private boolean isAware;
@@ -87,11 +85,10 @@ public class Mob extends Prop implements Tickable {
     private boolean veryAggressive;
     private boolean isMemory;
     private boolean isPeekAggro;
-
+    private int IDLE_TIMEOUT = 500; // Seconds
     public Mob() {
         fight = new Fight(this);
     }
-
     public Mob(Mob baseMob) {
         super(baseMob);
         fight = new Fight(this);
@@ -167,6 +164,14 @@ public class Mob extends Prop implements Tickable {
             WorldTime.addTickable(this);
         }
 
+    }
+
+    public String getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
     }
 
     public boolean isPeekAggro() {
@@ -648,6 +653,28 @@ public class Mob extends Prop implements Tickable {
 
         checkHungerAndThirst();
 
+        checkIdleTimeAndKickout();
+
+    }
+
+    private void checkIdleTimeAndKickout() {
+        if (isPlayer() && !getFight().isEngaged()) {
+            int secondsIdle = (int) (getPlayer().getConnection().getIdle() / 1000);
+
+            if (secondsIdle > IDLE_TIMEOUT) {
+                LOGGER.info("Player " + getPlayer().getName() + " has been idle for " + secondsIdle + " and has been kicked off");
+                out("You have been idle for " + secondsIdle + " seconds hence quiting for you");
+                new ForcedQuit().execute(this, null);
+            }
+
+            if (!getPlayer().getConnection().isConnected()) {
+                LOGGER.info("Player has lost there connection and has been kicked off");
+                new ForcedQuit().execute(this, null);
+            }
+
+            LOGGER.debug("Tick for player " + getPlayer().getName());
+
+        }
     }
 
     private void checkHungerAndThirst() {

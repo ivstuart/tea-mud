@@ -22,9 +22,16 @@ public class WorldTime implements Runnable {
     private static boolean pauseTime = false;
     private final int tickSpeed = 150;
     private int counter = 0;
-
     private WorldTime() {
         WorldTime.init();
+    }
+
+    public static List<Tickable> getTickables() {
+        return tickables;
+    }
+
+    public static void setTickables(List<Tickable> tickables) {
+        WorldTime.tickables = tickables;
     }
 
     public static void addFighting(Mob mob_) {
@@ -167,8 +174,30 @@ public class WorldTime implements Runnable {
             return;
         }
 
-        for (Tickable tickable : tickables) {
-            tickable.tick();
+        for (int index = 0; index < tickables.size(); index++) {
+            try {
+                tickables.get(index).tick();
+            } catch (RuntimeException re) {
+                tickables.remove(index);
+                LOGGER.error("Problem in tickables thread", re);
+            }
+        }
+
+    }
+
+    public void sendHeartBeat() {
+
+        if (pauseTime) {
+            return;
+        }
+
+        for (int index = 0; index < tickables.size(); index++) {
+            try {
+                tickables.get(index).tick();
+            } catch (RuntimeException re) {
+                tickables.remove(index);
+                LOGGER.error("Problem in tickables thread", re);
+            }
         }
 
     }
@@ -177,5 +206,9 @@ public class WorldTime implements Runnable {
         sendHeartBeat();
         repopulateMobs();
         resolveCombat();
+    }
+
+    public static boolean removeTickables(Mob mob) {
+        return tickables.remove(mob);
     }
 }

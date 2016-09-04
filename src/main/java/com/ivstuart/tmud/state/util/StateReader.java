@@ -211,7 +211,7 @@ public class StateReader {
 
 			String args = getArgs(line, delimPos);
 
-			// TODO comment out to speed up launch time.
+			// TODO comment out to speed up launch time not really a to do.
 			// LOGGER.debug("tag [ " + tag + " ] args [ " + args + " ]");
 
 			if (CLASS.equals(tag)) {

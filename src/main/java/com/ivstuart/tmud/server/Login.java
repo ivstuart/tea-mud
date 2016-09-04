@@ -282,15 +282,7 @@ public class Login implements Readable {
         // Null pointer ! System.out.println("Alignment =" +
         // character.getStats().get("ALIGNMENT").getValue());
 
-        Room oldRoom = character.getRoom();
-
-        String roomId = null;
-
-        if (oldRoom == null) {
-            roomId = "unknown";
-        } else {
-            roomId = oldRoom.getId();
-        }
+        String roomId = character.getRoomId();
 
         Room newRoom = World.getRoom(roomId);
 

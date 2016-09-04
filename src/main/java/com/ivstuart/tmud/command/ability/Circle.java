@@ -15,6 +15,8 @@ import com.ivstuart.tmud.fighting.action.FightAction;
 import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Mob;
 
+import static com.ivstuart.tmud.constants.SkillNames.CIRCLE;
+
 /**
  * @author Ivan Stuart
  */
@@ -125,8 +127,8 @@ public class Circle extends BaseCommand {
 
 
 			// Success or fail
-			Ability ability = getSelf().getLearned().getAbility("circle");
-			if (ability.isSuccessful()) {
+            Ability ability = getSelf().getLearned().getAbility(CIRCLE);
+            if (ability.isSuccessful()) {
 				out(new Msg(getSelf(), getTarget(), ("<S-You/NAME> successfully circled <T-you/NAME>.")));
 
                 Fight.startCombat(getSelf(), getTarget(), true);

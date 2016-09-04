@@ -66,7 +66,7 @@ public class Learned implements Serializable {
 
 		Ability ab = getAbility(prereq);
 
-		if (null == ab) {
+		if (null == ab || ab.isNull()) {
 			return false;
 		}
 

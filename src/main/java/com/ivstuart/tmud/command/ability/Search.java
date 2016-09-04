@@ -12,6 +12,8 @@ import com.ivstuart.tmud.state.Exit;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 
+import static com.ivstuart.tmud.constants.SkillNames.SEARCHING;
+
 /**
  * @author stuarti
  * 
@@ -28,10 +30,10 @@ public class Search extends BaseCommand {
 	@Override
 	public void execute(Mob mob, String input) {
 
-		Ability ability = mob.getLearned().getAbility("searching");
+        Ability ability = mob.getLearned().getAbility(SEARCHING);
 
-		if (ability == null) {
-			mob.out("You have no knowledge of how to search!");
+        if (ability == null || ability.isNull()) {
+            mob.out("You have no knowledge of how to search!");
 			return;
 		}
 

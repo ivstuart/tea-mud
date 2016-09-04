@@ -193,7 +193,14 @@ public class World {
 	public static void removePlayer(Player player) {
 		LOGGER.info("Removing player with id [ " + player.getName() + "]");
 
-		_players.remove(player.getName());
+		_players.remove(player.getName().toLowerCase());
+
+		tickers.remove(player.getMob());
+
+		_mobs.remove(player.getMob());
+
+		WorldTime.removeTickables(player.getMob());
+
 
 	}
 

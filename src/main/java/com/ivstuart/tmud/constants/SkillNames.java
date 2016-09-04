@@ -11,4 +11,22 @@ public class SkillNames {
 
     public static final String TRACKING = "tracking";
     public static final String RESCUE = "rescue";
+    public static final String BACKSTAB = "backstab";
+    public static final String BASH = "bash";
+    public static final String CIRCLE = "circle";
+    public static final String INVESTIGATE = "INVESTIGATE";
+    public static final String KICK = "kick";
+    public static final String SEARCHING = "searching";
+    public static final String SNEAK = "sneak";
+    public static final String STEAL = "steal";
+    public static final String PICK_LOCKS = "pick locks";
+
+    public static final String CLIMBING = "climbing";
+    public static final String DODGE = "dodge";
+    public static final String PARRY = "parry";
+
+    public static final String DUAL_WIELD = "dual wield";
+    public static final String THIRD_ATTACK = "third attack";
+    public static final String UNARMED_COMBAT = "unarmed combat";
+    public static final String TACKLE = "tackle";
 }

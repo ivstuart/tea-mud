@@ -33,6 +33,8 @@ public class SavePlayer extends BaseCommand {
 		player.getData().setPlayingTime();
 		player.getData().setLoginTime(System.currentTimeMillis());
 
+        mob_.setRoomId(mob_.getRoom().getId());
+
 		// Save character first
 		try {
 			MudIO.getInstance().save(player, mob_.getId() + ".sav");

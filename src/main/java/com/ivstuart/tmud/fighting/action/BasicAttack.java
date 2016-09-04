@@ -18,6 +18,10 @@ import com.ivstuart.tmud.state.Weapon;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import static com.ivstuart.tmud.constants.SkillNames.DUAL_WIELD;
+import static com.ivstuart.tmud.constants.SkillNames.THIRD_ATTACK;
+import static com.ivstuart.tmud.constants.SkillNames.UNARMED_COMBAT;
+
 /**
  * @author stuarti
  * 
@@ -118,14 +122,12 @@ public class BasicAttack extends FightAction {
 
 		if (getSelf().getRoom().getMobs().contains(getTarget()) == false) {
 			out(getTarget().getId() + " is no longer here to attack!");
-			// TODO decided if we need to disengage at this point if no other attackers then can leave aggro on last attacker
-			// if other attackers pick one at random to target.
 			getSelf().getFight().stopFighting();
 			finished();
 			return;
 		}
 
-		Ability dualWield = getSelf().getLearned().getAbility("dual wield");
+		Ability dualWield = getSelf().getLearned().getAbility(DUAL_WIELD);
 
 		Weapon secondaryWeapon = null;
 
@@ -146,7 +148,7 @@ public class BasicAttack extends FightAction {
 		// Enhanced damage and armour penetration
 		Ability secondAttack = getSelf().getLearned().getAbility(
 				"second attack");
-		Ability thirdAttack = getSelf().getLearned().getAbility("third attack");
+		Ability thirdAttack = getSelf().getLearned().getAbility(THIRD_ATTACK);
 
 		Weapon weapon = getSelf().getWeapon();
 
@@ -197,7 +199,16 @@ public class BasicAttack extends FightAction {
 			damage.setRoll(weapon.getDamage());
 		}
 		else {
+			// unarmed
 			damage.setRoll(getSelf().getDamage());
+
+			Ability unarmed = getSelf().getLearned().getAbility(UNARMED_COMBAT);
+
+			if (unarmed != null) {
+				if (unarmed.isSuccessful()) {
+					damage.setRoll(2, 8, 2);
+				}
+			}
 		}
 
 		if (damage.getRoll() == null) {

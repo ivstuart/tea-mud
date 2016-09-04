@@ -8,8 +8,7 @@ look: A yellow and grey desert
 class: state.RoomBuilder
 id: Z9-:0:0:0
 roomPrefix: Z9-
-# TODO
-path: neswnnnnnnnnnnnnnnneeeeeeeeeeeeeeessssssssssssswwwwwwwwwwwwwwww
+path: 8x16
 execute: notused
 
 ## Linkage to road to bal

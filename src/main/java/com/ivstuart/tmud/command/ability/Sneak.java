@@ -11,6 +11,8 @@ import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Mob;
 
+import static com.ivstuart.tmud.constants.SkillNames.SNEAK;
+
 /**
  * @author stuarti
  * 
@@ -24,10 +26,10 @@ public class Sneak extends BaseCommand {
 	@Override
 	public void execute(Mob mob, String input) {
 
-		Ability sneak = mob.getLearned().getAbility("sneak");
+        Ability sneak = mob.getLearned().getAbility(SNEAK);
 
-		if (sneak == null) {
-			mob.out("You have no knowledge of sneak");
+        if (sneak == null || sneak.isNull()) {
+            mob.out("You have no knowledge of sneak");
 			return;
 		}
 

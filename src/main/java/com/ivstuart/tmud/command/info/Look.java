@@ -6,6 +6,8 @@ import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.state.*;
 import com.ivstuart.tmud.utils.MudArrayList;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
@@ -13,6 +15,8 @@ import static com.ivstuart.tmud.constants.SpellNames.BLINDNESS;
 import static com.ivstuart.tmud.constants.SpellNames.INFRAVISION;
 
 public class Look extends BaseCommand {
+
+	private static final Logger LOGGER = LogManager.getLogger();
 	/*
 	 * > look > look AT the angel > look IN the bag > look south (May give some
 	 * information as to what is south)
@@ -104,17 +108,10 @@ public class Look extends BaseCommand {
 
 		showMobs(mob_);
 
-		showCash(mob_);
-
 		showItems(mob_);
 
 		Prompt.show(mob_);
 
-	}
-
-	private void showCash(Mob mob) {
-
-		// mob.out(mob.getRoom().toString());
 	}
 
 	private void showExits(Mob mob) {
@@ -151,7 +148,7 @@ public class Look extends BaseCommand {
 
 		SomeMoney sm = mob.getRoom().getInventory().getPurse();
 
-		if (sm != null) {
+		if (sm != null && !sm.isEmpty()) {
 			mob.out(sm.toString());
 		}
 
@@ -168,8 +165,10 @@ public class Look extends BaseCommand {
 				sb.append("$IA " + item.getLook() + " lies here.\n");
 			}
 		}
-		sb.append("$J");
-		mob.out(sb.toString());
+		if (sb.length() != 0) {
+			sb.append("$J");
+			mob.out(sb.toString());
+		}
 	}
 
 	private void showMobs(Mob mob_) {
@@ -235,6 +234,10 @@ public class Look extends BaseCommand {
 				}
 			}
 			sb.append("\n");
+			// FIXME this is broken with a null pointer
+//			if (!mob.getPlayer().getConfig().getConfigData().is(ConfigData.COMBINE)) {
+//				sb.append("\n");
+//			}
 		}
 		sb.append("$J");
 		mob_.out(sb.toString());

@@ -15,6 +15,8 @@ import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.MobStatus;
 
+import static com.ivstuart.tmud.constants.SkillNames.KICK;
+
 /**
  * @author Ivan Stuart
  */
@@ -135,8 +137,8 @@ public class Kick extends BaseCommand {
 			}
 
 			// Success or fail
-			Ability kickAbility = getSelf().getLearned().getAbility("kick");
-			if (kickAbility.isSuccessful()) {
+            Ability kickAbility = getSelf().getLearned().getAbility(KICK);
+            if (kickAbility.isSuccessful()) {
                 out(new Msg(getSelf(), getTarget(), "<S-You/NAME> successfully kicked <T-you/NAME>."));
                 setKicked(getSelf(), getTarget());
 				if (kickAbility.isImproved()) {
