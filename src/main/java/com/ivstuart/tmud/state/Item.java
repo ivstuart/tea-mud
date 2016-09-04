@@ -46,8 +46,27 @@ public class Item extends Prop implements Equipable, Msgable {
 	private boolean isNoDonate;
 	private boolean isNoInvisible;
 	private List<Profession> antiProfession;
+	private boolean isBoat;
+	private String roomId;
+	private boolean magic;
 
 	public Item() {
+	}
+
+	public String getRoomId() {
+		return roomId;
+	}
+
+	public void setRoomId(String roomId) {
+		this.roomId = roomId;
+	}
+
+	public boolean isBoat() {
+		return isBoat;
+	}
+
+	public void setBoat(boolean boat) {
+		isBoat = boat;
 	}
 
 	public boolean isNoDonate() {
@@ -277,11 +296,6 @@ public class Item extends Prop implements Equipable, Msgable {
 		return (_type.indexOf("SHIELD") != -1);
 	}
 
-	public Room getRoom() {
-		// TODO need for locate object spell
-		return null;
-	}
-
     public boolean isRecitable() {
     	return false;
     }
@@ -328,5 +342,9 @@ public class Item extends Prop implements Equipable, Msgable {
 		if (isNoInvisible == false) {
 			super.setInvisible(flag);
 		}
+	}
+
+	public void setMagic(boolean magic) {
+		this.magic = magic;
 	}
 }

@@ -34,8 +34,12 @@ public class Look extends BaseCommand {
 			Prop prop = mob_.getRoom().getProps().get(input_);
 
 			if (prop != null) {
-				mob_.out("Prop info " + prop);
+				mob_.out("Prop info " + prop.look());
 				return;
+			}
+
+			if (mob_.getPlayer().isAdmin()) {
+				mob_.out("Prop info " + prop);
 			}
 		}
 
@@ -205,11 +209,6 @@ public class Look extends BaseCommand {
 			else {
 				sb.append("$H" + mob.getBrief());
 			}
-
-
-
-			// TODO should replace this code with a Msg object to handle the
-			// correct tense of output.
 
 			if (mob.getFight() != null && mob.getFight().isFighting()) {
 				sb.append(" is fighting a");

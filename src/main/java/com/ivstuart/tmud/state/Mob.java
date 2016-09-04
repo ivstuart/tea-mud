@@ -42,10 +42,10 @@ public class Mob extends Prop implements Tickable {
     protected Learned learned;
     protected MobMana mana;
     protected Attribute moves;
-    // TODO this should be transient for mobs and players?
     protected transient Player player;
     protected String race; // base mob
     protected String repopRoomID;
+    // TODO room should be transient apart from room id
     protected Room room;
     protected int weight; // kg base mob
 
@@ -252,12 +252,12 @@ public class Mob extends Prop implements Tickable {
         return damage;
     }
 
-    public void setDamage(DiceRoll damage) {
-        this.damage = damage;
-    }
-
     public void setDamage(String damage_) {
         this.damage = new DiceRoll(damage_);
+    }
+
+    public void setDamage(DiceRoll damage) {
+        this.damage = damage;
     }
 
     public int getDefence() {
@@ -292,12 +292,12 @@ public class Mob extends Prop implements Tickable {
         return gender;
     }
 
-    public void setGender(Gender g) {
-        gender = g;
-    }
-
     public void setGender(String gender_) {
         gender = Gender.valueOf(gender_.toUpperCase());
+    }
+
+    public void setGender(Gender g) {
+        gender = g;
     }
 
     public Attribute getHp() {
@@ -412,13 +412,13 @@ public class Mob extends Prop implements Tickable {
         return state;
     }
 
+    public void setState(String state_) {
+        state = MobState.getMobState(state_);
+    }
+
     public void setState(MobState state_) {
         LOGGER.debug("You set state to " + state_.name());
         state = state_;
-    }
-
-    public void setState(String state_) {
-        state = MobState.getMobState(state_);
     }
 
     public Fight getTargetFight() {
@@ -929,7 +929,6 @@ public class Mob extends Prop implements Tickable {
 
 
     public boolean hasBoat() {
-        // TODO check inventory for a boat.
-        return false;
+        return getInventory().hasBoat();
     }
 }

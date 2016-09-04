@@ -11,7 +11,7 @@ public class Damage implements SpellEffect {
 	public void effect(Mob giver_, Mob reciever, Spell spell, Item targetItem) {
 
 
-        DamageManager.deal(giver_, reciever, spell.getDamage().roll());
+		DamageManager.deal(giver_, reciever, spell.getDamage().roll(), true);
 	}
 
 	public boolean isPositiveEffect() {

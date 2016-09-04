@@ -1,0 +1,7 @@
+class: state.Prop
+
+id: dragon-prop-001
+alias: dragon
+brief: a huge sleeping dragon. Crikey! thats lucky hes asleep.
+short: sleeping dragon
+look: a huge sleeping dragon. Crikey! thats lucky hes asleep.

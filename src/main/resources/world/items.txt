@@ -80,6 +80,15 @@ cost: 10000
 weight: 1
 shopSupplied: true
 
+id: coracle-001
+alias: small wooden coracle
+short: small wooden coracle
+look: small wooden coracle
+cost: 1000
+weight: 15000
+boat: true
+shopSupplied: true
+
 
 
 

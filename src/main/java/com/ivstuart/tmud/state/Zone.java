@@ -21,6 +21,8 @@ public class Zone extends BasicThing {
 
 	protected int _reset; // enum?
 
+	private String name;
+
 	public Zone() {
 
 	}
@@ -121,11 +123,7 @@ public class Zone extends BasicThing {
 	}
 
 	public void setName(String name_) {
-		// TODO
-	}
-
-	public void setPut(String item_) {
-
+		this.name = name_;
 	}
 
 	public void setReset(Integer reset_) {

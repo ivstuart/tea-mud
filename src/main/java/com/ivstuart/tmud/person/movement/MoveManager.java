@@ -20,11 +20,6 @@ public class MoveManager {
 
 	}
 
-	// TODO fix all calling code to provide the movementType this is a hack
-	public static void move(Mob mob_, Room sourceRoom_, Room destinationRoom_, Exit exit_) {
-		move(mob_, sourceRoom_, destinationRoom_, exit_, "walks");
-	}
-
 	public static void move(Mob mob_, Room sourceRoom_, Room destinationRoom_, Exit exit_, String movementType) {
 
 		sourceRoom_.remove(mob_);
@@ -58,7 +53,7 @@ public class MoveManager {
 
 		Room currentRoom = mob.getRoom();
 
-		MoveManager.move(mob, mob.getRoom(), myExit.getDestinationRoom(),myExit);
+		MoveManager.move(mob, mob.getRoom(), myExit.getDestinationRoom(), myExit, "walks");
 
 		if (currentRoom != mob.getRoom()) {
 			mob.getFight().stopFighting();

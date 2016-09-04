@@ -43,7 +43,6 @@ public class Drop extends BaseCommand {
 			return;
 		}
 
-		// TODO should this be refactored into Room method called?
 		if (item instanceof Torch) {
 			Torch torch = (Torch) item;
 			torch.setMsgable(mob.getRoom());

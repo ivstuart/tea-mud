@@ -12,10 +12,9 @@ look: wonderous feelings of evil. Tainted only by the white tendrils persistance
 look: at a heavenly conception of righteousness. Far off you see a form, thats calls 
 look: to you.
 exits: body->Z6-:0:0:0
-key: gold7
-properties: NOMobS 
-keywords: dragon
-description: a huge sleeping dragon. Crikey! thats lucky he is asleep.
+#key: gold7
+prop: dragon-prop-001
+noMob: true
 peaceful: true
 noMagic: true
 auctionHouse: true
@@ -32,10 +31,9 @@ look: wonderous feelings of evil. Tainted only by the white tendrils persistance
 look: at a heavenly conception of righteousness. Far off you see a form, thats calls 
 look: to you.
 exits: body->Z0-:0:0:0
-key: gold7
-properties: NOMobS 
-keywords: dragon
-description: a huge sleeping dragon. Crikey! thats lucky hes asleep.
+#key: gold7
+prop: dragon-prop-001
+noMob: true
 peaceful: true
 noMagic: true
 auctionHouse: true

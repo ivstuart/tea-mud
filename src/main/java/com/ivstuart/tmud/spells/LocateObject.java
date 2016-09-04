@@ -9,7 +9,7 @@ public class LocateObject implements SpellEffect {
 	@Override
 	public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
 
-		caster_.out("Object is located in room"+targetItem.getRoom().getId());
+		caster_.out("Object was last dropped in room " + targetItem.getRoomId());
 	}
 
 	public boolean isPositiveEffect() {

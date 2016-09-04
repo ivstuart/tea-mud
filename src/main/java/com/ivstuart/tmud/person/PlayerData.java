@@ -32,11 +32,9 @@ public class PlayerData implements Serializable {
     private String title;
 
     private long totalXp;
-
     private long toLevelXp;
-
+    private int xpForFighting;
     private int age; // years
-
     private long loginTime;
     private long playingTime;
     private int kills;
@@ -58,7 +56,6 @@ public class PlayerData implements Serializable {
     private Attribute drunkAttribute;
     private Attribute poisonAttribute;
     private Attribute alignment;
-
     /**
      *
      */
@@ -69,6 +66,14 @@ public class PlayerData implements Serializable {
         poisonAttribute = new Attribute("Poison", 0, 500, 0);
         level = 1;
 
+    }
+
+    public int getXpForFighting() {
+        return xpForFighting;
+    }
+
+    public void setXpForFighting(int xpForFighting) {
+        this.xpForFighting = xpForFighting;
     }
 
     public Attribute getDrunkAttribute() {
@@ -341,5 +346,9 @@ public class PlayerData implements Serializable {
 
     public void setPlayingTime() {
         playingTime = this.getPlayingTime();
+    }
+
+    public void addXpForFighting(int damage) {
+        this.xpForFighting += damage;
     }
 }

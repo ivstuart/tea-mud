@@ -45,6 +45,7 @@ public class Inventory implements Serializable {
 	}
 
 	public void add(Item thing) {
+
 		items.add(thing);
 	}
 
@@ -103,6 +104,16 @@ public class Inventory implements Serializable {
 	public boolean hasLighter() {
 		for (Item item : items) {
 			if ("LIGHTER".indexOf(item.getType()) > -1) {
+				return true;
+			}
+
+		}
+		return false;
+	}
+
+	public boolean hasBoat() {
+		for (Item item : items) {
+			if (item.isBoat()) {
 				return true;
 			}
 

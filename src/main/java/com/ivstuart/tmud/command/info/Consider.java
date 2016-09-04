@@ -39,11 +39,13 @@ public class Consider extends BaseCommand {
             return;
         }
 
-        // TODO factor in damage and shield spells.
-
         int index1 = 4 * target.getHp().getValue() / mob.getHp().getValue();
 
         int index2 = 4 * target.getMobLevel() / mob.getPlayer().getData().getLevel();
+
+        int index3 = 4 * target.getDamage().getMaxRoll() / mob.getWeapon().getDamage().getMaxRoll();
+
+        int index4 = 4 * target.getArmour() / mob.getEquipment().getTotalArmour();
 
         int compareIndex = (index1 + index2) / 2;
 
@@ -51,8 +53,15 @@ public class Consider extends BaseCommand {
             compareIndex = compare.length - 1;
         }
 
-        mob.out(compare[compareIndex]);
+        int compareIndex2 = (index3 + index4) / 2;
 
+        if (compareIndex2 >= compare.length) {
+            compareIndex2 = compare.length - 1;
+        }
+
+        // TODO play test this to see which states are best to determine if it is a fair fight or not.
+        mob.out(compare[compareIndex]);
+        mob.out(compare[compareIndex2]);
 
     }
 

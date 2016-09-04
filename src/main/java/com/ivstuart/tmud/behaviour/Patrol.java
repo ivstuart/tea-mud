@@ -62,7 +62,7 @@ public class Patrol extends BaseBehaviour {
 			return;
 		}
 
-		MoveManager.move(mob,currentRoom,exit.getDestinationRoom(),exit);
+        MoveManager.move(mob, currentRoom, exit.getDestinationRoom(), exit, "walks");
 
 	}
 

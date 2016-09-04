@@ -68,7 +68,7 @@ public class Tracker extends BaseBehaviour {
 
 				Exit exit = currentRoom.getExit(direction);
 
-				MoveManager.move(mob,currentRoom,exit.getDestinationRoom(),exit);
+				MoveManager.move(mob, currentRoom, exit.getDestinationRoom(), exit, "walks");
 				return;
 			}
 		}

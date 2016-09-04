@@ -27,6 +27,10 @@ public class DamageManager {
     private static final Logger LOGGER = LogManager.getLogger();
 
     public static void deal(Mob attacker, Mob defender, int damage) {
+        deal(attacker, defender, damage, false);
+    }
+
+    public static void deal(Mob attacker, Mob defender, int damage, boolean isSpell) {
 
         if (defender.isMemory()) {
             defender.getFight().setLastMobAttackedMe(attacker);
@@ -94,15 +98,16 @@ public class DamageManager {
         //   if melee the armor at location
         //      apply any armor peneration skills or specials to counter armour saves
         //   if spell damage the average armour minus any special elemental saves
-
         int armour = checkArmourAtHitLocation(defender);
 
-        if (armour > 0) {
-            // TODO no arm pen for spells
-            armour = checkForArmourPenetration(attacker, armour);
-        }
+        if (!isSpell) {
+            if (armour > 0) {
+                armour = checkForArmourPenetration(attacker, armour);
+            }
 
+        }
         damage = damage - armour;
+
 
         if (damage < 1) {
             attacker.out("Your feeble blow is deflected by their armour");
@@ -115,8 +120,10 @@ public class DamageManager {
 
         attacker.getRoom().out(msg);
 
-        // TODO apply xp for combat damage and count this (clear counter on kill) after reporting xp from fighting.
         defender.getHp().decrease(damage);
+
+        attacker.getPlayer().getData().addXp(damage);
+        attacker.getPlayer().getData().addXpForFighting(damage); // reporting only.
 
         checkForDefenderDeath(attacker, defender);
 
@@ -287,10 +294,17 @@ public class DamageManager {
                             attacker.out("You gained [" + xp
                                     + "] total experience for the kill.");
 
+
                             attacker.getPlayer().getData().addXp(xp);
                         }
 
                         attacker.getPlayer().checkIfLeveled();
+
+                        int reportFightingXp = attacker.getPlayer().getData().getXpForFighting();
+
+                        attacker.out("You gained " + reportFightingXp + " from fighting.");
+
+                        attacker.getPlayer().getData().setXpForFighting(0);
 
                         attacker.out("You hear a " + defender.getName() + "'s death cry.");
                     }

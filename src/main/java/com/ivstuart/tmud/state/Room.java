@@ -25,13 +25,13 @@ public class Room extends BasicThing implements Msgable {
 
     private String _type;
 
-    private MudArrayList<Prop> _props;
+    private transient MudArrayList<Prop> _props;
 
-    private MudArrayList<Exit> _exits;
+    private transient MudArrayList<Exit> _exits;
 
-    private MudArrayList<Mob> _mobs;
+    private transient MudArrayList<Mob> _mobs;
 
-    private Inventory _items;
+    private transient Inventory _items;
 
     private boolean isRegen;
     private boolean isUnderWater;
@@ -296,6 +296,8 @@ public class Room extends BasicThing implements Msgable {
             _items = new Inventory();
         }
         _items.add(item_);
+        // For locate spell
+        item_.setRoomId(this.getId());
     }
 
     public void add(Mob mob_) {
@@ -442,9 +444,14 @@ public class Room extends BasicThing implements Msgable {
         return _mobs.remove(id_);
     }
 
-    public void setDescription(String desc_) {
-        LOGGER.error("setDescription " + desc_ + " not yet implemented");
-        // TODO set prop description
+    public void setProp(String propId) {
+        Prop prop = EntityProvider.createProp(propId);
+        if (prop == null) {
+            LOGGER.error("No prop found with id:" + propId);
+            return;
+        }
+        LOGGER.debug("Adding prop to room " + prop);
+        this.add(prop);
     }
 
     public void setDoors(String doors_) {
@@ -471,20 +478,10 @@ public class Room extends BasicThing implements Msgable {
         RoomManager.setDoorKeys(keys_);
     }
 
-    public void setKeywords(String words_) {
-        LOGGER.error("setKeywords " + words_ + " not yet implemented");
-        // TODO create a prop
-    }
 
     public void setMob(String mobId_) {
         Mob mob = EntityProvider.createMob(mobId_, getId());
         this.add(mob);
-    }
-
-    public void setProp(String propID_) {
-        Prop prop = EntityProvider.createProp(propID_);
-
-        this.add(prop);
     }
 
     public Mob getRandomPlayer() {

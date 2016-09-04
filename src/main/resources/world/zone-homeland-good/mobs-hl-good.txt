@@ -126,3 +126,23 @@ xp: 20000
 state: STANDING
 attackType: claw tail bite breath
 # dice types possible for most fields
+
+id: shopkeeper-003
+name: shopkeeper
+alias: shopkeeper
+short: the shopkeeper
+long: A shopkeeper snares at you.
+look: The shopkeeper is a common shopkeeper is and all together unremarkable.
+level: 100
+offensive: 1000
+defensive: 1000
+armour: 50
+hp: 1500
+damage: 1d100+50
+copper: 0
+xp: 20
+state: STANDING
+attackType: punch
+item: wooden-shield-004
+item: packed-lunches-001
+# dice types possible for most fields

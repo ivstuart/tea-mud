@@ -34,6 +34,7 @@ mobInRoom: blue-dragon-001 Z0-:-2:6:-3
 # All dragons also can use item: in mob.txt file
 give: blue-dragon-001 water-60 50
 give: blue-dragon-001 thors-hammer-001 50
+give: shopkeeper-003 coracle-001
 
 # Mob in room only - one off no repop
 giveItem: dragon Z0-:-2:6:-3 water-80 20
@@ -53,4 +54,5 @@ itemInRoom: morning-star-001 Z0-:1:-1:-1
 itemInRoom: axe-001 Z0-:1:-1:-1
 itemInRoom: mace-001 Z0-:1:-1:-1
 itemInRoom: warhammer-001 Z0-:1:-1:-1
+itemInRoom: coracle-001 Z0-:1:-1:-1
 

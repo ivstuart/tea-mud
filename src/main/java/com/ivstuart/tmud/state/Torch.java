@@ -53,8 +53,8 @@ public class Torch extends Item implements Tickable {
 		return true;
 	}
 
-	public void setMsgable(Msgable mob_) {
-		_msg = mob_;
+	public void setMsgable(Msgable msgable) {
+		_msg = msgable;
 	}
 
 	@Override

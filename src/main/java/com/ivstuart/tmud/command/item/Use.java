@@ -91,8 +91,7 @@ public class Use extends BaseCommand {
 		mob.out("You get an " + anItem);
 	}
 
-	// TODO threadsafety
-	private void getAllCoins(Mob mob) {
+	private synchronized void getAllCoins(Mob mob) {
 
 		SomeMoney money = mob.getRoom().getMoney();
 

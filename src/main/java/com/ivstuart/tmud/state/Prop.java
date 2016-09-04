@@ -3,18 +3,14 @@ package com.ivstuart.tmud.state;
 public class Prop extends BasicThing {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 8257487772034485327L;
-
 	protected String alias;
-
 	protected String affects;
-
 	protected boolean waterSource;
 	protected boolean isSittable;
 	protected boolean isSleepable;
-
 	public Prop() {
 	}
 
@@ -23,6 +19,17 @@ public class Prop extends BasicThing {
 		alias = prop_.alias;
 		affects = prop_.affects;
 		waterSource = false;
+	}
+
+	@Override
+	public String toString() {
+		return "Prop{" +
+				"alias='" + alias + '\'' +
+				", affects='" + affects + '\'' +
+				", waterSource=" + waterSource +
+				", isSittable=" + isSittable +
+				", isSleepable=" + isSleepable +
+				'}';
 	}
 
 	public boolean isSittable() {
