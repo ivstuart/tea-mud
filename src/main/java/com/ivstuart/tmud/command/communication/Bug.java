@@ -7,10 +7,15 @@
 package com.ivstuart.tmud.command.communication;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
-import com.ivstuart.tmud.person.Player;
+import com.ivstuart.tmud.server.LaunchMud;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.World;
+import com.ivstuart.tmud.utils.FileHandle;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.io.IOException;
+import java.util.Calendar;
 
 /**
  * @author stuarti
@@ -20,13 +25,26 @@ import com.ivstuart.tmud.state.World;
  */
 public class Bug extends BaseCommand {
 
-	/** 
-	 * TODO Store these as emails or reports to separate location
+	private static final Logger LOGGER = LogManager.getLogger();
+
+	/**
+	 *
 	 */
 	@Override
 	public void execute(Mob mob, String input) {
+		synchronized (Bug.class) {
+			World.out("BUG:" + input, mob.isGood());
+			String path = LaunchMud.mudServerProperties.getProperty("player.save.dir");
+			FileHandle fh = new FileHandle(path + "bug-report.txt");
+			Calendar c = Calendar.getInstance();
 
-		World.out("BUG:"+input,mob.isGood());
+			try {
+				fh.write(c.getTime() + "\n" + input + "\n");
+				fh.close();
+			} catch (IOException e) {
+				LOGGER.error("Problem writing bug to bugreport file", e);
+			}
+		}
 	}
 
 }

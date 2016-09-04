@@ -7,10 +7,7 @@
 package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
-import com.ivstuart.tmud.state.Food;
-import com.ivstuart.tmud.state.Item;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.*;
 
 /**
  * @author stuarti
@@ -26,15 +23,22 @@ public class Butcher extends BaseCommand {
 	@Override
 	public void execute(Mob mob, String input) {
 
-		// TODO create command "salt" & "cook"
 		// Need any weapon with sword, knife, edge, sharp, axe, blade in the short desc 
 		// then also some animal meat - yields 3 portions of food that are perishable
 		// salting meet makes it last 10 times longer. 
 		// Fire can cook meat but 30% change of burning it.
-		
-		Item item = mob.getInventory().get(input);
-		
-		// TODO decide if this is on prop or items
+
+		Prop prop = mob.getRoom().getProps().get(input);
+
+		Item item;
+		boolean propFlag = false;
+		if (prop == null || !(prop instanceof Item)) {
+			item = mob.getInventory().get(input);
+			propFlag = true;
+		} else {
+			item = (Item) prop;
+		}
+
 		if (!item.isButcherable()) {
 			mob.out(input+" is not editable animal skin, can not butcher it");
 			return;
@@ -46,8 +50,17 @@ public class Butcher extends BaseCommand {
 		}
 		
 		// Butcher animal
-		
-		mob.getInventory().remove(item);
+
+		if (propFlag) {
+			mob.getRoom().getProps().remove(item);
+			if (item instanceof Corpse) {
+				Corpse corpse = (Corpse) item;
+				corpse.getInventory();
+				mob.getRoom().getInventory().addAll(corpse.getInventory());
+			}
+		} else {
+			mob.getInventory().remove(item);
+		}
 		
 		Food animalMeat = new Food();
 		

@@ -165,4 +165,7 @@ public class MudArrayList<E> extends ArrayList<E> {
 		return -1;
 	}
 
+	public E removeRandom() {
+		return this.get((int) (size() * Math.random()));
+	}
 }

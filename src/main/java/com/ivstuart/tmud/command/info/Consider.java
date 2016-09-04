@@ -65,7 +65,7 @@ public class Consider extends BaseCommand {
             compareIndex2 = compare.length - 1;
         }
 
-        // TODO play test this to see which states are best to determine if it is a fair fight or not.
+        // play test this to see which states are best to determine if it is a fair fight or not.
         mob.out(compare[compareIndex]);
         mob.out(compare[compareIndex2]);
 

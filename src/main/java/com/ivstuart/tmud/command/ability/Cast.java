@@ -192,13 +192,18 @@ public class Cast extends BaseCommand {
             Item item = mob_.getRoom().getInventory().get(target);
 
             if (item == null) {
-                // TODO decide if props still makes sense to have - danagerous cast.
-                item = (Item) mob_.getRoom().getProps().get(target);
-                if (item == null) {
-                    // TODO get Item from the World for locate object spell
-                    // World.getItem(target);
-                    mob_.out("The item " + target + " is not here to target");
-                    return true;
+                Prop prop = mob_.getRoom().getProps().get(target);
+
+                if (prop instanceof Item) {
+                    item = (Item) prop;
+                    if (item == null) {
+                        // Local object spell
+                        item = World.getItem(target);
+                        if (item == null) {
+                            mob_.out("The item " + target + " is not here to target");
+                            return true;
+                        }
+                    }
                 }
             }
 

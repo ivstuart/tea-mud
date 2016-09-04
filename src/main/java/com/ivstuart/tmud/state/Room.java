@@ -587,4 +587,12 @@ public class Room extends BasicThing implements Msgable {
         }
         return null;
     }
+
+    public boolean hasFire() {
+        Prop prop = _props.get("fire");
+        if (prop == null) {
+            return false;
+        }
+        return true;
+    }
 }

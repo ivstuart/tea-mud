@@ -9,8 +9,10 @@ package com.ivstuart.tmud.command.ability;
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.Msg;
+import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.state.Ability;
+import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 
 /**
@@ -38,10 +40,14 @@ public class Steal extends BaseCommand {
 			mob.out(input + " is not here to steal from!");
 			return;
 		}
+
+		if (target.isAware()) {
+			mob.out(input + " is too alert to steal from!");
+			return;
+		}
 		
-		// TODO optional make it possible to steal other players
 		// rule decision if fighting alignment impact this option
-		if (target.isPlayer()) {
+		if (target.isPlayer() && (target.isGood() == mob.isGood())) {
 			mob.out(input + " is a player, hence no stealing");
 			return;
 		}
@@ -57,7 +63,8 @@ public class Steal extends BaseCommand {
 		if (steal.isSuccessful()) {
 			mob.out(new Msg(mob, ("<S-You/NAME> successfully pilfer something...")));
 
-			// TODO optional make it possible to steal other inventory items.
+			checkForStealingItems(mob, target);
+
 			int amount = DiceRoll.ONE_D100.roll();
 			
 			int available = target.getInventory().getPurse().getValue();
@@ -65,8 +72,8 @@ public class Steal extends BaseCommand {
 			int taken = Math.min(amount, available);
 			
 			Money money = new Money(Money.COPPER,taken);
-			
-			// TODO make some mobs aware of this and respond accordingly.
+
+			// make some mobs aware of this and respond accordingly.
 			target.getInventory().getPurse().remove(money);
 			mob.getInventory().add(money);
 			
@@ -75,9 +82,24 @@ public class Steal extends BaseCommand {
 						+ " has improved ]]]]");
 				steal.improve();
 			}
+		} else {
+			// Decide if this is all mobs all the time or not.
+			Fight.startCombat(mob, target);
 		}
-		
-		
+
+
+	}
+
+	private boolean checkForStealingItems(Mob mob, Mob target) {
+		if (DiceRoll.ONE_D100.rollLessThanOrEqualTo(5)) {
+			return false;
+		}
+
+		Item item = target.getInventory().getItems().removeRandom();
+		mob.getInventory().add(item);
+		mob.out("You steal a " + item.getBrief() + " from " + mob.getName());
+
+		return true;
 	}
 
 }

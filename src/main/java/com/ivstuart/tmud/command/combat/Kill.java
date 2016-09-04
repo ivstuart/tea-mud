@@ -21,7 +21,7 @@ public class Kill extends BaseCommand {
 			return;
 		}
 
-		// TODO decide if an attack when can not see them
+		//  decide if an attack when can not see them
 		if (target.isInvisible() && !mob.hasDetectInvisible()) {
 			mob.out(input + " is not seen here to kill!");
 			return;

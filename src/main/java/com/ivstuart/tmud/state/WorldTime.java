@@ -60,7 +60,7 @@ public class WorldTime implements Runnable {
 
     public static String getTime() {
         Calendar calendar = Calendar.getInstance();
-        return "Time is : " + calendar;
+        return "Time is : " + calendar.getTime();
     }
 
     public static void init() {

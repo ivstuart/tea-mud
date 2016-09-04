@@ -96,6 +96,7 @@ command.ability.Bash,STAND
 command.ability.Cast,STAND
 command.ability.Tackle,STAND
 command.ability.Circle,STAND
+command.ability.Cook,STAND
 command.ability.Butcher,STAND
 command.ability.Disarm,STAND
 command.ability.Hide,STAND
@@ -103,6 +104,7 @@ command.ability.Investigate,STAND
 command.ability.Kick,STAND
 command.ability.Learn,STAND
 command.ability.Practice,STAND
+command.ability.Salt,STAND
 command.ability.Search,STAND
 command.ability.Sneak,STAND
 command.ability.Steal,STAND
