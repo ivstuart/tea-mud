@@ -42,6 +42,7 @@ command.info.SkillsInfo,REST
 command.info.SpellsInfo,REST
 command.info.AbilityInfo,REST
 command.info.CommandList,REST
+command.info.Consider,REST
 command.communication.Auction,REST
 command.communication.AuctionItem,REST
 command.communication.Bid,REST
