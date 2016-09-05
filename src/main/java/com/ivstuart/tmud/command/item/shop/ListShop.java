@@ -44,10 +44,10 @@ public class ListShop extends BaseCommand {
 
 		mob.out("$H~$J");
 
-		int index = 1;
-		for (Item item : shopKeeper.getInventory().getItems()) {
-			mob.out("["+index+"] "+item.getName()+ " at "+item.getCost());
-			index++;
+		// Required to keep the order the same.
+		for (int index = 0; index < shopKeeper.getInventory().getItems().size(); index++) {
+			Item item = shopKeeper.getInventory().getItems().get(index);
+			mob.out("[" + (index + 1) + "] " + item.getName() + " at " + item.getCost());
 		}
 
 		mob.out("$H~$J");

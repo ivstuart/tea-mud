@@ -100,7 +100,7 @@ public class RoomBuilder {
         }
 
         roomId = RoomIdentifer.getRoomId(startRoom);
-        // roomId = new RoomIdentifer(); Was a bug starting from room 0 0 0 each time.
+
         roomId.setRoomPrefix(roomPrefix);
         if (startRoom == null) {
             LOGGER.warn("No start room " + this.id + " aborting path create");
@@ -155,6 +155,9 @@ public class RoomBuilder {
                     nextRoom.setType(startRoom.getType());
                     nextRoom.setId(destRoomId.toString());
                     World.add(nextRoom);
+                    // LOGGER.debug("Adding new room "+nextRoom.getId()+" built from room id "+startRoom.getId());
+                } else {
+                    // LOGGER.debug("Existing room "+nextRoom.getId());
                 }
 
                 if (fillOn) {

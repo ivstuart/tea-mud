@@ -16,24 +16,44 @@ look: The dark inner sanctum within the White Tower is made from highly polished
 look: snow white marbled stone. Along the outer walls of the courtyard torches,
 look: held by iron sconces, flicker dim light about the area.
 
+class: state.Room
+id: Z0-:0:-4:-3
+brief: A draw bridge outside a white castle.
+type: Outside
+lookClear:
+look: A draw bridge outside a white castle
+exits: west->Z0-:-1:-4:-3 east->Z0-:1:-4:-3
 
-class: state.RoomBuilder
-id: Z0-:1:0:0
-roomPrefix: Z0-
-path: wee2s2w2n2sdu2e2nd
-execute: notused
+id: Z0-:-1:-4:-3
+brief: A moat outside a white castle.
+type: Outside
+look: A moat outside a white castle on the west side of the bridge
+water: true
+exits: east->Z0-:0:-4:-3
 
-class: state.RoomBuilder
-id: Z0-:0:-2:-1
-roomPrefix: Z0-
-path: 3x3nwwnseeeed
-execute: notused
+class: state.Room
+id: Z0-:1:-4:-3
+brief: A moat outside a white castle.
+type: Outside
+look: A moat outside a white castle on the east side of the bridge
+water: true
+exits: west->Z0-:0:-4:-3
 
-class: state.RoomBuilder
-id: Z0-:2:-1:-2
-roomPrefix: Z0-
-path: ssww4x4sd
-execute: notused
+class: state.Room
+id: Z0-:-11:-11:-3
+brief: Outside the tavern
+type: Outside
+lookClear:
+look: Outside a tavern with a door to the north which leads into the pub
+exits: door->Z0-:-11:-10:-3
+doors: [door]
+
+class: state.Room
+id: Z0-:-11:-10:-3
+brief: Inside the tavern
+type: Inside
+look: Inside a tavern
+exits: door->Z0-:-11:-11:-3
 
 class: state.Room
 id: Z0-:0:-4:-3
@@ -44,11 +64,78 @@ look: The tall dark grass hides a myriad of grassland creatures.
 look: The winds swirls through the grass creating an effect of a sea of green
 look: waves lapping across the meadows.
 
+# In the white tower top floor
+class: state.RoomBuilder
+id: Z0-:1:0:0
+roomPrefix: Z0-
+path: wee2s2w2n2sdu2e2nd
+execute: notused
+
+# In the white tower 2nd floor
+class: state.RoomBuilder
+id: Z0-:0:-2:-1
+roomPrefix: Z0-
+path: 3x3nwwnseeeed
+execute: notused
+
+# In the white tower ground
+class: state.RoomBuilder
+id: Z0-:2:-1:-2
+roomPrefix: Z0-
+path: ssww4x4sd
+execute: notused
+
+# Moat to the west
+class: state.RoomBuilder
+id: Z0-:-1:-4:-3
+roomPrefix: Z0-
+path: wwwnwnwnnnwnnneneneee
+execute: notused
+
+# Moat to the east
+class: state.RoomBuilder
+id: Z0-:1:-4:-3
+roomPrefix: Z0-
+path: eeenennnennnwnwwww
+execute: notused
+
+class: state.RoomBuilder
+id: Z0-:0:-12:-3
+roomPrefix: Z0-
+path: 4w
+execute: notused
+
+# Tavern
+class: state.RoomBuilder
+id: Z0-:-11:-10:-3
+roomPrefix: Z0-
+path: nweeuwnssnwnssn
+execute: notused
+
 class: state.RoomBuilder
 id: Z0-:0:-4:-3
 roomPrefix: Z0-
 path: 10s5w10x5w5w3x5e5e5s
 execute: notused
+
+class: state.Room
+id: Z0-:-11:-8:-2
+doors: [south]
+initdoors:
+
+id: Z0-:-11:-10:-2
+doors: [north]
+initdoors:
+
+class: state.Room
+id: Z0-:-12:-8:-2
+doors: [south]
+initdoors:
+
+id: Z0-:-12:-10:-2
+doors: [north]
+initdoors:
+
 
 ## Linkage room
 class: state.Room
@@ -70,39 +157,6 @@ class: state.Room
 id: Z0-:-5:-19:-3
 exits: south->Z8-:0:0:0
 
-id: Z0-:0:-4:-3
-brief: A draw bridge outside a white castle.
-type: Outside
-lookClear:
-look: A draw bridge outside a white castle
-exits: west->Z0-:-1:-4:-3 east->Z0-:1:-4:-3
-
-id: Z0-:-1:-4:-3
-brief: A moat outside a white castle.
-type: Outside
-lookClear:
-look: A moat outside a white castle on the west side of the bridge
-water: true
-
-class: state.RoomBuilder
-id: Z0-:-1:-4:-3
-roomPrefix: Z0-
-path: wwwnwnwnnnwnnneneneee
-execute: notused
-
-class: state.Room
-id: Z0-:1:-4:-3
-brief: A moat outside a white castle.
-type: Outside
-lookClear:
-look: A moat outside a white castle on the east side of the bridge
-water: true
-
-class: state.RoomBuilder
-id: Z0-:1:-4:-3
-roomPrefix: Z0-
-path: eeenennnennnwnwwww
-execute: notused
 
 
 

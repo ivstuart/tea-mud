@@ -65,6 +65,7 @@ mob: tinkers-guildmaster
 #item: scarf-003
 #item: scarf-003
 properties:
+adminRoom: true
 
 id: R-002-001
 brief: The Dark Inner Sanctum of the White Tower
@@ -77,6 +78,7 @@ item: knife-001
 mob: dragon-005
 dark: true
 water: true
+adminRoom: true
 
 id: R-003-001
 brief: The Mosaic Covered Floor in the White Tower
@@ -103,6 +105,7 @@ look: small stairwell ascends to the roof of the tower.
 exits: north->R-001-001 east->R-002-002 south->R-001-003 
 prop: teacher-001
 flying: true
+adminRoom: true
 
 id: R-002-002
 brief: The Inner Sanctum of the White Tower
@@ -117,6 +120,7 @@ exits: north->R-002-001 east->R-003-002 south->R-002-003 west->R-001-002
 #mob: guard-003
 #mob: guard-003
 mob: prof-mages
+adminRoom: true
 
 id: R-003-002
 brief: The Inner Sanctum of the White Tower
@@ -128,7 +132,7 @@ look: small stairwell ascends to the roof of the tower.
 exits: north->R-003-001 south->R-003-003 west->R-002-002
 mob: banker-001
 mob: warmaster-001
-
+adminRoom: true
 
 id: R-001-003
 brief: The Inner Sanctum of the White Tower
@@ -138,6 +142,7 @@ look: snow white marbled stone. Along the outer walls of the courtyard torches,
 look: held by iron sconces, flicker dim light about the area. 
 exits: north->R-001-002 east->R-002-003
 climb: true
+adminRoom: true
 
 id: R-002-003
 brief: The Inner Sanctum of the White Tower
@@ -147,6 +152,7 @@ look: snow white marbled stone. Along the outer walls of the courtyard torches,
 look: held by iron sconces, flicker dim light about the area. 
 exits: north->R-002-002 east->R-003-003 west->R-001-003
 climb: true
+adminRoom: true
 
 id: R-003-003
 brief: The Inner Sanctum of the White Tower
@@ -157,6 +163,7 @@ look: held by iron sconces, flicker dim light about the area.
 exits: north->R-003-002 west->R-002-003 east->R-004-003
 initdoors:
 mob: shopkeeper-001
+adminRoom: true
 
 id: R-004-003
 brief: The shinny new room in the White Tower
@@ -168,3 +175,4 @@ look: The breeze is refreshing and moved the purple and orange curtains adorning
 exits: west->R-003-003 south->Z2-:0:0:0
 initdoors:
 mob: troll-004
+adminRoom: true

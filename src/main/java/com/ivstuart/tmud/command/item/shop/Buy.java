@@ -62,13 +62,14 @@ public class Buy extends BaseCommand {
 			return;
 		}
 
-		shopKeeper.getInventory().remove(item);
+
 		shopKeeper.getInventory().add(cost);
 
 		// Infinite supply of items flag
-		if (item.isShopSupplied()) {
-			Item newItem = EntityProvider.createItem(item.getId());
-			shopKeeper.getInventory().add(newItem);
+		if (!item.isShopSupplied()) {
+			shopKeeper.getInventory().remove(item);
+		} else {
+			item = EntityProvider.createItem(item.getId());
 		}
 
         item.setShopSupplied(false);

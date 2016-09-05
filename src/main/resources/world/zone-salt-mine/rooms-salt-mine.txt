@@ -5,7 +5,7 @@ brief: The Entrance to salt mine
 type: Chamber
 look: You are in the entrance to an salt mine. The mine is located in a volcanic area
 look: steam can be seen rising from various vents.
-exits: north->R-004-003 south->Z2-:0:-1:0 west->Z0-:0:-14:-3
+exits: south->Z2-:0:-1:0 west->Z0-:0:-14:-3
 
 id: Z2-:0:-1:0
 brief: Inside the old salt mine

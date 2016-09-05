@@ -297,7 +297,8 @@ public class Login implements Readable {
 
         player.getData().setLoginTime(System.currentTimeMillis());
 
-        LOGGER.warn("Attempting to add player to the world!");
+        LOGGER.info("Attempting to add player to the world!");
+
         try {
             World.addPlayer(character);
         } catch (MudException e) {
