@@ -1,10 +1,5 @@
 package com.ivstuart.tmud.server;
 
-/**
- * This example demostrate use of multiple Selectors() with a single SocketChannel.
- * There are two threads running Selectors() each registered for READ and WRITE respectively
- */
-
 import com.ivstuart.tmud.exceptions.MudException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,6 +15,10 @@ import java.nio.channels.SocketChannel;
 import java.nio.channels.spi.SelectorProvider;
 import java.util.Iterator;
 
+/**
+ * This example demonstrate use of multiple Selectors() with a single SocketChannel.
+ * There are two threads running Selectors() each registered for READ and WRITE respectively
+ */
 public class MudServer {
 
 	private static final Logger LOGGER = LogManager.getLogger();
@@ -35,10 +34,6 @@ public class MudServer {
 	 * ServerSocketChannel which listens for client connections
 	 */
 	private ServerSocketChannel ssch = null;
-	/**
-	 * The thread that waits for ready Channels - accept / read
-	 */
-	private SelectorThread readThread = null;
 
 	protected void startListening(String port) {
 		startListening(Integer.parseInt(port));
@@ -46,8 +41,9 @@ public class MudServer {
 
 	/**
 	 * Sets up the selectors and starts listening
-	 */
-	protected void startListening(int port) {
+     * @param port
+     */
+    protected void startListening(int port) {
 		LOGGER.info("Starting read write networking for the mud server");
 		try {
 			// create the selector and the ServerSocket
@@ -71,10 +67,13 @@ public class MudServer {
 			LOGGER.error("Problem with starting selector thread", e);
 		}
 
-		this.readThread = new SelectorThread();
-		this.readThread.setDaemon(true);
-		this.readThread.start();
-	}
+        /**
+         * The thread that waits for ready Channels - accept / read
+         */
+        SelectorThread readThread = new SelectorThread();
+        readThread.setDaemon(true);
+        readThread.start();
+    }
 
 	/**
 	 * Stop the selector thread
@@ -91,10 +90,12 @@ public class MudServer {
 		LOGGER.info("Finished shutdown of the mud server");
 	}
 
-	/** Thread which runs the Selector */
-	private class SelectorThread extends Thread {
+    /**
+     * Thread which runs the Selector
+     */
+    private class SelectorThread extends Thread {
 
-		private ByteBuffer buffer = ByteBuffer.allocate(1024);
+        private final ByteBuffer buffer = ByteBuffer.allocate(1024);
 
 		public SelectorThread() {
 			super("SelectorThread");
@@ -133,11 +134,13 @@ public class MudServer {
 			}
 
 			ConnectionManager.process(sc, sb.toString());
-			return;
 
-		}
+        }
 
-		@Override
+        /**
+         * run method
+         */
+        @Override
 		public void run() {
 			LOGGER.info("Starting running mud server read sockets");
 			try {
@@ -179,7 +182,7 @@ public class MudServer {
                                     throw ioe;
                                 }
                             } else if (sk.isWritable()) {
-                                LOGGER.info("SelectionKey is wriable");
+                                LOGGER.info("SelectionKey is writable");
                             } else if (!sk.isValid()) {
                                 LOGGER.info("SelectionKey is invalid");
                                 new MudException("SelectionKey is invalid:");

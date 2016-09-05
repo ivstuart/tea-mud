@@ -4,8 +4,9 @@ import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.common.Msgable;
 import com.ivstuart.tmud.common.Tickable;
 
-@SuppressWarnings("serial")
 public class Torch extends Item implements Tickable {
+
+	private static final long serialVersionUID = 1L;
 
 	private boolean _isLit = false;
 
@@ -37,6 +38,15 @@ public class Torch extends Item implements Tickable {
 			}
 		}
 		return look;
+	}
+
+	@Override
+	public String toString() {
+		return "Torch{" +
+				"_isLit=" + _isLit +
+				", _fuel=" + _fuel +
+				", _msg=" + _msg +
+				'}';
 	}
 
 	public boolean isLit() {

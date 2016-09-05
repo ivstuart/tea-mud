@@ -29,6 +29,11 @@ public class ForcedQuit extends BaseCommand {
 
 		Player player = mob_.getPlayer();
 
+		if (player == null) {
+			LOGGER.warn("Force quit for null player already quit");
+			return;
+		}
+
 		if (player.getConnection().isConnected()) {
 			mob_.out("Thank you for playing you have been forced to quit");
 			mob_.out("If you did not just login on a second client please login in again and update your password.");
@@ -48,9 +53,9 @@ public class ForcedQuit extends BaseCommand {
 		mob_.getRoom().remove(mob_);
 		mob_.getFight().stopFighting();
 		mob_.getFight().clear();
-		World.removePlayer(player);
 
 		player.disconnect();
+		World.removePlayer(player);
 
 
 	}

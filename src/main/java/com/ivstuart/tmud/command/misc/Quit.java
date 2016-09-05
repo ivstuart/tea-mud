@@ -28,11 +28,11 @@ public class Quit extends BaseCommand {
 	public void execute(Mob mob_, String input) {
 
 		if (mob_.getFight().isEngaged()) {
-			mob_.out("You can not move while being attacked!");
-			return;
+            mob_.out("You can not quit while being attacked!");
+            return;
 		}
 
-		mob_.out("Thankyou for playing");
+        mob_.out("Thank you for playing");
 
 		Player player = mob_.getPlayer();
 

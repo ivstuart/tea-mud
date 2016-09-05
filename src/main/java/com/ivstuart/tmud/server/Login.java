@@ -309,6 +309,22 @@ public class Login implements Readable {
 
         loginState = null;
 
+        checkForTickables(character);
+
+    }
+
+    private void checkForTickables(Mob mob) {
+
+        for (Item item : mob.getInventory().getItems()) {
+            if (item instanceof Torch) {
+                Torch torch = (Torch) item;
+                if (torch.isLit()) {
+                    torch.setMsgable(mob);
+                    WorldTime.addTickable(torch);
+                }
+            }
+        }
+
     }
 
     private void out(String message) {

@@ -67,6 +67,7 @@ public class Connection {
 			LOGGER.error("Problem closing connection", e);
 		} finally {
 			sc = null;
+			// sc.shutdownInput();
 		}
 	}
 
