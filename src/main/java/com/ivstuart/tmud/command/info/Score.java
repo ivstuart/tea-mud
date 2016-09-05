@@ -8,6 +8,7 @@ package com.ivstuart.tmud.command.info;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.common.Info;
+import com.ivstuart.tmud.constants.DamageType;
 import com.ivstuart.tmud.constants.Profession;
 import com.ivstuart.tmud.fighting.CombatCal;
 import com.ivstuart.tmud.person.Guilds;
@@ -17,7 +18,6 @@ import com.ivstuart.tmud.person.statistics.MobMana;
 import com.ivstuart.tmud.state.Mob;
 
 import static com.ivstuart.tmud.common.Colour.*;
-import static com.ivstuart.tmud.constants.ManaType.*;
 
 /**
  * @author stuarti
@@ -93,26 +93,27 @@ public class Score extends BaseCommand {
                             mob.getLearned().getAbilityPoints()));
 
             mob.out(String
-                    .format("  %1$2s Fire  Save : %2$6s    Ranged Attack: %3$6s    Rating      : %4$6s",
+                    .format("  %1$2s Fire  Save : %2$6s    $JRanged Attack: %3$6s    Rating      : %4$6s",
                             RED.toString(),
-                            mana.get(FIRE).getPrompt(),
+                            mob.getSave(DamageType.FIRE),
                             mBatt,
                             Rating.getRating(mob)));
             mob.out(String
-                    .format("  %1$2s Earth Save : %2$6s    Evasion      : %3$6s    Remorts     : %4$6s",
-                            BROWN.toString(),
-                            mana.get(EARTH).getPrompt(),
+                    .format("  %1$2s Nature Save: %2$6s    $JEvasion      : %3$6s    Remorts     : %4$6s",
+                            GREEN.toString(),
+                            mob.getSave(DamageType.NATURE),
                             mob.getPlayer().getData().getEvasion(),
                             mob.getPlayer().getData().getRemorts()));
             mob.out(String
-                    .format("  %1$2s Water Save : %2$6s    Stealth      : %3$6s    Level       : %4$6s",
+                    .format("  %1$2s Cold Save  : %2$6s    $JStealth      : %3$6s    Level       : %4$6s",
                             BLUE.toString(),
-                            mana.get(WATER).getPrompt(),
+                            mob.getSave(DamageType.COLD),
                             mob.getPlayer().getData().getStealth(),
                             data.getLevel()));
             mob.out(String
-                    .format("  %1$2s Air   Save : %2$6s    Perception   : %3$6s    Deaths      : %4$6s",
-                            YELLOW.toString(), mana.get(AIR).getPrompt(),
+                    .format("  %1$2s Shock Save : %2$6s    $JPerception   : %3$6s    Deaths      : %4$6s",
+                            YELLOW.toString(),
+                            mob.getSave(DamageType.SHOCK),
                             mob.getPlayer().getData().getPerception(),
                             mob.getPlayer().getData().getDeaths()));
 

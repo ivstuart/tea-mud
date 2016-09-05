@@ -95,6 +95,10 @@ public class WorldTime implements Runnable {
         return pauseTime;
     }
 
+    public static boolean removeTickables(Mob mob) {
+        return tickables.remove(mob);
+    }
+
     public void repopulateMobs() {
         repopulateMobs(false);
     }
@@ -185,30 +189,9 @@ public class WorldTime implements Runnable {
 
     }
 
-    public void sendHeartBeat() {
-
-        if (pauseTime) {
-            return;
-        }
-
-        for (int index = 0; index < tickables.size(); index++) {
-            try {
-                tickables.get(index).tick();
-            } catch (RuntimeException re) {
-                tickables.remove(index);
-                LOGGER.error("Problem in tickables thread", re);
-            }
-        }
-
-    }
-
     public void tickWithCombat() {
         sendHeartBeat();
         repopulateMobs();
         resolveCombat();
-    }
-
-    public static boolean removeTickables(Mob mob) {
-        return tickables.remove(mob);
     }
 }

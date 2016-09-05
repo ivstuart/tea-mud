@@ -94,9 +94,8 @@ public class BasicSpell extends FightAction {
                 "<S-You are/NAME is> disrupted from attacking <T-you/NAME>."));
 
 
-        // TODO Need to switch from CASTING to cast lagged?
+        // Consider setting CASTING to cast lagged when interrupted.
         getSelf().getMobStatus().setCasting(0);
-        // getSelf().getMobStatus().setCastingLag();?
 
     }
 
@@ -202,23 +201,10 @@ public class BasicSpell extends FightAction {
         } else {
             _spell.getSpellEffect().effect(getSelf(), getTarget(), _spell, _item);
         }
-        // TODO spellEffect.apply() check resists()
-
-        // Dodging?
-
-        // APB - default 3 multiplier or other spell skills and affects
 
         // Stat based damage modifier.
 
-        // Fumbles. Criticals.
-
-        // Hit location
-
-        // Take off armour
-
-        // Saves
-
-        // Could just send this object the FightAction to damage.
+        // Fumbles. Critical.
 
     }
 

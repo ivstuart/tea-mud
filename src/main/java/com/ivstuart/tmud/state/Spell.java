@@ -1,6 +1,7 @@
 package com.ivstuart.tmud.state;
 
 import com.ivstuart.tmud.common.DiceRoll;
+import com.ivstuart.tmud.constants.DamageType;
 import com.ivstuart.tmud.constants.ManaType;
 import com.ivstuart.tmud.spells.BuffStats;
 import com.ivstuart.tmud.spells.SpellEffect;
@@ -21,6 +22,34 @@ public class Spell extends BaseSkill {
 	private String _stat;
 
 	private DiceRoll amount;
+	private DamageType damageType;
+
+	public DamageType getDamageType() {
+
+		// Defaults
+		if (damageType == null) {
+			switch (_mana) {
+				case FIRE:
+					return DamageType.FIRE;
+				case COMMON:
+					return DamageType.ARCANE;
+				case AIR:
+					return DamageType.SHOCK;
+				case WATER:
+					return DamageType.COLD;
+				case EARTH:
+					return DamageType.NATURE;
+				default:
+					return DamageType.PHYSICAL;
+			}
+		}
+
+		return damageType;
+	}
+
+	public void setDamageType(String damageType) {
+		this.damageType = DamageType.valueOf(damageType);
+	}
 
 	/**
 	 * Cost of spell is double when your level is the same as the spell and this

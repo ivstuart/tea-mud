@@ -9,7 +9,7 @@ public class Banker extends Mob {
         super();
     }
 
-    public Banker(Mob existingMob) {
+    public Banker(Banker existingMob) {
         super(existingMob);
     }
 }

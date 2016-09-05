@@ -175,6 +175,14 @@ public class EnterNoLook extends BaseCommand {
             mob.setHidden(false);
         }
 
+        // Might annoy players but they can always load up on coffee to counter drunkenness.
+        Attribute drunk = mob.getPlayer().getData().getDrunkAttribute();
+        if (drunk.getValue() > 100 && DiceRoll.ONE_D100.rollLessThanOrEqualTo(10)) {
+            MoveManager.random(mob);
+            mob.out("You are soo drunk you don't know if you walked the right way.");
+            return;
+        }
+
         mob.out("You " + movement + " " + exit.getId());
 
 

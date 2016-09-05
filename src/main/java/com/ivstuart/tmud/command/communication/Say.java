@@ -7,6 +7,7 @@
 package com.ivstuart.tmud.command.communication;
 
 import com.ivstuart.tmud.command.BaseCommand;
+import com.ivstuart.tmud.state.Attribute;
 import com.ivstuart.tmud.state.Mob;
 
 /**
@@ -22,6 +23,11 @@ public class Say extends BaseCommand {
 	@Override
 	public void execute(Mob mob, String input) {
 
+		Attribute drunk = mob.getPlayer().getData().getDrunkAttribute();
+		if (drunk.getValue() > 100) {
+			mob.out("You are soo drunk you surry your words.");
+			input.replaceAll(" ", "rr ");
+		}
 
         mob.getRoom().out(mob.getId() + " says, \"" + input + "\"");
 	}

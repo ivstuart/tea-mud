@@ -9,6 +9,7 @@ package com.ivstuart.tmud.fighting;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Weapon;
 
+import static com.ivstuart.tmud.constants.SkillNames.UNARMED_COMBAT;
 import static com.ivstuart.tmud.constants.SpellNames.BLINDNESS;
 import static com.ivstuart.tmud.constants.SpellNames.COMBAT_SENSE;
 
@@ -20,20 +21,27 @@ import static com.ivstuart.tmud.constants.SpellNames.COMBAT_SENSE;
  */
 public class CombatCal {
 
-	public static int getAttack(Mob ent) {
-		int attack = getBaseAttack(ent);
+	public static int getAttack(Mob mob) {
+		int attack = getBaseAttack(mob);
 
 		// Get skill level with currently wielded weapon
 
-		Weapon weapon = ent.getEquipment().getWeapon();
+		Weapon weapon = mob.getEquipment().getWeapon();
 
 		if (weapon != null) {
 
-			int skill = ent.getLearned().getAbility(weapon.getSkill())
+			int skill = mob.getLearned().getAbility(weapon.getSkill())
+					.getSkill();
+
+			attack += skill;
+		} else {
+			int skill = mob.getLearned().getAbility(UNARMED_COMBAT)
 					.getSkill();
 
 			attack += skill;
 		}
+
+
 		return attack;
 	}
 
@@ -52,6 +60,7 @@ public class CombatCal {
 		if (mob_.getMobAffects().hasAffect(COMBAT_SENSE)) {
 			total += 20;
 		}
+
 
 		return total;
 	}
@@ -78,15 +87,20 @@ public class CombatCal {
 		return total;
 	}
 
-	public static int getDefence(Mob ent) {
-		int defence = getBaseDefence(ent);
+	public static int getDefence(Mob mob) {
+		int defence = getBaseDefence(mob);
 
 		// Get skill level with currently wielded weapon
-		Weapon weapon = ent.getEquipment().getWeapon();
+		Weapon weapon = mob.getEquipment().getWeapon();
 
 		if (weapon != null) {
 
-			int skill = ent.getLearned().getAbility(weapon.getSkill())
+			int skill = mob.getLearned().getAbility(weapon.getSkill())
+					.getSkill();
+
+			defence += skill;
+		} else {
+			int skill = mob.getLearned().getAbility(UNARMED_COMBAT)
 					.getSkill();
 
 			defence += skill;

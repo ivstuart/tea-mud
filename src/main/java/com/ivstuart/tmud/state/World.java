@@ -7,6 +7,7 @@ import com.ivstuart.tmud.command.misc.ForcedQuit;
 import com.ivstuart.tmud.common.Tickable;
 import com.ivstuart.tmud.exceptions.MudException;
 import com.ivstuart.tmud.person.Player;
+import com.ivstuart.tmud.world.WeatherSky;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -36,6 +37,7 @@ public class World {
 
 	private static List<Race> races;
 	private static Map<String, AuctionItem> auction;
+    private static WeatherSky weather;
 
 	private World() {
 		tickers = new HashMap<>();
@@ -55,6 +57,16 @@ public class World {
         AddAdmin.init();
 
         startTime();
+
+        weather = WeatherSky.CLOUDLESS;
+    }
+
+    public static WeatherSky getWeather() {
+        return weather;
+    }
+
+    public static void setWeather(WeatherSky weather) {
+        World.weather = weather;
     }
 
 	public static void add(BaseSkill skill) {

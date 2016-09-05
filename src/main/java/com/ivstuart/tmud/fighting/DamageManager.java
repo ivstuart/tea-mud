@@ -9,6 +9,7 @@ import com.ivstuart.tmud.common.Equipable;
 import com.ivstuart.tmud.common.MobState;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.constants.DamageConstants;
+import com.ivstuart.tmud.constants.DamageType;
 import com.ivstuart.tmud.constants.SkillNames;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
@@ -29,10 +30,10 @@ public class DamageManager {
     private static final Logger LOGGER = LogManager.getLogger();
 
     public static void deal(Mob attacker, Mob defender, int damage) {
-        deal(attacker, defender, damage, false);
+        deal(attacker, defender, damage, null);
     }
 
-    public static void deal(Mob attacker, Mob defender, int damage, boolean isSpell) {
+    public static void deal(Mob attacker, Mob defender, int damage, Spell spell) {
 
         if (defender.isMemory()) {
             defender.getFight().setLastMobAttackedMe(attacker);
@@ -102,7 +103,7 @@ public class DamageManager {
         //   if spell damage the average armour minus any special elemental saves
         int armour = checkArmourAtHitLocation(defender);
 
-        if (!isSpell) {
+        if (spell == null) {
             if (armour > 0) {
                 armour = checkForArmourPenetration(attacker, armour);
             }
@@ -116,7 +117,9 @@ public class DamageManager {
             return;
         }
 
-        checkMagicalDamageSaves();
+        if (checkMagicalDamageSaves(defender, spell.getDamageType())) {
+            damage /= 3;
+        }
 
         Msg msg = new Msg(attacker, defender, DamageConstants.toString(damage));
 
@@ -185,9 +188,11 @@ public class DamageManager {
         return attacker.getRoom() == defender.getRoom();
     }
 
-    private static void checkMagicalDamageSaves() {
-        // TODO Fire Water Earth Air and Magic saves to check
-        // acts rather like armour
+    private static boolean checkMagicalDamageSaves(Mob defender, DamageType damageType) {
+
+        int save = defender.getSave(damageType);
+
+        return DiceRoll.ONE_D100.rollLessThanOrEqualTo(save);
 
     }
 

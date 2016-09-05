@@ -183,7 +183,7 @@ public class RoomBuilder {
                 roomId.setRoomPrefix(roomPrefix);
                 Room nextRoom = World.getRoom(roomId.toString());
 
-                // TODO determine the edge and skip fill
+                // Note determine the edge and skip fill
                 // this is basically a polygon fill for rooms
                 if (roomCounter % 2 == 1) {
                     if (nextRoom == null) {

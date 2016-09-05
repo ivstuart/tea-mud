@@ -91,7 +91,7 @@ public class Flee extends FightAction {
 	 */
 	@Override
 	public void happen() {
-		// TODO Change to get flee chance based on attacker and defender
+		// Consider if flee chance should be based on attack offensive v defenders defence scores.
 
 		int successChance = 50;
 		if (getSelf().getMobStatus().isGroundFighting()) {

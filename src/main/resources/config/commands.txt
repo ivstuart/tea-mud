@@ -38,6 +38,7 @@ command.info.Rating,REST
 command.info.TopTen,REST
 command.info.InventoryInfo,REST
 command.info.Equipment,STAND
+command.info.SavesInfo,REST
 command.info.SkillsInfo,REST
 command.info.SpellsInfo,REST
 command.info.AbilityInfo,REST

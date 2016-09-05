@@ -12,15 +12,14 @@ public class GuildMaster extends Mob {
     private boolean mages;
     private boolean thieves;
 
-    public GuildMaster(Mob baseMob) {
-        super(baseMob);
-        GuildMaster gm = (GuildMaster)baseMob;
-        this.fighters = gm.fighters;
-        this.tinkers = gm.tinkers;
-        this.rangers = gm.rangers;
-        this.healers = gm.healers;
-        this.mages = gm.mages;
-        this.thieves = gm.thieves;
+    public GuildMaster(GuildMaster guildMaster) {
+        super(guildMaster);
+        this.fighters = guildMaster.fighters;
+        this.tinkers = guildMaster.tinkers;
+        this.rangers = guildMaster.rangers;
+        this.healers = guildMaster.healers;
+        this.mages = guildMaster.mages;
+        this.thieves = guildMaster.thieves;
     }
 
     public GuildMaster() {

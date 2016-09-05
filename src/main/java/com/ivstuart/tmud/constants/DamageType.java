@@ -7,6 +7,7 @@ public enum DamageType {
     COLD,
     SHOCK,
     ACID,
+    GAS,
     POISON,
     NATURE,
     ARCANE,
@@ -14,7 +15,10 @@ public enum DamageType {
     UNHOLY,
     LIGHT,
     SOUND,
-    DISEASE
+    DISEASE,
+    PARALYZE,
+    MIND,
+    PETREFIFY;
 }
 
 

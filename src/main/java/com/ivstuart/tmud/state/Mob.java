@@ -5,6 +5,7 @@ import com.ivstuart.tmud.behaviour.BehaviourFactory;
 import com.ivstuart.tmud.command.misc.ForcedQuit;
 import com.ivstuart.tmud.common.*;
 import com.ivstuart.tmud.constants.CarriedEnum;
+import com.ivstuart.tmud.constants.DamageType;
 import com.ivstuart.tmud.fighting.DamageManager;
 import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.person.Learned;
@@ -19,9 +20,7 @@ import com.ivstuart.tmud.state.util.EntityProvider;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static com.ivstuart.tmud.constants.SpellNames.*;
 
@@ -86,6 +85,8 @@ public class Mob extends Prop implements Tickable {
     private boolean isMemory;
     private boolean isPeekAggro;
     private int IDLE_TIMEOUT = 500; // Seconds
+    private Map<DamageType, Integer> saves;
+
     public Mob() {
         fight = new Fight(this);
     }
@@ -164,6 +165,18 @@ public class Mob extends Prop implements Tickable {
             WorldTime.addTickable(this);
         }
 
+    }
+
+    public void setSaves(String saveString) {
+        String element[] = saveString.split(":");
+        if (element.length != 2) {
+            LOGGER.error("Problem setting saves to " + saveString);
+            return;
+        }
+        if (saves == null) {
+            saves = new HashMap<>();
+        }
+        saves.put(DamageType.valueOf(element[0]), Integer.parseInt(element[1]));
     }
 
     public String getRoomId() {
@@ -257,12 +270,12 @@ public class Mob extends Prop implements Tickable {
         return damage;
     }
 
-    public void setDamage(String damage_) {
-        this.damage = new DiceRoll(damage_);
-    }
-
     public void setDamage(DiceRoll damage) {
         this.damage = damage;
+    }
+
+    public void setDamage(String damage_) {
+        this.damage = new DiceRoll(damage_);
     }
 
     public int getDefence() {
@@ -297,12 +310,12 @@ public class Mob extends Prop implements Tickable {
         return gender;
     }
 
-    public void setGender(String gender_) {
-        gender = Gender.valueOf(gender_.toUpperCase());
-    }
-
     public void setGender(Gender g) {
         gender = g;
+    }
+
+    public void setGender(String gender_) {
+        gender = Gender.valueOf(gender_.toUpperCase());
     }
 
     public Attribute getHp() {
@@ -417,13 +430,13 @@ public class Mob extends Prop implements Tickable {
         return state;
     }
 
-    public void setState(String state_) {
-        state = MobState.getMobState(state_);
-    }
-
     public void setState(MobState state_) {
         LOGGER.debug("You set state to " + state_.name());
         state = state_;
+    }
+
+    public void setState(String state_) {
+        state = MobState.getMobState(state_);
     }
 
     public Fight getTargetFight() {
@@ -672,7 +685,7 @@ public class Mob extends Prop implements Tickable {
                 new ForcedQuit().execute(this, null);
             }
 
-            LOGGER.debug("Tick for player " + getPlayer().getName());
+            // LOGGER.debug("Tick for player " + getPlayer().getName());
 
         }
     }
@@ -701,7 +714,10 @@ public class Mob extends Prop implements Tickable {
                 poison.decrease(1);
             }
 
-            // TODO add drunk behaviour - slurr words, fall over, go thru wrong exit
+            if (drunk.getValue() > 0) {
+                out("You slowly sober up, coffee might help");
+                drunk.decrease(1);
+            }
         }
     }
 
@@ -957,5 +973,15 @@ public class Mob extends Prop implements Tickable {
 
     public boolean hasBoat() {
         return getInventory().hasBoat();
+    }
+
+    public int getSave(DamageType damageType) {
+        if (saves == null) {
+            return 0;
+        }
+        if (isPlayer()) {
+            return equipment.getSave(damageType);
+        }
+        return saves.get(damageType);
     }
 }

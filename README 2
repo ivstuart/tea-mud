@@ -20,14 +20,16 @@ This read me file is for new people to understand some of the design and build a
  5. Mob is abstracted out such that players and mobs are almost the same.
  6. Msg is a way to communicate out to all parties. It knows who sent the communication and has tags such that You/I her/him NAME etc.. 
     can be automatically replaced such that the target reader of the message has the right grammar. It will also track if the message is 
-    slient or invisible... other status flag.
+    silent or invisible... other status flag.
  7. The world stores objects by id which is any string. Then objects can be stamped out. i.e. You can have a data file for a sword and 
     create 100s swords in a room which each are unique objects but have the same template source file. Great if you need a bunch of sheep 
     on some farmland.
- 8. Room has exits. Exits point to rooms all by id not by object reference, such that the world does not have to deserialise on start up. 
+ 8. Room has exits. Exits point to rooms all by id not by object reference, such that the world does not have to deserialize on start up.
     A door can be put onto 1 or more exits.
  9. Concept of fightActions which begin, happen, end and can be interrupted that act as a template pattern for other classes to extend from. 
     Each which can be configured to have there own timings and flags.
+10. Refection is heavily used by the StateReader to class new classes it is also used by the EntityProvider which effectively clone objects
+    from their state loaded template object instances.
 
 3. Game Mechanics
 -----------------
@@ -71,16 +73,16 @@ Either done or on the to do list.
  
  A. "Testlearn" command and "level 60" command to get levels and skills. Type spells and skills to check what you have.
  
- 5. Coding insights or corrections or simplications
- --------------------------------------------------
+ 5. Coding insights or corrections or simplifications
+ ----------------------------------------------------
  
-  1. Props where created to keep fountains and other physical items that could not be taken seperate from other item types.
+  1. Props where created to keep fountains and other physical items that could not be taken separate from other item types.
   On reflection the code would be easier and cleaner if these all became an items type which was noget=true.
   All noget true items would be listed first in rooms to meet the requirement for wells, fountains bushes, special trees which bear fruit
   etc. Favour using items for everything and phase out props use.
   2. Equipable should also be dropped anything equipable is an item. Just use item in code. Have items which are not worn. 
      Which is how it is already.
-  3. MobMana is/was overkill. Simplier options. API to be cleaned up for easy of use. 
+  3. MobMana is/was overkill. Simpler options. API to be cleaned up for easy of use.
   4. SomeMoney and Money is over the top too. API to be cleaned up for easy of use. 
   
   6. Testing focus

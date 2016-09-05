@@ -13,26 +13,25 @@ public class GuardMob extends Mob {
 	private static final Logger LOGGER = LogManager.getLogger();
 
 	private String exit;
-
-	public boolean isAlignmentGuard() {
-		return isAlignmentGuard;
-	}
-
-	public void setAlignmentGuard(boolean alignmentGuard) {
-		isAlignmentGuard = alignmentGuard;
-
-	}
-
 	private boolean isAlignmentGuard;
 
 	public GuardMob() {
 		super();
 	}
 
-	public GuardMob(Mob baseMob) {
-		super(baseMob);
-		this.exit = ((GuardMob) baseMob).exit;
-		isAlignmentGuard = false;
+    public GuardMob(GuardMob baseMob) {
+        super(baseMob);
+        this.exit = baseMob.exit;
+        isAlignmentGuard = false;
+    }
+
+    public boolean isAlignmentGuard() {
+        return isAlignmentGuard;
+    }
+
+    public void setAlignmentGuard(boolean alignmentGuard) {
+        isAlignmentGuard = alignmentGuard;
+
 	}
 
 	@Override

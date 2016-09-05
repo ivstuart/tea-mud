@@ -4,6 +4,7 @@ import com.ivstuart.tmud.state.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.lang.reflect.Constructor;
 import java.util.Iterator;
 
 public class EntityProvider {
@@ -28,31 +29,18 @@ public class EntityProvider {
 
         Mob newMob = null;
 
-        // TODO rethink this design as it does not scale for many mob types.
-        if (existingMob.isGuard()) {
-            newMob = new GuardMob(existingMob);
-        } else if (existingMob instanceof ShopKeeper) {
-            LOGGER.debug("Creating instance of a shop keeper!");
-            newMob = new ShopKeeper(existingMob);
-        } else if (existingMob instanceof Banker) {
-            LOGGER.debug("Creating instance of a Banker!");
-            newMob = new Banker(existingMob);
-        } else if (existingMob instanceof Armourer) {
-            LOGGER.debug("Creating instance of a Armourer!");
-            newMob = new Armourer(existingMob);
-        } else if (existingMob instanceof WarMaster) {
-            LOGGER.debug("Creating instance of a Warmaster!");
-            newMob = new WarMaster(existingMob);
-        } else if (existingMob instanceof GuildMaster) {
-            LOGGER.debug("Creating instance of a GuildMaster!");
-            newMob = new GuildMaster(existingMob);
-        } else if (existingMob instanceof ProfessionMaster) {
-            LOGGER.debug("Creating instance of a ProfessionMaster!");
-            newMob = new ProfessionMaster((ProfessionMaster) existingMob);
+        Class clazz = existingMob.getClass();
+        Constructor constructor = null;
+        Object mobObject = null;
+
+        try {
+            constructor = clazz.getConstructor(clazz);
+            mobObject = constructor.newInstance(existingMob);
+        } catch (Exception e) {
+            LOGGER.error("Problem with new code ", e);
         }
-        else {
-            newMob = new Mob(existingMob);
-        }
+
+        newMob = (Mob) mobObject;
 
         // this newMob is a new instance of Mob from world with its own repop
         // room

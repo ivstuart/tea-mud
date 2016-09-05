@@ -6,6 +6,7 @@
  */
 package com.ivstuart.tmud.fighting.action;
 
+import com.ivstuart.tmud.command.ability.Tackle;
 import com.ivstuart.tmud.command.info.Prompt;
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.Msg;
@@ -55,7 +56,7 @@ public class BasicAttack extends FightAction {
 
 		super.begin();
 
-		// TODO base speed on speed of attacks!!!!!!
+		// Set this to vary the speed of attacks i.e 1000 / speed
 		durationMillis(100);
 
 		// getFighter().getRoom().out(msg_)
@@ -64,7 +65,10 @@ public class BasicAttack extends FightAction {
 				"<S-You prepare your/NAME prepares GEN-him>self to attack <T-you/NAME>."));
 
 		// chance of slipping and going to ground fighting ?
-
+		if (DiceRoll.ONE_D100.rollLessThanOrEqualTo(1)) {
+			out("You slip and end up going to the ground to fight");
+			Tackle.setTackled(getSelf(), getTarget());
+		}
 	}
 
 	/*
@@ -246,7 +250,7 @@ public class BasicAttack extends FightAction {
 	}
 
 	/*
-	 * TODO this must be updated to be based on the unarmed skill level skill
+	 * Consider adding other types of unarmed combat
 	 * punch, unarmed , unarmed I, II, III, IV, V etc...
 	 * 
 	 * skill * attack / (attack+defence)

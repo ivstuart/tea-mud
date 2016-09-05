@@ -7,6 +7,7 @@
 package com.ivstuart.tmud.person.carried;
 
 import com.ivstuart.tmud.common.Equipable;
+import com.ivstuart.tmud.constants.DamageType;
 import com.ivstuart.tmud.constants.EquipLocation;
 import com.ivstuart.tmud.constants.EquipmentConstants;
 import com.ivstuart.tmud.person.statistics.Affect;
@@ -308,5 +309,16 @@ public class Equipment implements Serializable {
 		}
 
 		return false;
+	}
+
+	public int getSave(DamageType damageType) {
+		int total = 0;
+		for (Equipable eq : _equipment) {
+			Item item = (Item) eq;
+			if (damageType.equals(item.getSaveType())) {
+				total += item.getSave();
+			}
+		}
+		return total;
 	}
 }

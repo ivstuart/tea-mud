@@ -132,11 +132,6 @@ offering unlimited service.
        /|\
   [Enter][North][South][West][East][Up][Down][Kill]
 
-  == How to obtain the rest of this eBook
-
-  Firstly I have to write it. But I want to gauge interest first. Pledge 99p to me at Ivan.Stuart@gmail.com
-  When I have at least 10 pledges I will go ahead with the rest of this eBook.
-
   ==  Client server communication
 
 The server which listens for telnet socket connections runs in its own thread. It uses a Selector to wait and block on
@@ -233,7 +228,7 @@ There is a mountain of work to write a well written MUD in the first place. Then
 
  How long until we have a fully working and hosted MUD. I would say we are about 5 months away from having the finished
  article. Finding somewhere cheep and easy to host is going to be one challenge. Then security needs to be managed to
- ensure that admin accounts are not hacked into. Logins should display last login and history the last history of
+ ensure that admin accounts are not hacked into. Login's should display last login and history the last history of
  commands entered. To make it very easy to spot if an account has been compromised.
 
 

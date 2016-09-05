@@ -9,7 +9,7 @@ public class Armourer extends Mob {
         super();
     }
 
-    public Armourer(Mob existingMob) {
+    public Armourer(Armourer existingMob) {
         super(existingMob);
     }
 }

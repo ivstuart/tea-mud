@@ -5,7 +5,6 @@
 package com.ivstuart.tmud.command.communication;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.World;
 
@@ -30,7 +29,12 @@ public class Reply extends BaseCommand {
 			return;
 		}
 
-		Mob playerMob = World.getMob(name);
+		Mob playerMob = World.getMob(name.toLowerCase());
+
+		if (playerMob == null) {
+			mob.out("You can not reply to " + name + " they have left the mud world");
+			return;
+		}
 
 		if (!playerMob.isPlayer()) {
 			mob.out("Talking with someone who is not a player!");

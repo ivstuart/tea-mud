@@ -1,6 +1,7 @@
 package com.ivstuart.tmud.state;
 
 import com.ivstuart.tmud.common.*;
+import com.ivstuart.tmud.constants.DamageType;
 import com.ivstuart.tmud.constants.EquipLocation;
 import com.ivstuart.tmud.constants.Profession;
 import com.ivstuart.tmud.person.carried.Money;
@@ -49,8 +50,27 @@ public class Item extends Prop implements Equipable, Msgable {
 	private boolean isBoat;
 	private String roomId;
 	private boolean magic;
+	// Consider wrap the pair this in a class
+	private DamageType saveType;
+	private int save;
 
 	public Item() {
+	}
+
+	public DamageType getSaveType() {
+		return saveType;
+	}
+
+	public void setSaveType(String saveType) {
+		this.saveType = DamageType.valueOf(saveType);
+	}
+
+	public int getSave() {
+		return save;
+	}
+
+	public void setSave(int save) {
+		this.save = save;
 	}
 
 	public String getRoomId() {

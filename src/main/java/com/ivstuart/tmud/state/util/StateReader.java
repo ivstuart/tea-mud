@@ -26,23 +26,35 @@ public class StateReader {
 	}
 
 	private void addToWorld(Object object) {
-
 		World.getInstance().addToWorld(object);
-
 	}
 
 	private Object createClone(Object entity, String id) {
-		
+
+
 		if (entity instanceof Room) {
 			return World.getRoom(id).clone();
 		}
 
+		// Note use reflection for Mobs
 		if (entity instanceof GuardMob) {
-			return new GuardMob(World.getMob(id));
+			return new GuardMob((GuardMob) World.getMob(id));
 		}
 
 		if (entity instanceof ShopKeeper) {
-			return new ShopKeeper(World.getMob(id));
+			return new ShopKeeper((ShopKeeper) World.getMob(id));
+		}
+
+		if (entity instanceof GuildMaster) {
+			return new GuildMaster((GuildMaster) World.getMob(id));
+		}
+
+		if (entity instanceof WarMaster) {
+			return new WarMaster((WarMaster) World.getMob(id));
+		}
+
+		if (entity instanceof Armourer) {
+			return new Armourer((Armourer) World.getMob(id));
 		}
 
 		if (entity instanceof Mob) {
@@ -211,7 +223,7 @@ public class StateReader {
 
 			String args = getArgs(line, delimPos);
 
-			// TODO comment out to speed up launch time not really a to do.
+			// Note comment out to speed up launch time not really a to do.
 			// LOGGER.debug("tag [ " + tag + " ] args [ " + args + " ]");
 
 			if (CLASS.equals(tag)) {

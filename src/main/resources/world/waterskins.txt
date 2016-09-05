@@ -73,7 +73,7 @@ cost: 10
 rent: 5
 affects:
 # poison, alcohol, food, thirst
-liquardType: 0:0:10:50
+liquardType: 0:-10:10:50
 shopSupplied: true
 
 id: cup-of-coffee-001
@@ -86,7 +86,7 @@ cost: 10
 rent: 5
 affects:
 # poison, alcohol, food, thirst
-liquardType: 0:0:10:50
+liquardType: 0:-10:10:50
 shopSupplied: true
 
 id: draft-salt-water-001

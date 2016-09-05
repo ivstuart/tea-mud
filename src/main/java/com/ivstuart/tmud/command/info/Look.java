@@ -196,7 +196,7 @@ public class Look extends BaseCommand {
 				}
 			}
 
-			// TODO should be all done as part of Msg command
+			// Note this should be all done as part of Msg command
 			if (mob.isPlayer()) {
 				if(!mob.isAlignmentSame(mob_)) {
                     sb.append("$H +* " + mob.getSize() + " " + mob.getRace().getName() + " *+");
@@ -234,10 +234,6 @@ public class Look extends BaseCommand {
 				}
 			}
 			sb.append("\n");
-			// FIXME this is broken with a null pointer
-//			if (!mob.getPlayer().getConfig().getConfigData().is(ConfigData.COMBINE)) {
-//				sb.append("\n");
-//			}
 		}
 		sb.append("$J");
 		mob_.out(sb.toString());

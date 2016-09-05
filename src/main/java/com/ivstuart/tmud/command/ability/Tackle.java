@@ -24,6 +24,13 @@ import static com.ivstuart.tmud.constants.SkillNames.TACKLE;
 public class Tackle extends BaseCommand {
 
 
+	public static void setTackled(Mob mob, Mob target) {
+		mob.getFight().setMelee(new GroundFighting(mob, target));
+		mob.getMobStatus().setGroundFighting(10);
+		target.getFight().setMelee(new GroundFighting(target, mob));
+		target.getMobStatus().setGroundFighting(10);
+
+	}
 
 	private boolean checkStatus(Mob mob, Mob target) {
 		return isMobUnableTo(mob, target) || checkTargetStatus(mob, target);
@@ -110,14 +117,6 @@ public class Tackle extends BaseCommand {
 		}
 
 		return false;
-	}
-
-	private void setTackled(Mob mob, Mob target) {
-		mob.getFight().setMelee(new GroundFighting(mob, target));
-		mob.getMobStatus().setGroundFighting(10);
-		target.getFight().setMelee(new GroundFighting(target, mob));
-		target.getMobStatus().setGroundFighting(10);
-
 	}
 
 	class FightActionTackle extends FightAction {

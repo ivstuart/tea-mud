@@ -27,10 +27,6 @@ public class ShopKeeper extends Mob {
         super();
     }
 
-    public ShopKeeper(Mob existingMob) {
-        super(existingMob);
-    }
-
     public boolean isNoGood() {
         return noGood;
     }

@@ -9,7 +9,7 @@ public class WarMaster extends Mob {
         super();
     }
 
-    public WarMaster(Mob existingMob) {
+    public WarMaster(WarMaster existingMob) {
         super(existingMob);
     }
 }
