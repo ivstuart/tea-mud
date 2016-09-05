@@ -15,3 +15,26 @@ copper: 15
 xp: 55
 state: FLYING
 attackType: bite sting
+
+class: state.GuardMob
+
+id: guard-good-40
+name: large official looking guard
+alias: large official guard
+short: the large guard
+long: A large guard paces up and down
+look: The guard resembles a typical palace guard, complete with hat and spear
+level: 40
+offensive: 370
+defensive: 320
+armour: 30
+hp: 2000
+damage: 1d100+100
+copper: 5
+xp: 20
+state: STANDING
+attackType: punch
+guardExit: north
+alignment: true
+alignmentGuard: true
+

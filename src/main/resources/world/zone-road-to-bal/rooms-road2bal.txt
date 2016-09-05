@@ -26,6 +26,13 @@ roomPrefix: Z5-
 path: 8e2nu2w2n2e2su2e2ndnw2neue3sw2su4n3e2s
 execute: notused
 
+class: state.RoomBuilder
+id: Z5-:8:4:1
+roomPrefix: Z5-
+path: nnnwnwwswnnnennenenwnwswswsese
+execute: notused
+
+
 ## Linkage to Swamp
 class: state.Room
 id: Z5-:35:6:0

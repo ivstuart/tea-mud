@@ -22,8 +22,8 @@ public class GuardMob extends Mob {
     public GuardMob(GuardMob baseMob) {
         super(baseMob);
         this.exit = baseMob.exit;
-        isAlignmentGuard = false;
-    }
+		isAlignmentGuard = baseMob.isAlignmentGuard;
+	}
 
     public boolean isAlignmentGuard() {
         return isAlignmentGuard;

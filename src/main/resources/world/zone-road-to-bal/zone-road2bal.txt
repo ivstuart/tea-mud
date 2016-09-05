@@ -1,7 +1,29 @@
+include: zone-road-to-bal/mob-guild-masters.txt
+include: zone-road-to-bal/mob-prof-masters.txt
 include: zone-road-to-bal/mobs-road2bal.txt
 include: zone-road-to-bal/rooms-road2bal.txt
 
 class: state.Zone
 
-#id: 0
+id: 6
 #propInRoom: teacher-002 Z6-:-2:0:-1
+
+mobInRoom: mages-guildmaster Z5-:5:15:1
+mobInRoom: ranger-guildmaster Z5-:5:14:1
+mobInRoom: fighters-guildmaster Z5-:4:14:1
+mobInRoom: thieves-guildmaster Z5-:4:13:1
+mobInRoom: healers-guildmaster Z5-:3:13:1
+mobInRoom: tinkers-guildmaster Z5-:3:12:1
+
+mobInRoom: guard-good-40 Z5-:8:4:1
+mobInRoom: guard-good-40 Z5-:8:4:1
+
+mobInRoom: warmaster-001 Z5-:28:18:0
+
+mobInRoom: prof-mages Z5-:18:4:0
+mobInRoom: prof-cleric Z5-:15:2:1
+mobInRoom: prof-thief Z5-:10:1:3
+mobInRoom: prof-fighter Z5-:6:2:1
+
+# TODO Monk Druid Bard to Add
+

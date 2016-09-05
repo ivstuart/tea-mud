@@ -1,14 +1,13 @@
-Release Notes for tea-mud version 0.4
+Release Notes for tea-mud version 1.0
 -------------------------------------
 
 
 What is tea-mud?
 ---------------
 
-A text based Multi-User Dungeon (MUD) along the lines of Rite of Passage (ROP), Fate and other Diku / Circle muds.
-The code base is very much a work in progress with more focus on package and class structure and
-design. Having said that I am confident with approximate 6 months of effort this code base
-code be stabilized to be ready to host a real mud.
+A text based Multi-User Dungeon (MUD) along the lines of Rite of Passage (ROP), Fate and other Elmen / Diku / Circle
+muds. The code is all there for a version one of this code base. However there is considerable work to a builder to
+make the world state files into a balanced mud world.
 
 There is a lack of unit test for classes. This is historical and will continue given the amount of state that is
 required to be set up to create tests v actually running the integrated code. One thought is to have helper methods
@@ -41,7 +40,7 @@ This toggles off the ansi colour. In game.
 Note that passwords are being checking now.
 There is an easy option 5 which has been added to login as the admin user Ivan.
 
-Just type look or 'l' to see your surroundings.
+Just type look or 'l' to see your surroundings. Also see the eBook for more information.
 
 Contacting the Author
 ---------------------

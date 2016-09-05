@@ -99,11 +99,11 @@ roomPrefix: Z0-
 path: eeenennnennnwnwwww
 execute: notused
 
-class: state.RoomBuilder
-id: Z0-:0:-12:-3
-roomPrefix: Z0-
-path: 4w
-execute: notused
+#class: state.RoomBuilder
+#id: Z0-:0:-12:-3
+#roomPrefix: Z0-
+#path: 4w
+#execute: notused
 
 # Tavern
 class: state.RoomBuilder

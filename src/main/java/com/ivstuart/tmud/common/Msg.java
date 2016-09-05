@@ -172,8 +172,10 @@ public class Msg {
                         break;
                     case '<':
                         continue;
+                    case '-':
+                        continue;
                     default:
-                        throw new ParseException(message, index);
+                        throw new ParseException(message + "index=" + index + " character is '" + output.charAt(index), 1);
                 }
 
                 output.deleteCharAt(index);

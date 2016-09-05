@@ -96,6 +96,11 @@ public class Search extends BaseCommand {
 
 	public boolean searchRoomForHiddenMobs(Mob mob, Ability ability) {
 		for (Mob roomMob : mob.getRoom().getMobs()) {
+
+			if (roomMob == mob) {
+				continue;
+			}
+
 			if (roomMob.isHidden()) {
 				mob.out("You found someone!");
 

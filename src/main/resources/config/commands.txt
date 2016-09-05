@@ -150,10 +150,11 @@ command.admin.Battleground,SLEEP
 command.admin.ClearAffects,SLEEP
 command.admin.Debug,SLEEP
 command.admin.Freeze,SLEEP
+command.admin.GiveWarpoints,SLEEP
 command.admin.Level,SLEEP
 command.admin.MobInfo,SLEEP
 command.admin.PauseTime,SLEEP
-command.admin.Posess,SLEEP
+command.admin.Possess,SLEEP
 command.admin.Reload,SLEEP
 command.admin.Repopulate,SLEEP
 command.admin.SetRace,SLEEP

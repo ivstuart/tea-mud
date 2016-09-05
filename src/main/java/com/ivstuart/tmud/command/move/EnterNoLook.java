@@ -107,6 +107,11 @@ public class EnterNoLook extends BaseCommand {
             return;
         }
 
+        if (room.isFlying() && !mob.isFlying()) {
+            mob.out("Down seems more likely");
+            return;
+        }
+
         if (destination.isFlying() && !mob.isFlying()) {
             mob.out("You must be flying to enter that location");
             return;

@@ -48,17 +48,17 @@ look: This room has been ornately decorated with murals and tapestries
 look: depicting glorious battles fought by the army of light. To the east the
 look: inner sanctum of the White Tower flickers with bright torches. The portal of
 look: eternal light ends in a bright point of light.  
-exits: east->R-002-001 south->R-001-002 
+exits: east->R-002-001 south->R-001-002 up->R-001-001-1
 doors: [east]
 exitHidden: east
 #mob: snake-002
 #mob: snake-002
-mob: mages-guildmaster
-mob: ranger-guildmaster
-mob: fighters-guildmaster
-mob: thieves-guildmaster
-mob: healers-guildmaster
-mob: tinkers-guildmaster
+#mob: mages-guildmaster
+#mob: ranger-guildmaster
+#mob: fighters-guildmaster
+#mob: thieves-guildmaster
+#mob: healers-guildmaster
+#mob: tinkers-guildmaster
 #item: sword-001
 #item: scarf-001
 #item: scarf-002
@@ -119,7 +119,7 @@ exits: north->R-002-001 east->R-003-002 south->R-002-003 west->R-001-002
 #prop: teacher-002
 #mob: guard-003
 #mob: guard-003
-mob: prof-mages
+#mob: prof-mages
 adminRoom: true
 
 id: R-003-002
@@ -176,3 +176,30 @@ exits: west->R-003-003 south->Z2-:0:0:0
 initdoors:
 mob: troll-004
 adminRoom: true
+
+id: R-001-001-1
+brief: Above the White Tower
+type: Outside
+look: Above the white tower
+exits: up->R-001-001-2 down->R-001-001
+initdoors:
+adminRoom: true
+flying: true
+
+id: R-001-001-2
+brief: Above the White Tower
+type: Outside
+look: Above the white tower
+exits: up->R-001-001-3 down->R-001-001-1
+initdoors:
+adminRoom: true
+flying: true
+
+id: R-001-001-3
+brief: Above the White Tower
+type: Outside
+look: Above the white tower
+exits: down->R-001-001-2
+initdoors:
+adminRoom: true
+flying: true

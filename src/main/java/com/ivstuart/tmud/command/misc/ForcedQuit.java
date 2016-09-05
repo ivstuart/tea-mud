@@ -43,13 +43,6 @@ public class ForcedQuit extends BaseCommand {
 
 		mob_.setRoomId(mob_.getRoom().getId());
 
-		try {
-			MudIO.getInstance().save(player, mob_.getId() + ".sav");
-		} catch (IOException e) {
-			LOGGER.error("Problem saving character", e);
-			return;
-		}
-
 		mob_.getRoom().remove(mob_);
 		mob_.getFight().stopFighting();
 		mob_.getFight().clear();
@@ -57,6 +50,12 @@ public class ForcedQuit extends BaseCommand {
 		player.disconnect();
 		World.removePlayer(player);
 
+        try {
+            MudIO.getInstance().save(player, mob_.getId() + ".sav");
+        } catch (IOException e) {
+            LOGGER.error("Problem saving character", e);
+            return;
+        }
 
 	}
 

@@ -39,8 +39,8 @@ public class Exit extends BasicThing {
         if (getDestinationRoom() == null) {
             return false;
         }
-
-        for (Mob mob : getDestinationRoom().getMobs()) {
+        // Destination room is wrong need to be in same room as guards minimum
+        for (Mob mob : mob_.getRoom().getMobs()) {
             if (mob.isGuarding(mob_, this.getId())) {
                 return true;
             }

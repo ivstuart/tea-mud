@@ -87,7 +87,6 @@ public class Login implements Readable {
         mob.setId(name);
         mob.setBrief(name);
         mob.setName(name);
-        mob.setAlias(name.toLowerCase());
 
         PlayerData data = player.getData();
 
@@ -132,9 +131,9 @@ public class Login implements Readable {
         player.getData().setAlignment(alignment);
 
         if (mob.isGood()) {
-            mob.setAlias(mob.getAlias() + " " + mob.getRace().getName() + " good all");
+            mob.setAlias(mob.getAlias() + " " + mob.getRace().getName().toLowerCase() + " good all");
         } else {
-            mob.setAlias(mob.getAlias() + " " + mob.getRace().getName() + " evil all");
+            mob.setAlias(mob.getAlias() + " " + mob.getRace().getName().toLowerCase() + " evil all");
         }
 
 
@@ -278,9 +277,6 @@ public class Login implements Readable {
 		/* Room object needs to be taken from world hash */
 
         Mob character = player.getMob();
-
-        // Null pointer ! System.out.println("Alignment =" +
-        // character.getStats().get("ALIGNMENT").getValue());
 
         String roomId = character.getRoomId();
 
@@ -583,16 +579,19 @@ public class Login implements Readable {
                 case 5:
                     name = "Ivan";
                     inputPassword = "temp";
+                    isValidName(name);
                     loadCharacter();
                     break;
                 case 6:
                     name = "Ste";
                     inputPassword = "temp";
+                    isValidName(name);
                     loadCharacter();
                     break;
                 case 7:
                     name = "Rob";
                     inputPassword = "temp";
+                    isValidName(name);
                     loadCharacter();
                     break;
                 default:

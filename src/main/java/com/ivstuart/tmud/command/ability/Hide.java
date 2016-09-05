@@ -60,8 +60,8 @@ public class Hide extends BaseCommand {
 			return;
 		}
 
-		if (mob.getMobStatus().isHidden()) {
-			mob.out("You are already hidden.");
+        if (mob.isHidden()) {
+            mob.out("You are already hidden.");
 			return;
 		}
 

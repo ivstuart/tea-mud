@@ -37,8 +37,8 @@ public class Fly extends BaseCommand {
 		}
 
 		// Change state and notify mob and room
-        mob_.getRoom().out(new Msg(mob_, "<S-Name> start flying"));
-        mob_.setState(FLYING);
+		mob_.getRoom().out(new Msg(mob_, "<S-NAME> start flying"));
+		mob_.setState(FLYING);
 
 	}
 

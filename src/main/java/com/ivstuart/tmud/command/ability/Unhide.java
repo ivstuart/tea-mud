@@ -7,7 +7,6 @@
 package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Mob;
 
 /**
@@ -19,12 +18,12 @@ public class Unhide extends BaseCommand {
 	@Override
 	public void execute(Mob mob, String input) {
 
-		if (mob.getMobStatus().isHidden()) {
-			mob.getMobStatus().setHidden(0);
-			mob.out("You stop hidding."); 
+		if (mob.isHidden()) {
+			mob.setHidden(false);
+			mob.out("You stop hiding.");
 		}
 		else {
-			mob.out("You were not hidding in the first place");
+			mob.out("You were not hiding in the first place");
 		}
 		
 	}

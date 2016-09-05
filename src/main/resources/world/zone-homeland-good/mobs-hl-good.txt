@@ -146,3 +146,21 @@ attackType: punch
 item: wooden-shield-004
 item: packed-lunches-001
 # dice types possible for most fields
+
+class: state.Armourer
+id: armourer-001
+name: armourer
+alias: armourer
+short: the armourer
+long: A armourer snares at you.
+look: The armourer is a common banker is and all together unremarkable.
+level: 100
+offensive: 1000
+defensive: 1000
+armour: 50
+hp: 1500
+damage: 1d100+50
+copper: 0
+xp: 20
+state: STANDING
+attackType: punch

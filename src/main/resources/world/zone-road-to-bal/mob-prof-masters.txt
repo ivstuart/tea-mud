@@ -1,0 +1,132 @@
+class: state.ProfessionMaster
+id: prof-mages
+name: mages profession master
+alias: mages profession master
+short: the mages profession master
+long: A mages guild profession snares at you.
+look: The mages guild profession.
+level: 100
+offensive: 1000
+defensive: 1000
+armour: 50
+hp: 15000
+damage: 1d100+1050
+copper: 0
+xp: 20
+state: STANDING
+attackType: punch
+prof: MAGE
+
+class: state.ProfessionMaster
+id: prof-cleric
+name: cleric profession master
+alias: cleric profession master
+short: the cleric profession master
+long: A cleric guild profession snares at you.
+look: The cleric guild profession.
+level: 100
+offensive: 1000
+defensive: 1000
+armour: 50
+hp: 15000
+damage: 1d100+1050
+copper: 0
+xp: 20
+state: STANDING
+attackType: punch
+prof: CLERIC
+
+class: state.ProfessionMaster
+id: prof-thief
+name: thief profession master
+alias: thief profession master
+short: the thief profession master
+long: A thief guild profession snares at you.
+look: The thief guild profession.
+level: 100
+offensive: 1000
+defensive: 1000
+armour: 50
+hp: 15000
+damage: 1d100+1050
+copper: 0
+xp: 20
+state: STANDING
+attackType: punch
+prof: THIEF
+
+class: state.ProfessionMaster
+id: prof-fighter
+name: fighter profession master
+alias: fighter profession master
+short: the fighter profession master
+long: A fighter guild profession snares at you.
+look: The fighter guild profession.
+level: 100
+offensive: 1000
+defensive: 1000
+armour: 50
+hp: 15000
+damage: 1d100+1050
+copper: 0
+xp: 20
+state: STANDING
+attackType: punch
+prof: FIGHTER
+
+class: state.ProfessionMaster
+id: prof-monk
+name: monk profession master
+alias: monk profession master
+short: the monk profession master
+long: A monk guild profession snares at you.
+look: The monk guild profession.
+level: 100
+offensive: 1000
+defensive: 1000
+armour: 50
+hp: 15000
+damage: 1d100+1050
+copper: 0
+xp: 20
+state: STANDING
+attackType: punch
+prof: MONK
+
+class: state.ProfessionMaster
+id: prof-bard
+name: bard profession master
+alias: bard profession master
+short: the bard profession master
+long: A bard guild profession snares at you.
+look: The bard guild profession.
+level: 100
+offensive: 1000
+defensive: 1000
+armour: 50
+hp: 15000
+damage: 1d100+1050
+copper: 0
+xp: 20
+state: STANDING
+attackType: punch
+prof: BARD
+
+class: state.ProfessionMaster
+id: prof-druid
+name: druid profession master
+alias: druid profession master
+short: the druid profession master
+long: A druid guild profession snares at you.
+look: The druid guild profession.
+level: 100
+offensive: 1000
+defensive: 1000
+armour: 50
+hp: 15000
+damage: 1d100+1050
+copper: 0
+xp: 20
+state: STANDING
+attackType: punch
+prof: DRUID

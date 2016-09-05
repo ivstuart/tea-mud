@@ -80,9 +80,9 @@ public class Wear extends BaseCommand {
 		if (mob.getEquipment().add(item)) {
 			mob.getInventory().remove(item);
 			item.equip(mob);
-			mob.out("You wear an " + item.getName());
+			mob.out("You wear an " + item.getBrief());
 		} else {
-			mob.out("You do not have any space available to wear an " + item.getName());
+			mob.out("You do not have any space available to wear an " + item.getBrief());
 			// mob.getInventory().add(item);
 		}
 	}

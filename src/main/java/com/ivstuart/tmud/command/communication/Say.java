@@ -25,9 +25,9 @@ public class Say extends BaseCommand {
 
 		Attribute drunk = mob.getPlayer().getData().getDrunkAttribute();
 		if (drunk.getValue() > 100) {
-			mob.out("You are soo drunk you surry your words.");
-			input.replaceAll(" ", "rr ");
-		}
+            mob.out("You are soo drunk you slur your words.");
+            input = input.replaceAll(" ", "rr ");
+        }
 
         mob.getRoom().out(mob.getId() + " says, \"" + input + "\"");
 	}
