@@ -115,8 +115,8 @@ public class Give extends BaseCommand {
 			player.getAttributes().getDEX().increaseCurrentAndMaximum(1);
 			BaseSkill baseSkill = World.getAbility(TRACKING);
 			Ability ability = mob.getLearned().getAbility(TRACKING);
-			if (ability == null) {
-				mob.getLearned().add(new Ability(baseSkill.getId()));
+            if (ability.isNull()) {
+                mob.getLearned().add(new Ability(baseSkill.getId()));
 			}
 			mob.getLearned().getAbility(TRACKING).setSkill(100);
 			return true;

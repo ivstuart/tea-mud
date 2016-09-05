@@ -16,11 +16,14 @@ command.move.Run,STAND
 command.config.Config,REST
 command.config.Channel,REST
 command.config.FightConfig,REST
+command.combat.Assist,STAND
+command.combat.Hit,STAND
 command.combat.Kill,STAND
 command.combat.Flee,STAND
 command.combat.Flurry,STAND
 command.combat.Rescue,STAND
 command.combat.Disengage,STAND
+command.combat.Wimpy,STAND
 command.info.Who,REST
 command.info.Scan,STAND
 command.info.AttributeInfo,REST

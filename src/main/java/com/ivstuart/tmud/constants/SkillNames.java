@@ -6,7 +6,6 @@ package com.ivstuart.tmud.constants;
 public class SkillNames {
 
     public static final String DISARM = "disarm";
-    public static final String ARMOUR_PENETRATION = "armour penetration";
     public static final String SHIELD_BLOCK = "shield block";
 
     public static final String TRACKING = "tracking";
@@ -14,7 +13,7 @@ public class SkillNames {
     public static final String BACKSTAB = "backstab";
     public static final String BASH = "bash";
     public static final String CIRCLE = "circle";
-    public static final String INVESTIGATE = "INVESTIGATE";
+    public static final String INVESTIGATE = "investigate";
     public static final String KICK = "kick";
     public static final String SEARCHING = "searching";
     public static final String SNEAK = "sneak";
@@ -29,4 +28,8 @@ public class SkillNames {
     public static final String THIRD_ATTACK = "third attack";
     public static final String UNARMED_COMBAT = "unarmed combat";
     public static final String TACKLE = "tackle";
+    public static final String SECOND_ATTACK = "second attack";
+    public static final String ENHANCED_DAMAGE = "enhanced damage";
+    public static final String ARMOUR_PENETRATION = "armour penetration";
+    public static final String HIDE = "hide";
 }

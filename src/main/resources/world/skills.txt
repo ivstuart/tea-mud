@@ -68,7 +68,7 @@ level: 1
 id: parry
 level: 1
 
-id: armor penetration
+id: armour penetration
 level: 1
 
 id: enhanced damage

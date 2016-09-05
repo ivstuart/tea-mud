@@ -7,7 +7,6 @@
 package com.ivstuart.tmud.command.party;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Mob;
 
 /**
@@ -33,7 +32,12 @@ public class Follow extends BaseCommand {
 	@Override
 	public void execute(Mob mob, String input) {
 
-		Mob toFollow = mob.getRoom().getMobs().get(input);
+		Mob toFollow = mob.getRoom().getMobs().get(input.toLowerCase());
+
+		if (toFollow == null) {
+			mob.out("No one to follow of the name " + input);
+			return;
+		}
 
 		if (input.equalsIgnoreCase("me")) {
 			toFollow = mob;

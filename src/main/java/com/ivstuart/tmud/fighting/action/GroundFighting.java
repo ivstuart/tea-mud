@@ -49,11 +49,6 @@ import com.ivstuart.tmud.state.Mob;
  */
 public class GroundFighting extends FightAction {
 
-    private int position; // i.e. who is in a better position.
-    private int attackType = 0;
-
-    private boolean hasAChokeHold = false;
-
     private final String[] DESCRIPTION_START = {
             "<S-You/NAME> start hyper-extending a <T-you/NAME> limb!",
             "<S-You/NAME> successfully put a air-choke on a <T-you/NAME>!",
@@ -62,7 +57,6 @@ public class GroundFighting extends FightAction {
             "<S-You/NAME> start to swing you legs ready to knee",
             "<S-You/NAME> pull your head back and line up your forehead",
             "<S-You/NAME> bite into a <T-you/NAME> groin, ouch thats going to hurt!"};
-
     private final String[] DESCRIPTION_APPLY = {
             "<S-You/NAME> hear a cracking noise as you hyper-extend a <T-you/NAME> limb!",
             "A <T-you/NAME> looks dazed and confused from lack of oxygen!",
@@ -72,7 +66,6 @@ public class GroundFighting extends FightAction {
             "<S-You/NAME> ram your forehead into a <T-you/NAME> face!",
             "Blood runs everywhere as you rip a <T-you/NAME> neck with your teeth!",
             "<S-You/NAME> gouge a <T-you/NAME> eyes!"};
-
     private final String[] DESCRIPTION_FAIL = {
             "<S-You/NAME> fail to get into the right position for a jointlock",
             "<S-You/NAME> fail to get into the right position to apply a choke hold",
@@ -81,7 +74,6 @@ public class GroundFighting extends FightAction {
             "<S-You/NAME> fail to get into the right position to knee",
             "<S-You/NAME> fail to get into the right position for a headbutt",
             "<S-You/NAME> fail to get into the right position for a gouge"};
-
     private final String[] TARGET = {
             "temple",
             "nose",
@@ -105,9 +97,14 @@ public class GroundFighting extends FightAction {
             "coccyx",
             "back of knee",
             "achilles"};
+    private int position; // i.e. who is in a better position.
+    private int attackType = 0;
+    private boolean hasAChokeHold = false;
 
     /**
-     * @param character
+     *
+     * @param me_
+     * @param target_
      */
     public GroundFighting(Mob me_, Mob target_) {
         super(me_, target_);
@@ -129,6 +126,12 @@ public class GroundFighting extends FightAction {
     public void begin() {
 
         super.begin();
+
+        if (getSelf().getWimpy() > getSelf().getHp().getValue()) {
+            getSelf().getFight().add(new com.ivstuart.tmud.fighting.action.Flee(getSelf()));
+            out("You have reached your wimpy and will try to flee");
+            return;
+        }
 
         durationMillis(100);
 
@@ -178,9 +181,11 @@ public class GroundFighting extends FightAction {
 
         if (getSelf().getRoom().getMobs().contains(getTarget()) == false) {
             out(getTarget().getId() + " is no longer here to attack!");
+            getSelf().getFight().stopFighting();
             finished();
             return;
         }
+
 
         if (DiceRoll.ONE_D100.rollLessThan(50)) {
             miss();

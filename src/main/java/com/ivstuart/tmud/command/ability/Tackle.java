@@ -162,13 +162,18 @@ public class Tackle extends BaseCommand {
 				this.finished();
 			}
 
+			if (getTarget().getFight().isGroundFighting()) {
+				getSelf().out("Your target is already ground fighting, you have no clean line of attack");
+				return;
+			}
+
 			Fight.startCombat(getSelf(), getTarget());
 
 			// Success or fail
             Ability ability = getSelf().getLearned().getAbility(TACKLE);
 
 			// Always successful against a sleeping opponent
-			if (ability.isSuccessful() && DiceRoll.ONE_D100.rollMoreThan(50) || getTarget().getState().isSleeping()) {
+			if (!ability.isNull() && ability.isSuccessful() && DiceRoll.ONE_D100.rollMoreThan(50) || getTarget().getState().isSleeping()) {
 				out(new Msg(getSelf(), getTarget(), "<S-You/NAME> successfully tackled <T-you/NAME> to the ground."));
 				setTackled(getSelf(), getTarget());
 				if (ability.isImproved()) {

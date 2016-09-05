@@ -270,12 +270,12 @@ public class Mob extends Prop implements Tickable {
         return damage;
     }
 
-    public void setDamage(DiceRoll damage) {
-        this.damage = damage;
-    }
-
     public void setDamage(String damage_) {
         this.damage = new DiceRoll(damage_);
+    }
+
+    public void setDamage(DiceRoll damage) {
+        this.damage = damage;
     }
 
     public int getDefence() {
@@ -310,12 +310,12 @@ public class Mob extends Prop implements Tickable {
         return gender;
     }
 
-    public void setGender(Gender g) {
-        gender = g;
-    }
-
     public void setGender(String gender_) {
         gender = Gender.valueOf(gender_.toUpperCase());
+    }
+
+    public void setGender(Gender g) {
+        gender = g;
     }
 
     public Attribute getHp() {
@@ -430,13 +430,13 @@ public class Mob extends Prop implements Tickable {
         return state;
     }
 
+    public void setState(String state_) {
+        state = MobState.getMobState(state_);
+    }
+
     public void setState(MobState state_) {
         LOGGER.debug("You set state to " + state_.name());
         state = state_;
-    }
-
-    public void setState(String state_) {
-        state = MobState.getMobState(state_);
     }
 
     public Fight getTargetFight() {
@@ -754,10 +754,6 @@ public class Mob extends Prop implements Tickable {
         return false;
     }
 
-    public void setWimpy(int wimpy) {
-        this.wimpy = wimpy;
-    }
-
     public boolean isFlying() {
         return this.getState().isFlying();
     }
@@ -968,7 +964,6 @@ public class Mob extends Prop implements Tickable {
         return super.isInvisible() && this.getMobAffects().hasAffect(INVISIBILITY);
     }
 
-
     public boolean hasBoat() {
         return getInventory().hasBoat();
     }
@@ -981,5 +976,13 @@ public class Mob extends Prop implements Tickable {
             return equipment.getSave(damageType);
         }
         return saves.get(damageType);
+    }
+
+    public int getWimpy() {
+        return wimpy;
+    }
+
+    public void setWimpy(int wimpy) {
+        this.wimpy = wimpy;
     }
 }

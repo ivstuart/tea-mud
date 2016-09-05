@@ -10,6 +10,7 @@ import com.ivstuart.tmud.command.ability.Tackle;
 import com.ivstuart.tmud.command.info.Prompt;
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.Msg;
+import com.ivstuart.tmud.constants.SkillNames;
 import com.ivstuart.tmud.fighting.BasicDamage;
 import com.ivstuart.tmud.fighting.CombatCal;
 import com.ivstuart.tmud.fighting.DamageManager;
@@ -59,14 +60,19 @@ public class BasicAttack extends FightAction {
 		// Set this to vary the speed of attacks i.e 1000 / speed
 		durationMillis(100);
 
-		// getFighter().getRoom().out(msg_)
+        if (getSelf().getWimpy() > getSelf().getHp().getValue()) {
+            getSelf().getFight().add(new com.ivstuart.tmud.fighting.action.Flee(getSelf()));
+            out("You have reached your wimpy and will try to flee");
+            return;
+        }
 
 		out(new Msg(getSelf(), getTarget(),
 				"<S-You prepare your/NAME prepares GEN-him>self to attack <T-you/NAME>."));
 
-		// chance of slipping and going to ground fighting ?
-		if (DiceRoll.ONE_D100.rollLessThanOrEqualTo(1)) {
-			out("You slip and end up going to the ground to fight");
+
+        // chance of slipping and going to ground fighting ?
+        if (!getTarget().getFight().isGroundFighting() && DiceRoll.ONE_D100.rollLessThanOrEqualTo(1)) {
+            out("You slip and end up going to the ground to fight");
 			Tackle.setTackled(getSelf(), getTarget());
 		}
 	}
@@ -131,12 +137,17 @@ public class BasicAttack extends FightAction {
 			return;
 		}
 
+        if (getTarget().getFight().isGroundFighting()) {
+            getSelf().out("Your target is ground fighting, you have no clean line of attack");
+            return;
+        }
+
 		Ability dualWield = getSelf().getLearned().getAbility(DUAL_WIELD);
 
 		Weapon secondaryWeapon = null;
 
-		if (dualWield != null) {
-			// Check has two weapons to hand.
+        if (!dualWield.isNull()) {
+            // Check has two weapons to hand.
 			// Get 2nd weapon details.
 			if (dualWield.isSuccessful()) {
 
@@ -151,13 +162,13 @@ public class BasicAttack extends FightAction {
 
 		// Enhanced damage and armour penetration
 		Ability secondAttack = getSelf().getLearned().getAbility(
-				"second attack");
-		Ability thirdAttack = getSelf().getLearned().getAbility(THIRD_ATTACK);
+                SkillNames.SECOND_ATTACK);
+        Ability thirdAttack = getSelf().getLearned().getAbility(THIRD_ATTACK);
 
 		Weapon weapon = getSelf().getWeapon();
 
-		if (secondAttack != null && secondAttack.isSuccessful() && isSuccess()) {
-			LOGGER.info("I am [ " + getSelf().getId()
+        if (!secondAttack.isNull() && secondAttack.isSuccessful() && isSuccess()) {
+            LOGGER.info("I am [ " + getSelf().getId()
 					+ " ] hit hitting my target");
 			hit(weapon);
 
@@ -167,8 +178,8 @@ public class BasicAttack extends FightAction {
 
 		}
 
-		if (thirdAttack != null && thirdAttack.isSuccessful() && isSuccess()) {
-			LOGGER.info("I am [ " + getSelf().getId()
+        if (!thirdAttack.isNull() && thirdAttack.isSuccessful() && isSuccess()) {
+            LOGGER.info("I am [ " + getSelf().getId()
 					+ " ] hit hitting my target");
 			hit(weapon);
 
@@ -208,8 +219,8 @@ public class BasicAttack extends FightAction {
 
 			Ability unarmed = getSelf().getLearned().getAbility(UNARMED_COMBAT);
 
-			if (unarmed != null) {
-				if (unarmed.isSuccessful()) {
+            if (!unarmed.isNull()) {
+                if (unarmed.isSuccessful()) {
 					damage.setRoll(2, 8, 2);
 				}
 			}
@@ -220,14 +231,14 @@ public class BasicAttack extends FightAction {
 		}
 
 		Ability enhancedDamage = getSelf().getLearned().getAbility(
-				"enhanced damage");
+                SkillNames.ENHANCED_DAMAGE);
 
 		if (enhancedDamage != null && enhancedDamage.isSuccessful()) {
 			damage.setMultiplier(2);
 		}
 
 		Ability armourPeneration = getSelf().getLearned().getAbility(
-				"armour penetration");
+                SkillNames.ARMOUR_PENETRATION);
 
 		int damageAmount = damage.roll();
 

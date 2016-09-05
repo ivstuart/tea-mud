@@ -66,7 +66,8 @@ public class Rescue extends BaseCommand {
 		Mob aggressor = aggressors.get(0);
 
 		Ability ability = mob.getLearned().getAbility(RESCUE);
-		if (ability.isSuccessful()) {
+
+		if (!ability.isNull() && ability.isSuccessful()) {
 
             mob.getRoom().out(new Msg(mob, aggressor, ("<S-You/NAME> successfully rescue <T-you/NAME>.")));
             if (!mob.getFight().isFighting()) {

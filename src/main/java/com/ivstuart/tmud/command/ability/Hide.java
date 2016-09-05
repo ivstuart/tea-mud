@@ -8,6 +8,7 @@ package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.common.Msg;
+import com.ivstuart.tmud.constants.SkillNames;
 import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Exit;
 import com.ivstuart.tmud.state.Item;
@@ -43,7 +44,7 @@ public class Hide extends BaseCommand {
 		// made visible.
 
 		// Success or fail
-		Ability ability = mob.getLearned().getAbility("hide");
+        Ability ability = mob.getLearned().getAbility(SkillNames.HIDE);
 
         if (ability == null || ability.isNull()) {
             mob.out("You have no knowledge of how to hide!");
