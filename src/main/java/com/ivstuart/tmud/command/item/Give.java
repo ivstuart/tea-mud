@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 23-Sep-2003
  *
  * To change the template for this generated file go to
@@ -7,8 +12,10 @@
 package com.ivstuart.tmud.command.item;
 
 import com.ivstuart.tmud.command.BaseCommand;
+import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.person.carried.SomeMoney;
+import com.ivstuart.tmud.person.statistics.diseases.Disease;
 import com.ivstuart.tmud.state.*;
 
 import static com.ivstuart.tmud.constants.SkillNames.TRACKING;
@@ -73,6 +80,28 @@ public class Give extends BaseCommand {
 
 		if(checkGiveTokenToGuildMaster(mob,targetMob,item)) {
 			mob.out("Thank you for your token. Well come to the guild");
+		}
+
+		checkForContactDiseases(mob, targetMob);
+
+	}
+
+	private void checkForContactDiseases(Mob mob, Mob targetMob) {
+
+
+		if (mob.getMobAffects().getDiseases() == null) {
+			return;
+		}
+
+		for (Disease disease : mob.getMobAffects().getDiseases()) {
+			if (disease.isDirectContact() || disease.isIndirectContact()) {
+				if (DiceRoll.ONE_D100.rollLessThanOrEqualTo(disease.getInfectionRate())) {
+					Disease infection = (Disease) disease.clone();
+					infection.setMob(targetMob);
+					infection.setDuration(disease.getInitialDuration());
+					targetMob.getMobAffects().add(disease.getId(), infection);
+				}
+			}
 		}
 
 	}

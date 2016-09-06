@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.person.statistics;
 
 import com.ivstuart.tmud.common.DiceRoll;
@@ -14,8 +19,8 @@ public class DamageOverTime extends Affect {
 	}
 
 	@Override
-	public void tick() {
-		super.tick();
+    public boolean tick() {
+        super.tick();
 
 		int damage = _damageRoll.roll();
 
@@ -24,6 +29,7 @@ public class DamageOverTime extends Affect {
 		String msg = this._desc + " deals you " + damage + " damage";
 
 		_mob.out(msg);
+        return false;
 
 	}
 

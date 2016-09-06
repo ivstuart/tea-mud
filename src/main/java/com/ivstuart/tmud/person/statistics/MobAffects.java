@@ -1,14 +1,21 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.person.statistics;
+
+import com.ivstuart.tmud.person.statistics.diseases.Disease;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.Serializable;
 import java.util.*;
 
-import com.ivstuart.tmud.state.Mob;
-
-public class MobAffects implements Serializable {
+public class MobAffects implements Serializable, Cloneable {
 
 	private static final long serialVersionUID = 5426953002440290562L;
-
+	private static final Logger LOGGER = LogManager.getLogger();
 	protected Map<String,Affect> affects;
 
 	public MobAffects() {
@@ -16,9 +23,12 @@ public class MobAffects implements Serializable {
 
 	}
 
-	public void add(String spellId,Affect affect_) {
-		affects.put(spellId,affect_);
-		affect_.applyEffect();
+	public void add(String id, Affect affect_) {
+		// One effect applied only once so that disease and buffs do not stack for same id.
+		if (!affects.containsKey(id)) {
+			affect_.applyEffect();
+		}
+		affects.put(id, affect_);
 	}
 
 	public void clear() {
@@ -52,8 +62,7 @@ public class MobAffects implements Serializable {
 		}
 	}
 
-	@Override
-	public String toString() {
+	public String look() {
 		if (affects.isEmpty()) {
 			return "";
 		}
@@ -61,7 +70,7 @@ public class MobAffects implements Serializable {
 		StringBuilder sb = new StringBuilder();
 
 		for (Affect aff : affects.values()) {
-			sb.append(aff.toString()).append("\n");
+			sb.append(aff.look()).append("\n");
 		}
 
 		return sb.toString();
@@ -85,4 +94,23 @@ public class MobAffects implements Serializable {
     public boolean hasAffect(String levitate) {
     	return affects.containsKey(levitate);
     }
+
+	public List<Disease> getDiseases() {
+		List<Disease> diseases = new ArrayList<>();
+		for (Affect affect : affects.values()) {
+			if (affect instanceof Disease) {
+				diseases.add((Disease) affect);
+			}
+		}
+		return diseases;
+	}
+
+	public Object clone() {
+		try {
+			return super.clone();
+		} catch (CloneNotSupportedException e) {
+			LOGGER.error("Problem cloning object", e);
+		}
+		return null;
+	}
 }

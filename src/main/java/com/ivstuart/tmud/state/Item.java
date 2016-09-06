@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.state;
 
 import com.ivstuart.tmud.common.*;
@@ -6,6 +11,7 @@ import com.ivstuart.tmud.constants.EquipLocation;
 import com.ivstuart.tmud.constants.Profession;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
+import com.ivstuart.tmud.person.statistics.diseases.Disease;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -53,8 +59,17 @@ public class Item extends Prop implements Equipable, Msgable {
 	// Consider wrap the pair this in a class
 	private DamageType saveType;
 	private int save;
+	private Disease disease;
 
 	public Item() {
+	}
+
+	public Disease getDisease() {
+		return disease;
+	}
+
+	public void setDisease(Disease disease) {
+		this.disease = disease;
 	}
 
 	public DamageType getSaveType() {

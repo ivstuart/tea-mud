@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 23-Sep-2003
  *
  * To change the template for this generated file go to
@@ -7,7 +12,9 @@
 package com.ivstuart.tmud.command.item;
 
 import com.ivstuart.tmud.command.BaseCommand;
+import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.person.carried.SomeMoney;
+import com.ivstuart.tmud.person.statistics.diseases.Disease;
 import com.ivstuart.tmud.state.*;
 import com.ivstuart.tmud.utils.MudArrayList;
 import com.ivstuart.tmud.utils.StringUtil;
@@ -77,6 +84,7 @@ public class Get extends BaseCommand {
                     mob.getInventory().addAll(items);
                     for (Item item : items) {
                         mob.out("You get " + item.getName() + " from " + corpse.getName());
+                        checkItemForDisease(mob, item);
                     }
                     items.clear();
                 }
@@ -95,6 +103,7 @@ public class Get extends BaseCommand {
                     mob.getInventory().add(item);
                     mob.out("You get " + item.getName() + " from " + corpse.getName());
                     item.setHidden(false);
+                    checkItemForDisease(mob, item);
                 }
 
             }
@@ -116,6 +125,7 @@ public class Get extends BaseCommand {
                 mob.out("You get an " + item.getName());
                 itemIter.remove();
                 item.setHidden(false);
+                checkItemForDisease(mob, item);
             }
             return;
         }
@@ -152,6 +162,21 @@ public class Get extends BaseCommand {
         mob.getInventory().add(anItem);
 
         mob.out("You get an " + anItem.getName());
+        checkItemForDisease(mob, anItem);
+    }
+
+    private void checkItemForDisease(Mob mob, Item item) {
+        if (item.getDisease() == null) {
+            return;
+        }
+        Disease disease = item.getDisease();
+        if (DiceRoll.ONE_D100.rollLessThanOrEqualTo(disease.getInfectionRate())) {
+            Disease infection = (Disease) disease.clone();
+            infection.setMob(mob);
+            infection.setDuration(disease.getInitialDuration());
+            mob.getMobAffects().add(disease.getId(), infection);
+        }
+
     }
 
     private void getAllCoins(Mob mob) {

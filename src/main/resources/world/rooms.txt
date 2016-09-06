@@ -66,6 +66,7 @@ exitHidden: east
 #item: scarf-003
 properties:
 adminRoom: true
+disease: Flu
 
 id: R-002-001
 brief: The Dark Inner Sanctum of the White Tower

@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.common;
 
 /**
@@ -10,6 +15,6 @@ public interface Tickable {
 
 	public String getId();
 
-	public void tick();
+    public boolean tick();
 
 }

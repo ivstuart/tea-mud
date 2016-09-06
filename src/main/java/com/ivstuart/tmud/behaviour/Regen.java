@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.behaviour;
 
 import com.ivstuart.tmud.common.DiceRoll;
@@ -19,22 +24,22 @@ public class Regen extends BaseBehaviour {
     }
 
     @Override
-    public void tick() {
+    public boolean tick() {
 
         if (DiceRoll.ONE_D100.rollMoreThan(parameter)) {
             LOGGER.debug(mob.getName() + " is does not feel like regenerating");
-            return;
+            return false;
         }
 
         if (mob.getHp().isMaximum()) {
             LOGGER.debug(mob.getName() + " has maximum health already");
-            return;
+            return false;
         }
 
         mob.getHp().increase(parameter2);
 
         mob.getRoom().out(mob.getName() + " regenerates!");
-
+        return false;
     }
 
 }

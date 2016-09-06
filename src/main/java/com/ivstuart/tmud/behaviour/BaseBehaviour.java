@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.behaviour;
 
 import com.ivstuart.tmud.common.Tickable;
@@ -34,8 +39,8 @@ public class BaseBehaviour implements Tickable {
     }
 
     @Override
-    public void tick() {
-
+    public boolean tick() {
+        return false;
     }
 
     public void setMob(Mob mob) {

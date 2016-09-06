@@ -26,7 +26,6 @@ command.combat.Disengage,STAND
 command.combat.Wimpy,STAND
 command.info.Who,REST
 command.info.Scan,STAND
-command.info.AttributeInfo,REST
 command.info.Score,REST
 command.info.Mana,REST
 command.info.Magic,REST
@@ -34,6 +33,7 @@ command.info.Affects,REST
 command.info.ArmourCommand,REST
 command.info.Time,REST
 command.info.StatusInfo,REST
+command.info.Help,REST
 command.info.HelpDamage,REST
 command.info.HelpSpells,REST
 command.info.HelpSkills,REST
@@ -48,6 +48,7 @@ command.info.AbilityInfo,REST
 command.info.CommandList,REST
 command.info.Consider,REST
 command.info.Users,REST
+command.info.Prereq,REST
 command.communication.Auction,REST
 command.communication.AuctionItem,REST
 command.communication.Bid,REST
@@ -92,6 +93,7 @@ command.misc.Leave,REST
 command.misc.Verbose,REST
 command.misc.Title,REST
 command.misc.TrackCommand,REST
+command.misc.Order,REST
 command.misc.Remort,STAND
 command.misc.Quit,SLEEP
 command.misc.SavePlayer,SLEEP
@@ -153,6 +155,7 @@ command.admin.Battleground,SLEEP
 command.admin.ClearAffects,SLEEP
 command.admin.Debug,SLEEP
 command.admin.Freeze,SLEEP
+command.admin.GiveDisease,SLEEP
 command.admin.GiveWarpoints,SLEEP
 command.admin.Level,SLEEP
 command.admin.MobInfo,SLEEP
@@ -173,6 +176,8 @@ command.admin.Teleport,SLEEP
 command.admin.TestLearn,SLEEP
 command.admin.TestPoison,SLEEP
 
+# Needs to be lower than At
+command.info.AttributeInfo,REST
 
 # Building Commands
 

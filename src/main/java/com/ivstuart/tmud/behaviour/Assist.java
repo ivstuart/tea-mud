@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.behaviour;
 
 import com.ivstuart.tmud.common.DiceRoll;
@@ -24,23 +29,23 @@ public class Assist extends BaseBehaviour {
     }
 
     @Override
-    public void tick() {
+    public boolean tick() {
         // If any players visible in same location then random pick one to attack.
         if (mob.getFight().isFighting()) {
             LOGGER.debug(mob.getName() + " is fighting already hence will not assist");
-            return;
+            return false;
         }
 
         if (DiceRoll.ONE_D100.rollMoreThan(parameter)) {
             LOGGER.debug(mob.getName()+" is does not feel like assisting");
-            return;
+            return false;
         }
 
         Room room = mob.getRoom();
 
         if (room == null) {
             LOGGER.warn(mob.getName() + " has no room to assist");
-            return;
+            return false;
         }
 
         List<Mob> mobs = room.getMobs(mob.getName());
@@ -55,13 +60,13 @@ public class Assist extends BaseBehaviour {
 
         if (target == null) {
             LOGGER.debug(mob.getName() + " has no one to assist");
-            return;
+            return false;
         }
 
         mob.getFight().getMelee().setTarget(target);
 
         WorldTime.addFighting(mob);
-
+        return false;
 
     }
 

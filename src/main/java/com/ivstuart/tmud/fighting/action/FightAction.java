@@ -1,10 +1,14 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.fighting.action;
 
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.person.statistics.MobMana;
 import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.MobStatus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -73,6 +77,10 @@ public abstract class FightAction {
 		return target;
 	}
 
+    public void setTarget(Mob mob) {
+        this.target = mob;
+    }
+
 	public abstract void happen();
 
 	public boolean isFinished() {
@@ -115,18 +123,21 @@ public abstract class FightAction {
 		this.state = state;
 	}
 
-	public void setTarget(Mob mob) {
-		this.target = mob;
-	}
-
 	@Override
 	public String toString() {
-		return "FightAction{" +
-				"whenNextStateMillis=" + whenNextStateMillis +
-				", state=" + state +
-				", self=" + self.getName() +
-				", target=" + target.getName() +
-				'}';
-	}
+        String output = "FightAction{" +
+                "whenNextStateMillis=" + whenNextStateMillis +
+                ", state=" + state;
 
+        if (self != null) {
+            output += ", self=" + self.getName();
+        }
+
+        if (target != null) {
+            output += ", target=" + target.getName();
+        }
+
+        output += '}';
+        return output;
+    }
 }

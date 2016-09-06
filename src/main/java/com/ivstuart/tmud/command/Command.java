@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 17-Sep-2003
  *
  * To change the template for this generated file go to
@@ -28,4 +33,6 @@ public interface Command {
 	public MobState getMinimumPosition();
 
 	public void setMinimumPosition(MobState state);
+
+	String getHelp();
 }

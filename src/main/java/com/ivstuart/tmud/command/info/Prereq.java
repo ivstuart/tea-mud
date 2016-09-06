@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 23-Sep-2003
  *
  * To change the template for this generated file go to
@@ -42,19 +47,16 @@ public class Prereq extends BaseCommand {
 		String ability = skill.getPrereq();
 
 		if (ability == null) {
-			mob.out("The skill " + skill.getName() + " has no prerequeist");
+			mob.out("The skill " + skill.getName() + " has no prerequisite");
 		}
 
 		if (mob.getLearned().hasPrereq(ability)) {
-			mob.out("You have the prerequeist " + ability + " ");
+			mob.out("You have the prerequisite " + ability + " ");
 			return;
 		} else {
-			mob.out("You do not have  the prerequeist " + ability + " ");
+			mob.out("You do not have  the prerequisite " + ability + " ");
 		}
 
-		mob.out("Todo this should be done to mark what is needed and what is already obtained green or red");
-
-		mob.out("Todo makr this work with professions - i.e. show what u have and what u could have");
 	}
 
 }

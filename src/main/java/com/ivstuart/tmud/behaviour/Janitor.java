@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.behaviour;
 
 import com.ivstuart.tmud.common.DiceRoll;
@@ -23,25 +28,25 @@ public class Janitor extends BaseBehaviour {
     }
 
     @Override
-    public void tick() {
+    public boolean tick() {
 
         if (DiceRoll.ONE_D100.rollMoreThan(parameter)) {
             LOGGER.debug(mob.getName()+" is does not feel like clearing up this tick");
-            return;
+            return false;
         }
 
         Room room = mob.getRoom();
 
         if (room == null) {
             LOGGER.warn(mob.getName() + " has no room");
-            return;
+            return false;
         }
 
         List<Item> items = room.getInventory().getItems();
 
         if (items == null || items.isEmpty()) {
             LOGGER.debug("Nothing to clean up");
-            return;
+            return false;
         }
 
         Item item = null;
@@ -54,10 +59,12 @@ public class Janitor extends BaseBehaviour {
 
         if (item == null) {
             LOGGER.debug("Nothing to clean up.");
-            return;
+            return false;
         }
 
         mob.getInventory().add(item);
+
+        return false;
     }
 
 }

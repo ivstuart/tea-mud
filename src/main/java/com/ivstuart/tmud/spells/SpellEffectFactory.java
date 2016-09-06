@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.spells;
 
 import java.util.HashMap;
@@ -35,7 +40,7 @@ public class SpellEffectFactory {
 		spellEffectMap.put("CURE-BLINDNESS", new CureBlindness());
 		spellEffectMap.put("ANIMATE-DEAD", new AnimateDead());
 
-		spellEffectMap.put("CHARM", new BuffStats());
+		spellEffectMap.put("CHARM", new Charm());
 		spellEffectMap.put("LOCATE", new LocateObject());
 	}
 

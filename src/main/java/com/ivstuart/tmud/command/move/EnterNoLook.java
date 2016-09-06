@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.command.move;
 
 import com.ivstuart.tmud.command.BaseCommand;
@@ -7,9 +12,12 @@ import com.ivstuart.tmud.constants.DoorState;
 import com.ivstuart.tmud.fighting.DamageManager;
 import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.person.movement.MoveManager;
+import com.ivstuart.tmud.person.statistics.diseases.Disease;
 import com.ivstuart.tmud.state.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.Iterator;
 
 import static com.ivstuart.tmud.common.MobState.STAND;
 import static com.ivstuart.tmud.constants.SkillNames.CLIMBING;
@@ -221,6 +229,38 @@ public class EnterNoLook extends BaseCommand {
             CommandProvider.getCommand(EnterNoLook.class).execute(follower, exit.getId());
         }
 
+        checkForVeryAggressiveMobs(mob, destination);
+
+        checkForDiseases(mob, destination);
+
+    }
+
+    private void checkForDiseases(Mob mob, Room destination) {
+
+        if (destination.getDiseases() == null) {
+            return;
+        }
+
+        Iterator<Disease> diseaseIter = destination.getDiseases().iterator();
+        for (; diseaseIter.hasNext(); ) {
+            Disease disease = diseaseIter.next();
+            disease.tick();
+            if (disease.isExpired()) {
+                diseaseIter.remove();
+            }
+            if (DiceRoll.ONE_D100.rollLessThanOrEqualTo(disease.getInfectionRate())) {
+                Disease infection = (Disease) disease.clone();
+                infection.setMob(mob);
+                infection.setDuration(disease.getInitialDuration());
+                mob.getMobAffects().add(disease.getId(), infection);
+            }
+
+        }
+
+
+    }
+
+    private void checkForVeryAggressiveMobs(Mob mob, Room destination) {
         // Check if any aggro or very aggressive mobs should attack you
         for (Mob mobInRoom : destination.getMobs()) {
             if (mobInRoom.isVeryAggressive()) {
@@ -233,7 +273,6 @@ public class EnterNoLook extends BaseCommand {
             }
 
         }
-
     }
 
 }

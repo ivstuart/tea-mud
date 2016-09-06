@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.state;
 
 import com.ivstuart.tmud.common.Tickable;
@@ -179,12 +184,10 @@ public class WorldTime implements Runnable {
         }
 
         for (int index = 0; index < tickables.size(); index++) {
-            try {
-                tickables.get(index).tick();
-            } catch (RuntimeException re) {
+            if (tickables.get(index).tick()) {
                 tickables.remove(index);
-                LOGGER.error("Problem in tickables thread", re);
             }
+
         }
 
     }

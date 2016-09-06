@@ -15,6 +15,7 @@ copper: 150
 xp: 550
 state: STAND
 attackType: punch grab
+#disease: MummyRot
 
 class: state.Mob
 # poison

@@ -43,6 +43,7 @@ hop,STAND
 hug,STAND
 kiss,STAND
 laugh,REST
+laff,REST
 lick,REST
 love,REST
 moan,REST

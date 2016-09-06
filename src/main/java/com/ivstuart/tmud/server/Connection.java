@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 09-Sep-2003
  *
  * To change the template for this generated file go to
@@ -17,114 +22,114 @@ import java.nio.charset.CharsetEncoder;
 
 /**
  * @author stuarti
- * 
  */
 public class Connection {
 
-	private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
 
-	private static Charset charset = Charset.forName("ISO-8859-1");
+    private static Charset charset = Charset.forName("ISO-8859-1");
 
-	private static CharsetEncoder encoder = charset.newEncoder();
+    private static CharsetEncoder encoder = charset.newEncoder();
 
-	private SocketChannel sc;
+    private SocketChannel sc;
 
-	private Readable state;
+    private Readable state;
 
-	private CharBuffer cbuf;
+    private CharBuffer cbuf;
 
-	private long timeLastRead;
+    private long timeLastRead;
+    private volatile boolean disconnected = false;
 
-	public Connection() {
+    public Connection() {
 
-	}
+    }
 
-	/**
-	 * 
-	 */
-	public Connection(SocketChannel aSocketChannel) {
+    /**
+     *
+     */
+    public Connection(SocketChannel aSocketChannel) {
 
-		LOGGER.info("Connection created for [ " + aSocketChannel + " ]");
+        LOGGER.info("Connection created for [ " + aSocketChannel + " ]");
 
-		sc = aSocketChannel;
+        sc = aSocketChannel;
 
-		state = new Login(this);
+        state = new Login(this);
 
-	}
+    }
 
-	public void disconnect() {
+    public boolean isDisconnected() {
+        return disconnected;
+    }
 
-		LOGGER.info("Disconnecting socket channel [ " + sc + " ]");
+    public void disconnect() {
+        disconnected = true;
+        LOGGER.info("Disconnecting socket channel [ " + sc + " ]");
 
-		try {
-			if (sc != null) {
-				sc.socket().close();
-				sc.close();
-			}
-			// ConnectionManager.close(sk);
+        try {
 
-		} catch (IOException e) {
-			LOGGER.error("Problem closing connection", e);
-		} finally {
-			sc = null;
-			// sc.shutdownInput();
-		}
-	}
+            sc.socket().close();
+            sc.close();
 
-	public Readable getState() {
-		return state;
-	}
+        } catch (IOException e) {
+            LOGGER.error("Problem closing connection", e);
+        }
+    }
 
-	public void setState(Readable readable) {
+    public Readable getState() {
+        return state;
+    }
 
-		LOGGER.info("Setting state  [ " + readable + " ]");
+    public void setState(Readable readable) {
 
-		state = readable;
-	}
+        LOGGER.info("Setting state  [ " + readable + " ]");
 
-	public boolean isConnected() {
-		return sc != null && sc.isConnected();
-	}
+        state = readable;
+    }
 
-	public void out(String output) {
+    public boolean isConnected() {
+        return !disconnected;
+    }
 
-		if (sc == null || !sc.isConnected()) {
-			LOGGER.warn("Problem writing to closed connection");
-			throw new RuntimeException("Problem writing to closed connection");
-		}
+    public void out(String output) {
 
-		cbuf = CharBuffer.wrap(output + "\n");
+        if (disconnected) {
+            LOGGER.warn("Problem writing to closed connection");
+            return;
+            // throw new RuntimeException("Problem writing to closed connection");
+        }
 
-		try {
-			sc.write(encoder.encode(cbuf));
-		} catch (IOException e) {
+        cbuf = CharBuffer.wrap(output + "\n");
 
-			LOGGER.error("Problem writing to connection", e);
-			disconnect();
-		}
+        try {
+            sc.write(encoder.encode(cbuf));
+        } catch (IOException e) {
 
-	}
+            LOGGER.error("Problem writing to connection", e);
+            disconnect();
+        }
 
-	public void process(String cmd) {
-		timeLastRead = System.currentTimeMillis();
-		state.read(cmd);
-	}
+    }
 
-	public long getIdle() {
-		return System.currentTimeMillis() - timeLastRead;
-	}
+    public void process(String cmd) {
+        timeLastRead = System.currentTimeMillis();
+        state.read(cmd);
+    }
 
-	public String getLocalAddress() {
-		if (sc == null) {
-			return null;
-		}
-		return sc.socket().getLocalAddress().toString();
-	}
+    public long getIdle() {
+        return System.currentTimeMillis() - timeLastRead;
+    }
 
-	public String getRemoteAddress() {
-		if (sc == null) {
-			return null;
-		}
-		return sc.socket().getInetAddress().toString();
-	}
+    public String getLocalAddress() {
+        if (sc == null) {
+            return null;
+        }
+        return sc.socket().getLocalAddress().toString();
+    }
+
+    public String getRemoteAddress() {
+        if (sc == null) {
+            return null;
+        }
+        return sc.socket().getInetAddress().toString();
+    }
 }

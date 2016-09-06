@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.command;
 
 import com.ivstuart.tmud.state.Mob;
@@ -8,6 +13,11 @@ import com.ivstuart.tmud.state.Mob;
 public class Social extends BaseCommand {
 
     private final String cmd;
+    private String description;
+
+    public Social(String line) {
+        this.cmd = line;
+    }
 
     public String getDescription() {
         return description;
@@ -17,14 +27,13 @@ public class Social extends BaseCommand {
         this.description = desc;
     }
 
-    private String description;
-
-    public Social(String line) {
-        this.cmd = line;
-    }
-
     @Override
     public void execute(Mob mob, String input) {
         mob.out("You "+cmd+"'s "+description);
+    }
+
+    @Override
+    public String getHelp() {
+        return "The command " + cmd + " is a social commands for communication only";
     }
 }

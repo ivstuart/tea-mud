@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.state;
 
 import com.ivstuart.tmud.common.Msg;
@@ -6,6 +11,8 @@ import com.ivstuart.tmud.constants.SectorType;
 import com.ivstuart.tmud.person.carried.Inventory;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
+import com.ivstuart.tmud.person.statistics.diseases.Disease;
+import com.ivstuart.tmud.person.statistics.diseases.DiseaseFactory;
 import com.ivstuart.tmud.state.util.EntityProvider;
 import com.ivstuart.tmud.state.util.RoomManager;
 import com.ivstuart.tmud.utils.MudArrayList;
@@ -13,6 +20,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Room extends BasicThing implements Msgable {
@@ -32,7 +40,7 @@ public class Room extends BasicThing implements Msgable {
     private transient MudArrayList<Mob> _mobs;
 
     private transient Inventory _items;
-
+    private transient List<Disease> diseases;
     private boolean isRegen;
     private boolean isUnderWater;
     private boolean isDark;
@@ -83,6 +91,14 @@ public class Room extends BasicThing implements Msgable {
         this.isDeepWater = room.isDeepWater;
     }
 
+    public List<Disease> getDiseases() {
+        return diseases;
+    }
+
+    public void setDiseases(List<Disease> diseases) {
+        this.diseases = diseases;
+    }
+
     public boolean isDeepWater() {
         return isDeepWater;
     }
@@ -119,10 +135,12 @@ public class Room extends BasicThing implements Msgable {
                 ", _exits=" + _exits +
                 ", _mobs=" + _mobs +
                 ", _items=" + _items +
+                ", diseases=" + diseases +
                 ", isRegen=" + isRegen +
                 ", isUnderWater=" + isUnderWater +
                 ", isDark=" + isDark +
                 ", isWater=" + isWater +
+                ", isDeepWater=" + isDeepWater +
                 ", isFlying=" + isFlying +
                 ", isDeath=" + isDeath +
                 ", isNoMob=" + isNoMob +
@@ -137,6 +155,8 @@ public class Room extends BasicThing implements Msgable {
                 ", isHouse=" + isHouse +
                 ", isClimb=" + isClimb +
                 ", isNoDrop=" + isNoDrop +
+                ", isAuctionHouse=" + isAuctionHouse +
+                ", sectorType=" + sectorType +
                 '}';
     }
 
@@ -594,5 +614,24 @@ public class Room extends BasicThing implements Msgable {
             return false;
         }
         return true;
+    }
+
+    public void add(Disease disease) {
+        if (diseases == null) {
+            diseases = new ArrayList<>();
+        }
+        Iterator<Disease> diseaseIter = diseases.iterator();
+        for (; diseaseIter.hasNext(); ) {
+            Disease infection = diseaseIter.next();
+            infection.getDesc().equals(disease.getDesc());
+            diseaseIter.remove();
+        }
+        diseases.add(disease);
+    }
+
+    public void setDisease(String name) {
+        Disease disease = DiseaseFactory.createClass(name);
+        disease.setDecription(name);
+        add(disease);
     }
 }

@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.fighting;
 
 import com.ivstuart.tmud.command.CommandProvider;
@@ -15,6 +20,7 @@ import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.person.config.ConfigData;
 import com.ivstuart.tmud.person.statistics.Affect;
+import com.ivstuart.tmud.person.statistics.diseases.Disease;
 import com.ivstuart.tmud.state.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -401,6 +407,8 @@ public class DamageManager {
 
         LOGGER.debug("Moving inventory to corpse");
 
+        checkForDiseases(defender, defender.getInventory().getItems());
+
         // Items
         corpse.getInventory().addAll(defender.getInventory().getItems());
         defender.getInventory().clear();
@@ -426,6 +434,26 @@ public class DamageManager {
         if (!defender.isPlayer()) {
             SomeMoney money = new Money(Money.COPPER, defender.getCopper());
             corpse.getInventory().getPurse().add(money);
+        }
+
+    }
+
+    private static void checkForDiseases(Mob defender, List<Item> items) {
+        if (defender.getMobAffects().getDiseases().isEmpty()) {
+            return;
+        }
+
+        for (Disease disease : defender.getMobAffects().getDiseases()) {
+            if (disease.isIndirectContact() || disease.isOral()) {
+                for (Item item : items) {
+                    if (DiceRoll.ONE_D100.rollLessThanOrEqualTo(disease.getInfectionRate())) {
+                        Disease infection = (Disease) disease.clone();
+                        infection.setMob(defender);
+                        infection.setDuration(disease.getInitialDuration());
+                        item.setDisease(infection);
+                    }
+                }
+            }
         }
 
     }

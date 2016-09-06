@@ -145,3 +145,13 @@ target: SINGLE
 speed: 5
 mana: COMMON
 spellEffect: CLONE
+
+id: charm
+level: 18
+cost: 20
+damage: 0
+duration: 200
+target: SINGLE
+speed: 5
+mana: COMMON
+spellEffect: CHARM

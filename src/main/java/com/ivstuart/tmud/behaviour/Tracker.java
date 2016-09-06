@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.behaviour;
 
 import com.ivstuart.tmud.common.DiceRoll;
@@ -37,28 +42,28 @@ public class Tracker extends BaseBehaviour {
 	}
 
 	@Override
-	public void tick() {
+    public boolean tick() {
 
 		if (mob.getFight().isFighting()) {
 			target = mob.getFight().getTarget().getName();
 			LOGGER.debug(mob.getName()+" is fighting and hence will not track target");
-			return;
-		}
+            return false;
+        }
 
 		if (target == null) {
 			LOGGER.debug(mob.getName()+" is not currently tracking anyone");
-			return;
-		}
+            return false;
+        }
 
 		if (mob.getFight().isEngaged()) {
 			LOGGER.debug(mob.getName()+" is engaged and hence will not track");
-			return;
-		}
+            return false;
+        }
 
 		if (DiceRoll.ONE_D100.rollMoreThan(parameter)) {
 			LOGGER.debug(mob.getName()+" is does not feel like tracking this tick");
-			return;
-		}
+            return false;
+        }
 
 		Room currentRoom = mob.getRoom();
 
@@ -69,12 +74,13 @@ public class Tracker extends BaseBehaviour {
 				Exit exit = currentRoom.getExit(direction);
 
 				MoveManager.move(mob, currentRoom, exit.getDestinationRoom(), exit, "walks");
-				return;
-			}
+                return false;
+            }
 		}
 
 		LOGGER.debug(mob.getName()+" has no matching tracks to follow");
 
-	}
+        return false;
+    }
 
 }

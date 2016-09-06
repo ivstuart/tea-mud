@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.behaviour;
 
 import com.ivstuart.tmud.command.CommandProvider;
@@ -21,25 +26,25 @@ public class Stander extends BaseBehaviour {
     }
 
     @Override
-    public void tick() {
+    public boolean tick() {
 
         if (DiceRoll.ONE_D100.rollMoreThan(parameter)) {
             LOGGER.debug(mob.getName() + " is does not feel like standing");
-            return;
+            return false;
         }
 
         if (!mob.getFight().isGroundFighting()) {
             LOGGER.debug(mob.getName() + " no need to stand");
-            return;
+            return false;
         }
 
         if (mob.getMobStatus().isGroundFighting()) {
             LOGGER.debug(mob.getName() + " recently engaged in ground fighting");
-            return;
+            return false;
         }
 
         CommandProvider.getCommand(Stand.class).execute(mob, null);
-
+        return false;
     }
 
 }

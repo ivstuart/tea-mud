@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.behaviour;
 
 import com.ivstuart.tmud.common.DiceRoll;
@@ -35,30 +40,30 @@ public class Wander extends BaseBehaviour {
 	}
 
 	@Override
-	public void tick() {
+    public boolean tick() {
 
 		if (mob.getFight().isFighting()) {
 			LOGGER.debug(mob.getName()+" is fighting and hence will not wander away");
-			return;
-		}
+            return false;
+        }
 
 		if (mob.getFight().isEngaged()) {
 			LOGGER.debug(mob.getName()+" is engaged and hence will not wander away");
-			return;
-		}
+            return false;
+        }
 
 		if (DiceRoll.ONE_D100.rollMoreThan(parameter)) {
 			LOGGER.debug(mob.getName()+" is does not feel like wandering this tick");
-			return;
-		}
+            return false;
+        }
 
 		Room currentRoom = mob.getRoom();
 
 		Exit exit = MoveManager.random(mob);
 
 		if (exit == null) {
-			return;
-		}
+            return false;
+        }
 
 		LOGGER.debug("Mob wanders to a new location");
 
@@ -90,7 +95,7 @@ public class Wander extends BaseBehaviour {
 			rooms.add(room);
 			LOGGER.debug("Wandering at a distance of " + rooms.size() + " from source");
 		}
-
-	}
+        return false;
+    }
 
 }

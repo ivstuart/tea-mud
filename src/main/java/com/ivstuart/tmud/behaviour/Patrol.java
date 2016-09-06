@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.behaviour;
 
 import com.ivstuart.tmud.common.DiceRoll;
@@ -26,22 +31,22 @@ public class Patrol extends BaseBehaviour {
 	}
 
 	@Override
-	public void tick() {
+    public boolean tick() {
 
 		if (mob.getFight().isFighting()) {
 			LOGGER.debug(mob.getName()+" is fighting and hence will not patrol");
-			return;
-		}
+            return false;
+        }
 
 		if (mob.getFight().isEngaged()) {
 			LOGGER.debug(mob.getName()+" is engaged and hence will not patrol");
-			return;
-		}
+            return false;
+        }
 
 		if (DiceRoll.ONE_D100.rollMoreThan(parameter)) {
 			LOGGER.debug(mob.getName()+" is does not feel like patrol");
-			return;
-		}
+            return false;
+        }
 
 		Room currentRoom = mob.getRoom();
 
@@ -59,10 +64,12 @@ public class Patrol extends BaseBehaviour {
 		Exit exit = currentRoom.getExit(exitString);
 
 		if (exit == null) {
-			return;
-		}
+            return false;
+        }
 
         MoveManager.move(mob, currentRoom, exit.getDestinationRoom(), exit, "walks");
+
+        return false;
 
 	}
 

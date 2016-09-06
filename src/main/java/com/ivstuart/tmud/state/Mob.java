@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.state;
 
 import com.ivstuart.tmud.behaviour.BaseBehaviour;
@@ -14,8 +19,10 @@ import com.ivstuart.tmud.person.carried.Equipment;
 import com.ivstuart.tmud.person.carried.Inventory;
 import com.ivstuart.tmud.person.movement.MoveManager;
 import com.ivstuart.tmud.person.statistics.Affect;
+import com.ivstuart.tmud.person.statistics.diseases.Disease;
 import com.ivstuart.tmud.person.statistics.MobAffects;
 import com.ivstuart.tmud.person.statistics.MobMana;
+import com.ivstuart.tmud.person.statistics.diseases.DiseaseFactory;
 import com.ivstuart.tmud.state.util.EntityProvider;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -79,6 +86,7 @@ public class Mob extends Prop implements Tickable {
     private boolean isNoSleep;
     private boolean isNoBash;
     private boolean isNoBlind;
+    private boolean isNoCharm;
     private String returnRoom; // After battleground will be returned here.
     private int fallingCounter;
     private boolean veryAggressive;
@@ -86,7 +94,7 @@ public class Mob extends Prop implements Tickable {
     private boolean isPeekAggro;
     private int IDLE_TIMEOUT = 500; // Seconds
     private Map<DamageType, Integer> saves;
-
+    private Mob charmed;
     public Mob() {
         fight = new Fight(this);
     }
@@ -137,6 +145,12 @@ public class Mob extends Prop implements Tickable {
         isNoBlind = baseMob.isNoBlind;
         veryAggressive = baseMob.veryAggressive;
         isMemory = baseMob.isMemory;
+        isNoCharm = baseMob.isNoCharm;
+
+        // Required for diseases.
+        if (baseMob.mobAffects != null) {
+            mobAffects = (MobAffects) baseMob.mobAffects.clone();
+        }
 
         if (baseMob.behaviours != null) {
             for (String behaviour : baseMob.behaviours) {
@@ -160,11 +174,19 @@ public class Mob extends Prop implements Tickable {
             this.getInventory().addAll(baseMob.getInventory().getItems());
         }
 
-        if (tickers != null) {
+        if (tickers != null || mobAffects != null) {
             LOGGER.debug("Adding to world time for mob " + this.getName());
             WorldTime.addTickable(this);
         }
 
+    }
+
+    public boolean isNoCharm() {
+        return isNoCharm;
+    }
+
+    public void setNoCharm(boolean noCharm) {
+        isNoCharm = noCharm;
     }
 
     public void setSaves(String saveString) {
@@ -270,12 +292,12 @@ public class Mob extends Prop implements Tickable {
         return damage;
     }
 
-    public void setDamage(String damage_) {
-        this.damage = new DiceRoll(damage_);
-    }
-
     public void setDamage(DiceRoll damage) {
         this.damage = damage;
+    }
+
+    public void setDamage(String damage_) {
+        this.damage = new DiceRoll(damage_);
     }
 
     public int getDefence() {
@@ -310,12 +332,12 @@ public class Mob extends Prop implements Tickable {
         return gender;
     }
 
-    public void setGender(String gender_) {
-        gender = Gender.valueOf(gender_.toUpperCase());
-    }
-
     public void setGender(Gender g) {
         gender = g;
+    }
+
+    public void setGender(String gender_) {
+        gender = Gender.valueOf(gender_.toUpperCase());
     }
 
     public Attribute getHp() {
@@ -430,13 +452,13 @@ public class Mob extends Prop implements Tickable {
         return state;
     }
 
-    public void setState(String state_) {
-        state = MobState.getMobState(state_);
-    }
-
     public void setState(MobState state_) {
         LOGGER.debug("You set state to " + state_.name());
         state = state_;
+    }
+
+    public void setState(String state_) {
+        state = MobState.getMobState(state_);
     }
 
     public Fight getTargetFight() {
@@ -604,22 +626,43 @@ public class Mob extends Prop implements Tickable {
 
     public String showMobAffects() {
         if (mobAffects != null) {
-            return mobAffects.toString();
+            return mobAffects.look();
         }
         return "";
     }
 
     @Override
-    public void tick() {
+    public boolean tick() {
 
         tickRegenerate();
 
+        checkForFalling();
+
+        checkHungerAndThirst();
+
+        checkIdleTimeAndKickout();
+
+        checkForDiseases();
+
+        checkForMobAffects();
+
+        checkForMobBehaviour();
+
+        return false;
+    }
+
+    private void checkForMobAffects() {
+        if (null != mobAffects) {
+            mobAffects.tick();
+        }
+    }
+
+    private void checkForMobBehaviour() {
         if (tickers != null) {
             for (Tickable ticker : tickers) {
                 ticker.tick();
             }
         }
-
     }
 
     private void tickRegenerate() {
@@ -658,15 +701,39 @@ public class Mob extends Prop implements Tickable {
             mana.increase(this.getRace().getRegenMn());
         }
 
-        if (null != mobAffects) {
-            mobAffects.tick();
+
+    }
+
+    private void checkForDiseases() {
+        if (!getRace().isUndead()) {
+            List<Disease> diseases = this.getMobAffects().getDiseases();
+            for (Disease disease : diseases) {
+                if (disease.isDroplets()) {
+                    // LOGGER.debug(getName()+" infecting mobs in room with "+disease.getDesc());
+                    infectMobs(getRoom().getMobs(), disease);
+                }
+                if (disease.isAirbourne() && DiceRoll.ONE_D100.rollLessThanOrEqualTo(disease.getInfectionRate())) {
+                    getRoom().add(disease);
+                }
+            }
         }
+    }
 
-        checkForFalling();
+    private void infectMobs(List<Mob> mobs, Disease disease) {
 
-        checkHungerAndThirst();
-
-        checkIdleTimeAndKickout();
+        for (Mob mob : mobs) {
+            if (mob == this) {
+                continue;
+            }
+            //LOGGER.debug(disease.getDesc()+" rolling "+disease.getInfectionRate()+" under 100 to infect "+mob.getName());
+            if (DiceRoll.ONE_D100.rollLessThanOrEqualTo(disease.getInfectionRate())) {
+                Disease infection = (Disease) disease.clone();
+                infection.setMob(mob);
+                infection.setDuration(disease.getInitialDuration());
+                mob.getMobAffects().add(disease.getId(), infection);
+                LOGGER.debug(getName() + " infects mob " + mob.getName() + " in room with " + disease.getDesc());
+            }
+        }
 
     }
 
@@ -984,5 +1051,82 @@ public class Mob extends Prop implements Tickable {
 
     public void setWimpy(int wimpy) {
         this.wimpy = wimpy;
+    }
+
+    public void setDisease(String name) {
+        Disease disease = DiseaseFactory.createClass(name);
+        disease.setMob(this);
+        disease.setDecription(name);
+        getMobAffects().add(disease.getId(), disease);
+        LOGGER.info("Adding disease to " + this.getName() + " " + disease);
+    }
+
+    @Override
+    public String toString() {
+        return "Mob{" +
+                "equipment=" + equipment +
+                ", fight=" + fight +
+                ", following=" + following +
+                ", gender=" + gender +
+                ", health=" + health +
+                ", height=" + height +
+                ", inventory=" + inventory +
+                ", lastToldBy=" + lastToldBy +
+                ", learned=" + learned +
+                ", mana=" + mana +
+                ", moves=" + moves +
+                ", player=" + player +
+                ", race='" + race + '\'' +
+                ", repopRoomID='" + repopRoomID + '\'' +
+                // ", room=" + room +
+                ", roomId='" + roomId + '\'' +
+                ", weight=" + weight +
+                ", ability='" + ability + '\'' +
+                ", align=" + align +
+                ", armour=" + armour +
+                ", attackType='" + attackType + '\'' +
+                ", copper=" + copper +
+                ", damage=" + damage +
+                ", attacks=" + attacks +
+                ", defensive=" + defensive +
+                ", offensive=" + offensive +
+                ", immunityTackle=" + immunityTackle +
+                ", running=" + running +
+                ", level=" + level +
+                ", maxHp=" + maxHp +
+                ", mobAffects=" + mobAffects +
+                ", mobStatus=" + mobStatus +
+                ", name='" + name + '\'' +
+                ", state=" + state +
+                ", xp=" + xp +
+                ", raceId=" + raceId +
+                ", wimpy=" + wimpy +
+                ", undead=" + undead +
+                ", behaviours=" + behaviours +
+                ", tickers=" + tickers +
+                ", RATE_OF_REGEN_3_PERCENT=" + RATE_OF_REGEN_3_PERCENT +
+                ", patrolPath='" + patrolPath + '\'' +
+                ", alignment=" + alignment +
+                ", isAware=" + isAware +
+                ", isNoSummon=" + isNoSummon +
+                ", isNoSleep=" + isNoSleep +
+                ", isNoBash=" + isNoBash +
+                ", isNoBlind=" + isNoBlind +
+                ", returnRoom='" + returnRoom + '\'' +
+                ", fallingCounter=" + fallingCounter +
+                ", veryAggressive=" + veryAggressive +
+                ", isMemory=" + isMemory +
+                ", isPeekAggro=" + isPeekAggro +
+                ", IDLE_TIMEOUT=" + IDLE_TIMEOUT +
+                ", saves=" + saves +
+                '}';
+    }
+
+    public Mob getCharmed() {
+        return charmed;
+    }
+
+    public void setCharmed(Mob charmed) {
+        this.charmed = charmed;
     }
 }

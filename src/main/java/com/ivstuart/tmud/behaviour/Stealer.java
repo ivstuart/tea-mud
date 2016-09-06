@@ -1,11 +1,14 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.behaviour;
 
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
-import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Room;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,11 +29,11 @@ public class Stealer extends BaseBehaviour {
     }
 
     @Override
-    public void tick() {
+    public boolean tick() {
 
         if (DiceRoll.ONE_D100.rollMoreThan(parameter)) {
             LOGGER.debug(mob.getName()+" is does not feel like stealing");
-            return;
+            return false;
         }
 
         List<Mob> mobs = mob.getRoom().getMobs();
@@ -41,17 +44,19 @@ public class Stealer extends BaseBehaviour {
 
         if (victim == mob) {
             LOGGER.debug("Will not steal from self");
-            return;
+            return false;
         }
 
         SomeMoney money = new Money(Money.COPPER,5);
 
         if (!victim.getInventory().getPurse().remove(money)) {
             LOGGER.debug("NO money to steal");
-            return;
+            return false;
         }
 
         mob.getInventory().add(money);
+
+        return false;
     }
 
 }

@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 23-Sep-2003
  *
  * To change the template for this generated file go to
@@ -7,7 +12,8 @@
 package com.ivstuart.tmud.command.item;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.common.DiceRoll;
+import com.ivstuart.tmud.person.statistics.diseases.Disease;
 import com.ivstuart.tmud.state.Attribute;
 import com.ivstuart.tmud.state.Food;
 import com.ivstuart.tmud.state.Item;
@@ -60,6 +66,8 @@ public class Eat extends BaseCommand {
 
 			food.eat();
 
+			checkFoodForDisease(mob_, food);
+
 			if (food.getPortions() == 0) {
 				mob_.getInventory().remove(food);
 				mob_.out("Food is gone you ate it all of that!");
@@ -67,6 +75,21 @@ public class Eat extends BaseCommand {
 			}
 		} else {
 			mob_.out("The " + item.getLook() + " is not drinkable.");
+		}
+
+	}
+
+	private void checkFoodForDisease(Mob mob, Food food) {
+		if (food.getDisease() == null) {
+			return;
+		}
+
+		Disease disease = food.getDisease();
+		if (DiceRoll.ONE_D100.rollLessThanOrEqualTo(disease.getInfectionRate())) {
+			Disease infection = (Disease) disease.clone();
+			infection.setMob(mob);
+			infection.setDuration(disease.getInitialDuration());
+			mob.getMobAffects().add(disease.getId(), infection);
 		}
 
 	}

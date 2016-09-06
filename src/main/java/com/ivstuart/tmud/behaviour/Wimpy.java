@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.behaviour;
 
 import com.ivstuart.tmud.command.CommandProvider;
@@ -21,25 +26,27 @@ public class Wimpy extends BaseBehaviour {
     }
 
     @Override
-    public void tick() {
+    public boolean tick() {
         // If any players visible in same location then random pick one to attack.
         if (!mob.getFight().isFighting()) {
             LOGGER.debug(mob.getName() + " is not fighting hence will not wimpy");
-            return;
+            return false;
         }
 
         if (DiceRoll.ONE_D100.rollMoreThan(parameter)) {
             LOGGER.debug(mob.getName()+" is does not feel like being wimpy");
-            return;
+            return false;
         }
 
         // Absolute amount or percentage to use here. Coded as an absolute amount for now.
         if (parameter2 < mob.getHp().getValue()) {
             LOGGER.debug(mob.getName()+" wimpy not reached yet");
-            return;
+            return false;
         }
 
         CommandProvider.getCommand(Flee.class).execute(mob,null);
+
+        return false;
 
 
     }

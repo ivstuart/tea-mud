@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.state;
 
 import com.ivstuart.tmud.common.Msg;
@@ -68,7 +73,12 @@ public class Torch extends Item implements Tickable {
 	}
 
 	@Override
-	public void tick() {
+    public boolean tick() {
+
+        if (((Mob) _msg).getPlayer().getConnection().isDisconnected()) {
+            return true;
+        }
+
 		if (_isLit) {
 			_msg.out(new Msg("<S-Your/NAME> light source flickers!"));
 			_fuel--;
@@ -77,5 +87,6 @@ public class Torch extends Item implements Tickable {
 				_isLit = false;
 			}
 		}
-	}
+        return false;
+    }
 }

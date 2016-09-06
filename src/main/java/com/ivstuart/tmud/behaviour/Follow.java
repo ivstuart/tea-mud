@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.behaviour;
 
 import com.ivstuart.tmud.command.CommandProvider;
@@ -22,34 +27,34 @@ public class Follow extends BaseBehaviour {
     }
 
     @Override
-    public void tick() {
+    public boolean tick() {
         // If any players visible in same location then random pick one to attack.
         if (mob.getFight().isFighting()) {
             LOGGER.debug(mob.getName() + " is not fighting hence will not follow");
-            return;
+            return false;
         }
 
         if (DiceRoll.ONE_D100.rollMoreThan(parameter)) {
             LOGGER.debug(mob.getName()+" is does not feel like following");
-            return;
+            return false;
         }
 
         Room room = mob.getRoom();
 
         if (room == null) {
             LOGGER.warn(mob.getName() + " has no room");
-            return;
+            return false;
         }
 
         Mob target = room.getRandomPlayer();
 
         if (target == null) {
             LOGGER.debug(mob.getName() + " has no players to follow");
-            return;
+            return false;
         }
 
         CommandProvider.getCommandByString("follow").execute(mob,target.getName());
-
+        return false;
 
     }
 
