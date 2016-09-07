@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 22-Sep-2003
  *
  * To change the template for this generated file go to
@@ -57,6 +62,7 @@ public class Cast extends BaseCommand {
 
         String concatWords = getFirstFewWords(input_);
 
+
         Ability spellAbility = mob_.getLearned().getAbility(concatWords);
 
         if (spellAbility == null || spellAbility.isNull()) {
@@ -69,6 +75,7 @@ public class Cast extends BaseCommand {
             return;
         }
 
+
         Spell spell = World.getSpell(spellAbility.getId());
 
         if (spell == null) {
@@ -76,6 +83,7 @@ public class Cast extends BaseCommand {
             mob_.out("You know " + input_ + " which is not castable according to world list");
             return;
         }
+
 
         if (mob_.getRoom().isPeaceful() && !spell.getSpellEffect().isPositiveEffect()) {
             mob_.out("You can not use offensive magic in this room");
@@ -127,7 +135,7 @@ public class Cast extends BaseCommand {
         // When fighting can target attacker with damage spell with no target set
         if (!spell.getSpellEffect().isPositiveEffect() && mob_.getFight().isFighting()) {
             if (targetMob == null) {
-                LOGGER.debug("Damage spell so targetting current melee target");
+                LOGGER.debug("Damage spell so targeting current melee target");
                 targetMob = mob_.getFight().getTarget();
             }
         }
@@ -160,7 +168,7 @@ public class Cast extends BaseCommand {
 
         mana.cast(spell);
 
-        mob_.out("You begin to chant and make unusally gestures");
+        mob_.out("You begin to chant and make unusual gestures");
 
         mob_.out("You start casting " + spell.getId());
 
@@ -239,7 +247,7 @@ public class Cast extends BaseCommand {
             }
             mana.cast(spell);
 
-            mob_.out("You begin to chant and make unusally complex gestures");
+            mob_.out("You begin to chant and make unusually complex gestures");
 
             mob_.out("You start casting area effect " + spell.getId());
 

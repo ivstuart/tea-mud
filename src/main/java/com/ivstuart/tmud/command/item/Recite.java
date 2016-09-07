@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 23-Sep-2003
  *
  * To change the template for this generated file go to
@@ -7,10 +12,10 @@
 package com.ivstuart.tmud.command.item;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Scroll;
+import com.ivstuart.tmud.utils.StringUtil;
 
 public class Recite extends BaseCommand {
 
@@ -23,7 +28,7 @@ public class Recite extends BaseCommand {
 	@Override
 	public void execute(Mob mob, String input) {
 
-		Item item = mob.getInventory().get(input);
+		Item item = mob.getInventory().get(StringUtil.getFirstWord(input));
 
 		if (item == null) {
 			mob.out("You can not find a "+input+" to recite");
@@ -45,7 +50,7 @@ public class Recite extends BaseCommand {
 			return;
 		}
 
-		scroll.recite(mob);
+		scroll.recite(mob, input);
 
 		mob.getInventory().getItems().remove(scroll);
 

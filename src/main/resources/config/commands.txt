@@ -86,6 +86,8 @@ command.item.Drink,STAND
 command.item.Fill,STAND
 command.item.Empty,STAND
 command.item.Eat,STAND
+command.item.Recite,STAND
+command.item.Zap,STAND
 command.misc.Alias,REST
 command.misc.Brief,REST
 command.misc.Join,REST

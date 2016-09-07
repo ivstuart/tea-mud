@@ -181,12 +181,75 @@ level: 80
 wear: PRIMARY SECONDARY
 weight: 1
 
-# diamond
-# emrelled
-# saphire
+class: state.GemList
+
+id: immortal-80
+alias: immortal gem
+short: flawless immortal gemstone
+look: flawless immortal gemstone
+action:
+type: gem
+mana: AIR WATER EARTH FIRE
+level: 80 80 80 80
+wear: PRIMARY SECONDARY
+weight: 1
+
 # opal
-# carneliane
+id: opal-80
+alias: opal gem
+short: flawless opal gemstone
+look: flawless opal gemstone
+action:
+type: gem
+mana: AIR WATER
+level: 80 80
+wear: PRIMARY SECONDARY
+weight: 1
+
+# carnelian
+id: carnelian-80
+alias: carnelian gem
+short: flawless carnelian gemstone
+look: flawless carnelian gemstone
+action:
+type: gem
+mana: AIR FIRE
+level: 80 80
+wear: PRIMARY SECONDARY
+weight: 1
+
 # garnet
+id: carnelian-80
+alias: carnelian gem
+short: flawless carnelian gemstone
+look: flawless carnelian gemstone
+action:
+type: gem
+mana: FIRE EARTH
+level: 80 80
+wear: PRIMARY SECONDARY
+weight: 1
+
 # onyx
+id: onyx-80
+alias: onyx gem
+short: flawless onyx gemstone
+look: flawless onyx gemstone
+action:
+type: gem
+mana: EARTH WATER
+level: 80 80
+wear: PRIMARY SECONDARY
+weight: 1
+
 # jade
-# immortal gem
+id: jade-80
+alias: jade gem
+short: flawless jade gemstone
+look: flawless jade gemstone
+action:
+type: gem
+mana: EARTH FIRE
+level: 80 80
+wear: PRIMARY SECONDARY
+weight: 1

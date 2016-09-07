@@ -6,6 +6,25 @@ include: food.txt
 include: waterskins.txt
 include: torches.txt
 
+class: state.Wand
+
+id: wand-001
+alias: wand
+short: wand
+look: wand
+wear: PRIMARY
+properties: fireball
+charges: 3
+
+class: state.Scroll
+
+id: fb-scroll-001
+alias: old fireball scroll
+short: scroll
+look: an old parchment with fiery writing
+wear: PRIMARY
+properties: fireball
+
 class: state.DoorKey
 
 id: key-001

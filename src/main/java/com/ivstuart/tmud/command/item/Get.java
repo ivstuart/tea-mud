@@ -82,7 +82,7 @@ public class Get extends BaseCommand {
                     List<Item> items = corpse.getInventory().getItems();
                     mob.getInventory().addAll(items);
                     for (Item item : items) {
-                        mob.out("You get " + item.getName() + " from " + corpse.getName());
+                        mob.out("You get " + item.getBrief() + " from " + corpse.getName());
                         checkItemForDisease(mob, item);
                     }
                     items.clear();
@@ -100,7 +100,7 @@ public class Get extends BaseCommand {
                 if (item != null) {
                     corpse.getInventory().remove(item);
                     mob.getInventory().add(item);
-                    mob.out("You get " + item.getName() + " from " + corpse.getName());
+                    mob.out("You get " + item.getBrief() + " from " + corpse.getName());
                     item.setHidden(false);
                     checkItemForDisease(mob, item);
                 }
@@ -121,7 +121,7 @@ public class Get extends BaseCommand {
                 Item item = itemIter.next();
                 mob.getInventory().add(item);
 
-                mob.out("You get an " + item.getName());
+                mob.out("You get an " + item.getBrief());
                 itemIter.remove();
                 item.setHidden(false);
                 checkItemForDisease(mob, item);
@@ -145,7 +145,7 @@ public class Get extends BaseCommand {
                 if (bagItem != null) {
                     mob.getInventory().add(bagItem);
                     bag.getInventory().remove(bagItem);
-                    mob.out("You get a " + bagItem.getName() + " from " + bag.getName());
+                    mob.out("You get a " + bagItem.getBrief() + " from " + bag.getName());
                     return;
                 }
 
@@ -160,7 +160,7 @@ public class Get extends BaseCommand {
 
         mob.getInventory().add(anItem);
 
-        mob.out("You get an " + anItem.getName());
+        mob.out("You get an " + anItem.getBrief());
         checkItemForDisease(mob, anItem);
     }
 

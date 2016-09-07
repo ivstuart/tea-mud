@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 23-Sep-2003
  *
  * To change the template for this generated file go to
@@ -46,7 +51,7 @@ public class Remove extends BaseCommand {
 
 		mob.getInventory().add(item);
 
-		mob.out("You remove an " + item);
+		mob.out("You remove an " + item.getBrief());
 	}
 
 	private void removalAll(Mob mob) {

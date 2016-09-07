@@ -119,7 +119,12 @@ public class DamageManager {
 
 
         if (damage < 1) {
-            attacker.out("Your feeble blow is deflected by their armour");
+            if (spell != null) {
+                attacker.out("Your feeble spell " + spell.getName() + "is absorbed by their armour");
+            } else {
+                attacker.out("Your feeble blow is deflected by their armour");
+            }
+
             return;
         }
 
