@@ -50,6 +50,7 @@ look: inner sanctum of the White Tower flickers with bright torches. The portal 
 look: eternal light ends in a bright point of light.  
 exits: east->R-002-001 south->R-001-002 up->R-001-001-1
 doors: [east]
+key: door1
 exitHidden: east
 #mob: snake-002
 #mob: snake-002

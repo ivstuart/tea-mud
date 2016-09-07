@@ -1,8 +1,13 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.constants;
 
 public enum DoorState {
 	OPEN("(", ")"), CLOSED("[", "]"), LOCKED("{", "}"), BOLTED("-", "-"), BROKEN(
-			"~", "~");
+            "(", "]");
 
 	private String _begin;
 	private String _end;

@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.state;
 
 import com.ivstuart.tmud.constants.DoorState;
@@ -12,12 +17,35 @@ public class Door extends BasicThing {
 
 	protected String keyId;
 
-	protected int hp;
-	protected boolean isBashable;
-	protected boolean isPickable;
+	protected int hp; // Not used yet
+	protected boolean isBashable = true;
+	protected boolean isPickable = true;
 	protected boolean isUnspellable;
+	protected int strength;
+	protected int difficulty = 50;
 
 	public Door() {
+	}
+
+	public int getDifficulty() {
+		return difficulty;
+	}
+
+	public void setDifficulty(int difficulty) {
+		this.difficulty = difficulty;
+	}
+
+	@Override
+	public String toString() {
+		return "Door{" +
+				"state=" + state +
+				", keyId='" + keyId + '\'' +
+				", hp=" + hp +
+				", isBashable=" + isBashable +
+				", isPickable=" + isPickable +
+				", isUnspellable=" + isUnspellable +
+				", strength=" + strength +
+				'}';
 	}
 
 	public boolean isBashable() {
@@ -64,4 +92,11 @@ public class Door extends BasicThing {
 		return true;
 	}
 
+	public int getStrength() {
+		return strength;
+	}
+
+	public void setStrength(int strength) {
+		this.strength = strength;
+	}
 }

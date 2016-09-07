@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.state.util;
 
 import static com.ivstuart.tmud.constants.DoorState.CLOSED;
@@ -142,7 +147,7 @@ public class RoomManager {
 			return;
 		}
 
-		lastCreatedDoor.setId(keys_);
+		lastCreatedDoor.setKeyId(keys_);
 	}
 
 	public static void setDoorOnEndOfExit() {
@@ -166,5 +171,25 @@ public class RoomManager {
 		}
 
 		exitsWithDoors.clear();
+	}
+
+	public static void setDoorBashable(boolean flag) {
+		lastCreatedDoor.setBashable(flag);
+	}
+
+	public static void setDoorPickable(boolean flag) {
+		lastCreatedDoor.setPickable(flag);
+	}
+
+	public static void setDoorUnspellable(boolean flag) {
+		lastCreatedDoor.setUnspellable(flag);
+	}
+
+	public static void setDoorStrength(int str) {
+		lastCreatedDoor.setStrength(str);
+	}
+
+	public static void setDoorDifficulty(int doorDifficulty) {
+		lastCreatedDoor.setDifficulty(doorDifficulty);
 	}
 }

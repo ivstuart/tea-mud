@@ -179,6 +179,9 @@ command.admin.TestPoison,SLEEP
 # Needs to be lower than At
 command.info.AttributeInfo,REST
 
+# Needs to be lower than Bash
+command.move.BashDoor,REST
+
 # Building Commands
 
 

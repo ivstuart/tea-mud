@@ -6,7 +6,7 @@ include: food.txt
 include: waterskins.txt
 include: torches.txt
 
-class: state.Item
+class: state.DoorKey
 
 id: key-001
 alias: key
@@ -14,6 +14,8 @@ short: gold key
 look: large golden key
 wear: PRIMARY
 properties: door1
+
+class: state.Item
 
 id: map-001
 alias: map

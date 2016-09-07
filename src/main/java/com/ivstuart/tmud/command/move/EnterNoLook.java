@@ -67,7 +67,7 @@ public class EnterNoLook extends BaseCommand {
 
         Door door = exit.getDoor();
 
-        if (door != null && door.getState() != DoorState.OPEN) {
+        if (door != null && door.getState() != DoorState.OPEN && door.getState() != DoorState.BROKEN) {
             mob.out("The exit in direction " + exit.getId() + " is not open.");
             return;
         }
@@ -248,13 +248,7 @@ public class EnterNoLook extends BaseCommand {
             if (disease.isExpired()) {
                 diseaseIter.remove();
             }
-            if (DiceRoll.ONE_D100.rollLessThanOrEqualTo(disease.getInfectionRate())) {
-                Disease infection = (Disease) disease.clone();
-                infection.setMob(mob);
-                infection.setDuration(disease.getInitialDuration());
-                mob.getMobAffects().add(disease.getId(), infection);
-            }
-
+            Disease.infect(mob, disease);
         }
 
 

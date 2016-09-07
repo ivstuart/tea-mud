@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.state;
 
 public class DoorKey extends Item {
@@ -6,6 +11,6 @@ public class DoorKey extends Item {
 
 	@Override
 	public boolean isKey() {
-		return false;
+		return true;
 	}
 }

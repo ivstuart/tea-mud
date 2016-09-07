@@ -12,7 +12,6 @@
 package com.ivstuart.tmud.command.item;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.person.statistics.diseases.Disease;
@@ -95,12 +94,7 @@ public class Give extends BaseCommand {
 
 		for (Disease disease : mob.getMobAffects().getDiseases()) {
 			if (disease.isDirectContact() || disease.isIndirectContact()) {
-				if (DiceRoll.ONE_D100.rollLessThanOrEqualTo(disease.getInfectionRate())) {
-					Disease infection = (Disease) disease.clone();
-					infection.setMob(targetMob);
-					infection.setDuration(disease.getInitialDuration());
-					targetMob.getMobAffects().add(disease.getId(), infection);
-				}
+				Disease.infect(targetMob, disease);
 			}
 		}
 

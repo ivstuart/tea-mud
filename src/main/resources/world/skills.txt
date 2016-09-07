@@ -99,6 +99,10 @@ id: steal
 level: 1
 prof: THIEF
 
+id: pick locks
+level: 1
+prof: THIEF
+
 id: constants.AbilityConstants SHIELD_BLOCK
 level: 1
 prof: FIGHTER

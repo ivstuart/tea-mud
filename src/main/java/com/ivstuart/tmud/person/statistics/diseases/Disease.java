@@ -5,6 +5,7 @@
 
 package com.ivstuart.tmud.person.statistics.diseases;
 
+import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.Tickable;
 import com.ivstuart.tmud.person.statistics.Affect;
 import com.ivstuart.tmud.state.Mob;
@@ -33,6 +34,16 @@ public class Disease extends Affect implements Tickable, Cloneable {
 
     public Disease(Mob mob_, String desc_, int duration_) {
         super(mob_, desc_, duration_);
+    }
+
+    public static void infect(Mob mob, Disease disease) {
+        if (DiceRoll.ONE_D100.rollLessThanOrEqualTo(disease.getInfectionRate())) {
+            Disease infection = (Disease) disease.clone();
+            infection.setMob(mob);
+            infection.setDuration(disease.getInitialDuration());
+            mob.getMobAffects().add(disease.getId(), infection);
+            LOGGER.debug(mob.getName() + " infected with " + disease.getDesc());
+        }
     }
 
     @Override

@@ -7,6 +7,8 @@ look: Northern Bal Main City
 #lifespan: 300
 #reset: 0
 #itemInRoom: sword-001 R-003-001
+itemInRoom: key-001 R-001-001
+itemInRoom: lockpicks-001 R-001-001
 #propInRoom: dragon-prop-001 R-P1
 #propInRoom: dragon-prop-001 R-P2
 itemInRoom: climbing-boots-001 R-003-001

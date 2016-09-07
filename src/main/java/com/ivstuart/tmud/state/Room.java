@@ -91,6 +91,22 @@ public class Room extends BasicThing implements Msgable {
         this.isDeepWater = room.isDeepWater;
     }
 
+    public static void setPickable(boolean flag) {
+        RoomManager.setDoorPickable(flag);
+    }
+
+    public static void setUnspellable(boolean flag) {
+        RoomManager.setDoorUnspellable(flag);
+    }
+
+    public static void setDifficulty(int percentage) {
+        RoomManager.setDoorDifficulty(percentage);
+    }
+
+    public static void setStrength(int str) {
+        RoomManager.setDoorStrength(str);
+    }
+
     public List<Disease> getDiseases() {
         return diseases;
     }
@@ -133,7 +149,7 @@ public class Room extends BasicThing implements Msgable {
                 ", _type='" + _type + '\'' +
                 ", _props=" + _props +
                 ", _exits=" + _exits +
-                ", _mobs=" + _mobs +
+                // ", _mobs=" + _mobs +
                 ", _items=" + _items +
                 ", diseases=" + diseases +
                 ", isRegen=" + isRegen +
@@ -476,6 +492,10 @@ public class Room extends BasicThing implements Msgable {
 
     public void setDoors(String doors_) {
         RoomManager.createDoors(this.getId(), doors_);
+    }
+
+    public void setBashable(boolean isBashable) {
+        RoomManager.setDoorBashable(isBashable);
     }
 
     public void setExitHidden(String id) {

@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.state;
 
 import com.ivstuart.tmud.common.ExitEnum;
@@ -17,6 +22,16 @@ public class Exit extends BasicThing {
         this.setId(id);
         isSpecial = isSpecial(id);
         destinationRoomId = destination_;
+    }
+
+    @Override
+    public String toString() {
+        return "Exit{" +
+                "destinationRoomId='" + destinationRoomId + '\'' +
+                // ", destinationRoom=" + destinationRoom +
+                ", door=" + door +
+                ", isSpecial=" + isSpecial +
+                '}';
     }
 
     public Room getDestinationRoom() {

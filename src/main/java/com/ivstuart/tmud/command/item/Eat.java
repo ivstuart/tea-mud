@@ -12,7 +12,6 @@
 package com.ivstuart.tmud.command.item;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.person.statistics.diseases.Disease;
 import com.ivstuart.tmud.state.Attribute;
 import com.ivstuart.tmud.state.Food;
@@ -85,13 +84,12 @@ public class Eat extends BaseCommand {
 		}
 
 		Disease disease = food.getDisease();
-		if (DiceRoll.ONE_D100.rollLessThanOrEqualTo(disease.getInfectionRate())) {
-			Disease infection = (Disease) disease.clone();
-			infection.setMob(mob);
-			infection.setDuration(disease.getInitialDuration());
-			mob.getMobAffects().add(disease.getId(), infection);
+
+		if (disease.isOral()) {
+			Disease.infect(mob, disease);
 		}
 
 	}
+
 
 }

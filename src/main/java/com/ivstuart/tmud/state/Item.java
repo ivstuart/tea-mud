@@ -158,6 +158,7 @@ public class Item extends Prop implements Equipable, Msgable {
 				", isNoDonate=" + isNoDonate +
 				", isNoInvisible=" + isNoInvisible +
 				", antiProfession=" + antiProfession +
+				", properties=" + getProperties() +
 				'}';
 	}
 

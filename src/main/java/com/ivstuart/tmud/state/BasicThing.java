@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.state;
 
 import com.ivstuart.tmud.common.Gender;
@@ -17,12 +22,10 @@ public class BasicThing implements Serializable, Cloneable, Msgable {
 	private String verbose;
 	private String look;
 	private String properties;
-
 	private boolean hidden;
 	private boolean invisible;
 	private boolean detectInvisible;
 	private boolean detectHidden;
-
 	public BasicThing() {
 		look = "";
 	}
@@ -35,6 +38,14 @@ public class BasicThing implements Serializable, Cloneable, Msgable {
 		properties = thing_.properties;
 		detectInvisible = false;
 		detectHidden = false;
+	}
+
+	public String getProperties() {
+		return properties;
+	}
+
+	public void setProperties(String properties_) {
+		properties = properties_;
 	}
 
 	@Override
@@ -67,6 +78,10 @@ public class BasicThing implements Serializable, Cloneable, Msgable {
 		return brief;
 	}
 
+	public void setBrief(String brief) {
+		this.brief = brief;
+	}
+
 	@Override
 	public Gender getGender() {
 		return Gender.NEUTRAL;
@@ -77,8 +92,19 @@ public class BasicThing implements Serializable, Cloneable, Msgable {
 		return id;
 	}
 
+	public void setId(String id_) {
+		id = id_;
+	}
+
 	public String getLook() {
 		return look;
+	}
+
+	public void setLook(String look_) {
+		if (look.length() > 0) {
+			look += "\n";
+		}
+		look += look_;
 	}
 
 	@Override
@@ -127,6 +153,10 @@ public class BasicThing implements Serializable, Cloneable, Msgable {
 		return hidden;
 	}
 
+	public void setHidden(boolean hidden) {
+		this.hidden = hidden;
+	}
+
 	@Override
 	public boolean isInDark() {
 		return false;
@@ -135,6 +165,10 @@ public class BasicThing implements Serializable, Cloneable, Msgable {
 	@Override
 	public boolean isInvisible() {
 		return invisible;
+	}
+
+	public void setInvisible(boolean flag) {
+		invisible = flag;
 	}
 
 	@Override
@@ -157,46 +191,18 @@ public class BasicThing implements Serializable, Cloneable, Msgable {
 		return null;
 	}
 
-	public void setInvisible(boolean flag) {
-		invisible = flag;
-	}
-
 	public void setDetectInvisible(boolean flag) { detectInvisible = flag;}
-
-	public void setBrief(String brief) {
-		this.brief = brief;
-	}
 
 	public void setClearLook(String look_) {
 		look = "";
-	}
-
-	public void setHidden(boolean hidden) {
-		this.hidden = hidden;
-	}
-
-	public void setId(String id_) {
-		id = id_;
 	}
 
 	public void setLong(String verbose) {
 		this.verbose = verbose;
 	}
 
-	public void setLook(String look_) {
-		if (look.length() > 0) {
-			look += "\n";
-		}
-		look += look_;
-	}
-
 	public void setLookClear(String look_) {
 		look = "";
-	}
-
-
-	public void setProperties(String properties_) {
-		properties = properties_;
 	}
 
 	public void setShort(String brief) {

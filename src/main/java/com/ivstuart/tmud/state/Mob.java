@@ -292,12 +292,12 @@ public class Mob extends Prop implements Tickable {
         return damage;
     }
 
-    public void setDamage(DiceRoll damage) {
-        this.damage = damage;
-    }
-
     public void setDamage(String damage_) {
         this.damage = new DiceRoll(damage_);
+    }
+
+    public void setDamage(DiceRoll damage) {
+        this.damage = damage;
     }
 
     public int getDefence() {
@@ -332,12 +332,12 @@ public class Mob extends Prop implements Tickable {
         return gender;
     }
 
-    public void setGender(Gender g) {
-        gender = g;
-    }
-
     public void setGender(String gender_) {
         gender = Gender.valueOf(gender_.toUpperCase());
+    }
+
+    public void setGender(Gender g) {
+        gender = g;
     }
 
     public Attribute getHp() {
@@ -452,13 +452,13 @@ public class Mob extends Prop implements Tickable {
         return state;
     }
 
+    public void setState(String state_) {
+        state = MobState.getMobState(state_);
+    }
+
     public void setState(MobState state_) {
         LOGGER.debug("You set state to " + state_.name());
         state = state_;
-    }
-
-    public void setState(String state_) {
-        state = MobState.getMobState(state_);
     }
 
     public Fight getTargetFight() {
@@ -725,14 +725,7 @@ public class Mob extends Prop implements Tickable {
             if (mob == this) {
                 continue;
             }
-            //LOGGER.debug(disease.getDesc()+" rolling "+disease.getInfectionRate()+" under 100 to infect "+mob.getName());
-            if (DiceRoll.ONE_D100.rollLessThanOrEqualTo(disease.getInfectionRate())) {
-                Disease infection = (Disease) disease.clone();
-                infection.setMob(mob);
-                infection.setDuration(disease.getInitialDuration());
-                mob.getMobAffects().add(disease.getId(), infection);
-                LOGGER.debug(getName() + " infects mob " + mob.getName() + " in room with " + disease.getDesc());
-            }
+            Disease.infect(mob, disease);
         }
 
     }

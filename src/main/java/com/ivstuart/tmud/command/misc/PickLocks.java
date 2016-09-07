@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 28-Sep-2003
  *
  * To change the template for this generated file go to
@@ -7,6 +12,7 @@
 package com.ivstuart.tmud.command.misc;
 
 import com.ivstuart.tmud.command.BaseCommand;
+import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.constants.DoorState;
 import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Door;
@@ -29,6 +35,11 @@ public class PickLocks extends BaseCommand {
 
         if (!mob.getLearned().hasLearned("pick locks")) {
             mob.out("You have no knowledge of pick locks");
+            return;
+        }
+
+        if (!mob.getInventory().hasLockpicks()) {
+            mob.out("You have no lock picks available to do lock picking");
             return;
         }
 
@@ -57,9 +68,22 @@ public class PickLocks extends BaseCommand {
             return;
         }
 
+        if (DiceRoll.ONE_D100.rollLessThanOrEqualTo(5)) {
+            mob.getInventory().getItems().remove("lockpicks");
+            mob.out("You broken your lock picks on this lock, oh deer");
+            return;
+        }
+
+        if (!DiceRoll.ONE_D100.rollLessThanOrEqualTo(door.getDifficulty())) {
+            mob.out("You failed pick the lock");
+            return;
+        }
+
         if (ability.isSuccessful()) {
             door.setState(DoorState.CLOSED);
             mob.out("You successfully pick the lock");
+        } else {
+            mob.out("You failed pick the lock");
         }
 
         if (ability.isImproved()) {
