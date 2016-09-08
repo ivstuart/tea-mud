@@ -49,6 +49,14 @@ look: worn leather bag
 type: container
 weight: 1
 
+class: state.Bag
+id: chest-001
+alias: wooden chest
+short: wooden chest
+look: worn wooden chest that may contain treasure
+type: container
+weight: 100000
+
 class: state.Item
 id: tinder-box-001
 alias: small tinder-box
@@ -63,6 +71,7 @@ short: flint and tinder
 look: flint and tinder
 type: lighter
 
+class: state.Potion
 id: potion-001
 alias: potion
 short: green potion
@@ -72,7 +81,9 @@ weight: 5
 cost: 10
 rent: 5
 affects:
+properties: fireball
 
+class: state.Item
 id: lockpicks-001
 alias: lockpicks
 short: lockpicks

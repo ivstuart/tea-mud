@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.constants;
 
 /**
@@ -32,4 +37,6 @@ public class SkillNames {
     public static final String ENHANCED_DAMAGE = "enhanced damage";
     public static final String ARMOUR_PENETRATION = "armour penetration";
     public static final String HIDE = "hide";
+    public static final String WANDS = "wands";
+    public static final String SCROLLS = "scrolls";
 }

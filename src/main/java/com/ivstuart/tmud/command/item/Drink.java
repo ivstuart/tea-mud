@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 23-Sep-2003
  *
  * To change the template for this generated file go to
@@ -43,6 +48,17 @@ public class Drink extends BaseCommand {
 		/* Guard condition */
 		if (item == null) {
 			mob_.out("You are not carrying a " + input_ + " to drink.");
+			return;
+		}
+
+		if (item instanceof Potion) {
+			Potion potion = (Potion) item;
+
+			mob_.out("You quaff the " + item.getLook() + " down");
+
+			potion.drink(mob_);
+
+			mob_.getInventory().remove(potion);
 			return;
 		}
 

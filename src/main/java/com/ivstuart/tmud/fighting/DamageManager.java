@@ -80,7 +80,9 @@ public class DamageManager {
             // Check saves first
             damage = checkForDodge(defender, damage);
 
-            damage = checkForParry(defender, damage);
+            if (spell == null) {
+                damage = checkForParry(defender, damage);
+            }
 
             // 10% save chance
             damage = checkForBlur(attacker, defender, damage);

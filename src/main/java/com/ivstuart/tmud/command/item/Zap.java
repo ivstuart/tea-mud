@@ -13,6 +13,7 @@ package com.ivstuart.tmud.command.item;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.ability.Cast;
+import com.ivstuart.tmud.constants.SkillNames;
 import com.ivstuart.tmud.state.*;
 
 /**
@@ -33,6 +34,13 @@ public class Zap extends BaseCommand {
             return;
         }
 
+        Ability ability = mob.getLearned().getAbility(SkillNames.WANDS);
+
+        if (ability.isNull()) {
+            mob.out("You have no skill with wands or rods");
+            return;
+        }
+
         Wand wand = (Wand) item;
 
         if (wand.getCharges() < 1) {
@@ -49,10 +57,7 @@ public class Zap extends BaseCommand {
             return;
         }
 
-        // TODO fix the follow for rods, wands and scrolls.
-        mob.out("TODO have cast spell without mana check cost etc.");
-
-        new Cast().execute(mob, spell.getName());
+        new Cast().execute(mob, spell, ability, input, false);
 
     }
 

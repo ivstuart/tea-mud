@@ -29,8 +29,7 @@ Run configurations main class:
 Use putty / zmud / tintin++ to telnet to port 5678 (default port) or can use main class:
 
  com.ivstuart.tmud.server.LaunchClient
- 
-However no ansi colour supported on simple Java LaunchClient.
+
 
 > look
 > config ansi

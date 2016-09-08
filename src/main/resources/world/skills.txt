@@ -32,6 +32,14 @@ level: 1
 id: climbing
 level: 1
 
+id: scrolls
+level: 1
+prof: MAGE
+
+id: wands
+level: 1
+prof: MAGE
+
 id: bash
 cost: 10
 level: 5

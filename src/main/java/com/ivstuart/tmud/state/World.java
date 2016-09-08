@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.state;
 
 import com.ivstuart.tmud.command.admin.AddAdmin;
@@ -296,6 +301,39 @@ public class World {
 		} else {
 			return World.getRoom("Z6-:2:0:-1");
 		}
+	}
+
+	public static Object remove(String input) {
+		Object object = null;
+		object = _mobs.remove(input);
+		if (object != null) {
+			return object;
+		}
+		object = _rooms.remove(input);
+		if (object != null) {
+			return object;
+		}
+		object = _items.remove(input);
+		if (object != null) {
+			return object;
+		}
+		object = _zones.remove(input);
+		if (object != null) {
+			return object;
+		}
+		object = _props.remove(input);
+		if (object != null) {
+			return object;
+		}
+		object = spells.remove(input);
+		if (object != null) {
+			return object;
+		}
+		object = skills.remove(input);
+		if (object != null) {
+			return object;
+		}
+		return null;
 	}
 
 	public void addToWorld(Object object) {

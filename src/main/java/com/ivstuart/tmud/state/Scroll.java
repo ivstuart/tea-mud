@@ -5,10 +5,8 @@
 
 package com.ivstuart.tmud.state;
 
-import com.ivstuart.tmud.fighting.action.BasicSpell;
-import com.ivstuart.tmud.fighting.action.FightAction;
-
-import static com.ivstuart.tmud.utils.StringUtil.getLastWord;
+import com.ivstuart.tmud.command.ability.Cast;
+import com.ivstuart.tmud.constants.SkillNames;
 
 /**
  * Created by Ivan on 13/08/2016.
@@ -31,38 +29,13 @@ public class Scroll extends Item {
             return;
         }
 
-        // TODO call Cast.execute(mob,spell,input,false) need to refactor Cast first.
+        Ability ability = mob.getLearned().getAbility(SkillNames.SCROLLS);
 
-        // Same as Cast without the mana cost
-        if (mob.getRoom().isPeaceful() && !spell.getSpellEffect().isPositiveEffect()) {
-            mob.out("You can not use offensive magic in this room");
+        if (ability.isNull()) {
+            mob.out("You have no skill with scrolls");
             return;
         }
 
-        String target = getLastWord(input_);
-
-        Mob targetMob = mob.getRoom().getMobs().get(target);
-
-        if (targetMob == null) {
-            if (spell.getSpellEffect().isPositiveEffect()) {
-                targetMob = mob;
-            } else {
-                targetMob = mob.getFight().getTarget();
-            }
-        }
-
-        if (targetMob == null) {
-            mob.out("No target for the spell it fizzles");
-            return;
-        }
-
-        mob.out("You start casting " + spell.getId());
-
-        FightAction spellFightAction = new BasicSpell(Ability.NULL_ABILITY, spell,
-                mob, targetMob);
-
-        mob.getFight().add(spellFightAction);
-
-
+        new Cast().execute(mob, spell, ability, input_, false);
     }
 }

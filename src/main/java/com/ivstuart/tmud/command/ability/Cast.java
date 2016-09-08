@@ -84,32 +84,13 @@ public class Cast extends BaseCommand {
             return;
         }
 
+        execute(mob_, spell, spellAbility, input_, true);
 
+    }
+
+    public void execute(Mob mob_, Spell spell, Ability spellAbility, String input_, boolean castingCost) {
         if (mob_.getRoom().isPeaceful() && !spell.getSpellEffect().isPositiveEffect()) {
             mob_.out("You can not use offensive magic in this room");
-            return;
-        }
-
-        String target = getLastWord(input_, concatWords.length(), null);
-
-        // check you have mana and a casting level which is required.
-        LOGGER.debug("Spell mana type [" + spell.getManaType() + "]");
-
-        MobMana mana = mob_.getMana();
-
-        if (mana == null) {
-            mob_.out("You have no magical power");
-            return;
-        }
-
-        if (!mana.hasLevelToCast(spell)) {
-            mob_.out("You do not have sufficient ability to cast "
-                    + spell.getId());
-            return;
-        }
-
-        if (!mana.hasEnoughManaToCast(spell)) {
-            mob_.out("You do not have sufficient mana to cast " + spell.getId());
             return;
         }
 
@@ -118,15 +99,43 @@ public class Cast extends BaseCommand {
             return;
         }
 
+        // String target = getLastWord(input_, concatWords.length(), null);
+
+        String target = getLastWord(input_);
+
+        // check you have mana and a casting level which is required.
+        LOGGER.debug("Spell mana type [" + spell.getManaType() + "]");
+
+        MobMana mana = null;
+        if (castingCost) {
+            mana = mob_.getMana();
+
+            if (mana == null) {
+                mob_.out("You have no magical power");
+                return;
+            }
+
+            if (!mana.hasLevelToCast(spell)) {
+                mob_.out("You do not have sufficient ability to cast "
+                        + spell.getId());
+                return;
+            }
+
+            if (!mana.hasEnoughManaToCast(spell)) {
+                mob_.out("You do not have sufficient mana to cast " + spell.getId());
+                return;
+            }
+        }
+
         // Alias is used to support target value of
         /* me, self, all, good, evil, etc.. */
 
         Mob targetMob = null;
 
         if (target != null) {
-            if (checkTargetManySpell(mob_, target, spellAbility, spell, mana)) return;
+            if (checkTargetManySpell(mob_, target, spellAbility, spell, mana, castingCost)) return;
 
-            if (checkTargetItemSpell(mob_, target, spellAbility, spell, mana)) return;
+            if (checkTargetItemSpell(mob_, target, spellAbility, spell, mana, castingCost)) return;
 
             targetMob = mob_.getRoom().getMob(target);
 
@@ -166,7 +175,9 @@ public class Cast extends BaseCommand {
 
         if (checkTargetSelf(mob_, spell, targetMob)) return;
 
-        mana.cast(spell);
+        if (castingCost) {
+            mana.cast(spell);
+        }
 
         mob_.out("You begin to chant and make unusual gestures");
 
@@ -195,7 +206,7 @@ public class Cast extends BaseCommand {
     // check room props
     // check room items
     // check world
-    private boolean checkTargetItemSpell(Mob mob_, String target, Ability spellAbility, Spell spell, MobMana mana) {
+    private boolean checkTargetItemSpell(Mob mob_, String target, Ability spellAbility, Spell spell, MobMana mana, boolean castingCost) {
         if (spell.getTarget() != null && spell.getTarget().indexOf("ITEM") > -1) {
             Item item = mob_.getRoom().getInventory().get(target);
 
@@ -220,7 +231,9 @@ public class Cast extends BaseCommand {
                 return true;
             }
 
-            mana.cast(spell);
+            if (castingCost) {
+                mana.cast(spell);
+            }
 
             mob_.out("You begin to chant and make very complex gestures");
 
@@ -236,7 +249,7 @@ public class Cast extends BaseCommand {
         return false;
     }
 
-    private boolean checkTargetManySpell(Mob mob_, String target, Ability spellAbility, Spell spell, MobMana mana) {
+    private boolean checkTargetManySpell(Mob mob_, String target, Ability spellAbility, Spell spell, MobMana mana, boolean castingCost) {
         if (spell.getTarget() != null && spell.getTarget().indexOf("MANY") > -1) {
             List<Mob> targets = mob_.getRoom().getMobs(target);
 
@@ -245,7 +258,10 @@ public class Cast extends BaseCommand {
                 mob_.out(target + " is not here to target!");
                 return true;
             }
-            mana.cast(spell);
+
+            if (castingCost) {
+                mana.cast(spell);
+            }
 
             mob_.out("You begin to chant and make unusually complex gestures");
 

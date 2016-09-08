@@ -329,6 +329,9 @@ public class Item extends Prop implements Equipable, Msgable {
 	}
 
 	public boolean isShield() {
+		if (_type == null) {
+			return false;
+		}
 		return (_type.indexOf("SHIELD") != -1);
 	}
 

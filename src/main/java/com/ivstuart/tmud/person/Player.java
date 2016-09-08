@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.person;
 
 import com.ivstuart.tmud.constants.Profession;
@@ -37,6 +42,7 @@ public class Player implements Serializable, Nameable {
 	private Inventory bank;
 	private Guilds guilds;
 	private Profession profession;
+	private Object created; // Admin only feature
 
 	public Player() {
 		playerData = new PlayerData();
@@ -44,6 +50,14 @@ public class Player implements Serializable, Nameable {
 		alias = new HashMap<>();
 		bank = new Inventory();
 		guilds = new Guilds();
+	}
+
+	public Object getCreated() {
+		return created;
+	}
+
+	public void setCreated(Object obj) {
+		this.created = obj;
 	}
 
 	public Profession getProfession() {
