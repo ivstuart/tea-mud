@@ -12,6 +12,7 @@ import com.ivstuart.tmud.command.misc.ForcedQuit;
 import com.ivstuart.tmud.common.Tickable;
 import com.ivstuart.tmud.exceptions.MudException;
 import com.ivstuart.tmud.person.Player;
+import com.ivstuart.tmud.world.Weather;
 import com.ivstuart.tmud.world.WeatherSky;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -405,7 +406,9 @@ public class World {
 
 		LOGGER.info("WorldTime running [ "
 				+ (!scheduledFuture.isCancelled()) + " ]");
-	}
+
+        scheduledExecutorService.scheduleAtFixedRate(new Weather(), 0, 30, TimeUnit.MINUTES);
+    }
 
 	// Yes I know I am not using a map here. Loading in order
 	public Race getRace(int id) {

@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.constants;
 
 
@@ -22,6 +27,10 @@ public enum SectorType {
 
     public int getMoveModify() {
         return moveModify;
+    }
+
+    public boolean isInside() {
+        return this == INSIDE;
     }
 }
 

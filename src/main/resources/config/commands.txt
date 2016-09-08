@@ -1,11 +1,3 @@
-# Building Commands - Very dangerous to Mud stability recommend build from files
-command.admin.AddWorld,SLEEP
-command.admin.Inspect,SLEEP
-command.admin.Invoke,SLEEP
-command.admin.New,SLEEP
-command.admin.RemoveWorld,SLEEP
-command.admin.Load,SLEEP
-
 # commandlist for players className,minimum MobState to use command
 command.info.Look,REST
 command.move.South,STAND
@@ -57,6 +49,7 @@ command.info.CommandList,REST
 command.info.Consider,REST
 command.info.Users,REST
 command.info.Prereq,REST
+command.info.WeatherInfo,REST
 command.communication.Auction,REST
 command.communication.AuctionItem,REST
 command.communication.Bid,REST
@@ -191,6 +184,14 @@ command.info.AttributeInfo,REST
 
 # Needs to be lower than Bash
 command.move.BashDoor,REST
+
+# Building Commands - Very dangerous to Mud stability recommend build from files
+command.admin.AddWorld,SLEEP
+command.admin.Inspect,SLEEP
+command.admin.Invoke,SLEEP
+command.admin.New,SLEEP
+command.admin.RemoveWorld,SLEEP
+command.admin.Load,SLEEP
 
 
 

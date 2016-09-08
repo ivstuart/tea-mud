@@ -19,11 +19,13 @@ import com.ivstuart.tmud.person.carried.Equipment;
 import com.ivstuart.tmud.person.carried.Inventory;
 import com.ivstuart.tmud.person.movement.MoveManager;
 import com.ivstuart.tmud.person.statistics.Affect;
-import com.ivstuart.tmud.person.statistics.diseases.Disease;
 import com.ivstuart.tmud.person.statistics.MobAffects;
 import com.ivstuart.tmud.person.statistics.MobMana;
+import com.ivstuart.tmud.person.statistics.diseases.Disease;
 import com.ivstuart.tmud.person.statistics.diseases.DiseaseFactory;
 import com.ivstuart.tmud.state.util.EntityProvider;
+import com.ivstuart.tmud.world.MoonPhases;
+import com.ivstuart.tmud.world.WeatherSky;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -292,12 +294,12 @@ public class Mob extends Prop implements Tickable {
         return damage;
     }
 
-    public void setDamage(String damage_) {
-        this.damage = new DiceRoll(damage_);
-    }
-
     public void setDamage(DiceRoll damage) {
         this.damage = damage;
+    }
+
+    public void setDamage(String damage_) {
+        this.damage = new DiceRoll(damage_);
     }
 
     public int getDefence() {
@@ -332,12 +334,12 @@ public class Mob extends Prop implements Tickable {
         return gender;
     }
 
-    public void setGender(String gender_) {
-        gender = Gender.valueOf(gender_.toUpperCase());
-    }
-
     public void setGender(Gender g) {
         gender = g;
+    }
+
+    public void setGender(String gender_) {
+        gender = Gender.valueOf(gender_.toUpperCase());
     }
 
     public Attribute getHp() {
@@ -452,13 +454,13 @@ public class Mob extends Prop implements Tickable {
         return state;
     }
 
-    public void setState(String state_) {
-        state = MobState.getMobState(state_);
-    }
-
     public void setState(MobState state_) {
         LOGGER.debug("You set state to " + state_.name());
         state = state_;
+    }
+
+    public void setState(String state_) {
+        state = MobState.getMobState(state_);
     }
 
     public Fight getTargetFight() {
@@ -648,7 +650,23 @@ public class Mob extends Prop implements Tickable {
 
         checkForMobBehaviour();
 
+        checkForHitByLightning();
+
         return false;
+    }
+
+    private void checkForHitByLightning() {
+
+        if (World.getWeather() == WeatherSky.LIGHTNING) {
+            if (!room.getSectorType().isInside() && DiceRoll.ONE_D100.rollLessThanOrEqualTo(1) &&
+                    DiceRoll.ONE_D100.rollLessThanOrEqualTo(1)) {
+                out("You are hit by lightning!");
+                health.increasePercentage(-1 * DiceRoll.roll(2, 100, 0));
+                DamageManager.checkForDefenderDeath(this, this);
+            }
+        }
+
+
     }
 
     private void checkForMobAffects() {
@@ -676,6 +694,9 @@ public class Mob extends Prop implements Tickable {
         if (room.isRegen()) {
             RATE_OF_REGEN_3_PERCENT = 9;
         } else {
+            if (!room.getSectorType().isInside() && MoonPhases.isNightTime()) {
+                RATE_OF_REGEN_3_PERCENT = 3 * MoonPhases.getPhase().getManaMod();
+            }
             RATE_OF_REGEN_3_PERCENT = 3;
         }
 

@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 23-Sep-2003
  *
  * To change the template for this generated file go to
@@ -7,8 +12,8 @@
 package com.ivstuart.tmud.command.info;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.World;
 
 /**
  * @author stuarti
@@ -21,8 +26,12 @@ public class WeatherInfo extends BaseCommand {
 	@Override
 	public void execute(Mob mob, String input) {
 
+//		if (mob.getRoom().getSectorType().isInside()) {
+//			mob.out("You are indoors and the air is still");
+//			return;
+//		}
 
-        mob.out("Weather details not done yet!");
-	}
+        mob.out("The weather is " + World.getWeather().toString().toLowerCase());
+    }
 
 }

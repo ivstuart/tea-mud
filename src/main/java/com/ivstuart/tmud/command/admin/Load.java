@@ -19,7 +19,12 @@ public class Load extends AdminCommand {
     @Override
     public void execute(Mob mob, String input) {
 
-        StateReader.getInstance().load(input);
+        LOGGER.info("Loader executed for Mob " + mob.getName() + " input " + input);
+        try {
+            StateReader.getInstance().load(input);
+        } catch (Exception e) {
+            LOGGER.error("Problem loading file " + input, e);
+        }
 
     }
 }
