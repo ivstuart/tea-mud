@@ -4,6 +4,7 @@ command.admin.Inspect,SLEEP
 command.admin.Invoke,SLEEP
 command.admin.New,SLEEP
 command.admin.RemoveWorld,SLEEP
+command.admin.Load,SLEEP
 
 # commandlist for players className,minimum MobState to use command
 command.info.Look,REST

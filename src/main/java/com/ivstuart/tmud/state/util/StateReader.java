@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.state.util;
 
 import com.ivstuart.tmud.server.LaunchMud;
@@ -275,6 +280,7 @@ public class StateReader {
 			file.read();
 		} catch (IOException e) {
 			LOGGER.error("Problem loading state file", e);
+			return;
 		}
 
 		load(file);

@@ -12,6 +12,7 @@
 package com.ivstuart.tmud.command.item;
 
 import com.ivstuart.tmud.command.BaseCommand;
+import com.ivstuart.tmud.constants.DoorState;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.person.statistics.diseases.Disease;
 import com.ivstuart.tmud.state.*;
@@ -59,7 +60,6 @@ public class Get extends BaseCommand {
      */
     @Override
     public void execute(Mob mob, String input) {
-
 
 
         if (input.equalsIgnoreCase("all")) {
@@ -137,15 +137,44 @@ public class Get extends BaseCommand {
             String target = getLastWord(input);
             anItem = mob.getInventory().get(target);
 
+            if (anItem == null) {
+                anItem = mob.getRoom().getInventory().get(target);
+            }
+
             if (anItem != null && anItem.isContainer()) {
                 Bag bag = (Bag) anItem;
+
+                if (bag instanceof Chest) {
+                    if (((Chest) bag).getState() != DoorState.OPEN) {
+                        mob.out("That item is not open");
+                        return;
+                    }
+                }
+
                 String itemString = getFirstWord(input);
+
+                if (itemString.equalsIgnoreCase("all")) {
+                    mob.getInventory().add(bag.getInventory().getPurse());
+                    bag.getInventory().getPurse().clear();
+                    Iterator<Item> itemIter = bag.getInventory().getItems().iterator();
+                    for (; itemIter.hasNext(); ) {
+                        Item item = itemIter.next();
+                        mob.getInventory().add(item);
+                        mob.out("You get a " + item.getBrief() + " from " + bag.getName());
+                        checkItemForDisease(mob, item);
+                        itemIter.remove();
+                    }
+                    return;
+                }
+
+
                 Item bagItem = bag.getInventory().get(itemString);
 
                 if (bagItem != null) {
                     mob.getInventory().add(bagItem);
                     bag.getInventory().remove(bagItem);
                     mob.out("You get a " + bagItem.getBrief() + " from " + bag.getName());
+                    checkItemForDisease(mob, bagItem);
                     return;
                 }
 

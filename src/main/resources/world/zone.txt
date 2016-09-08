@@ -8,7 +8,7 @@ look: Northern Bal Main City
 #reset: 0
 itemInRoom: chest-001 R-001-001
 #itemInRoom: sword-001 R-003-001
-#itemInRoom: key-001 R-001-001
+itemInRoom: key-001 R-001-001
 #itemInRoom: lockpicks-001 R-001-001
 #itemInRoom: immortal-80 R-001-001
 #itemInRoom: fb-scroll-001 R-001-001

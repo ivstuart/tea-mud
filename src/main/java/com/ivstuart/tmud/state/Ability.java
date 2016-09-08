@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.state;
 
 import com.ivstuart.tmud.common.DiceRoll;
@@ -101,5 +106,14 @@ public class Ability implements Serializable {
 
 	public boolean isNull() {
 		return this == NULL_ABILITY;
+	}
+
+	public boolean isSuccessful(Mob mob) {
+		if (this.isImproved()) {
+			mob.out("[[[[ Your ability to " + this.getId() + " has improved ]]]]");
+			this.improve();
+		}
+		return this.isSuccessful();
+
 	}
 }

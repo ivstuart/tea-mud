@@ -81,7 +81,7 @@ public class Inventory implements Serializable {
         return items.get(name_);
     }
 
-    public String getInfo() {
+    public String look() {
         StringBuilder sb = new StringBuilder();
 
         sb.append(purse.toString());

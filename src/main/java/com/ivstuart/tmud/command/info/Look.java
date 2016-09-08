@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.command.info;
 
 import com.ivstuart.tmud.command.BaseCommand;
@@ -91,6 +96,19 @@ public class Look extends BaseCommand {
 
         if (input_.length() > 0) {
             Item item = mob_.getInventory().get(input_);
+
+            if (item != null) {
+
+                mob_.out(item.look());
+
+                if (mob_.getPlayer().isAdmin()) {
+                    mob_.out("item = " + item);
+                }
+            }
+        }
+
+        if (input_.length() > 0) {
+            Item item = mob_.getRoom().getInventory().get(input_);
 
             if (item != null) {
 

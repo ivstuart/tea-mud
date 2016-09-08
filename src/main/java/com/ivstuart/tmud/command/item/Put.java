@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 23-Sep-2003
  *
  * To change the template for this generated file go to
@@ -7,7 +12,9 @@
 package com.ivstuart.tmud.command.item;
 
 import com.ivstuart.tmud.command.BaseCommand;
+import com.ivstuart.tmud.constants.DoorState;
 import com.ivstuart.tmud.state.Bag;
+import com.ivstuart.tmud.state.Chest;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 import static com.ivstuart.tmud.utils.StringUtil.*;
@@ -61,6 +68,14 @@ public class Put extends BaseCommand {
 		}
 
 		Bag aBag = (Bag)bag;
+
+        if (bag instanceof Chest) {
+            if (((Chest) bag).getState() != DoorState.OPEN) {
+                mob.out("That item is not open");
+                return;
+            }
+        }
+
 		aBag.getInventory().add(anItem);
 		mob.getInventory().remove(anItem);
 

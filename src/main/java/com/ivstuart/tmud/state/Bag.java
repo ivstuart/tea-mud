@@ -29,6 +29,12 @@ public class Bag extends Item {
     }
 
     @Override
+    public String look() {
+        return this.getBrief() + "\n" +
+                getInventory().look();
+    }
+
+    @Override
     public String toString() {
         return "Bag{" +
                 "inventory=" + inventory +

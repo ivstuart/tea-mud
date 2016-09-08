@@ -14,10 +14,7 @@ package com.ivstuart.tmud.command.misc;
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.constants.DoorState;
-import com.ivstuart.tmud.state.Ability;
-import com.ivstuart.tmud.state.Door;
-import com.ivstuart.tmud.state.Exit;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.*;
 
 import static com.ivstuart.tmud.constants.SkillNames.PICK_LOCKS;
 
@@ -43,6 +40,20 @@ public class PickLocks extends BaseCommand {
             return;
         }
 
+        Ability ability = mob.getLearned().getAbility(PICK_LOCKS);
+
+        if (ability.isNull()) {
+            mob.out("You have no such ability to pick locks");
+            return;
+        }
+
+        Item item = mob.getRoom().getInventory().get(input);
+
+        if (item != null) {
+            pickLockItem(mob, item, ability);
+            return;
+        }
+
         Exit exit = mob.getRoom().getExit(input);
 
         if (exit == null) {
@@ -61,12 +72,6 @@ public class PickLocks extends BaseCommand {
             mob.out("The door is not pick able check if it is locked");
             return;
         }
-        Ability ability = mob.getLearned().getAbility(PICK_LOCKS);
-
-        if (ability.isNull()) {
-            mob.out("You have no such ability to pick locks");
-            return;
-        }
 
         if (DiceRoll.ONE_D100.rollLessThanOrEqualTo(5)) {
             mob.getInventory().getItems().remove("lockpicks");
@@ -79,18 +84,57 @@ public class PickLocks extends BaseCommand {
             return;
         }
 
-        if (ability.isSuccessful()) {
+        if (ability.isSuccessful(mob)) {
             door.setState(DoorState.CLOSED);
             mob.out("You successfully pick the lock");
         } else {
             mob.out("You failed pick the lock");
         }
 
-        if (ability.isImproved()) {
-            mob.out("[[[[ Your ability to " + ability.getId()
-                    + " has improved ]]]]");
-            ability.improve();
+    }
+
+    private void pickLockItem(Mob mob, Item item, Ability ability) {
+
+        if (!(item instanceof Chest)) {
+            mob.out("That item can not be picked");
+            return;
         }
+
+        Chest chest = (Chest) item;
+
+        if (chest.getState() == DoorState.OPEN) {
+            mob.out("That item is already open");
+            return;
+        }
+
+        if (chest.getState() == DoorState.CLOSED) {
+            mob.out("That item is already unlocked");
+            return;
+        }
+
+        if (!chest.isPickable()) {
+            mob.out("You can not pick this lock");
+            return;
+        }
+
+        if (DiceRoll.ONE_D100.rollLessThanOrEqualTo(5)) {
+            mob.getInventory().getItems().remove("lockpicks");
+            mob.out("You broken your lock picks on this lock, oh deer");
+            return;
+        }
+
+        if (!DiceRoll.ONE_D100.rollLessThanOrEqualTo(chest.getDifficulty())) {
+            mob.out("You failed pick the lock");
+            return;
+        }
+
+        if (ability.isSuccessful(mob)) {
+            chest.setState(DoorState.CLOSED);
+            mob.out("You pick the lock of a " + chest.getBrief());
+        } else {
+            mob.out("You failed pick the lock");
+        }
+
     }
 
 

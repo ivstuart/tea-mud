@@ -49,13 +49,14 @@ look: worn leather bag
 type: container
 weight: 1
 
-class: state.Bag
+class: state.Chest
 id: chest-001
 alias: wooden chest
 short: wooden chest
 look: worn wooden chest that may contain treasure
 type: container
 weight: 100000
+keyId: door1
 
 class: state.Item
 id: tinder-box-001
