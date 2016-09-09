@@ -97,9 +97,13 @@ public class Mob extends Prop implements Tickable {
     private int IDLE_TIMEOUT = 500; // Seconds
     private Map<DamageType, Integer> saves;
     private Mob charmed;
+    private boolean ridable;
+    private Mob mount;
+
     public Mob() {
         fight = new Fight(this);
     }
+
     public Mob(Mob baseMob) {
         super(baseMob);
         fight = new Fight(this);
@@ -148,6 +152,8 @@ public class Mob extends Prop implements Tickable {
         veryAggressive = baseMob.veryAggressive;
         isMemory = baseMob.isMemory;
         isNoCharm = baseMob.isNoCharm;
+        ridable = baseMob.ridable;
+        raceId = baseMob.raceId;
 
         // Required for diseases.
         if (baseMob.mobAffects != null) {
@@ -181,6 +187,22 @@ public class Mob extends Prop implements Tickable {
             WorldTime.addTickable(this);
         }
 
+    }
+
+    public Mob getMount() {
+        return mount;
+    }
+
+    public void setMount(Mob mount) {
+        this.mount = mount;
+    }
+
+    public boolean isRidable() {
+        return ridable;
+    }
+
+    public void setRidable(boolean ridable) {
+        this.ridable = ridable;
     }
 
     public boolean isNoCharm() {
@@ -294,12 +316,12 @@ public class Mob extends Prop implements Tickable {
         return damage;
     }
 
-    public void setDamage(DiceRoll damage) {
-        this.damage = damage;
-    }
-
     public void setDamage(String damage_) {
         this.damage = new DiceRoll(damage_);
+    }
+
+    public void setDamage(DiceRoll damage) {
+        this.damage = damage;
     }
 
     public int getDefence() {
@@ -334,12 +356,12 @@ public class Mob extends Prop implements Tickable {
         return gender;
     }
 
-    public void setGender(Gender g) {
-        gender = g;
-    }
-
     public void setGender(String gender_) {
         gender = Gender.valueOf(gender_.toUpperCase());
+    }
+
+    public void setGender(Gender g) {
+        gender = g;
     }
 
     public Attribute getHp() {
@@ -454,13 +476,13 @@ public class Mob extends Prop implements Tickable {
         return state;
     }
 
+    public void setState(String state_) {
+        state = MobState.getMobState(state_);
+    }
+
     public void setState(MobState state_) {
         LOGGER.debug("You set state to " + state_.name());
         state = state_;
-    }
-
-    public void setState(String state_) {
-        state = MobState.getMobState(state_);
     }
 
     public Fight getTargetFight() {
@@ -522,7 +544,7 @@ public class Mob extends Prop implements Tickable {
     }
 
     public boolean isDead() {
-        return getHp().getValue() < 0;
+        return getHp().getValue() <= 0;
     }
 
     public boolean isGuard() {
@@ -635,6 +657,10 @@ public class Mob extends Prop implements Tickable {
 
     @Override
     public boolean tick() {
+
+        if (isDead() && !isPlayer()) {
+            return true;
+        }
 
         tickRegenerate();
 
@@ -1133,6 +1159,7 @@ public class Mob extends Prop implements Tickable {
                 ", isPeekAggro=" + isPeekAggro +
                 ", IDLE_TIMEOUT=" + IDLE_TIMEOUT +
                 ", saves=" + saves +
+                ", ridable=" + ridable +
                 '}';
     }
 
@@ -1143,4 +1170,9 @@ public class Mob extends Prop implements Tickable {
     public void setCharmed(Mob charmed) {
         this.charmed = charmed;
     }
+
+    public boolean isRiding() {
+        return mount != null;
+    }
+
 }

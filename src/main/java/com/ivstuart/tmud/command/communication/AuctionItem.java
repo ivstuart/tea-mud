@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 23-Sep-2003
  *
  * To change the template for this generated file go to
@@ -131,7 +136,8 @@ public class AuctionItem extends AdminCommand implements Runnable {
 
     }
 
-    private void finishAuction() {
+    public void finishAuction() {
+        countDown = -1;
         scheduledExecutorService.shutdown();
         World.removeAuction(seller);
 

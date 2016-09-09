@@ -13,6 +13,8 @@ command.move.Close,STAND
 command.move.Lock,STAND
 command.move.Unlock,STAND
 command.move.Run,STAND
+command.move.Mount,STAND
+command.move.Dismount,STAND
 command.config.Config,REST
 command.config.Channel,REST
 command.config.FightConfig,REST

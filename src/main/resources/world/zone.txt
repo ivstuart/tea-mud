@@ -20,6 +20,7 @@ itemInRoom: key-001 R-001-001
 #propInRoom: dragon-prop-001 R-P2
 itemInRoom: climbing-boots-001 R-003-001
 #mobInRoom: snake-001 R-003-001
+mobInRoom: horse-001 R-001-001
 #mob: snakehunter-001 R-003-001
 #give: sword-001 
 #room: sword R-003-002

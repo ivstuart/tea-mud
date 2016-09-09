@@ -43,7 +43,7 @@ public class EnterNoLook extends BaseCommand {
         }
 
         if (mob.getMobStatus().isHidden()) {
-            mob.out("You can not move while hidding!");
+            mob.out("You can not move while hiding!");
             return;
         }
 
@@ -98,15 +98,11 @@ public class EnterNoLook extends BaseCommand {
                 return;
             }
 
-            if (!DiceRoll.ONE_D100.rollLessThanOrEqualTo(climbing.getSkill())) {
+            if (!climbing.isSuccessful(mob)) {
                 mob.out("You fail to climb that exit");
                 return;
             }
 
-            if (climbing.isImproved()) {
-                mob.out(">>>>> [You have become better at " + climbing.getId() + "!] <<<<<");
-                climbing.improve();
-            }
 
         }
 
@@ -143,47 +139,53 @@ public class EnterNoLook extends BaseCommand {
         int sectorMovement = destination.getSectorType().getMoveModify();
         String movement = "walk";
 
-        if (mob.getMv() != null) {
+        Attribute moves = mob.getMv();
+
+        if (mob.isRiding()) {
+            moves = mob.getMount().getMv();
+        }
+
+        if (moves != null) {
             // walk fly swim teleport run sneak etc.....
 
             int movemod = mob.getBurden().getMovemod();
 
             if (room.isWater() || exit.isSwim() && !mob.isFlying()) {
-                if (!mob.getMv().deduct(10 * movemod)) {
+                if (!moves.deduct(10 * movemod)) {
                     mob.out("You can not swim you are out of movement and too tired!");
                     return;
                 }
                 movement = "swim";
             }
             if (mob.isRunning()) {
-                if (!mob.getMv().deduct(10 * movemod)) {
+                if (!moves.deduct(10 * movemod)) {
                     mob.out("You can not run you are out of movement and too tired!");
                     return;
                 }
                 movement = "run";
             } else if (mob.isSneaking()) {
-                if (!mob.getMv().deduct(4 * movemod)) {
+                if (!moves.deduct(4 * movemod)) {
                     mob.out("You can not sneak you are out of movement and too tired!");
                     return;
                 }
                 movement = "sneak";
 
             } else if (mob.isFlying()) {
-                if (!mob.getMv().deduct(1 * movemod)) {
+                if (!moves.deduct(1 * movemod)) {
                     mob.out("You can not fly you are out of movement and too tired!");
                     return;
                 }
                 movement = "fly";
 
             } else {
-                if (!mob.getMv().deduct(sectorMovement * movemod)) {
+                if (!moves.deduct(sectorMovement * movemod)) {
                     mob.out("You can not walk you are out of movement and too tired!");
                     return;
                 }
             }
         }
 
-        // Clear any hidding flags when move to new location
+        // Clear any hiding flags when move to new location
         if (mob.isHidden()) {
             mob.setHidden(false);
         }
@@ -227,6 +229,10 @@ public class EnterNoLook extends BaseCommand {
         for (Mob follower : room.getFollowers(mob)) {
             follower.out("You follow " + mob.getName() + " out of the room");
             CommandProvider.getCommand(EnterNoLook.class).execute(follower, exit.getId());
+        }
+
+        if (mob.isRiding()) {
+            MoveManager.move(mob.getMount(), room, destination, exit, movement);
         }
 
         checkForVeryAggressiveMobs(mob, destination);

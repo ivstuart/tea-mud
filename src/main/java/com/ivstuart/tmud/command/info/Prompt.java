@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 12-Oct-2003
  *
  * To change the template for this generated file go to
@@ -74,6 +79,10 @@ public class Prompt extends BaseCommand {
 
 		sb.append(GREEN + hp.getPrompt() + "Hp ");
 		sb.append(BLUE + mv.getPrompt() + "Mv ");
+
+		if (mob.isRiding()) {
+			sb.append(BLUE + mob.getMount().getMv().getPrompt() + "Mt ");
+		}
 
 		sb.append(" $H<$I");
 	

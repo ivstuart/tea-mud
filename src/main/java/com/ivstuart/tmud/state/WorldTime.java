@@ -50,6 +50,9 @@ public class WorldTime implements Runnable {
     }
 
     public static void addTickable(Tickable item_) {
+        if (tickables.contains(item_)) {
+            return;
+        }
         tickables.add(item_);
     }
 

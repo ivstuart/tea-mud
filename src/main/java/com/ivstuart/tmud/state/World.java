@@ -281,6 +281,12 @@ public class World {
 		return auction.get(sellerName);
 	}
 
+	public static void shutdownAuctions() {
+		for (AuctionItem auctionItem : auction.values()) {
+			auctionItem.finishAuction();
+		}
+	}
+
 	public static AuctionItem removeAuction(Mob seller) {
 		return auction.remove(seller.getName());
 	}

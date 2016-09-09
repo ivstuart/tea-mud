@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 12-Nov-2003
  *
  * To change the template for this generated file go to
@@ -37,6 +42,11 @@ public class Sleep extends BaseCommand {
 
 		if (mob_.getRoom().isWater()) {
 			mob_.out("You can not sleep here you must continue to swim");
+			return;
+		}
+
+		if (mob_.isRiding()) {
+			mob_.out("You need to dismount in order to go to sleep");
 			return;
 		}
 

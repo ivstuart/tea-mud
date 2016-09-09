@@ -2,6 +2,7 @@
 include: items.txt
 include: prop.txt
 include: mobs.txt
+include: mounts.txt
 include: rooms.txt
 include: zone.txt
 

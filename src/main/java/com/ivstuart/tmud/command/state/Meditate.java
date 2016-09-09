@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 12-Nov-2003
  *
  * To change the template for this generated file go to
@@ -20,6 +25,11 @@ public class Meditate extends BaseCommand {
 			mob_.out("You are already meditating!");
 			return;
 		}
+
+        if (mob_.isRiding()) {
+            mob_.out("You need to dismount in order to go to meditate");
+            return;
+        }
 
 		if (mob_.getFight().isEngaged()) {
 			mob_.out("You can not meditate you are fighting");

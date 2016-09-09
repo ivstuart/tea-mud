@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 23-Sep-2003
  *
  * To change the template for this generated file go to
@@ -37,7 +42,9 @@ public class Wear extends BaseCommand {
 				return;
 			}
 
-			for (Item item = itemIter.next();itemIter.hasNext();item = itemIter.next()) {
+			for (; itemIter.hasNext(); ) {
+				Item item = itemIter.next();
+				// wearItem(mob,item);
 				if (item.isAntiProfession(mob.getPlayer().getProfession())) {
 					mob.out("You can not wear that item its not for your profession");
 					continue;
@@ -48,12 +55,11 @@ public class Wear extends BaseCommand {
 					mob.out("You wear an " + item.getName());
 				} else {
 					mob.out("You do not have any space available to wear an " + item.getName());
-					// mob.getInventory().add(item);
+
 				}
 			}
 			return;
 		}
-
 
 		Item item = mob.getInventory().get(input);
 
@@ -74,6 +80,16 @@ public class Wear extends BaseCommand {
 	private void wearItem(Mob mob, Item item) {
 		if (!(item instanceof Equipable)) {
 			mob.out("That item is not equipable!");
+			return;
+		}
+
+		if (item.isAntiProfession(mob.getPlayer().getProfession())) {
+			mob.out("You can not wear that item its not for your profession");
+			return;
+		}
+
+		if (item.getDamagedPercentage() > 99) {
+			mob.out("That item is too damaged to use, repair it");
 			return;
 		}
 

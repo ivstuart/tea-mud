@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.state;
 
 import com.ivstuart.tmud.state.util.EntityProvider;
@@ -97,6 +102,11 @@ public class Zone extends BasicThing {
 		//LOGGER.debug("Elements :"+elements[0]+" "+elements[1]);
 
 		Mob mob = EntityProvider.createMob(elements[0], elements[1]);
+
+		if (mob == null) {
+			LOGGER.error("Room id:" + elements[1] + " mob null for:" + elements[0]);
+			return;
+		}
 
 		Room room = World.getRoom(elements[1]);
 

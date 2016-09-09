@@ -1,9 +1,13 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.common;
 
 import com.ivstuart.tmud.state.Mob;
 
 import java.util.List;
-
 public interface Equipable extends Comparable {
 
     void equip(Mob mob);
@@ -17,4 +21,8 @@ public interface Equipable extends Comparable {
     void unequip(Mob mob);
 
     int getAPB();
+
+    void increaseDamage();
+
+    int getDamagedPercentage();
 }

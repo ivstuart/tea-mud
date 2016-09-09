@@ -1,10 +1,14 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.command.admin;
 
 import com.ivstuart.tmud.command.CommandProvider;
 import com.ivstuart.tmud.command.misc.Quit;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.World;
-import com.ivstuart.tmud.state.WorldTime;
 
 public class Shutdown extends AdminCommand {
 
@@ -14,6 +18,7 @@ public class Shutdown extends AdminCommand {
         World.out("Mudserver shutdown started you will be kicked off from playing",true);
         World.out("Mudserver shutdown started you will be kicked off from playing",false);
 
+        World.shutdownAuctions();
         World.shutdown();
 
         // Quit all players so that they saved.

@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 12-Nov-2003
  *
  * To change the template for this generated file go to
@@ -23,6 +28,11 @@ public class Rest extends BaseCommand {
 			mob_.out("You are already resting!");
 			return;
 		}
+
+        if (mob_.isRiding()) {
+            mob_.out("You need to dismount in order to go to rest");
+            return;
+        }
 
 		if (mob_.getFight().isEngaged()) {
 			mob_.out("You can not rest you are fighting");

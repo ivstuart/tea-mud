@@ -1,15 +1,12 @@
 5th Sep 2016:
 
-2. mounts
 3. On-line boards (journals) for public and private messaging
 4. postal system
 5. player houses
 7. MUD statistics
 8. Clan support
 9. Load testing (up to 100 concurrent players)
-10. Item that take damage and require repair
 11. Quests
-12. Weather effects and Lunar impact on spells.
 14. Clean up messages to use look() and brief()
 
 8th Sep 2016:
@@ -17,4 +14,10 @@
 1. contagious diseases - DONE
 6. online building - DONE
 13. Wands, Rods, Scrolls and Potions. - DONE
-15. Chest item
+15. Chest item - DONE
+12. Weather effects and Lunar impact on spells. - DONE
+
+9th Sep 2016:
+
+10. Item that take damage and require repair - DONE
+2. mounts - Basic - DONE

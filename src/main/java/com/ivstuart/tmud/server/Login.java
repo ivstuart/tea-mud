@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 04-Oct-2003
  *
  * To change the template for this generated file go to
@@ -211,13 +216,15 @@ public class Login implements Readable {
         player.getMob().getInventory().add(item);
 
         // gems
-        item = Login.getItemClone("fire-80");
-        player.getMob().getInventory().add(item);
-        item = Login.getItemClone("water-80");
-        player.getMob().getInventory().add(item);
-        item = Login.getItemClone("air-80");
-        player.getMob().getInventory().add(item);
-        item = Login.getItemClone("earth-80");
+//        item = Login.getItemClone("fire-80");
+//        player.getMob().getInventory().add(item);
+//        item = Login.getItemClone("water-80");
+//        player.getMob().getInventory().add(item);
+//        item = Login.getItemClone("air-80");
+//        player.getMob().getInventory().add(item);
+//        item = Login.getItemClone("earth-80");
+
+        item = Login.getItemClone("immortal-80");
         player.getMob().getInventory().add(item);
 
         player.getMob().getInventory().add(new Money(Money.COPPER, 50));
@@ -290,6 +297,10 @@ public class Login implements Readable {
         character.setRoom(newRoom);
 
         newRoom.add(character);
+
+        if (character.isRiding()) {
+            newRoom.add(character.getMount());
+        }
 
         player.getData().setLoginTime(System.currentTimeMillis());
 

@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 12-Nov-2003
  *
  * To change the template for this generated file go to
@@ -21,6 +26,11 @@ public class Sit extends BaseCommand {
 
         if (mob_.getState() == SIT) {
             mob_.out("You are already sitting!");
+            return;
+        }
+
+        if (mob_.isRiding()) {
+            mob_.out("You need to dismount in order to go to sit");
             return;
         }
 

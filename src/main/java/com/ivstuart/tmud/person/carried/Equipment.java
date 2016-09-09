@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 09-Sep-2003
  *
  * To change the template for this generated file go to
@@ -320,5 +325,20 @@ public class Equipment implements Serializable {
 			}
 		}
 		return total;
+	}
+
+	public Equipable getRandom() {
+		int index = (int) Math.random() * EquipLocation.values().length;
+		for (Equipable eq : _equipment) {
+			Item item = (Item) eq;
+			if (item.getWorn() == index) {
+				return eq;
+			}
+		}
+		return null;
+	}
+
+	public boolean remove(Equipable eq) {
+		return _equipment.remove(eq);
 	}
 }

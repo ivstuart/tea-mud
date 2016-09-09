@@ -39,4 +39,5 @@ public class SkillNames {
     public static final String HIDE = "hide";
     public static final String WANDS = "wands";
     public static final String SCROLLS = "scrolls";
+    public static final String RIDING = "riding";
 }

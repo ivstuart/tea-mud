@@ -220,6 +220,16 @@ public class DamageManager {
             return defender.getArmour();
         }
 
+        // Assign random damage
+        Equipable eq = defender.getEquipment().getRandom();
+        if (eq != null) {
+            eq.increaseDamage();
+            if (eq.getDamagedPercentage() > 99) {
+                defender.getEquipment().remove(eq);
+                defender.getInventory().add((Item) eq);
+            }
+        }
+
         Armour armour = defender.getEquipment().getTotalArmour();
         try {
             return armour.getRandomSlot();
@@ -252,7 +262,7 @@ public class DamageManager {
     public static void checkForDefenderDeath(Mob attacker, Mob defender) {
         // check for defender death!
         synchronized (defender) {
-            if (defender.getHp().getValue() <= 0) {
+            if (defender.isDead()) {
                 defender.out("You have been killed!\n\n");
 
                 attacker.getFight().clear();

@@ -1,0 +1,80 @@
+class: state.Mob
+
+id: horse-001
+name: horse
+alias: horse
+short: horse
+long: A large hoofed mammal having a short coat, a long mane, and a long tail,
+long: domesticated since ancient times and used for riding and for drawing or carrying loads.
+align: 0
+level: 10
+offensive: 100
+defensive: 50
+armour: 15
+hp: 7d7+70
+damage: 2d6
+copper: 0
+xp: 100
+state: STANDING
+attackType: bite kick
+ridable: true
+mv: 100
+raceId: 33
+
+id: griffin-001
+name: griffin
+alias: griffin
+short: griffin
+long: The griffin is a legendary creature with the body, tail, and back legs of a lion; the head
+long: and wings of an eagle; and an eagle's talons as its front feet.
+align: 0
+level: 20
+offensive: 200
+defensive: 150
+armour: 15
+hp: 7d7+270
+damage: 3d6
+copper: 0
+xp: 100
+state: STANDING
+attackType: bite kick claw
+ridable: true
+mv: 100
+
+id: pegasus-001
+name: pegasus
+alias: pegasus
+short: pegasus
+long: He is a winged divine stallion also known as a horse usually depicted as pure white in color
+align: 0
+level: 10
+offensive: 100
+defensive: 50
+armour: 15
+hp: 7d7+70
+damage: 2d6
+copper: 0
+xp: 100
+state: STANDING
+attackType: bite kick
+ridable: true
+mv: 100
+
+id: hippogriff-001
+name: hippogriff
+alias: hippogriff
+short: hippogriff
+long: The hippogriff is a legendary creature which has the front half of an eagle and the hind half of a horse.
+align: 0
+level: 40
+offensive: 100
+defensive: 50
+armour: 15
+hp: 7d7+70
+damage: 2d6
+copper: 0
+xp: 100
+state: STANDING
+attackType: bite kick
+ridable: true
+mv: 100

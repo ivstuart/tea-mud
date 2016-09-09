@@ -186,6 +186,23 @@ public class Item extends Prop implements Equipable, Msgable {
 		this.apb = apb;
 	}
 
+	@Override
+	public void increaseDamage() {
+		this._damagedPercentage++;
+		if (_damagedPercentage > 99) {
+			_damagedPercentage = 100;
+		}
+	}
+
+	@Override
+	public int getDamagedPercentage() {
+		return _damagedPercentage;
+	}
+
+	public void setDamagedPercentage(int damagedPercentage) {
+		this._damagedPercentage = damagedPercentage;
+	}
+
 	public boolean isClimbing() {
 		return isClimbing;
 	}
@@ -351,14 +368,6 @@ public class Item extends Prop implements Equipable, Msgable {
 	public void setCost(int cost_) {
 		this._cost = cost_;
 		_someMoneyCost = new Money(Money.COPPER, _cost);
-	}
-
-	public int getDamagedPercentage() {
-		return _damagedPercentage;
-	}
-
-	public void setDamagedPercentage(int damagedPercentage) {
-		this._damagedPercentage = damagedPercentage;
 	}
 
 	public void setLoadPercentage(int loadPercentage) {
