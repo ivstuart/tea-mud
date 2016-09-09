@@ -8,6 +8,7 @@ package com.ivstuart.tmud.state;
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.constants.ManaType;
 import com.ivstuart.tmud.person.Player;
+import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

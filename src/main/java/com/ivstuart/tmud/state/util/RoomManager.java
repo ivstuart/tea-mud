@@ -5,24 +5,21 @@
 
 package com.ivstuart.tmud.state.util;
 
-import static com.ivstuart.tmud.constants.DoorState.CLOSED;
-import static com.ivstuart.tmud.constants.DoorState.LOCKED;
-import static com.ivstuart.tmud.constants.DoorState.OPEN;
+import com.ivstuart.tmud.constants.DoorState;
+import com.ivstuart.tmud.state.Door;
+import com.ivstuart.tmud.state.Exit;
+import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.dao.DoorDAO;
+import com.ivstuart.tmud.world.World;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import com.ivstuart.tmud.constants.DoorState;
-import com.ivstuart.tmud.state.Door;
-import com.ivstuart.tmud.state.Exit;
-import com.ivstuart.tmud.state.Room;
-import com.ivstuart.tmud.state.World;
-import com.ivstuart.tmud.state.dao.DoorDAO;
+import static com.ivstuart.tmud.constants.DoorState.*;
 
 public class RoomManager {
 

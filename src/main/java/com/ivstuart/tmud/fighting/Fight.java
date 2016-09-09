@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 24-Sep-2003
  *
  * To change the template for this generated file go to
@@ -9,7 +14,7 @@ package com.ivstuart.tmud.fighting;
 import com.ivstuart.tmud.fighting.action.BasicAttack;
 import com.ivstuart.tmud.fighting.action.FightAction;
 import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.WorldTime;
+import com.ivstuart.tmud.world.WorldTime;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

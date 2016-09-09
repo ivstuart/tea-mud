@@ -1,7 +1,13 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.state;
 
 import com.ivstuart.tmud.common.ExitEnum;
 import com.ivstuart.tmud.state.util.RoomManager;
+import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

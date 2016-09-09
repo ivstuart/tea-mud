@@ -1,18 +1,19 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.utils;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-
-import com.ivstuart.tmud.server.LaunchMud;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.ivstuart.tmud.person.Player;
+import com.ivstuart.tmud.server.LaunchMud;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.io.*;
+import java.lang.reflect.Type;
 
 public class GsonIO {
 
@@ -114,10 +115,43 @@ public class GsonIO {
 		
 		Object object = gson.fromJson(json, aClass);
 
-		LOGGER.info("Finnished loading object fromm file:"
+		LOGGER.info("Finished loading object fromm file:"
 				+ getFullPath(fileName));
 
 		return object;
-		
+
+	}
+
+	public Object load(String fileName, Type type) throws IOException {
+
+		LOGGER.info("Starting loading object fromm file:"
+				+ getFullPath(fileName));
+
+		String readLine = null;
+		StringBuilder sb = new StringBuilder();
+		BufferedReader br = null;
+		try {
+			FileReader fileReader = new FileReader(getFullPath(fileName));
+			br = new BufferedReader(fileReader);
+			while ((readLine = br.readLine()) != null) {
+				sb.append(readLine);
+			}
+		} catch (IOException e) {
+			LOGGER.error("Error: ", e);
+			throw e;
+		}
+
+		br.close();
+		String json = sb.toString();
+
+		Gson gson = new Gson();
+
+		Object object = gson.fromJson(json, type);
+
+		LOGGER.info("Finished loading object fromm file:"
+				+ getFullPath(fileName));
+
+		return object;
+
 	}
 }

@@ -22,6 +22,8 @@ import com.ivstuart.tmud.person.config.ConfigData;
 import com.ivstuart.tmud.person.statistics.Affect;
 import com.ivstuart.tmud.person.statistics.diseases.Disease;
 import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.world.World;
+import com.ivstuart.tmud.world.WorldTime;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

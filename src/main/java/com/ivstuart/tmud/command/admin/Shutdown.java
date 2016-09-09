@@ -8,7 +8,7 @@ package com.ivstuart.tmud.command.admin;
 import com.ivstuart.tmud.command.CommandProvider;
 import com.ivstuart.tmud.command.misc.Quit;
 import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.World;
+import com.ivstuart.tmud.world.World;
 
 public class Shutdown extends AdminCommand {
 

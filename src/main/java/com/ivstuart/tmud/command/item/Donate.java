@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 28-Sep-2003
  *
  * To change the template for this generated file go to
@@ -8,9 +13,13 @@ package com.ivstuart.tmud.command.item;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.carried.SomeMoney;
-import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.state.Corpse;
+import com.ivstuart.tmud.state.Item;
+import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.Prop;
 import com.ivstuart.tmud.utils.MudArrayList;
 import com.ivstuart.tmud.utils.StringUtil;
+import com.ivstuart.tmud.world.World;
 
 /**
  * @author stuarti

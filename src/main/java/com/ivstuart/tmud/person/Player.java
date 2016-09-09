@@ -26,23 +26,21 @@ public class Player implements Serializable, Nameable {
 
 	private static final long serialVersionUID = 1L;
 	protected Attributes attributes;
+	int readIndex;
 	private Mob mob;
 	private Config config;
 	private PlayerData playerData;
 	private transient Connection connection;
-
 	private boolean admin = false;
-
 	private Map<String,String> alias; // Limit to 30
-
 	private Mob snooper;
-
 	private transient List<Mob> group;
-
 	private Inventory bank;
 	private Guilds guilds;
 	private Profession profession;
 	private Object created; // Admin only feature
+	// Bulletin boards
+	private transient Note note;
 
 	public Player() {
 		playerData = new PlayerData();
@@ -278,5 +276,20 @@ public class Player implements Serializable, Nameable {
 		apb += mob.getEquipment().getAPB();
 
 		return apb;
+	}
+
+	public Note getNote() {
+		if (note == null) {
+			note = new Note();
+		}
+		return note;
+	}
+
+	public int getReadIndex() {
+		return readIndex;
+	}
+
+	public void incrementReadIndex() {
+		readIndex++;
 	}
 }

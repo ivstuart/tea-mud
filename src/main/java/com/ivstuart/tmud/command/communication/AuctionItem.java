@@ -16,7 +16,7 @@ import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.person.config.ChannelData;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.World;
+import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

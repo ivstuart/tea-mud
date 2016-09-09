@@ -6,6 +6,7 @@
 package com.ivstuart.tmud.state;
 
 import com.ivstuart.tmud.state.util.EntityProvider;
+import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

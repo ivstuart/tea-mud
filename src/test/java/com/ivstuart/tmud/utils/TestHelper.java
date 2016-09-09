@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.utils;
 
 import com.ivstuart.tmud.person.Player;
@@ -7,7 +12,7 @@ import com.ivstuart.tmud.server.LaunchClient;
 import com.ivstuart.tmud.server.LaunchMud;
 import com.ivstuart.tmud.state.Attribute;
 import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.WorldTime;
+import com.ivstuart.tmud.world.WorldTime;
 
 import java.io.IOException;
 

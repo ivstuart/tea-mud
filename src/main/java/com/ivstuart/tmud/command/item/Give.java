@@ -16,6 +16,7 @@ import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.person.statistics.diseases.Disease;
 import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.world.World;
 
 import static com.ivstuart.tmud.constants.SkillNames.TRACKING;
 

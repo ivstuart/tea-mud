@@ -13,7 +13,7 @@ package com.ivstuart.tmud.command.info;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.World;
+import com.ivstuart.tmud.world.World;
 
 /**
  * @author stuarti

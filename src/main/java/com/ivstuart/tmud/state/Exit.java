@@ -6,6 +6,7 @@
 package com.ivstuart.tmud.state;
 
 import com.ivstuart.tmud.common.ExitEnum;
+import com.ivstuart.tmud.world.World;
 
 public class Exit extends BasicThing {
 

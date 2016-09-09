@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 23-Sep-2003
  *
  * To change the template for this generated file go to
@@ -7,10 +12,9 @@
 package com.ivstuart.tmud.command.info;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.BaseSkill;
 import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.World;
+import com.ivstuart.tmud.world.World;
 
 /**
  * @author stuarti

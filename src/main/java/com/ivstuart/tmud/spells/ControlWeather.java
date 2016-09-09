@@ -1,10 +1,15 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.spells;
 
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Spell;
-import com.ivstuart.tmud.state.World;
 import com.ivstuart.tmud.world.WeatherSky;
+import com.ivstuart.tmud.world.World;
 
 public class ControlWeather implements SpellEffect {
 

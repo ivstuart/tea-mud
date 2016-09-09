@@ -8,6 +8,7 @@ package com.ivstuart.tmud.state.util;
 import com.ivstuart.tmud.server.LaunchMud;
 import com.ivstuart.tmud.state.*;
 import com.ivstuart.tmud.utils.FileHandle;
+import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

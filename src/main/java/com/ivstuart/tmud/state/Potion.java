@@ -5,6 +5,8 @@
 
 package com.ivstuart.tmud.state;
 
+import com.ivstuart.tmud.world.World;
+
 public class Potion extends Item {
 
 

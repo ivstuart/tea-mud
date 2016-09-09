@@ -195,7 +195,15 @@ command.admin.New,SLEEP
 command.admin.RemoveWorld,SLEEP
 command.admin.Load,SLEEP
 
-
+# Message board commands
+command.communication.NoteBody,REST
+command.communication.NoteTopic,REST
+command.communication.NoteSubject,REST
+command.communication.NotePost,REST
+command.communication.NoteRead,REST
+command.communication.NoteClear,REST
+command.communication.ReadBoards,REST
+command.communication.NotePrivate,REST
 
 command.misc.CrashSession,SLEEP
 # command.info.AllMobStats

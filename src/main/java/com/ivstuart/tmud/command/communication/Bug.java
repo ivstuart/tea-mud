@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 28-Sep-2003
  *
  * To change the template for this generated file go to
@@ -9,8 +14,8 @@ package com.ivstuart.tmud.command.communication;
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.server.LaunchMud;
 import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.World;
 import com.ivstuart.tmud.utils.FileHandle;
+import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

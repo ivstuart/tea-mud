@@ -1,8 +1,12 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.command.admin;
 
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.WorldTime;
+import com.ivstuart.tmud.world.WorldTime;
 
 public class ShowFighting extends AdminCommand {
 

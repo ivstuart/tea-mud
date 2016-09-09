@@ -15,6 +15,7 @@ import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.ability.Cast;
 import com.ivstuart.tmud.constants.SkillNames;
 import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.world.World;
 
 /**
  * @author stuarti

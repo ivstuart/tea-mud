@@ -1,9 +1,18 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.command;
 
 import com.ivstuart.tmud.command.combat.Kill;
 import com.ivstuart.tmud.command.combat.Rescue;
-import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.state.Ability;
+import com.ivstuart.tmud.state.BaseSkill;
+import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.Room;
 import com.ivstuart.tmud.utils.TestHelper;
+import com.ivstuart.tmud.world.World;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

@@ -9,7 +9,7 @@ import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.constants.SkillNames;
 import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.WorldTime;
+import com.ivstuart.tmud.world.WorldTime;
 
 public class Mount extends BaseCommand {
 
