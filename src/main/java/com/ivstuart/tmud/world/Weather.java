@@ -23,8 +23,6 @@ public class Weather implements Runnable {
 
 	private static int monthAdjustment;
 
-	private static WeatherSky sky = WeatherSky.CLOUDLESS;
-
     public Attribute getPressure() {
 
         Calendar cal = Calendar.getInstance();

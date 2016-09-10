@@ -205,5 +205,18 @@ command.communication.NoteClear,REST
 command.communication.ReadBoards,REST
 command.communication.NotePrivate,REST
 
+# Clan commands
+command.clan.ClanAdd,REST
+command.clan.ClanCreate,REST
+command.clan.ClanDonate,REST
+command.clan.ClanInfo,REST
+command.clan.ClanLeave,REST
+command.clan.ClanList,REST
+command.clan.ClanPromote,REST
+command.clan.ClanRemove,REST
+
+# Postal
+command.post.Post,STAND
+
 command.misc.CrashSession,SLEEP
 # command.info.AllMobStats
