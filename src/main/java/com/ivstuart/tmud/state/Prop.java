@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.state;
 
 public class Prop extends BasicThing {
@@ -23,7 +28,7 @@ public class Prop extends BasicThing {
 
 	@Override
 	public String toString() {
-		return "Prop{" +
+		return super.toString() + "Prop{" +
 				"alias='" + alias + '\'' +
 				", affects='" + affects + '\'' +
 				", waterSource=" + waterSource +

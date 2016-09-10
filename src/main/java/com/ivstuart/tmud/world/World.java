@@ -343,6 +343,11 @@ public class World {
 		return null;
 	}
 
+    // TODO store all player names
+    public static boolean isPlayer(String playerInput) {
+        return true;
+    }
+
 	public void addToWorld(Object object) {
 
 		if (object instanceof Room) {

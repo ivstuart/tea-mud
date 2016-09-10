@@ -150,6 +150,7 @@ command.item.shop.Value,STAND
 
 # Admin Commands
 command.admin.AllWorldStats,SLEEP
+command.admin.AllPropStats,SLEEP
 command.admin.AllMobStats,SLEEP
 command.admin.AllItemStats,SLEEP
 command.admin.AllRoomStats,SLEEP

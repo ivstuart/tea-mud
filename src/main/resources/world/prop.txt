@@ -5,3 +5,10 @@ alias: dragon
 brief: a huge sleeping dragon. Crikey! thats lucky hes asleep.
 short: sleeping dragon
 look: a huge sleeping dragon. Crikey! thats lucky hes asleep.
+
+id: post-box-001
+alias: post box postbox
+brief: post box.
+short: post box
+look: a square blue post box
+properties: postbox
