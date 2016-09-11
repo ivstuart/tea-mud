@@ -1,7 +1,12 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.spells;
 
-import com.ivstuart.tmud.person.statistics.Affect;
-import com.ivstuart.tmud.person.statistics.ArmourBuff;
+import com.ivstuart.tmud.person.statistics.affects.Affect;
+import com.ivstuart.tmud.person.statistics.affects.ArmourBuff;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Spell;

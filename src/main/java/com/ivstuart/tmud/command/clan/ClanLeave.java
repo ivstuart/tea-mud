@@ -6,7 +6,9 @@
 package com.ivstuart.tmud.command.clan;
 
 import com.ivstuart.tmud.command.BaseCommand;
+import com.ivstuart.tmud.person.ClanMembership;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.world.Clans;
 
 /**
  * @author stuarti
@@ -31,9 +33,21 @@ public class ClanLeave extends BaseCommand {
     @Override
     public void execute(Mob mob, String input) {
 
-        // TODO
-        mob.out("TODO");
+        if (!input.equals("yes")) {
+            mob.out("You must type 'clanleave yes' to confirm leaving a clan");
+            return;
+        }
 
+        ClanMembership clanMembership = mob.getPlayer().getClanMembership();
+
+        if (clanMembership == null) {
+            mob.out("You are not in a clan");
+            return;
+        }
+
+        mob.out("You leave your clan, bye bye");
+        mob.getPlayer().setClanMembership(null);
+        Clans.getClan(clanMembership.getClanId()).getMembers().remove(mob.getPlayer().getName());
     }
 
 }

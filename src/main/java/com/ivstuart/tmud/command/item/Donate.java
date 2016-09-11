@@ -13,10 +13,7 @@ package com.ivstuart.tmud.command.item;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.carried.SomeMoney;
-import com.ivstuart.tmud.state.Corpse;
-import com.ivstuart.tmud.state.Item;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Prop;
+import com.ivstuart.tmud.state.*;
 import com.ivstuart.tmud.utils.MudArrayList;
 import com.ivstuart.tmud.utils.StringUtil;
 import com.ivstuart.tmud.world.World;
@@ -36,8 +33,8 @@ public class Donate extends BaseCommand {
 	 * @param input
 	 * @return
 	 */
-	private boolean checkSacCash(Mob mob, String input) {
-		SomeMoney sm = mob.getRoom().getInventory().removeCoins(input);
+    private boolean checkDonateCash(Mob mob, String input) {
+        SomeMoney sm = mob.getRoom().getInventory().removeCoins(input);
 
 		if (sm != null) {
 			mob.out("You donate " + sm);
@@ -50,9 +47,14 @@ public class Donate extends BaseCommand {
 
 	@Override
 	public void execute(Mob mob, String input) {
+        Room donateRoom = World.getDonateRoom(mob);
+        execute(mob, input, donateRoom);
+    }
 
-		if (checkSacCash(mob, input)) {
-			return;
+    public void execute(Mob mob, String input, Room donateRoom) {
+
+        if (checkDonateCash(mob, input)) {
+            return;
 		}
 
 		String lastWord = StringUtil.getLastWord(input);

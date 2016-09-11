@@ -1,18 +1,21 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
 
-package com.ivstuart.tmud.person.statistics;
+package com.ivstuart.tmud.person.statistics.affects;
 
 import com.ivstuart.tmud.state.Mob;
 
-public class DetectBuff extends Affect {
+public class ArmourBuff extends Affect {
 
-	public DetectBuff(Mob mob_, String desc_, int duration_) {
+	public ArmourBuff(Mob mob_, String desc_, int duration_) {
 		super(mob_, desc_, duration_);
 	}
 
 	@Override
 	public void applyEffect() {
 		_mob.out("You feel the affects of " + _desc);
-		_mob.getSenseFlags().add("invis");
 	}
 
 	@Override

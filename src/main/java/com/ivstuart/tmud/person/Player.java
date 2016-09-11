@@ -41,6 +41,7 @@ public class Player implements Serializable, Nameable {
 	private Object created; // Admin only feature
 	// Bulletin boards
 	private transient Note note;
+	private ClanMembership clanMembership;
 
 	public Player() {
 		playerData = new PlayerData();
@@ -291,5 +292,13 @@ public class Player implements Serializable, Nameable {
 
 	public void incrementReadIndex() {
 		readIndex++;
+	}
+
+	public ClanMembership getClanMembership() {
+		return this.clanMembership;
+	}
+
+	public void setClanMembership(ClanMembership clan) {
+		this.clanMembership = clan;
 	}
 }

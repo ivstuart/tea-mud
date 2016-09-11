@@ -19,7 +19,7 @@ import com.ivstuart.tmud.constants.SkillNames;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.person.config.ConfigData;
-import com.ivstuart.tmud.person.statistics.Affect;
+import com.ivstuart.tmud.person.statistics.affects.Affect;
 import com.ivstuart.tmud.person.statistics.diseases.Disease;
 import com.ivstuart.tmud.state.*;
 import com.ivstuart.tmud.world.World;

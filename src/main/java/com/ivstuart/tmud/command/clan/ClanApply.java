@@ -6,12 +6,9 @@
 package com.ivstuart.tmud.command.clan;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.item.Donate;
 import com.ivstuart.tmud.person.ClanMembership;
 import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Room;
 import com.ivstuart.tmud.world.Clans;
-import com.ivstuart.tmud.world.World;
 
 /**
  * @author stuarti
@@ -19,12 +16,12 @@ import com.ivstuart.tmud.world.World;
  *         To change the template for this generated type comment go to
  *         Window>Preferences>Java>Code Generation>Code and Comments
  */
-public class ClanDonate extends BaseCommand {
+public class ClanApply extends BaseCommand {
 
     /**
      *
      */
-    public ClanDonate() {
+    public ClanApply() {
         super();
     }
 
@@ -35,21 +32,17 @@ public class ClanDonate extends BaseCommand {
      */
     @Override
     public void execute(Mob mob, String input) {
+
         ClanMembership clanMembership = mob.getPlayer().getClanMembership();
 
-        if (clanMembership == null) {
-            mob.out("You are not in a clan");
+        if (clanMembership != null) {
+            mob.out("You must have no clan in order to apply for one");
             return;
         }
 
-        Room donateRoom = Clans.getClan(clanMembership.getClanId()).getDonateRoom();
+        Clans.getClan(Integer.parseInt(input)).addApplicant(mob.getName());
 
-        // Default back to usual donation room
-        if (donateRoom == null) {
-            donateRoom = World.getDonateRoom(mob);
-        }
-
-        new Donate().execute(mob, input, donateRoom);
+        mob.out("You apply for the clan");
 
     }
 

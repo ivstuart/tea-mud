@@ -208,7 +208,10 @@ command.communication.NotePrivate,REST
 
 # Clan commands
 command.clan.ClanAdd,REST
+command.clan.ClanApply,REST
 command.clan.ClanCreate,REST
+command.clan.ClanChat,REST
+command.clan.ClanDemote,REST
 command.clan.ClanDonate,REST
 command.clan.ClanInfo,REST
 command.clan.ClanLeave,REST

@@ -13,6 +13,8 @@ package com.ivstuart.tmud.command.clan;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.world.Clan;
+import com.ivstuart.tmud.world.Clans;
 
 public class ClanList extends BaseCommand {
 
@@ -31,9 +33,13 @@ public class ClanList extends BaseCommand {
     @Override
     public void execute(Mob mob, String input) {
 
-        // TODO
-        mob.out("TODO");
+        mob.out("Clan list:");
 
+        int counter = 0;
+        for (Clan clan : Clans.getClans()) {
+            mob.out(counter + ". Clan name [" + clan.getName() + "] and leader " + clan.getLeader());
+            counter++;
+        }
     }
 
 }

@@ -5,6 +5,7 @@
 
 package com.ivstuart.tmud.person.statistics;
 
+import com.ivstuart.tmud.person.statistics.affects.Affect;
 import com.ivstuart.tmud.person.statistics.diseases.Disease;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

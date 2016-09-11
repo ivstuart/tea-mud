@@ -6,7 +6,7 @@
 package com.ivstuart.tmud.spells;
 
 import com.ivstuart.tmud.common.DiceRoll;
-import com.ivstuart.tmud.person.statistics.Charmed;
+import com.ivstuart.tmud.person.statistics.affects.Charmed;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Spell;

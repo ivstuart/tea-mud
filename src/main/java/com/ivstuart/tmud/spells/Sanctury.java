@@ -1,6 +1,11 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.spells;
 
-import com.ivstuart.tmud.person.statistics.SancAffect;
+import com.ivstuart.tmud.person.statistics.affects.SancAffect;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Spell;

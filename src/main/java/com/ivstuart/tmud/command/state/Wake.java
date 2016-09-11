@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 12-Nov-2003
  *
  * To change the template for this generated file go to
@@ -7,12 +12,10 @@
 package com.ivstuart.tmud.command.state;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.person.statistics.SleepAffect;
+import com.ivstuart.tmud.person.statistics.affects.SleepAffect;
 import com.ivstuart.tmud.state.Mob;
 
-import static com.ivstuart.tmud.common.MobState.SLEEP;
-import static com.ivstuart.tmud.common.MobState.SLEEP_ON;
-import static com.ivstuart.tmud.common.MobState.STAND;
+import static com.ivstuart.tmud.common.MobState.*;
 
 public class Wake extends BaseCommand {
 

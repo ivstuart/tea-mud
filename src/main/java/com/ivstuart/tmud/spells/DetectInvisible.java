@@ -1,12 +1,19 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.spells;
 
-import com.ivstuart.tmud.person.statistics.DetectAffect;
+import com.ivstuart.tmud.person.statistics.affects.DetectAffect;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Spell;
 
 public class DetectInvisible implements SpellEffect {
 
+
+	private String stat;
 
 	public String getStat() {
 		return stat;
@@ -15,8 +22,6 @@ public class DetectInvisible implements SpellEffect {
 	public void setStat(String stat) {
 		this.stat = stat;
 	}
-
-	private String stat;
 
 	@Override
 	public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {

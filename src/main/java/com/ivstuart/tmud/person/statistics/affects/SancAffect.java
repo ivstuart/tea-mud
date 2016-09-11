@@ -1,6 +1,10 @@
-package com.ivstuart.tmud.person.statistics;
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
 
-import com.ivstuart.tmud.common.DiceRoll;
+package com.ivstuart.tmud.person.statistics.affects;
+
 import com.ivstuart.tmud.state.Mob;
 
 public class SancAffect extends Affect {

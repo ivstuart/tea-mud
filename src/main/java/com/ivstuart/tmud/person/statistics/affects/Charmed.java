@@ -3,7 +3,7 @@
  *  All Rights Reserved
  */
 
-package com.ivstuart.tmud.person.statistics;
+package com.ivstuart.tmud.person.statistics.affects;
 
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Spell;

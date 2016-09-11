@@ -61,6 +61,8 @@ public class World {
         Ban.init();
         AddAdmin.init();
 		Boards.init();
+        PostalSystem.init();
+        Clans.init();
 
         startTime();
 

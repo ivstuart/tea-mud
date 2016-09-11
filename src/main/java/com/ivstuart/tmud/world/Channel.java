@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 22-Sep-2003
  *
  * To change the template for this generated file go to
@@ -28,8 +33,8 @@ public class Channel {
      */
     public Channel() {
         super();
-        good = new LinkedList<String>();
-        evil = new LinkedList<String>();
+        good = new LinkedList<>();
+        evil = new LinkedList<>();
     }
 
     public void add(String message, boolean isGood) {

@@ -15,7 +15,7 @@ import com.ivstuart.tmud.common.Equipable;
 import com.ivstuart.tmud.constants.DamageType;
 import com.ivstuart.tmud.constants.EquipLocation;
 import com.ivstuart.tmud.constants.EquipmentConstants;
-import com.ivstuart.tmud.person.statistics.Affect;
+import com.ivstuart.tmud.person.statistics.affects.Affect;
 import com.ivstuart.tmud.state.Armour;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;

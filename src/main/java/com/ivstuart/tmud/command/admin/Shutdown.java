@@ -8,6 +8,8 @@ package com.ivstuart.tmud.command.admin;
 import com.ivstuart.tmud.command.CommandProvider;
 import com.ivstuart.tmud.command.misc.Quit;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.world.Clans;
+import com.ivstuart.tmud.world.PostalSystem;
 import com.ivstuart.tmud.world.World;
 
 public class Shutdown extends AdminCommand {
@@ -20,9 +22,14 @@ public class Shutdown extends AdminCommand {
 
         World.shutdownAuctions();
         World.shutdown();
+        PostalSystem.shutdown();
+        Clans.shutdown();
+
 
         // Quit all players so that they saved.
-        for (String playerName : World.getPlayers()) {
+        Object[] players = World.getPlayers().toArray();
+        for (int index = 0; index < players.length; index++) {
+            String playerName = (String) players[index];
             Mob playerMob = World.getMob(playerName.toLowerCase());
             if (playerMob != null) {
                 CommandProvider.getCommand(Quit.class).execute(playerMob, null);
