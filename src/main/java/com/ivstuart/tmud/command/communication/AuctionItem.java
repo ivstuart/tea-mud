@@ -106,6 +106,8 @@ public class AuctionItem extends AdminCommand implements Runnable {
 
         World.registerAuction(mob, auctionItem);
 
+        World.getMudStats().addNumberOfAuctions();
+
     }
 
     private void schedule() {

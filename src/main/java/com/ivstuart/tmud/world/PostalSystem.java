@@ -5,6 +5,7 @@
 
 package com.ivstuart.tmud.world;
 
+import com.ivstuart.tmud.server.LaunchMud;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.utils.MudIO;
 import org.apache.logging.log4j.LogManager;
@@ -23,7 +24,7 @@ public class PostalSystem {
     private static final Logger LOGGER = LogManager.getLogger();
 
     private static Map<String, List<Item>> post = new HashMap<>();
-    private static String fileName = "post/post.sav";
+    private static String fileName = "post.sav";
     public static void post(Item item, String player) {
 
         List<Item> items = post.get(player);
@@ -51,7 +52,7 @@ public class PostalSystem {
         MudIO mudIO = new MudIO();
 
         try {
-            post = (Map<String, List<Item>>) mudIO.load(fileName, true);
+            post = (Map<String, List<Item>>) mudIO.load(getSaveDirectory(), fileName, true);
         } catch (Exception e) {
             LOGGER.warn("Problem loading the post", e);
         }
@@ -63,10 +64,14 @@ public class PostalSystem {
         MudIO mudIO = new MudIO();
 
         try {
-            mudIO.save(post, fileName, true);
+            mudIO.save(post, getSaveDirectory(), fileName, true);
         } catch (IOException e) {
             LOGGER.error("Problem saving the post", e);
         }
 
+    }
+
+    public static String getSaveDirectory() {
+        return LaunchMud.mudServerProperties.getProperty("post.save.dir");
     }
 }

@@ -78,7 +78,7 @@ public class Login implements Readable {
         }
 
         try {
-            MudIO.getInstance().save(player, player.getName() + ".sav");
+            MudIO.getInstance().save(player, player.getSaveDirectory(), player.getName() + ".sav");
             // Gson does not work for file IO out of the box.
 
         } catch (IOException e) {
@@ -87,6 +87,9 @@ public class Login implements Readable {
 
         out("Created character. Check your email for login inputPassword");
         myConnection.disconnect();
+
+        World.getMudStats().addNewPlayers();
+
     }
 
     public void initializeCharacter(String password, int[] attributes, Mob mob,
@@ -250,12 +253,16 @@ public class Login implements Readable {
 
     }
 
+    public String getSaveDirectory() {
+        return LaunchMud.mudServerProperties.getProperty("player.save.dir");
+    }
+
     private void loadCharacter() {
 
         Player player = null;
 
         try {
-            player = (Player) MudIO.getInstance().load(name + ".sav");
+            player = (Player) MudIO.getInstance().load(getSaveDirectory(), name + ".sav");
             // Gson does not work for file IO out of the box.
         } catch (Exception e) {
             LOGGER.error("Problem loading character from disk", e);
@@ -320,6 +327,9 @@ public class Login implements Readable {
         loginState = null;
 
         checkForTickables(character);
+
+        World.getMudStats().addNumberOfLogins();
+        World.getMudStats().checkMostOnline();
 
     }
 

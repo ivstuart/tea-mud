@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 17-Sep-2003
  *
  * To change the template for this generated file go to
@@ -37,8 +42,8 @@ public class SavePlayer extends BaseCommand {
 
 		// Save character first
 		try {
-			MudIO.getInstance().save(player, mob_.getId() + ".sav");
-		} catch (IOException e) {
+            MudIO.getInstance().save(player, player.getSaveDirectory(), mob_.getId() + ".sav");
+        } catch (IOException e) {
 			LOGGER.error("Problem saving character", e);
 			mob_.out("Problem saving character!");
 			return;

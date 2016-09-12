@@ -9,6 +9,7 @@ import com.ivstuart.tmud.command.CommandProvider;
 import com.ivstuart.tmud.command.misc.Quit;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.world.Clans;
+import com.ivstuart.tmud.world.MudStats;
 import com.ivstuart.tmud.world.PostalSystem;
 import com.ivstuart.tmud.world.World;
 
@@ -24,6 +25,7 @@ public class Shutdown extends AdminCommand {
         World.shutdown();
         PostalSystem.shutdown();
         Clans.shutdown();
+        MudStats.shutdown();
 
 
         // Quit all players so that they saved.

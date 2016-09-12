@@ -5,6 +5,7 @@
 
 package com.ivstuart.tmud.world;
 
+import com.ivstuart.tmud.server.LaunchMud;
 import com.ivstuart.tmud.utils.MudIO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,7 +21,7 @@ import java.util.Map;
 public class Clans {
 
     private static final Logger LOGGER = LogManager.getLogger();
-    private static String fileName = "clan/clan.sav";
+    private static String fileName = "clan.sav";
     private static Map<Integer, Clan> clans = new HashMap<>();
 
     public static Collection<Clan> getClans() {
@@ -48,7 +49,7 @@ public class Clans {
         MudIO mudIO = new MudIO();
 
         try {
-            clans = (Map<Integer, Clan>) mudIO.load(fileName, true);
+            clans = (Map<Integer, Clan>) mudIO.load(getSaveDirectory(), fileName, true);
         } catch (Exception e) {
             LOGGER.warn("Problem loading the post", e);
         }
@@ -60,10 +61,14 @@ public class Clans {
         MudIO mudIO = new MudIO();
 
         try {
-            mudIO.save(clans, fileName, true);
+            mudIO.save(clans, getSaveDirectory(), fileName, true);
         } catch (IOException e) {
             LOGGER.error("Problem saving the post", e);
         }
 
+    }
+
+    public static String getSaveDirectory() {
+        return LaunchMud.mudServerProperties.getProperty("clan.save.dir");
     }
 }

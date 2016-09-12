@@ -1,8 +1,6 @@
 5th Sep 2016:
 
-
 5. player houses
-7. MUD statistics
 9. Load testing (up to 100 concurrent players)
 11. Quests
 14. Clean up messages to use look() and brief()
@@ -26,3 +24,7 @@
 
 4. postal system - BASIC DONE.
 8. Clan support - BASIC DONE. First pass needs more testing and refinement.
+
+12th Sep 2016:
+
+7. MUD statistics - BASIC DONE.

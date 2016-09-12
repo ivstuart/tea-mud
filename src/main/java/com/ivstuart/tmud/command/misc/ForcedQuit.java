@@ -56,7 +56,7 @@ public class ForcedQuit extends BaseCommand {
 		World.removePlayer(player);
 
         try {
-            MudIO.getInstance().save(player, mob_.getId() + ".sav");
+            MudIO.getInstance().save(player, player.getSaveDirectory(), mob_.getId() + ".sav");
         } catch (IOException e) {
             LOGGER.error("Problem saving character", e);
             return;

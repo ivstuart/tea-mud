@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 17-Sep-2003
  *
  * To change the template for this generated file go to
@@ -10,6 +15,7 @@ import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.PlayerData;
 import com.ivstuart.tmud.person.statistics.MobMana;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -102,6 +108,8 @@ public class Remort extends BaseCommand {
 		data.setHunger(500);
 
 		mob.out("You feel yourself become less experienced as you remort but more powerful");
+
+		World.getMudStats().addNumberOfRemorts();
 
 	}
 

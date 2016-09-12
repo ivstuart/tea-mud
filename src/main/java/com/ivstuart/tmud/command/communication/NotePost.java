@@ -14,6 +14,7 @@ package com.ivstuart.tmud.command.communication;
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.world.Boards;
+import com.ivstuart.tmud.world.World;
 
 /**
  * @author stuarti
@@ -48,6 +49,8 @@ public class NotePost extends BaseCommand {
 
         mob.out("You post your notes");
         Boards.postNote(mob.getPlayer().getNote());
+
+        World.getMudStats().addNotesPosted();
 
     }
 

@@ -52,6 +52,7 @@ command.info.Consider,REST
 command.info.Users,REST
 command.info.Prereq,REST
 command.info.WeatherInfo,REST
+command.info.StatsInfo,REST
 command.communication.Auction,REST
 command.communication.AuctionItem,REST
 command.communication.Bid,REST

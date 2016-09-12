@@ -324,7 +324,9 @@ public class DamageManager {
 
                                 aMob.getPlayer().getData().addXp(xpSplit);
 
-                                aMob.getPlayer().checkIfLeveled();
+                                if (aMob.getPlayer().checkIfLeveled()) {
+                                    World.getMudStats().addLevelsGained();
+                                }
 
                             }
 
@@ -337,7 +339,9 @@ public class DamageManager {
                             attacker.getPlayer().getData().addXp(xp);
                         }
 
-                        attacker.getPlayer().checkIfLeveled();
+                        if (attacker.getPlayer().checkIfLeveled()) {
+                            World.getMudStats().addLevelsGained();
+                        }
 
                         int reportFightingXp = attacker.getPlayer().getData().getXpForFighting();
 
@@ -418,6 +422,12 @@ public class DamageManager {
                 // get all from corpse.
                 CommandProvider.getCommand(Sacrifice.class).execute(attacker, "corpse");
             }
+        }
+
+        if (defender.isPlayer()) {
+            World.getMudStats().addPlayerDeaths();
+        } else {
+            World.getMudStats().addMobDeaths();
         }
 
     }

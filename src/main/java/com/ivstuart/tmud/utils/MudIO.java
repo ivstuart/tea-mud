@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 04-Oct-2003
  *
  * To change the template for this generated file go to
@@ -6,18 +11,13 @@
  */
 package com.ivstuart.tmud.utils;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.zip.GZIPInputStream;
-import java.util.zip.GZIPOutputStream;
-
+import com.ivstuart.tmud.server.LaunchMud;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.ivstuart.tmud.server.LaunchMud;
+import java.io.*;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 
 /**
  * @author stuarti
@@ -28,9 +28,13 @@ public class MudIO {
 	
 	private static final MudIO INSTANCE = new MudIO();
 
-	public Object load(String fileName) throws Exception {
+	public static MudIO getInstance() {
+		return INSTANCE;
+	}
+
+	public Object load(String saveDirectory, String fileName) throws Exception {
 		FileInputStream aFileInputStream = new FileInputStream(
-				getSaveDirectory() + fileName);
+				saveDirectory + fileName);
 
 		fileName = fileName.toLowerCase();
 
@@ -46,16 +50,16 @@ public class MudIO {
 		return loadedObject;
 	}
 
-	public Object load(String fileName, boolean gzip) throws Exception {
+	public Object load(String saveDirectory, String fileName, boolean gzip) throws Exception {
 
 		fileName = fileName.toLowerCase();
 
 		if (gzip) {
-			return load(fileName);
+			return load(saveDirectory, fileName);
 		}
 
 		FileInputStream aFileInputStream = new FileInputStream(
-				getSaveDirectory() + fileName);
+				saveDirectory + fileName);
 
 		ObjectInputStream aObjectInputStream = new ObjectInputStream(
 				aFileInputStream);
@@ -69,12 +73,12 @@ public class MudIO {
 		return loadedObject;
 	}
 
-	public void save(Object saveObject, String fileName) throws IOException {
+	public void save(Object saveObject, String dir, String fileName) throws IOException {
 
 		fileName = fileName.toLowerCase();
 
 		ObjectOutputStream out = new ObjectOutputStream(new GZIPOutputStream(
-				new FileOutputStream(getSaveDirectory() + fileName)));
+				new FileOutputStream(dir + fileName)));
 
 		out.writeObject(saveObject);
 
@@ -83,18 +87,18 @@ public class MudIO {
 		out.close();
 	}
 
-	public void save(Object saveObject, String fileName, boolean gzip)
+	public void save(Object saveObject, String dir, String fileName, boolean gzip)
 			throws IOException {
 
 		fileName = fileName.toLowerCase();
 
 		if (gzip) {
-			save(saveObject, fileName);
+			save(saveObject, dir, fileName);
 			return;
 		}
 
 		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(
-				getSaveDirectory() + fileName));
+				dir + fileName));
 
 		out.writeObject(saveObject);
 
@@ -105,11 +109,6 @@ public class MudIO {
 
 	public String getSaveDirectory() {
 		return LaunchMud.mudServerProperties.getProperty("player.save.dir");
-
-	}
-
-	public static MudIO getInstance() {
-		return INSTANCE;
 	}
 
 }

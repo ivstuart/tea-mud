@@ -43,6 +43,7 @@ public class World {
 	private static List<Race> races;
 	private static Map<String, AuctionItem> auction;
     private static WeatherSky weather;
+	private static MudStats mudStats;
 
 	private World() {
 		tickers = new HashMap<>();
@@ -63,6 +64,12 @@ public class World {
 		Boards.init();
         PostalSystem.init();
         Clans.init();
+
+		mudStats = MudStats.init();
+
+		if (mudStats == null) {
+			mudStats = new MudStats();
+		}
 
         startTime();
 
@@ -349,6 +356,10 @@ public class World {
     public static boolean isPlayer(String playerInput) {
         return true;
     }
+
+	public static MudStats getMudStats() {
+		return mudStats;
+	}
 
 	public void addToWorld(Object object) {
 

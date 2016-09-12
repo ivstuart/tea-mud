@@ -9,6 +9,7 @@ import com.ivstuart.tmud.constants.Profession;
 import com.ivstuart.tmud.person.carried.Inventory;
 import com.ivstuart.tmud.person.config.ConfigData;
 import com.ivstuart.tmud.server.Connection;
+import com.ivstuart.tmud.server.LaunchMud;
 import com.ivstuart.tmud.server.Output;
 import com.ivstuart.tmud.state.Attributes;
 import com.ivstuart.tmud.state.Mob;
@@ -300,5 +301,9 @@ public class Player implements Serializable, Nameable {
 
 	public void setClanMembership(ClanMembership clan) {
 		this.clanMembership = clan;
+	}
+
+	public String getSaveDirectory() {
+		return LaunchMud.mudServerProperties.getProperty("player.save.dir");
 	}
 }

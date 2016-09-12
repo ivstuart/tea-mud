@@ -48,7 +48,7 @@ public class Quit extends BaseCommand {
 		// Save character first
 		try {
 
-			MudIO.getInstance().save(player, mob_.getId() + ".sav");
+            MudIO.getInstance().save(player, player.getSaveDirectory(), mob_.getId() + ".sav");
 
 			// The following GSON does not work to serialise the player, do not use it.
 			// GsonIO gio = new GsonIO();
