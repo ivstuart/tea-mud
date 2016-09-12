@@ -11,12 +11,13 @@
  */
 package com.ivstuart.tmud.command.admin;
 
-import com.ivstuart.tmud.server.LaunchMud;
+import com.ivstuart.tmud.server.Login;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.utils.GsonIO;
 import com.ivstuart.tmud.world.World;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ import java.util.List;
  *         Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class AddAdmin extends AdminCommand {
-
+    private static final Logger LOGGER = LogManager.getLogger();
     private static List<String> adminNames = null;
 
 
@@ -57,10 +58,8 @@ public class AddAdmin extends AdminCommand {
 
         String name = input;
 
-        String path = LaunchMud.mudServerProperties.getProperty("player.save.dir");
-        File file = new File(path + name.toLowerCase() + ".sav");
-        if (!file.exists() || file.isDirectory()) {
-            mob.out("There is no file " + file.getAbsolutePath());
+        if (!Login.checkFileExist(name)) {
+            mob.out("There is no file");
             return;
         }
 
@@ -91,5 +90,6 @@ public class AddAdmin extends AdminCommand {
 
 
     }
+
 
 }

@@ -27,6 +27,7 @@ import com.ivstuart.tmud.world.WorldTime;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
@@ -56,6 +57,17 @@ public class Login implements Readable {
 
     public static Item getItemClone(String id_) {
         return EntityProvider.createItem(id_);
+    }
+
+    public static boolean checkFileExist(String name) {
+        String path = LaunchMud.mudServerProperties.getProperty("player.save.dir");
+        File file = new File(path + name.toLowerCase() + ".sav");
+        if (!file.exists() || file.isDirectory()) {
+            LOGGER.debug("There is no file " + file.getAbsolutePath());
+            return false;
+        }
+        LOGGER.debug("There is a file at " + file.getAbsolutePath());
+        return true;
     }
 
     private void createCharacter() {
@@ -219,15 +231,6 @@ public class Login implements Readable {
 
         item = Login.getItemClone("club-001");
         player.getMob().getInventory().add(item);
-
-        // gems
-//        item = Login.getItemClone("fire-80");
-//        player.getMob().getInventory().add(item);
-//        item = Login.getItemClone("water-80");
-//        player.getMob().getInventory().add(item);
-//        item = Login.getItemClone("air-80");
-//        player.getMob().getInventory().add(item);
-//        item = Login.getItemClone("earth-80");
 
         item = Login.getItemClone("immortal-80");
         player.getMob().getInventory().add(item);
@@ -492,6 +495,11 @@ public class Login implements Readable {
             name = name.substring(0, 1).toUpperCase()
                     + name.substring(1).toLowerCase();
 
+            if (checkFileExist(name)) {
+                out("You can not create a player with that name it is already taken");
+                return;
+            }
+
             if (isValidName(name)) {
                 loginState = new ChooseGender();
                 return;
@@ -617,6 +625,11 @@ public class Login implements Readable {
                     isValidName(name);
                     loadCharacter();
                     break;
+//                case 8:
+//                    name = "Ivan";
+//                    inputPassword = "temp";
+//                    loadCharacter();
+//                    break;
                 default:
                     out("Invalid selection please choose from the following:");
                     displayMenu();
@@ -625,5 +638,4 @@ public class Login implements Readable {
             }
         }
     }
-
 }

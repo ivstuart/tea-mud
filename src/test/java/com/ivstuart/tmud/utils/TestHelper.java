@@ -5,10 +5,10 @@
 
 package com.ivstuart.tmud.utils;
 
+import com.ivstuart.tmud.client.LaunchClient;
 import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.person.PlayerData;
 import com.ivstuart.tmud.person.statistics.MobMana;
-import com.ivstuart.tmud.server.LaunchClient;
 import com.ivstuart.tmud.server.LaunchMud;
 import com.ivstuart.tmud.state.Attribute;
 import com.ivstuart.tmud.state.Mob;

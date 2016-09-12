@@ -1,10 +1,5 @@
 5th Sep 2016:
 
-5. player houses
-9. Load testing (up to 100 concurrent players)
-11. Quests
-14. Clean up messages to use look() and brief()
-
 8th Sep 2016:
 
 1. contagious diseases - DONE
@@ -28,3 +23,8 @@
 12th Sep 2016:
 
 7. MUD statistics - BASIC DONE.
+16. crafting.
+5. player houses
+9. Load testing (up to 100 concurrent players) - BASIC test passed.
+11. Quests
+14. Clean up messages to use look() and brief()
