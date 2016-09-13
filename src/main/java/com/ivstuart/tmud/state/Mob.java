@@ -101,6 +101,7 @@ public class Mob extends Prop implements Tickable {
     private Mob charmed;
     private boolean ridable;
     private Mob mount;
+    private transient Mob possessed;
 
     public Mob() {
         fight = new Fight(this);
@@ -189,6 +190,14 @@ public class Mob extends Prop implements Tickable {
             WorldTime.addTickable(this);
         }
 
+    }
+
+    public Mob getPossessed() {
+        return possessed;
+    }
+
+    public void setPossessed(Mob possessed) {
+        this.possessed = possessed;
     }
 
     public Mob getMount() {
@@ -593,15 +602,19 @@ public class Mob extends Prop implements Tickable {
         if (player != null) {
             player.out(msg_.toString(this));
         }
+        if (possessed != null) {
+            possessed.out(msg_);
+        }
 
     }
 
     public void out(String message) {
         LOGGER.debug(this.getName() + " output [ " + message + " ]");
-
         if (player != null) {
-
             player.out(message);
+        }
+        if (possessed != null) {
+            possessed.out(message);
         }
     }
 

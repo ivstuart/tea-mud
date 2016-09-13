@@ -43,7 +43,7 @@ public class AddAdmin extends AdminCommand {
         GsonIO io = new GsonIO();
 
         try {
-            adminNames = (List) io.load(fileName,
+            adminNames = (List<String>) io.load(fileName,
                     ArrayList.class);
         } catch (IOException e) {
             adminNames = new ArrayList<String>();

@@ -37,6 +37,11 @@ public class Scroll extends Item {
             return;
         }
 
-        new Cast().execute(mob, spell, ability, input_, false);
+        if (ability.isSuccessful(mob)) {
+
+            new Cast().execute(mob, spell, ability, input_, false);
+        } else {
+            mob.out("You mumble the critical words of the incantation, the spell fails.");
+        }
     }
 }

@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 22-Sep-2003
  *
  * To change the template for this generated file go to
@@ -167,14 +172,9 @@ public class Bash extends BaseCommand {
 
 			// Success or fail
             Ability bashAbility = getSelf().getLearned().getAbility(BASH);
-            if (bashAbility.isSuccessful()) {
+            if (bashAbility.isSuccessful(getSelf())) {
                 out(new Msg(getSelf(), getTarget(), "<S-You/NAME> successfully bashed <T-you/NAME>."));
                 setBashed(getSelf(), getTarget());
-				if (bashAbility.isImproved()) {
-					out("[[[[ Your ability to " + bashAbility.getId()
-							+ " has improved ]]]]");
-					bashAbility.improve();
-				}
 			} else {
                 out(new Msg(getSelf(), getTarget(), "<S-You/NAME> miss<S-/es> bashing <T-you/NAME>."));
             }

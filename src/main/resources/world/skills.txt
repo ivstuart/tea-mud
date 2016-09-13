@@ -35,6 +35,9 @@ level: 1
 id: riding
 level: 1
 
+id: investigate
+level: 1
+
 id: scrolls
 level: 1
 prof: MAGE

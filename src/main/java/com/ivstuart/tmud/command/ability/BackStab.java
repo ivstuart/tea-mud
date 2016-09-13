@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 22-Sep-2003
  *
  * To change the template for this generated file go to
@@ -150,7 +155,7 @@ public class BackStab extends BaseCommand {
 
 			// Success or fail
             Ability bsAbility = getSelf().getLearned().getAbility(BACKSTAB);
-            if (bsAbility.isSuccessful()) {
+            if (bsAbility.isSuccessful(getSelf())) {
                 out(new Msg(getSelf(), getTarget(), ("<S-You/NAME> successfully backstabed <T-you/NAME>.")));
 
 				int dex = getSelf().getPlayer().getAttributes().getDEX().getValue();
@@ -168,11 +173,6 @@ public class BackStab extends BaseCommand {
 				// Could just send this object the FightAction to damage.
 				DamageManager.deal(getSelf(), getTarget(), damage.roll()+dex);
 
-				if (bsAbility.isImproved()) {
-					out("[[[[ Your ability to " + bsAbility.getId()
-							+ " has improved ]]]]");
-					bsAbility.improve();
-				}
 			} else {
                 out(new Msg(getSelf(), getTarget(), ("<S-You/NAME> miss<S-/es> backstab <T-you/NAME>.")));
             }

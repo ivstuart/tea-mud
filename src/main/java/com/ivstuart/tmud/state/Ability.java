@@ -83,8 +83,8 @@ public class Ability implements Serializable {
 		return World.getSpells().containsKey(id);
 	}
 
-	public boolean isSuccessful() {
-		int roll = DiceRoll.ONE_D100.roll();
+    private boolean isSuccessful() {
+        int roll = DiceRoll.ONE_D100.roll();
 
 		if (roll < 5) {
 			return true;

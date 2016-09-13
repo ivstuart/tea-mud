@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 22-Sep-2003
  *
  * To change the template for this generated file go to
@@ -56,8 +61,8 @@ public class Hide extends BaseCommand {
 			return;
 		}
 
-		if (input.length() > 0 && ability.isSuccessful()) {
-			executeHideObject(mob, input);
+        if (input.length() > 0 && ability.isSuccessful(mob)) {
+            executeHideObject(mob, input);
 			return;
 		}
 
@@ -66,16 +71,11 @@ public class Hide extends BaseCommand {
 			return;
 		}
 
-		if (ability.isSuccessful()) {
-			mob.out(new Msg(mob, "<S-You/NAME> successfully hide."));
+        if (ability.isSuccessful(mob)) {
+            mob.out(new Msg(mob, "<S-You/NAME> successfully hide."));
 			mob.getMobStatus().setHidden(30);
 			mob.setHidden(true);
 
-			if (ability.isImproved()) {
-				mob.out("[[[[ Your ability to " + ability.getId()
-						+ " has improved ]]]]");
-				ability.improve();
-			}
 		} else {
 			mob.out(new Msg(mob, "<S-You/NAME> failed to hide."));
 		}

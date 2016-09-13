@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 22-Sep-2003
  *
  * To change the template for this generated file go to
@@ -133,14 +138,9 @@ public class Disarm extends BaseCommand {
 
 			// Success or fail
 			Ability ability = getSelf().getLearned().getAbility(DISARM);
-			if (ability.isSuccessful()) {
-				out(new Msg(getSelf(),getTarget(),("<S-You/NAME> successfully disarmed <T-you/NAME>.")));
+            if (ability.isSuccessful(getSelf())) {
+                out(new Msg(getSelf(),getTarget(),("<S-You/NAME> successfully disarmed <T-you/NAME>.")));
 				disarm(getSelf(), getTarget());
-				if (ability.isImproved()) {
-					out("[[[[ Your ability to " + ability.getId()
-							+ " has improved ]]]]");
-					ability.improve();
-				}
 			} else {
 				out(new Msg(getSelf(),getTarget(),("<S-You/NAME> miss<S-/es> disarming <T-you/NAME>.")));
 			}

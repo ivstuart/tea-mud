@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 17-Sep-2003
  *
  * To change the template for this generated file go to
@@ -7,13 +12,13 @@
 package com.ivstuart.tmud.server;
 
 import com.ivstuart.tmud.command.Command;
-import com.ivstuart.tmud.common.MobState;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.ivstuart.tmud.command.CommandProvider;
+import com.ivstuart.tmud.command.admin.AdminCommand;
+import com.ivstuart.tmud.common.MobState;
 import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.state.Mob;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @author stuarti
@@ -84,7 +89,12 @@ public class Playing implements Readable {
 				return;
 			}
 
-			command.execute(mob,parameters);
+			if (mob.getPlayer().getPossess() != null && !(command instanceof AdminCommand)) {
+				command.execute(mob.getPlayer().getPossess(), parameters);
+			} else {
+				command.execute(mob, parameters);
+			}
+
 		} catch (Exception e) {
 			LOGGER.error("Problem sourcing command for [ " + input[0] + " ]", e);
 			mob.out(e.getMessage());

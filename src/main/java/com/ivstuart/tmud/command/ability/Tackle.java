@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 22-Sep-2003
  *
  * To change the template for this generated file go to
@@ -173,14 +178,9 @@ public class Tackle extends BaseCommand {
             Ability ability = getSelf().getLearned().getAbility(TACKLE);
 
 			// Always successful against a sleeping opponent
-			if (!ability.isNull() && ability.isSuccessful() && DiceRoll.ONE_D100.rollMoreThan(50) || getTarget().getState().isSleeping()) {
-				out(new Msg(getSelf(), getTarget(), "<S-You/NAME> successfully tackled <T-you/NAME> to the ground."));
+            if (!ability.isNull() && ability.isSuccessful(getSelf()) && DiceRoll.ONE_D100.rollMoreThan(50) || getTarget().getState().isSleeping()) {
+                out(new Msg(getSelf(), getTarget(), "<S-You/NAME> successfully tackled <T-you/NAME> to the ground."));
 				setTackled(getSelf(), getTarget());
-				if (ability.isImproved()) {
-					out("[[[[ Your ability to " + ability.getId()
-							+ " has improved ]]]]");
-					ability.improve();
-				}
 			} else {
 				out(new Msg(getSelf(), getTarget(), "<S-You/NAME> miss<S-/es> tackling <T-you/NAME>."));
 			}

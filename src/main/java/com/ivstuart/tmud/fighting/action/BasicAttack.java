@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 24-Sep-2003
  *
  * To change the template for this generated file go to
@@ -20,9 +25,7 @@ import com.ivstuart.tmud.state.Weapon;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static com.ivstuart.tmud.constants.SkillNames.DUAL_WIELD;
-import static com.ivstuart.tmud.constants.SkillNames.THIRD_ATTACK;
-import static com.ivstuart.tmud.constants.SkillNames.UNARMED_COMBAT;
+import static com.ivstuart.tmud.constants.SkillNames.*;
 
 /**
  * @author stuarti
@@ -149,7 +152,7 @@ public class BasicAttack extends FightAction {
         if (!dualWield.isNull()) {
             // Check has two weapons to hand.
 			// Get 2nd weapon details.
-			if (dualWield.isSuccessful()) {
+			if (dualWield.isSuccessful(getSelf())) {
 
 				secondaryWeapon = getSelf().getSecondaryWeapon();
 
@@ -167,8 +170,8 @@ public class BasicAttack extends FightAction {
 
 		Weapon weapon = getSelf().getWeapon();
 
-        if (!secondAttack.isNull() && secondAttack.isSuccessful() && isSuccess()) {
-            LOGGER.info("I am [ " + getSelf().getId()
+		if (!secondAttack.isNull() && secondAttack.isSuccessful(getSelf()) && isSuccess()) {
+			LOGGER.info("I am [ " + getSelf().getId()
 					+ " ] hit hitting my target");
 			hit(weapon);
 
@@ -178,8 +181,8 @@ public class BasicAttack extends FightAction {
 
 		}
 
-        if (!thirdAttack.isNull() && thirdAttack.isSuccessful() && isSuccess()) {
-            LOGGER.info("I am [ " + getSelf().getId()
+		if (!thirdAttack.isNull() && thirdAttack.isSuccessful(getSelf()) && isSuccess()) {
+			LOGGER.info("I am [ " + getSelf().getId()
 					+ " ] hit hitting my target");
 			hit(weapon);
 
@@ -220,7 +223,7 @@ public class BasicAttack extends FightAction {
 			Ability unarmed = getSelf().getLearned().getAbility(UNARMED_COMBAT);
 
             if (!unarmed.isNull()) {
-                if (unarmed.isSuccessful()) {
+				if (unarmed.isSuccessful(getSelf())) {
 					damage.setRoll(2, 8, 2);
 				}
 			}
@@ -233,7 +236,7 @@ public class BasicAttack extends FightAction {
 		Ability enhancedDamage = getSelf().getLearned().getAbility(
                 SkillNames.ENHANCED_DAMAGE);
 
-		if (enhancedDamage != null && enhancedDamage.isSuccessful()) {
+		if (enhancedDamage != null && enhancedDamage.isSuccessful(getSelf())) {
 			damage.setMultiplier(2);
 		}
 

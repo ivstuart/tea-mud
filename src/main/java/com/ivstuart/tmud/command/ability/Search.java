@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 22-Sep-2003
  *
  * To change the template for this generated file go to
@@ -42,9 +47,9 @@ public class Search extends BaseCommand {
 			return;
 		}
 
-		if (!ability.isSuccessful()) {
-			mob.out("Your search was unsucessful");
-			return;
+        if (!ability.isSuccessful(mob)) {
+            mob.out("Your search was unsuccessful");
+            return;
 		}
 
 		boolean foundSomething = false;

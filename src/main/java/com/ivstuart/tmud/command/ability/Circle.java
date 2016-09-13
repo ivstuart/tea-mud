@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 22-Sep-2003
  *
  * To change the template for this generated file go to
@@ -128,8 +133,8 @@ public class Circle extends BaseCommand {
 
 			// Success or fail
             Ability ability = getSelf().getLearned().getAbility(CIRCLE);
-            if (ability.isSuccessful()) {
-				out(new Msg(getSelf(), getTarget(), ("<S-You/NAME> successfully circled <T-you/NAME>.")));
+            if (ability.isSuccessful(getSelf())) {
+                out(new Msg(getSelf(), getTarget(), ("<S-You/NAME> successfully circled <T-you/NAME>.")));
 
                 Fight.startCombat(getSelf(), getTarget(), true);
 
@@ -140,11 +145,6 @@ public class Circle extends BaseCommand {
 				// Could just send this object the FightAction to damage.
 				DamageManager.deal(getSelf(), getTarget(), damage.roll());
 
-				if (ability.isImproved()) {
-					out("[[[[ Your ability to " + ability.getId()
-							+ " has improved ]]]]");
-					ability.improve();
-				}
 			} else {
 				out(new Msg(getSelf(), getTarget(), ("<S-You/NAME> miss<S-/es> circle <T-you/NAME>.")));
 			}

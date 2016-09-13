@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 22-Sep-2003
  *
  * To change the template for this generated file go to
@@ -7,8 +12,12 @@
 package com.ivstuart.tmud.command.info;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.common.Msg;
+import com.ivstuart.tmud.constants.SkillNames;
+import com.ivstuart.tmud.state.Ability;
+import com.ivstuart.tmud.state.Corpse;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.Prop;
 
 /**
  * @author stuarti
@@ -21,23 +30,36 @@ public class Diagnose extends BaseCommand {
 	@Override
 	public void execute(Mob mob, String input) {
 
-		mob.out("Diagnose not implemented yet");
+		Prop corpse = mob.getRoom().getProps().get(input);
 
-		/**
-		 * { 100, "is in excellent condition." }, { 90, "has a few scratches."
-		 * }, { 75, "has some small wounds and bruises." }, { 50,
-		 * "has quite a few wounds." }, { 30,
-		 * "has some big nasty wounds and scratches." }, { 15,
-		 * "looks pretty hurt." }, { 0, "is in awful condition." }, { -1,
-		 * "is bleeding awfully from big wounds." },
-		 */
-		/**
-		 * Mob target = getTarget();
-		 * 
-		 * if (target == null) { out(input + " is not here to consider!");
-		 * return; } // Get own stats (i.e. hp) and conpare them with monster //
-		 * target.getStats();
-		 */
+		if (corpse == null) {
+			mob.out("There is no " + input + " to investigate");
+			return;
+		}
+
+		if (!(corpse instanceof Corpse)) {
+			mob.out("That item is not a corpse");
+			return;
+		}
+
+		Ability ability = mob.getLearned().getAbility(SkillNames.INVESTIGATE);
+
+		if (ability.isNull()) {
+			mob.out("You have no skill to investigate");
+			return;
+		}
+
+		Corpse corpse1 = (Corpse) corpse;
+
+		if (ability.isSuccessful(mob)) {
+			mob.out(new Msg(mob, ("<S-You/NAME> successfully investigated.")));
+
+			mob.out(corpse1.investigation());
+
+		} else {
+			mob.out(new Msg(mob, ("<S-You/NAME> failed to investigate.")));
+		}
+
 	}
 
 }

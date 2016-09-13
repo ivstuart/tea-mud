@@ -1,27 +1,32 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.state;
 
-import java.util.List;
-
+import com.ivstuart.tmud.common.Equipable;
+import com.ivstuart.tmud.person.carried.Inventory;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.ivstuart.tmud.common.Equipable;
-import com.ivstuart.tmud.common.Msg;
-import com.ivstuart.tmud.person.carried.Inventory;
+import java.util.List;
 
 public class Corpse extends Item {
 
 	private static final long serialVersionUID = -1665651693089947124L;
 
 	private static final Logger LOGGER = LogManager.getLogger();
-
+	private static final String[] periodOfTime = {"very recently",
+			"recently",
+			"a short while ago",
+			"a while ago",
+			"ages ago"};
 	protected Inventory _inventory;
-	
 	private String whoKilledMe;
-	
-	private String whenIwasKilled;
+	private long whenKilled;
 
 	public Corpse() {
 	}
@@ -44,6 +49,10 @@ public class Corpse extends Item {
 
 		_inventory.getPurse().add(money);
 
+	}
+
+	public void setWhoKilledMe(String whoKilledMe) {
+		this.whoKilledMe = whoKilledMe;
 	}
 
 	public Inventory getInventory() {
@@ -71,6 +80,20 @@ public class Corpse extends Item {
 
 	public String investigation() {
 
-        return "Killed by "+whoKilledMe+" , "+whenIwasKilled;
+		return "Killed by " + whoKilledMe + " , " + getWhenKilled();
+	}
+
+	private String getWhenKilled() {
+
+		int index = (int) (System.currentTimeMillis() - whenKilled) / (30 * 1000);
+		if (index >= periodOfTime.length) {
+			index = periodOfTime.length - 1;
+		}
+		return periodOfTime[index];
+
+	}
+
+	public void setWhenKilled(long whenKilled) {
+		this.whenKilled = whenKilled;
 	}
 }

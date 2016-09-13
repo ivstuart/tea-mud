@@ -53,6 +53,7 @@ command.info.Users,REST
 command.info.Prereq,REST
 command.info.WeatherInfo,REST
 command.info.StatsInfo,REST
+command.info.Diagnose,REST
 command.communication.Auction,REST
 command.communication.AuctionItem,REST
 command.communication.Bid,REST
@@ -182,6 +183,7 @@ command.admin.SwapAlignment,SLEEP
 command.admin.Teleport,SLEEP
 command.admin.TestLearn,SLEEP
 command.admin.TestPoison,SLEEP
+command.admin.Unpossess,SLEEP
 
 # Needs to be lower than At
 command.info.AttributeInfo,REST

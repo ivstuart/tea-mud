@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 22-Sep-2003
  *
  * To change the template for this generated file go to
@@ -138,14 +143,9 @@ public class Kick extends BaseCommand {
 
 			// Success or fail
             Ability kickAbility = getSelf().getLearned().getAbility(KICK);
-            if (kickAbility.isSuccessful()) {
+            if (kickAbility.isSuccessful(getSelf())) {
                 out(new Msg(getSelf(), getTarget(), "<S-You/NAME> successfully kicked <T-you/NAME>."));
                 setKicked(getSelf(), getTarget());
-				if (kickAbility.isImproved()) {
-					out("[[[[ Your ability to " + kickAbility.getId()
-							+ " has improved ]]]]");
-					kickAbility.improve();
-				}
 			} else {
                 out(new Msg(getSelf(), getTarget(), "<S-You/NAME> miss<S-/es> kicking <T-you/NAME>."));
             }

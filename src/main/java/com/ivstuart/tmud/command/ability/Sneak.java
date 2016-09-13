@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 22-Sep-2003
  *
  * To change the template for this generated file go to
@@ -37,16 +42,11 @@ public class Sneak extends BaseCommand {
 			mob.out("You are already sneaking around");
 		}
 
-		if (sneak.isSuccessful()) {
-			mob.out(new Msg(mob, "<S-You/NAME> successfully start to sneak"));
+        if (sneak.isSuccessful(mob)) {
+            mob.out(new Msg(mob, "<S-You/NAME> successfully start to sneak"));
 
 			mob.getMobStatus().setSneaking(60);// 1 minute of sneaking around.
 
-			if (sneak.isImproved()) {
-				mob.out("[[[[ Your ability to " + sneak.getId()
-						+ " has improved ]]]]");
-				sneak.improve();
-			}
 		}
 	}
 

@@ -141,7 +141,13 @@ public class DamageManager {
             damage /= 3;
         }
 
-        Msg msg = new Msg(attacker, defender, DamageConstants.toString(damage));
+        String damageSting = DamageConstants.toString(damage);
+
+        if (spell != null) {
+            damageSting = damageSting.replaceAll("attack", spell.getName());
+        }
+
+        Msg msg = new Msg(attacker, defender, damageSting);
 
         attacker.getRoom().out(msg);
 
@@ -247,16 +253,11 @@ public class DamageManager {
 
         Ability penetration = attacker.getLearned().getAbility(SkillNames.ARMOUR_PENETRATION);
 
-        if (!penetration.isNull() && penetration.isSuccessful()) {
+        if (!penetration.isNull() && penetration.isSuccessful(attacker)) {
             attacker.out(new Msg(attacker, "<S-You/NAME> skillfully hit between your opponents armour"));
 
             armour /= DiceRoll.ONE_D_SIX.roll();
 
-            if (penetration.isImproved()) {
-                attacker.out("[[[[ Your ability to " + attacker.getId()
-                        + " has improved ]]]]");
-                penetration.improve();
-            }
         }
         return Math.max(armour, 0);
     }
@@ -396,6 +397,8 @@ public class DamageManager {
         Corpse corpse = new Corpse();
         corpse.setId("corpse");
         corpse.setAlias("corpse");
+        corpse.setWhoKilledMe(attacker.getName());
+        corpse.setWhenKilled(System.currentTimeMillis());
 
         if (defender.getRoom().isNoDrop() == false) {
             inveToCorpse(defender, corpse);
@@ -491,16 +494,10 @@ public class DamageManager {
         Ability dodge = defender.getLearned().getAbility(DODGE);
 
         // Reduce dodging to 30% of the time.
-        if (!dodge.isNull() && dodge != Ability.NULL_ABILITY && dodge.isSuccessful() && DiceRoll.ONE_D_SIX.rollMoreThan(4)) {
+        if (!dodge.isNull() && dodge != Ability.NULL_ABILITY && dodge.isSuccessful(defender) && DiceRoll.ONE_D_SIX.rollMoreThan(4)) {
             defender.out(new Msg(defender, "<S-You/NAME> successfully dodge missing most of the attack."));
 
             damage = (int) damage / 10;
-
-            if (dodge.isImproved()) {
-                defender.out("[[[[ Your ability to " + dodge.getId()
-                        + " has improved ]]]]");
-                dodge.improve();
-            }
         }
 
         return damage;
@@ -511,16 +508,10 @@ public class DamageManager {
         Ability parry = defender.getLearned().getAbility(PARRY);
 
         // Reduce parry to 50% of the time.
-        if (!parry.isNull() && parry.isSuccessful() && DiceRoll.ONE_D_SIX.rollMoreThan(2)) {
+        if (!parry.isNull() && parry.isSuccessful(defender) && DiceRoll.ONE_D_SIX.rollMoreThan(2)) {
             defender.out(new Msg(defender, "<S-You/NAME> successfully parry missing most of the attack."));
 
             damage = (int) damage / 5;
-
-            if (parry.isImproved()) {
-                defender.out("[[[[ Your ability to " + parry.getId()
-                        + " has improved ]]]]");
-                parry.improve();
-            }
         }
 
         return damage;
@@ -532,16 +523,10 @@ public class DamageManager {
 
         if (!shieldBlock.isNull()) {
             if (defender.getEquipment().hasShieldEquiped()) {
-                if (shieldBlock.isSuccessful()) {
+                if (shieldBlock.isSuccessful(defender)) {
                     defender.out(new Msg(defender, "<S-You/NAME> successfully shield block <T-you/NAME>."));
 
                     damage -= 5;
-
-                    if (shieldBlock.isImproved()) {
-                        defender.out("[[[[ Your ability to "
-                                + shieldBlock.getId() + " has improved ]]]]");
-                        shieldBlock.improve();
-                    }
                 }
             }
         }

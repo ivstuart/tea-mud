@@ -34,7 +34,7 @@ public class BlurAffect extends Affect {
 			return amount_;
 		}
 
-        target_.getRoom().out(new Msg(caster_, target_, "Blur saves the day for <S-NAME> from <T-NAME>"));
+		caster_.getRoom().out(new Msg(caster_, target_, "Blur saves the day for <S-NAME> from <T-NAME>"));
 
 		return 0;
 

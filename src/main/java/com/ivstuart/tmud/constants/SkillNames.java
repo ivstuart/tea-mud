@@ -18,7 +18,6 @@ public class SkillNames {
     public static final String BACKSTAB = "backstab";
     public static final String BASH = "bash";
     public static final String CIRCLE = "circle";
-    public static final String INVESTIGATE = "investigate";
     public static final String KICK = "kick";
     public static final String SEARCHING = "searching";
     public static final String SNEAK = "sneak";
@@ -40,4 +39,5 @@ public class SkillNames {
     public static final String WANDS = "wands";
     public static final String SCROLLS = "scrolls";
     public static final String RIDING = "riding";
+    public static final String INVESTIGATE = "investigate";
 }

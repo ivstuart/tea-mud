@@ -49,7 +49,13 @@ public class EntityProvider {
             LOGGER.error("Problem with new code ", e);
         }
 
-        newMob = (Mob) mobObject;
+        if (mobObject instanceof Mob) {
+            newMob = (Mob) mobObject;
+        }
+
+        if (newMob == null) {
+            LOGGER.error("Mob object " + mobObject + " not an instance of a Mob");
+        }
 
         // this newMob is a new instance of Mob from world with its own repop
         // room

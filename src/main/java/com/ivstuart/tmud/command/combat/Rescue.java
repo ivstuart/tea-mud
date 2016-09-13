@@ -72,7 +72,7 @@ public class Rescue extends BaseCommand {
 
 		Ability ability = mob.getLearned().getAbility(RESCUE);
 
-		if (!ability.isNull() && ability.isSuccessful()) {
+        if (!ability.isNull() && ability.isSuccessful(mob)) {
 
             mob.getRoom().out(new Msg(mob, aggressor, ("<S-You/NAME> successfully rescue <T-you/NAME>.")));
             if (!mob.getFight().isFighting()) {
@@ -83,11 +83,6 @@ public class Rescue extends BaseCommand {
 			LOGGER.debug(mob.getName() +" rescues "+aggressor.getFight().getTarget().getName()+" from combat with you.");
 			aggressor.getFight().changeTarget(mob);
 
-			if (ability.isImproved()) {
-				mob.out("[[[[ Your ability to " + ability.getId()
-						+ " has improved ]]]]");
-				ability.improve();
-			}
 		} else {
             mob.out(new Msg(mob, aggressor, ("<S-You/NAME> fail to rescue <T-you/NAME>.")));
         }

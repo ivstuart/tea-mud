@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 28-Sep-2003
  *
  * To change the template for this generated file go to
@@ -37,7 +42,7 @@ public class TrackCommand extends BaseCommand {
             return;
         }
 
-		if (ability.isSuccessful()) {
+        if (ability.isSuccessful(mob)) {
 
 			if (mob.getRoom().getTracks() == null) {
 				mob.out("You fail to find any tracks");
@@ -48,11 +53,6 @@ public class TrackCommand extends BaseCommand {
 				mob.out("Track off to the " + track.getDirection() + " for " + track.getWho() + " age " + track.getAge());
 			}
 
-			if (ability.isImproved()) {
-				mob.out("[[[[ Your ability to " + ability.getId()
-						+ " has improved ]]]]");
-				ability.improve();
-			}
 		} else {
 			mob.out("You fail to find any tracks");
 		}

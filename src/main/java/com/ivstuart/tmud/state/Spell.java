@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.state;
 
 import com.ivstuart.tmud.common.DiceRoll;
@@ -132,6 +137,9 @@ public class Spell extends BaseSkill {
 	}
 
 	public int getAmount() {
+		if (amount == null) {
+			return 0;
+		}
 		return amount.roll();
 	}
 

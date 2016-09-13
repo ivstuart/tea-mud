@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 22-Sep-2003
  *
  * To change the template for this generated file go to
@@ -62,8 +67,8 @@ public class Steal extends BaseCommand {
 		}
 
 
-		if (steal.isSuccessful()) {
-			mob.out(new Msg(mob, ("<S-You/NAME> successfully pilfer something...")));
+        if (steal.isSuccessful(mob)) {
+            mob.out(new Msg(mob, ("<S-You/NAME> successfully pilfer something...")));
 
 			checkForStealingItems(mob, target);
 
@@ -78,13 +83,8 @@ public class Steal extends BaseCommand {
 			// make some mobs aware of this and respond accordingly.
 			target.getInventory().getPurse().remove(money);
 			mob.getInventory().add(money);
-			
-			if (steal.isImproved()) {
-				mob.out("[[[[ Your ability to " + steal.getId()
-						+ " has improved ]]]]");
-				steal.improve();
-			}
-		} else {
+
+        } else {
 			// Decide if this is all mobs all the time or not.
 			Fight.startCombat(mob, target);
 		}

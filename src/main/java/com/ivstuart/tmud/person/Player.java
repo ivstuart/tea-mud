@@ -43,6 +43,7 @@ public class Player implements Serializable, Nameable {
 	// Bulletin boards
 	private transient Note note;
 	private ClanMembership clanMembership;
+	private transient Mob possess;
 
 	public Player() {
 		playerData = new PlayerData();
@@ -305,5 +306,13 @@ public class Player implements Serializable, Nameable {
 
 	public String getSaveDirectory() {
 		return LaunchMud.mudServerProperties.getProperty("player.save.dir");
+	}
+
+	public Mob getPossess() {
+		return possess;
+	}
+
+	public void setPossess(Mob target) {
+		this.possess = target;
 	}
 }
