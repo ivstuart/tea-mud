@@ -57,11 +57,56 @@ public class Item extends Prop implements Equipable, Msgable {
 	private String roomId;
 	private boolean magic;
 	// Consider wrap the pair this in a class
+	private int hitRoll;
+	private int damageRoll;
 	private DamageType saveType;
 	private int save;
+	private int hp;
+	private int mana;
+	private int move;
 	private Disease disease;
 
 	public Item() {
+	}
+
+	public int getHp() {
+		return hp;
+	}
+
+	public void setHp(int hp) {
+		this.hp = hp;
+	}
+
+	public int getMana() {
+		return mana;
+	}
+
+	public void setMana(int mana) {
+		this.mana = mana;
+	}
+
+	public int getHitRoll() {
+		return hitRoll;
+	}
+
+	public void setHitRoll(int hitRoll) {
+		this.hitRoll = hitRoll;
+	}
+
+	public int getDamageRoll() {
+		return damageRoll;
+	}
+
+	public void setDamageRoll(int damageRoll) {
+		this.damageRoll = damageRoll;
+	}
+
+	public int getMove() {
+		return move;
+	}
+
+	public void setMove(int move) {
+		this.move = move;
 	}
 
 	public Disease getDisease() {
@@ -234,6 +279,17 @@ public class Item extends Prop implements Equipable, Msgable {
 	@Override
 	public void equip(Mob mob) {
 
+		mob.getHp().increaseCurrentAndMaximum(hp);
+		mob.getMv().increaseCurrentAndMaximum(move);
+		mob.getMana().increaseCurrentAndMaximum(mana);
+
+	}
+
+	@Override
+	public void unequip(Mob mob) {
+		mob.getHp().increaseCurrentAndMaximum(-hp);
+		mob.getMv().increaseCurrentAndMaximum(-move);
+		mob.getMana().increaseCurrentAndMaximum(-mana);
 
 	}
 
@@ -323,11 +379,7 @@ public class Item extends Prop implements Equipable, Msgable {
 		return true;
 	}
 
-	@Override
-	public void unequip(Mob mob) {
 
-
-	}
 
 	public boolean isButcherable() {
 		return (_type.indexOf("BUTCHERABLE") != -1);

@@ -33,3 +33,4 @@
 5. player houses
 11. Quests
 14. Clean up messages to use look() and brief()
+18. Create items sets with bonuses to stats or abilities.

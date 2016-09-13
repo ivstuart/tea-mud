@@ -27,14 +27,14 @@ public class BlurAffect extends Affect {
 
 	}
 
-	public int onHit(Mob caster_, Mob target_, int amount_) {
+    public int onHit(Mob attacker, Mob defender, int amount_) {
 
 		if(DiceRoll.ONE_D100.rollMoreThan(10)) {
 			// no effect 90% of the time
 			return amount_;
 		}
 
-		caster_.getRoom().out(new Msg(caster_, target_, "Blur saves the day for <S-NAME> from <T-NAME>"));
+        attacker.getRoom().out(new Msg(attacker, defender, "Blur saves the day for <T-NAME> from <S-NAME>"));
 
 		return 0;
 

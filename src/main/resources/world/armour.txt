@@ -46,9 +46,78 @@ look: green climbing boots
 action:
 effects: 3
 wear: FEET
-weight: 2
+weight: 200
 cost: 10
 rent: 5
 affects:
 armour: 0 0 0 0 0 10 0
 climbing: true
+
+class: state.KickArmour
+id: black-boots-001
+alias: black leather boots
+brief: black leather boots
+look: black leather boots
+action:
+effects: 3
+wear: FEET
+weight: 200
+cost: 10
+kick: 3
+rent: 5
+affects:
+armour: 0 0 0 0 0 10 0
+
+class: state.KickArmour
+id: black-anklet-001
+alias: black anklet spiky
+brief: spiky black anklet
+look: spiky black anklet
+wear: ANKLE
+weight: 500
+cost: 50
+kick: 1
+armour: 0 0 0 0 0 4 0
+
+class: state.StatArmour
+id: wizard-hat-001
+alias: blue stars wizard cloth hat
+brief: pointy cloth hat
+look: blue pointy cloth hat with stars
+action:
+effects: 3
+stat: int
+amount: 3
+wear: HEAD
+weight: 200
+cost: 10
+rent: 5
+affects:
+armour: 0 0 0 0 0 10 0
+
+class: state.Armour
+id: ring-fire-prot-001
+alias: ring fire protection
+brief: ring of fire protection
+look: ring of fire protection
+wear: FINGER
+weight: 20
+cost: 1000
+rent: 5
+affects:
+armour: 0 0 0 0 0 0 10
+saveType: FIRE
+save: 13
+
+class: state.Armour
+id: ring-of-combat-001
+alias: ring of combat
+brief: ring of combat
+look: ring of combat
+wear: FINGER
+hitRoll: 10
+weight: 20
+cost: 1000
+rent: 5
+affects:
+armour: 0 0 0 0 0 0 10

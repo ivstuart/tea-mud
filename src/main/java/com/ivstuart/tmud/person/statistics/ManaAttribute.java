@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.person.statistics;
 
 import com.ivstuart.tmud.constants.ManaType;
@@ -132,5 +137,10 @@ public class ManaAttribute implements Serializable {
 
 	public void increaseToMaximum() {
 		_current = _maximum;
+	}
+
+	public void increaseCurrentAndMaximum(int mana) {
+		_maximum += mana;
+		_current += mana;
 	}
 }

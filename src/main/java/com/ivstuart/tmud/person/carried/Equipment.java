@@ -56,10 +56,19 @@ public class Equipment implements Serializable {
 	private int _slots[] = new int[EquipmentConstants.location.length];
 
 	private Mob mob;
+	private int kickBonus;
 
 	public Equipment(Mob mob) {
 		this.mob = mob;
 		_equipment = new MudArrayList<Equipable>();
+	}
+
+	public int getKickBonus() {
+		return kickBonus;
+	}
+
+	public void increaseKick(int kickBonus) {
+		this.kickBonus += kickBonus;
 	}
 
 	public boolean add(Equipable eq) {
@@ -340,5 +349,23 @@ public class Equipment implements Serializable {
 
 	public boolean remove(Equipable eq) {
 		return _equipment.remove(eq);
+	}
+
+	public int getHitRollBonus() {
+		int total = 0;
+		for (Equipable eq : _equipment) {
+			Item item = (Item) eq;
+			total += item.getHitRoll();
+		}
+		return total;
+	}
+
+	public int getDamageRollBonus() {
+		int total = 0;
+		for (Equipable eq : _equipment) {
+			Item item = (Item) eq;
+			total += item.getDamageRoll();
+		}
+		return total;
 	}
 }

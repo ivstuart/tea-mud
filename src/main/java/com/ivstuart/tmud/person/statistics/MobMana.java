@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.person.statistics;
 
 import com.ivstuart.tmud.constants.ManaType;
@@ -147,4 +152,10 @@ public class MobMana implements Serializable {
             manaAtt.increaseToMaximum();
         }
     }
+
+	public void increaseCurrentAndMaximum(int mana) {
+		for (ManaAttribute manaAtt : _mana) {
+			manaAtt.increaseCurrentAndMaximum(mana);
+		}
+	}
 }

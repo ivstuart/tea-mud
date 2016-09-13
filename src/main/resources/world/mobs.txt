@@ -232,3 +232,23 @@ item: cup-of-tea-001
 item: draft-salt-water-001
 item: poison-water-001
 
+class: state.Mob
+
+id: drow-001
+name: drow
+alias: drow
+short: the drow
+long: A drow snares at you.
+look: The drow is a common drow is and all together unremarkable.
+level: 10
+offensive: 100
+defensive: 100
+armour: 10
+hp: 150
+damage: 1d10+5
+copper: 0
+xp: 20
+state: STANDING
+attackType: punch slash
+item: black-anklet-001
+item: black-anklet-001

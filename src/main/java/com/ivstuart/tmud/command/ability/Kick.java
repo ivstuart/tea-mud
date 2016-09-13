@@ -103,7 +103,9 @@ public class Kick extends BaseCommand {
 
 		int level = mob.getPlayer().getData().getLevel();
 
-		DamageManager.deal(mob, target, level * DiceRoll.ONE_D_SIX.roll());
+		int kickBonus = mob.getEquipment().getKickBonus();
+
+		DamageManager.deal(mob, target, level * (DiceRoll.ONE_D_SIX.roll() + kickBonus));
 
 	}
 
