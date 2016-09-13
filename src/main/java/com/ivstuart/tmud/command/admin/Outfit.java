@@ -21,72 +21,35 @@ public class Outfit extends AdminCommand {
     @Override
     public void execute(Mob mob, String input) {
 
-        Item item = EntityProvider.createItem("immortal-80");
-        mob.getInventory().add(item);
-
-        item = EntityProvider.createItem("black-boots-001");
-        mob.getInventory().add(item);
-
-        item = EntityProvider.createItem("black-anklet-001");
-        mob.getInventory().add(item);
-
-        item = EntityProvider.createItem("black-anklet-001");
-        mob.getInventory().add(item);
-
-        item = EntityProvider.createItem("wizard-hat-001");
-        mob.getInventory().add(item);
-
-        item = EntityProvider.createItem("ring-fire-prot-001");
-        mob.getInventory().add(item);
-
-        item = EntityProvider.createItem("ring-of-combat-001");
-        mob.getInventory().add(item);
-
-        item = EntityProvider.createItem("mantel-of-protection-001");
-        mob.getInventory().add(item);
-
-        item = EntityProvider.createItem("orb-of-power-001");
-        mob.getInventory().add(item);
-
-        item = EntityProvider.createItem("jade-earring-001");
-        mob.getInventory().add(item);
-
-        item = EntityProvider.createItem("jade-earring-001");
-        mob.getInventory().add(item);
-
-        item = EntityProvider.createItem("cool-shades-001");
-        mob.getInventory().add(item);
-
-        item = EntityProvider.createItem("mask-madness-001");
-        mob.getInventory().add(item);
-
-        item = EntityProvider.createItem("spiked-collar-001");
-        mob.getInventory().add(item);
-
-        item = EntityProvider.createItem("spiked-pauldrons-001");
-        mob.getInventory().add(item);
-
-        item = EntityProvider.createItem("grey-cloak-001");
-        mob.getInventory().add(item);
-
-        item = EntityProvider.createItem("chest-plate-001");
-        mob.getInventory().add(item);
-
-        item = EntityProvider.createItem("greaves-001");
-        mob.getInventory().add(item);
-
-        item = EntityProvider.createItem("gauntlets-001");
-        mob.getInventory().add(item);
-
-        item = EntityProvider.createItem("bangle-001");
-        mob.getInventory().add(item);
-
-        item = EntityProvider.createItem("leather-belt-001");
-        mob.getInventory().add(item);
-
-        item = EntityProvider.createItem("chain-mail-leggings-001");
-        mob.getInventory().add(item);
+        createItem(mob, "immortal-80");
+        createItem(mob, "black-boots-001");
+        createItem(mob, "black-anklet-001");
+        createItem(mob, "black-anklet-001");
+        createItem(mob, "wizard-hat-001");
+        createItem(mob, "ring-fire-prot-001");
+        createItem(mob, "ring-of-combat-001");
+        createItem(mob, "mantel-of-protection-001");
+        createItem(mob, "orb-of-power-001");
+        createItem(mob, "jade-earring-001");
+        createItem(mob, "jade-earring-001");
+        createItem(mob, "cool-shades-001");
+        createItem(mob, "mask-madness-001");
+        createItem(mob, "spiked-collar-001");
+        createItem(mob, "spiked-pauldrons-001");
+        createItem(mob, "grey-cloak-001");
+        createItem(mob, "chest-plate-001");
+        createItem(mob, "greaves-001");
+        createItem(mob, "gauntlets-001");
+        createItem(mob, "bangle-001");
+        createItem(mob, "bangle-001");
+        createItem(mob, "leather-belt-001");
+        createItem(mob, "chain-mail-leggings-001");
 
         mob.getInventory().add(new Money(Money.PLATINUM, 10000));
+    }
+
+    private void createItem(Mob mob, String id) {
+        Item item = EntityProvider.createItem(id);
+        mob.getInventory().add(item);
     }
 }

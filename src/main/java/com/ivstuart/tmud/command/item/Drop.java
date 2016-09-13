@@ -55,8 +55,8 @@ public class Drop extends BaseCommand {
 				mob.out("You drop an " + item.getBrief());
 
 				checkDisease(mob, item);
+				itemIter.remove();
 			}
-			return;
 		}
 
 		SomeMoney sm = mob.getInventory().removeCoins(input);
