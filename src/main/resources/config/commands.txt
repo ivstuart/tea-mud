@@ -167,6 +167,7 @@ command.admin.GiveDisease,SLEEP
 command.admin.GiveWarpoints,SLEEP
 command.admin.Level,SLEEP
 command.admin.MobInfo,SLEEP
+command.admin.Outfit,SLEEP
 command.admin.PauseTime,SLEEP
 command.admin.Possess,SLEEP
 command.admin.Reload,SLEEP

@@ -90,6 +90,17 @@ public class Wear extends BaseCommand {
             return;
         }
 
+        if (item.isAntiGood() && mob.isGood()) {
+            mob.out("You can not wear this item it is anti good");
+            return;
+        }
+
+        if (item.isAntiEvil() && !mob.isGood()) {
+            mob.out("You can not wear this item it is anti evil");
+            return;
+        }
+
+
         if (item.getDamagedPercentage() > 99) {
             mob.out("That item is too damaged to use, repair it");
             return;

@@ -53,6 +53,8 @@ public class Item extends Prop implements Equipable, Msgable {
 	private boolean isNoDonate;
 	private boolean isNoInvisible;
 	private List<Profession> antiProfession;
+	private boolean isAntiGood;
+	private boolean isAntiEvil;
 	private boolean isBoat;
 	private String roomId;
 	private boolean magic;
@@ -65,8 +67,23 @@ public class Item extends Prop implements Equipable, Msgable {
 	private int mana;
 	private int move;
 	private Disease disease;
-
 	public Item() {
+	}
+
+	public boolean isAntiGood() {
+		return isAntiGood;
+	}
+
+	public void setAntiGood(boolean antiGood) {
+		isAntiGood = antiGood;
+	}
+
+	public boolean isAntiEvil() {
+		return isAntiEvil;
+	}
+
+	public void setAntiEvil(boolean antiEvil) {
+		isAntiEvil = antiEvil;
 	}
 
 	public int getHp() {

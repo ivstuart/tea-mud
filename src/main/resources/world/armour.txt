@@ -121,3 +121,230 @@ cost: 1000
 rent: 5
 affects:
 armour: 0 0 0 0 0 0 10
+
+class: state.Armour
+id: mantel-of-good-001
+alias: mantel good yellow
+brief: a yellow aura of goodness
+look: a yellow aura of goodness
+wear: AURA
+antiEvil: true
+weight: 0
+cost: 1000
+rent: 5
+affects:
+armour: 0 0 0 0 0 0 10
+
+class: state.Armour
+id: mantel-of-protection-001
+alias: mantel protection yellow
+brief: a yellow aura of protection
+look: a yellow aura of protection
+wear: AURA
+weight: 0
+cost: 100000
+rent: 5
+affects:
+armour: 0 0 0 0 0 0 100
+
+class: state.Armour
+id: orb-of-power-001
+alias: orb power
+brief: a green orb of power radiates mana
+look: a green orb of power radiates mana
+wear: FLOAT_NEAR
+weight: 0
+cost: 1000
+mana: 100
+rent: 5
+armour: 0 0 0 0 0 0 10
+
+class: state.Armour
+id: jade-earring-001
+alias: jade earring
+brief: jade earring
+look: jade earring in the shape of horses
+wear: EAR
+weight: 0
+cost: 1000
+move: 10
+rent: 5
+armour: 5 0 0 0 0 0 0
+
+class: state.Armour
+id: cool-shades-001
+alias: cool shades
+brief: cool shades
+look: pair of super cool elfin shades
+wear: EYES
+weight: 0
+cost: 1000
+rent: 5
+armour: 15 0 0 0 0 0 0
+
+class: state.Armour
+id: mask-madness-001
+alias: mask madness
+brief: mask of madness
+look: mask of madness
+wear: FACE
+weight: 5
+cost: 1000
+rent: 5
+armour: 15 0 0 0 0 0 0
+
+class: state.Armour
+id: mask-madness-001
+alias: mask madness
+brief: mask of madness
+look: mask of madness
+wear: FACE
+weight: 5
+cost: 1000
+rent: 5
+armour: 15 0 0 0 0 0 0
+
+class: state.Armour
+id: spiked-collar-001
+alias: spiked collar
+brief: spiked collar
+look: spiked collar
+wear: NECK
+weight: 100
+cost: 1000
+rent: 5
+armour: 15 0 0 0 0 0 0
+
+class: state.Armour
+id: spiked-pauldrons-001
+alias: spiked pauldrons
+brief: spiked pauldrons
+look: spiked pauldrons
+wear: SHOULDER
+weight: 200
+cost: 1000
+rent: 5
+armour: 15 0 0 0 0 0 0
+
+class: state.Armour
+id: grey-cloak-001
+alias: grey cloak
+brief: grey cloak
+look: grey cloak
+wear: ABOUT_BODY
+weight: 100
+cost: 1000
+rent: 5
+armour: 0 10 0 0 0 0 10
+
+class: state.Armour
+id: chest-plate-001
+alias: chest plate
+brief: chest plate
+look: chest plate
+wear: BODY
+weight: 500
+cost: 1000
+rent: 5
+armour: 0 50 0 0 0 0 10
+
+class: state.Armour
+id: greaves-001
+alias: greaves
+brief: greaves
+look: greaves
+wear: ARMS
+weight: 500
+cost: 1000
+rent: 5
+armour: 0 0 20 0 0 0 10
+
+class: state.Armour
+id: greaves-001
+alias: greaves
+brief: greaves
+look: greaves
+wear: ARMS
+weight: 500
+cost: 1000
+rent: 5
+armour: 0 0 20 0 0 0 10
+
+class: state.Armour
+id: gauntlets-001
+alias: gauntlets
+brief: gauntlets
+look: gauntlets
+wear: HANDS
+weight: 200
+cost: 1000
+rent: 5
+armour: 0 0 20 0 0 0 10
+
+class: state.Armour
+id: bangle-001
+alias: bangle
+brief: bangle
+look: bangle
+wear: WRIST
+weight: 200
+cost: 1000
+rent: 5
+armour: 0 0 20 0 0 0 10
+
+class: state.Armour
+id: leather-belt-001
+alias: leather belt
+brief: leather belt
+look: leather belt
+wear: WAIST
+weight: 200
+cost: 1000
+rent: 5
+armour: 0 0 0 20 0 0 10
+
+class: state.Armour
+id: chain-mail-leggings-001
+alias: chain mail leggings
+brief: chain mail leggings
+look: chain mail leggings
+wear: LEGS
+weight: 500
+cost: 1000
+rent: 5
+armour: 0 0 0 0 20 0 10
+
+class: state.Armour
+id: leather-boots-001
+alias: leather boots
+brief: leather boots
+look: leather boots
+wear: FEET
+weight: 200
+cost: 1000
+rent: 5
+armour: 0 0 0 0 0 10 10
+
+# HEAD BODY ARMS WAIST LEGS FEET ALL
+#    AURA(1, "part of your aura"),
+#    FLOAT_NEAR(1, "floating nearby"),
+#    HEAD(1, "worn on head"),
+#    EAR(2, "worn on the ear"),
+#    EYES(1, "worn on eyes"),
+#    FACE(1, "worn on face"),
+#    NECK(2, "worn on neck"),
+#    SHOULDER(2, "worn on shoulder"),
+#    ABOUT_BODY(1, "worn about body"),
+#    BODY(1, "worn on body"),
+#    ARMS(1, "worn on arms"),
+#    WRIST(2, "worn on wrist"),
+#    HANDS(1, "worn on hands"),
+#    FINGER(3, "worn on finger"),
+#    PRIMARY(1, "primary hand"),
+#    SECONDARY(1, "secondary hand"),
+#    BOTH(1,"both hands"),
+#    WAIST(1, "worn around waist"),
+#    BELT(2, "thru belt"),
+#    LEGS(1, "worn on legs"),
+#    ANKLE(2, "worn on ankle"),
+#    FEET(1, "worn on feet");

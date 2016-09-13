@@ -3,34 +3,38 @@
 8th Sep 2016:
 
 1. contagious diseases - DONE
-6. online building - DONE
-13. Wands, Rods, Scrolls and Potions. - DONE
-15. Chest item - DONE
-12. Weather effects and Lunar impact on spells. - DONE
+2. online building - DONE
+3. Wands, Rods, Scrolls and Potions. - DONE
+4. Chest item - DONE
+5. Weather effects and Lunar impact on spells. - DONE
 
 9th Sep 2016:
 
-10. Item that take damage and require repair - DONE
-2. mounts - Basic - DONE - Flying mounts left to do.
-3. On-line boards (journals) for public and private messaging - Basic DONE
+6. Item that take damage and require repair - DONE
+7. mounts - Basic - DONE - Flying mounts left to do.
+8. On-line boards (journals) for public and private messaging - Basic DONE
 
 10th Sep 2016:
 11th Sep 2016:
 
-4. postal system - BASIC DONE.
-8. Clan support - BASIC DONE. First pass needs more testing and refinement.
+9. postal system - BASIC DONE.
+10. Clan support - BASIC DONE. First pass needs more testing and refinement.
 
 12th Sep 2016:
 
-7. MUD statistics - BASIC DONE.
-9. Load testing (up to 100 concurrent players) - BASIC test passed.
+11. MUD statistics - BASIC DONE.
+12. Load testing (up to 100 concurrent players) - BASIC test passed.
 
 13th Sep 2016:
 
-17. Possess - Basic DONE
-18. Investigate and diagnose DONE.
+13. Possess - Basic DONE
+14. Investigate and diagnose DONE.
+15. Create items sets with bonuses to stats or abilities. - DONE
 16. crafting.
-5. player houses
-11. Quests
-14. Clean up messages to use look() and brief()
-18. Create items sets with bonuses to stats or abilities.
+17. player houses.
+18. Quests - deliver something to someone
+           - defend something for a time limit
+           - collect x items from around an area
+           - discover a new area and speak to someone
+           - destroy mob x
+19. Clean up messages to use look() and brief()
