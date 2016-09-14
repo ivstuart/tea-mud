@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.constants;
 
 /**
@@ -33,6 +38,10 @@ public enum EquipLocation {
     EquipLocation(int capacity_, String description_) {
         _capacity = capacity_;
         _description = description_;
+    }
+
+    public static int getCapacity(int oridinal) {
+        return values()[oridinal].getCapacity();
     }
 
     public int getCapacity() {

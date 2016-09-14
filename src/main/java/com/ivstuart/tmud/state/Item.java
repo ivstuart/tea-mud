@@ -8,6 +8,7 @@ package com.ivstuart.tmud.state;
 import com.ivstuart.tmud.common.*;
 import com.ivstuart.tmud.constants.DamageType;
 import com.ivstuart.tmud.constants.EquipLocation;
+import com.ivstuart.tmud.constants.EquipmentConstants;
 import com.ivstuart.tmud.constants.Profession;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
@@ -463,5 +464,12 @@ public class Item extends Prop implements Equipable, Msgable {
 
 	public void setMagic(boolean magic) {
 		this.magic = magic;
+	}
+
+	@Override
+	public String look() {
+
+		int indexCondition = (EquipmentConstants.condition.length * getDamagedPercentage()) / 100;
+		return this.getBrief() + EquipmentConstants.condition[indexCondition];
 	}
 }

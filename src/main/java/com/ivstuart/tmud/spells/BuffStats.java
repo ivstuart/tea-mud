@@ -26,11 +26,6 @@ public class BuffStats implements SpellEffect {
 	@Override
 	public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
 
-		if (target_.isNoBlind() && spell.getName().equals("blindness")) {
-			caster_.out("Your target is no blind your spell fizzles uselessly");
-			return;
-		}
-
 		BuffStatsAffect affect = (BuffStatsAffect)target_.getMobAffects().getAffect(spell.getId());
 
 		if (affect == null) {

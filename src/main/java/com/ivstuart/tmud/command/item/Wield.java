@@ -30,6 +30,7 @@ public class Wield extends BaseCommand {
 		Item item = mob.getInventory().get(input); // .remove(input);
 
 		if (item == null) {
+			// TODO check sheathed equipment to unsheath it
 			mob.out("You are not carrying a " + input);
 			return;
 		}
@@ -44,7 +45,7 @@ public class Wield extends BaseCommand {
 		}
 
 		if (item.isAntiProfession(mob.getPlayer().getProfession())) {
-			mob.out("You can not wear that item its not for your profession");
+			mob.out("You can not wield that item its not for your profession");
 			return;
 		}
 
@@ -54,7 +55,6 @@ public class Wield extends BaseCommand {
 			mob.out("You wield an " + item);
 		} else {
 			mob.out("You do not have any space available to wield an " + item);
-			// mob.getInventory().add(item);
 		}
 
 	}

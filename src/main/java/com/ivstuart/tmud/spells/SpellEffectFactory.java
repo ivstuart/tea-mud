@@ -23,11 +23,11 @@ public class SpellEffectFactory {
 		spellEffectMap.put("RECALL", new Recall());
 		spellEffectMap.put("SUMMON", new Summon());
 		spellEffectMap.put("BUFF", new BuffStats());
+        spellEffectMap.put("DEBUFF", new BuffStats());
         spellEffectMap.put("FLY", new Levitate());
         spellEffectMap.put("DETECT", new DetectInvisible());
-        spellEffectMap.put("INVIS", new BuffStats());
-        spellEffectMap.put("DEBUFF", new BuffStats());
-		spellEffectMap.put("SLEEP", new Sleep());
+        spellEffectMap.put("INVIS", new Buff());
+        spellEffectMap.put("SLEEP", new Sleep());
 		spellEffectMap.put("REFRESH", new Refresh());
 		spellEffectMap.put("IDENT", new Identify());
 		spellEffectMap.put("CREATE-LIGHT", new CreateLight());

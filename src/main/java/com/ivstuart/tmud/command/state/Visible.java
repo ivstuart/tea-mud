@@ -12,6 +12,7 @@
 package com.ivstuart.tmud.command.state;
 
 import com.ivstuart.tmud.command.BaseCommand;
+import com.ivstuart.tmud.person.statistics.affects.Affect;
 import com.ivstuart.tmud.person.statistics.affects.BuffStatsAffect;
 import com.ivstuart.tmud.state.Mob;
 
@@ -29,7 +30,7 @@ public class Visible extends BaseCommand {
 			return;
 		}
 
-        BuffStatsAffect invisAffect = (BuffStatsAffect) mob_.getMobAffects().getAffect(INVISIBILITY);
+        Affect invisAffect = (BuffStatsAffect) mob_.getMobAffects().getAffect(INVISIBILITY);
 
 		if (invisAffect == null){
 			mob_.out("That spell is not active!");

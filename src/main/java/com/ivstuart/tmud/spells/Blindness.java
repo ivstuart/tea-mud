@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.spells;
 
 import com.ivstuart.tmud.state.Item;
@@ -20,5 +25,10 @@ public class Blindness extends BuffStats {
         super.effect(caster_, target_, spell, targetItem);
 
 
+    }
+
+    @Override
+    public boolean isPositiveEffect() {
+        return false;
     }
 }

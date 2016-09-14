@@ -352,7 +352,6 @@ public class World {
 		return null;
 	}
 
-    // TODO store all player names
     public static boolean isPlayer(String playerInput) {
         return true;
     }

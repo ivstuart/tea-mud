@@ -14,7 +14,6 @@ package com.ivstuart.tmud.person.carried;
 import com.ivstuart.tmud.common.Equipable;
 import com.ivstuart.tmud.constants.DamageType;
 import com.ivstuart.tmud.constants.EquipLocation;
-import com.ivstuart.tmud.constants.EquipmentConstants;
 import com.ivstuart.tmud.person.statistics.affects.Affect;
 import com.ivstuart.tmud.state.Armour;
 import com.ivstuart.tmud.state.Item;
@@ -28,7 +27,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static com.ivstuart.tmud.constants.EquipLocation.FEET;
+import static com.ivstuart.tmud.constants.EquipLocation.*;
 import static com.ivstuart.tmud.constants.SpellNames.PROTECTION;
 
 /**
@@ -53,7 +52,7 @@ public class Equipment implements Serializable {
 	private Equipable _natural;
 
 	// Used to work out if we have space at that location to put on said item.
-	private int _slots[] = new int[EquipmentConstants.location.length];
+	private int _slots[] = new int[EquipLocation.values().length];
 
 	private Mob mob;
 	private int kickBonus;
@@ -86,11 +85,11 @@ public class Equipment implements Serializable {
 	}
 
 	private boolean checkTwoHandedAndNotEmptyHands(Integer location) {
-		if (location != EquipmentConstants.TWO_HANDED) {
+		if (location != BOTH.ordinal()) {
 			return false;
 		}
-		if (_slots[EquipmentConstants.PRIMARY] > 0
-				|| _slots[EquipmentConstants.SECONDARY] > 0) {
+		if (_slots[PRIMARY.ordinal()] > 0
+				|| _slots[SECONDARY.ordinal()] > 0) {
 			return true;
 		}
 		return false;
@@ -116,7 +115,7 @@ public class Equipment implements Serializable {
 	private boolean equip(Equipable item) {
 
 		for (Integer location : item.getWear()) {
-			if (_slots[location] < EquipmentConstants.locationLimits[location]) {
+			if (_slots[location] < EquipLocation.getCapacity(location)) {
 
 				if (checkTwoHandedAndNotEmptyHands(location)) {
 					continue;
@@ -124,9 +123,9 @@ public class Equipment implements Serializable {
 				item.setWorn(location);
 				_slots[location]++;
 				_equipment.add(item);
-				if (location == EquipmentConstants.PRIMARY) {
+				if (location == PRIMARY.ordinal()) {
 					_primary = item;
-				} else if (location == EquipmentConstants.PRIMARY) {
+				} else if (location == SECONDARY.ordinal()) {
 					_secondary = item;
 				}
 				return true;
@@ -249,10 +248,10 @@ public class Equipment implements Serializable {
 			_primary = _secondary;
 			_secondary = temp;
 			if (_primary != null) {
-				_primary.setWorn(EquipmentConstants.PRIMARY);
+				_primary.setWorn(PRIMARY.ordinal());
 			}
 			if (_secondary != null) {
-				_secondary.setWorn(EquipmentConstants.SECONDARY);
+				_secondary.setWorn(SECONDARY.ordinal());
 			}
 
 		}
@@ -261,12 +260,12 @@ public class Equipment implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("You have equiped:\n");
+		sb.append("You have equipped:\n");
 
 		for (int index = 0; index < _equipment.size(); index++) {
 			Equipable eq = _equipment.get(index);
 			sb.append("<");
-			sb.append(EquipmentConstants.location[eq.getWorn()]);
+			sb.append(EquipLocation.values()[eq.getWorn()].getDesc());
 			sb.append("> ");
 			Item item = null;
 			if (eq instanceof Item) {
@@ -367,5 +366,19 @@ public class Equipment implements Serializable {
 			total += item.getDamageRoll();
 		}
 		return total;
+	}
+
+	public boolean hasBelt() {
+		return _slots[WAIST.ordinal()] > 0;
+	}
+
+	public boolean hasThruBeltSlots() {
+		return _slots[BELT.ordinal()] < BELT.getCapacity();
+	}
+
+	public void sheath(Item item) {
+		_slots[item.getWorn()]--;
+		item.setWorn(BELT.ordinal());
+		_slots[item.getWorn()]++;
 	}
 }
