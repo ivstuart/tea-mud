@@ -30,7 +30,6 @@ public class Wield extends BaseCommand {
 		Item item = mob.getInventory().get(input); // .remove(input);
 
 		if (item == null) {
-			// TODO check sheathed equipment to unsheath it
 			mob.out("You are not carrying a " + input);
 			return;
 		}

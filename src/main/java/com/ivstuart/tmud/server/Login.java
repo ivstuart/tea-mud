@@ -120,7 +120,6 @@ public class Login implements Readable {
         data.setPassword(password);
 
 
-
         mob.setGender(gender);
 
         mob.setHeight(170 + DiceRoll.TWO_D_SIX.roll());
@@ -364,15 +363,19 @@ public class Login implements Readable {
     }
 
     private void welcome() {
-        out("--------------------------\n" + "Welcome to Rite Of Balance\n"
-                + "--------------------------\n" + "Credits:\n\n"
-                + "Code Base: Ivan Stuart\n" + "--------------------------\n");
+        out("--------------------------\n" +
+                "Welcome to Rite Of Balance\n" +
+                "--------------------------\n" +
+                "Credits:\n\n" +
+                "Code Base: tea-mud\n" +
+                "Author: Ivan Stuart\n" +
+                "--------------------------\n");
     }
 
     private class ChooseAttributes implements Readable {
 
         public ChooseAttributes() {
-            out("Please enter your stats seperated by spaces.\n"
+            out("Please enter your stats separated by spaces.\n"
                     + "Each basic stat must be between 4 and 21 inclusively\n"
                     + "The your stats total must NOT exceed 90 points!\n");
 

@@ -76,6 +76,7 @@ command.item.bank.Deposit,STAND
 command.item.bank.Withdraw,STAND
 command.item.bank.ListBank,STAND
 command.item.tier.Tier,STAND
+command.item.Draw,STAND
 command.item.Put,STAND
 command.item.Get,STAND
 command.item.Give,STAND

@@ -38,3 +38,4 @@
            - discover a new area and speak to someone
            - destroy mob x
 19. Clean up messages to use look() and brief()
+20. Draw, sheath items thru belt.

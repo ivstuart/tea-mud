@@ -61,7 +61,7 @@ look: morning star which looks well worn
 skill: crushing piercing
 type: weapon
 damage: 3d6+2
-wear: PRIMARY
+wear: PRIMARY SECONDARY
 weight: 15
 cost: 15
 rent: 5

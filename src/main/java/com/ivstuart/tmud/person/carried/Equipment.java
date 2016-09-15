@@ -20,6 +20,8 @@ import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Weapon;
 import com.ivstuart.tmud.utils.MudArrayList;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -39,7 +41,7 @@ import static com.ivstuart.tmud.constants.SpellNames.PROTECTION;
 public class Equipment implements Serializable {
 
 	private static final long serialVersionUID = -4733577084794956703L;
-
+	private static final Logger LOGGER = LogManager.getLogger();
 	private MudArrayList<Equipable> _equipment;
 
 	/* Special slots */
@@ -267,6 +269,7 @@ public class Equipment implements Serializable {
 			sb.append("<");
 			sb.append(EquipLocation.values()[eq.getWorn()].getDesc());
 			sb.append("> ");
+			// sb.append(" slots: ["+_slots[eq.getWorn()]+"] ");
 			Item item = null;
 			if (eq instanceof Item) {
 				item = (Item)eq;
@@ -373,6 +376,7 @@ public class Equipment implements Serializable {
 	}
 
 	public boolean hasThruBeltSlots() {
+		LOGGER.debug("Slots:" + _slots[BELT.ordinal()] + " out of capacity: " + BELT.getCapacity());
 		return _slots[BELT.ordinal()] < BELT.getCapacity();
 	}
 
@@ -380,5 +384,44 @@ public class Equipment implements Serializable {
 		_slots[item.getWorn()]--;
 		item.setWorn(BELT.ordinal());
 		_slots[item.getWorn()]++;
+		if (item == _primary) {
+			_primary = null;
+		}
+		if (item == _secondary) {
+			_secondary = null;
+		}
+	}
+
+	public boolean draw(String input) {
+		if (_primary == null) {
+			Equipable eq = this.remove(input);
+
+			if (eq.getWorn() != BELT.ordinal()) {
+				_equipment.add(eq);
+				return false;
+			}
+
+			_primary = eq;
+			_slots[eq.getWorn()]--;
+			eq.setWorn(PRIMARY.ordinal());
+			_slots[eq.getWorn()]++;
+			_equipment.add(eq);
+			return true;
+		} else if (_secondary == null) {
+			Equipable eq = this.remove(input);
+
+			if (eq.getWorn() != BELT.ordinal()) {
+				_equipment.add(eq);
+				return false;
+			}
+
+			_secondary = eq;
+			_slots[eq.getWorn()]--;
+			eq.setWorn(SECONDARY.ordinal());
+			_slots[eq.getWorn()]++;
+			_equipment.add(eq);
+			return true;
+		}
+		return false;
 	}
 }
