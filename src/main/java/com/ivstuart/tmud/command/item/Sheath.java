@@ -40,7 +40,7 @@ public class Sheath extends BaseCommand {
         }
 
         if (!(item instanceof Weapon)) {
-            mob.out("You can only sheath a weapon");
+            mob.out("You can only sheath a weapon :" + item);
             return;
         }
 

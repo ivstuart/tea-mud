@@ -92,6 +92,7 @@ public class Equipment implements Serializable {
 		}
 		if (_slots[PRIMARY.ordinal()] > 0
 				|| _slots[SECONDARY.ordinal()] > 0) {
+			LOGGER.debug("For two handed weapon one of the slots is taken so can not use both hands");
 			return true;
 		}
 		return false;
@@ -129,6 +130,8 @@ public class Equipment implements Serializable {
 					_primary = item;
 				} else if (location == SECONDARY.ordinal()) {
 					_secondary = item;
+				} else if (location == BOTH.ordinal()) {
+					_both = item;
 				}
 				return true;
 			}
@@ -238,7 +241,7 @@ public class Equipment implements Serializable {
 	}
 
 	public List<Equipable> removeAll() {
-		List<Equipable> eqList = new ArrayList<Equipable>(_equipment);
+		List<Equipable> eqList = new ArrayList<>(_equipment);
 
 		this.clear();
 		return eqList;
@@ -251,9 +254,15 @@ public class Equipment implements Serializable {
 			_secondary = temp;
 			if (_primary != null) {
 				_primary.setWorn(PRIMARY.ordinal());
+				_slots[PRIMARY.ordinal()] = 1;
+			} else {
+				_slots[PRIMARY.ordinal()] = 0;
 			}
 			if (_secondary != null) {
 				_secondary.setWorn(SECONDARY.ordinal());
+				_slots[SECONDARY.ordinal()] = 1;
+			} else {
+				_slots[SECONDARY.ordinal()] = 0;
 			}
 
 		}
@@ -376,7 +385,6 @@ public class Equipment implements Serializable {
 	}
 
 	public boolean hasThruBeltSlots() {
-		LOGGER.debug("Slots:" + _slots[BELT.ordinal()] + " out of capacity: " + BELT.getCapacity());
 		return _slots[BELT.ordinal()] < BELT.getCapacity();
 	}
 
@@ -384,42 +392,42 @@ public class Equipment implements Serializable {
 		_slots[item.getWorn()]--;
 		item.setWorn(BELT.ordinal());
 		_slots[item.getWorn()]++;
+
 		if (item == _primary) {
 			_primary = null;
-		}
-		if (item == _secondary) {
+		} else if (item == _secondary) {
 			_secondary = null;
+		} else if (item == _both) {
+			_both = null;
 		}
 	}
 
 	public boolean draw(String input) {
-		if (_primary == null) {
-			Equipable eq = this.remove(input);
 
-			if (eq.getWorn() != BELT.ordinal()) {
-				_equipment.add(eq);
-				return false;
-			}
+		Equipable eq = _equipment.get(input);
 
-			_primary = eq;
-			_slots[eq.getWorn()]--;
-			eq.setWorn(PRIMARY.ordinal());
-			_slots[eq.getWorn()]++;
-			_equipment.add(eq);
+		if (eq == null) {
+			return false;
+		}
+
+		if (eq.getWorn() != BELT.ordinal()) {
+			return false;
+		}
+		this.remove(input);
+
+		if (equip(eq)) {
 			return true;
-		} else if (_secondary == null) {
-			Equipable eq = this.remove(input);
-
-			if (eq.getWorn() != BELT.ordinal()) {
-				_equipment.add(eq);
-				return false;
-			}
-
-			_secondary = eq;
-			_slots[eq.getWorn()]--;
-			eq.setWorn(SECONDARY.ordinal());
-			_slots[eq.getWorn()]++;
+		} else {
 			_equipment.add(eq);
+		}
+		return false;
+	}
+
+	public boolean hasBothHandsFull() {
+		if (_both != null) {
+			return true;
+		}
+		if (_primary != null && _secondary != null) {
 			return true;
 		}
 		return false;

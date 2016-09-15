@@ -25,6 +25,11 @@ public class Draw extends BaseCommand {
     @Override
     public void execute(Mob mob, String input) {
 
+        if (mob.getEquipment().hasBothHandsFull()) {
+            mob.out("Both your hands are in use carrying items");
+            return;
+        }
+
         if (mob.getEquipment().draw(input)) {
             mob.out("You draw your weapon");
         } else {

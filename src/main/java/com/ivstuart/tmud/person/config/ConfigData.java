@@ -1,6 +1,11 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.person.config;
 
-import java.io.*;
+import java.io.Serializable;
 
 /*
  * This class is simple a data class to store the configuration 
@@ -8,47 +13,27 @@ import java.io.*;
  */
 public class ConfigData implements Serializable {
 
-	private static final long serialVersionUID = 8405127163570001754L;
-
 	public static final int ANSI = 0;
-
 	public static final int ASSIST = 1;
-
 	public static final int AUTOEXIT = 2;
-
 	public static final int AUTOLOAD = 3;
-
 	public static final int AUTOLOOT = 4;
-
 	public static final int AUTOSAC = 5;
-
 	public static final int AUTOSPLIT = 6;
-
 	public static final int BATTLE = 7;
-
 	public static final int BLANK = 8;
-
 	public static final int CHALLENGE = 9;
-
 	public static final int COMBINE = 10;
-
 	public static final int DUALMANA = 11;
-
 	public static final int EQLIST = 12;
-
 	public static final int GROUPSPAM = 13;
-
 	public static final int LEVEL = 14;
-
 	public static final int PIGSPAM = 15;
-
 	public static final int PROMPT = 16;
-
 	public static final int SUMMON = 17;
-
 	public static final int VERBOSE = 18;
-
-	private static final String FLAG_NAME[] = { "ANSI", "ASSIST", "AUTOEXIT",
+    private static final long serialVersionUID = 8405127163570001754L;
+    private static final String FLAG_NAME[] = { "ANSI", "ASSIST", "AUTOEXIT",
 			"AUTOLOAD", "AUTOLOOT", "AUTOSAC", "AUTOSPLIT", "BATTLE", "BLANK",
 			"CHALLENGE", "COMBINE", "DUALMANA", "EQLIST", "GROUPSPAM", "LEVEL",
 			"PIGSPAM", "PROMPT", "SUMMON", "VERBOSE" };
@@ -67,27 +52,33 @@ public class ConfigData implements Serializable {
 			"You see object lists in combined format",
 			"You see mana of both gems in your prompt",
 			"Equipment is sorted from head to toe",
-			"You see group follow spam", "Who will display your level",
-			"You will see updated status of the Pig Game", "Prompt is shown",
-			"You can be summoned", "You will see room descriptions in verbose" };
+            "You see group follow spam",
+            "Who will display your level",
+            "You will see updated status of the Pig Game",
+            "Prompt is shown",
+            "You can be summoned",
+            "You will see room descriptions in verbose"};
 
 	private static final String FALSE_DESCRIPTION[] = {
 			"You will not receive ansi color codes",
 			"You will not assist your group in combat",
 			"You will not see exits",
 			"You will not split items looted from corpses",
-			"You will not loot corpses", "You will not sacrifice corpses",
-			"You will not split coins looted from corpses",
+            "You will not loot corpses",
+            "You will not sacrifice corpses",
+            "You will not split coins looted from corpses",
 			"You will not see progress of battle ground",
 			"You will not have a blank line before your prompt",
 			"You disallow arena challenges from other players",
 			"You see object lists in full",
 			"You see mana of primary gem only in your prompt",
 			"Equipment is sorted in classic style",
-			"You will not see group follow spam", "Who will hide your level",
-			"You will not see updated status of the Pig Game",
-			"Prompt is not shown", "You can not be summoned",
-			"You see brief descriptions of rooms" };
+            "You will not see group follow spam",
+            "Who will hide your level",
+            "You will not see updated status of the Pig Game",
+            "Prompt is not shown",
+            "You can not be summoned",
+            "You see brief descriptions of rooms" };
 
 	private boolean mData[] = new boolean[19];
 

@@ -47,6 +47,9 @@ public class Outfit extends AdminCommand {
 
         createItem(mob, "dagger-001");
         createItem(mob, "morning-star-001");
+        createItem(mob, "warhammer-001");
+        createItem(mob, "battleaxe-001");
+        createItem(mob, "greatsword-001");
 
         mob.getInventory().add(new Money(Money.PLATINUM, 10000));
     }
