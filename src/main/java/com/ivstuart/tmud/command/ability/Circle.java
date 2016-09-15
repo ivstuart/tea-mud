@@ -29,7 +29,7 @@ public class Circle extends BaseCommand {
 
 	private boolean checkMobStatus(Mob self, Mob target) {
 
-		AbilityHelper.canUseAbility(self, target, "circle");
+        AbilityHelper.canUseAbility(self, target, CIRCLE);
 
 		return false;
 	}
@@ -52,8 +52,8 @@ public class Circle extends BaseCommand {
 	@Override
 	public void execute(Mob mob, String input) {
 		// Same as backstab but can use during combat only
-		if (!mob.getLearned().hasLearned("circle")) {
-			mob.out("You have no knowledge of circle");
+        if (!mob.getLearned().hasLearned(CIRCLE)) {
+            mob.out("You have no knowledge of circle");
 			return;
 		}
 
@@ -119,8 +119,8 @@ public class Circle extends BaseCommand {
 				this.finished();
 			}
 
-			// Check if another theif is attemping to also circle at the same time
-			// Note only most progressed
+            // Check if another thief is attempting to also circle at the same time
+            // Note only most progressed
 			if (getTarget().getFight().isBeingCircled()) {
 				getSelf().out(getTarget().getName()
 						+ " is already being circled you collide and are off balance");

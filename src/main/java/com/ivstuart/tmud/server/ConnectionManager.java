@@ -1,4 +1,12 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.server;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.nio.channels.SelectionKey;
@@ -6,14 +14,15 @@ import java.nio.channels.SocketChannel;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 public class ConnectionManager {
 
 	private static final Logger LOGGER = LogManager.getLogger();
 
 	private static Map<SocketChannel, Connection> map = new HashMap<SocketChannel, Connection>();
+
+    private ConnectionManager() {
+
+    }
 
 	public static void add(SocketChannel sc) {
 
@@ -36,10 +45,6 @@ public class ConnectionManager {
 
 	public static void remove(SocketChannel sc) {
 		map.remove(sc);
-	}
-
-	private ConnectionManager() {
-
 	}
 
 	public static void close(SelectionKey sk) {

@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 09-Sep-2003
  *
  * To change the template for this generated file go to
@@ -6,16 +11,15 @@
  */
 package com.ivstuart.tmud.server;
 
+import com.ivstuart.tmud.state.util.StateReader;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.net.URISyntaxException;
 import java.util.Properties;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import com.ivstuart.tmud.state.util.StateReader;
 
 /**
  * @author stuarti

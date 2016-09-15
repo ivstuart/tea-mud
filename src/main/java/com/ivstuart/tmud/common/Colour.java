@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.common;
 
 public enum Colour {
@@ -64,10 +69,17 @@ public enum Colour {
 	private static final int CHAR_INDEX_OFFSET = 64;
 
 	private static Colour colour[] = new Colour[32];
+    private String ansiCode;
+    private int escapeIndex;
+
+    private Colour(String escapeString, int escapeIndex) {
+        ansiCode = escapeString;
+        this.escapeIndex = escapeIndex;
+    }
 
 	public static String getEscapeString(char aChar) {
-		
-		// Lazy initialise this look up array, which is better than using ordinal values as programmer can make change in future
+
+        // Lazy initialise this look up array, which is better than using ordinal values as programmer can make change in future
 		if (colour[0] == null) {
 			synchronized(Colour.class) {
 				for (Colour col : Colour.values()) {
@@ -75,23 +87,14 @@ public enum Colour {
 				}
 			}
 		}
-		
-		int index = aChar - CHAR_INDEX_OFFSET;
+
+        int index = aChar - CHAR_INDEX_OFFSET;
 		if (index < 0 || index >= colour.length) {
 			return colour[0].toString();
 		}
 		return colour[index].toString();
 	}
 	
-	private String ansiCode;
-	private int escapeIndex;
-
-	private Colour(String escapeString,int escapeIndex) {
-		ansiCode = escapeString;
-		this.escapeIndex = escapeIndex;
-	}
-	
-
 	@Override
 	public String toString() {
 		return ansiCode;

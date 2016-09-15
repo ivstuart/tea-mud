@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.server;
 
 import com.ivstuart.tmud.common.Colour;
@@ -9,6 +14,9 @@ public class Output {
 	private static final char ANSI_IDENTIFIER = '$';
 
 	private static final char LINE_SEPERATOR = '~';
+
+    public Output() {
+    }
 
 	public static String getString(String message, boolean ansi) {
 		if (message == null) {
@@ -88,8 +96,5 @@ public class Output {
 			index = aString.indexOf(LINE_SEPERATOR);
 		}
 		return aString;
-	}
-
-	public Output() {
 	}
 }

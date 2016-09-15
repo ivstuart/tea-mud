@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.state;
 
 import com.ivstuart.tmud.common.ExitEnum;
@@ -10,6 +15,8 @@ import org.apache.logging.log4j.Logger;
 public class RoomIdentifer {
 
     private static final Logger LOGGER = LogManager.getLogger();
+    private int x, y, z = 0;
+    private String roomPrefix;
 
     public RoomIdentifer() {
     }
@@ -17,6 +24,21 @@ public class RoomIdentifer {
     public RoomIdentifer(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public static RoomIdentifer getRoomId(Room room) {
+        String[] tokens = room.getId().split(":");
+
+        if (tokens.length != 4) {
+            return new RoomIdentifer();
+        }
+
+        RoomIdentifer newRoomId = new RoomIdentifer();
+        newRoomId.setRoomPrefix(tokens[0]);
+        newRoomId.x = Integer.parseInt(tokens[1]);
+        newRoomId.y = Integer.parseInt(tokens[2]);
+        newRoomId.z = Integer.parseInt(tokens[3]);
+        return newRoomId;
     }
 
     public int getX() {
@@ -56,9 +78,6 @@ public class RoomIdentifer {
         return roomPrefix + ":" + x + ":" + y + ":" + z;
     }
 
-    private int x, y, z = 0;
-    private String roomPrefix;
-
     public RoomIdentifer createNewRoomId(ExitEnum exit) {
 
         RoomIdentifer newRoomId = new RoomIdentifer();
@@ -69,21 +88,6 @@ public class RoomIdentifer {
         newRoomId.x += exit.getDx();
         newRoomId.y += exit.getDy();
         newRoomId.z += exit.getDz();
-        return newRoomId;
-    }
-
-    public static RoomIdentifer getRoomId(Room room) {
-        String[] tokens = room.getId().split(":");
-
-        if (tokens.length != 4) {
-            return new RoomIdentifer();
-        }
-
-        RoomIdentifer newRoomId = new RoomIdentifer();
-        newRoomId.setRoomPrefix(tokens[0]);
-        newRoomId.x = Integer.parseInt(tokens[1]);
-        newRoomId.y = Integer.parseInt(tokens[2]);
-        newRoomId.z = Integer.parseInt(tokens[3]);
         return newRoomId;
     }
 }

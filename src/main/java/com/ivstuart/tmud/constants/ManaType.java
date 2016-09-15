@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 04-Oct-2003
  *
  * To change the template for this generated file go to
@@ -20,6 +25,14 @@ public enum ManaType {
 	FIRE(RED, 'F'), EARTH(BROWN, 'E'), WATER(BLUE, 'W'), AIR(YELLOW, 'A'), COMMON(
 			WHITE, '*');
 
+    private Colour _colour;
+    private char _symbol;
+
+    ManaType(Colour colour_, char symbol_) {
+        _colour = colour_;
+        _symbol = symbol_;
+    }
+
 	public static ManaType getManaType(String manaType) {
 		try {
 			return ManaType.valueOf(manaType);
@@ -28,15 +41,6 @@ public enum ManaType {
 		}
 		return null;
 
-	}
-
-	private Colour _colour;
-
-	private char _symbol;
-
-	ManaType(Colour colour_, char symbol_) {
-		_colour = colour_;
-		_symbol = symbol_;
 	}
 
 	public Colour getColour() {

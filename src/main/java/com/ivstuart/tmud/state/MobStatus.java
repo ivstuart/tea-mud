@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.state;
 
 import java.util.HashMap;
@@ -9,14 +14,14 @@ import static com.ivstuart.tmud.state.MobCombatState.*;
 
 public class MobStatus {
 
+    private Map<MobCombatState, MobStateDuration> stateMap = new HashMap<MobCombatState, MobStateDuration>();
+
 	@Override
 	public String toString() {
 		return "MobStatus{" +
 				"stateMap=" + stateMap +
 				'}';
 	}
-
-	private Map<MobCombatState, MobStateDuration> stateMap = new HashMap<MobCombatState, MobStateDuration>();
 
 	public void add(MobCombatState state, int durationInSeconds) {
 		stateMap.put(state, new MobStateDuration(durationInSeconds));
@@ -58,21 +63,41 @@ public class MobStatus {
 		return is(BASH_ALERT);
 	}
 
+    public void setBashAlert(int durationInSeconds) {
+        add(BASH_ALERT, durationInSeconds);
+    }
+
 	public boolean isBashed() {
 		return is(BASHED);
 	}
+
+    public void setBashed(int durationInSeconds) {
+        add(BASHED, durationInSeconds);
+    }
 
 	public boolean isBashLagged() {
 		return is(BASH_LAGGED);
 	}
 
+    public void setBashLagged(int durationInSeconds) {
+        add(BASH_LAGGED, durationInSeconds);
+    }
+
 	public boolean isCasting() {
 		return is(CASTING);
 	}
 
+    public void setCasting(int durationInSeconds) {
+        add(CASTING, durationInSeconds);
+    }
+
 	public boolean isGroundFighting() {
 		return is(GROUNDFIGHTING);
 	}
+
+    public void setGroundFighting(int durationInSeconds) {
+        add(GROUNDFIGHTING, durationInSeconds);
+    }
 
 	public boolean isImmobile() {
 		return is(IMMOBILE);
@@ -81,6 +106,10 @@ public class MobStatus {
 	public boolean isOffBalance() {
 		return is(OFFBALANCE);
 	}
+
+    public void setOffBalance(int durationInSeconds) {
+        add(OFFBALANCE, durationInSeconds);
+    }
 
 	boolean removeExpiredState(MobCombatState state) {
 		MobStateDuration duration = stateMap.get(state);
@@ -110,30 +139,6 @@ public class MobStatus {
 
 	}
 
-	public void setBashAlert(int durationInSeconds) {
-		add(BASH_ALERT, durationInSeconds);
-	}
-
-	public void setBashed(int durationInSeconds) {
-		add(BASHED, durationInSeconds);
-	}
-
-	public void setBashLagged(int durationInSeconds) {
-		add(BASH_LAGGED, durationInSeconds);
-	}
-
-	public void setCasting(int durationInSeconds) {
-		add(CASTING, durationInSeconds);
-	}
-
-	public void setGroundFighting(int durationInSeconds) {
-		add(GROUNDFIGHTING, durationInSeconds);
-	}
-
-	public void setOffBalance(int durationInSeconds) {
-		add(OFFBALANCE, durationInSeconds);
-	}
-
 	public boolean isCircling() {
 		return is(CIRCLING);
 	}
@@ -142,13 +147,13 @@ public class MobStatus {
 		add(CIRCLING,durationInSeconds);
 	}
 
-	public void setHidden(int durationInSeconds) {
-		add(HIDDEN,durationInSeconds);
-	}
-	
 	public boolean isHidden() {
 		return is(HIDDEN);
 	}
+
+    public void setHidden(int durationInSeconds) {
+        add(HIDDEN, durationInSeconds);
+    }
 
 	public boolean isSneaking() {
 		return is(SNEAKING);
@@ -158,11 +163,11 @@ public class MobStatus {
 		add(SNEAKING,durationInSeconds);
 	}
 
-	public void setFrozen(int durationInSeconds) {
-		add(FROZEN,durationInSeconds);
-	}
-	
 	public boolean isFrozen() {
 		return is(FROZEN);
-	}
+    }
+
+    public void setFrozen(int durationInSeconds) {
+        add(FROZEN, durationInSeconds);
+    }
 }

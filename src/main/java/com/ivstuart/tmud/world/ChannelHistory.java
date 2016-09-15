@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 04-Oct-2003
  *
  * To change the template for this generated file go to
@@ -6,7 +11,7 @@
  */
 package com.ivstuart.tmud.world;
 
-import java.io.*;
+import java.io.Serializable;
 
 /**
  * @author stuarti
@@ -19,17 +24,9 @@ public class ChannelHistory implements Serializable {
 	private static final long serialVersionUID = -5656696925007287209L;
 
 	private static final ChannelHistory theHistory = new ChannelHistory();
-
-	public static ChannelHistory getInstance() {
-		return theHistory;
-	}
-
 	private transient Channel auction;
-
 	private transient Channel chat;
-
 	private transient Channel raid;
-
 	private transient Channel newbie;
 
 	private ChannelHistory() {
@@ -37,6 +34,10 @@ public class ChannelHistory implements Serializable {
 		chat = new Channel();
 		raid = new Channel();
 		newbie = new Channel();
+	}
+
+	public static ChannelHistory getInstance() {
+		return theHistory;
 	}
 
 	/**

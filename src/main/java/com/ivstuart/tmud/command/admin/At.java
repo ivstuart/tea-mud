@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 28-Sep-2003
  *
  * To change the template for this generated file go to
@@ -6,7 +11,6 @@
  */
 package com.ivstuart.tmud.command.admin;
 
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.command.CommandProvider;
 import com.ivstuart.tmud.state.Mob;
 

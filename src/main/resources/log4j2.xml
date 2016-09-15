@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2016. Ivan Stuart
+  ~  All Rights Reserved
+  -->
+
 <Configuration>
     <Appenders>
         <Console name="STDOUT" target="SYSTEM_OUT">

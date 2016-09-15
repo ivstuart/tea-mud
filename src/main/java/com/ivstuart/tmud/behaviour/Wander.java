@@ -88,13 +88,13 @@ public class Wander extends BaseBehaviour {
 				
 				// Return mob to last known room (think lost sheep on a leash).
 				MoveManager.move(mob,currentRoom);
-				
-				LOGGER.debug("Not wandering at max distance from start location");
+
+                LOGGER.debug("Not wandering, at max distance from start location");
 
 			}
 			rooms.add(room);
-			LOGGER.debug("Wandering at a distance of " + rooms.size() + " from source");
 		}
+        LOGGER.debug("Wandering at a distance of " + rooms.size() + " from source");
         return false;
     }
 

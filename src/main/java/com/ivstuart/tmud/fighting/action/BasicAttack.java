@@ -134,8 +134,8 @@ public class BasicAttack extends FightAction {
 		// Log.info("I am "+getSelf().getId()+" and I am targetting "+getTarget().getId());
 
 		if (getSelf().getRoom().getMobs().contains(getTarget()) == false) {
-			out(getTarget().getId() + " is no longer here to attack!");
-			getSelf().getFight().stopFighting();
+            out(getTarget().getName() + " is no longer here to attack!");
+            getSelf().getFight().stopFighting();
 			finished();
 			return;
 		}
@@ -207,8 +207,8 @@ public class BasicAttack extends FightAction {
 	private void hit(Weapon weapon) {
 
 		if (this.getTarget() == null) {
-			out("Target is null hence your hit now misses");
-			return;
+            out("Target is gone, hence your hit now misses");
+            return;
 		}
 
 		BasicDamage damage = new BasicDamage();

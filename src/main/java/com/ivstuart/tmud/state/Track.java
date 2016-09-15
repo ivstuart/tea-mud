@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.state;
 
 public class Track {
@@ -35,17 +40,33 @@ public class Track {
 		return age;
 	}
 
+    public void setAge(int age) {
+        this.age = age;
+    }
+
 	public int getDepth() {
 		return depth;
 	}
+
+    public void setDepth(int depth) {
+        this.depth = depth;
+    }
 
 	public String getDirection() {
 		return direction;
 	}
 
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
 	public String getWho() {
 		return who;
 	}
+
+    public void setWho(String who) {
+        this.who = who;
+    }
 
 	@Override
 	public int hashCode() {
@@ -59,23 +80,7 @@ public class Track {
 		return blood;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
-	}
-
 	public void setBlood(boolean blood) {
 		this.blood = blood;
-	}
-
-	public void setDepth(int depth) {
-		this.depth = depth;
-	}
-
-	public void setDirection(String direction) {
-		this.direction = direction;
-	}
-
-	public void setWho(String who) {
-		this.who = who;
 	}
 }

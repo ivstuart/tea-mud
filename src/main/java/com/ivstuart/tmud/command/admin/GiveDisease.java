@@ -21,7 +21,16 @@ public class GiveDisease extends AdminCommand {
         String target = StringUtil.getLastWord(input);
         String disease = StringUtil.getFirstFewWords(input);
 
-        Mob targetMob = mob.getRoom().getMob(target.toLowerCase());
+        Mob targetMob = mob.getRoom().getMob(target);
+
+        if (target.equals("me")) {
+            targetMob = mob;
+        }
+
+        if (targetMob == null) {
+            mob.out("You see no " + target + " here to target");
+            return;
+        }
 
         Disease infection = DiseaseFactory.createClass(disease);
         infection.setMob(targetMob);

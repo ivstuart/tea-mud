@@ -70,6 +70,8 @@ alias: large cave troll
 short: the large gray cave troll
 long: A large gray cave troll snares at you.
 look: The troll is a common cave troll is and all together unremarkable.
+#behaviour: Wander:100:1
+#behaviour: Wimpy:100:1000
 #behaviour: Follow:100
 #behaviour: Wimpy:100:50
 #behaviour: Patrol:100:wwweee
@@ -77,7 +79,7 @@ level: 10
 offensive: 120
 defensive: 50
 armour: 20
-hp: 5d6+50
+hp: 2000
 damage: 4d6
 copper: 500
 xp: 200

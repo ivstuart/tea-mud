@@ -17,7 +17,8 @@ public class SpellEffectFactory {
 		spellEffectMap.put("HEAL", new Heal());
 		spellEffectMap.put("POISON", new Poison());
 		spellEffectMap.put("CURE", new CurePoison());
-		spellEffectMap.put("ARMOUR", new Protection());
+        spellEffectMap.put("CUREDIS", new CureDisease());
+        spellEffectMap.put("ARMOUR", new Protection());
 		spellEffectMap.put("BLUR", new Blur());
 		spellEffectMap.put("SANC", new Sanctury());
 		spellEffectMap.put("RECALL", new Recall());

@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.state;
 
 import com.ivstuart.tmud.common.DiceRoll;
@@ -17,15 +22,15 @@ public class Weapon extends Item {
 		return skill;
 	}
 
-	public void setDamage(String damage_) {
-		this.damage = new DiceRoll(damage_);
-	}
-
 	public void setSkill(String skill_) {
 		skill = skill_.trim();
 	}
 
 	public DiceRoll getDamage() {
 		return damage;
-	}
+    }
+
+    public void setDamage(String damage_) {
+        this.damage = new DiceRoll(damage_);
+    }
 }

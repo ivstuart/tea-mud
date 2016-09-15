@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 09-Sep-2003
  *
  * To change the template for this generated file go to
@@ -6,9 +11,11 @@
  */
 package com.ivstuart.tmud.person;
 
-import java.io.*;
+import com.ivstuart.tmud.person.config.ChannelData;
+import com.ivstuart.tmud.person.config.ConfigData;
+import com.ivstuart.tmud.person.config.FightData;
 
-import com.ivstuart.tmud.person.config.*;
+import java.io.Serializable;
 
 /**
  * @author stuarti
@@ -24,24 +31,24 @@ public class Config implements Serializable {
 
 	private FightData fightData;
 
-	@Override
-	public String toString() {
-		return "Config{" +
-				"configData=" + configData +
-				", channelData=" + channelData +
-				", fightData=" + fightData +
-				'}';
-	}
-
 	/**
-	 * 
-	 */
+     *
+     */
 	public Config() {
 		super();
 		configData = new ConfigData();
 		channelData = new ChannelData();
 		fightData = new FightData();
-	}
+    }
+
+    @Override
+    public String toString() {
+        return "Config{" +
+                "configData=" + configData +
+                ", channelData=" + channelData +
+                ", fightData=" + fightData +
+                '}';
+    }
 
 	public ChannelData getChannelData() {
 		return channelData;

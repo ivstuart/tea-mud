@@ -8,6 +8,8 @@ package com.ivstuart.tmud.state;
 import com.ivstuart.tmud.common.Gender;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.common.Msgable;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.Serializable;
 import java.util.Collections;
@@ -16,8 +18,8 @@ import java.util.List;
 public class BasicThing implements Serializable, Cloneable, Msgable {
 
 	public static final long serialVersionUID = 1L;
-
-	private String id;
+    private static final Logger LOGGER = LogManager.getLogger();
+    private String id;
 	private String brief;
 	private String verbose;
 	private String look;
@@ -69,8 +71,8 @@ public class BasicThing implements Serializable, Cloneable, Msgable {
 		try {
 			thing = (BasicThing) super.clone();
 		} catch (CloneNotSupportedException e) {
-			e.printStackTrace();
-		}
+            LOGGER.error("Problem cloning object", e);
+        }
 		return thing;
 	}
 

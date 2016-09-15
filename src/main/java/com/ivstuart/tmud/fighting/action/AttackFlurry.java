@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 24-Sep-2003
  *
  * To change the template for this generated file go to
@@ -18,9 +23,11 @@ import com.ivstuart.tmud.state.Mob;
 public class AttackFlurry extends BasicAttack {
 
 	/**
-	 * @param character
-	 */
-	public AttackFlurry(Mob me, Mob target) {
+     * Constructor
+     * @param me
+     * @param target
+     */
+    public AttackFlurry(Mob me, Mob target) {
 		super(me, target);
 
 		out(new Msg(me, target,

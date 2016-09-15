@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 23-Sep-2003
  *
  * To change the template for this generated file go to
@@ -25,20 +30,6 @@ public class Rating extends BaseCommand {
      */
     public Rating() {
         super();
-    }
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see command.Command#execute(java.lang.String)
-     */
-    @Override
-    public void execute(Mob mob, String input) {
-
-        int rating = getRating(mob);
-
-        mob.out("Your current rating is " + rating);
-
     }
 
     public static int getRating(Mob mob) {
@@ -72,6 +63,20 @@ public class Rating extends BaseCommand {
         rating += armour.getAverage();
 
         return rating;
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see command.Command#execute(java.lang.String)
+     */
+    @Override
+    public void execute(Mob mob, String input) {
+
+        int rating = getRating(mob);
+
+        mob.out("Your current rating is " + rating);
+
     }
 
 }

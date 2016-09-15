@@ -1,6 +1,11 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.person.config;
 
-import java.io.*;
+import java.io.Serializable;
 
 /*
  * This class is simple a data class to store the configuration 

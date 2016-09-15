@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.constants;
 
 /**
@@ -11,14 +16,6 @@ public enum CarriedEnum {
     HEAVY("heavily burden", 4),
     NOMOVE("can not move", 100);
 
-    public String getDesc() {
-        return desc;
-    }
-
-    public int getMovemod() {
-        return movemod;
-    }
-
     private final String desc;
     private final int movemod;
 
@@ -29,5 +26,13 @@ public enum CarriedEnum {
 
     public static CarriedEnum get(int index) {
         return (CarriedEnum.values()[index]);
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public int getMovemod() {
+        return movemod;
     }
 }

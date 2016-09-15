@@ -1,4 +1,9 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 23-Sep-2003
  *
  * To change the template for this generated file go to
@@ -12,7 +17,8 @@ import com.ivstuart.tmud.state.Corpse;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Prop;
-import com.ivstuart.tmud.utils.*;
+import com.ivstuart.tmud.utils.MudArrayList;
+import com.ivstuart.tmud.utils.StringUtil;
 
 /**
  * @author stuarti

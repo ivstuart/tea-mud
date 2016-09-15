@@ -1,6 +1,10 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.command.admin;
 
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Mob;
 
 public class Debug extends AdminCommand {

@@ -1,16 +1,20 @@
+/*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
 package com.ivstuart.tmud.command;
 
-import java.io.IOException;
-import java.util.Collection;
-
+import com.ivstuart.tmud.command.misc.NullCommand;
 import com.ivstuart.tmud.common.MobState;
 import com.ivstuart.tmud.server.LaunchMud;
+import com.ivstuart.tmud.utils.FileHandle;
+import com.ivstuart.tmud.utils.MudHash;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.ivstuart.tmud.command.misc.NullCommand;
-import com.ivstuart.tmud.utils.FileHandle;
-import com.ivstuart.tmud.utils.MudHash;
+import java.io.IOException;
+import java.util.Collection;
 
 /**
  * Central place to obtain command objects. User or code requests a command
@@ -22,17 +26,21 @@ import com.ivstuart.tmud.utils.MudHash;
 public class CommandProvider {
 
 	private static final Logger LOGGER = LogManager.getLogger();
-
-	@SuppressWarnings("unused")
+    private static final Command NULL_COMMAND = new NullCommand();
+    @SuppressWarnings("unused")
 	private static CommandProvider INSTANCE;
-
-	private static final Command NULL_COMMAND = new NullCommand();
-
 	private static MudHash<Command> commandHash = new MudHash<Command>();
 
 	static {
 		INSTANCE = new CommandProvider();
 	}
+
+    private CommandProvider() {
+
+        clearAndLoadCommands();
+
+        loadSocials();
+    }
 
 	private static Command create(String name) {
 		try {
@@ -100,13 +108,6 @@ public class CommandProvider {
 				replacementCommand);
 
 		return true;
-	}
-
-	private CommandProvider() {
-
-		clearAndLoadCommands();
-
-		loadSocials();
 	}
 
 	public void clearAndLoadCommands() {

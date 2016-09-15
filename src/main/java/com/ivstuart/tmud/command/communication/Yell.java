@@ -1,17 +1,21 @@
 /*
+ * Copyright (c) 2016. Ivan Stuart
+ *  All Rights Reserved
+ */
+
+/*
  * Created on 22-Sep-2003
  *
  */
 package com.ivstuart.tmud.command.communication;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.state.Exit;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Room;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author stuarti
@@ -19,9 +23,8 @@ import com.ivstuart.tmud.state.Room;
  */
 public class Yell extends BaseCommand {
 
-	private List<Room> area;
-
 	private static final int range = 5;
+    private List<Room> area;
 
 	@Override
 	public void execute(Mob mob, String input) {

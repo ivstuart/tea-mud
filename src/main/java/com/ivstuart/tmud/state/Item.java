@@ -221,8 +221,20 @@ public class Item extends Prop implements Equipable, Msgable {
 				", isNoDonate=" + isNoDonate +
 				", isNoInvisible=" + isNoInvisible +
 				", antiProfession=" + antiProfession +
-				", properties=" + getProperties() +
-				'}';
+                ", isAntiGood=" + isAntiGood +
+                ", isAntiEvil=" + isAntiEvil +
+                ", isBoat=" + isBoat +
+                ", roomId='" + roomId + '\'' +
+                ", magic=" + magic +
+                ", hitRoll=" + hitRoll +
+                ", damageRoll=" + damageRoll +
+                ", saveType=" + saveType +
+                ", save=" + save +
+                ", hp=" + hp +
+                ", mana=" + mana +
+                ", move=" + move +
+                ", disease=" + disease +
+                '}';
 	}
 
 	public boolean isNoBank() {
