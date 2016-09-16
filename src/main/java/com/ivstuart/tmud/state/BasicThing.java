@@ -211,4 +211,7 @@ public class BasicThing implements Serializable, Cloneable, Msgable {
 		this.brief = brief;
 	}
 
+	public boolean isPlayer() {
+		return false;
+	}
 }

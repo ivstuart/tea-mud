@@ -51,6 +51,12 @@ public class Wear extends BaseCommand {
                     mob.out("You can not wear that item its not for your profession");
                     continue;
                 }
+
+                if (!item.isCorrectSize(mob.getHeight())) {
+                    mob.out("That item is the wrong size to wear, resize it first");
+                    continue;
+                }
+
                 if (mob.getEquipment().add(item)) {
                     itemIter.remove();
                     item.equip(mob);
@@ -103,6 +109,11 @@ public class Wear extends BaseCommand {
 
         if (item.getDamagedPercentage() > 99) {
             mob.out("That item is too damaged to use, repair it");
+            return;
+        }
+
+        if (!item.isCorrectSize(mob.getHeight())) {
+            mob.out("That item is the wrong size to wear, resize it first");
             return;
         }
 

@@ -171,7 +171,7 @@ public class Equipment implements Serializable {
 		Armour totalArmour = new Armour();
 		for (Equipable eq : _equipment) {
 			if (eq instanceof Armour) {
-				((Armour) eq).add(totalArmour);
+				totalArmour.add((Armour) eq);
 			}
 		}
 

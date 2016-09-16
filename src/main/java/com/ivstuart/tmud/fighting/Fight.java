@@ -41,8 +41,8 @@ public class Fight {
      */
     public Fight(FightAction melee) {
         this.melee = melee;
-        fightActions = new LinkedList<FightAction>();
-        targettedBy = new LinkedList<Mob>();
+        fightActions = new LinkedList<>();
+        targettedBy = new LinkedList<>();
     }
 
     public Fight(Mob mob) {
@@ -244,7 +244,10 @@ public class Fight {
 
     public boolean stopFighting() {
 
+        clear();
+
         if (melee.getTarget() == null) {
+
             return false;
         }
 

@@ -56,6 +56,7 @@ public class Outfit extends AdminCommand {
 
     private void createItem(Mob mob, String id) {
         Item item = EntityProvider.createItem(id);
+        item.setSize(mob.getHeight());
         mob.getInventory().add(item);
     }
 }

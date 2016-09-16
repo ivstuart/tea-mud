@@ -7,6 +7,8 @@ package com.ivstuart.tmud.state;
 
 import com.ivstuart.tmud.common.DiceRoll;
 
+import java.util.Arrays;
+
 public class Armour extends Item {
 
 	private static final long serialVersionUID = 1L;
@@ -65,7 +67,10 @@ public class Armour extends Item {
 	public void setArmour(String list) {
 		int index = 0;
 		for (String value : list.split(" ")) {
-			slots[index] = Integer.parseInt(value);
+			if (index < ALL) {
+				slots[index] = Integer.parseInt(value);
+			}
+			index++;
 		}
 	}
 	
@@ -89,5 +94,12 @@ public class Armour extends Item {
 		for (int i = HEAD; i < ALL; i++) {
 			slots[i] += armourBuff;
 		}
+	}
+
+	@Override
+	public String toString() {
+		return "Armour{" +
+				"slots=" + Arrays.toString(slots) +
+				'}';
 	}
 }

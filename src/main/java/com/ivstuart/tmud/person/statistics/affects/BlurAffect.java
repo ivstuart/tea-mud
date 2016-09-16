@@ -34,7 +34,7 @@ public class BlurAffect extends Affect {
 			return amount_;
 		}
 
-        attacker.getRoom().out(new Msg(attacker, defender, "Blur saves the day for <T-NAME> from <S-NAME>"));
+		attacker.getRoom().out(new Msg(attacker, defender, "Blur saves the day for " + defender.getName() + " from <S-NAME>"));
 
 		return 0;
 

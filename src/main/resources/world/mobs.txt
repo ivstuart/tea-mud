@@ -252,5 +252,5 @@ copper: 0
 xp: 20
 state: STANDING
 attackType: punch slash
-item: black-anklet-001
-item: black-anklet-001
+item: black-anklet-001 100
+item: black-anklet-001 100

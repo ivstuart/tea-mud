@@ -76,7 +76,7 @@ public class Sacrifice extends BaseCommand {
 			return;
 		}
 
-		mob.out("You sacrifice an " + anItem);
-	}
+        mob.out("You sacrifice an " + anItem.getBrief());
+    }
 
 }

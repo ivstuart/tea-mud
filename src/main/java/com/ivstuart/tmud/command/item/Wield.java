@@ -48,6 +48,11 @@ public class Wield extends BaseCommand {
 			return;
 		}
 
+        if (!item.isCorrectSize(mob.getHeight())) {
+            mob.out("That item is the wrong size to wield, resize it first");
+            return;
+        }
+
 		if (mob.getEquipment().add(eq)) {
 			mob.getInventory().remove(item);
 			eq.equip(mob);

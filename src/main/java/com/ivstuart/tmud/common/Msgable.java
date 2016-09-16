@@ -38,4 +38,6 @@ public interface Msgable {
 	public boolean isGood();
 
 	public String getRaceName();
+
+    boolean isPlayer();
 }

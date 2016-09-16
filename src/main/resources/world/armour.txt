@@ -66,7 +66,7 @@ cost: 10
 kick: 3
 rent: 5
 affects:
-armour: 0 0 0 0 0 10 0
+armour: 0 0 0 0 0 10
 
 class: state.KickArmour
 id: black-anklet-001
@@ -74,10 +74,11 @@ alias: black anklet spiky
 brief: spiky black anklet
 look: spiky black anklet
 wear: ANKLE
+size: 100
 weight: 500
 cost: 50
 kick: 1
-armour: 0 0 0 0 0 4 0
+armour: 0 0 0 0 0 4
 
 class: state.StatArmour
 id: wizard-hat-001
@@ -93,7 +94,7 @@ weight: 200
 cost: 10
 rent: 5
 affects:
-armour: 0 0 0 0 0 10 0
+armour: 0 0 0 0 0 10
 
 class: state.Armour
 id: ring-fire-prot-001
@@ -105,7 +106,7 @@ weight: 20
 cost: 1000
 rent: 5
 affects:
-armour: 0 0 0 0 0 0 10
+armour: 0 0 0 0 0 10
 saveType: FIRE
 save: 13
 
@@ -120,7 +121,7 @@ weight: 20
 cost: 1000
 rent: 5
 affects:
-armour: 0 0 0 0 0 0 10
+armour: 0 0 0 0 0 10
 
 class: state.Armour
 id: mantel-of-good-001
@@ -133,7 +134,7 @@ weight: 0
 cost: 1000
 rent: 5
 affects:
-armour: 0 0 0 0 0 0 10
+armour: 0 0 0 0 0 10
 
 class: state.Armour
 id: mantel-of-protection-001
@@ -145,7 +146,7 @@ weight: 0
 cost: 100000
 rent: 5
 affects:
-armour: 0 0 0 0 0 0 100
+armour: 0 0 0 0 0 100
 
 class: state.Armour
 id: orb-of-power-001
@@ -157,7 +158,7 @@ weight: 0
 cost: 1000
 mana: 100
 rent: 5
-armour: 0 0 0 0 0 0 10
+armour: 0 0 0 0 0 10
 
 class: state.Armour
 id: jade-earring-001
@@ -169,7 +170,7 @@ weight: 0
 cost: 1000
 move: 10
 rent: 5
-armour: 5 0 0 0 0 0 0
+armour: 5 0 0 0 0 0
 
 class: state.Armour
 id: cool-shades-001
@@ -180,7 +181,7 @@ wear: EYES
 weight: 0
 cost: 1000
 rent: 5
-armour: 15 0 0 0 0 0 0
+armour: 15 0 0 0 0 0
 
 class: state.Armour
 id: mask-madness-001
@@ -191,7 +192,7 @@ wear: FACE
 weight: 5
 cost: 1000
 rent: 5
-armour: 15 0 0 0 0 0 0
+armour: 15 0 0 0 0 0
 
 class: state.Armour
 id: mask-madness-001
@@ -202,7 +203,7 @@ wear: FACE
 weight: 5
 cost: 1000
 rent: 5
-armour: 15 0 0 0 0 0 0
+armour: 15 0 0 0 0 0
 
 class: state.Armour
 id: spiked-collar-001
@@ -224,7 +225,7 @@ wear: SHOULDER
 weight: 200
 cost: 1000
 rent: 5
-armour: 15 0 0 0 0 0 0
+armour: 15 0 0 0 0 0
 
 class: state.Armour
 id: grey-cloak-001
@@ -235,7 +236,7 @@ wear: ABOUT_BODY
 weight: 100
 cost: 1000
 rent: 5
-armour: 0 10 0 0 0 0 10
+armour: 0 10 0 0 0 10
 
 class: state.Armour
 id: chest-plate-001
@@ -246,7 +247,7 @@ wear: BODY
 weight: 500
 cost: 1000
 rent: 5
-armour: 0 50 0 0 0 0 10
+armour: 0 50 0 0 0 10
 
 class: state.Armour
 id: greaves-001
@@ -257,7 +258,7 @@ wear: ARMS
 weight: 500
 cost: 1000
 rent: 5
-armour: 0 0 20 0 0 0 10
+armour: 0 0 20 0 0 10
 
 class: state.Armour
 id: greaves-001
@@ -268,7 +269,7 @@ wear: ARMS
 weight: 500
 cost: 1000
 rent: 5
-armour: 0 0 20 0 0 0 10
+armour: 0 0 20 0 0 10
 
 class: state.Armour
 id: gauntlets-001
@@ -279,7 +280,7 @@ wear: HANDS
 weight: 200
 cost: 1000
 rent: 5
-armour: 0 0 20 0 0 0 10
+armour: 0 0 20 0 0 10
 
 class: state.Armour
 id: bangle-001
@@ -290,7 +291,7 @@ wear: WRIST
 weight: 200
 cost: 1000
 rent: 5
-armour: 0 0 20 0 0 0 10
+armour: 0 0 20 0 0 10
 
 class: state.Armour
 id: leather-belt-001
@@ -301,7 +302,7 @@ wear: WAIST
 weight: 200
 cost: 1000
 rent: 5
-armour: 0 0 0 20 0 0 10
+armour: 0 0 0 20 0 10
 
 class: state.Armour
 id: chain-mail-leggings-001
@@ -312,7 +313,7 @@ wear: LEGS
 weight: 500
 cost: 1000
 rent: 5
-armour: 0 0 0 0 20 0 10
+armour: 0 0 0 0 20 10
 
 class: state.Armour
 id: leather-boots-001
@@ -323,7 +324,7 @@ wear: FEET
 weight: 200
 cost: 1000
 rent: 5
-armour: 0 0 0 0 0 10 10
+armour: 0 0 0 0 10 10
 
 # HEAD BODY ARMS WAIST LEGS FEET ALL
 #    AURA(1, "part of your aura"),

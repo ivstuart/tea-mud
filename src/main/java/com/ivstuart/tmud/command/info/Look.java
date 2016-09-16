@@ -222,7 +222,7 @@ public class Look extends BaseCommand {
             // Note this should be all done as part of Msg command
             if (mob.isPlayer()) {
                 if (!mob.isAlignmentSame(mob_)) {
-                    sb.append("$H +* " + mob.getSize() + " " + mob.getRace().getName() + " *+");
+                    sb.append("$H +* " + mob.getSize() + " " + mob.getAge() + " " + mob.getRace().getName() + " *+");
                 } else {
                     sb.append("$H" + mob.getBrief());
                 }

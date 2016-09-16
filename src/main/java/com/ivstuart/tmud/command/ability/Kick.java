@@ -42,6 +42,12 @@ public class Kick extends BaseCommand {
 			return true;
 		}
 
+		if (mob.getFight().isGroundFighting()) {
+			mob.out("You are ground fighting so can not kick someone");
+			return true;
+		}
+
+
 		if (status.isImmobile()) {
 			mob.out("You are immobile so can not kick someone");
 			return true;

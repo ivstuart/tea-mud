@@ -30,6 +30,9 @@
 13. Possess - Basic DONE
 14. Investigate and diagnose DONE.
 15. Create items sets with bonuses to stats or abilities. - DONE
+
+15th Sep 2016:
+
 16. crafting.
 17. player houses.
 18. Quests - deliver something to someone
@@ -38,4 +41,4 @@
            - discover a new area and speak to someone
            - destroy mob x
 19. Clean up messages to use look() and brief()
-20. Draw, sheath items thru belt.
+20. Draw, sheath items thru belt. - DONE

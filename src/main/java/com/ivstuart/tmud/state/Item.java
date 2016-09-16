@@ -484,4 +484,11 @@ public class Item extends Prop implements Equipable, Msgable {
 		int indexCondition = (EquipmentConstants.condition.length * getDamagedPercentage()) / 100;
 		return this.getBrief() + EquipmentConstants.condition[indexCondition];
 	}
+
+	public boolean isCorrectSize(int mobSize) {
+		if (this instanceof Armour) {
+			return (Math.abs(_size - mobSize) / mobSize) <= 0.1;
+		}
+		return true;
+	}
 }

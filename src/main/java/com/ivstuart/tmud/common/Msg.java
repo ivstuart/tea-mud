@@ -253,8 +253,10 @@ public class Msg {
     private String assignNameBasedOnAlignment(Msgable tagMsgable) {
 
         if (tagMsgable.getRaceName() != null && target != null) {
-            if (source.isGood() != target.isGood()) {
-                return "+* " + tagMsgable.getRaceName() + " *+";
+            if (tagMsgable.isPlayer()) {
+                if (source.isGood() != target.isGood()) {
+                    return "+* " + tagMsgable.getRaceName() + " *+";
+                }
             }
         }
 

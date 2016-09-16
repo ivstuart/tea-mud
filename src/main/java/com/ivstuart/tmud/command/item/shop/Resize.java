@@ -55,16 +55,14 @@ public class Resize extends BaseCommand {
 			mob.out("No such item " + input);
 			return;
 		}
-		int mobSize = 0;
+		int mobSize = mob.getHeight();
 
-		try {
-			mobSize = Integer.parseInt(mob.getSize());
-		}catch (NumberFormatException nfe) {
-			mob.out("Mob size is "+mob.getSize()+" which is a number format exception");
-			mobSize = 3;
+		if (mobSize == 0) {
+			mobSize = 180;
 		}
 
-		if (mobSize == item.getSize()) {
+
+		if (item.isCorrectSize(mobSize)) {
 			mob.out("Item is already of the correct size to use");
 			return;
 		}
