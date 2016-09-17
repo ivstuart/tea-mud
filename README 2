@@ -84,8 +84,3 @@ Either done or on the to do list.
      Which is how it is already.
   3. MobMana is/was overkill. Simpler options. API to be cleaned up for easy of use.
   4. SomeMoney and Money is over the top too. API to be cleaned up for easy of use. 
-  
-  6. Testing focus
-  ----------------
-  
-  The follow package needs manual testing com.ivstuart.tmud.command.ability.* to sure it up.

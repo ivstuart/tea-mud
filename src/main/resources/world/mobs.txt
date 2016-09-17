@@ -94,18 +94,21 @@ alias: large red dragon
 short: the large red dragon
 long: A large red dragon snares at you.
 look: The dragon is a common dragon is and all together unremarkable.
-#behaviour:
+#behaviour: Aggressive:100
+#behaviour: Assist:100
+#behaviour: Retarget:100
 level: 60
 attacks: 6
 offensive: 1000
 defensive: 500
 armour: 50
 hp: 5d6+5000
-damage: 1d60+100
+damage: 1d120+200
 copper: 10000
 xp: 200000
 state: STANDING
 attackType: claw tail bite breath
+memory: true
 # dice types possible for most fields 
 
 # Used by the Animate Dead Spell linked by id field.

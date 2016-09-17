@@ -1,6 +1,17 @@
 /*
- * Copyright (c) 2016. Ivan Stuart
- *  All Rights Reserved
+ *  Copyright 2016. Ivan Stuart
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
  */
 
 package com.ivstuart.tmud.fighting;
@@ -16,6 +27,7 @@ import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.constants.DamageConstants;
 import com.ivstuart.tmud.constants.DamageType;
 import com.ivstuart.tmud.constants.SkillNames;
+import com.ivstuart.tmud.fighting.action.FightAction;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.person.config.ConfigData;
@@ -61,8 +73,11 @@ public class DamageManager {
         // Give creatures that are spell casted at a chance to fight back.
         if (!defender.getFight().isFighting() && damage > 0) {
             if (attacker != defender) {
-                defender.getFight().getMelee().setTarget(attacker);
-                WorldTime.addFighting(defender);
+                FightAction melee = defender.getFight().getMelee();
+                if (melee != null) {
+                    melee.setTarget(attacker);
+                    WorldTime.addFighting(defender);
+                }
             }
         }
 
@@ -76,8 +91,14 @@ public class DamageManager {
         if (checkIfTargetSleeping(defender)) {
             damage *= 2;
             defender.setState(MobState.WAKE);
+            defender.out("The damage you receive wakes you from your deep slumber");
         } else {
 
+            if (checkIfTargetResting(defender)) {
+                damage *= 1.5;
+                defender.out("The damage you receive makes you wide awake.");
+                defender.setState(MobState.WAKE);
+            }
 
             // Check saves first
             damage = checkForDodge(defender, damage);
@@ -160,6 +181,10 @@ public class DamageManager {
 
         checkForDefenderDeath(attacker, defender);
 
+    }
+
+    private static boolean checkIfTargetResting(Mob defender) {
+        return defender.getState().lessThan(MobState.STAND);
     }
 
     private static boolean checkIfTargetSleeping(Mob defender) {
@@ -271,8 +296,7 @@ public class DamageManager {
                 attacker.getFight().clear();
                 defender.getFight().clear();
 
-                attacker.getMobStatus().clear();
-                defender.getMobStatus().clear();
+                defender.clearAffects();
 
                 if (defender.isPlayer()) {
                     defender.getPlayer().getData().incrementDeaths();

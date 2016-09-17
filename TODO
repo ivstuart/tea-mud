@@ -33,6 +33,10 @@
 
 15th Sep 2016:
 
+20. Draw, sheath items thru belt. - DONE
+
+17th Sep 2016:
+
 16. crafting.
 17. player houses.
 18. Quests - deliver something to someone
@@ -41,4 +45,6 @@
            - discover a new area and speak to someone
            - destroy mob x
 19. Clean up messages to use look() and brief()
-20. Draw, sheath items thru belt. - DONE
+21. Test circle retargetting.
+22. Test behaviours Aggressive, Assist and Retarget.
+23. Add unit or integration test for all classes with behaviour.

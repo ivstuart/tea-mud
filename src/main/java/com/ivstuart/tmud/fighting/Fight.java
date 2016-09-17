@@ -1,6 +1,17 @@
 /*
- * Copyright (c) 2016. Ivan Stuart
- *  All Rights Reserved
+ *  Copyright 2016. Ivan Stuart
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
  */
 
 /*
@@ -146,10 +157,16 @@ public class Fight {
     }
 
     public Mob getSelf() {
+        if (melee == null) {
+            return null;
+        }
         return melee.getSelf();
     }
 
     public Mob getTarget() {
+        if (melee == null) {
+            return null;
+        }
         return melee.getTarget();
     }
 
@@ -169,6 +186,9 @@ public class Fight {
     }
 
     public boolean isFighting() {
+        if (melee == null) {
+            return false;
+        }
         return melee.getTarget() != null;
     }
 
@@ -177,10 +197,16 @@ public class Fight {
     }
 
     public boolean isGroundFighting() {
+        if (melee == null) {
+            return false;
+        }
         return melee.isGroundFighting();
     }
 
     private void out(String message) {
+        if (melee == null) {
+            return;
+        }
         melee.getSelf().out(message);
     }
 
@@ -224,6 +250,10 @@ public class Fight {
 
     private void resolveMelee() {
 
+        if (melee == null) {
+            return;
+        }
+
         if (melee.getSelf() == melee.getTarget()) {
             this.stopFighting();
             return;
@@ -246,13 +276,19 @@ public class Fight {
 
         clear();
 
-        if (melee.getTarget() == null) {
+        if (melee == null) {
+            return false;
+        }
 
+        melee.getSelf().setFight(null);
+
+        if (melee.getTarget() == null) {
+            melee = null;
             return false;
         }
 
         changeTarget(null);
-
+        melee = null;
         return true;
     }
 

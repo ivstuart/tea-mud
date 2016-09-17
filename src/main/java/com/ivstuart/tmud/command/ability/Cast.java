@@ -1,6 +1,17 @@
 /*
- * Copyright (c) 2016. Ivan Stuart
- *  All Rights Reserved
+ *  Copyright 2016. Ivan Stuart
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
  */
 
 /*
@@ -60,6 +71,8 @@ public class Cast extends BaseCommand {
         // cast smite <defaults to current target>
         // cast acid rain <defaults to enemies??>
         // cast fireball me/self/all/evil/good/mob
+        // cast lesser healing
+        // cast lesser healing me
 
         String concatWords = getFirstFewWords(input_);
 
@@ -68,7 +81,6 @@ public class Cast extends BaseCommand {
 
         if (spellAbility == null || spellAbility.isNull()) {
             spellAbility = mob_.getLearned().getAbility(input_);
-            concatWords = input_;
         }
 
         if (spellAbility == null || spellAbility.isNull()) {
@@ -102,7 +114,7 @@ public class Cast extends BaseCommand {
 
         // String target = getLastWord(input_, concatWords.length(), null);
 
-        String target = getLastWord(input_);
+        String target = getLastWord(input_, spell.getName().length(), null);
 
         // check you have mana and a casting level which is required.
         LOGGER.debug("Spell mana type [" + spell.getManaType() + "]");
@@ -148,6 +160,11 @@ public class Cast extends BaseCommand {
                 LOGGER.debug("Damage spell so targeting current melee target");
                 targetMob = mob_.getFight().getTarget();
             }
+        }
+
+        // Healing spells etc...
+        if (spell.getSpellEffect().isPositiveEffect() && targetMob == null) {
+            targetMob = mob_;
         }
 
         if (targetMob == null) {

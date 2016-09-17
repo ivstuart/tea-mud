@@ -1,6 +1,17 @@
 /*
- * Copyright (c) 2016. Ivan Stuart
- *  All Rights Reserved
+ *  Copyright 2016. Ivan Stuart
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
  */
 
 /*
@@ -24,12 +35,13 @@ public class Stand extends BaseCommand {
 
 		if (mob.getMobStatus().isGroundFighting()) {
 			mob.out("You are locked into ground fighting for the moment");
+			return;
 		} else if (mob.getFight().isGroundFighting()) {
 			// chance to scramble up ?
 			// effect if winning or losing gf if fails ?
 			// use movement points
 			if (mob.getMv() == null || !mob.getMv().deduct(5)) {
-				mob.out("You dont have enough movement available to stand");
+				mob.out("You do not have enough movement available to stand");
 				return;
 			}
 
@@ -41,6 +53,7 @@ public class Stand extends BaseCommand {
 			mob.out("You try to scramble up to avoid fighting on the ground");
 			mob.getFight().setMeleeToBasicAttack();
 			mob.getTargetFight().setMeleeToBasicAttack();
+			return;
 		}
 
 		if (mob.getState() == STAND) {

@@ -1,6 +1,17 @@
 /*
- * Copyright (c) 2016. Ivan Stuart
- *  All Rights Reserved
+ *  Copyright 2016. Ivan Stuart
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
  */
 
 package com.ivstuart.tmud.state;
@@ -327,12 +338,12 @@ public class Mob extends Prop implements Tickable {
         return damage;
     }
 
-    public void setDamage(String damage_) {
-        this.damage = new DiceRoll(damage_);
-    }
-
     public void setDamage(DiceRoll damage) {
         this.damage = damage;
+    }
+
+    public void setDamage(String damage_) {
+        this.damage = new DiceRoll(damage_);
     }
 
     public int getDefence() {
@@ -353,6 +364,10 @@ public class Mob extends Prop implements Tickable {
         return fight;
     }
 
+    public void setFight(Fight fight) {
+        this.fight = fight;
+    }
+
     public Mob getFollowing() {
         return following;
     }
@@ -367,12 +382,12 @@ public class Mob extends Prop implements Tickable {
         return gender;
     }
 
-    public void setGender(String gender_) {
-        gender = Gender.valueOf(gender_.toUpperCase());
-    }
-
     public void setGender(Gender g) {
         gender = g;
+    }
+
+    public void setGender(String gender_) {
+        gender = Gender.valueOf(gender_.toUpperCase());
     }
 
     public Attribute getHp() {
@@ -487,13 +502,13 @@ public class Mob extends Prop implements Tickable {
         return state;
     }
 
-    public void setState(String state_) {
-        state = MobState.getMobState(state_);
-    }
-
     public void setState(MobState state_) {
         LOGGER.debug("You set state to " + state_.name());
         state = state_;
+    }
+
+    public void setState(String state_) {
+        state = MobState.getMobState(state_);
     }
 
     public Fight getTargetFight() {
@@ -1191,4 +1206,24 @@ public class Mob extends Prop implements Tickable {
         return mount != null;
     }
 
+    public void clearAffects() {
+
+        if (isPlayer()) {
+
+            Attribute drunk = getPlayer().getData().getDrunkAttribute();
+            Attribute poison = getPlayer().getData().getPoisonAttribute();
+
+            drunk.setValue(0);
+            poison.setValue(0);
+
+            getPlayer().getData().getHunger().setValue(500);
+            getPlayer().getData().getThirst().setValue(500);
+        }
+
+        // Best to remove effects first
+        getMobAffects().removeAll();
+
+        getMobAffects().clear();
+
+    }
 }

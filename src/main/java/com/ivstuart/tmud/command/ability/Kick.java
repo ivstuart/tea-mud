@@ -1,6 +1,17 @@
 /*
- * Copyright (c) 2016. Ivan Stuart
- *  All Rights Reserved
+ *  Copyright 2016. Ivan Stuart
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
  */
 
 /*
@@ -27,140 +38,146 @@ import static com.ivstuart.tmud.constants.SkillNames.KICK;
  */
 public class Kick extends BaseCommand {
 
-	private boolean checkMobStatus(Mob mob, Mob target) {
+    private boolean checkMobStatus(Mob mob, Mob target) {
 
-		if (!mob.getState().canMove()) {
-			// You must be able to move to kick someone
-			mob.out("You must be standing or flying to kick someone");
-			return true;
-		}
+        if (!mob.getState().canMove()) {
+            // You must be able to move to kick someone
+            mob.out("You must be standing or flying to kick someone");
+            return true;
+        }
 
-		MobStatus status = mob.getMobStatus();
+        MobStatus status = mob.getMobStatus();
 
-		if (status.isGroundFighting()) {
-			mob.out("You are ground fighting so can not kick someone");
-			return true;
-		}
+        if (status.isGroundFighting()) {
+            mob.out("You are ground fighting so can not kick someone");
+            return true;
+        }
 
-		if (mob.getFight().isGroundFighting()) {
-			mob.out("You are ground fighting so can not kick someone");
-			return true;
-		}
-
-
-		if (status.isImmobile()) {
-			mob.out("You are immobile so can not kick someone");
-			return true;
-		}
-
-		if (status.isOffBalance()) {
-			mob.out("You are not balanced enough to kick someone");
-			return true;
-		}
-
-		return false;
-	}
-
-	private boolean checkStatus(Mob mob, Mob target) {
-		return checkMobStatus(mob, target);
-	}
-
-	@Override
-	public void execute(Mob mob, String input) {
-
-		if (!mob.getLearned().hasLearned("kick")) {
-			mob.out("You have no knowledge of kick");
-			return;
-		}
-
-		if (mob.getRoom().isPeaceful()) {
-			mob.out("You can not be aggressive in this room");
-			return;
-		}
+        if (mob.getFight().isGroundFighting()) {
+            mob.out("You are ground fighting so can not kick someone");
+            return true;
+        }
 
 
-		Mob target = mob.getRoom().getMob(input);
+        if (status.isImmobile()) {
+            mob.out("You are immobile so can not kick someone");
+            return true;
+        }
 
-		if (target == null) {
-			mob.out(input + " is not here to kick!");
-			return;
-		}
+        if (status.isOffBalance()) {
+            mob.out("You are not balanced enough to kick someone");
+            return true;
+        }
 
-		if (checkStatus(mob, target)) {
-			return;
-		}
+        return false;
+    }
 
-		if (target.isInvisible() && !mob.hasDetectInvisible()) {
-			mob.out(input + " is not seen here to kick!");
-			return;
-		}
+    private boolean checkStatus(Mob mob, Mob target) {
+        return checkMobStatus(mob, target);
+    }
 
-		if (target.isHidden() && !mob.hasDetectHidden()) {
-			mob.out(input + " is not seen here to kick!");
-			return;
-		}
+    @Override
+    public void execute(Mob mob, String input) {
 
-		mob.getFight().add(new FightActionKick(mob, target));
+        if (!mob.getLearned().hasLearned("kick")) {
+            mob.out("You have no knowledge of kick");
+            return;
+        }
 
-	}
+        if (mob.getRoom().isPeaceful()) {
+            mob.out("You can not be aggressive in this room");
+            return;
+        }
 
-	private void setKicked(Mob mob, Mob target) {
-		mob.getMobStatus().setOffBalance(2);
+        Mob target = null;
 
-		int level = mob.getPlayer().getData().getLevel();
+        if (mob.getFight().isFighting() && input.length() == 0) {
+            target = mob.getFight().getTarget();
+        } else {
+            target = mob.getRoom().getMob(input);
+        }
 
-		int kickBonus = mob.getEquipment().getKickBonus();
 
-		DamageManager.deal(mob, target, level * (DiceRoll.ONE_D_SIX.roll() + kickBonus));
+        if (target == null) {
+            mob.out(input + " is not here to kick!");
+            return;
+        }
 
-	}
+        if (checkStatus(mob, target)) {
+            return;
+        }
 
-	class FightActionKick extends FightAction {
+        if (target.isInvisible() && !mob.hasDetectInvisible()) {
+            mob.out(input + " is not seen here to kick!");
+            return;
+        }
 
-		public FightActionKick(Mob me, Mob target) {
-			super(me, target);
-		}
+        if (target.isHidden() && !mob.hasDetectHidden()) {
+            mob.out(input + " is not seen here to kick!");
+            return;
+        }
 
-		@Override
-		public void begin() {
-			super.begin();
-			durationMillis(500);
+        mob.getFight().add(new FightActionKick(mob, target));
+
+    }
+
+    private void setKicked(Mob mob, Mob target) {
+        mob.getMobStatus().setOffBalance(2);
+
+        int level = mob.getPlayer().getData().getLevel();
+
+        int kickBonus = mob.getEquipment().getKickBonus();
+
+        DamageManager.deal(mob, target, level * (DiceRoll.ONE_D_SIX.roll() + kickBonus));
+
+    }
+
+    class FightActionKick extends FightAction {
+
+        public FightActionKick(Mob me, Mob target) {
+            super(me, target);
+        }
+
+        @Override
+        public void begin() {
+            super.begin();
+            durationMillis(500);
             out(new Msg(getSelf(), getTarget(), "<S-You prepare your/NAME prepares GEN-him>self to kick <T-you/NAME>."));
 
-			if (checkMobStatus(getSelf(), getTarget())) {
-				this.finished();
-			}
+            if (checkMobStatus(getSelf(), getTarget())) {
+                this.finished();
+            }
 
-		}
+        }
 
-		@Override
-		public void changed() {
+        @Override
+        public void changed() {
 
-		}
+        }
 
-		@Override
-		public void ended() {
+        @Override
+        public void ended() {
 
-		}
+        }
 
-		@Override
-		public void happen() {
-			if (checkMobStatus(getSelf(), getTarget())) {
-				this.finished();
-			}
+        @Override
+        public void happen() {
+            if (checkMobStatus(getSelf(), getTarget())) {
+                this.finished();
+            }
 
-			// Success or fail
+            // Success or fail
             Ability kickAbility = getSelf().getLearned().getAbility(KICK);
             if (kickAbility.isSuccessful(getSelf())) {
                 out(new Msg(getSelf(), getTarget(), "<S-You/NAME> successfully kicked <T-you/NAME>."));
                 setKicked(getSelf(), getTarget());
-			} else {
+            } else {
                 out(new Msg(getSelf(), getTarget(), "<S-You/NAME> miss<S-/es> kicking <T-you/NAME>."));
             }
 
-			durationMillis(1500);
-		}
+            durationMillis(1500);
+        }
 
-	}
+    }
 
 }
