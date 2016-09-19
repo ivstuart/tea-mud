@@ -68,22 +68,36 @@ public class Wander extends BaseBehaviour {
             return false;
         }
 
-		Room currentRoom = mob.getRoom();
-
-		Exit exit = MoveManager.random(mob);
-
-		if (exit == null) {
-            return false;
-        }
-
-		LOGGER.debug("Mob wanders to a new location");
-
-		Room room = mob.getRoom();
-
 		// Lazy init
 		if (rooms == null) {
 			rooms = new ArrayList<Room>(parameter2);
 		}
+
+		Room currentRoom = mob.getRoom();
+
+		if (rooms.size() < parameter2) {
+
+			Exit exit = MoveManager.random(mob);
+
+			if (exit == null) {
+				return false;
+			}
+			LOGGER.debug("Mob wanders to a new location");
+		} else {
+
+			int index = rooms.size() - 2;
+
+			MoveManager.move(mob, rooms.get(index));
+
+			LOGGER.debug("Mob wanders to a old location");
+		}
+
+
+		Room room = mob.getRoom();
+
+//		for (Room room1 : rooms) {
+//			LOGGER.debug("Rooms:"+room1.getId());
+//		}
 
 		int index = rooms.indexOf(room);
 
@@ -93,16 +107,6 @@ public class Wander extends BaseBehaviour {
 			rooms = rooms.subList(0, index);
 		} else {
 
-			if (rooms.size() > parameter2) {
-				// Do not wander any more to new locations but can wander to
-				// previous locations
-				
-				// Return mob to last known room (think lost sheep on a leash).
-				MoveManager.move(mob,currentRoom);
-
-                LOGGER.debug("Not wandering, at max distance from start location");
-
-			}
 			rooms.add(room);
 		}
         LOGGER.debug("Wandering at a distance of " + rooms.size() + " from source");

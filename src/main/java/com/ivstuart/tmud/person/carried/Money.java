@@ -47,9 +47,10 @@ public class Money implements SomeMoney {
 
 	private int quantity;
 
-	public Money(){};
-	
-	/**
+    public Money() {
+    }
+
+    /**
 	 * 
 	 */
 	public Money(int moneyType, int amount) {

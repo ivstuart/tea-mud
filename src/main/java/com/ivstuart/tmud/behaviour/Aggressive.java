@@ -17,9 +17,9 @@
 package com.ivstuart.tmud.behaviour;
 
 import com.ivstuart.tmud.common.DiceRoll;
+import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Room;
-import com.ivstuart.tmud.world.WorldTime;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -69,9 +69,7 @@ public class Aggressive extends BaseBehaviour {
             return false;
         }
 
-        mob.getFight().getMelee().setTarget(target);
-
-        WorldTime.addFighting(mob);
+        Fight.startCombat(mob, target);
 
         return false;
 

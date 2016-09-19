@@ -228,7 +228,7 @@ public class Msg {
                     String name = null;
                     if (this.canSee(requester, tagMsgable)) {
 
-                        name = assignNameBasedOnAlignment(tagMsgable);
+                        name = assignNameBasedOnAlignment(requester, tagMsgable);
 
                     } else {
                         name = unseen;
@@ -261,11 +261,11 @@ public class Msg {
         return output.toString();
     }
 
-    private String assignNameBasedOnAlignment(Msgable tagMsgable) {
+    private String assignNameBasedOnAlignment(Msgable requester, Msgable tagMsgable) {
 
-        if (tagMsgable.getRaceName() != null && target != null) {
+        if (tagMsgable.getRaceName() != null) {
             if (tagMsgable.isPlayer()) {
-                if (source.isGood() != target.isGood()) {
+                if (requester.isGood() != tagMsgable.isGood()) {
                     return "+* " + tagMsgable.getRaceName() + " *+";
                 }
             }

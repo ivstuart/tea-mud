@@ -32,7 +32,7 @@ import java.nio.channels.spi.SelectorProvider;
 import java.util.Iterator;
 
 /**
- * This example demonstrate use of multiple Selectors() with a single SocketChannel.
+ * This demonstrate use of multiple Selectors() with a single SocketChannel.
  * There are two threads running Selectors() each registered for READ and WRITE respectively
  */
 public class MudServer {
@@ -49,7 +49,7 @@ public class MudServer {
 	/**
 	 * ServerSocketChannel which listens for client connections
 	 */
-	private ServerSocketChannel ssch = null;
+	private ServerSocketChannel serverSocketChannel = null;
 
 	protected void startListening(String port) {
 		startListening(Integer.parseInt(port));
@@ -65,19 +65,19 @@ public class MudServer {
 			// create the selector and the ServerSocket
 			readSelector = SelectorProvider.provider().openSelector();
 			writeSelector = SelectorProvider.provider().openSelector();
-			ssch = ServerSocketChannel.open();
+			serverSocketChannel = ServerSocketChannel.open();
 
 			// Non-blocking
-			ssch.configureBlocking(false);
-			InetSocketAddress isa = new InetSocketAddress(
+			serverSocketChannel.configureBlocking(false);
+			InetSocketAddress inetSocketAddress = new InetSocketAddress(
 					InetAddress.getLocalHost(), port);
 
 			LOGGER.info("Started listening on [ " + InetAddress.getLocalHost()
 					+ ":" + port + " ]");
 
-			ssch.socket().bind(isa);
-			ssch.register(readSelector, SelectionKey.OP_ACCEPT);
-			ssch.register(writeSelector, SelectionKey.OP_ACCEPT);
+			serverSocketChannel.socket().bind(inetSocketAddress);
+			serverSocketChannel.register(readSelector, SelectionKey.OP_ACCEPT);
+			serverSocketChannel.register(writeSelector, SelectionKey.OP_ACCEPT);
 
 		} catch (Exception e) {
 			LOGGER.error("Problem with starting selector thread", e);
@@ -97,12 +97,12 @@ public class MudServer {
 	public synchronized void stop() {
 		LOGGER.info("Starting shutdown of the mud server");
 		try {
-			ssch.socket().close();
-			ssch.close();
+			serverSocketChannel.socket().close();
+			serverSocketChannel.close();
 		} catch (Exception e) {
 			LOGGER.error("Problem with stopping selector thread", e);
 		}
-		this.ssch = null;
+		this.serverSocketChannel = null;
 		LOGGER.info("Finished shutdown of the mud server");
 	}
 
@@ -119,15 +119,15 @@ public class MudServer {
 
 		private void readSocket(SelectionKey sk) throws IOException {
 
-			SocketChannel sc = (SocketChannel) sk.channel();
+			SocketChannel socketChannel = (SocketChannel) sk.channel();
 
 			buffer.clear();
 
-			int numberOfBytesRead =sc.read(buffer);
+			int numberOfBytesRead = socketChannel.read(buffer);
 
 			if (numberOfBytesRead == -1) {
 				LOGGER.info("SocketChannel closing after read -1");
-				sc.close();
+				socketChannel.close();
 				sk.cancel();
 				return;
 			}
@@ -135,8 +135,8 @@ public class MudServer {
 			buffer.flip();
 
 			StringBuilder sb = new StringBuilder();
-			int count2 = buffer.remaining();
-			for (int i = 0; i < count2; i++) {
+			int remaining = buffer.remaining();
+			for (int i = 0; i < remaining; i++) {
 				char c = (char) buffer.get();
 
 				// Consider other filtering!!
@@ -149,7 +149,7 @@ public class MudServer {
 				return ;
 			}
 
-			ConnectionManager.process(sc, sb.toString());
+			ConnectionManager.process(socketChannel, sb.toString());
 
         }
 
@@ -181,8 +181,7 @@ public class MudServer {
                                 channel.configureBlocking(false);
                                 channel.register(readSelector, SelectionKey.OP_READ);
 
-                                writeSelector.wakeup(); // Added as required by
-                                // specification
+								writeSelector.wakeup(); // Added as required by specification
 
                                 channel.register(writeSelector,
                                         SelectionKey.OP_WRITE);

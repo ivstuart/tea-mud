@@ -1,6 +1,17 @@
 /*
- * Copyright (c) 2016. Ivan Stuart
- *  All Rights Reserved
+ *  Copyright 2016. Ivan Stuart
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
  */
 
 package com.ivstuart.tmud.utils;
@@ -12,6 +23,9 @@ import com.ivstuart.tmud.person.statistics.MobMana;
 import com.ivstuart.tmud.server.LaunchMud;
 import com.ivstuart.tmud.state.Attribute;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.RoomBuilder;
+import com.ivstuart.tmud.world.World;
 import com.ivstuart.tmud.world.WorldTime;
 
 import java.io.IOException;
@@ -25,6 +39,7 @@ public class TestHelper {
 		Player player = new Player();
 		player.setMob(mob);
 		mob.setNameAndId(name);
+		mob.setAlias(name);
 		mob.setPlayer(player);
 		int[] defaultAttributes = { 10, 10, 10, 10, 10 };
 		player.setAttributes(defaultAttributes);
@@ -60,6 +75,22 @@ public class TestHelper {
 
 		return mob;
 	}
+
+	public static Room makeRoomGrid() {
+		Room root = new Room();
+		root.setId("Z0-:0:0:0");
+
+		World.add(root);
+
+		RoomBuilder roomBuilder = new RoomBuilder();
+		roomBuilder.setId("Z0-:0:0:0");
+		roomBuilder.setRoomPrefix("Z0-");
+		roomBuilder.setPath("3x3");
+		roomBuilder.setExecute(null);
+
+
+		return root;
+	}
 	
 	public void combatTick() {
 		WorldTime.getInstance().resolveCombat();
@@ -94,7 +125,7 @@ public class TestHelper {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public boolean stopServer() {
 		return LaunchMud.stop();
     }

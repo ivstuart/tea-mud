@@ -7,99 +7,99 @@ blush,REST,your checks turn red
 bow,STAND,you take a bow to impress everyone
 brb,REST,be right back no honestly
 cackle,REST,hahahahhahahaha
-chuckle,REST, he he ha ha he he
-clap,REST,cla the sound of one hand claping
-code,REST,sit down and focus until your eyes bleed and brain expodes not another null pointer
-comfort,REST,someone gentally
+chuckle,REST,he he ha ha he he
+clap,REST,cla the sound of one hand clapping
+code,REST,sit down and focus until your eyes bleed and brain explodes not another null pointer
+comfort,REST,someone gently
 comb,REST,your hair straight
-cough,REST, *cough* *cough*
-cringe,REST, *cringe*
-cry,REST, awwwwwahhhh....
-cuddle,REST, effectionately
-curse,REST, darn it oh bother
-curtsey,REST, down low enough to sit
-dance,STAND
-daydream,REST
-drool,REST
-embrace,REST
-fart,REST
-flip,STAND
-flirt,REST
-fondle,REST
-french,REST
-frown,REST
-fume,REST
-gasp,REST
-giggle,REST
-glare,REST
-greet,REST
-grin,REST
-groan,REST
-grope,REST
-grovel,REST
-growl,REST
-hiccup,REST
-hop,STAND
-hug,STAND
-kiss,STAND
-laugh,REST
-laff,REST
-lick,REST
-love,REST
-moan,REST
-massage,REST
-nibble,REST
-nod,REST
-nudge,REST
-nuzzle,REST
-pat,REST
-peer,REST
-point,REST
-poke,REST
-ponder,REST
-pout,REST
-pray,REST
-puke,REST
-punch,STAND
-purr,REST
-roll,REST
-ruffle,REST
-scream,REST
-shake,REST
-shiver,REST
-shrug,REST
-sigh,REST
-sing,REST
-slap,REST
-smile,REST
-smirk,REST
-snicker,REST
-snap,REST
-snarl,REST
-sneeze,REST
-sniff,REST
-snore,REST
-snowball,STAND
-snuggle,REST
-spank,REST
-spit,REST
-squeeze,REST
-stare,REST
-steam,REST
-stroke,REST
-strut,STAND
-sulk,REST
-tango,REST
-taunt,REST
-thank,REST
-think,REST
-tickle,REST
-twiddle,REST
-wave,REST
-whine,REST
-whistle,REST
-wiggle,REST
-wink,REST
-worship,REST
-yawn,REST
-yodel,REST
+cough,REST,*cough* *cough*
+cringe,REST,*cringe*
+cry,REST,awwwwwahhhh....
+cuddle,REST,affectionately
+curse,REST,darn it oh bother
+curtsy,REST,down low enough to sit
+dance,STAND,around the room looking for someone to join you
+daydream,REST,about better times
+drool,REST,down your chin
+embrace,REST,you hug so tight
+fart,REST,you smelt it
+flip,STAND,you do a back flip and nearly break your own neck
+flirt,REST,how you doing?
+fondle,REST,you fondle them affectionately
+french,REST,you kiss and slip in your tongue, yuck!
+frown,REST,oh no what now reads across your face
+fume,REST,your anger turns you green
+gasp,REST,catch one's breath with an open mouth, owing to pain or astonishment
+giggle,REST,laugh lightly and repeatedly in a silly way, from amusement, nervousness, or embarrassment
+glare,REST,stare in an angry or fierce way.
+greet,REST,give a polite word of recognition or sign of welcome when meeting
+grin,REST,smile broadly
+groan,REST,make a deep inarticulate sound conveying pain
+grope,REST,search blindly or uncertainly by feeling with the hands
+grovel,REST,lie or crawl abjectly on the ground
+growl,REST,make a low guttural sound of hostility in the throat
+hiccup,REST,an involuntary spasm of the diaphragm
+hop,STAND,you hop around the room, oh what fun
+hug,STAND,you embrace so tight
+kiss,STAND,caress with the lips as a sign of love
+laugh,REST,make the spontaneous sounds and movements of the face and body that are the instinctive expressions of lively amusement
+laff,REST,make the spontaneous sounds and movements of the face and body that are the instinctive expressions of derision.
+lick,REST,them they taste nice
+love,REST,exchanging affections of love
+moan,REST,arrrrhhh you moan
+massage,REST,you provide a message service
+nibble,REST,on their ear
+nod,REST,in total agreement
+nudge,REST,to let them know a secret
+nuzzle,REST,because your in love
+pat,REST,them to show you care for them as a pet
+peer,REST,around the room looking for hidden treasure
+point,REST,how rude
+poke,REST,someone in the ribs to get their attention
+ponder,REST,the life, universe and other matters
+pout,REST,getting ready for a kiss no doubt
+pray,REST,to god and hope to find better equipment soon
+puke,REST,up all over the place how disgusting
+punch,STAND,someone in the arm to give them a dead arm, how childish
+purr,REST,like a cat
+roll,REST,around the floor like a judo master
+ruffle,REST,someones hair in a playful manner
+scream,REST,arrrrrrrrrhhh
+shake,REST,rattle and roll
+shiver,REST,oh its soo cold
+shrug,REST,raise (one's shoulders) slightly and momentarily to express doubt, ignorance, or indifference
+sigh,REST,emit a long, deep audible breath expressing sadness, relief and tiredness
+sing,REST,make musical sounds with the voice, cats cover their ears
+slap,REST,ouch right in the face
+smile,REST,your grin exposes your perl white teeth
+smirk,REST,at a joke your recall from the other day
+snicker,REST,trying not to burst out laughing
+snap,REST,your fingers together, cheque please
+snarl,REST,like a ravid dog, oh how aggressive.
+sneeze,REST,making a sudden involuntary expulsion of air from the nose and mouth due to irritation of one's nostrils
+sniff,REST,*sniff *sniff
+snore,REST,you must be ready for bed
+snowball,STAND,ouch right in the face
+snuggle,REST,oh how cute
+spank,REST,them hard in the rear
+spit,REST,oh how disgusting
+squeeze,REST,them so tight
+stare,REST,off into the distance
+steam,REST,hot under the collar
+stroke,REST,their hair like they are the only one for you
+strut,STAND,around the room like a peacock
+sulk,REST,in the corner like a spoilt child
+tango,REST,together and the night beings to heat up
+taunt,REST,narn na nan narn na na
+thank,REST,for their assistance
+think,REST,about all the things done today and yet to do
+tickle,REST,lightly touch or prod in a way that causes mild discomfort or itching and often laughter.
+twiddle,REST,twist, move, or fiddle with it
+wave,REST,goodbye to someone
+whine,REST,moaning again
+whistle,REST,holding a tune
+wiggle,REST,your bum in a provocative manner
+wink,REST,your one eye in a knowing way
+worship,REST,the ground that developers walk on
+yawn,REST,arrrrrh
+yodel,REST,yodel-ay-hee-hoo!

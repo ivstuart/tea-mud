@@ -16,6 +16,7 @@
 
 package com.ivstuart.tmud.command;
 
+import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.state.Mob;
 
 /**
@@ -40,11 +41,17 @@ public class Social extends BaseCommand {
 
     @Override
     public void execute(Mob mob, String input) {
-        mob.out("You "+cmd+"'s "+description);
+
+        Mob target = mob.getRoom().getMobs().get(input);
+
+        Msg msg = new Msg(mob, target, "<S-NAME> " + cmd + "'s " + description);
+
+        mob.getRoom().out(msg);
     }
 
     @Override
     public String getHelp() {
+
         return "The command " + cmd + " is a social commands for communication only";
     }
 }

@@ -1,0 +1,105 @@
+accuse,REST,all those around the room of something bad
+applaud,REST,everyone for a job well done
+bounce,REST,off the walls like a rubber ball
+beg,REST,for some coins
+bleed,REST,blood goes everywhere
+blush,REST,your checks turn red
+bow,STAND,you take a bow to impress everyone
+brb,REST,be right back no honestly
+cackle,REST,hahahahhahahaha
+chuckle,REST, he he ha ha he he
+clap,REST,cla the sound of one hand claping
+code,REST,sit down and focus until your eyes bleed and brain expodes not another null pointer
+comfort,REST,someone gentally
+comb,REST,your hair straight
+cough,REST, *cough* *cough*
+cringe,REST, *cringe*
+cry,REST, awwwwwahhhh....
+cuddle,REST, effectionately
+curse,REST, darn it oh bother
+curtsey,REST, down low enough to sit
+dance,STAND
+daydream,REST
+drool,REST
+embrace,REST
+fart,REST
+flip,STAND
+flirt,REST
+fondle,REST
+french,REST
+frown,REST
+fume,REST
+gasp,REST
+giggle,REST
+glare,REST
+greet,REST
+grin,REST
+groan,REST
+grope,REST
+grovel,REST
+growl,REST
+hiccup,REST
+hop,STAND
+hug,STAND
+kiss,STAND
+laugh,REST
+laff,REST
+lick,REST
+love,REST
+moan,REST
+massage,REST
+nibble,REST
+nod,REST
+nudge,REST
+nuzzle,REST
+pat,REST
+peer,REST
+point,REST
+poke,REST
+ponder,REST
+pout,REST
+pray,REST
+puke,REST
+punch,STAND
+purr,REST
+roll,REST
+ruffle,REST
+scream,REST
+shake,REST
+shiver,REST
+shrug,REST
+sigh,REST
+sing,REST
+slap,REST
+smile,REST
+smirk,REST
+snicker,REST
+snap,REST
+snarl,REST
+sneeze,REST
+sniff,REST
+snore,REST
+snowball,STAND
+snuggle,REST
+spank,REST
+spit,REST
+squeeze,REST
+stare,REST
+steam,REST
+stroke,REST
+strut,STAND
+sulk,REST
+tango,REST
+taunt,REST
+thank,REST
+think,REST
+tickle,REST
+twiddle,REST
+wave,REST
+whine,REST
+whistle,REST
+wiggle,REST
+wink,REST
+worship,REST
+yawn,REST
+yodel,REST
