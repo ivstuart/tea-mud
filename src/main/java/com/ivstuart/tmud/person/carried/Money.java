@@ -196,8 +196,8 @@ public class Money implements SomeMoney {
 
 	@Override
 	public int getWeight() {
-		return (type + 1) * quantity;
-	}
+        return quantity;
+    }
 
 	public int getQuantity() {
 		return quantity;

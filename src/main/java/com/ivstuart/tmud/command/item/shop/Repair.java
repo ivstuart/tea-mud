@@ -72,7 +72,7 @@ public class Repair extends BaseCommand {
 			return;
 		}
 
-		int cost = (item.getCost().getValue() * item.getDamagedPercentage()) / 100;
+		int cost = (item.getCost().getValue() * item.getDamagedPercentage()) / 1000;
 
 		mob.out("The item will cost "+cost+" copper to repair it");
 

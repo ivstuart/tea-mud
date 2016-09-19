@@ -370,7 +370,8 @@ public class Equipment implements Serializable {
 	}
 
 	public boolean remove(Equipable eq) {
-		return _equipment.remove(eq);
+        _slots[eq.getWorn()]--;
+        return _equipment.remove(eq);
 	}
 
 	public int getHitRollBonus() {
