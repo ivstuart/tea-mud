@@ -92,7 +92,7 @@ public class BashTest {
 		assertEquals("player 1 should target sheep", sheepMob, player1Mob
 				.getFight().getTarget());
 
-		sleepShortWhile();
+		player1Mob.getFight().getMelee().begin();
 
 		assertTrue("sheep and player1 will be engaged in combat", sheepMob
 				.getFight().isEngaged(player1Mob));
@@ -101,19 +101,12 @@ public class BashTest {
 		Command bash = new Bash();
 		bash.execute(player1Mob, sheepMob.getAlias());
 
-		sleepShortWhile();
+		player1Mob.getFight().getFightActions().getFirst().happen();
 
 		assertEquals("sheep should be bashed", true, sheepMob.getMobStatus().isBashed());
 
 
 	}
 
-	public void sleepShortWhile() {
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
 
 }

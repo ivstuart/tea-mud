@@ -40,13 +40,10 @@ public class Fight {
     private static final int MAX_SIZE = 10;
 
     private static final Logger LOGGER = LogManager.getLogger();
-
     private LinkedList<FightAction> fightActions;
-
     private FightAction melee;
     private Mob lastMobAttackedMe;
     private List<Mob> targettedBy;
-
     /**
      *
      */
@@ -75,6 +72,15 @@ public class Fight {
         WorldTime.addFighting(mob);
 
         WorldTime.addFighting(target);
+    }
+
+    /**
+     * Used only for speeding up test cases.
+     *
+     * @return
+     */
+    public LinkedList<FightAction> getFightActions() {
+        return fightActions;
     }
 
     public Mob getLastMobAttackedMe() {
@@ -309,4 +315,6 @@ public class Fight {
         }
         return false;
     }
+
+
 }
