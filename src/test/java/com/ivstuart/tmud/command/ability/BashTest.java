@@ -53,7 +53,7 @@ public class BashTest {
 
 		Mob player1Mob = TestHelper.makeDefaultPlayerMob("player1");
 
-		// Teach rescue to player 2
+		// Teach rescue to player
 		Ability ability = new Ability("bash", 100);
 		player1Mob.getLearned().add(ability);
 		World.add(new BaseSkill("bash"));

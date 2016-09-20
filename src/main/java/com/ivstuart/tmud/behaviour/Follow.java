@@ -63,7 +63,7 @@ public class Follow extends BaseBehaviour {
             LOGGER.debug(mob.getName() + " has no players to follow");
             return false;
         }
-
+        //new com.ivstuart.tmud.command.party.Follow().execute(mob,target.getName());
         CommandProvider.getCommandByString("follow").execute(mob,target.getName());
         return false;
 

@@ -49,19 +49,28 @@ public class Stealer extends BaseBehaviour {
 
         List<Mob> mobs = mob.getRoom().getMobs();
 
-        int randomIndex = (int) Math.random() * mobs.size();
+        int randomIndex = (int) (Math.random() * mobs.size());
 
         Mob victim = mobs.get(randomIndex);
 
         if (victim == mob) {
             LOGGER.debug("Will not steal from self");
-            return false;
+
+            if (randomIndex > 0) {
+                randomIndex--;
+            } else {
+                randomIndex++;
+                if (randomIndex >= mobs.size()) {
+                    return false;
+                }
+            }
+            victim = mobs.get(randomIndex);
         }
 
         SomeMoney money = new Money(Money.COPPER,5);
 
         if (!victim.getInventory().getPurse().remove(money)) {
-            LOGGER.debug("NO money to steal");
+            LOGGER.debug("No money to steal");
             return false;
         }
 

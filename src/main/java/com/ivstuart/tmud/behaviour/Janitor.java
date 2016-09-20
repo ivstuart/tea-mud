@@ -63,7 +63,7 @@ public class Janitor extends BaseBehaviour {
         Item item = null;
 
         try {
-            item = items.remove(1);
+            item = items.remove(0);
         } catch (IndexOutOfBoundsException ioobe) {
             LOGGER.debug("Suddenly nothing to clean up");
         }
