@@ -20,6 +20,7 @@ import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.state.Exit;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.Track;
 import com.ivstuart.tmud.state.util.RoomManager;
 
 import java.util.List;
@@ -45,6 +46,14 @@ public class MoveManager {
 		destinationRoom_.add(mob_);
 
 		destinationRoom_.out(new Msg(mob_,"<S-NAME> arrives from the "+ RoomManager.reverseDirection(exit_.getId())));
+
+		Track track = new Track();
+		if (mob_.getHp().getPercentageLeft() < 10) {
+			track.setBlood(true);
+		}
+		track.setWho(mob_.getName());
+		track.setDirection(exit_.getId());
+		sourceRoom_.addTrack(track);
 
 	}
 

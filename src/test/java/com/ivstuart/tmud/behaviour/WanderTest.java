@@ -54,7 +54,7 @@ public class WanderTest {
 
 		Mob mob = new Mob();
 		mob.setNameAndId("wanderingMob");
-
+		mob.setHp("500");
 		Wander wandering = new Wander();
 
 		wandering.setMob(mob);
@@ -84,6 +84,7 @@ public class WanderTest {
 	public void testMoveWithinMaxDistanceOfStartPosition() {
 		Mob mob = new Mob();
 		mob.setNameAndId("wanderingMob");
+		mob.setHp("500");
 
 		Wander wandering = new Wander();
 

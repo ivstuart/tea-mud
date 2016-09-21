@@ -24,7 +24,6 @@ import com.ivstuart.tmud.state.Race;
 import com.ivstuart.tmud.state.Room;
 import com.ivstuart.tmud.utils.TestHelper;
 import com.ivstuart.tmud.world.World;
-import com.ivstuart.tmud.world.WorldTime;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Before;
@@ -33,12 +32,12 @@ import org.junit.Test;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-import static org.junit.Assert.assertEquals;
+import static junit.framework.TestCase.assertNull;
 
 /**
  * Created by Ivan on 20/09/2016.
  */
-public class AssistTest {
+public class WimpyTest {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -56,7 +55,7 @@ public class AssistTest {
     }
 
     @Test
-    public void testAssist() {
+    public void testWimpy() {
         Race human = new Race();
         World.getInstance().addToWorld(human);
 
@@ -66,23 +65,19 @@ public class AssistTest {
         sheepMob.setNameAndId("sheep");
         sheepMob.setAlias("sheep");
         sheepMob.setHp("500");
-        sheepMob.setBehaviour("Assist:100");
-        sheepMob.getHp().deduct(300);
+        sheepMob.setBehaviour("Wimpy:100:500");
+        sheepMob.getHp().deduct(100);
 
-        BaseBehaviour baseBehaviour = BehaviourFactory.create("Assist");
+        BaseBehaviour baseBehaviour = BehaviourFactory.create("Wimpy:100:500");
         baseBehaviour.setMob(sheepMob);
         baseBehaviour.setParameter(100);
 
         sheepMob.addTickable(baseBehaviour);
-        WorldTime.addTickable(sheepMob);
 
-        Mob sheepMob2 = new Mob(sheepMob);
-
-        Room whiteRoom = new Room();
+        Room whiteRoom = TestHelper.makeRoomGrid();
         whiteRoom.add(sheepMob);
         sheepMob.setRoom(whiteRoom);
-        whiteRoom.add(sheepMob2);
-        sheepMob2.setRoom(whiteRoom);
+
 
         Mob player1Mob = TestHelper.makeDefaultPlayerMob("player1");
         whiteRoom.add(player1Mob);
@@ -92,10 +87,15 @@ public class AssistTest {
         kill.execute(player1Mob, sheepMob.getAlias());
         player1Mob.getFight().getMelee().begin();
 
-        //baseBehaviour.tick();
-        sheepMob2.tick();
+        baseBehaviour.tick();
+        sheepMob.getFight().getFightActions().getFirst().happen();
 
-        assertEquals("sheep should be fighting", player1Mob, sheepMob.getFight().getTarget());
-        assertEquals("sheep2 should be fighting", player1Mob, sheepMob2.getFight().getTarget());
+        baseBehaviour.tick();
+        if (!sheepMob.getFight().getFightActions().isEmpty()) {
+            sheepMob.getFight().getFightActions().getFirst().happen();
+        }
+
+        assertNull("sheep should have flee", sheepMob.getFight().getTarget());
+
     }
 }

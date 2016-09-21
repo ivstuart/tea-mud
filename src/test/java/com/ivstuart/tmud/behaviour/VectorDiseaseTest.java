@@ -29,12 +29,9 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 import static junit.framework.TestCase.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 
-/**
- * Created by Ivan on 20/09/2016.
- */
-public class PatrolTest {
+public class VectorDiseaseTest {
+
     private static final Logger LOGGER = LogManager.getLogger();
 
     @Before
@@ -50,38 +47,39 @@ public class PatrolTest {
 
     }
 
+    /**
+     *
+     */
     @Test
-    public void testPatrol() {
+    public void testCatchDisease() {
 
-        Mob sheepMob = new Mob();
-        sheepMob.setNameAndId("sheep");
-        sheepMob.setAlias("sheep");
-        sheepMob.setHp("500");
-        sheepMob.setBehaviour("Patrol");
-        sheepMob.getHp().deduct(300);
+        Mob mob = new Mob();
+        mob.setNameAndId("Mob");
+        mob.setAlias("Mob");
 
-        BaseBehaviour baseBehaviour = BehaviourFactory.create("Patrol");
-        baseBehaviour.setMob(sheepMob);
-        baseBehaviour.setParameter(100);
-        baseBehaviour.setParameter3("eeewww");
+        VectorDisease disease = new VectorDisease();
+        disease.setParameter(100);
+        disease.setMob(mob);
+        disease.setParameter3("Vampirism");
 
-        sheepMob.addTickable(baseBehaviour);
+        Room startRoom = TestHelper.makeRoomGrid();
+        mob.setRoom(startRoom);
+        startRoom.add(mob);
+
+        Mob player1Mob = TestHelper.makeDefaultPlayerMob("player1");
+        startRoom.add(player1Mob);
+        player1Mob.setRoom(startRoom);
 
 
-        Room whiteRoom = TestHelper.makeRoomGrid();
-        whiteRoom.add(sheepMob);
-        sheepMob.setRoom(whiteRoom);
+        disease.tick();
+        disease.tick();
+        disease.tick();
+        disease.tick();
 
-        baseBehaviour.tick();
-        baseBehaviour.tick();
-        baseBehaviour.tick();
+        assertEquals("Should be in the same room", mob.getMobAffects().getDiseases().toString(), player1Mob.getMobAffects().getDiseases().toString());
 
-        assertNotEquals("sheep should not be at start room", whiteRoom.getId(), sheepMob.getRoom().getId());
 
-        baseBehaviour.tick();
-        baseBehaviour.tick();
-        baseBehaviour.tick();
-
-        assertEquals("sheep should be at start room", whiteRoom.getId(), sheepMob.getRoom().getId());
     }
+
+
 }

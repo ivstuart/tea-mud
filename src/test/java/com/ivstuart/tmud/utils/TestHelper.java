@@ -73,6 +73,8 @@ public class TestHelper {
 		data.setThirst(500);
 		data.setHunger(500);
 
+        mob.setWimpy(10);
+
 		return mob;
 	}
 

@@ -24,13 +24,9 @@ import com.ivstuart.tmud.state.Track;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.List;
-
 public class Tracker extends BaseBehaviour {
 
 	private static Logger LOGGER = LogManager.getLogger();
-
-	private List<Room> rooms;
 
 	private String target;
 
@@ -42,14 +38,6 @@ public class Tracker extends BaseBehaviour {
 	@Override
 	public String getId() {
 		return mob.getId();
-	}
-
-	public List<Room> getRooms() {
-		return rooms;
-	}
-
-	public void setRooms(List<Room> rooms) {
-		this.rooms = rooms;
 	}
 
 	@Override

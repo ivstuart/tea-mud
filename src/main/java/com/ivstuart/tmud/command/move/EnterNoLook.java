@@ -227,16 +227,16 @@ public class EnterNoLook extends BaseCommand {
             DamageManager.checkForDefenderDeath(mob, mob);
         }
 
-        Track track = new Track();
-
-        if (mob.getHp().getPercentageLeft() < 10) {
-            track.setBlood(true);
-        }
-
-        track.setWho(mob.getName());
-        track.setDirection(exit.getId());
-
-        room.addTrack(track);
+//        Track track = new Track();
+//
+//        if (mob.getHp().getPercentageLeft() < 10) {
+//            track.setBlood(true);
+//        }
+//
+//        track.setWho(mob.getName());
+//        track.setDirection(exit.getId());
+//
+//        room.addTrack(track);
 
         // check room for followers and issue move command to any followers.
         for (Mob follower : room.getFollowers(mob)) {

@@ -77,6 +77,8 @@ public class VectorDisease extends BaseBehaviour {
     public void setParameter3(String parameter3) {
         this.parameter3 = parameter3;
         Disease disease = DiseaseFactory.createClass(parameter3);
+        disease.setMob(mob);
+        disease.setDecription(parameter3);
         mob.getMobAffects().add(disease.getId(), disease);
     }
 }

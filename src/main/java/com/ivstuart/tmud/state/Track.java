@@ -87,6 +87,17 @@ public class Track {
 		return result;
 	}
 
+	@Override
+	public String toString() {
+		return "Track{" +
+				"who='" + who + '\'' +
+				", direction='" + direction + '\'' +
+				", blood=" + blood +
+				", age=" + age +
+				", depth=" + depth +
+				'}';
+	}
+
 	public boolean isBlood() {
 		return blood;
 	}

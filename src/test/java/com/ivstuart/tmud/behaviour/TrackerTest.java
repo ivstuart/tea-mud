@@ -18,13 +18,13 @@ package com.ivstuart.tmud.behaviour;
 
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.command.combat.Kill;
+import com.ivstuart.tmud.person.movement.MoveManager;
 import com.ivstuart.tmud.server.LaunchMud;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Race;
 import com.ivstuart.tmud.state.Room;
 import com.ivstuart.tmud.utils.TestHelper;
 import com.ivstuart.tmud.world.World;
-import com.ivstuart.tmud.world.WorldTime;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Before;
@@ -33,12 +33,10 @@ import org.junit.Test;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-import static org.junit.Assert.assertEquals;
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNotSame;
 
-/**
- * Created by Ivan on 20/09/2016.
- */
-public class AssistTest {
+public class TrackerTest {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -55,47 +53,53 @@ public class AssistTest {
 
     }
 
+    /**
+     *
+     */
     @Test
-    public void testAssist() {
+    public void testMoveSamePath() {
         Race human = new Race();
         World.getInstance().addToWorld(human);
 
-        // have test resource file to load in a mob sheep and mob player
-        // test files.
-        Mob sheepMob = new Mob();
-        sheepMob.setNameAndId("sheep");
-        sheepMob.setAlias("sheep");
-        sheepMob.setHp("500");
-        sheepMob.setBehaviour("Assist:100");
-        sheepMob.getHp().deduct(300);
+        Mob mob = new Mob();
+        mob.setNameAndId("TrackingMob");
+        mob.setAlias("TrackingMob");
+        mob.setHp("500");
 
-        BaseBehaviour baseBehaviour = BehaviourFactory.create("Assist");
-        baseBehaviour.setMob(sheepMob);
-        baseBehaviour.setParameter(100);
 
-        sheepMob.addTickable(baseBehaviour);
-        WorldTime.addTickable(sheepMob);
+        Tracker tracker = new Tracker();
+        tracker.setParameter(100);
 
-        Mob sheepMob2 = new Mob(sheepMob);
-
-        Room whiteRoom = new Room();
-        whiteRoom.add(sheepMob);
-        sheepMob.setRoom(whiteRoom);
-        whiteRoom.add(sheepMob2);
-        sheepMob2.setRoom(whiteRoom);
+        tracker.setMob(mob);
+        Room startRoom = TestHelper.makeRoomGrid();
+        mob.setRoom(startRoom);
+        startRoom.add(mob);
 
         Mob player1Mob = TestHelper.makeDefaultPlayerMob("player1");
-        whiteRoom.add(player1Mob);
-        player1Mob.setRoom(whiteRoom);
+        startRoom.add(player1Mob);
+        player1Mob.setRoom(startRoom);
 
         Command kill = new Kill();
-        kill.execute(player1Mob, sheepMob.getAlias());
-        player1Mob.getFight().getMelee().begin();
+        kill.execute(player1Mob, mob.getAlias());
+        kill.execute(mob, player1Mob.getAlias());
 
-        //baseBehaviour.tick();
-        sheepMob2.tick();
+        tracker.tick();
 
-        assertEquals("sheep should be fighting", player1Mob, sheepMob.getFight().getTarget());
-        assertEquals("sheep2 should be fighting", player1Mob, sheepMob2.getFight().getTarget());
+        // Flee and end combat
+        MoveManager.random(player1Mob);
+        mob.getFight().stopFighting();
+
+        LOGGER.debug("Tracks:" + startRoom.getTracks().toString());
+
+        tracker.tick();
+        tracker.tick();
+        tracker.tick();
+
+        assertNotSame("Should not be in start room", startRoom, player1Mob.getRoom());
+
+        assertEquals("Should be in the same room", player1Mob.getRoom(), mob.getRoom());
+
+
     }
+
 }
