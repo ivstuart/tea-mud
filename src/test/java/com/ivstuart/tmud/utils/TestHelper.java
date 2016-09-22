@@ -133,6 +133,16 @@ public class TestHelper {
 
     }
 
+    public static Prop makeFireProp(String name) {
+
+        Prop fire = new Prop();
+        fire.setId("fire");
+        fire.setBrief("fire");
+        fire.setAlias("fire");
+        return fire;
+
+    }
+
     public void combatTick() {
         WorldTime.getInstance().resolveCombat();
     }

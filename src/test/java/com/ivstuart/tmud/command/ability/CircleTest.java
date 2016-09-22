@@ -163,6 +163,7 @@ public class CircleTest {
         assertTrue("sheep and player1 will be engaged in combat", sheepMob
                 .getFight().isEngaged(player1Mob));
 
+        // To ensure that the player is not directly engaged with the sheep
         sheepMob.getFight().changeTarget(sheepMob);
 
         Command circle = new Circle();

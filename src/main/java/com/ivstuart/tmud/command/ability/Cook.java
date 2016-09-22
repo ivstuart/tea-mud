@@ -65,6 +65,7 @@ public class Cook extends BaseCommand {
             mob.out("You burn the meat by over cooking it");
             food.setPortions(0);
             food.setLook("Which has been burned");
+            food.setCookable(false);
             return;
         }
 
@@ -72,7 +73,10 @@ public class Cook extends BaseCommand {
         food.setWeight((int) (weight * 0.9));
         int portions = food.getPortions();
         food.setPortions(portions++);
+        food.setCookable(false);
+        food.setDisease(null);
 
+        mob.out("You cook the food");
         // Also have salt meat
 
     }
