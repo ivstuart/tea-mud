@@ -55,12 +55,17 @@ public class Butcher extends BaseCommand {
 			item = (Item) prop;
 		}
 
+		if (item == null) {
+			mob.out("There is no " + input + " to butcher here");
+			return;
+		}
+
 		if (!item.isButcherable()) {
 			mob.out(input+" is not editable animal skin, can not butcher it");
 			return;
 		}
-		
-		if (!mob.getInventory().hasSharpEdge()) {
+
+		if (!mob.getInventory().hasSharpEdge() && !mob.getEquipment().hasSharpEdge()) {
 			mob.out(input +" has no sharpe edge capable of being used to butcher the animal");
 			return;
 		}
@@ -84,7 +89,10 @@ public class Butcher extends BaseCommand {
 		animalMeat.setWeight(item.getWeight());
 		animalMeat.setBrief("some animal meat");
 		animalMeat.setId("meat");
-		
+		animalMeat.setAlias("food meat");
+
+		mob.out("You add some meat to your inventory");
+
 		mob.getInventory().add(animalMeat);
 	}
 

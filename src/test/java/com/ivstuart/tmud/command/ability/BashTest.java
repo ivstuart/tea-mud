@@ -97,8 +97,8 @@ public class BashTest {
 		assertTrue("sheep and player1 will be engaged in combat", sheepMob
 				.getFight().isEngaged(player1Mob));
 
-		// RESCUE
-		Command bash = new Bash();
+        // Bash
+        Command bash = new Bash();
 		bash.execute(player1Mob, sheepMob.getAlias());
 
 		player1Mob.getFight().getFightActions().getFirst().happen();

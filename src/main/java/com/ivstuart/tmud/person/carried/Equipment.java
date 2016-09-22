@@ -45,403 +45,414 @@ import static com.ivstuart.tmud.constants.SpellNames.PROTECTION;
 
 /**
  * @author stuarti
- * 
+ *         <p>
  *         To change the template for this generated type comment go to
  *         Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Equipment implements Serializable {
 
-	private static final long serialVersionUID = -4733577084794956703L;
-	private static final Logger LOGGER = LogManager.getLogger();
-	private MudArrayList<Equipable> _equipment;
+    private static final long serialVersionUID = -4733577084794956703L;
+    private static final Logger LOGGER = LogManager.getLogger();
+    private MudArrayList<Equipable> _equipment;
 
-	/* Special slots */
-	private Equipable _primary;
+    /* Special slots */
+    private Equipable _primary;
 
-	private Equipable _secondary;
+    private Equipable _secondary;
 
-	private Equipable _both;
+    private Equipable _both;
 
-	private Equipable _natural;
+    private Equipable _natural;
 
-	// Used to work out if we have space at that location to put on said item.
-	private int _slots[] = new int[EquipLocation.values().length];
+    // Used to work out if we have space at that location to put on said item.
+    private int _slots[] = new int[EquipLocation.values().length];
 
-	private Mob mob;
-	private int kickBonus;
+    private Mob mob;
+    private int kickBonus;
 
-	public Equipment(Mob mob) {
-		this.mob = mob;
-		_equipment = new MudArrayList<Equipable>();
-	}
+    public Equipment(Mob mob) {
+        this.mob = mob;
+        _equipment = new MudArrayList<Equipable>();
+    }
 
-	public int getKickBonus() {
-		return kickBonus;
-	}
+    public int getKickBonus() {
+        return kickBonus;
+    }
 
-	public void increaseKick(int kickBonus) {
-		this.kickBonus += kickBonus;
-	}
+    public void increaseKick(int kickBonus) {
+        this.kickBonus += kickBonus;
+    }
 
-	public boolean add(Equipable eq) {
-		if (this.equip(eq)) {
-			sortEquipment();
-			return true;
-		}
-		return false;
-	}
+    public boolean add(Equipable eq) {
+        if (this.equip(eq)) {
+            sortEquipment();
+            return true;
+        }
+        return false;
+    }
 
 
-	@SuppressWarnings("unchecked")
-	private void sortEquipment() {
-		Collections.sort(_equipment);
-	}
+    @SuppressWarnings("unchecked")
+    private void sortEquipment() {
+        Collections.sort(_equipment);
+    }
 
-	private boolean checkTwoHandedAndNotEmptyHands(Integer location) {
-		if (location != BOTH.ordinal()) {
-			return false;
-		}
-		if (_slots[PRIMARY.ordinal()] > 0
-				|| _slots[SECONDARY.ordinal()] > 0) {
-			LOGGER.debug("For two handed weapon one of the slots is taken so can not use both hands");
-			return true;
-		}
-		return false;
-	}
+    private boolean checkTwoHandedAndNotEmptyHands(Integer location) {
+        if (location != BOTH.ordinal()) {
+            return false;
+        }
+        if (_slots[PRIMARY.ordinal()] > 0
+                || _slots[SECONDARY.ordinal()] > 0) {
+            LOGGER.debug("For two handed weapon one of the slots is taken so can not use both hands");
+            return true;
+        }
+        return false;
+    }
 
-	public void clear() {
-		_equipment.clear();
-		_primary = null;
+    public void clear() {
+        _equipment.clear();
+        _primary = null;
 
-		_secondary = null;
-		_both = null;
-		_natural = null;
+        _secondary = null;
+        _both = null;
+        _natural = null;
 
-		Arrays.fill(_slots, 0);
+        Arrays.fill(_slots, 0);
 
-	}
+    }
 
-	/**
-	 * public boolean add(Equipable item) { if (this.equip(item)) {
-	 * item.equip(me.getStats()); return true; } return false; }
-	 */
+    /**
+     * public boolean add(Equipable item) { if (this.equip(item)) {
+     * item.equip(me.getStats()); return true; } return false; }
+     */
 
-	private boolean equip(Equipable item) {
+    private boolean equip(Equipable item) {
 
-		for (Integer location : item.getWear()) {
-			if (_slots[location] < EquipLocation.getCapacity(location)) {
+        for (Integer location : item.getWear()) {
+            if (_slots[location] < EquipLocation.getCapacity(location)) {
 
-				if (checkTwoHandedAndNotEmptyHands(location)) {
-					continue;
-				}
-				item.setWorn(location);
-				_slots[location]++;
-				_equipment.add(item);
-				if (location == PRIMARY.ordinal()) {
-					_primary = item;
-				} else if (location == SECONDARY.ordinal()) {
-					_secondary = item;
-				} else if (location == BOTH.ordinal()) {
-					_both = item;
-				}
-				return true;
-			}
+                if (checkTwoHandedAndNotEmptyHands(location)) {
+                    continue;
+                }
+                item.setWorn(location);
+                _slots[location]++;
+                _equipment.add(item);
+                if (location == PRIMARY.ordinal()) {
+                    _primary = item;
+                } else if (location == SECONDARY.ordinal()) {
+                    _secondary = item;
+                } else if (location == BOTH.ordinal()) {
+                    _both = item;
+                }
+                return true;
+            }
 
-		}
+        }
 
-		return false;
+        return false;
 
-	}
+    }
 
-	public Equipable get(String item_) {
-		return _equipment.get(item_);
-	}
+    public Equipable get(String item_) {
+        return _equipment.get(item_);
+    }
 
-	public Equipable getPrimary() {
-		if (_both != null) {
-			return _both;
-		}
-		if (_primary != null) {
-			return _primary;
-		}
-		/*
-		 * Should not return this if (_secondary != null) { return _secondary; }
+    public Equipable getPrimary() {
+        if (_both != null) {
+            return _both;
+        }
+        if (_primary != null) {
+            return _primary;
+        }
+        /*
+         * Should not return this if (_secondary != null) { return _secondary; }
 		 */
-		return _natural;
-	}
+        return _natural;
+    }
 
-	public Equipable getSecondary() {
-		return _secondary;
-	}
+    public Equipable getSecondary() {
+        return _secondary;
+    }
 
-	public Armour getTotalArmour() {
+    public Armour getTotalArmour() {
 
-		// Need to factor in any damage to armour.
-		// Would it be better to add and remove armour on an item per item
-		// basis?
-		Armour totalArmour = new Armour();
-		for (Equipable eq : _equipment) {
-			if (eq instanceof Armour) {
-				totalArmour.add((Armour) eq);
-			}
-		}
+        // Need to factor in any damage to armour.
+        // Would it be better to add and remove armour on an item per item
+        // basis?
+        Armour totalArmour = new Armour();
+        for (Equipable eq : _equipment) {
+            if (eq instanceof Armour) {
+                totalArmour.add((Armour) eq);
+            }
+        }
 
-		Armour skin = new Armour(mob.getRace().getArmour());
-		totalArmour.add(skin);
+        Armour skin = new Armour(mob.getRace().getArmour());
+        totalArmour.add(skin);
 
-		Affect armourBuff = mob.getMobAffects().getAffect(PROTECTION);
+        Affect armourBuff = mob.getMobAffects().getAffect(PROTECTION);
 
-		int buff = 0;
-		if (armourBuff != null) {
-			buff = armourBuff.getAmount();
-			Armour protection = new Armour();
-			protection.setArmourBuff(buff);
-			totalArmour.add(protection);
-		}
+        int buff = 0;
+        if (armourBuff != null) {
+            buff = armourBuff.getAmount();
+            Armour protection = new Armour();
+            protection.setArmourBuff(buff);
+            totalArmour.add(protection);
+        }
 
-		return totalArmour;
-	}
+        return totalArmour;
+    }
 
-	public Weapon getWeapon() {
-		if (_both != null && _both instanceof Weapon) {
-			return (Weapon) _both;
-		} else if (_primary != null && _primary instanceof Weapon) {
-			return (Weapon) _primary;
-		} else if (_secondary != null && _secondary instanceof Weapon) {
-			return (Weapon) _secondary;
-		}
-		return (Weapon) _natural;
-	}
+    public Weapon getWeapon() {
+        if (_both != null && _both instanceof Weapon) {
+            return (Weapon) _both;
+        } else if (_primary != null && _primary instanceof Weapon) {
+            return (Weapon) _primary;
+        } else if (_secondary != null && _secondary instanceof Weapon) {
+            return (Weapon) _secondary;
+        }
+        return (Weapon) _natural;
+    }
 
-	public Equipable remove(String item) {
+    public Equipable remove(String item) {
 
         Equipable eq = _equipment.remove(item);
 
-		if (eq == null) {
-			EquipLocation el = EquipLocation.valueOf(item.toUpperCase());
-			if (el == null) {
-				return null;
-			}
-			// Maybe need to replace Equipable with Item
-			for (Equipable eqItem : _equipment) {
-				if (((Item) eqItem).getWorn() == el.ordinal()) {
-					eq = eqItem;
-					_equipment.remove(eq);
-					break;
-				}
+        if (eq == null) {
+            EquipLocation el = EquipLocation.valueOf(item.toUpperCase());
+            if (el == null) {
+                return null;
+            }
+            // Maybe need to replace Equipable with Item
+            for (Equipable eqItem : _equipment) {
+                if (((Item) eqItem).getWorn() == el.ordinal()) {
+                    eq = eqItem;
+                    _equipment.remove(eq);
+                    break;
+                }
 
-			}
+            }
 
-			if (eq == null) {
-				return null;
-			}
-		}
+            if (eq == null) {
+                return null;
+            }
+        }
 
-		_slots[eq.getWorn()]--;
+        _slots[eq.getWorn()]--;
 
 		/* to remove special slots */
-		if (eq == _primary) {
-			_primary = null;
-		} else if (eq == _secondary) {
-			_secondary = null;
-		} else if (eq == _both) {
-			_both = null;
-		}
+        if (eq == _primary) {
+            _primary = null;
+        } else if (eq == _secondary) {
+            _secondary = null;
+        } else if (eq == _both) {
+            _both = null;
+        }
 
-		return eq;
-	}
+        return eq;
+    }
 
-	public List<Equipable> removeAll() {
-		List<Equipable> eqList = new ArrayList<>(_equipment);
+    public List<Equipable> removeAll() {
+        List<Equipable> eqList = new ArrayList<>(_equipment);
 
-		this.clear();
-		return eqList;
-	}
+        this.clear();
+        return eqList;
+    }
 
-	public void swapHands() {
-		if (_primary != null || _secondary != null) {
-			Equipable temp = _primary;
-			_primary = _secondary;
-			_secondary = temp;
-			if (_primary != null) {
-				_primary.setWorn(PRIMARY.ordinal());
-				_slots[PRIMARY.ordinal()] = 1;
-			} else {
-				_slots[PRIMARY.ordinal()] = 0;
-			}
-			if (_secondary != null) {
-				_secondary.setWorn(SECONDARY.ordinal());
-				_slots[SECONDARY.ordinal()] = 1;
-			} else {
-				_slots[SECONDARY.ordinal()] = 0;
-			}
+    public void swapHands() {
+        if (_primary != null || _secondary != null) {
+            Equipable temp = _primary;
+            _primary = _secondary;
+            _secondary = temp;
+            if (_primary != null) {
+                _primary.setWorn(PRIMARY.ordinal());
+                _slots[PRIMARY.ordinal()] = 1;
+            } else {
+                _slots[PRIMARY.ordinal()] = 0;
+            }
+            if (_secondary != null) {
+                _secondary.setWorn(SECONDARY.ordinal());
+                _slots[SECONDARY.ordinal()] = 1;
+            } else {
+                _slots[SECONDARY.ordinal()] = 0;
+            }
 
-		}
-	}
+        }
+    }
 
-	@Override
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("You have equipped:\n");
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("You have equipped:\n");
 
-		for (int index = 0; index < _equipment.size(); index++) {
-			Equipable eq = _equipment.get(index);
-			sb.append("<");
-			sb.append(EquipLocation.values()[eq.getWorn()].getDesc());
-			sb.append("> ");
-			// sb.append(" slots: ["+_slots[eq.getWorn()]+"] ");
-			Item item = null;
-			if (eq instanceof Item) {
-				item = (Item)eq;
-				sb.append(item.getBrief());
-			}
-			else {
-				sb.append(eq);
-			}
-			sb.append("\n");
-		}
-		return sb.toString();
-	}
+        for (int index = 0; index < _equipment.size(); index++) {
+            Equipable eq = _equipment.get(index);
+            sb.append("<");
+            sb.append(EquipLocation.values()[eq.getWorn()].getDesc());
+            sb.append("> ");
+            // sb.append(" slots: ["+_slots[eq.getWorn()]+"] ");
+            Item item = null;
+            if (eq instanceof Item) {
+                item = (Item) eq;
+                sb.append(item.getBrief());
+            } else {
+                sb.append(eq);
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
 
-	public boolean hasShieldEquiped() {
-		if (_primary != null && ((Item)_primary).isShield()) {
-			return true;
-		}
-		if (_secondary != null && ((Item)_secondary).isShield()) {
-			return true;
-		}	
-		return false; 
-	}
+    public boolean hasShieldEquiped() {
+        if (_primary != null && ((Item) _primary).isShield()) {
+            return true;
+        }
+        if (_secondary != null && ((Item) _secondary).isShield()) {
+            return true;
+        }
+        return false;
+    }
 
-	public int getAPB() {
-		int apb = 0;
-		for (Equipable eq : _equipment) {
-			apb += eq.getAPB();
-		}
+    public int getAPB() {
+        int apb = 0;
+        for (Equipable eq : _equipment) {
+            apb += eq.getAPB();
+        }
 
-		return apb;
-	}
+        return apb;
+    }
 
-	public int getWeight() {
-		int grams = 0;
-		for (Equipable eq : _equipment) {
-			Item item = (Item) eq;
-			grams += item.getWeight();
-		}
+    public int getWeight() {
+        int grams = 0;
+        for (Equipable eq : _equipment) {
+            Item item = (Item) eq;
+            grams += item.getWeight();
+        }
 
-		return grams;
-	}
+        return grams;
+    }
 
-	public boolean hasClimbingBoots() {
-		if (_slots[FEET.ordinal()] == 0) {
-			return false;
-		}
+    public boolean hasClimbingBoots() {
+        if (_slots[FEET.ordinal()] == 0) {
+            return false;
+        }
 
-		for (Equipable eq : _equipment) {
-			Item item = (Item) eq;
-			if (item.getWorn() == FEET.ordinal()) {
-				return item.isClimbing();
-			}
-		}
+        for (Equipable eq : _equipment) {
+            Item item = (Item) eq;
+            if (item.getWorn() == FEET.ordinal()) {
+                return item.isClimbing();
+            }
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	public int getSave(DamageType damageType) {
-		int total = 0;
-		for (Equipable eq : _equipment) {
-			Item item = (Item) eq;
-			if (damageType.equals(item.getSaveType())) {
-				total += item.getSave();
-			}
-		}
-		return total;
-	}
+    public int getSave(DamageType damageType) {
+        int total = 0;
+        for (Equipable eq : _equipment) {
+            Item item = (Item) eq;
+            if (damageType.equals(item.getSaveType())) {
+                total += item.getSave();
+            }
+        }
+        return total;
+    }
 
-	public Equipable getRandom() {
-		int index = (int) Math.random() * EquipLocation.values().length;
-		for (Equipable eq : _equipment) {
-			Item item = (Item) eq;
-			if (item.getWorn() == index) {
-				return eq;
-			}
-		}
-		return null;
-	}
+    public Equipable getRandom() {
+        int index = (int) Math.random() * EquipLocation.values().length;
+        for (Equipable eq : _equipment) {
+            Item item = (Item) eq;
+            if (item.getWorn() == index) {
+                return eq;
+            }
+        }
+        return null;
+    }
 
-	public boolean remove(Equipable eq) {
+    public boolean remove(Equipable eq) {
         _slots[eq.getWorn()]--;
         return _equipment.remove(eq);
-	}
+    }
 
-	public int getHitRollBonus() {
-		int total = 0;
-		for (Equipable eq : _equipment) {
-			Item item = (Item) eq;
-			total += item.getHitRoll();
-		}
-		return total;
-	}
+    public int getHitRollBonus() {
+        int total = 0;
+        for (Equipable eq : _equipment) {
+            Item item = (Item) eq;
+            total += item.getHitRoll();
+        }
+        return total;
+    }
 
-	public int getDamageRollBonus() {
-		int total = 0;
-		for (Equipable eq : _equipment) {
-			Item item = (Item) eq;
-			total += item.getDamageRoll();
-		}
-		return total;
-	}
+    public int getDamageRollBonus() {
+        int total = 0;
+        for (Equipable eq : _equipment) {
+            Item item = (Item) eq;
+            total += item.getDamageRoll();
+        }
+        return total;
+    }
 
-	public boolean hasBelt() {
-		return _slots[WAIST.ordinal()] > 0;
-	}
+    public boolean hasBelt() {
+        return _slots[WAIST.ordinal()] > 0;
+    }
 
-	public boolean hasThruBeltSlots() {
-		return _slots[BELT.ordinal()] < BELT.getCapacity();
-	}
+    public boolean hasThruBeltSlots() {
+        return _slots[BELT.ordinal()] < BELT.getCapacity();
+    }
 
-	public void sheath(Item item) {
-		_slots[item.getWorn()]--;
-		item.setWorn(BELT.ordinal());
-		_slots[item.getWorn()]++;
+    public void sheath(Item item) {
+        _slots[item.getWorn()]--;
+        item.setWorn(BELT.ordinal());
+        _slots[item.getWorn()]++;
 
-		if (item == _primary) {
-			_primary = null;
-		} else if (item == _secondary) {
-			_secondary = null;
-		} else if (item == _both) {
-			_both = null;
-		}
-	}
+        if (item == _primary) {
+            _primary = null;
+        } else if (item == _secondary) {
+            _secondary = null;
+        } else if (item == _both) {
+            _both = null;
+        }
+    }
 
-	public boolean draw(String input) {
+    public boolean draw(String input) {
 
-		Equipable eq = _equipment.get(input);
+        Equipable eq = _equipment.get(input);
 
-		if (eq == null) {
-			return false;
-		}
+        if (eq == null) {
+            return false;
+        }
 
-		if (eq.getWorn() != BELT.ordinal()) {
-			return false;
-		}
-		this.remove(input);
+        if (eq.getWorn() != BELT.ordinal()) {
+            return false;
+        }
+        this.remove(input);
 
-		if (equip(eq)) {
-			return true;
-		} else {
-			_equipment.add(eq);
-		}
-		return false;
-	}
+        if (equip(eq)) {
+            return true;
+        } else {
+            _equipment.add(eq);
+        }
+        return false;
+    }
 
-	public boolean hasBothHandsFull() {
-		if (_both != null) {
-			return true;
-		}
-		if (_primary != null && _secondary != null) {
-			return true;
-		}
-		return false;
-	}
+    public boolean hasBothHandsFull() {
+        if (_both != null) {
+            return true;
+        }
+        if (_primary != null && _secondary != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean hasSharpEdge() {
+        for (Equipable eq : _equipment) {
+            Item item = (Item) eq;
+            if ("SHARP".indexOf(item.getType()) > -1) {
+                return true;
+            }
+
+        }
+        return false;
+
+    }
 }

@@ -79,9 +79,10 @@ public class Circle extends BaseCommand {
 			return;
 		}
 
-		// Also need to check if another thief is circling at the same time
-		// they will bump into each other and lose that circle in that event.
-
+		if (mob.getFight().isEngaged()) {
+			mob.out("You are already engaged in combat hence can not circle");
+			return;
+		}
 
 		mob.getFight().add(new FightActionCircle(mob, target));
 
@@ -130,9 +131,14 @@ public class Circle extends BaseCommand {
 				this.finished();
 			}
 
-            // Check if another thief is attempting to also circle at the same time
-            // Note only most progressed
-			if (getTarget().getFight().isBeingCircled()) {
+			if (getSelf().getFight().isEngaged()) {
+				out("You are already engaged in combat hence can not circle");
+				this.finished();
+			}
+
+			// Also need to check if another thief is circling at the same time
+			// they will bump into each other and lose that circle in that event.
+			if (getTarget().getFight().isBeingCircled(getSelf())) {
 				getSelf().out(getTarget().getName()
 						+ " is already being circled you collide and are off balance");
 				durationMillis(5000);

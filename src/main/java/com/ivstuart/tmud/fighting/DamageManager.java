@@ -27,7 +27,6 @@ import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.constants.DamageConstants;
 import com.ivstuart.tmud.constants.DamageType;
 import com.ivstuart.tmud.constants.SkillNames;
-import com.ivstuart.tmud.fighting.action.FightAction;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.person.config.ConfigData;
@@ -73,11 +72,18 @@ public class DamageManager {
         // Give creatures that are spell casted at a chance to fight back.
         if (!defender.getFight().isFighting() && damage > 0) {
             if (attacker != defender) {
-                FightAction melee = defender.getFight().getMelee();
-                if (melee != null) {
-                    melee.setTarget(attacker);
-                    WorldTime.addFighting(defender);
-                }
+                LOGGER.debug("Defender is retaliating");
+                Fight.startCombat(defender, attacker);
+                defender.getFight().changeTarget(attacker);
+
+//                FightAction melee = defender.getFight().getMelee();
+//                if (melee != null) {
+//                    melee.setTarget(attacker);
+//                    WorldTime.addFighting(defender);
+//                }
+//                else {
+//                    LOGGER.debug("Defender is retaliating but melee is null");
+//                }
             }
         }
 
@@ -423,6 +429,7 @@ public class DamageManager {
         corpse.setAlias("corpse");
         corpse.setWhoKilledMe(attacker.getName());
         corpse.setWhenKilled(System.currentTimeMillis());
+        corpse.setType("BUTCHERABLE"); // TODO
 
         if (defender.getRoom().isNoDrop() == false) {
             inveToCorpse(defender, corpse);

@@ -67,6 +67,7 @@ public class Fight {
 
         if (retarget || target.getFight().getMelee().getTarget() == null) {
             target.getFight().getMelee().setTarget(mob);
+            target.getFight().changeTarget(mob);
         }
 
         WorldTime.addFighting(mob);
@@ -130,7 +131,7 @@ public class Fight {
         if (ownTarget != null) {
             ownTarget.getFight().removeTargettedBy(melee.getSelf());
 
-            LOGGER.debug(ownTarget.getName() + " target removed from " + melee.getSelf().getName());
+            LOGGER.debug(ownTarget.getName() + " targeted by removed from " + melee.getSelf().getName());
         }
 
         melee.setTarget(newTargetMob);
@@ -139,7 +140,7 @@ public class Fight {
 
             newTargetMob.getFight().addTargettedBy(melee.getSelf());
 
-            LOGGER.debug(newTargetMob.getName() + " is changing target to " + melee.getSelf().getName());
+            LOGGER.debug(newTargetMob.getName() + " is changing to be targeted by " + melee.getSelf().getName());
 
         }
 
@@ -307,8 +308,11 @@ public class Fight {
                 '}';
     }
 
-    public boolean isBeingCircled() {
+    public boolean isBeingCircled(Mob self) {
         for (Mob mob : targettedBy) {
+            if (mob == self) {
+                continue;
+            }
             if (mob.getMobStatus().isCircling()) {
                 return true;
             }

@@ -188,6 +188,8 @@ public class BackStab extends BaseCommand {
                 out(new Msg(getSelf(), getTarget(), ("<S-You/NAME> miss<S-/es> backstab <T-you/NAME>.")));
             }
 
+			getSelf().getFight().changeTarget(getTarget());
+
 			durationMillis(2500);
 		}
 

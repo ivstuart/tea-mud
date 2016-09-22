@@ -175,6 +175,8 @@ public class Kick extends BaseCommand {
                 out(new Msg(getSelf(), getTarget(), "<S-You/NAME> miss<S-/es> kicking <T-you/NAME>."));
             }
 
+            getSelf().getFight().changeTarget(getTarget());
+
             durationMillis(1500);
         }
 

@@ -128,4 +128,12 @@ public class Ability implements Serializable {
 		return this.isSuccessful();
 
 	}
+
+    @Override
+    public String toString() {
+        return "Ability{" +
+                "id='" + id + '\'' +
+                ", skill=" + skill +
+                '}';
+    }
 }
