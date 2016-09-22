@@ -29,6 +29,8 @@ import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.MobStatus;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import static com.ivstuart.tmud.constants.SkillNames.DISARM;
 
@@ -36,7 +38,7 @@ import static com.ivstuart.tmud.constants.SkillNames.DISARM;
  * @author Ivan Stuart
  */
 public class Disarm extends BaseCommand {
-
+	private static final Logger LOGGER = LogManager.getLogger();
 	private boolean checkMobStatus(Mob mob, Mob target) {
 
 		if (!mob.getState().canMove()) {
@@ -72,9 +74,13 @@ public class Disarm extends BaseCommand {
 			return;
 		}
 
-		target.getInventory().remove(weapon);
+		LOGGER.debug("Getting worn " + weapon.getWorn());
+
+		target.getEquipment().remove(weapon);
 
 		target.getRoom().add(weapon);
+
+		LOGGER.debug("Removing weapon from " + target.getName() + " and adding it to the room");
 
 	}
 

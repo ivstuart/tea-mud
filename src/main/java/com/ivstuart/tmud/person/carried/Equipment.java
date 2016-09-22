@@ -370,6 +370,15 @@ public class Equipment implements Serializable {
 
     public boolean remove(Equipable eq) {
         _slots[eq.getWorn()]--;
+
+        if (eq == _primary) {
+            _primary = null;
+        } else if (eq == _secondary) {
+            _secondary = null;
+        } else if (eq == _both) {
+            _both = null;
+        }
+
         return _equipment.remove(eq);
     }
 
