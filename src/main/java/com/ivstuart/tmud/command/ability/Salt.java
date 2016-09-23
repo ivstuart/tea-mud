@@ -57,6 +57,7 @@ public class Salt extends BaseCommand {
             return;
         }
 
+        mob.out("You add salt to that food");
         food.setSaltable(false);
         int portions = food.getPortions();
         food.setPortions(portions++);

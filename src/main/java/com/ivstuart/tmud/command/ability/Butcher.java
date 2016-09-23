@@ -90,6 +90,7 @@ public class Butcher extends BaseCommand {
 		animalMeat.setBrief("some animal meat");
 		animalMeat.setId("meat");
 		animalMeat.setAlias("food meat");
+		animalMeat.setSaltable(true);
 
 		mob.out("You add some meat to your inventory");
 

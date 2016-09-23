@@ -104,11 +104,17 @@ public class Steal extends BaseCommand {
 	}
 
 	private boolean checkForStealingItems(Mob mob, Mob target) {
-		if (DiceRoll.ONE_D100.rollLessThanOrEqualTo(5)) {
+		if (DiceRoll.ONE_D100.rollLessThanOrEqualTo(95)) {
 			return false;
 		}
 
 		Item item = target.getInventory().getItems().removeRandom();
+
+		if (item == null) {
+			mob.out("They have no items to steal");
+			return false;
+		}
+
 		mob.getInventory().add(item);
 		mob.out("You steal a " + item.getBrief() + " from " + mob.getName());
 

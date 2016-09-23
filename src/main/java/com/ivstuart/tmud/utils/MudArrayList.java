@@ -26,162 +26,163 @@ import java.util.Collection;
 
 /**
  * Decorator of List to allow following additional look up logic
- * 
+ * <p>
  * get 1.sword get 2.sword
- * 
+ * <p>
  * Hence when a list has multiple items with naming conflicts you can select
  * with an index specific to differentiate them
- * 
- * @author Ivan
- * 
+ *
  * @param <E>
+ * @author Ivan
  */
 public class MudArrayList<E> extends ArrayList<E> {
 
-	private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
 
-	private static final long serialVersionUID = 1L;
-	private boolean indexLookup = false;
+    private static final long serialVersionUID = 1L;
+    private boolean indexLookup = false;
 
-	public MudArrayList() {
-		super(0);
-	}
+    public MudArrayList() {
+        super(0);
+    }
 
-	public MudArrayList(boolean indexLookup) {
-		super(0);
-		this.indexLookup = indexLookup;
-	}
+    public MudArrayList(boolean indexLookup) {
+        super(0);
+        this.indexLookup = indexLookup;
+    }
 
-	public MudArrayList(Collection<? extends E> collection) {
-		this.addAll(collection);
-	}
+    public MudArrayList(Collection<? extends E> collection) {
+        this.addAll(collection);
+    }
 
-	@Override
-	public boolean add(E e) {
-		return super.add(e);
-	}
+    @Override
+    public boolean add(E e) {
+        return super.add(e);
+    }
 
-	public boolean containsString(String containedString) {
+    public boolean containsString(String containedString) {
 
-		for (E element : this) {
+        for (E element : this) {
 
-			if (containedString.equalsIgnoreCase(element.toString())) {
-				return true;
-			}
+            if (containedString.equalsIgnoreCase(element.toString())) {
+                return true;
+            }
 
-		}
+        }
 
-		return false;
+        return false;
 
-	}
+    }
 
-	public E get(String value) {
+    public E get(String value) {
 
-		// LOGGER.debug("Getting from list for:" + value);
+        // LOGGER.debug("Getting from list for:" + value);
 
-		int index = this.stringIndexOf(value);
+        int index = this.stringIndexOf(value);
 
-		if (index < 0) {
-			return null;
-		} else {
-			return this.get(index);
-		}
-	}
+        if (index < 0) {
+            return null;
+        } else {
+            return this.get(index);
+        }
+    }
 
-	public E getExact(String value) {
+    public E getExact(String value) {
 
-		for (E element : this) {
+        for (E element : this) {
 
-			if (value.equalsIgnoreCase(element.toString())) {
-				return element;
-			}
-		}
+            if (value.equalsIgnoreCase(element.toString())) {
+                return element;
+            }
+        }
 
-		return null;
-	}
+        return null;
+    }
 
-	public E remove(String value) {
-		int index = this.stringIndexOf(value);
-		if (index < 0) {
-			return null;
-		} else {
-			return this.remove(index);
-		}
-	}
+    public E remove(String value) {
+        int index = this.stringIndexOf(value);
+        if (index < 0) {
+            return null;
+        } else {
+            return this.remove(index);
+        }
+    }
 
-	public E removeExact(String value) {
-		for (int index = 0; index < this.size(); index++) {
+    public E removeExact(String value) {
+        for (int index = 0; index < this.size(); index++) {
 
-			String stringValue = this.get(index).toString();
+            String stringValue = this.get(index).toString();
 
-			if (value.equalsIgnoreCase(stringValue)) {
-				return this.remove(index);
-			}
-		}
-		return null;
+            if (value.equalsIgnoreCase(stringValue)) {
+                return this.remove(index);
+            }
+        }
+        return null;
 
-	}
+    }
 
-	public int stringIndexOf(String value) {
+    public int stringIndexOf(String value) {
 
-		int indexOfSeperator = value.indexOf('.');
+        int indexOfSeperator = value.indexOf('.');
 
-		if (indexOfSeperator == 0 || indexOfSeperator == value.length()) {
-			return -1;
-		}
+        if (indexOfSeperator == 0 || indexOfSeperator == value.length()) {
+            return -1;
+        }
 
-		int itemNumber = -1;
+        int itemNumber = -1;
 
-		if (indexOfSeperator > 0) {
-			try {
-				itemNumber = Integer.parseInt(value.substring(0,
-						indexOfSeperator));
-			} catch (NumberFormatException e) {
-				LOGGER.error("Client entered invalid index number" , e);
-				itemNumber = -1;
-			}
-			value = value.substring(++indexOfSeperator, value.length());
-		}
+        if (indexOfSeperator > 0) {
+            try {
+                itemNumber = Integer.parseInt(value.substring(0,
+                        indexOfSeperator));
+            } catch (NumberFormatException e) {
+                LOGGER.error("Client entered invalid index number", e);
+                itemNumber = -1;
+            }
+            value = value.substring(++indexOfSeperator, value.length());
+        }
 
-		return indexOf(value, itemNumber);
-	}
+        return indexOf(value, itemNumber);
+    }
 
-	public int indexOf(String value, int itemNumber) {
+    public int indexOf(String value, int itemNumber) {
 
-		for (int index = 0; index < this.size(); index++) {
+        for (int index = 0; index < this.size(); index++) {
 
-			E object = this.get(index);
+            E object = this.get(index);
 
-			String shortName = null;
+            String shortName = null;
 
-			if (object instanceof Prop) {
-				shortName = ((Prop) object).getAlias();
-			}
-			else {
-				shortName = ((BasicThing) object).getId();
-			}
+            if (object instanceof Prop) {
+                shortName = ((Prop) object).getAlias();
+            } else {
+                shortName = ((BasicThing) object).getId();
+            }
 
-			if (shortName == null) {
-				continue;
-			}
+            if (shortName == null) {
+                continue;
+            }
 
-			boolean match = false;
-			if (indexLookup) {
-				match = (shortName.indexOf(value) > -1);
-			} else {
-				match = shortName.startsWith(value);
-			}
+            boolean match = false;
+            if (indexLookup) {
+                match = (shortName.indexOf(value) > -1);
+            } else {
+                match = shortName.startsWith(value);
+            }
 
-			if (match) {
-				if (itemNumber-- <= 1) {
-					return index;
-				}
-			}
-		}
-		return -1;
-	}
+            if (match) {
+                if (itemNumber-- <= 1) {
+                    return index;
+                }
+            }
+        }
+        return -1;
+    }
 
-	public E removeRandom() {
-		return this.get((int) (size() * Math.random()));
-	}
+    public E removeRandom() {
+        if (size() == 0) {
+            return null;
+        }
+        return this.get((int) (size() * Math.random()));
+    }
 }

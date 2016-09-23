@@ -17,13 +17,12 @@
 package com.ivstuart.tmud.person.movement;
 
 import com.ivstuart.tmud.common.Msg;
-import com.ivstuart.tmud.state.Exit;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Room;
-import com.ivstuart.tmud.state.Track;
+import com.ivstuart.tmud.state.*;
 import com.ivstuart.tmud.state.util.RoomManager;
 
 import java.util.List;
+
+import static com.ivstuart.tmud.constants.SkillNames.SNEAK;
 
 public class MoveManager {
 
@@ -40,12 +39,25 @@ public class MoveManager {
 	public static void move(Mob mob_, Room sourceRoom_, Room destinationRoom_, Exit exit_, String movementType) {
 
 		sourceRoom_.remove(mob_);
+		boolean sneak = false;
+		if (mob_.getMobStatus().isSneaking()) {
+			movementType = "sneaks";
+			Ability abSneak = mob_.getLearned().getAbility(SNEAK);
+			if (abSneak.isSuccessful(mob_)) {
+				sneak = true;
+			}
+		}
 
-		sourceRoom_.out(new Msg(mob_, "<S-NAME> " + movementType + " " + exit_.getId()));
+		if (sneak == false) {
+			sourceRoom_.out(new Msg(mob_, "<S-NAME> " + movementType + " " + exit_.getId()));
+
+			destinationRoom_.out(new Msg(mob_, "<S-NAME> arrives from the " + RoomManager.reverseDirection(exit_.getId())));
+		} else {
+			mob_.out(new Msg(mob_, "<S-NAME> " + movementType + " " + exit_.getId()));
+		}
 
 		destinationRoom_.add(mob_);
 
-		destinationRoom_.out(new Msg(mob_,"<S-NAME> arrives from the "+ RoomManager.reverseDirection(exit_.getId())));
 
 		Track track = new Track();
 		if (mob_.getHp().getPercentageLeft() < 10) {
