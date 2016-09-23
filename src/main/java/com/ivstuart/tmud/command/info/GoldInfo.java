@@ -42,8 +42,8 @@ public class GoldInfo extends BaseCommand {
 		Inventory inve = mob.getInventory();
 
 		if (inve == null) {
-			mob.out("Not a saussage!");
-			return;
+            mob.out("Not a sausage!");
+            return;
 		}
 
 		mob.out(mob.getInventory().getPurseString());

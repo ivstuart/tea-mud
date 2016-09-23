@@ -163,12 +163,10 @@ command.admin.AddAdmin,SLEEP
 command.admin.Ban,SLEEP
 command.admin.Battleground,SLEEP
 command.admin.ClearAffects,SLEEP
-command.admin.Debug,SLEEP
 command.admin.Freeze,SLEEP
 command.admin.GiveDisease,SLEEP
 command.admin.GiveWarpoints,SLEEP
 command.admin.Level,SLEEP
-command.admin.MobInfo,SLEEP
 command.admin.Outfit,SLEEP
 command.admin.PauseTime,SLEEP
 command.admin.Possess,SLEEP

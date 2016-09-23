@@ -62,6 +62,8 @@ public class Outfit extends AdminCommand {
         createItem(mob, "battleaxe-001");
         createItem(mob, "greatsword-001");
 
+        mob.out("You are outfitted with the latest equipment and given cash");
+
         mob.getInventory().add(new Money(Money.PLATINUM, 10000));
     }
 

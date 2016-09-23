@@ -88,7 +88,7 @@ public class Battleground extends AdminCommand implements Runnable {
 
         countDown = 30;
 
-        if (input.length() > 0) {
+        if (input != null && input.length() > 0) {
             countDown = Integer.parseInt(input);
         }
 

@@ -76,6 +76,11 @@ public class Ban extends AdminCommand {
             name = player.getName();
         }
 
+        if (bannedNames.contains(name)) {
+            mob.out("Player already banned");
+            return;
+        }
+
         bannedNames.add(name);
 
         GsonIO io = new GsonIO();

@@ -51,6 +51,11 @@ public class AddAdmin extends AdminCommand {
     }
 
     public static void init() {
+
+        if (adminNames != null) {
+            return;
+        }
+
         GsonIO io = new GsonIO();
 
         try {
@@ -101,6 +106,5 @@ public class AddAdmin extends AdminCommand {
 
 
     }
-
 
 }
