@@ -299,12 +299,17 @@ public class Fight {
         return true;
     }
 
+    /**
+     * Stack overflow if include targettedBy
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Fight{" +
                 "fightActions=" + fightActions +
                 ", melee=" + melee +
-                ", targettedBy=" + targettedBy +
+                //", targettedBy=" + targettedBy +
                 '}';
     }
 

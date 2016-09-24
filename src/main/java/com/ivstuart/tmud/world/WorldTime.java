@@ -113,6 +113,10 @@ public class WorldTime implements Runnable {
         deadMobs.add(dead);
     }
 
+    public static boolean isPauseTime() {
+        return pauseTime;
+    }
+
     public static boolean togglePauseTime() {
         pauseTime = !pauseTime;
         return pauseTime;

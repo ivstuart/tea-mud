@@ -338,12 +338,12 @@ public class Mob extends Prop implements Tickable {
         return damage;
     }
 
-    public void setDamage(String damage_) {
-        this.damage = new DiceRoll(damage_);
-    }
-
     public void setDamage(DiceRoll damage) {
         this.damage = damage;
+    }
+
+    public void setDamage(String damage_) {
+        this.damage = new DiceRoll(damage_);
     }
 
     public int getDefence() {
@@ -382,12 +382,12 @@ public class Mob extends Prop implements Tickable {
         return gender;
     }
 
-    public void setGender(String gender_) {
-        gender = Gender.valueOf(gender_.toUpperCase());
-    }
-
     public void setGender(Gender g) {
         gender = g;
+    }
+
+    public void setGender(String gender_) {
+        gender = Gender.valueOf(gender_.toUpperCase());
     }
 
     public Attribute getHp() {
@@ -502,13 +502,13 @@ public class Mob extends Prop implements Tickable {
         return state;
     }
 
-    public void setState(String state_) {
-        state = MobState.getMobState(state_);
-    }
-
     public void setState(MobState state_) {
         LOGGER.debug("You set state to " + state_.name());
         state = state_;
+    }
+
+    public void setState(String state_) {
+        state = MobState.getMobState(state_);
     }
 
     public Fight getTargetFight() {
@@ -897,7 +897,7 @@ public class Mob extends Prop implements Tickable {
     }
 
     public void addAffect(Affect affect) {
-        mobAffects.add(affect.getDesc(), affect);
+        getMobAffects().add(affect.getDesc(), affect);
     }
 
     public boolean isGood() {

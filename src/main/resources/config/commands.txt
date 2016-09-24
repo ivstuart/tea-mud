@@ -182,8 +182,8 @@ command.admin.Smite,SLEEP
 command.admin.Snoop,SLEEP
 command.admin.SwapAlignment,SLEEP
 command.admin.Teleport,SLEEP
-command.admin.TestLearn,SLEEP
-command.admin.TestPoison,SLEEP
+command.admin.LearnAll,SLEEP
+command.admin.PoisonSelf,SLEEP
 command.admin.Unpossess,SLEEP
 
 # Needs to be lower than At
