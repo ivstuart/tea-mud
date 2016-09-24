@@ -58,11 +58,6 @@ public class Rescue extends BaseCommand {
 			return;
 		}
 
-		/**
-		 * if (!target.isPlayer()) { mob.out(input + " is not a player!");
-		 * return; }
-		 */
-
 		// deduct 1 move point?
 
 		// rescue from all attackers? or just one? random or first?
@@ -85,9 +80,10 @@ public class Rescue extends BaseCommand {
 
         if (!ability.isNull() && ability.isSuccessful(mob)) {
 
-            mob.getRoom().out(new Msg(mob, aggressor, ("<S-You/NAME> successfully rescue <T-you/NAME>.")));
-            if (!mob.getFight().isFighting()) {
-				mob.getFight().getMelee().setTarget(aggressor);
+			mob.getRoom().out(new Msg(mob, aggressor, ("<S-You/NAME> successfully rescues from <T-you/NAME>.")));
+			if (!mob.getFight().isFighting()) {
+				//mob.getFight().getMelee().setTarget(aggressor);
+				mob.getFight().changeTarget(aggressor);
 				WorldTime.addFighting(mob);
 			}
 

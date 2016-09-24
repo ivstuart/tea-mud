@@ -50,6 +50,7 @@ public class Flurry extends BaseCommand {
 		AttackFlurry punch = new AttackFlurry(mob, target);
 
 		mob.getFight().add(punch);
-	}
+
+    }
 
 }

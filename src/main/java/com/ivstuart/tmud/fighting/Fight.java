@@ -131,7 +131,7 @@ public class Fight {
         if (ownTarget != null) {
             ownTarget.getFight().removeTargettedBy(melee.getSelf());
 
-            LOGGER.debug(ownTarget.getName() + " targeted by removed from " + melee.getSelf().getName());
+            LOGGER.debug(melee.getSelf().getName() + " removed from targetted by for " + ownTarget.getName());
         }
 
         melee.setTarget(newTargetMob);
@@ -139,8 +139,7 @@ public class Fight {
         if (newTargetMob != null) {
 
             newTargetMob.getFight().addTargettedBy(melee.getSelf());
-
-            LOGGER.debug(newTargetMob.getName() + " is changing to be targeted by " + melee.getSelf().getName());
+            LOGGER.debug(melee.getSelf().getName() + " added to targetted by for " + newTargetMob.getName());
 
         }
 
@@ -309,7 +308,7 @@ public class Fight {
         return "Fight{" +
                 "fightActions=" + fightActions +
                 ", melee=" + melee +
-                //", targettedBy=" + targettedBy +
+                //", targettedBy=" + targettedBy.size() +
                 '}';
     }
 

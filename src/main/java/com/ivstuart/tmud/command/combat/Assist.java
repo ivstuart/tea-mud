@@ -28,8 +28,8 @@ public class Assist extends BaseCommand {
 
 		Mob target = null;
 
-		if (input.length() == 0) {
-			for (Mob aMob : mob.getPlayer().getGroup()) {
+        if (input == null || input.length() == 0) {
+            for (Mob aMob : mob.getPlayer().getGroup()) {
 				if (!aMob.getFight().isFighting()) {
 					continue;
 				}

@@ -55,7 +55,7 @@ public class AttackFlurry extends BasicAttack {
 			this.finished();
 		}
 
-        getSelf().out("You open out with a flurry of attacks doubling you chances to hit");
+        getSelf().out("You open out with a flurry of attacks doubling your chances to hit");
 
 		super.happen();
 		super.happen();
