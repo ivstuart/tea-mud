@@ -100,8 +100,8 @@ public class Donate extends BaseCommand {
 			return;
 		}
 
-		World.getDonateRoom(mob).add(anItem);
-		mob.out("You donate an " + anItem.getBrief());
+        donateRoom.add(anItem);
+        mob.out("You donate an " + anItem.getBrief());
 	}
 
 }

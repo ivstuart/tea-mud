@@ -114,12 +114,28 @@ public class TestHelper {
 
         Weapon dagger = new Weapon();
         dagger.setId("dagger-01");
+        dagger.setAlias("dagger");
         dagger.setDamage("20");
         dagger.setWear("PRIMARY SECONDARY");
         dagger.setType("SHARP");
         dagger.setSkill("piercing");
 
         player1Mob.getEquipment().add(dagger);
+
+    }
+
+    public static void daggerToRoom(Room room) {
+
+        Weapon dagger = new Weapon();
+        dagger.setId("dagger-01");
+        dagger.setBrief("a dagger");
+        dagger.setAlias("dagger");
+        dagger.setDamage("20");
+        dagger.setWear("PRIMARY SECONDARY");
+        dagger.setType("SHARP");
+        dagger.setSkill("piercing");
+
+        room.add(dagger);
 
     }
 

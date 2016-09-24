@@ -69,9 +69,9 @@ Either done or on the to do list.
  
  A. Add in tea-mud\src\main\resources\world\abilities.txt and to the code.
  
- 4.4 How to get to level 60 with all skills and spells for testing.
+ 4.4 How to get to level 60 with all skills and spells for testing. Admin only feature.
  
- A. "Testlearn" command and "level 60" command to get levels and skills. Type spells and skills to check what you have.
+ A. "learnall" command and "level 60" command to get levels and skills. Type spells and skills to check what you have.
  
  5. Coding insights or corrections or simplifications
  ----------------------------------------------------

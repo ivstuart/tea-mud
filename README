@@ -9,8 +9,6 @@ A text based Multi-User Dungeon (MUD) along the lines of Rite of Passage (ROP), 
 muds. The code is all there for a version one of this code base. However there is considerable work to a builder to
 make the world state files into a balanced mud world.
 
-There is a lack of unit test for classes. This is historical and will be addressed in later versions of the code.
-
 Setup Instructions
 ------------------
 
