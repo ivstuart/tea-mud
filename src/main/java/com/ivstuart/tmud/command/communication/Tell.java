@@ -48,7 +48,7 @@ public class Tell extends BaseCommand {
 	 */
 	@Override
 	public void execute(Mob mob, String input) {
-		String[] inputSplit = input.split(" ");
+		String[] inputSplit = input.split(" ", 2);
 
 		if (inputSplit.length < 2) {
 			mob.out("need source and target group to tell");

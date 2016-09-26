@@ -45,7 +45,7 @@ public class ReadBoards extends BaseCommand {
 
         int alreadyReadIndex = mob.getPlayer().getReadIndex();
 
-        if (input.length() > 0) {
+        if (input != null && input.length() > 0) {
             alreadyReadIndex = Integer.parseInt(input);
         }
 

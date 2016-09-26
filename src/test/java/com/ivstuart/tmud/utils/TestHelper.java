@@ -112,20 +112,17 @@ public class TestHelper {
      */
     public static void equipDagger(Mob player1Mob) {
 
-        Weapon dagger = new Weapon();
-        dagger.setId("dagger-01");
-        dagger.setAlias("dagger");
-        dagger.setDamage("20");
-        dagger.setWear("PRIMARY SECONDARY");
-        dagger.setType("SHARP");
-        dagger.setSkill("piercing");
-
-        player1Mob.getEquipment().add(dagger);
+        player1Mob.getEquipment().add(makeDagger());
 
     }
 
     public static void daggerToRoom(Room room) {
 
+        room.add(makeDagger());
+
+    }
+
+    public static Weapon makeDagger() {
         Weapon dagger = new Weapon();
         dagger.setId("dagger-01");
         dagger.setBrief("a dagger");
@@ -134,9 +131,7 @@ public class TestHelper {
         dagger.setWear("PRIMARY SECONDARY");
         dagger.setType("SHARP");
         dagger.setSkill("piercing");
-
-        room.add(dagger);
-
+        return dagger;
     }
 
     public static Teacher makeTeacherProp(String name) {
@@ -157,6 +152,18 @@ public class TestHelper {
         fire.setAlias("fire");
         return fire;
 
+    }
+
+    public static void inveDagger(Mob player1Mob) {
+        player1Mob.getInventory().add(makeDagger());
+    }
+
+    public static void sleep(int i) {
+        try {
+            Thread.sleep(i);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void combatTick() {

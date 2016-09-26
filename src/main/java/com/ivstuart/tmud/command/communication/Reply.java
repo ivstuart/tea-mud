@@ -38,7 +38,14 @@ public class Reply extends BaseCommand {
 	@Override
 	public void execute(Mob mob, String input) {
 
-		String name = mob.getLastToldBy().getName();
+		Mob lastToldByMob = mob.getLastToldBy();
+
+		if (lastToldByMob == null) {
+			mob.out("No one has told you anything yet!");
+			return;
+		}
+
+		String name = lastToldByMob.getName();
 
 		if (name == null) {
 			mob.out("No one has told you anything yet!");

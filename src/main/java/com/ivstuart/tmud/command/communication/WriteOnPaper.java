@@ -47,7 +47,13 @@ public class WriteOnPaper extends BaseCommand {
 		Item note = new Item();
 		
 		note.setLong(input);
-		note.setBrief(input.substring(0,40));
+		note.setAlias("note");
+
+		if (input.length() > 40) {
+			note.setBrief(input.substring(0, 40));
+		} else {
+			note.setBrief(input);
+		}
 		
 		// Add finished note to inventory.
 		mob.getInventory().add(note);

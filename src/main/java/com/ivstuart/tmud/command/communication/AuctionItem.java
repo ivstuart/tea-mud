@@ -22,7 +22,7 @@
  */
 package com.ivstuart.tmud.command.communication;
 
-import com.ivstuart.tmud.command.admin.AdminCommand;
+import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.person.config.ChannelData;
 import com.ivstuart.tmud.state.Item;
@@ -39,7 +39,7 @@ import java.util.concurrent.*;
  *         To change the template for this generated type comment go to
  *         Window>Preferences>Java>Code Generation>Code and Comments
  */
-public class AuctionItem extends AdminCommand implements Runnable {
+public class AuctionItem extends BaseCommand implements Runnable {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -53,8 +53,6 @@ public class AuctionItem extends AdminCommand implements Runnable {
 
     @Override
     public void execute(Mob mob, String input) {
-
-        super.execute(mob, input);
 
         if (!mob.getRoom().isAuctionHouse()) {
             mob.out("You MUST be in an auction house in order to auction");

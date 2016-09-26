@@ -58,8 +58,8 @@ public class Bug extends BaseCommand {
 				fh.write(c.getTime() + "\n" + input + "\n");
 				fh.close();
 			} catch (IOException e) {
-				LOGGER.error("Problem writing bug to bugreport file", e);
-			}
+                LOGGER.error("Problem writing bug to bug report file", e);
+            }
 		}
 	}
 
