@@ -24,7 +24,7 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 
-public class TestGive {
+public class GiveTest {
 
 	@Test
     public void testGive50Copper() {

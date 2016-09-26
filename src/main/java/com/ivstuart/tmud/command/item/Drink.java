@@ -43,8 +43,8 @@ public class Drink extends BaseCommand {
 
 		if (fountain != null) {
 			if (fountain.isWaterSource()) {
-				mob_.out("You drink some liquard from " + fountain.getName());
-				Attribute thirst = mob_.getPlayer().getData().getThirst();
+                mob_.out("You drink some liquid from " + fountain.getName());
+                Attribute thirst = mob_.getPlayer().getData().getThirst();
 				thirst.increase(500);
 				return;
 			}
