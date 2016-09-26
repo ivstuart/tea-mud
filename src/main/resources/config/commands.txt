@@ -32,7 +32,7 @@ command.info.Score,REST
 command.info.Mana,REST
 command.info.Magic,REST
 command.info.Affects,REST
-command.info.ArmourCommand,REST
+command.info.ArmourInfo,REST
 command.info.Time,REST
 command.info.StatusInfo,REST
 command.info.Help,REST

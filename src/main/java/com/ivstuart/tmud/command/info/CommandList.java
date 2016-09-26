@@ -24,6 +24,7 @@ package com.ivstuart.tmud.command.info;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.CommandProvider;
+import com.ivstuart.tmud.command.Social;
 import com.ivstuart.tmud.state.Mob;
 
 /**
@@ -38,7 +39,12 @@ public class CommandList extends BaseCommand {
 	public void execute(Mob mob, String input) {
 
         for (Object command : CommandProvider.getCommands()) {
-			mob.out(command.toString());
+			if (command instanceof Social) {
+				Social social = (Social) command;
+				mob.out(social.getCmd());
+			} else {
+				mob.out(command.getClass().getSimpleName());
+			}
 		}
 	}
 

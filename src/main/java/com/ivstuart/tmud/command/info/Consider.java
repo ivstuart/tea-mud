@@ -59,7 +59,11 @@ public class Consider extends BaseCommand {
 
         int index2 = 4 * target.getMobLevel() / mob.getPlayer().getData().getLevel();
 
-        int index3 = 4 * target.getDamage().getMaxRoll();
+        int index3 = 4;
+
+        if (target.getWeapon() != null) {
+            index3 *= target.getWeapon().getDamage().getMaxRoll();
+        }
 
         if (mob.getWeapon() != null) {
             index3 /= mob.getWeapon().getDamage().getMaxRoll();

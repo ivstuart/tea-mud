@@ -43,7 +43,7 @@ public class Help extends BaseCommand {
     public void execute(Mob mob, String input) {
 
         // Have a help
-        if (input.length() == 0) {
+        if (input == null || input.length() == 0) {
             showDefaultHelp(mob);
             return;
         }
