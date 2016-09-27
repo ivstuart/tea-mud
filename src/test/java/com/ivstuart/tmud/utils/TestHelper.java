@@ -131,7 +131,21 @@ public class TestHelper {
         dagger.setWear("PRIMARY SECONDARY");
         dagger.setType("SHARP");
         dagger.setSkill("piercing");
+        dagger.setCost(10);
         return dagger;
+    }
+
+    public static Wand makeWand() {
+        Wand wand = new Wand();
+        wand.setId("wand-01");
+        wand.setBrief("a wand");
+        wand.setAlias("wand");
+        wand.setWear("PRIMARY SECONDARY");
+        wand.setCost(10);
+        wand.setCharges(3);
+        // wand.setEffects("fireball");
+        wand.setProperties("fireball");
+        return wand;
     }
 
     public static Teacher makeTeacherProp(String name) {
@@ -164,6 +178,11 @@ public class TestHelper {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void equipWand(Mob mob) {
+
+        mob.getEquipment().add(makeWand());
     }
 
     public void combatTick() {
