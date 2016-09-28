@@ -69,6 +69,10 @@ public class Sleep extends BaseCommand {
 	}
 
 	private boolean checkSleepOn(Mob mob_, String input_) {
+        if (input_ == null) {
+            return false;
+        }
+
 		String target = StringUtil.getLastWord(input_);
 
 		if (target != null && target.length() > 0) {

@@ -54,6 +54,8 @@ public class LaunchClient implements Runnable {
 																	// server
 		int port = LaunchMud.getMudServerPort();
 
+        LOGGER.info("Opening socket connection on " + ip + ":" + port);
+
 		try {
 			socket = new Socket(ip, port);
 		} catch (Exception e) {

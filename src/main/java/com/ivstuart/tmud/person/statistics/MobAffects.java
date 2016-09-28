@@ -125,4 +125,11 @@ public class MobAffects implements Serializable, Cloneable {
 		}
 		return null;
 	}
+
+	@Override
+	public String toString() {
+		return "MobAffects{" +
+				"affects=" + affects +
+				'}';
+	}
 }

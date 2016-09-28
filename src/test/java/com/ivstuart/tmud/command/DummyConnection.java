@@ -22,12 +22,18 @@ import org.apache.logging.log4j.Logger;
 public class DummyConnection extends Connection {
 
 	private static final Logger LOGGER = LogManager.getLogger();
+	private String output;
+
 
 	/**
-	 * 
+	 *
 	 */
 	public DummyConnection() {
 
+	}
+
+	public String getOutput() {
+		return output;
 	}
 
 	@Override
@@ -41,6 +47,11 @@ public class DummyConnection extends Connection {
 		return null;
 	}
 
+	@Override
+	public void setState(Readable readable) {
+		LOGGER.debug("set state");
+	}
+
 	/**
 	 * @return
 	 */
@@ -51,7 +62,7 @@ public class DummyConnection extends Connection {
 
 	@Override
 	public void out(String output) {
-
+		this.output = output;
 		LOGGER.debug("output [ " + output + " ]");
 
 	}
@@ -59,11 +70,6 @@ public class DummyConnection extends Connection {
 	@Override
 	public void process(String cmd) {
 		LOGGER.debug("command [ " + cmd + " ]");
-	}
-
-	@Override
-	public void setState(Readable readable) {
-		LOGGER.debug("set state");
 	}
 
 }

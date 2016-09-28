@@ -28,11 +28,14 @@ import java.util.Map;
 public class ConnectionManager {
 
 	private static final Logger LOGGER = LogManager.getLogger();
-
 	private static Map<SocketChannel, Connection> map = new HashMap<SocketChannel, Connection>();
 
     private ConnectionManager() {
 
+    }
+
+    public static Map<SocketChannel, Connection> getMap() {
+        return map;
     }
 
 	public static void add(SocketChannel sc) {
