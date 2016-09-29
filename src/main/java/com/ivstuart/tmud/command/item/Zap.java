@@ -69,7 +69,7 @@ public class Zap extends BaseCommand {
             return;
         }
 
-        new Cast().execute(mob, spell, ability, input, false);
+        new Cast().execute(mob, spell, ability, spell.getName() + " " + input, false);
 
     }
 

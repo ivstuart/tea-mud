@@ -105,17 +105,20 @@ public class RescueTest {
         Command rescue = new Rescue();
         rescue.execute(player2Mob, player1Mob.getAlias());
 
-//		sheepMob.getFight().changeTarget(player2Mob);
-//		player1Mob.getFight().changeTarget(sheepMob);
-//		player2Mob.getFight().changeTarget(sheepMob);
+        assertEquals("sheep and player2 will be targeting each other", player2Mob, sheepMob
+                .getFight().getTarget());
 
-        //LOGGER.debug("Fight:"+sheepMob.getFight().getTargettedBy().get(0).getName());
-
-        assertFalse("sheep and player1 will not be engaged in combat", sheepMob
+        assertTrue("sheep and player1 will not be engaged in combat", sheepMob
                 .getFight().isEngaged(player1Mob));
 
         assertTrue("sheep and player2 will be engaged in combat", sheepMob
                 .getFight().isEngaged(player2Mob));
+
+        assertFalse("sheep and player1 will not be engaged in combat", player1Mob
+                .getFight().isEngaged(sheepMob));
+
+        assertTrue("sheep and player2 will be engaged in combat", player2Mob
+                .getFight().isEngaged(sheepMob));
     }
 
 

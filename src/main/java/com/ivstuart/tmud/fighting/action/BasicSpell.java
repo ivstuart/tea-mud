@@ -77,12 +77,12 @@ public class BasicSpell extends FightAction {
         // Test output string because at construction the fight action might be
         // queued for action at a later time.
 
-        if (checkCanCast() == false) {
-
-            getSelf().getMobStatus().setCasting(0);
-            this.destory();
-            return;
-        }
+//        if (checkCanCast() == false) {
+//
+//            getSelf().getMobStatus().setCasting(0);
+//            this.destory();
+//            return;
+//        }
 
         out(new Msg(getSelf(), getTarget(),
                 "<S-You begin/NAME begins> to utter some strange incantations..."));
@@ -131,16 +131,6 @@ public class BasicSpell extends FightAction {
         return true;
     }
 
-    private int clipRange(int percentage) {
-        if (percentage < 5) {
-            percentage = 5;
-        }
-        if (percentage > 95) {
-            percentage = 95;
-        }
-        return percentage;
-    }
-
     /*
      * (non-Javadoc)
      *
@@ -164,13 +154,6 @@ public class BasicSpell extends FightAction {
             Fight.startCombat(getSelf(), getTarget());
         }
 
-        if (_ability.isImproved()) {
-            getSelf().out(
-                    ">>>>> [You have become better at " + _spell.getId()
-                            + "!] <<<<<");
-            _ability.improve();
-        }
-
         Room room = getSelf().getRoom();
 
         MudArrayList mobs = room.getMobs();
@@ -186,13 +169,11 @@ public class BasicSpell extends FightAction {
             }
         }
 
-        // ie if a snake is not fighting it will attack me back at this point.
         out(new Msg(
                 getSelf(),
                 getTarget(),
                 "<S-You launch/NAME launches> a bolt of energy from <S-your/GEN-his> fingertips directed at a <T-you/NAME>."));
 
-        // if (isSuccess(getFighter().getFight().getHitChance())) {
         if (isSuccess() || isSpellEffectPositive()) {
             hit();
         } else {
@@ -224,23 +205,18 @@ public class BasicSpell extends FightAction {
 
     }
 
+    /**
+     * @return true for damage spells.
+     */
     @Override
     public boolean isMeleeEnabled() {
-        // return true for damage spells.
-        // return (_spell.getDamage().getMaxRoll() > 0); cant use damage as also used for duration.
         return (!_spell.getSpellEffect().isPositiveEffect());
     }
 
     /*
      */
     private boolean isSuccess() {
-
-        int chance = this.clipRange(_ability.getSkill());
-
-        if ((Math.random() * 100) < chance) {
-            return true;
-        }
-        return false;
+        return _ability.isSuccessful(this.getSelf());
     }
 
     /*

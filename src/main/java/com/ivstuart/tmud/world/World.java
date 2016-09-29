@@ -371,6 +371,10 @@ public class World {
 		return mudStats;
 	}
 
+	public static List<Race> getRaces() {
+		return races;
+	}
+
 	public void addToWorld(Object object) {
 
 		if (object instanceof Room) {

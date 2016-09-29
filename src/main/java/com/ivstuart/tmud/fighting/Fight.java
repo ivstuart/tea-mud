@@ -104,7 +104,7 @@ public class Fight {
         if (fightActions.isEmpty()) {
 
             if (melee.getTarget() == null) {
-                // Check not targetting self
+                // Check not targeting self
                 if (melee.getSelf() == action.getTarget()) {
                     LOGGER.debug("Not setting target target is self");
                 } else if (!action.isMeleeEnabled()) {
@@ -126,12 +126,19 @@ public class Fight {
 
     public void changeTarget(Mob newTargetMob) {
 
+        if (melee == null) {
+            LOGGER.debug("Can not change targets to " + newTargetMob + " because melee is null");
+            return;
+        }
+
+        //LOGGER.debug(melee.getSelf().getName() + " changeTarget "+ newTargetMob.getName());
+
         Mob ownTarget = melee.getTarget();
 
         if (ownTarget != null) {
             ownTarget.getFight().removeTargettedBy(melee.getSelf());
 
-            LOGGER.debug(melee.getSelf().getName() + " removed from targetted by for " + ownTarget.getName());
+            LOGGER.debug(melee.getSelf().getName() + " removed from targeted by for " + ownTarget.getName());
         }
 
         melee.setTarget(newTargetMob);
@@ -139,7 +146,7 @@ public class Fight {
         if (newTargetMob != null) {
 
             newTargetMob.getFight().addTargettedBy(melee.getSelf());
-            LOGGER.debug(melee.getSelf().getName() + " added to targetted by for " + newTargetMob.getName());
+            LOGGER.debug(melee.getSelf().getName() + " added to targeted by for " + newTargetMob.getName());
 
         }
 

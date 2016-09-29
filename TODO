@@ -48,3 +48,7 @@
 21. Test circle retargetting.
 22. Test behaviours Aggressive, Assist and Retarget.
 23. Add unit or integration test for all classes with behaviour.
+
+28th Sep 2016:
+
+24. Fix Zap and Rescue

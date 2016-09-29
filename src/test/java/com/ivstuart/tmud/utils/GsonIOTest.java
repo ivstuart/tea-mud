@@ -14,13 +14,11 @@
  *  limitations under the License.
  */
 
-package com.ivstuart.tmud.command.admin;
+package com.ivstuart.tmud.utils;
 
-import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.server.LaunchMud;
 import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.utils.TestHelper;
-import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Before;
@@ -29,9 +27,9 @@ import org.junit.Test;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertEquals;
 
-public class SetRaceTest {
+public class GsonIOTest {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -48,22 +46,36 @@ public class SetRaceTest {
 
     }
 
+    /**
+     * Gson not used for players.
+     */
     @Test
-    public void testSetRace() {
+	public void testSavingPlayer() {
+		GsonIO saveGson = new GsonIO();
 
-        Mob player1Mob = TestHelper.makeDefaultPlayerMob("player1");
-        player1Mob.getPlayer().setAdmin(true);
+		Mob playerMob = TestHelper.makeDefaultPlayerMob("player1");
+		Player player = playerMob.getPlayer();
 
-        World.getRaces().clear();
-
-        Load load = new Load();
-        load.execute(player1Mob, "races.txt");
-
-        Command setrace = new SetRace();
-        setrace.execute(player1Mob, "8"); // sheepMob.getAlias());
-
-        assertEquals("Player now orc", "Orc", player1Mob.getRace().getName());
-
+		try {
+			saveGson.save(player, "testplayer");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
+
+    /**
+     * Not used this is broken.
+     *
+     * @throws IOException
+     */
+    @Test(expected = RuntimeException.class)
+    public void testLoadingPlayer() throws IOException {
+
+		GsonIO saveGson = new GsonIO();
+		Player player = (Player) saveGson.loadPlayer("testplayer");
+
+		assertEquals("check player name", "player1", player.getName());
+
+	}
 
 }

@@ -82,7 +82,6 @@ public class Rescue extends BaseCommand {
 
 			mob.getRoom().out(new Msg(mob, aggressor, ("<S-You/NAME> successfully rescues from <T-you/NAME>.")));
 			if (!mob.getFight().isFighting()) {
-				//mob.getFight().getMelee().setTarget(aggressor);
 				mob.getFight().changeTarget(aggressor);
 				WorldTime.addFighting(mob);
 			}

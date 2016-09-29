@@ -84,6 +84,10 @@ public class ZapTest {
 
         assertEquals("Check targeting sheep", sheepMob, mob.getFight().getTarget());
 
+        zap.execute(mob, "");
+
+        mob.getFight().getFightActions().getFirst().begin();
+        mob.getFight().getFightActions().getFirst().happen();
 
     }
 
