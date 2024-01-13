@@ -40,8 +40,8 @@ public class LaunchMultipleClients {
     }
 
     private static LaunchClient launchClient() throws IOException {
-        LaunchClient client = LaunchClient.init();
-        //client.readWriteStreams();
+        LaunchClient client = new LaunchClient();
+        client.start();
         client.send("8");
 
         sleep();

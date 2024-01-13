@@ -253,7 +253,8 @@ public class TestHelper {
         public void run() {
 
             try {
-                client = LaunchClient.init();
+                client = new LaunchClient();
+                client.start();
             } catch (IOException e) {
                 e.printStackTrace();
             }

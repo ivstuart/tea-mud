@@ -34,111 +34,109 @@ import java.util.Properties;
 
 /**
  * @author stuarti
- * 
  */
 public class LaunchMud {
 
-	private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
 
-	public static Properties mudServerProperties;
-	
-	private static MudServer mudServer;
-	
-	private static boolean isRunning = true;
-
-	private static void displayUsage() {
-		System.out.println("LaunchMud <primary config file> [mode]");
-		System.exit(0);
-	}
-
-	public static void main(String argv[]) {
-
-		LOGGER.info("Starting mud.");
-
-		if (argv.length > 1) {
-			displayUsage();
-		}
-
-		start();
-
-	}
-
-	public static void start() {
-		try {
-			loadMudServerProperties();
-		} catch (Exception e) {
-			LOGGER.error("Problem loading mud server properties", e);
-		}
-
-		StateReader.getInstance().load();
-
-		mudServer = new MudServer();
-
-		mudServer.startListening(getMudServerPort());
-		
-		while (isRunning) {
-			try {
-				Thread.sleep(3000); // Check for shutdown every three seconds
-			} catch (Exception e) {
-				LOGGER.error("Problem sleeping",e);
-			}
-		}
+    public static Properties mudServerProperties;
 
 
-		LOGGER.info("Finnished mud.");
-	}
-	
-	public static boolean stop() {
-		if (mudServer != null) {
-			mudServer.stop();
-			isRunning = false;
-			return true;
-		}
-		return false;
-		
-	}
-	
-	public static boolean isRunning() {
-		return isRunning;
-	}
+    private static boolean isRunning = true;
 
-	public static int getMudServerPort() {
-		if (mudServerProperties == null) {
-			return 5678;
-		}
-		return Integer.parseInt(mudServerProperties.getProperty("default.port","5678"));
-	}
+    private static void displayUsage() {
+        System.out.println("LaunchMud <primary config file> [mode]");
+        System.exit(0);
+    }
 
-	public static String getMudServerConfigDir() {
-		return mudServerProperties.getProperty("command.config.dir","/src/main/resources/config/");
-	}
+    public static void main(String[] argv) {
 
-	public static String getMudServerClassPrefix(){
-		return mudServerProperties.getProperty("class.prefix","com.ivstuart.tmud.");
-	}
+        LOGGER.info("Starting mud.");
 
-	public static void loadMudServerProperties() throws URISyntaxException,
-			IOException {
-		LOGGER.info("Loading mud server properties");
+        if (argv.length > 1) {
+            displayUsage();
+        }
 
-		mudServerProperties = new Properties();
+        start();
 
-		Reader reader = null;
+    }
 
-		try {
+    public static void start() {
+        try {
+            loadMudServerProperties();
+        } catch (Exception e) {
+            LOGGER.error("Problem loading mud server properties", e);
+        }
 
-			reader = new FileReader("src/main/resources/config/mudserver.properties");
+        StateReader.getInstance().load();
 
-			mudServerProperties.load(reader);
+        MudServer mudServer = MudServer.getInstance();
 
-		} finally {
+        mudServer.startListening(getMudServerPort());
 
-			if (reader != null) {
-				reader.close();
-			}
+        while (isRunning) {
+            try {
+                Thread.sleep(3000); // Check for shutdown every three seconds
+            } catch (Exception e) {
+                LOGGER.error("Problem sleeping", e);
+            }
+        }
 
-		}
 
-	}
+        LOGGER.info("Finished mud.");
+    }
+
+    public static boolean stop() {
+        if (isRunning) {
+            MudServer.getInstance().stop();
+            isRunning = false;
+            return true;
+        }
+        return false;
+
+    }
+
+    public static boolean isRunning() {
+        return isRunning;
+    }
+
+    public static int getMudServerPort() {
+        if (mudServerProperties == null) {
+            return 5678;
+        }
+        return Integer.parseInt(mudServerProperties.getProperty("default.port", "5678"));
+    }
+
+    public static String getMudServerConfigDir() {
+        return mudServerProperties.getProperty("command.config.dir", "/src/main/resources/config/");
+    }
+
+    public static String getMudServerClassPrefix() {
+        return mudServerProperties.getProperty("class.prefix", "com.ivstuart.tmud.");
+    }
+
+    public static void loadMudServerProperties() throws URISyntaxException,
+            IOException {
+        LOGGER.info("Loading mud server properties");
+
+        mudServerProperties = new Properties();
+
+        Reader reader = null;
+
+        try {
+
+            reader = new FileReader("src/main/resources/config/mudserver.properties");
+
+            mudServerProperties.load(reader);
+
+        } finally {
+
+            if (reader != null) {
+                reader.close();
+            }
+
+        }
+
+    }
 
 }

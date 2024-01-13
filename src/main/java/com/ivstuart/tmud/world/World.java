@@ -38,14 +38,14 @@ public class World {
 	private static final Logger LOGGER = LogManager.getLogger();
 
 	private static Map<String, Tickable> tickers;
-	private static Map<String, Zone> _zones;
-	private static Map<String, Room> _rooms;
-	private static Map<String, Mob> _mobs;
-	private static Map<String, Item> _items;
-	private static Map<String, Prop> _props;
+	private static Map<String, Zone> zones;
+	private static Map<String, Room> rooms;
+	private static Map<String, Mob> mobs;
+	private static Map<String, Item> items;
+	private static Map<String, Prop> props;
 	private static Map<String, BaseSkill> skills;
 	private static Map<String, Spell> spells;
-	private static Set<String> _players; // Names in lowercase.
+	private static Set<String> players; // Names in lowercase.
 
 	private static World INSTANCE = new World();
 
@@ -58,14 +58,14 @@ public class World {
 
 	private World() {
 		tickers = new HashMap<>();
-		_zones = new HashMap<>();
-		_rooms = new HashMap<>();
-		_mobs = new HashMap<>();
-		_items = new HashMap<>();
+		zones = new HashMap<>();
+		rooms = new HashMap<>();
+		mobs = new HashMap<>();
+		items = new HashMap<>();
 		skills = new HashMap<>();
 		spells = new HashMap<>();
-		_players = new HashSet<>();
-		_props = new HashMap<>();
+		players = new HashSet<>();
+		props = new HashMap<>();
 		races = new ArrayList<>();
 		auction = new HashMap<>();
 
@@ -102,22 +102,22 @@ public class World {
 
 	public static void add(Item item) {
 		LOGGER.debug("Adding item [ " + item.getId() + "]");
-		_items.put(item.getId(), item);
+		items.put(item.getId(), item);
 	}
 
 	public static void add(Mob mob_) {
 		LOGGER.info("Adding mob [ " + mob_.getId() + " ]");
 
-		_mobs.put(mob_.getId(), mob_);
+		mobs.put(mob_.getId(), mob_);
 	}
 
 	public static void add(Prop prop) {
 		LOGGER.info("Adding prop [ " + prop.getId() + "]");
-		_props.put(prop.getId(), prop);
+		props.put(prop.getId(), prop);
 	}
 
 	public static void add(Room room) {
-		_rooms.put(room.getId(), room);
+		rooms.put(room.getId(), room);
 	}
 
 	public static void add(Spell spell) {
@@ -127,7 +127,7 @@ public class World {
 
 	public static void add(Zone zone) {
 		LOGGER.debug("Adding zone [ " + zone.getId() + "]");
-		_zones.put(zone.getId(), zone);
+		zones.put(zone.getId(), zone);
 	}
 
 	public static void addPlayer(Mob character) throws MudException {
@@ -140,9 +140,9 @@ public class World {
 			throw new MudException("Mob is not a player");
 		}
 
-		_players.add(character.getName().toLowerCase());
+		players.add(character.getName().toLowerCase());
 
-		_mobs.put(character.getId().toLowerCase(), character);
+		mobs.put(character.getId().toLowerCase(), character);
 
 		WorldTime.addTickable(character);
 
@@ -156,7 +156,7 @@ public class World {
 	public static Prop createProp(String id_) {
 		LOGGER.info("Creating prop with id [ " + id_ + "]");
 
-		return _props.get(id_);
+		return props.get(id_);
 	}
 
 	public static BaseSkill getAbility(String name) {
@@ -171,19 +171,19 @@ public class World {
 	}
 
 	public static Item getItem(String itemId) {
-		return _items.get(itemId);
+		return items.get(itemId);
 	}
 
 	public static Mob getMob(String name_) {
-		return _mobs.get(name_);
+		return mobs.get(name_);
 	}
 
 	public static Map<String, Mob> getMobs() {
-		return _mobs;
+		return mobs;
 	}
 
 	public static Player getPlayer(String playerName) {
-		Mob playerMob = _mobs.get(playerName);
+		Mob playerMob = mobs.get(playerName);
 
 		if (playerMob != null) {
 			return playerMob.getPlayer();
@@ -193,16 +193,16 @@ public class World {
 	}
 
 	public static Set<String> getPlayers() {
-		return _players;
+		return players;
 	}
 
 	public static Prop getProp(String id_) {
 
-		return _props.get(id_);
+		return props.get(id_);
 	}
 
 	public static Room getRoom(String id_) {
-		return _rooms.get(id_);
+		return rooms.get(id_);
 	}
 
 	public static BaseSkill getSkill(String name) {
@@ -225,17 +225,17 @@ public class World {
 	}
 
 	public static boolean isOnline(String name_) {
-		return _players.contains(name_);
+		return players.contains(name_);
 	}
 
 	public static void removePlayer(Player player) {
-		LOGGER.info("Removing player with id [ " + player.getName() + "]");
+		LOGGER.info("Removing player with id [" + player.getName() + "]");
 
-		_players.remove(player.getName().toLowerCase());
+		players.remove(player.getName().toLowerCase());
 
 		tickers.remove(player.getMob());
 
-		_mobs.remove(player.getMob());
+		mobs.remove(player.getMob());
 
 		WorldTime.removeTickables(player.getMob());
 
@@ -243,7 +243,7 @@ public class World {
 	}
 
 	public static Map<String,Room> getRooms() {
-		return _rooms;
+		return rooms;
 	}
 
     private static void add(Race race) {
@@ -259,15 +259,15 @@ public class World {
     }
 
     public static void out(String msg) {
-        for (String player : _players) {
-            Mob aPlayer = _mobs.get(player.toLowerCase());
+        for (String player : players) {
+            Mob aPlayer = mobs.get(player.toLowerCase());
             aPlayer.out(msg);
         }
     }
 
     public static void out(String msg, boolean good) {
-        for (String player : _players) {
-            Mob aPlayer = _mobs.get(player.toLowerCase());
+        for (String player : players) {
+            Mob aPlayer = mobs.get(player.toLowerCase());
             if (aPlayer.isGood() == good) {
                 aPlayer.out(msg);
             }
@@ -281,7 +281,7 @@ public class World {
     }
 
     public static void kickout(String name) {
-        Mob playerMob = _mobs.get(name.toLowerCase());
+        Mob playerMob = mobs.get(name.toLowerCase());
         new ForcedQuit().execute(playerMob, null);
     }
 
@@ -312,8 +312,8 @@ public class World {
 	}
 
 	public static void out(String msg, boolean good, int channelData) {
-		for (String player : _players) {
-			Mob aPlayer = _mobs.get(player.toLowerCase());
+		for (String player : players) {
+			Mob aPlayer = mobs.get(player.toLowerCase());
 			if (aPlayer.isGood() == good) {
 				if (aPlayer.getPlayer().getConfig().getChannelData().is(channelData)) {
 					aPlayer.out(msg);
@@ -332,23 +332,23 @@ public class World {
 
 	public static Object remove(String input) {
 		Object object = null;
-		object = _mobs.remove(input);
+		object = mobs.remove(input);
 		if (object != null) {
 			return object;
 		}
-		object = _rooms.remove(input);
+		object = rooms.remove(input);
 		if (object != null) {
 			return object;
 		}
-		object = _items.remove(input);
+		object = items.remove(input);
 		if (object != null) {
 			return object;
 		}
-		object = _zones.remove(input);
+		object = zones.remove(input);
 		if (object != null) {
 			return object;
 		}
-		object = _props.remove(input);
+		object = props.remove(input);
 		if (object != null) {
 			return object;
 		}

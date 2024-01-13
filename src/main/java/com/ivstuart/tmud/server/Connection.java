@@ -26,10 +26,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.nio.CharBuffer;
+import java.nio.channels.ClosedChannelException;
 import java.nio.channels.SocketChannel;
-import java.nio.charset.Charset;
-import java.nio.charset.CharsetEncoder;
 
 /**
  * @author stuarti
@@ -38,15 +36,9 @@ public class Connection {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private static Charset charset = Charset.forName("ISO-8859-1");
-
-    private static CharsetEncoder encoder = charset.newEncoder();
-
-    private SocketChannel sc;
+    private SocketChannel socketChannel;
 
     private Readable state;
-
-    private CharBuffer cbuf;
 
     private long timeLastRead;
     private volatile boolean disconnected = false;
@@ -62,9 +54,9 @@ public class Connection {
 
         LOGGER.info("Connection created for [ " + aSocketChannel + " ]");
 
-        sc = aSocketChannel;
+        this.socketChannel = aSocketChannel;
 
-        state = new Login(this);
+        this.state = new Login(this);
 
     }
 
@@ -74,16 +66,11 @@ public class Connection {
 
     public void disconnect() {
         disconnected = true;
-        LOGGER.info("Disconnecting socket channel [ " + sc + " ]");
 
-        try {
+        LOGGER.info("Disconnecting socket channel [ " + socketChannel + " ]");
 
-            sc.socket().close();
-            sc.close();
+        MudServer.getInstance().shutdownIO(socketChannel);
 
-        } catch (IOException e) {
-            LOGGER.error("Problem closing connection", e);
-        }
     }
 
     public Readable getState() {
@@ -109,16 +96,24 @@ public class Connection {
             // throw new RuntimeException("Problem writing to closed connection");
         }
 
-        cbuf = CharBuffer.wrap(output + "\n");
-
         try {
-            sc.write(encoder.encode(cbuf));
-        } catch (IOException e) {
-
-            LOGGER.error("Problem writing to connection", e);
-            disconnect();
+            MudServer.getInstance().write(socketChannel, output);
+        }
+        catch (ClosedChannelException cce) {
+            LOGGER.warn("ClosedChannelException writing:"+output);
+            disconnected = true;
+        }
+        catch (IOException e) {
+            LOGGER.error("Problem writing to closed connection:"+e.getMessage());
+            disconnected = true;
+//            e.printStackTrace();
+//            throw new RuntimeException(e);
         }
 
+    }
+
+    public void setTimeLastRead(long timeLastRead) {
+        this.timeLastRead = timeLastRead;
     }
 
     public void process(String cmd) {
@@ -131,16 +126,16 @@ public class Connection {
     }
 
     public String getLocalAddress() {
-        if (sc == null) {
+        if (socketChannel == null) {
             return null;
         }
-        return sc.socket().getLocalAddress().toString();
+        return socketChannel.socket().getLocalAddress().toString();
     }
 
     public String getRemoteAddress() {
-        if (sc == null) {
+        if (socketChannel == null) {
             return null;
         }
-        return sc.socket().getInetAddress().toString();
+        return socketChannel.socket().getInetAddress().toString();
     }
 }

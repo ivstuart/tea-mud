@@ -41,9 +41,9 @@ public class ForcedQuit extends BaseCommand {
 	private static final Logger LOGGER = LogManager.getLogger();
 
 	@Override
-	public void execute(Mob mob_, String input) {
+	public void execute(Mob mob, String input) {
 
-		Player player = mob_.getPlayer();
+		Player player = mob.getPlayer();
 
 		if (player == null) {
 			LOGGER.warn("Force quit for null player already quit");
@@ -51,27 +51,41 @@ public class ForcedQuit extends BaseCommand {
 		}
 
 		if (player.getConnection().isConnected()) {
-			mob_.out("Thank you for playing you have been forced to quit");
-			mob_.out("If you did not just login on a second client please login in again and update your password.");
+			mob.out("Thank you for playing you have been forced to quit");
+		}
+		else {
+			LOGGER.warn("Force quit for player already disconnected");
+			return;
 		}
 
-        player.getData().setPlayingTime();
+		mob.out("Thank you for playing");
 
-		mob_.setRoomId(mob_.getRoom().getId());
+		player.getData().setPlayingTime();
 
-		mob_.getRoom().remove(mob_);
-		mob_.getFight().stopFighting();
-		mob_.getFight().clear();
+		mob.setRoomId(mob.getRoom().getId());
 
+		// Save character first
+		try {
+
+			MudIO.getInstance().save(player, player.getSaveDirectory(), mob.getId() + ".sav");
+
+			// The following GSON does not work to serialise the player, do not use it.
+			// GsonIO gio = new GsonIO();
+			// gio.save(player, player.getName() + ".sav");
+		} catch (IOException e) {
+			LOGGER.error("Problem saving character", e);
+			mob.out("Problem saving character!");
+			return;
+		}
+
+		// getCharacter().getLocation().save();
+		mob.getRoom().remove(mob);
+		mob.getFight().stopFighting();
+		mob.getFight().clear();
+
+		// Remove from World (Delay if recently been flagged)
 		player.disconnect();
 		World.removePlayer(player);
-
-        try {
-            MudIO.getInstance().save(player, player.getSaveDirectory(), mob_.getId() + ".sav");
-        } catch (IOException e) {
-            LOGGER.error("Problem saving character", e);
-            return;
-        }
 
 	}
 

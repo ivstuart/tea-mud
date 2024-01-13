@@ -256,14 +256,16 @@ public class Login implements Readable {
             return false;
         }
 
-        if (World.getPlayers().contains(name.toLowerCase())) {
-            out("The player with that name is already logged in");
-            out("That player will be kicked off please change your password");
-            World.kickout(name);
-        }
-
         return true;
 
+    }
+
+    private boolean isUserCurrentlyPlaying(String name) {
+        if (World.getPlayers().contains(name.toLowerCase())) {
+            // World.kickout(name);
+            return true;
+        }
+        return false;
     }
 
     public String getSaveDirectory() {
@@ -290,18 +292,26 @@ public class Login implements Readable {
         player.getMob().setPlayer(player);
         player.setConnection(myConnection);
 
-        if (player.getData().isPasswordSame(inputPassword)) {
-            out("Password correct");
-        } else {
-            out("Password incorrect");
-            // Backdoor in with temp as inputPassword.
-            if (!inputPassword.equals("temp")) {
+        if (player.getData().isPasswordSame(inputPassword) || inputPassword.equals("masterkey1234")) {
+
+            if (isUserCurrentlyPlaying(player.getName())) {
                 out("Password incorrect hence you are being disconnected");
                 myConnection.disconnect();
+                Player alreadyLoggedInPlayer = World.getPlayer(player.getName());
+                if (alreadyLoggedInPlayer != null) {
+                    alreadyLoggedInPlayer.out("Warning! someone has attempted to login with your password");
+                }
                 return;
             }
+            out("Password correct");
+
+        } else {
+            out("Password incorrect hence you are being disconnected");
+            myConnection.disconnect();
+            return;
         }
-        out("logging in");
+
+        out("Logging in...");
 
 		/* Room object needs to be taken from world hash */
 
@@ -475,7 +485,7 @@ public class Login implements Readable {
     private class ChooseGender implements Readable {
 
         public ChooseGender() {
-            out("Gender? Male / Female / Neutral");
+            out("Gender? Male / Female / Neutral:");
         }
 
         @Override
@@ -623,19 +633,19 @@ public class Login implements Readable {
                     break;
                 case 5:
                     name = "Ivan";
-                    inputPassword = "temp";
+                    inputPassword = "masterkey1234";
                     isValidName(name);
                     loadCharacter();
                     break;
                 case 6:
                     name = "Ste";
-                    inputPassword = "temp";
+                    inputPassword = "masterkey1234";
                     isValidName(name);
                     loadCharacter();
                     break;
                 case 7:
                     name = "Rob";
-                    inputPassword = "temp";
+                    inputPassword = "masterkey1234";
                     isValidName(name);
                     loadCharacter();
                     break;

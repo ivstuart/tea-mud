@@ -49,14 +49,9 @@ public class MudServerTest {
             e.printStackTrace();
         }
 
-        Iterator<Map.Entry<SocketChannel, Connection>> iterator = ConnectionManager.getMap().entrySet().iterator();
-
-        for (; iterator.hasNext(); ) {
-            Map.Entry<SocketChannel, Connection> entry = iterator.next();
-            entry.setValue(new DummyConnection());
+        for (Connection connection : ConnectionManager.getConnections()) {
+            connection.out("hello");
         }
-
-        client.send("hello");
 
     }
 }

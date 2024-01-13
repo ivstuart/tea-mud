@@ -24,20 +24,20 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
+import java.nio.channels.*;
 import java.nio.channels.spi.SelectorProvider;
+import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 
 /**
- * This demonstrate use of multiple Selectors() with a single SocketChannel.
+ * This demonstrates use of multiple Selectors() with a single SocketChannel.
  * There are two threads running Selectors() each registered for READ and WRITE respectively
  */
 public class MudServer {
 
 	private static final Logger LOGGER = LogManager.getLogger();
+
+	private static MudServer INSTANCE;
 	/**
 	 * Single selector for accepts, reads
 	 */
@@ -50,6 +50,23 @@ public class MudServer {
 	 * ServerSocketChannel which listens for client connections
 	 */
 	private ServerSocketChannel serverSocketChannel = null;
+
+	private boolean isReady = false;
+
+	public MudServer() {
+		INSTANCE = this;
+	}
+
+	public boolean isReady() {
+		return isReady;
+	}
+
+	public static MudServer getInstance(){
+		if (INSTANCE == null) {
+			INSTANCE = new MudServer();
+		}
+		return INSTANCE;
+	}
 
 	protected void startListening(String port) {
 		startListening(Integer.parseInt(port));
@@ -65,6 +82,7 @@ public class MudServer {
 			// create the selector and the ServerSocket
 			readSelector = SelectorProvider.provider().openSelector();
 			writeSelector = SelectorProvider.provider().openSelector();
+
 			serverSocketChannel = ServerSocketChannel.open();
 
 			// Non-blocking
@@ -89,6 +107,17 @@ public class MudServer {
         SelectorThread readThread = new SelectorThread();
         readThread.setDaemon(true);
         readThread.start();
+
+        try {
+            Thread.sleep(50);
+        } catch (InterruptedException e) {
+			LOGGER.error("MudServer problem sleeping:"+e.getMessage());
+            throw new RuntimeException(e);
+        }
+
+		LOGGER.info("MudServer is ready");
+
+        isReady = true;
     }
 
 	/**
@@ -106,7 +135,30 @@ public class MudServer {
 		LOGGER.info("Finished shutdown of the mud server");
 	}
 
-    /**
+	public void write(SocketChannel socketChannel, String output) throws IOException {
+		if (socketChannel == null) {
+			LOGGER.warn("SocketChannel is null failed to write:"+output);
+			return;
+		}
+
+		output += "\n";
+		socketChannel.write(ByteBuffer.wrap(output.getBytes(StandardCharsets.UTF_8)));
+    }
+
+	public void shutdownIO(SocketChannel socketChannel) {
+        try {
+			socketChannel.shutdownInput();
+            socketChannel.shutdownOutput();
+        }
+		catch (ClosedChannelException cce) {
+			LOGGER.warn("ClosedChannelException in shutdownIO");
+		}
+		catch (IOException e) {
+			LOGGER.error("Problem with shutdown of server", e);
+        }
+    }
+
+	/**
      * Thread which runs the Selector
      */
     private class SelectorThread extends Thread {
@@ -127,6 +179,10 @@ public class MudServer {
 
 			if (numberOfBytesRead == -1) {
 				LOGGER.info("SocketChannel closing after read -1");
+				Connection connection = ConnectionManager.remove(socketChannel);
+				if (connection != null) {
+					connection.disconnect();
+				}
 				socketChannel.close();
 				sk.cancel();
 				return;
@@ -149,7 +205,7 @@ public class MudServer {
 				return ;
 			}
 
-			ConnectionManager.process(socketChannel, sb.toString());
+			ConnectionManager.getConnection(socketChannel).process(sb.toString());
 
         }
 
@@ -185,7 +241,9 @@ public class MudServer {
 
                                 channel.register(writeSelector,
                                         SelectionKey.OP_WRITE);
-                                ConnectionManager.add(channel);
+
+								ConnectionManager.add(channel);
+
                             } else if (sk.isConnectable()) {
                                 LOGGER.info("SelectionKey is connected");
                             } else if (sk.isReadable()) {
@@ -193,7 +251,14 @@ public class MudServer {
                                 try {
                                     readSocket(sk);
                                 } catch (IOException ioe) {
-                                    ConnectionManager.close(sk);
+									LOGGER.error("Problem reading socket:"+ ioe.getMessage());
+									SocketChannel socketChannel = (SocketChannel) sk.channel();
+									Connection connection = ConnectionManager.remove(socketChannel);
+									if (connection != null) {
+										connection.disconnect();
+									}
+									socketChannel.close();
+									sk.cancel();
                                     throw ioe;
                                 }
                             } else if (sk.isWritable()) {
@@ -206,7 +271,6 @@ public class MudServer {
                     } catch (Throwable t) {
                         LOGGER.error("Problem with communication channel", t);
                     }
-//					selectionKeyIter.remove();
 				}
 			} catch (Exception e) {
 				LOGGER.error("Problem with communication channel", e);

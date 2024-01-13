@@ -113,7 +113,10 @@ public class Player implements Serializable, Nameable {
 	}
 
 	public void disconnect() {
-		connection.disconnect();
+		LOGGER.debug("Player disconnecting...");
+		if (connection != null) {
+			connection.disconnect();
+		}
 	}
 
 	public Attributes getAttributes() {
