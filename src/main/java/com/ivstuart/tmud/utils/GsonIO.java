@@ -59,7 +59,7 @@ public class GsonIO {
 		writer.flush();
 		writer.close();
 
-		LOGGER.info("Finnished saving object to file:" + getFullPath(fileName));
+		LOGGER.info("Finished saving object to file:" + getFullPath(fileName));
 	}
 
 	public Player loadPlayer(String fileName) throws IOException {
@@ -86,7 +86,7 @@ public class GsonIO {
 		Gson gson = new Gson();
 		Player player = gson.fromJson(json, Player.class);
 
-		LOGGER.info("Finnished loading object fromm file:"
+		LOGGER.info("Finished loading object fromm file:"
 				+ getFullPath(fileName));
 
 		return player;
