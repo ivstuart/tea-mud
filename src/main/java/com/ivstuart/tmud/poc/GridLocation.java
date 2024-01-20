@@ -65,7 +65,9 @@ public class GridLocation {
     }
 
     public boolean isNextTo(GridLocation gridLocation) {
-        return (Math.abs(x - gridLocation.getX())+ Math.abs(y - gridLocation.getY()) == 1);
+        return (Math.abs(x - gridLocation.getX())+
+                Math.abs(y - gridLocation.getY())+
+                Math.abs(z - gridLocation.getZ()) == 1);
     }
 
     public String getDestinationExit(GridLocation gridLocation) {

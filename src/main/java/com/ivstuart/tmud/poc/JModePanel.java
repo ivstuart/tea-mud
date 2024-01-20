@@ -4,6 +4,7 @@ import javax.swing.*;
 
 public class JModePanel extends JPanel {
 
+    private static JCheckBox editDoors ;
     private static JCheckBox editRooms ;
     private static JCheckBox editExits ;
 
@@ -13,7 +14,12 @@ public class JModePanel extends JPanel {
 
     private static JTextField drawPlane;
 
+    public static boolean isEditDoors() {
+        return editDoors.isSelected();
+    }
+
     public void createInterface(){
+        editDoors = new JCheckBox("Edit doors");
         editRooms = new JCheckBox("Edit rooms");
         editExits = new JCheckBox("Edit exits");
         oneWay = new JCheckBox("One way");
@@ -24,6 +30,7 @@ public class JModePanel extends JPanel {
 
         JLabel level = new JLabel("Level:");
 
+        this.add(editDoors);
         this.add(editRooms);
         this.add(editExits);
         this.add(oneWay);

@@ -8,19 +8,10 @@ import java.util.ArrayList;
 public class Room {
 
     private static final Logger LOGGER = LogManager.getLogger();
-
-    private int roomNumber;
-
     private final GridLocation gridLocation;
-
     private final ArrayList<Exit> exits;
-    private boolean isNarrowPassageway = true;
-
-    public RoomFlags getRoomFlags() {
-        return roomFlags;
-    }
-
     private final RoomFlags roomFlags = new RoomFlags();
+    private int roomNumber;
 
     public Room(GridLocation gridLocation) {
         this.gridLocation = gridLocation;
@@ -28,15 +19,24 @@ public class Room {
     }
 
     public Room(int x, int y, int z) {
-        this(new GridLocation(x,y,z));
+        this(new GridLocation(x, y, z));
+    }
+
+
+    public RoomFlags getRoomFlags() {
+        return roomFlags;
     }
 
     public boolean isNarrowPassageway() {
-        return isNarrowPassageway;
+        return roomFlags.getFlag(RoomFlags.NARROW);
     }
 
     public void setNarrowPassageway(boolean narrowPassageway) {
-        isNarrowPassageway = narrowPassageway;
+        if (narrowPassageway) {
+            roomFlags.setFlag(RoomFlags.NARROW);
+        } else {
+            roomFlags.removeFlag(RoomFlags.NARROW);
+        }
     }
 
     public GridLocation getGridLocation() {
@@ -47,7 +47,12 @@ public class Room {
         return exits;
     }
 
+
     public boolean addExit(int facing, boolean bidirectional) {
+        return this.addExit(null, facing, bidirectional);
+    }
+
+    public boolean addExit(String direction, int facing, boolean bidirectional) {
 
         GridLocation destination = gridLocation.goFacing(facing);
 
@@ -55,12 +60,20 @@ public class Room {
             LOGGER.info("Hit edge of zone");
             return false;
         }
-
-        Exit exit = new Exit(facing, destination);
+        Exit exit;
+        if (direction == null) {
+            exit = new Exit(facing, destination);
+        }
+         else {
+            exit = new Exit(direction, destination);
+        }
 
         if (hasDirection(exit.getName())) {
-            LOGGER.debug("Has direction already");
-            return false;
+
+            if (!Facing.isCustom(exit.getName())){
+                LOGGER.debug("Has direction already");
+                return false;
+            }
         }
 
         if (World.getRoom(destination) == null) {
@@ -68,7 +81,7 @@ public class Room {
             return false;
         }
 
-        LOGGER.info("Adding exit:"+exit+" to room:"+this);
+        LOGGER.info("Adding exit:" + exit + " to room:" + this);
         exits.add(exit);
 
         if (bidirectional) {
@@ -80,7 +93,7 @@ public class Room {
                 return true;
             }
 
-            destinationRoom.addExit(reverseFacing(facing), false);
+            destinationRoom.addExit(Facing.reverse(facing), false);
         }
 
         return true;
@@ -92,8 +105,8 @@ public class Room {
             String directionFwd = gridLocation.getDestinationExit(destination.getGridLocation());
             String directionBack = destination.getGridLocation().getDestinationExit(gridLocation);
 
-            Exit exitFwd = new Exit(directionFwd,destination.getGridLocation());
-            Exit exitBack = new Exit(directionBack,gridLocation);
+            Exit exitFwd = new Exit(directionFwd, destination.getGridLocation());
+            Exit exitBack = new Exit(directionBack, gridLocation);
 
             this.addExit(exitFwd);
             destination.addExit(exitBack);
@@ -122,10 +135,6 @@ public class Room {
         return false;
     }
 
-    public static int reverseFacing(int facing) {
-        return (facing + 2) % 4;
-    }
-
     public int getRoomNumber() {
         return roomNumber;
     }
@@ -140,17 +149,17 @@ public class Room {
                 "roomNumber=" + roomNumber +
                 ", gridLocation=" + gridLocation +
                 ", exits=" + exits +
-                ", isNarrowPassageway=" + isNarrowPassageway +
+                ", isNarrowPassageway=" + this.isNarrowPassageway() +
                 ", roomFlags=" + roomFlags +
                 '}';
     }
 
     public void joinNeighbours() {
 
-        addExit(0,true);
-        addExit(1,true);
-        addExit(2,true);
-        addExit(3,true);
+        addExit(0, true);
+        addExit(1, true);
+        addExit(2, true);
+        addExit(3, true);
 
     }
 
@@ -158,18 +167,19 @@ public class Room {
 
         for (Exit exit : exits) {
             if (exit.getName().equals(direction)) {
-                LOGGER.debug("removing exit in direction:"+direction);
+                LOGGER.debug("removing exit in direction:" + direction);
                 exits.remove(exit);
                 return;
             }
         }
-        LOGGER.debug("adding exit in direction:"+direction);
-        this.addExit(facing, false);
+        LOGGER.debug("adding exit in direction:" + direction);
+
+
+        this.addExit(direction, facing, false);
+       //  this.addExit(facing, false);
 
     }
 
-    public void toggleExit(int i) {
-    }
 
     public void addExit(Room previousRoom) {
 
@@ -178,11 +188,31 @@ public class Room {
 
         boolean onway = !JModePanel.isOneWay();
 
-        if (dx < 0) { previousRoom.addExit(0,onway); return ;}
-        if (dx > 0 ) { previousRoom.addExit(2,onway); return ;}
+        if (dx < 0) {
+            previousRoom.addExit(0, onway);
+            return;
+        }
+        if (dx > 0) {
+            previousRoom.addExit(2, onway);
+            return;
+        }
 
-        if (dy < 0) { previousRoom.addExit(1,onway); return ;}
-        if (dy > 0 ) { previousRoom.addExit(3,onway); return ;}
+        if (dy < 0) {
+            previousRoom.addExit(1, onway);
+            return;
+        }
+        if (dy > 0) {
+            previousRoom.addExit(3, onway);
+        }
 
+    }
+
+    public Exit getExit(String direction) {
+        for (Exit exit : exits) {
+            if (exit.getName().equals(direction)) {
+                return exit;
+            }
+        }
+        return null;
     }
 }

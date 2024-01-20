@@ -8,9 +8,7 @@ import java.util.List;
 
 public class JBitsPanel extends JPanel {
 
-    private static JCheckBox[] boxes = new JCheckBox[20];
-
-    private static String[] bitNames = {"No Summon", "Bit 1", "2", "3","4","5","6"};
+    private static JCheckBox[] boxes = new JCheckBox[RoomFlags.NUMBER_OF_FLAGS];
 
     public JBitsPanel(GridLayout gridLayout) {
         super(gridLayout);
@@ -18,8 +16,8 @@ public class JBitsPanel extends JPanel {
 
     public void createComponents(){
 
-        for (int i=0;i<bitNames.length;i++) {
-            boxes[i] = new JCheckBox(bitNames[i]);
+        for (int i=0;i<boxes.length;i++) {
+            boxes[i] = new JCheckBox(RoomFlags.getBitName(i));
             this.add(boxes[i]);
 
             final int index = i;
@@ -35,7 +33,7 @@ public class JBitsPanel extends JPanel {
     public static List<Integer> getValues() {
         List<Integer> myListOfBits = new ArrayList<Integer>();
 
-        for (int i=0;i<bitNames.length;i++) {
+        for (int i=0;i<boxes.length;i++) {
             if (boxes[i].isSelected()) {
                 myListOfBits.add(i);
             }
@@ -47,13 +45,13 @@ public class JBitsPanel extends JPanel {
     public static void setValues(BitSet bitSet) {
 
         if (bitSet == null) {
-            for (int i=0;i<bitNames.length; i++) {
+            for (int i=0;i<boxes.length; i++) {
                 boxes[i].setSelected(false);
             }
             return;
         }
 
-        for (int i=0;i<bitNames.length; i++) {
+        for (int i=0;i<boxes.length; i++) {
 
             if (bitSet.get(i)) {
                 boxes[i].setSelected(true);

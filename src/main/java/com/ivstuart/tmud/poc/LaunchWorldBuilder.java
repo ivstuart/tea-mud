@@ -81,7 +81,7 @@ public class LaunchWorldBuilder {
 
         JPanel eastPanel = new JPanel(new BorderLayout());
 
-        JExitsPanel exitsPanel = new JExitsPanel(new GridLayout(6,1));
+        JExitsPanel exitsPanel = new JExitsPanel(new GridLayout(9,1));
         exitsPanel.createButtons();
         exitsPanel.setVisible(true);
         exitsPanel.setSize(new Dimension(40,120));

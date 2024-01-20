@@ -217,7 +217,17 @@ public class JWorldPanel extends JPanel {
                 int y = exitOffsetSize;
                 int dx=0; // Hack
                 int dy=0;
-                switch (exit.getName()) {
+                boolean custom = false;
+
+                String exitName = exit.getName();
+
+                if(Facing.isCustom(exitName)) {
+                    g.setColor(Color.RED);
+
+                    exitName = room.getGridLocation().getDestinationExit(exit.getDestination());
+                }
+
+                switch (exitName) {
                     case "north":
                         y = 0;
                         dy = -exitOffsetSize;
@@ -240,6 +250,12 @@ public class JWorldPanel extends JPanel {
                 int yExit = y + (room.getGridLocation().getY() * gridSize);
 
                 g.drawLine(xExit,yExit,xExit+dx,yExit+dy);
+                if (exit.isDoor()) {
+                    g.setColor(Color.BLACK);
+                    g.drawString("D",xExit+dx,yExit+dy);
+                }
+
+
 
             }
         }

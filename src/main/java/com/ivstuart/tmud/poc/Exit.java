@@ -6,7 +6,7 @@ public class Exit {
 
     private final GridLocation destination;
 
-    private boolean door;
+    private boolean door = false;
 
     public Exit(String name, GridLocation destination) {
         this.name = name;
@@ -14,7 +14,7 @@ public class Exit {
     }
 
     public Exit(int facing, GridLocation destination) {
-        this.name = getDirectionFromFacing(facing);
+        this.name = Facing.getDirection(facing);
         this.destination = destination;
     }
 
@@ -30,30 +30,6 @@ public class Exit {
         return door;
     }
 
-    public String getDirectionFromFacing(int facing) {
-        switch(facing) {
-            case 0: return "west";
-            case 1: return "north";
-            case 2: return "east";
-            case 3: return "south";
-            case 4: return "up";
-            case 5: return "down";
-        }
-        return null;
-    }
-
-    public static String getOppositeDirection(String direction) {
-        switch(direction) {
-            case "east": return "west";
-            case "south": return "north";
-            case "west": return "east";
-            case "north": return "south";
-            case "up": return "down";
-            case "down": return "up";
-        }
-        return null;
-    }
-
 
     @Override
     public String toString() {
@@ -62,5 +38,9 @@ public class Exit {
                 ", destination=" + destination +
                 ", door=" + door +
                 '}';
+    }
+
+    public void toggleDoor() {
+        door = !door;
     }
 }
