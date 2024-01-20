@@ -34,104 +34,104 @@ import org.apache.logging.log4j.Logger;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Hide extends BaseCommand {
 
-	private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
 
-	/**
-	 * @param mob
-	 * @param input calling code ensures that null is never passed in
-	 */
-	@Override
-	public void execute(Mob mob, String input) {
+    /**
+     * @param mob   player mob or mob
+     * @param input calling code ensures that null is never passed in
+     */
+    @Override
+    public void execute(Mob mob, String input) {
 
 
-		if (mob.getFight().isEngaged() || mob.getFight().isFighting()) {
-			mob.out("You can not hide while engaged in combat");
-			return;
-		}
+        if (mob.getFight().isEngaged() || mob.getFight().isFighting()) {
+            mob.out("You can not hide while engaged in combat");
+            return;
+        }
 
-		// hide objects
-		// hide exits or props only if they where hidden in the first place and
-		// made visible.
+        // hide objects
+        // hide exits or props only if they are hidden in the first place and
+        // made visible.
 
-		// Success or fail
+        // Success or fail
         Ability ability = mob.getLearned().getAbility(SkillNames.HIDE);
 
         if (ability == null || ability.isNull()) {
             mob.out("You have no knowledge of how to hide!");
-			return;
-		}
+            return;
+        }
 
-		if (!mob.getMv().deduct(10)) {
-			mob.out("You do not have enough movement to hide.");
-			return;
-		}
+        if (!mob.getMv().deduct(10)) {
+            mob.out("You do not have enough movement to hide.");
+            return;
+        }
 
-        if (input.length() > 0 && ability.isSuccessful(mob)) {
+        if (!input.isEmpty() && ability.isSuccessful(mob)) {
             executeHideObject(mob, input);
-			return;
-		}
+            return;
+        }
 
         if (mob.isHidden()) {
             mob.out("You are already hidden.");
-			return;
-		}
+            return;
+        }
 
         if (ability.isSuccessful(mob)) {
             mob.out(new Msg(mob, "<S-You/NAME> successfully hide."));
-			mob.getMobStatus().setHidden(30);
-			mob.setHidden(true);
+            mob.getMobStatus().setHidden(30);
+            mob.setHidden(true);
 
-		} else {
-			mob.out(new Msg(mob, "<S-You/NAME> failed to hide."));
-		}
+        } else {
+            mob.out(new Msg(mob, "<S-You/NAME> failed to hide."));
+        }
 
-		// Do "search" in collaboration with this command.
+        // Do "search" in collaboration with this command.
 
-	}
+    }
 
-	private void executeHideObject(Mob mob, String input) {
-		// Try object on ground first
-		// then exit
+    private void executeHideObject(Mob mob, String input) {
+        // Try object on ground first
+        // then exit
 
-		Item item = mob.getRoom().getInventory().get(input);
+        Item item = mob.getRoom().getInventory().get(input);
 
-		if (item != null) {
-			item.setHidden(true);
-			mob.getRoom().out(
-					"<S-You/NAME> hide " + item.getName() + " in this room");
-			return;
-		}
+        if (item != null) {
+            item.setHidden(true);
+            mob.getRoom().out(
+                    "<S-You/NAME> hide " + item.getName() + " in this room");
+            return;
+        }
 
-		LOGGER.debug("Item was null hence trying to hide a special exit instead");
+        LOGGER.debug("Item was null hence trying to hide a special exit instead");
 
-		Exit exit = mob.getRoom().getExit(input);
+        Exit exit = mob.getRoom().getExit(input);
 
-		if (exit != null) {
-			// Can only hide none N,S,E,W,UP,DOWN exits
-			if (!exit.isHidden() && exit.isSpecial()) {
-				exit.setHidden(true);
-				mob.getRoom().out(
-						"<S-You/NAME> hide " + exit.getName()
-								+ " to throw off pursuit!");
-				return;
-			}
-		}
+        if (exit != null) {
+            // Can only hide none N,S,E,W,UP,DOWN exits
+            if (!exit.isHidden() && exit.isSpecial()) {
+                exit.setHidden(true);
+                mob.getRoom().out(
+                        "<S-You/NAME> hide " + exit.getName()
+                                + " to throw off pursuit!");
+                return;
+            }
+        }
 
-		Mob aMobToHide = mob.getRoom().getMob(input);
+        Mob aMobToHide = mob.getRoom().getMob(input);
 
-		if (aMobToHide != null) {
-			mob.out("You hide mob " + aMobToHide.getName());
-			aMobToHide.setHidden(true);
-			return;
-		}
+        if (aMobToHide != null) {
+            mob.out("You hide mob " + aMobToHide.getName());
+            aMobToHide.setHidden(true);
+            return;
+        }
 
-		mob.out("You failing to find any " + input + " to hide");
-	}
+        mob.out("You failing to find any " + input + " to hide");
+    }
 
 }

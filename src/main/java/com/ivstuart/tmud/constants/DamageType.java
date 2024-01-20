@@ -34,7 +34,7 @@ public enum DamageType {
     DISEASE,
     PARALYZE,
     MIND,
-    PETREFIFY;
+    PETREFIFY
 }
 
 

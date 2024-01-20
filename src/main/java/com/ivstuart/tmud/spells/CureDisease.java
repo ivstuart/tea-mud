@@ -27,17 +27,17 @@ import java.util.List;
 public class CureDisease implements SpellEffect {
 
     @Override
-    public void effect(Mob giver_, Mob reciever_, Spell spell, Item targetItem) {
+    public void effect(Mob giver, Mob receiver, Spell spell, Item targetItem) {
 
-        List<Disease> diseaseList = reciever_.getMobAffects().getDiseases();
+        List<Disease> diseaseList = receiver.getMobAffects().getDiseases();
 
         for (Disease disease : diseaseList) {
 
             if (DiceRoll.ONE_D100.rollLessThanOrEqualTo(disease.getCureRate())) {
 
-                reciever_.removeAffect(disease.getId());
+                receiver.removeAffect(disease.getId());
 
-                reciever_.out("You cured " + reciever_.getName() + " of " + disease.getId());
+                receiver.out("You cured " + receiver.getName() + " of " + disease.getId());
 
             }
         }

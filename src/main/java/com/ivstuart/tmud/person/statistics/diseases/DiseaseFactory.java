@@ -29,8 +29,8 @@ public class DiseaseFactory {
 
     public static Disease createClass(String name) {
         try {
-            String classprefix = LaunchMud.getMudServerClassPrefix() + "person.statistics.diseases.";
-            return (Disease) Class.forName(classprefix + name).newInstance();
+            String classPrefix = LaunchMud.getMudServerClassPrefix() + "person.statistics.diseases.";
+            return (Disease) Class.forName(classPrefix + name).newInstance();
         } catch (Exception e) {
             LOGGER.error("Problem creating new disease instance", e);
         }

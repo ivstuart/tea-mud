@@ -30,44 +30,44 @@ import com.ivstuart.tmud.utils.StringUtil;
 
 public class Recite extends BaseCommand {
 
-	/**
-	 * @param input
-	 * @return
-	 */
+    /**
+     * @param input
+     * @return
+     */
 
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		Item item = mob.getInventory().get(StringUtil.getFirstWord(input));
+        Item item = mob.getInventory().get(StringUtil.getFirstWord(input));
 
-		if (item == null) {
-			mob.out("You can not find a "+input+" to recite");
-			return;
-		}
+        if (item == null) {
+            mob.out("You can not find a " + input + " to recite");
+            return;
+        }
 
-		if (!item.isRecitable()) {
-			mob.out("You can not recite a "+item.getName() );
-			return;
-		}
+        if (!item.isRecitable()) {
+            mob.out("You can not recite a " + item.getName());
+            return;
+        }
 
-		Scroll scroll = null;
-		if (item instanceof Scroll) {
-			scroll = (Scroll)item;
-		}
+        Scroll scroll = null;
+        if (item instanceof Scroll) {
+            scroll = (Scroll) item;
+        }
 
-		if (scroll == null) {
-			mob.out("The item "+item.getName()+" is not a scroll" );
-			return;
-		}
+        if (scroll == null) {
+            mob.out("The item " + item.getName() + " is not a scroll");
+            return;
+        }
 
-		scroll.recite(mob, input);
+        scroll.recite(mob, input);
 
-		mob.getInventory().getItems().remove(scroll);
+        mob.getInventory().getItems().remove(scroll);
 
-		mob.out("The scroll crumbles to dust the energies used up");
+        mob.out("The scroll crumbles to dust the energies used up");
 
-	}
+    }
 
 
 }

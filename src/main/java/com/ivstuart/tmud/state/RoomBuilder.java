@@ -33,11 +33,11 @@ public class RoomBuilder {
     private String id;
     private String path;
 
-    private RoomIdentifer roomId;
+    private RoomIdentifier roomId;
     private String roomPrefix;
 
-    private RoomIdentifer roomIdStartFill;
-    private RoomIdentifer roomIdEndFill;
+    private RoomIdentifier roomIdStartFill;
+    private RoomIdentifier roomIdEndFill;
 
     public void setId(String startId) {
         this.id = startId;
@@ -45,7 +45,7 @@ public class RoomBuilder {
 
     public void setPath(String path) {
         this.path = path;
-        if (this.path.indexOf("x")>-1) {
+        if (this.path.contains("x")) {
             parseX();
         }
     }
@@ -60,11 +60,12 @@ public class RoomBuilder {
     public void parseX() {
         StringBuilder sb = new StringBuilder();
         StringBuilder sbNumber = new StringBuilder();
-        boolean xFlag=false;
-        int xNumber=0;
-        int yNumber=0;
-        int number=0;
-        int counter=0; boolean lastCharacter=false;
+        boolean xFlag = false;
+        int xNumber = 0;
+        int yNumber = 0;
+        int number = 0;
+        int counter = 0;
+        boolean lastCharacter = false;
         for (char aChar : path.toCharArray()) {
             sb.append(aChar);
             counter++;
@@ -72,9 +73,8 @@ public class RoomBuilder {
                 sbNumber.append(aChar);
                 if (counter < path.length()) {
                     continue;
-                }
-                else {
-                    lastCharacter=true;
+                } else {
+                    lastCharacter = true;
                 }
             }
             if (Character.isAlphabetic(aChar) || lastCharacter) {
@@ -85,21 +85,20 @@ public class RoomBuilder {
 
                 if (xFlag) {
                     yNumber = number;
-                    xFlag=false;
-                    String newString = "["+xNumber+"n"+yNumber+"e"+xNumber+"s"+yNumber+"w]";
-                    int startPos = sb.length() - String.valueOf(xNumber).length() - 2 - String.valueOf(yNumber).length() ;
-                    int endPos = sb.length() -1 ;
+                    xFlag = false;
+                    String newString = "[" + xNumber + "n" + yNumber + "e" + xNumber + "s" + yNumber + "w]";
+                    int startPos = sb.length() - String.valueOf(xNumber).length() - 2 - String.valueOf(yNumber).length();
+                    int endPos = sb.length() - 1;
                     if (lastCharacter) {
                         startPos++;
                     }
-                    sb.replace(startPos,endPos,newString);
+                    sb.replace(startPos, endPos, newString);
                 }
 
             }
             if (aChar == 'x') {
-                xFlag=true;
-                xNumber=number;
-                continue;
+                xFlag = true;
+                xNumber = number;
             }
         }
         this.path = sb.toString();
@@ -107,22 +106,19 @@ public class RoomBuilder {
 
     public void setExecute(String notused) {
 
-        LOGGER.debug("Building area using path :"+path);
+        LOGGER.debug("Building area using path :" + path);
 
         Room startRoom = World.getRoom(id);
 
         if (startRoom == null) {
-            LOGGER.error("Room id: "+id+" not found!");
+            LOGGER.error("Room id: " + id + " not found!");
             return;
         }
 
-        roomId = RoomIdentifer.getRoomId(startRoom);
+        roomId = RoomIdentifier.getRoomId(startRoom);
 
         roomId.setRoomPrefix(roomPrefix);
-        if (startRoom == null) {
-            LOGGER.warn("No start room " + this.id + " aborting path create");
-            return;
-        }
+
 
         // DONE eeeennnnwwwwssss
         // 6ne6se4swneesw6nessee4nw23s
@@ -136,8 +132,8 @@ public class RoomBuilder {
 
             if (aChar == '[') {
                 fillOn = true;
-                roomIdStartFill = new RoomIdentifer(roomId.getX(),roomId.getY());
-                roomIdEndFill = new RoomIdentifer(roomId.getX(),roomId.getY());
+                roomIdStartFill = new RoomIdentifier(roomId.getX(), roomId.getY());
+                roomIdEndFill = new RoomIdentifier(roomId.getX(), roomId.getY());
                 roomIdStartFill.setRoomPrefix(roomPrefix);
                 roomIdEndFill.setRoomPrefix(roomPrefix);
                 continue;
@@ -157,14 +153,19 @@ public class RoomBuilder {
             }
 
             for (int index = 1; index <= number; index++) {
-                RoomIdentifer destRoomId = null;
+                RoomIdentifier destRoomId = null;
                 ExitEnum exit = null;
                 if (Character.isAlphabetic(aChar)) {
                     exit = ExitEnum.valueOf(String.valueOf(aChar));
                     destRoomId = getDestinationRoomId(roomId, exit);
                 }
 
-                // New room clone if does not already exist
+                if (destRoomId == null) {
+                    LOGGER.warn("Null destRoomId skipping creating this exit");
+                    continue;
+                }
+
+                // New room clone when does not already exist
                 Room nextRoom = World.getRoom(destRoomId.toString());
 
                 if (nextRoom == null) {
@@ -181,12 +182,17 @@ public class RoomBuilder {
                     storeMaxMinRoomId(roomId);
                 }
 
+                if (exit == null) {
+                    LOGGER.warn("Null exit skipping creating this exit");
+                    continue;
+                }
+
                 RoomManager.createExit(startRoom, exit.getDesc(), destRoomId.toString(), false);
 
                 startRoom = nextRoom;
                 roomId = destRoomId;
             }
-            number=1;
+            number = 1;
 
         }
     }
@@ -199,7 +205,7 @@ public class RoomBuilder {
             Room previousRoom = null;
             for (int x = roomIdStartFill.getX(); x < roomIdEndFill.getX(); x++) {
                 // Find first edge with a filled room.
-                RoomIdentifer roomId = new RoomIdentifer(x, y);
+                RoomIdentifier roomId = new RoomIdentifier(x, y);
                 roomId.setRoomPrefix(roomPrefix);
                 Room nextRoom = World.getRoom(roomId.toString());
 
@@ -235,12 +241,12 @@ public class RoomBuilder {
     }
 
     private void addExitToRoom(Room room, ExitEnum exit) {
-        RoomIdentifer roomId = RoomIdentifer.getRoomId(room);
-        RoomIdentifer destRoomId = getDestinationRoomId(roomId, exit);
+        RoomIdentifier roomId = RoomIdentifier.getRoomId(room);
+        RoomIdentifier destRoomId = getDestinationRoomId(roomId, exit);
         RoomManager.createExit(room, exit.getDesc(), destRoomId.toString(), false);
     }
 
-    private void storeMaxMinRoomId(RoomIdentifer roomId) {
+    private void storeMaxMinRoomId(RoomIdentifier roomId) {
 
         // New minimum X
         if (roomId.getX() < roomIdStartFill.getX()) {
@@ -264,7 +270,7 @@ public class RoomBuilder {
 
     }
 
-    private RoomIdentifer getDestinationRoomId(RoomIdentifer roomId, ExitEnum exit) {
+    private RoomIdentifier getDestinationRoomId(RoomIdentifier roomId, ExitEnum exit) {
         return roomId.createNewRoomId(exit);
     }
 

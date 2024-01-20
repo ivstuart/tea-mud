@@ -26,57 +26,49 @@ import java.io.Serializable;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class ChannelHistory implements Serializable {
 
-	private static final long serialVersionUID = -5656696925007287209L;
+    private static final long serialVersionUID = -5656696925007287209L;
 
-	private static final ChannelHistory theHistory = new ChannelHistory();
-	private transient Channel auction;
-	private transient Channel chat;
-	private transient Channel raid;
-	private transient Channel newbie;
+    private static final ChannelHistory theHistory = new ChannelHistory();
+    private final transient Channel auction;
+    private final transient Channel chat;
+    private final transient Channel raid;
+    private final transient Channel newbie;
 
-	private ChannelHistory() {
-		auction = new Channel();
-		chat = new Channel();
-		raid = new Channel();
-		newbie = new Channel();
-	}
+    private ChannelHistory() {
+        auction = new Channel();
+        chat = new Channel();
+        raid = new Channel();
+        newbie = new Channel();
+    }
 
-	public static ChannelHistory getInstance() {
-		return theHistory;
-	}
+    public static ChannelHistory getInstance() {
+        return theHistory;
+    }
 
-	/**
-	 * @return
-	 */
-	public Channel getAuction() {
-		return auction;
-	}
 
-	/**
-	 * @return
-	 */
-	public Channel getChat() {
-		return chat;
-	}
+    public Channel getAuction() {
+        return auction;
+    }
 
-	/**
-	 * @return
-	 */
-	public Channel getNewbie() {
-		return newbie;
-	}
 
-	/**
-	 * @return
-	 */
-	public Channel getRaid() {
-		return raid;
-	}
+    public Channel getChat() {
+        return chat;
+    }
+
+
+    public Channel getNewbie() {
+        return newbie;
+    }
+
+
+    public Channel getRaid() {
+        return raid;
+    }
 
 }

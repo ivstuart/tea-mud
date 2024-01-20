@@ -34,299 +34,299 @@ import java.util.Map;
 
 public class Player implements Serializable, Nameable {
 
-	private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
 
-	private static final long serialVersionUID = 1L;
-	protected Attributes attributes;
-	int readIndex;
-	private Mob mob;
-	private Config config;
-	private PlayerData playerData;
-	private transient Connection connection;
-	private boolean admin = false;
-	private Map<String,String> alias; // Limit to 30
-	private Mob snooper;
-	private transient List<Mob> group;
-	private Inventory bank;
-	private Guilds guilds;
-	private Profession profession;
-	private Object created; // Admin only feature
-	// Bulletin boards
-	private transient Note note;
-	private ClanMembership clanMembership;
-	private transient Mob possess;
+    private static final long serialVersionUID = 1L;
+    private final Map<String, String> alias; // Limit to 30
+    private final Guilds guilds;
+    protected Attributes attributes;
+    int readIndex;
+    private Mob mob;
+    private Config config;
+    private PlayerData playerData;
+    private transient Connection connection;
+    private boolean admin = false;
+    private Mob snooper;
+    private transient List<Mob> group;
+    private Inventory bank;
+    private Profession profession;
+    private Object created; // Admin only feature
+    // Bulletin boards
+    private transient Note note;
+    private ClanMembership clanMembership;
+    private transient Mob possess;
 
-	public Player() {
-		playerData = new PlayerData();
-		config = new Config();
-		alias = new HashMap<>();
-		bank = new Inventory();
-		guilds = new Guilds();
-	}
+    public Player() {
+        playerData = new PlayerData();
+        config = new Config();
+        alias = new HashMap<>();
+        bank = new Inventory();
+        guilds = new Guilds();
+    }
 
-	public Object getCreated() {
-		return created;
-	}
+    public Object getCreated() {
+        return created;
+    }
 
-	public void setCreated(Object obj) {
-		this.created = obj;
-	}
+    public void setCreated(Object obj) {
+        this.created = obj;
+    }
 
-	public Profession getProfession() {
-		return profession;
-	}
+    public Profession getProfession() {
+        return profession;
+    }
 
-	public void setProfession(Profession profession) {
-		this.profession = profession;
-	}
+    public void setProfession(Profession profession) {
+        this.profession = profession;
+    }
 
-	public Guilds getGuilds() {
-		return guilds;
-	}
+    public Guilds getGuilds() {
+        return guilds;
+    }
 
-	public List<Mob> getGroup() {
-		return group;
-	}
+    public List<Mob> getGroup() {
+        return group;
+    }
 
-	public void setGroup(List<Mob> group) {
-		this.group = group;
-	}
+    public void setGroup(List<Mob> group) {
+        this.group = group;
+    }
 
-	public Mob getSnooper() {
-		return snooper;
-	}
+    public Mob getSnooper() {
+        return snooper;
+    }
 
-	public void setSnooper(Mob snooper) {
-		this.snooper = snooper;
-	}
+    public void setSnooper(Mob snooper) {
+        this.snooper = snooper;
+    }
 
-	public boolean checkIfLeveled() {
-		if (playerData.getToLevelXp() < 1) {
+    public boolean checkIfLeveled() {
+        if (playerData.getToLevelXp() < 1) {
 
-			playerData.incrementLevel();
+            playerData.incrementLevel();
 
-			this.level();
+            this.level();
 
-			return true;
-		}
-		return false;
-	}
+            return true;
+        }
+        return false;
+    }
 
-	public void disconnect() {
-		LOGGER.debug("Player disconnecting...");
-		if (connection != null) {
-			connection.disconnect();
-		}
-	}
+    public void disconnect() {
+        LOGGER.debug("Player disconnecting...");
+        if (connection != null) {
+            connection.disconnect();
+        }
+    }
 
-	public Attributes getAttributes() {
-		return attributes;
-	}
+    public Attributes getAttributes() {
+        return attributes;
+    }
 
-	public void setAttributes(int[] att) {
-		attributes = new Attributes(att);
+    public void setAttributes(int[] att) {
+        attributes = new Attributes(att);
 
-	}
+    }
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see person.Player#getConfig()
-	 */
-	public Config getConfig() {
-		return config;
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see person.Player#getConfig()
+     */
+    public Config getConfig() {
+        return config;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see person.Player#setConfig(person.Config)
-	 */
-	public void setConfig(Config config) {
-		this.config = config;
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see person.Player#setConfig(person.Config)
+     */
+    public void setConfig(Config config) {
+        this.config = config;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see person.Player#getData()
-	 */
-	public PlayerData getData() {
-		return playerData;
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see person.Player#getData()
+     */
+    public PlayerData getData() {
+        return playerData;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see person.Player#setData(person.PlayerData)
-	 */
-	public void setData(PlayerData data) {
-		this.playerData = data;
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see person.Player#setData(person.PlayerData)
+     */
+    public void setData(PlayerData data) {
+        this.playerData = data;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see person.Player#getCharacter()
-	 */
-	public Mob getMob() {
-		return mob;
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see person.Player#getCharacter()
+     */
+    public Mob getMob() {
+        return mob;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see person.Player#setCharacter(person.Mob)
-	 */
-	public void setMob(Mob me) {
-		this.mob = me;
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see person.Player#setCharacter(person.Mob)
+     */
+    public void setMob(Mob me) {
+        this.mob = me;
+    }
 
-	@Override
-	public String getName() {
-		return mob.getName();
-	}
+    @Override
+    public String getName() {
+        return mob.getName();
+    }
 
-	private void level() {
-		out("-->Your overall power and learning capacities have increased!<--");
+    private void level() {
+        out("-->Your overall power and learning capacities have increased!<--");
 
-		LOGGER.info("Player " + getName() + " has gained a level");
+        LOGGER.info("Player " + getName() + " has gained a level");
 
-		// STRENGTH, CONSTITUTION, INTELLIGENCE, DEXTERITY, WISDOM;
+        // STRENGTH, CONSTITUTION, INTELLIGENCE, DEXTERITY, WISDOM;
 
-		int dHP = attributes.getCON().getMaximum() + (int) (Math.random() * 10);
+        int dHP = attributes.getCON().getMaximum() + (int) (Math.random() * 10);
 
-		mob.getHp().increaseMaximum(dHP);
-		mob.getHp().restore();
+        mob.getHp().increaseMaximum(dHP);
+        mob.getHp().restore();
 
-		int dMv = (attributes.getDEX().getMaximum() + (int) (Math.random() * 5))/ 5;
+        int dMv = (attributes.getDEX().getMaximum() + (int) (Math.random() * 5)) / 5;
 
-		dMv += mob.getRace().getMovement();
+        dMv += mob.getRace().getMovement();
 
-		mob.getMv().increaseMaximum(dMv);
-		mob.getMv().restore();
+        mob.getMv().increaseMaximum(dMv);
+        mob.getMv().restore();
 
-		int dMana = (attributes.getINT().getMaximum()
-				+ attributes.getWIS().getMaximum() + (int) (Math.random() * 9)) / 9;
+        int dMana = (attributes.getINT().getMaximum()
+                + attributes.getWIS().getMaximum() + (int) (Math.random() * 9)) / 9;
 
-		mob.getMana().addMaximumAndRestore(dMana);
+        mob.getMana().addMaximumAndRestore(dMana);
 
-		out("You gained " + dHP + " hitpoints, " + dMv + " moves and [" + dMana
-				+ "] mana.");
+        out("You gained " + dHP + " hitpoints, " + dMv + " moves and [" + dMana
+                + "] mana.");
 
-		out("You feel restored!");
+        out("You feel restored!");
 
-		checkIfLeveled();
-	}
+        checkIfLeveled();
+    }
 
-	public void out(String message) {
-		message = Output.getString(message,
-				config.getConfigData().is(ConfigData.ANSI));
+    public void out(String message) {
+        message = Output.getString(message,
+                config.getConfigData().is(ConfigData.ANSI));
 
-		LOGGER.debug(getName()+" output ["+message+"]");
+        LOGGER.debug(getName() + " output [" + message + "]");
 
-		if (connection != null) {
-			connection.out(message);
-			return;
-		}
+        if (connection != null) {
+            connection.out(message);
+            return;
+        }
 
-		LOGGER.info("Character " + getName() + " has lost their connection!");
+        LOGGER.info("Character " + getName() + " has lost their connection!");
 
-	}
+    }
 
-	public boolean isAdmin() {
-		return admin;
-	}
+    public boolean isAdmin() {
+        return admin;
+    }
 
-	public void setAdmin(boolean b) {
-		admin = b;
-	}
+    public void setAdmin(boolean b) {
+        admin = b;
+    }
 
-	public void addAlias(String word, String word1) {
-		if (alias.size() > 30) {
-			out("You are at the limit for alias's please remove one and then you can add another one");
-			return;
-		}
-		alias.put(word,word1);
-	}
+    public void addAlias(String word, String word1) {
+        if (alias.size() > 30) {
+            out("You are at the limit for alias's please remove one and then you can add another one");
+            return;
+        }
+        alias.put(word, word1);
+    }
 
-	public void removeAlias(String word) {
-		alias.remove(word);
-	}
+    public void removeAlias(String word) {
+        alias.remove(word);
+    }
 
-	public void showAlias() {
-		this.out(alias.toString());
-	}
+    public void showAlias() {
+        this.out(alias.toString());
+    }
 
-	public String applyAlias(String input) {
-		if (alias == null) {
-			return input;
-		}
-		if (input.startsWith("alias")) {
-			return input;
-		}
-		for (Map.Entry<String,String> set : alias.entrySet()) {
-			input = input.replaceFirst("^"+set.getKey(),set.getValue());
-		}
-		return input;
-	}
+    public String applyAlias(String input) {
+        if (alias == null) {
+            return input;
+        }
+        if (input.startsWith("alias")) {
+            return input;
+        }
+        for (Map.Entry<String, String> set : alias.entrySet()) {
+            input = input.replaceFirst("^" + set.getKey(), set.getValue());
+        }
+        return input;
+    }
 
     public Connection getConnection() {
         return connection;
     }
 
-	public void setConnection(Connection connection) {
-		this.connection = connection;
-	}
+    public void setConnection(Connection connection) {
+        this.connection = connection;
+    }
 
-	public Inventory getBank() {
-		if (bank == null) {
-			bank = new Inventory();
-		}
-		return bank;
-	}
+    public Inventory getBank() {
+        if (bank == null) {
+            bank = new Inventory();
+        }
+        return bank;
+    }
 
-	public int getAPB() {
+    public int getAPB() {
 
-		int apb = 1 + this.getAttributes().getSTR().getValue() / 5;
+        int apb = 1 + this.getAttributes().getSTR().getValue() / 5;
 
-		apb += mob.getEquipment().getAPB();
+        apb += mob.getEquipment().getAPB();
 
-		return apb;
-	}
+        return apb;
+    }
 
-	public Note getNote() {
-		if (note == null) {
-			note = new Note();
-		}
-		return note;
-	}
+    public Note getNote() {
+        if (note == null) {
+            note = new Note();
+        }
+        return note;
+    }
 
-	public int getReadIndex() {
-		return readIndex;
-	}
+    public int getReadIndex() {
+        return readIndex;
+    }
 
-	public void incrementReadIndex() {
-		readIndex++;
-	}
+    public void incrementReadIndex() {
+        readIndex++;
+    }
 
-	public ClanMembership getClanMembership() {
-		return this.clanMembership;
-	}
+    public ClanMembership getClanMembership() {
+        return this.clanMembership;
+    }
 
-	public void setClanMembership(ClanMembership clan) {
-		this.clanMembership = clan;
-	}
+    public void setClanMembership(ClanMembership clan) {
+        this.clanMembership = clan;
+    }
 
-	public String getSaveDirectory() {
-		return LaunchMud.mudServerProperties.getProperty("player.save.dir");
-	}
+    public String getSaveDirectory() {
+        return LaunchMud.mudServerProperties.getProperty("player.save.dir");
+    }
 
-	public Mob getPossess() {
-		return possess;
-	}
+    public Mob getPossess() {
+        return possess;
+    }
 
-	public void setPossess(Mob target) {
-		this.possess = target;
-	}
+    public void setPossess(Mob target) {
+        this.possess = target;
+    }
 }

@@ -29,7 +29,8 @@ import org.junit.Test;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class SearchTest {
 
@@ -79,13 +80,13 @@ public class SearchTest {
         Command hide = new Hide();
         hide.execute(player1Mob, sheepMob.getAlias());
 
-        assertEquals("sheepMob should be hidden", true, sheepMob.isHidden());
+        assertTrue("sheepMob should be hidden", sheepMob.isHidden());
 
         Command search = new Search();
 
         search.execute(player1Mob, null);
 
-        assertEquals("sheepMob should be hidden", false, sheepMob.isHidden());
+        assertFalse("sheepMob should be hidden", sheepMob.isHidden());
 
     }
 
@@ -116,13 +117,13 @@ public class SearchTest {
         Command hide = new Hide();
         hide.execute(player1Mob, "gate");
 
-        assertEquals("Gate should be hidden", true, hiddenExit.isHidden());
+        assertTrue("Gate should be hidden", hiddenExit.isHidden());
 
         Command search = new Search();
 
         search.execute(player1Mob, null);
 
-        assertEquals("Gate should not be hidden", false, hiddenExit.isHidden());
+        assertFalse("Gate should not be hidden", hiddenExit.isHidden());
 
     }
 }

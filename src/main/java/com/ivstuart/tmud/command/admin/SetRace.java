@@ -26,7 +26,7 @@ public class SetRace extends AdminCommand {
 
         super.execute(mob_, input);
 
-        String element[] = input.split(" ");
+        String[] element = input.split(" ");
 
         Mob mob = mob_;
 

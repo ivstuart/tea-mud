@@ -50,17 +50,17 @@ public class GsonIOTest {
      * Gson not used for players.
      */
     @Test
-	public void testSavingPlayer() {
-		GsonIO saveGson = new GsonIO();
+    public void testSavingPlayer() {
+        GsonIO saveGson = new GsonIO();
 
-		Mob playerMob = TestHelper.makeDefaultPlayerMob("player1");
-		Player player = playerMob.getPlayer();
+        Mob playerMob = TestHelper.makeDefaultPlayerMob("player1");
+        Player player = playerMob.getPlayer();
 
-		try {
-			saveGson.save(player, "testplayer");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+        try {
+            saveGson.save(player, "testplayer");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -71,11 +71,11 @@ public class GsonIOTest {
     @Test(expected = RuntimeException.class)
     public void testLoadingPlayer() throws IOException {
 
-		GsonIO saveGson = new GsonIO();
-		Player player = (Player) saveGson.loadPlayer("testplayer");
+        GsonIO saveGson = new GsonIO();
+        Player player = saveGson.loadPlayer("testplayer");
 
-		assertEquals("check player name", "player1", player.getName());
+        assertEquals("check player name", "player1", player.getName());
 
-	}
+    }
 
 }

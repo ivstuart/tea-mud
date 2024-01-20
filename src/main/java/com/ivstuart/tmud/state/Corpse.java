@@ -27,84 +27,84 @@ import java.util.List;
 
 public class Corpse extends Item {
 
-	private static final long serialVersionUID = -1665651693089947124L;
+    private static final long serialVersionUID = -1665651693089947124L;
 
-	private static final Logger LOGGER = LogManager.getLogger();
-	private static final String[] periodOfTime = {"very recently",
-			"recently",
-			"a short while ago",
-			"a while ago",
-			"ages ago"};
-	protected Inventory _inventory;
-	private String whoKilledMe;
-	private long whenKilled;
+    private static final Logger LOGGER = LogManager.getLogger();
+    private static final String[] periodOfTime = {"very recently",
+            "recently",
+            "a short while ago",
+            "a while ago",
+            "ages ago"};
+    protected Inventory _inventory;
+    private String whoKilledMe;
+    private long whenKilled;
 
-	public Corpse() {
-	}
+    public Corpse() {
+    }
 
-	public Corpse(Mob mob_) {
+    public Corpse(Mob mob_) {
 
-		LOGGER.debug("Creating corpse for mob id = " + mob_.getId());
+        LOGGER.debug("Creating corpse for mob id = " + mob_.getId());
 
-		List<Equipable> eq = mob_.getEquipment().removeAll();
+        List<Equipable> eq = mob_.getEquipment().removeAll();
 
-		_inventory = new Inventory(mob_.getInventory());
+        _inventory = new Inventory(mob_.getInventory());
 
-		mob_.getInventory().clear();
+        mob_.getInventory().clear();
 
-		for (Equipable item : eq) {
-			_inventory.add((Item) item);
-		}
+        for (Equipable item : eq) {
+            _inventory.add((Item) item);
+        }
 
-		SomeMoney money = new Money(Money.COPPER, mob_.getCopper());
+        SomeMoney money = new Money(Money.COPPER, mob_.getCopper());
 
-		_inventory.getPurse().add(money);
+        _inventory.getPurse().add(money);
 
-	}
+    }
 
-	public void setWhoKilledMe(String whoKilledMe) {
-		this.whoKilledMe = whoKilledMe;
-	}
+    public void setWhoKilledMe(String whoKilledMe) {
+        this.whoKilledMe = whoKilledMe;
+    }
 
-	public Inventory getInventory() {
-		if (_inventory == null) {
-			_inventory = new Inventory();
-		}
-		return _inventory;
-	}
+    public Inventory getInventory() {
+        if (_inventory == null) {
+            _inventory = new Inventory();
+        }
+        return _inventory;
+    }
 
-	@Override
-	public String getLook() {
+    @Override
+    public String getLook() {
 
-		if (_inventory == null || _inventory.isEmpty()) {
-			return super.toString();
-		} else {
-			return super.toString() + "\n" + _inventory.toString();
-		}
+        if (_inventory == null || _inventory.isEmpty()) {
+            return super.toString();
+        } else {
+            return super.toString() + "\n" + _inventory.toString();
+        }
 
-	}
+    }
 
-	@Override
-	public boolean isCorpse() {
-		return true;
-	}
+    @Override
+    public boolean isCorpse() {
+        return true;
+    }
 
-	public String investigation() {
+    public String investigation() {
 
-		return "Killed by " + whoKilledMe + " , " + getWhenKilled();
-	}
+        return "Killed by " + whoKilledMe + " , " + getWhenKilled();
+    }
 
-	private String getWhenKilled() {
+    private String getWhenKilled() {
 
-		int index = (int) (System.currentTimeMillis() - whenKilled) / (30 * 1000);
-		if (index >= periodOfTime.length) {
-			index = periodOfTime.length - 1;
-		}
-		return periodOfTime[index];
+        int index = (int) (System.currentTimeMillis() - whenKilled) / (30 * 1000);
+        if (index >= periodOfTime.length) {
+            index = periodOfTime.length - 1;
+        }
+        return periodOfTime[index];
 
-	}
+    }
 
-	public void setWhenKilled(long whenKilled) {
-		this.whenKilled = whenKilled;
-	}
+    public void setWhenKilled(long whenKilled) {
+        this.whenKilled = whenKilled;
+    }
 }

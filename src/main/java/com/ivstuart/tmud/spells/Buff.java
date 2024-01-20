@@ -27,7 +27,7 @@ public class Buff implements SpellEffect {
     @Override
     public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
 
-        Affect affect = (Affect) target_.getMobAffects().getAffect(spell.getId());
+        Affect affect = target_.getMobAffects().getAffect(spell.getId());
 
         if (affect == null) {
             target_.addAffect(spell.getId(), new Affect(target_, spell.getName(), spell.getDuration().roll()));

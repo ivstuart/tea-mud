@@ -26,7 +26,7 @@ import java.util.List;
 
 public class Janitor extends BaseBehaviour {
 
-    private static Logger LOGGER = LogManager.getLogger();
+    private final static Logger LOGGER = LogManager.getLogger();
 
 
     public Janitor() {
@@ -42,7 +42,7 @@ public class Janitor extends BaseBehaviour {
     public boolean tick() {
 
         if (DiceRoll.ONE_D100.rollMoreThan(parameter)) {
-            LOGGER.debug(mob.getName()+" is does not feel like clearing up this tick");
+            LOGGER.debug(mob.getName() + " is does not feel like clearing up this tick");
             return false;
         }
 
@@ -64,7 +64,7 @@ public class Janitor extends BaseBehaviour {
 
         try {
             item = items.remove(0);
-        } catch (IndexOutOfBoundsException ioobe) {
+        } catch (IndexOutOfBoundsException e) {
             LOGGER.debug("Suddenly nothing to clean up");
         }
 

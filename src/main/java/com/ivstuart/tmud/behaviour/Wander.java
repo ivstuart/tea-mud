@@ -28,87 +28,81 @@ import java.util.List;
 
 public class Wander extends BaseBehaviour {
 
-	private static Logger LOGGER = LogManager.getLogger();
+    private final static Logger LOGGER = LogManager.getLogger();
 
-	private List<Room> rooms;
+    private List<Room> rooms;
 
-	public Wander() {
-		parameter = 50;
-		parameter2 = 2;
-	}
+    public Wander() {
+        parameter = 50;
+        parameter2 = 2;
+    }
 
-	@Override
-	public String getId() {
-		return mob.getId();
-	}
+    @Override
+    public String getId() {
+        return mob.getId();
+    }
 
-	public List<Room> getRooms() {
-		return rooms;
-	}
+    public List<Room> getRooms() {
+        return rooms;
+    }
 
-	public void setRooms(List<Room> rooms) {
-		this.rooms = rooms;
-	}
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
+    }
 
-	@Override
+    @Override
     public boolean tick() {
 
-		if (mob.getFight().isFighting()) {
-			LOGGER.debug(mob.getName()+" is fighting and hence will not wander away");
+        if (mob.getFight().isFighting()) {
+            LOGGER.debug(mob.getName() + " is fighting and hence will not wander away");
             return false;
         }
 
-		if (mob.getFight().isEngaged()) {
-			LOGGER.debug(mob.getName()+" is engaged and hence will not wander away");
+        if (mob.getFight().isEngaged()) {
+            LOGGER.debug(mob.getName() + " is engaged and hence will not wander away");
             return false;
         }
 
-		if (DiceRoll.ONE_D100.rollMoreThan(parameter)) {
-			LOGGER.debug(mob.getName()+" is does not feel like wandering this tick");
+        if (DiceRoll.ONE_D100.rollMoreThan(parameter)) {
+            LOGGER.debug(mob.getName() + " is does not feel like wandering this tick");
             return false;
         }
 
-		// Lazy init
-		if (rooms == null) {
-			rooms = new ArrayList<Room>(parameter2);
-		}
+        // Lazy init
+        if (rooms == null) {
+            rooms = new ArrayList<>(parameter2);
+        }
 
-		Room currentRoom = mob.getRoom();
+        if (rooms.size() < parameter2) {
 
-		if (rooms.size() < parameter2) {
+            Exit exit = MoveManager.random(mob);
 
-			Exit exit = MoveManager.random(mob);
+            if (exit == null) {
+                return false;
+            }
+            LOGGER.debug("Mob wanders to a new location");
+        } else {
 
-			if (exit == null) {
-				return false;
-			}
-			LOGGER.debug("Mob wanders to a new location");
-		} else {
+            int index = rooms.size() - 2;
 
-			int index = rooms.size() - 2;
+            MoveManager.move(mob, rooms.get(index));
 
-			MoveManager.move(mob, rooms.get(index));
-
-			LOGGER.debug("Mob wanders to a old location");
-		}
+            LOGGER.debug("Mob wanders to a old location");
+        }
 
 
-		Room room = mob.getRoom();
+        Room room = mob.getRoom();
 
-//		for (Room room1 : rooms) {
-//			LOGGER.debug("Rooms:"+room1.getId());
-//		}
+        int index = rooms.indexOf(room);
 
-		int index = rooms.indexOf(room);
+        if (index != -1) {
+            // A-B-C-D rooms if in D and goes to C then only need to keep list
+            // A-B-C
+            rooms = rooms.subList(0, index);
+        } else {
 
-		if (index != -1) {
-			// A-B-C-D rooms if in D and goes to C then only need to keep list
-			// A-B-C
-			rooms = rooms.subList(0, index);
-		} else {
-
-			rooms.add(room);
-		}
+            rooms.add(room);
+        }
         LOGGER.debug("Wandering at a distance of " + rooms.size() + " from source");
         return false;
     }

@@ -29,18 +29,18 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class HelpDamage extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
         Msg output = new Msg(mob, DamageConstants.help());
 
-		mob.out(output);
-	}
+        mob.out(output);
+    }
 
 }

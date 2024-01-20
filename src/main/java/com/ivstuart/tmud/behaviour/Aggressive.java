@@ -23,13 +23,14 @@ import com.ivstuart.tmud.state.Room;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+
 public class Aggressive extends BaseBehaviour {
 
-    private static Logger LOGGER = LogManager.getLogger();
+    private final static Logger LOGGER = LogManager.getLogger();
 
 
     public Aggressive() {
-        parameter = 50; //aggro precentage
+        parameter = 50; //aggro percentage
     }
 
     @Override

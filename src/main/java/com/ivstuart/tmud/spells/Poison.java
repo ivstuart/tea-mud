@@ -26,24 +26,24 @@ import com.ivstuart.tmud.state.Spell;
 
 public class Poison implements SpellEffect {
 
-	public static final String POISON = "poison";
+    public static final String POISON = "poison";
 
-	@Override
-	public void effect(Mob giver_, Mob reciever_, Spell spell, Item targetItem) {
+    @Override
+    public void effect(Mob giver, Mob receiver, Spell spell, Item targetItem) {
 
 
-        DamageManager.deal(giver_, reciever_, spell.getDamage().roll(), spell);
+        DamageManager.deal(giver, receiver, spell.getDamage().roll(), spell);
 
-		Affect poisonAffect = new DamageOverTime(reciever_, POISON, 14,
-				DiceRoll.ONE_D_SIX);
+        Affect poisonAffect = new DamageOverTime(receiver, POISON, 14,
+                DiceRoll.ONE_D_SIX);
 
-		reciever_.addAffect(poisonAffect);
+        receiver.addAffect(poisonAffect);
 
-		reciever_.out("The effects of poison burn in your blood!");
-	}
+        receiver.out("The effects of poison burn in your blood!");
+    }
 
-	public boolean isPositiveEffect() {
-		return false;
-	}
+    public boolean isPositiveEffect() {
+        return false;
+    }
 
 }

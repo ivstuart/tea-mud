@@ -38,9 +38,9 @@ import static com.ivstuart.tmud.utils.StringUtil.getLastWord;
 
 /**
  * @author stuarti
- *         <p>
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Get extends BaseCommand {
 
@@ -89,7 +89,7 @@ public class Get extends BaseCommand {
                 Corpse corpse = (Corpse) prop;
                 String target = StringUtil.getFirstFewWords(input);
 
-                if (target.indexOf("all") > -1) {
+                if (target.contains("all")) {
                     List<Item> items = corpse.getInventory().getItems();
                     mob.getInventory().addAll(items);
                     for (Item item : items) {
@@ -128,7 +128,7 @@ public class Get extends BaseCommand {
 
         if (input.equalsIgnoreCase("all")) {
             Iterator<Item> itemIter = items.iterator();
-            for (; itemIter.hasNext(); ) {
+            while (itemIter.hasNext()) {
                 Item item = itemIter.next();
                 mob.getInventory().add(item);
 
@@ -168,7 +168,7 @@ public class Get extends BaseCommand {
                     mob.getInventory().add(bag.getInventory().getPurse());
                     bag.getInventory().getPurse().clear();
                     Iterator<Item> itemIter = bag.getInventory().getItems().iterator();
-                    for (; itemIter.hasNext(); ) {
+                    while (itemIter.hasNext()) {
                         Item item = itemIter.next();
                         mob.getInventory().add(item);
                         mob.out("You get a " + item.getBrief() + " from " + bag.getName());

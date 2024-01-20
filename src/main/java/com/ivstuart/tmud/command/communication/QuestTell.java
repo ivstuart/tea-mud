@@ -28,43 +28,43 @@ import com.ivstuart.tmud.world.World;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class QuestTell extends BaseCommand {
 
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see command.Command#execute(java.lang.String)
-	 */
-	@Override
-	public void execute(Mob mob, String input) {
-		String[] inputSplit = input.split(" ");
+    /*
+     * (non-Javadoc)
+     *
+     * @see command.Command#execute(java.lang.String)
+     */
+    @Override
+    public void execute(Mob mob, String input) {
+        String[] inputSplit = input.split(" ");
 
-		if (inputSplit.length < 2) {
-			mob.out("need source and target group to tell");
-			return;
-		}
+        if (inputSplit.length < 2) {
+            mob.out("need source and target group to tell");
+            return;
+        }
 
-		String message = "$D" + mob.getId() + " tells you -->" + inputSplit[1]
-				+ "$J";
+        String message = "$D" + mob.getId() + " tells you -->" + inputSplit[1]
+                + "$J";
 
-		String name = inputSplit[0];
+        String name = inputSplit[0];
 
-		if (World.isOnline(name) == false) {
-			mob.out("Tell who?");
-			return;
-		}
+        if (!World.isOnline(name)) {
+            mob.out("Tell who?");
+            return;
+        }
 
-		Mob playerMob = World.getMob(name);
+        Mob playerMob = World.getMob(name);
 
-		playerMob.out(message);
-		mob.out("You:" + message);
+        playerMob.out(message);
+        mob.out("You:" + message);
 
-		playerMob.setLastToldBy(mob);
+        playerMob.setLastToldBy(mob);
 
-	}
+    }
 }

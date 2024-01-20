@@ -21,16 +21,16 @@ public class JInputOutputPanel extends JPanel {
 
     public static void setGridLocation(Room room) {
 
-        xTextField.setText(""+room.getGridLocation().getX());
-        yTextField.setText(""+room.getGridLocation().getY());
-        zTextField.setText(""+room.getGridLocation().getZ());
+        xTextField.setText("" + room.getGridLocation().getX());
+        yTextField.setText("" + room.getGridLocation().getY());
+        zTextField.setText("" + room.getGridLocation().getZ());
 
     }
 
 
     public void createButtons() {
 
-        JPanel buttonPanel = new JPanel(new GridLayout(3,1));
+        JPanel buttonPanel = new JPanel(new GridLayout(3, 1));
 
         JButton cButton = new JButton("Clear");
         JButton nButton = new JButton("Load");
@@ -46,7 +46,7 @@ public class JInputOutputPanel extends JPanel {
 
         this.add(buttonPanel, BorderLayout.NORTH);
 
-        JPanel gridPanel = new JPanel(new GridLayout(3,2));
+        JPanel gridPanel = new JPanel(new GridLayout(3, 2));
 
 
         gridPanel.add(xLabel);
@@ -57,7 +57,7 @@ public class JInputOutputPanel extends JPanel {
         gridPanel.add(zTextField);
 
         this.add(gridPanel, BorderLayout.CENTER);
-        
+
         cButton.addActionListener(e -> clearWorld());
 
         nButton.addActionListener(e -> loadWorld());
@@ -76,7 +76,7 @@ public class JInputOutputPanel extends JPanel {
         fileChooser.setCurrentDirectory(new File("./src/main/resources/saved/"));
         int returnVal = fileChooser.showOpenDialog(null);
 
-        if(returnVal == JFileChooser.APPROVE_OPTION) {
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
 
             String fileName = fileChooser.getSelectedFile().getName();
 
@@ -84,7 +84,7 @@ public class JInputOutputPanel extends JPanel {
 
             GsonIO gsonIO = new GsonIO();
             try {
-                gsonIO.save( World.getRoomMap(), fileName);
+                gsonIO.save(World.getRoomMap(), fileName);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -104,7 +104,7 @@ public class JInputOutputPanel extends JPanel {
         fileChooser.setApproveButtonText("Load");
         fileChooser.setCurrentDirectory(new File("./src/main/resources/saved/"));
         int returnVal = fileChooser.showOpenDialog(null);
-        if(returnVal == JFileChooser.APPROVE_OPTION) {
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
             String fileName = fileChooser.getSelectedFile().getName();
             LOGGER.info("You choose to load this file: " + fileName);
 
@@ -112,7 +112,7 @@ public class JInputOutputPanel extends JPanel {
 
             GsonIO gsonIO = new GsonIO();
 
-            Object loadedObject = null;
+            Object loadedObject;
 
             try {
                 loadedObject = gsonIO.load(fileName, World.getRoomMap().getClass());
@@ -120,14 +120,22 @@ public class JInputOutputPanel extends JPanel {
                 throw new RuntimeException(e);
             }
 
-            Map<GridLocation,Room> loadedMap  = (Map<GridLocation,Room>)loadedObject;
+            Map<GridLocation, Room> loadedMap;
+
+            if (loadedObject instanceof Map) {
+                loadedMap = (Map<GridLocation, Room>) loadedObject;
+            } else {
+                LOGGER.error("Problem loading not a Map");
+                return;
+            }
+
 
             Gson gson = new Gson();
 
             for (Object value : loadedMap.values()) {
                 LOGGER.info("Debugging value: " + value);
 
-                Room room = (Room) gson.fromJson(value.toString(), Room.class);
+                Room room = gson.fromJson(value.toString(), Room.class);
 
                 World.addRoom(room);
             }

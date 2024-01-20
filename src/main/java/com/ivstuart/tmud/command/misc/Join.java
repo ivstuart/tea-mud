@@ -29,39 +29,39 @@ import com.ivstuart.tmud.state.ProfessionMaster;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Join extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		ProfessionMaster professionMaster = mob.getRoom().getProfessionMaster();
+        ProfessionMaster professionMaster = mob.getRoom().getProfessionMaster();
 
-		if (professionMaster == null) {
-			mob.out("There is no one here to join a profession with");
-			return;
-		}
+        if (professionMaster == null) {
+            mob.out("There is no one here to join a profession with");
+            return;
+        }
 
-		if (mob.getPlayer().getProfession() != null) {
-			mob.out("You already have a profession");
-			return;
-		}
+        if (mob.getPlayer().getProfession() != null) {
+            mob.out("You already have a profession");
+            return;
+        }
 
-		// 88 gold to join
-		SomeMoney cash = mob.getInventory().removeCoins("88 gold");
+        // 88 gold to join
+        SomeMoney cash = mob.getInventory().removeCoins("88 gold");
 
-		if (cash == null || cash.getValue() < 8800) {
-			mob.out("You must have 88 gold coins to join");
-			return;
-		}
+        if (cash == null || cash.getValue() < 8800) {
+            mob.out("You must have 88 gold coins to join");
+            return;
+        }
 
-		mob.out("You join the "+professionMaster.getProf()+" profession, welcome.");
-		mob.getPlayer().setProfession(professionMaster.getProf());
+        mob.out("You join the " + professionMaster.getProf() + " profession, welcome.");
+        mob.getPlayer().setProfession(professionMaster.getProf());
 
 
-	}
+    }
 
 }

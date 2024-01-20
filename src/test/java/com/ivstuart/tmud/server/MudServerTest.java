@@ -17,13 +17,9 @@
 package com.ivstuart.tmud.server;
 
 import com.ivstuart.tmud.client.LaunchClient;
-import com.ivstuart.tmud.command.DummyConnection;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.nio.channels.SocketChannel;
-import java.util.Iterator;
-import java.util.Map;
 
 /**
  * Created by Ivan on 28/09/2016.

@@ -25,136 +25,136 @@ import com.ivstuart.tmud.spells.SpellEffectFactory;
 
 public class Spell extends BaseSkill {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public static Spell NULL = new Spell();
+    public static Spell NULL = new Spell();
 
-	private ManaType _mana;
+    private ManaType _mana;
 
-	private String _targets;
+    private String _targets;
 
-	private SpellEffect _spellEffect;
+    private SpellEffect _spellEffect;
 
-	private String _stat;
+    private String _stat;
 
-	private DiceRoll amount;
-	private DamageType damageType;
+    private DiceRoll amount;
+    private DamageType damageType;
 
-	public DamageType getDamageType() {
+    public DamageType getDamageType() {
 
-		// Defaults
-		if (damageType == null) {
-			switch (_mana) {
-				case FIRE:
-					return DamageType.FIRE;
-				case COMMON:
-					return DamageType.ARCANE;
-				case AIR:
-					return DamageType.SHOCK;
-				case WATER:
-					return DamageType.COLD;
-				case EARTH:
-					return DamageType.NATURE;
-				default:
-					return DamageType.PHYSICAL;
-			}
-		}
+        // Defaults
+        if (damageType == null) {
+            switch (_mana) {
+                case FIRE:
+                    return DamageType.FIRE;
+                case COMMON:
+                    return DamageType.ARCANE;
+                case AIR:
+                    return DamageType.SHOCK;
+                case WATER:
+                    return DamageType.COLD;
+                case EARTH:
+                    return DamageType.NATURE;
+                default:
+                    return DamageType.PHYSICAL;
+            }
+        }
 
-		return damageType;
-	}
+        return damageType;
+    }
 
-	public void setDamageType(String damageType) {
-		this.damageType = DamageType.valueOf(damageType);
-	}
+    public void setDamageType(String damageType) {
+        this.damageType = DamageType.valueOf(damageType);
+    }
 
-	/**
-	 * Cost of spell is double when your level is the same as the spell and this
-	 * drop by .2 for next 4 level until it drops to base cost.
-	 * 
-	 * @param level
-	 * @return
-	 */
-	public int getCostGivenLevel(int level) {
-		int levelDiff = this.level + 5 - level;
-		if (levelDiff > 0) {
-			return (int) (cost * 1.2 * levelDiff);
-		}
-		return cost;
-	}
+    /**
+     * Cost of spell is double when your level is the same as the spell and this
+     * drop by .2 for next 4 level until it drops to base cost.
+     *
+     * @param level
+     * @return
+     */
+    public int getCostGivenLevel(int level) {
+        int levelDiff = this.level + 5 - level;
+        if (levelDiff > 0) {
+            return (int) (cost * 1.2 * levelDiff);
+        }
+        return cost;
+    }
 
-	public String getDescription() {
-		return String.format(" %1$4s %2$10s [%3$s]", this.getManaType()
-				.getManaString(), getId(), cost);
-	}
+    public String getDescription() {
+        return String.format(" %1$4s %2$10s [%3$s]", this.getManaType()
+                .getManaString(), getId(), cost);
+    }
 
-	public ManaType getManaType() {
-		if (_mana == null) {
-			return ManaType.COMMON;
-		}
-		return _mana;
-	}
+    public ManaType getManaType() {
+        if (_mana == null) {
+            return ManaType.COMMON;
+        }
+        return _mana;
+    }
 
-	public SpellEffect getSpellEffect() {
-		if (_spellEffect == null) {
-			return SpellEffectFactory.DAMAGE;
-		}
+    public SpellEffect getSpellEffect() {
+        if (_spellEffect == null) {
+            return SpellEffectFactory.DAMAGE;
+        }
 
-		return _spellEffect;
-	}
+        return _spellEffect;
+    }
 
-	public void setSpellEffect(String txt_) {
-		_spellEffect = SpellEffectFactory.get(txt_.trim());
-	}
+    public void setSpellEffect(String txt_) {
+        _spellEffect = SpellEffectFactory.get(txt_.trim());
+    }
 
-	public String getTarget() {
-		return _targets;
-	}
+    public String getTarget() {
+        return _targets;
+    }
 
-	public void setTarget(String targets_) {
-		_targets = targets_;
+    public void setTarget(String targets_) {
+        _targets = targets_;
 
-	}
+    }
 
-	@Override
-	public boolean isSkill() {
-		return false;
-	}
+    @Override
+    public boolean isSkill() {
+        return false;
+    }
 
-	public void setMana(String mana_) {
-		_mana = ManaType.valueOf(mana_);
-	}
+    public void setMana(String mana_) {
+        _mana = ManaType.valueOf(mana_);
+    }
 
-	public String getStat() {
-		if (_spellEffect != null && _spellEffect instanceof BuffStats) {
-			return ((BuffStats) _spellEffect).getStat();
-		}
-		return null;
-	}
+    public String getStat() {
+        if (_spellEffect != null && _spellEffect instanceof BuffStats) {
+            return ((BuffStats) _spellEffect).getStat();
+        }
+        return null;
+    }
 
-	public void setStat(String stat_) {
-		_stat = stat_;
+    public void setStat(String stat_) {
+        _stat = stat_;
 
-		if (_spellEffect != null && _spellEffect instanceof BuffStats) {
-			((BuffStats)_spellEffect).setStat(stat_);
-		}
+        if (_spellEffect != null && _spellEffect instanceof BuffStats) {
+            ((BuffStats) _spellEffect).setStat(stat_);
+        }
 
-	}
+    }
 
     public boolean isAnyTarget() {
-    	if (_targets == null) {
-    		return false;
-		}
-    	return _targets.indexOf("ANY") > -1;
-	}
+        if (_targets == null) {
+            return false;
+        }
+        return _targets.contains("ANY");
+    }
 
-	public int getAmount() {
-		if (amount == null) {
-			return 0;
-		}
-		return amount.roll();
-	}
+    public int getAmount() {
+        if (amount == null) {
+            return 0;
+        }
+        return amount.roll();
+    }
 
-	public void setAmount(String amount) {
-		this.amount = new DiceRoll(amount);
-	}
+    public void setAmount(String amount) {
+        this.amount = new DiceRoll(amount);
+    }
 }

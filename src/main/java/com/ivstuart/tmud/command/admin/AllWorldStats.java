@@ -27,29 +27,29 @@ import com.ivstuart.tmud.world.World;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class AllWorldStats extends AdminCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
-		
-		super.execute(mob,input);
+    @Override
+    public void execute(Mob mob, String input) {
 
-		int numberOfMobs = World.getMobs().size();
+        super.execute(mob, input);
 
-		mob.out("Number of mobs    :"+numberOfMobs);
+        int numberOfMobs = World.getMobs().size();
 
-		int numberOfRooms = World.getRooms().size();
+        mob.out("Number of mobs    :" + numberOfMobs);
 
-		mob.out("Number of rooms   :"+numberOfRooms);
+        int numberOfRooms = World.getRooms().size();
 
-		int numberOfPlayers = World.getPlayers().size();
+        mob.out("Number of rooms   :" + numberOfRooms);
 
-		mob.out("Number of players :"+numberOfPlayers);
+        int numberOfPlayers = World.getPlayers().size();
 
-	}
+        mob.out("Number of players :" + numberOfPlayers);
+
+    }
 
 }

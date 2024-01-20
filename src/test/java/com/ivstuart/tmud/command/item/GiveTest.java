@@ -26,19 +26,19 @@ import static junit.framework.TestCase.assertEquals;
 
 public class GiveTest {
 
-	@Test
+    @Test
     public void testGive50Copper() {
 
         Room room = new Room();
         room.setId("A room");
 
-		Mob mob = new Mob();
+        Mob mob = new Mob();
         mob.setRoom(room);
         room.add(mob);
         SomeMoney coins = new Money(Money.COPPER, 50);
         mob.getInventory().add(coins);
 
-		Mob ste = new Mob();
+        Mob ste = new Mob();
         ste.setAlias("ste");
         ste.setName("Ste");
         ste.setRoom(room);

@@ -24,32 +24,31 @@ import com.ivstuart.tmud.state.Spell;
 public class DetectInvisible implements SpellEffect {
 
 
-	private String stat;
+    private String stat;
 
-	public String getStat() {
-		return stat;
-	}
+    public String getStat() {
+        return stat;
+    }
 
-	public void setStat(String stat) {
-		this.stat = stat;
-	}
+    public void setStat(String stat) {
+        this.stat = stat;
+    }
 
-	@Override
-	public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
+    @Override
+    public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
 
-		DetectAffect affect = (DetectAffect)target_.getMobAffects().getAffect(spell.getId());
+        DetectAffect affect = (DetectAffect) target_.getMobAffects().getAffect(spell.getId());
 
-		if (affect == null) {
-			target_.addAffect(spell.getId(),new DetectAffect(target_, spell));
-		}
-		else {
-			affect.setDuration(spell.getDuration().roll());
-		}
+        if (affect == null) {
+            target_.addAffect(spell.getId(), new DetectAffect(target_, spell));
+        } else {
+            affect.setDuration(spell.getDuration().roll());
+        }
 
-	}
+    }
 
-	public boolean isPositiveEffect() {
-		return true;
-	}
+    public boolean isPositiveEffect() {
+        return true;
+    }
 
 }

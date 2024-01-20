@@ -30,9 +30,9 @@ import java.util.List;
 
 /**
  * @author stuarti
- *         <p>
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Group extends BaseCommand {
 
@@ -51,7 +51,7 @@ public class Group extends BaseCommand {
     @Override
     public void execute(Mob mob, String input) {
 
-        if (input.length() == 0) {
+        if (input.isEmpty()) {
             showGroupInfo(mob);
             return;
         }
@@ -100,7 +100,7 @@ public class Group extends BaseCommand {
         mob_.out("$K~$J");
 
         for (Mob mob : group) {
-            mob_.out("["+mob.getName()+"] "+ Prompt.getPrompt(mob));
+            mob_.out("[" + mob.getName() + "] " + Prompt.getPrompt(mob));
         }
 
         mob_.out("$K~$J");
@@ -110,14 +110,14 @@ public class Group extends BaseCommand {
 
         List<Mob> group = mob_.getRoom().getFollowers(mob_);
 
-        if(group.size() == 0) {
+        if (group.isEmpty()) {
             mob_.out("No one else is following you to create a group with");
             return;
         }
         group.add(mob_); // Leader of the group.
 
         for (Mob mob : group) {
-            mob.out("You are added into "+mob_.getName()+"'s group to xp in");
+            mob.out("You are added into " + mob_.getName() + "'s group to xp in");
             mob.getPlayer().setGroup(group);
         }
     }

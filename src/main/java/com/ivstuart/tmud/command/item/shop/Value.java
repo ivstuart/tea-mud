@@ -30,37 +30,37 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Value extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		Mob shopKeeper = mob.getRoom().getShopKeeper();
+        Mob shopKeeper = mob.getRoom().getShopKeeper();
 
-		if (shopKeeper == null) {
-			mob.out("There is no shop here to buy and sell from");
-			return;
-		}
+        if (shopKeeper == null) {
+            mob.out("There is no shop here to buy and sell from");
+            return;
+        }
 
-		Item item = mob.getInventory().get(input);
+        Item item = mob.getInventory().get(input);
 
-		if (item == null) {
-			mob.out("You have no item "+input+" to value");
-			return;
-		}
+        if (item == null) {
+            mob.out("You have no item " + input + " to value");
+            return;
+        }
 
-		SomeMoney cost = item.getCost();
+        SomeMoney cost = item.getCost();
 
-		if (cost == null) {
-			cost = Money.NO_MONEY;
-		}
+        if (cost == null) {
+            cost = Money.NO_MONEY;
+        }
 
-		mob.out("Value of item is "+item.getCost());
+        mob.out("Value of item is " + cost.getValue());
 
-	}
+    }
 
 }

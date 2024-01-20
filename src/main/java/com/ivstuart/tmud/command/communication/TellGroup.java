@@ -30,38 +30,38 @@ import java.util.List;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class TellGroup extends BaseCommand {
 
 
-	public TellGroup() {
-		super();
-	}
+    public TellGroup() {
+        super();
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see command.Command#execute(java.lang.String)
-	 */
-	@Override
-	public void execute(Mob mob_, String input) {
+    /*
+     * (non-Javadoc)
+     *
+     * @see command.Command#execute(java.lang.String)
+     */
+    @Override
+    public void execute(Mob mob_, String input) {
 
-		List<Mob> group = mob_.getPlayer().getGroup();
+        List<Mob> group = mob_.getPlayer().getGroup();
 
-		if (group == null) {
-			mob_.out("You are not currently part of any xp group");
-			return;
-		}
+        if (group == null) {
+            mob_.out("You are not currently part of any xp group");
+            return;
+        }
 
-		for (Mob mob : group) {
+        for (Mob mob : group) {
 
-			if (mob.getPlayer().getConfig().getChannelData().is(ChannelData.GROUP)) {
-				mob.out("<" + mob_.getName() + "> say's " + input);
-			}
-		}
+            if (mob.getPlayer().getConfig().getChannelData().is(ChannelData.GROUP)) {
+                mob.out("<" + mob_.getName() + "> say's " + input);
+            }
+        }
 
-	}
+    }
 }

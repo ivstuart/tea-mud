@@ -34,14 +34,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 /**
  * @author stuarti
- *         <p>
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Battleground extends AdminCommand implements Runnable {
 
@@ -88,18 +87,18 @@ public class Battleground extends AdminCommand implements Runnable {
 
         countDown = 30;
 
-        if (input != null && input.length() > 0) {
+        if (input != null && !input.isEmpty()) {
             countDown = Integer.parseInt(input);
         }
 
-        // Warn 5 minutes until start of battle ground and count down every 10 seconds.
+        // Warn 5 minutes until start of battleground and count down every 10 seconds.
         World.out("A battle ground will start in 5 minutes time");
 
         if (scheduledExecutorService == null) {
             scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
         }
 
-        ScheduledFuture<?> scheduledFuture = scheduledExecutorService.scheduleAtFixedRate(this, 0, 10, TimeUnit.SECONDS);
+        scheduledExecutorService.scheduleAtFixedRate(this, 0, 10, TimeUnit.SECONDS);
 
     }
 
@@ -116,7 +115,7 @@ public class Battleground extends AdminCommand implements Runnable {
             World.out("Starting battle ground");
             startBattleground();
         }
-        if (countDown < 0 || countDown < -60) {
+        if (countDown < 0) {
             if (checkIfBattlegroundComplete()) {
                 scheduledExecutorService.shutdown();
                 returnPlayersAndRestoreThem();

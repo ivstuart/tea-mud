@@ -23,16 +23,16 @@ import com.ivstuart.tmud.state.Spell;
 
 public class Blur implements SpellEffect {
 
-	@Override
-	public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
+    @Override
+    public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
 
-		target_.addAffect(spell.getId(),new BlurAffect(caster_,spell.getId(),spell.getDuration().roll()));
-		// No nothing on hit.
-	}
+        target_.addAffect(spell.getId(), new BlurAffect(caster_, spell.getId(), spell.getDuration().roll()));
+        // No nothing on hit.
+    }
 
-	public boolean isPositiveEffect() {
-		return true;
-	}
+    public boolean isPositiveEffect() {
+        return true;
+    }
 
 
 }

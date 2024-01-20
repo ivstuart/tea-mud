@@ -26,28 +26,28 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class AllMobStats extends AdminCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
-		
-		super.execute(mob,input);
-		
-		Mob target = mob.getRoom().getMob(input);
+    @Override
+    public void execute(Mob mob, String input) {
 
-		if (target == null) {
-			mob.out(input + " is not here to get all stats on!");
-			return;
-		}
+        super.execute(mob, input);
 
-		mob.out("Damage = "+target.getDamage());
+        Mob target = mob.getRoom().getMob(input);
 
-		mob.out(target.toString());
+        if (target == null) {
+            mob.out(input + " is not here to get all stats on!");
+            return;
+        }
 
-	}
+        mob.out("Damage = " + target.getDamage());
+
+        mob.out(target.toString());
+
+    }
 
 }

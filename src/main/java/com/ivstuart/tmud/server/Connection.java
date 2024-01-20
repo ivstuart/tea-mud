@@ -98,16 +98,12 @@ public class Connection {
 
         try {
             MudServer.getInstance().write(socketChannel, output);
-        }
-        catch (ClosedChannelException cce) {
-            LOGGER.warn("ClosedChannelException writing:"+output);
+        } catch (ClosedChannelException cce) {
+            LOGGER.warn("ClosedChannelException writing:" + output);
             disconnected = true;
-        }
-        catch (IOException e) {
-            LOGGER.error("Problem writing to closed connection:"+e.getMessage());
+        } catch (IOException e) {
+            LOGGER.error("Problem writing to closed connection:" + e.getMessage());
             disconnected = true;
-//            e.printStackTrace();
-//            throw new RuntimeException(e);
         }
 
     }

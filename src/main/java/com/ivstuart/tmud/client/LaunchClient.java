@@ -26,7 +26,7 @@ import java.net.Socket;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * Recommend putty or tintin++ however please please double check site and
+ * Recommend putty or tintin++ or mudlet , however please, please, double check site and
  * source of any download to ensure that there any binary files are trustworthy.
  * In the meantime this can be used as a safe local client, which does not
  * handle the ansi colour coding.
@@ -39,15 +39,13 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class LaunchClient implements Runnable {
 
     private static final Logger LOGGER = LogManager.getLogger();
-
+    private final BufferedReader bufferReader;
+    private final PrintWriter printWriter;
+    private final AtomicBoolean hasResponse;
     private volatile boolean isReadingFromCommandLine = true;
     private volatile boolean isRunningServerListener = true;
-    private BufferedReader bufferReader = null;
-    private PrintWriter pw = null;
-    private Socket socket = null;
+    private Socket socket;
     private String lastResponse;
-    private AtomicBoolean hasResponse;
-
     private Thread responseThread;
 
     public LaunchClient() throws IOException {
@@ -73,11 +71,11 @@ public class LaunchClient implements Runnable {
         bufferReader = new BufferedReader(new InputStreamReader(
                 socket.getInputStream()));
 
-        pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()),
+        printWriter = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()),
                 true);
     }
 
-    public static void main(String argv[]) throws IOException {
+    public static void main(String[] argv) throws IOException {
 
         LaunchClient client = new LaunchClient();
         client.start();
@@ -86,15 +84,14 @@ public class LaunchClient implements Runnable {
     }
 
 
-
     public boolean start() throws IOException {
         responseThread = new Thread(this);
         responseThread.start();
         return responseThread.isAlive();
     }
 
-    public String getLastResponseWithWait(){
-        while(!this.hasResponse()) {
+    public String getLastResponseWithWait() {
+        while (!this.hasResponse()) {
             try {
                 Thread.sleep(50);
             } catch (InterruptedException e) {
@@ -118,18 +115,18 @@ public class LaunchClient implements Runnable {
             try {
                 userInput = stdIn.readLine();
             } catch (IOException e) {
-                LOGGER.error("Problem reading line from stdin:"+e.getMessage());
+                LOGGER.error("Problem reading line from stdin:" + e.getMessage());
                 isReadingFromCommandLine = false;
             }
 
-            if (userInput == null){
+            if (userInput == null) {
                 LOGGER.debug("User input was null");
                 isReadingFromCommandLine = false;
             }
 
-            pw.println(userInput); // pushing input over to socket.
+            printWriter.println(userInput); // pushing input over to socket.
 
-            if (pw.checkError()) {
+            if (printWriter.checkError()) {
                 LOGGER.error("Problem with print writer");
                 isReadingFromCommandLine = false;
             }
@@ -144,7 +141,7 @@ public class LaunchClient implements Runnable {
     /**
      * Used by integration tests only
      *
-     * @param userInput
+     * @param userInput message to send to server
      */
     public void send(String userInput) {
 
@@ -158,9 +155,9 @@ public class LaunchClient implements Runnable {
         LOGGER.info("Sending: " + userInput);
 
         hasResponse.set(false);
-        pw.println(userInput); // pushing input over to socket.
+        printWriter.println(userInput); // pushing input over to socket.
 
-        if (pw.checkError()) {
+        if (printWriter.checkError()) {
             close();
         }
 
@@ -191,7 +188,7 @@ public class LaunchClient implements Runnable {
     public boolean isRunning() {
         boolean result = (isReadingFromCommandLine && isRunningServerListener);
 
-        LOGGER.info("Running is:"+isReadingFromCommandLine+":"+isRunningServerListener+">"+result);
+        LOGGER.info("Running is:" + isReadingFromCommandLine + ":" + isRunningServerListener + ">" + result);
 
         return result;
     }
@@ -216,8 +213,8 @@ public class LaunchClient implements Runnable {
                 LOGGER.error(e);
             }
         }
-        if (pw != null) {
-            pw.close();
+        if (printWriter != null) {
+            printWriter.close();
         }
 
         if (responseThread != null) {

@@ -172,7 +172,7 @@ public class CircleTest {
         player1Mob.getFight().getFightActions().getFirst().begin();
         player1Mob.getFight().getFightActions().getFirst().happen();
 
-        assertTrue("No circle queued", !player1Mob.getFight().getFightActions().isEmpty());
+        assertFalse("No circle queued", player1Mob.getFight().getFightActions().isEmpty());
 
         assertEquals("Sheep engaged to player1Mob now", player1Mob, sheepMob.getFight().getTarget());
 

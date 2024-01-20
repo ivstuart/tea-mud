@@ -35,7 +35,7 @@ public class Boards {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private static String fileName = "/boards/messages";
+    private static final String fileName = "/boards/messages";
 
     private static List<Note> notes;
 

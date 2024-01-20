@@ -26,45 +26,44 @@ import com.ivstuart.tmud.world.World;
 
 /**
  * @author stuarti
- * 
  */
 public class Reply extends BaseCommand {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see command.Command#execute(java.lang.String)
-	 */
-	@Override
-	public void execute(Mob mob, String input) {
+    /*
+     * (non-Javadoc)
+     *
+     * @see command.Command#execute(java.lang.String)
+     */
+    @Override
+    public void execute(Mob mob, String input) {
 
-		Mob lastToldByMob = mob.getLastToldBy();
+        Mob lastToldByMob = mob.getLastToldBy();
 
-		if (lastToldByMob == null) {
-			mob.out("No one has told you anything yet!");
-			return;
-		}
+        if (lastToldByMob == null) {
+            mob.out("No one has told you anything yet!");
+            return;
+        }
 
-		String name = lastToldByMob.getName();
+        String name = lastToldByMob.getName();
 
-		if (name == null) {
-			mob.out("No one has told you anything yet!");
-			return;
-		}
+        if (name == null) {
+            mob.out("No one has told you anything yet!");
+            return;
+        }
 
-		Mob playerMob = World.getMob(name.toLowerCase());
+        Mob playerMob = World.getMob(name.toLowerCase());
 
-		if (playerMob == null) {
-			mob.out("You can not reply to " + name + " they have left the mud world");
-			return;
-		}
+        if (playerMob == null) {
+            mob.out("You can not reply to " + name + " they have left the mud world");
+            return;
+        }
 
-		if (!playerMob.isPlayer()) {
-			mob.out("Talking with someone who is not a player!");
-		}
+        if (!playerMob.isPlayer()) {
+            mob.out("Talking with someone who is not a player!");
+        }
 
-		String message = "$D" + mob.getId() + " tells you -->" + input + "$J";
-		playerMob.out(message);
-	}
+        String message = "$D" + mob.getId() + " tells you -->" + input + "$J";
+        playerMob.out(message);
+    }
 
 }

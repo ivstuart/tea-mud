@@ -25,11 +25,11 @@ import org.apache.logging.log4j.Logger;
 
 public class Follow extends BaseBehaviour {
 
-    private static Logger LOGGER = LogManager.getLogger();
+    private final static Logger LOGGER = LogManager.getLogger();
 
 
     public Follow() {
-        parameter = 50; //aggro precentage
+        parameter = 50; //aggro percentage
     }
 
     @Override
@@ -46,7 +46,7 @@ public class Follow extends BaseBehaviour {
         }
 
         if (DiceRoll.ONE_D100.rollMoreThan(parameter)) {
-            LOGGER.debug(mob.getName()+" is does not feel like following");
+            LOGGER.debug(mob.getName() + " is does not feel like following");
             return false;
         }
 
@@ -63,8 +63,8 @@ public class Follow extends BaseBehaviour {
             LOGGER.debug(mob.getName() + " has no players to follow");
             return false;
         }
-        //new com.ivstuart.tmud.command.party.Follow().execute(mob,target.getName());
-        CommandProvider.getCommandByString("follow").execute(mob,target.getName());
+
+        CommandProvider.getCommandByString("follow").execute(mob, target.getName());
         return false;
 
     }

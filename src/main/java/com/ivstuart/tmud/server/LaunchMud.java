@@ -121,19 +121,9 @@ public class LaunchMud {
 
         mudServerProperties = new Properties();
 
-        Reader reader = null;
-
-        try {
-
-            reader = new FileReader("src/main/resources/config/mudserver.properties");
+        try (Reader reader = new FileReader("src/main/resources/config/mudserver.properties")) {
 
             mudServerProperties.load(reader);
-
-        } finally {
-
-            if (reader != null) {
-                reader.close();
-            }
 
         }
 

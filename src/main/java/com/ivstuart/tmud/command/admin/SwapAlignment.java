@@ -26,21 +26,19 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- *         <p>
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class SwapAlignment extends AdminCommand {
 
-    /**
-     * Instantely kill any mob
-     */
+
     @Override
     public void execute(Mob mob, String input) {
 
         super.execute(mob, input);
 
-        if (input.length() == 0) {
+        if (input.isEmpty()) {
             mob.getPlayer().getData().getAlignment().invert();
 
             mob.out("You feel your alignment flip over");

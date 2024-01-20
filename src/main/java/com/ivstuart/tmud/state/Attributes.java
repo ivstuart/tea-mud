@@ -22,11 +22,11 @@ public class Attributes implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Attribute _strength;
-    private Attribute _consitution;
-    private Attribute _intelligence;
-    private Attribute _dexterity;
-    private Attribute _wisdom;
+    private final Attribute _strength;
+    private final Attribute _consitution;
+    private final Attribute _intelligence;
+    private final Attribute _dexterity;
+    private final Attribute _wisdom;
 
     public Attributes(int[] values) {
         _strength = new Attribute("Strength", values[0]);

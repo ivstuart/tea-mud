@@ -30,42 +30,42 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class ListBank extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		Mob banker = mob.getRoom().getBanker();
+        Mob banker = mob.getRoom().getBanker();
 
-		if (banker == null) {
-			mob.out("There is no bank here to list items");
-			return;
-		}
+        if (banker == null) {
+            mob.out("There is no bank here to list items");
+            return;
+        }
 
-		// list
+        // list
 
-		mob.out("$H~$J");
+        mob.out("$H~$J");
 
-		int index = 1;
-		for (Item item : mob.getPlayer().getBank().getItems()) {
-			SomeMoney cost = item.getCost();
-			if (cost == null) {
-				cost = Money.NO_MONEY;
-			}
-			cost = new Money(Money.COPPER, (int) (1 + cost.getValue() * 0.05));
-			mob.out("["+index+"] "+item.getName()+ " at "+cost);
-			index++;
-		}
+        int index = 1;
+        for (Item item : mob.getPlayer().getBank().getItems()) {
+            SomeMoney cost = item.getCost();
+            if (cost == null) {
+                cost = Money.NO_MONEY;
+            }
+            cost = new Money(Money.COPPER, (int) (1 + cost.getValue() * 0.05));
+            mob.out("[" + index + "] " + item.getName() + " at " + cost);
+            index++;
+        }
 
 
         // mob.out("Funds: "+banker.getInventory().getPurseString());
         mob.out("Funds: " + mob.getPlayer().getBank().getPurseString());
         mob.out("$H~$J");
 
-	}
+    }
 
 }

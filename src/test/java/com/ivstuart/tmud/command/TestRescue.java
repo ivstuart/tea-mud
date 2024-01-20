@@ -33,100 +33,101 @@ import java.net.URISyntaxException;
 import static org.junit.Assert.*;
 
 public class TestRescue {
-	private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
 
-	@Before
-	public void setUp() {
+    @Before
+    public void setUp() {
 
-		try {
-			LaunchMud.loadMudServerProperties();
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+        try {
+            LaunchMud.loadMudServerProperties();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-	}
-	@Test
-	public void testRescueWhenNotFighting() {
+    }
 
-		Mob player1Mob = TestHelper.makeDefaultPlayerMob("player1");
-		Mob player2Mob = TestHelper.makeDefaultPlayerMob("player2");
+    @Test
+    public void testRescueWhenNotFighting() {
 
-		// Teach rescue to player 2
-		Ability rescueAbility = new Ability("rescue", 100);
-		player2Mob.getLearned().add(rescueAbility);
-		World.add(new BaseSkill("rescue"));
+        Mob player1Mob = TestHelper.makeDefaultPlayerMob("player1");
+        Mob player2Mob = TestHelper.makeDefaultPlayerMob("player2");
 
-		Race human = new Race();
-		World.getInstance().addToWorld(human);
+        // Teach rescue to player 2
+        Ability rescueAbility = new Ability("rescue", 100);
+        player2Mob.getLearned().add(rescueAbility);
+        World.add(new BaseSkill("rescue"));
+
+        Race human = new Race();
+        World.getInstance().addToWorld(human);
 
         // have test resource file to load in a mob sheep and mob player
         // test files.
-		Mob sheepMob = new Mob();
-		sheepMob.setNameAndId("sheep");
-		sheepMob.setAlias("sheep");
-		sheepMob.setHp("2d10+50");
+        Mob sheepMob = new Mob();
+        sheepMob.setNameAndId("sheep");
+        sheepMob.setAlias("sheep");
+        sheepMob.setHp("2d10+50");
 
-		Room whiteRoom = new Room();
+        Room whiteRoom = new Room();
 
-		whiteRoom.add(sheepMob);
-		whiteRoom.add(player1Mob);
-		whiteRoom.add(player2Mob);
+        whiteRoom.add(sheepMob);
+        whiteRoom.add(player1Mob);
+        whiteRoom.add(player2Mob);
 
-		Command kill = new Kill();
+        Command kill = new Kill();
 
-		assertEquals("Check sheep name", "sheep", sheepMob.getName());
-		assertNotNull("Check sheep exists in the room",
-				whiteRoom.getMob(sheepMob.getName()));
-		assertEquals("Check sheep is in the room", sheepMob,
-				whiteRoom.getMob(sheepMob.getName()));
+        assertEquals("Check sheep name", "sheep", sheepMob.getName());
+        assertNotNull("Check sheep exists in the room",
+                whiteRoom.getMob(sheepMob.getName()));
+        assertEquals("Check sheep is in the room", sheepMob,
+                whiteRoom.getMob(sheepMob.getName()));
 
-		World.getInstance(); // Starts time.
+        World.getInstance(); // Starts time.
 
-		kill.execute(player1Mob, sheepMob.getName());
-		kill.execute(sheepMob, player1Mob.getName());
+        kill.execute(player1Mob, sheepMob.getName());
+        kill.execute(sheepMob, player1Mob.getName());
 
-		// Check they are targeting each other.
-		assertEquals("sheep should target player1", player1Mob, sheepMob
-				.getFight().getTarget());
-		assertEquals("player 1 should target sheep", sheepMob, player1Mob
-				.getFight().getTarget());
+        // Check they are targeting each other.
+        assertEquals("sheep should target player1", player1Mob, sheepMob
+                .getFight().getTarget());
+        assertEquals("player 1 should target sheep", sheepMob, player1Mob
+                .getFight().getTarget());
 
-		sleepShortWhile();
+        sleepShortWhile();
 
-		assertTrue("sheep and player1 will be engaged in combat", sheepMob
-				.getFight().isEngaged(player1Mob));
+        assertTrue("sheep and player1 will be engaged in combat", sheepMob
+                .getFight().isEngaged(player1Mob));
 
-		// RESCUE
-		Command rescue = new Rescue();
-		rescue.execute(player2Mob, "player1");
+        // RESCUE
+        Command rescue = new Rescue();
+        rescue.execute(player2Mob, "player1");
 
-		sleepShortWhile();
+        sleepShortWhile();
 
-		// Check they are targeting each other, but player 2 now.
-		assertEquals("sheep should target player2", player2Mob.getName(),
-				sheepMob.getFight().getTarget().getName());
+        // Check they are targeting each other, but player 2 now.
+        assertEquals("sheep should target player2", player2Mob.getName(),
+                sheepMob.getFight().getTarget().getName());
 
-		assertEquals("player 2 should target sheep", sheepMob.getName(),
-				player2Mob.getFight().getTarget().getName());
+        assertEquals("player 2 should target sheep", sheepMob.getName(),
+                player2Mob.getFight().getTarget().getName());
 
-		assertTrue("sheep should target other player", sheepMob.getFight()
-				.isEngaged(player2Mob));
+        assertTrue("sheep should target other player", sheepMob.getFight()
+                .isEngaged(player2Mob));
 
-		// sleepShortWhile();
+        // sleepShortWhile();
 
-		assertFalse("player 1 is no longer engaged with the sheep", player1Mob
-				.getFight().isEngaged(sheepMob));
+        assertFalse("player 1 is no longer engaged with the sheep", player1Mob
+                .getFight().isEngaged(sheepMob));
 
-	}
+    }
 
-	public void sleepShortWhile() {
-		try {
-			Thread.sleep(400);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
+    public void sleepShortWhile() {
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

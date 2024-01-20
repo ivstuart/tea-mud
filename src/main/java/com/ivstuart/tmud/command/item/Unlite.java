@@ -30,45 +30,45 @@ import com.ivstuart.tmud.world.WorldTime;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Unlite extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob_, String input_) {
+    @Override
+    public void execute(Mob mob_, String input_) {
 
-		Item item = mob_.getInventory().get(input_);
+        Item item = mob_.getInventory().get(input_);
 
-		if (item == null) {
-			item = (Item) mob_.getEquipment().get(input_);
-		}
+        if (item == null) {
+            item = (Item) mob_.getEquipment().get(input_);
+        }
 
-		if (item == null) {
-			mob_.out("You are not carrying a " + input_ + " to unlite.");
-			return;
-		}
+        if (item == null) {
+            mob_.out("You are not carrying a " + input_ + " to extinguish.");
+            return;
+        }
 
-		if (item instanceof Torch) {
-			Torch torch = (Torch) item;
+        if (item instanceof Torch) {
+            Torch torch = (Torch) item;
 
-			if (torch.isLit() == false) {
-				mob_.out("That is not alight!");
-				return;
-			}
+            if (!torch.isLit()) {
+                mob_.out("That is not alight!");
+                return;
+            }
 
-			torch.setLit(false);
+            torch.setLit(false);
 
-			torch.setMsgable(null);
+            torch.setMsgable(null);
 
-			WorldTime.removeItem(torch);
+            WorldTime.removeItem(torch);
 
-			mob_.out("You unlight that ");
-		} else {
-			mob_.out("The " + item.getLook() + " is not unlitable.");
-		}
+            mob_.out("You extinguish that ");
+        } else {
+            mob_.out("The " + item.getLook() + " will not go out.");
+        }
 
-	}
+    }
 
 }

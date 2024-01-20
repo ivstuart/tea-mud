@@ -29,27 +29,27 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class PoisonSelf extends AdminCommand {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see command.Command#execute(java.lang.String)
-	 */
-	@Override
-	public void execute(Mob mob, String input) {
+    /*
+     * (non-Javadoc)
+     *
+     * @see command.Command#execute(java.lang.String)
+     */
+    @Override
+    public void execute(Mob mob, String input) {
 
-		super.execute(mob,input);
+        super.execute(mob, input);
 
-		Affect poisonAffect = new DamageOverTime(mob, "poison", 14,
-				DiceRoll.ONE_D_SIX);
+        Affect poisonAffect = new DamageOverTime(mob, "poison", 14,
+                DiceRoll.ONE_D_SIX);
 
-		mob.addAffect(poisonAffect);
+        mob.addAffect(poisonAffect);
 
-	}
+    }
 
 }

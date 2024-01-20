@@ -16,6 +16,9 @@
 
 package com.ivstuart.tmud.common;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public enum MobState {
 
     SLEEP("sleeping", 3, 3, 2),
@@ -29,36 +32,38 @@ public enum MobState {
     FLYING("being wide awake", 1, 1, 1, true),
     WAKE("being wide awake", 1, 1, 1, true); // remove this one??
 
+    private static final Logger LOGGER = LogManager.getLogger();
+
     private final String _desc;
-    private short _hpMod;
-    private short _mvMod;
-    private short _manaMod;
+    private final short _hpMod;
+    private final short _mvMod;
+    private final short _manaMod;
     private boolean canMove;
 
     MobState(String desc_, int hp_, int mv_, int mana_) {
-        _desc = desc_;
-        _hpMod = (short) hp_;
-        _mvMod = (short) mv_;
-        _manaMod = (short) mana_;
+        this._desc = desc_;
+        this._hpMod = (short) hp_;
+        this._mvMod = (short) mv_;
+        this._manaMod = (short) mana_;
         this.canMove = false;
     }
 
     MobState(String desc_, int hp_, int mv_, int mana_, boolean canMove) {
         this(desc_, hp_, mv_, mana_);
-        this.canMove = true;
+        this.canMove = canMove;
     }
 
     public static MobState getMobState(String state_) {
         try {
             return MobState.valueOf(state_);
         } catch (IllegalArgumentException e) {
-
+            LOGGER.error("Problem with getting mob state", e);
         }
         return null;
     }
 
-    public boolean canMove() {
-        return canMove;
+    public boolean stuck() {
+        return !canMove;
     }
 
     public boolean isSleeping() {

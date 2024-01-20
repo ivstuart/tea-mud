@@ -21,15 +21,15 @@ import java.io.Serializable;
 /**
  * Created by Ivan on 03/09/2016.
  */
-public class LiquardType implements Serializable {
+public class LiquidType implements Serializable {
 
-    public static final LiquardType WATER = new LiquardType(0, 0, 10, 100);
+    public static final LiquidType WATER = new LiquidType(0, 0, 10, 100);
     private int poison;
     private int alcohol;
     private int food;
     private int thirst;
 
-    public LiquardType(int poison, int alcohol, int food, int thirst) {
+    public LiquidType(int poison, int alcohol, int food, int thirst) {
         this.poison = poison;
         this.alcohol = alcohol;
         this.food = food;

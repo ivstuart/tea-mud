@@ -27,38 +27,38 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Ditch extends BaseCommand {
 
-	/**
-	 * 
-	 */
-	public Ditch() {
-		super();
-	}
+    /**
+     *
+     */
+    public Ditch() {
+        super();
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see command.Command#execute(java.lang.String)
-	 */
-	@Override
-	public void execute(Mob mob, String input) {
+    /*
+     * (non-Javadoc)
+     *
+     * @see command.Command#execute(java.lang.String)
+     */
+    @Override
+    public void execute(Mob mob, String input) {
 
-		Mob toDitch = mob.getRoom().getMobs().get(input);
+        Mob toDitch = mob.getRoom().getMobs().get(input);
 
-		if (!toDitch.isFollowing(mob)) {
-			mob.out("They are not following you so you can not ditch them");
-			return;
-		}
+        if (!toDitch.isFollowing(mob)) {
+            mob.out("They are not following you so you can not ditch them");
+            return;
+        }
 
-		toDitch.setFollowing(null);
+        toDitch.setFollowing(null);
 
-		mob.out("You stop "+toDitch.getName()+" from following you");
+        mob.out("You stop " + toDitch.getName() + " from following you");
 
-	}
+    }
 
 }

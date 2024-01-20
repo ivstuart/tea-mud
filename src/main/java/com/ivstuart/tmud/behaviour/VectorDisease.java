@@ -25,11 +25,11 @@ import org.apache.logging.log4j.Logger;
 
 public class VectorDisease extends BaseBehaviour {
 
-    private static Logger LOGGER = LogManager.getLogger();
+    private final static Logger LOGGER = LogManager.getLogger();
 
 
     public VectorDisease() {
-        parameter = 50; // precentage
+        parameter = 50; // percentage
     }
 
     @Override
@@ -77,6 +77,12 @@ public class VectorDisease extends BaseBehaviour {
     public void setParameter3(String parameter3) {
         this.parameter3 = parameter3;
         Disease disease = DiseaseFactory.createClass(parameter3);
+
+        if (disease == null) {
+            LOGGER.warn("Failed to set disease");
+            return;
+        }
+
         disease.setMob(mob);
         disease.setDecription(parameter3);
         mob.getMobAffects().add(disease.getId(), disease);

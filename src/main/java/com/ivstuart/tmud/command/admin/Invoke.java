@@ -34,7 +34,7 @@ public class Invoke extends AdminCommand {
     @Override
     public void execute(Mob mob, String input) {
 
-        if (input.length() == 0) {
+        if (input.isEmpty()) {
             mob.out("Format is: id: R-001-001 same as the resource files.");
             return;
         }

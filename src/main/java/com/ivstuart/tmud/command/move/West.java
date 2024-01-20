@@ -22,8 +22,8 @@ import com.ivstuart.tmud.state.Mob;
 
 public class West extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
-		CommandProvider.getCommand(Enter.class).execute(mob, "west");
-	}
+    @Override
+    public void execute(Mob mob, String input) {
+        CommandProvider.getCommand(Enter.class).execute(mob, "west");
+    }
 }

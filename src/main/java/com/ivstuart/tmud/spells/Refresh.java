@@ -22,15 +22,15 @@ import com.ivstuart.tmud.state.Spell;
 
 public class Refresh implements SpellEffect {
 
-	@Override
-	public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
+    @Override
+    public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
 
-		target_.getMv().increase(spell.getDamage().roll());
-		target_.out("You feel invigorated.");
-	}
+        target_.getMv().increase(spell.getDamage().roll());
+        target_.out("You feel invigorated.");
+    }
 
-	public boolean isPositiveEffect() {
-		return true;
-	}
+    public boolean isPositiveEffect() {
+        return true;
+    }
 
 }

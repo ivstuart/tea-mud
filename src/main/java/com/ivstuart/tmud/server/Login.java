@@ -48,17 +48,17 @@ import java.util.StringTokenizer;
 public class Login implements Readable {
 
     private static final Logger LOGGER = LogManager.getLogger();
-    private int att[] = new int[5];
+    private final int[] att = new int[5];
+    private final Connection myConnection;
     private int choice;
     private String email;
     private String gender;
     private Readable loginState;
-    private Connection myConnection;
     private String name;
     private String inputPassword;
 
     /**
-     * @param connection
+     * @param connection Login connection
      */
     public Login(Connection connection) {
         myConnection = connection;
@@ -214,7 +214,7 @@ public class Login implements Readable {
     }
 
     private int getNumber(String number) {
-        int aNumber = -1;
+        int aNumber;
 
         try {
             aNumber = Integer.parseInt(number);
@@ -261,11 +261,7 @@ public class Login implements Readable {
     }
 
     private boolean isUserCurrentlyPlaying(String name) {
-        if (World.getPlayers().contains(name.toLowerCase())) {
-            // World.kickout(name);
-            return true;
-        }
-        return false;
+        return World.getPlayers().contains(name.toLowerCase());
     }
 
     public String getSaveDirectory() {
@@ -274,7 +270,7 @@ public class Login implements Readable {
 
     private void loadCharacter() {
 
-        Player player = null;
+        Player player;
 
         try {
             player = (Player) MudIO.getInstance().load(getSaveDirectory(), name + ".sav");
@@ -286,7 +282,7 @@ public class Login implements Readable {
             return;
         }
 
-        LOGGER.info("Loaded player object succesfully");
+        LOGGER.info("Loaded player object successfully");
 
         // This is transient as not required by most mob objects only a player.
         player.getMob().setPlayer(player);
@@ -313,7 +309,7 @@ public class Login implements Readable {
 
         out("Logging in...");
 
-		/* Room object needs to be taken from world hash */
+        /* Room object needs to be taken from world hash */
 
         Mob character = player.getMob();
 
@@ -400,20 +396,19 @@ public class Login implements Readable {
                     + "Each basic stat must be between 4 and 21 inclusively\n"
                     + "The your stats total must NOT exceed 90 points!\n");
 
-            String attList = "";
+            StringBuilder attList = new StringBuilder();
 
             for (AttributeType at : AttributeType.values()) {
 
-                attList += "[" + at + "]";
+                attList.append("[").append(at).append("]");
             }
-            out(attList);
+            out(attList.toString());
         }
 
         @Override
         public void read(String line) {
 
-            String attributes = line;
-            StringTokenizer st = new StringTokenizer(attributes);
+            StringTokenizer st = new StringTokenizer(line);
 
             int total = 0;
             for (int index = 0; index < 5; index++) {

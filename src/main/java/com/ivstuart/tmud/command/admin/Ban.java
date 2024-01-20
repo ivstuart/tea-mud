@@ -35,16 +35,14 @@ import java.util.List;
 
 /**
  * @author stuarti
- *         <p>
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Ban extends AdminCommand {
     private static final Logger LOGGER = LogManager.getLogger();
+    private static final String fileName = "banned";
     private static List<String> bannedNames = null;
-
-
-    private static String fileName = "banned";
 
     public static boolean isBanned(String name) {
         return bannedNames.contains(name);
@@ -54,9 +52,9 @@ public class Ban extends AdminCommand {
         GsonIO io = new GsonIO();
 
         try {
-            bannedNames = (List) io.load(fileName, ArrayList.class);
+            bannedNames = (List<String>) io.load(fileName, ArrayList.class);
         } catch (IOException e) {
-            bannedNames = new ArrayList<String>();
+            bannedNames = new ArrayList<>();
             LOGGER.error("IO problem ", e);
         }
     }

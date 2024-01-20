@@ -29,46 +29,46 @@ import com.ivstuart.tmud.state.Waterskin;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Pour extends BaseCommand {
-	/**
-	 * Usage: pour <from container> <to container> pour <from container> out
-	 * 
-	 * If you want to pour some liquid from one container to another. Pouring
-	 * out simply empties the contents of the container onto the ground.
-	 */
-	@Override
-	public void execute(Mob mob_, String input_) {
+    /**
+     * Usage: pour <from container> <to container> pour <from container> out
+     * <p>
+     * If you want to pour some liquid from one container to another. Pouring
+     * out simply empties the contents of the container onto the ground.
+     */
+    @Override
+    public void execute(Mob mob_, String input_) {
 
-		Item item = mob_.getInventory().get(input_);
+        Item item = mob_.getInventory().get(input_);
 
-		if (item == null) {
-			item = (Item) mob_.getEquipment().get(input_);
-		}
+        if (item == null) {
+            item = (Item) mob_.getEquipment().get(input_);
+        }
 
-		if (item == null) {
-			mob_.out("You are not carrying a " + input_ + " to empty.");
-			return;
-		}
+        if (item == null) {
+            mob_.out("You are not carrying a " + input_ + " to empty.");
+            return;
+        }
 
-		if (item instanceof Waterskin) {
-			Waterskin waterskin = (Waterskin) item;
+        if (item instanceof Waterskin) {
+            Waterskin waterskin = (Waterskin) item;
 
-			if (waterskin.getDrafts() == 0) {
-				mob_.out("You empty this but it was already empty");
-				return;
-			}
+            if (waterskin.getDrafts() == 0) {
+                mob_.out("You empty this but it was already empty");
+                return;
+            }
 
-			mob_.out("You empty some liquard from " + waterskin);
+            mob_.out("You empty some liquid from " + waterskin);
 
-			waterskin.empty();
-		} else {
-			mob_.out("The " + item.getLook() + " is not emptyable.");
-		}
+            waterskin.empty();
+        } else {
+            mob_.out("The " + item.getLook() + " is not emptyable.");
+        }
 
-	}
+    }
 
 }

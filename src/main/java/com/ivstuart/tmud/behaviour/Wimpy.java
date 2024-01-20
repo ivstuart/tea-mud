@@ -24,7 +24,7 @@ import org.apache.logging.log4j.Logger;
 
 public class Wimpy extends BaseBehaviour {
 
-    private static Logger LOGGER = LogManager.getLogger();
+    private final static Logger LOGGER = LogManager.getLogger();
 
 
     public Wimpy() {
@@ -45,17 +45,17 @@ public class Wimpy extends BaseBehaviour {
         }
 
         if (DiceRoll.ONE_D100.rollMoreThan(parameter)) {
-            LOGGER.debug(mob.getName()+" is does not feel like being wimpy");
+            LOGGER.debug(mob.getName() + " is does not feel like being wimpy");
             return false;
         }
 
         // Absolute amount or percentage to use here. Coded as an absolute amount for now.
         if (parameter2 < mob.getHp().getValue()) {
-            LOGGER.debug(mob.getName()+" wimpy not reached yet");
+            LOGGER.debug(mob.getName() + " wimpy not reached yet");
             return false;
         }
 
-        CommandProvider.getCommand(Flee.class).execute(mob,null);
+        CommandProvider.getCommand(Flee.class).execute(mob, null);
 
         return false;
 

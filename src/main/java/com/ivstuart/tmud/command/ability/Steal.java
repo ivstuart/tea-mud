@@ -35,90 +35,90 @@ import static com.ivstuart.tmud.constants.SkillNames.STEAL;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Steal extends BaseCommand {
 
-	/*
-	 * 2ndary action?
-	 */
-	@Override
-	public void execute(Mob mob, String input) {
+    /*
+     * Secondary action?
+     */
+    @Override
+    public void execute(Mob mob, String input) {
 
-		if (!mob.getLearned().hasLearned("steal")) {
-			mob.out("You have no knowledge of steal");
-			return;
-		}
+        if (!mob.getLearned().hasLearned("steal")) {
+            mob.out("You have no knowledge of steal");
+            return;
+        }
 
-		Mob target = mob.getRoom().getMob(input);
+        Mob target = mob.getRoom().getMob(input);
 
-		if (target == null) {
-			mob.out(input + " is not here to steal from!");
-			return;
-		}
+        if (target == null) {
+            mob.out(input + " is not here to steal from!");
+            return;
+        }
 
-		if (target.isAware()) {
-			mob.out(input + " is too alert to steal from!");
-			return;
-		}
-		
-		// rule decision if fighting alignment impact this option
-		if (target.isPlayer() && (target.isGood() == mob.isGood())) {
-			mob.out(input + " is a player, hence no stealing");
-			return;
-		}
+        if (target.isAware()) {
+            mob.out(input + " is too alert to steal from!");
+            return;
+        }
+
+        // rule decision if fighting alignment impact this option
+        if (target.isPlayer() && (target.isGood() == mob.isGood())) {
+            mob.out(input + " is a player, hence no stealing");
+            return;
+        }
 
         Ability steal = mob.getLearned().getAbility(STEAL);
 
         if (steal == null || steal.isNull()) {
             mob.out("You have no knowledge of steal");
-			return;
-		}
+            return;
+        }
 
 
         if (steal.isSuccessful(mob)) {
             mob.out(new Msg(mob, ("<S-You/NAME> successfully pilfer something...")));
 
-			checkForStealingItems(mob, target);
+            checkForStealingItems(mob, target);
 
-			int amount = DiceRoll.ONE_D100.roll();
-			
-			int available = target.getInventory().getPurse().getValue();
-			
-			int taken = Math.min(amount, available);
-			
-			Money money = new Money(Money.COPPER,taken);
+            int amount = DiceRoll.ONE_D100.roll();
 
-			// make some mobs aware of this and respond accordingly.
-			target.getInventory().getPurse().remove(money);
-			mob.getInventory().add(money);
+            int available = target.getInventory().getPurse().getValue();
+
+            int taken = Math.min(amount, available);
+
+            Money money = new Money(Money.COPPER, taken);
+
+            // make some mobs aware of this and respond accordingly.
+            target.getInventory().getPurse().remove(money);
+            mob.getInventory().add(money);
 
         } else {
-			// Decide if this is all mobs all the time or not.
-			Fight.startCombat(mob, target);
-		}
+            // Decide if this is all mobs all the time or not.
+            Fight.startCombat(mob, target);
+        }
 
 
-	}
+    }
 
-	private boolean checkForStealingItems(Mob mob, Mob target) {
-		if (DiceRoll.ONE_D100.rollLessThanOrEqualTo(95)) {
-			return false;
-		}
+    private boolean checkForStealingItems(Mob mob, Mob target) {
+        if (DiceRoll.ONE_D100.rollLessThanOrEqualTo(95)) {
+            return false;
+        }
 
-		Item item = target.getInventory().getItems().removeRandom();
+        Item item = target.getInventory().getItems().removeRandom();
 
-		if (item == null) {
-			mob.out("They have no items to steal");
-			return false;
-		}
+        if (item == null) {
+            mob.out("They have no items to steal");
+            return false;
+        }
 
-		mob.getInventory().add(item);
-		mob.out("You steal a " + item.getBrief() + " from " + mob.getName());
+        mob.getInventory().add(item);
+        mob.out("You steal a " + item.getBrief() + " from " + mob.getName());
 
-		return true;
-	}
+        return true;
+    }
 
 }

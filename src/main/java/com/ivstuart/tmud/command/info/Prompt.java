@@ -34,109 +34,109 @@ import static com.ivstuart.tmud.constants.ManaType.*;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Prompt extends BaseCommand {
 
-	private static String getLifeStatus(Mob target) {
+    private static String getLifeStatus(Mob target) {
 
-		Attribute oppHp = target.getHp();
+        Attribute oppHp = target.getHp();
 
-		int index = oppHp.getValue() * (FightConstants.healthStatus.length - 1)
-				/ oppHp.getMaximum();
-		if (index < 0) {
-			index = 0;
-		}
-		if (index >= FightConstants.healthStatus.length) {
-			index = FightConstants.healthStatus.length - 1;
-		}
-		return FightConstants.healthStatus[index];
-	}
+        int index = oppHp.getValue() * (FightConstants.healthStatus.length - 1)
+                / oppHp.getMaximum();
+        if (index < 0) {
+            index = 0;
+        }
+        if (index >= FightConstants.healthStatus.length) {
+            index = FightConstants.healthStatus.length - 1;
+        }
+        return FightConstants.healthStatus[index];
+    }
 
-	public static String getPrompt(Mob mob) {
+    public static String getPrompt(Mob mob) {
 
-		if (!mob.isPlayer()) {
-			return "";
-		}
+        if (!mob.isPlayer()) {
+            return "";
+        }
 
-		StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
 
-		sb.append(mob.getMobStatus().getPrompt());
+        sb.append(mob.getMobStatus().getPrompt());
 
-		// (Casting)
-		// [+] Casting lagged
+        // (Casting)
+        // [+] Casting lagged
 
-		// (Groundfighting)
-		// [3] (Immobile)
+        // (Groundfighting)
+        // [3] (Immobile)
 
-		// [*] flurry lag
+        // [*] flurry lag
 
-		MobMana mana = mob.getMana();
+        MobMana mana = mob.getMana();
 
-		if (mana == null) {
-			mob.out("You have no magical power");
-			return "";
-		}
+        if (mana == null) {
+            mob.out("You have no magical power");
+            return "";
+        }
 
-		Attribute hp = mob.getHp();
-		Attribute mv = mob.getMv();
+        Attribute hp = mob.getHp();
+        Attribute mv = mob.getMv();
 
-		ManaAttribute fm = mana.get(FIRE);
-		ManaAttribute em = mana.get(EARTH);
-		ManaAttribute wm = mana.get(WATER);
-		ManaAttribute am = mana.get(AIR);
+        ManaAttribute fm = mana.get(FIRE);
+        ManaAttribute em = mana.get(EARTH);
+        ManaAttribute wm = mana.get(WATER);
+        ManaAttribute am = mana.get(AIR);
 
-		sb.append(GREEN + hp.getPrompt() + "Hp ");
-		sb.append(BLUE + mv.getPrompt() + "Mv ");
+        sb.append(GREEN).append(hp.getPrompt()).append("Hp ");
+        sb.append(BLUE).append(mv.getPrompt()).append("Mv ");
 
-		if (mob.isRiding()) {
-			sb.append(BLUE + mob.getMount().getMv().getPrompt() + "Mt ");
-		}
+        if (mob.isRiding()) {
+            sb.append(BLUE).append(mob.getMount().getMv().getPrompt()).append("Mt ");
+        }
 
-		sb.append(" $H<$I");
-	
-		sb.append(RED + fm.getPrompt() + "Fi ");
-		sb.append(BROWN + em.getPrompt() + "Ea ");
-		sb.append(BLUE + wm.getPrompt() + "Wa ");
-		sb.append(YELLOW + am.getPrompt() + "Ai ");
+        sb.append(" $H<$I");
 
-		sb.append("$H>$J");
+        sb.append(RED).append(fm.getPrompt()).append("Fi ");
+        sb.append(BROWN).append(em.getPrompt()).append("Ea ");
+        sb.append(BLUE).append(wm.getPrompt()).append("Wa ");
+        sb.append(YELLOW).append(am.getPrompt()).append("Ai ");
 
-		// Kgs:
-		sb.append("Kgs:0.0 ");
+        sb.append("$H>$J");
 
-		// ( xp )
-		sb.append("(");
+        // Kgs:
+        sb.append("Kgs:0.0 ");
 
-		sb.append(mob.getPlayer().getData().getToLevelXp());
+        // ( xp )
+        sb.append("(");
 
-		sb.append(")");
+        sb.append(mob.getPlayer().getData().getToLevelXp());
 
-		if (mob.getFight() != null) {
-			Mob target = mob.getFight().getTarget();
-			if (target != null) {
+        sb.append(")");
 
-				sb.append(" [Op: ");
-				sb.append(getLifeStatus(target));
+        if (mob.getFight() != null) {
+            Mob target = mob.getFight().getTarget();
+            if (target != null) {
+
+                sb.append(" [Op: ");
+                sb.append(getLifeStatus(target));
 
                 sb.append(target.getMobStatus().getPrompt());
-				sb.append("]");
-			}
-		}
+                sb.append("]");
+            }
+        }
 
-		return sb.toString();
+        return sb.toString();
 
-	}
+    }
 
     public static void show(Mob self) {
         self.out(Prompt.getPrompt(self));
     }
 
-	@Override
-	public void execute(Mob mob_, String input_) {
+    @Override
+    public void execute(Mob mob_, String input_) {
 
-		mob_.out(Prompt.getPrompt(mob_));
-	}
+        mob_.out(Prompt.getPrompt(mob_));
+    }
 }

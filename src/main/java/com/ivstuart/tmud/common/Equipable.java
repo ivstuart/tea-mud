@@ -19,6 +19,7 @@ package com.ivstuart.tmud.common;
 import com.ivstuart.tmud.state.Mob;
 
 import java.util.List;
+
 public interface Equipable extends Comparable {
 
     void equip(Mob mob);

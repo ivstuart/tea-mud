@@ -16,8 +16,10 @@
 
 package com.ivstuart.tmud.client;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Created by Ivan on 12/09/2016.
@@ -26,9 +28,9 @@ import java.util.List;
  */
 public class LaunchMultipleClients {
 
-    private static List<LaunchClient> clients;
+    private static final Logger LOGGER = LogManager.getLogger();
 
-    public static void main(String argv[]) throws IOException {
+    public static void main(String[] argv) throws IOException {
 
         LaunchClient client1 = launchClient();
         for (int index = 0; index < 100; index++) {
@@ -53,7 +55,7 @@ public class LaunchMultipleClients {
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            LOGGER.error("Problem sleeping:" + e);
         }
     }
 }

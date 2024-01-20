@@ -73,20 +73,20 @@ public class Sit extends BaseCommand {
     private boolean checkSitOn(Mob mob_, String input_) {
         String target = StringUtil.getLastWord(input_);
 
-        if (target != null && target.length() > 0) {
+        if (target != null && !target.isEmpty()) {
             Prop prop = mob_.getRoom().getProps().get(target);
 
             if (prop == null) {
-                mob_.out("There is no "+target+" to sit on here.");
+                mob_.out("There is no " + target + " to sit on here.");
                 return true;
             }
 
             if (!prop.isSittable()) {
-                mob_.out("You can not sit on a "+target);
+                mob_.out("You can not sit on a " + target);
                 return true;
             }
 
-            mob_.out("You sit on a "+prop.getBrief());
+            mob_.out("You sit on a " + prop.getBrief());
 
             mob_.setState(SIT_ON);
             return true;

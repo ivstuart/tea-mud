@@ -31,9 +31,9 @@ import com.ivstuart.tmud.utils.StringUtil;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Fill extends BaseCommand {
 
@@ -46,7 +46,7 @@ public class Fill extends BaseCommand {
      * @param input_
      */
     @Override
-	public void execute(Mob mob_, String input_) {
+    public void execute(Mob mob_, String input_) {
 
         String target = StringUtil.getLastWord(input_);
         // Check for fountain first of all
@@ -68,18 +68,18 @@ public class Fill extends BaseCommand {
         if (item == null) {
             mob_.out("You are not carrying a " + container + " to fill.");
             return;
-		}
+        }
 
-		if (item instanceof Waterskin) {
-			Waterskin waterskin = (Waterskin) item;
+        if (item instanceof Waterskin) {
+            Waterskin waterskin = (Waterskin) item;
 
             mob_.out("You fill a " + waterskin.getLook());
 
-			waterskin.fill();
-		} else {
-			mob_.out("The " + item.getLook() + " is not fillable.");
-		}
+            waterskin.fill();
+        } else {
+            mob_.out("The " + item.getLook() + " is not fillable.");
+        }
 
-	}
+    }
 
 }

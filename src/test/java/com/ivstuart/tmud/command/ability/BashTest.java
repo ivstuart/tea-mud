@@ -34,78 +34,79 @@ import static org.junit.Assert.*;
 
 public class BashTest {
 
-	private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
 
-	@Before
-	public void setUp() {
+    @Before
+    public void setUp() {
 
-		try {
-			LaunchMud.loadMudServerProperties();
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+        try {
+            LaunchMud.loadMudServerProperties();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-	}
-	@Test
-	public void testBashWhileFighting() {
+    }
 
-		Mob player1Mob = TestHelper.makeDefaultPlayerMob("player1");
+    @Test
+    public void testBashWhileFighting() {
 
-		Ability ability = new Ability("bash", 100);
-		player1Mob.getLearned().add(ability);
-		World.add(new BaseSkill("bash"));
+        Mob player1Mob = TestHelper.makeDefaultPlayerMob("player1");
 
-		Race human = new Race();
-		World.getInstance().addToWorld(human);
+        Ability ability = new Ability("bash", 100);
+        player1Mob.getLearned().add(ability);
+        World.add(new BaseSkill("bash"));
 
-		// have test resource file to load in a mob sheep and mob player
-		// test files.
-		Mob sheepMob = new Mob();
-		sheepMob.setNameAndId("sheep");
-		sheepMob.setAlias("sheep");
-		sheepMob.setHp("2d10+50");
+        Race human = new Race();
+        World.getInstance().addToWorld(human);
 
-		Room whiteRoom = new Room();
+        // have test resource file to load in a mob sheep and mob player
+        // test files.
+        Mob sheepMob = new Mob();
+        sheepMob.setNameAndId("sheep");
+        sheepMob.setAlias("sheep");
+        sheepMob.setHp("2d10+50");
 
-		whiteRoom.add(sheepMob);
-		whiteRoom.add(player1Mob);
+        Room whiteRoom = new Room();
 
-		Command kill = new Kill();
+        whiteRoom.add(sheepMob);
+        whiteRoom.add(player1Mob);
 
-		assertEquals("Check sheep name", "sheep", sheepMob.getName());
-		assertNotNull("Check sheep exists in the room",
-				whiteRoom.getMob(sheepMob.getName()));
-		assertEquals("Check sheep is in the room", sheepMob,
-				whiteRoom.getMob(sheepMob.getName()));
+        Command kill = new Kill();
 
-		World.getInstance(); // Starts time.
+        assertEquals("Check sheep name", "sheep", sheepMob.getName());
+        assertNotNull("Check sheep exists in the room",
+                whiteRoom.getMob(sheepMob.getName()));
+        assertEquals("Check sheep is in the room", sheepMob,
+                whiteRoom.getMob(sheepMob.getName()));
 
-		kill.execute(player1Mob, sheepMob.getName());
-		kill.execute(sheepMob, player1Mob.getName());
+        World.getInstance(); // Starts time.
 
-		// Check they are targeting each other.
-		assertEquals("sheep should target player1", player1Mob, sheepMob
-				.getFight().getTarget());
-		assertEquals("player 1 should target sheep", sheepMob, player1Mob
-				.getFight().getTarget());
+        kill.execute(player1Mob, sheepMob.getName());
+        kill.execute(sheepMob, player1Mob.getName());
 
-		player1Mob.getFight().getMelee().begin();
+        // Check they are targeting each other.
+        assertEquals("sheep should target player1", player1Mob, sheepMob
+                .getFight().getTarget());
+        assertEquals("player 1 should target sheep", sheepMob, player1Mob
+                .getFight().getTarget());
 
-		assertTrue("sheep and player1 will be engaged in combat", sheepMob
-				.getFight().isEngaged(player1Mob));
+        player1Mob.getFight().getMelee().begin();
+
+        assertTrue("sheep and player1 will be engaged in combat", sheepMob
+                .getFight().isEngaged(player1Mob));
 
         // Bash
         Command bash = new Bash();
-		bash.execute(player1Mob, sheepMob.getAlias());
+        bash.execute(player1Mob, sheepMob.getAlias());
 
-		player1Mob.getFight().getFightActions().getFirst().happen();
+        player1Mob.getFight().getFightActions().getFirst().happen();
 
-		assertEquals("sheep should be bashed", true, sheepMob.getMobStatus().isBashed());
+        assertTrue("sheep should be bashed", sheepMob.getMobStatus().isBashed());
 
 
-	}
+    }
 
 
 }

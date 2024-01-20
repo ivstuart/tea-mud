@@ -23,35 +23,35 @@ import com.ivstuart.tmud.state.Room;
 
 public class Run extends BaseCommand {
 
-	// Run w w w n n
+    // Run w w w n n
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		mob.setRunning(true);
+        mob.setRunning(true);
 
-		for (String direction : input.split(" ")) {
+        for (String direction : input.split(" ")) {
 
-			Room previousRoom = mob.getRoom();
-			Room currentRoom = null;
+            Room previousRoom = mob.getRoom();
+            Room currentRoom = null;
 
-			if (mob.getMv().deduct(10)) {
-				CommandProvider.getCommand(EnterNoLook.class).execute(mob,
-						direction);
+            if (mob.getMv().deduct(10)) {
+                CommandProvider.getCommand(EnterNoLook.class).execute(mob,
+                        direction);
 
-				currentRoom = mob.getRoom();
-			} else {
-				mob.out("You have run out of puff to run!");
-				break;
-			}
+                currentRoom = mob.getRoom();
+            } else {
+                mob.out("You have run out of puff to run!");
+                break;
+            }
 
-			if (previousRoom == currentRoom) {
-				break;
-			}
-		}
+            if (previousRoom == currentRoom) {
+                break;
+            }
+        }
 
-		mob.setRunning(false);
+        mob.setRunning(false);
 
-	}
+    }
 
 }

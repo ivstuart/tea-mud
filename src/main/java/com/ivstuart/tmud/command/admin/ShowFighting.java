@@ -21,27 +21,27 @@ import com.ivstuart.tmud.world.WorldTime;
 
 public class ShowFighting extends AdminCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
 
-		super.execute(mob,input);
+        super.execute(mob, input);
 
-		mob.out("Showing who is fighting:\n");
+        mob.out("Showing who is fighting:\n");
 
-		for (Mob fighter : WorldTime.getFighting()) {
-			mob.out(fighter.getName() + " is fighting in room "+fighter.getRoom().getId());
-		}
+        for (Mob fighter : WorldTime.getFighting()) {
+            mob.out(fighter.getName() + " is fighting in room " + fighter.getRoom().getId());
+        }
 
-        if (input != null && input.length() > 0) {
+        if (input != null && !input.isEmpty()) {
             Mob target = mob.getRoom().getMob(input);
 
-			if (target == null) {
-				mob.out(input + " is not here to get fighting stats on!");
-				return;
-			}
+            if (target == null) {
+                mob.out(input + " is not here to get fighting stats on!");
+                return;
+            }
 
-			mob.out("Fight = " + target.getFight());
-		}
-	}
+            mob.out("Fight = " + target.getFight());
+        }
+    }
 }

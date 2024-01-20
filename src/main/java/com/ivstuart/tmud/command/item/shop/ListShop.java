@@ -29,45 +29,45 @@ import com.ivstuart.tmud.state.ShopKeeper;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class ListShop extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
-		ShopKeeper shopKeeper = mob.getRoom().getShopKeeper();
+    @Override
+    public void execute(Mob mob, String input) {
+        ShopKeeper shopKeeper = mob.getRoom().getShopKeeper();
 
-		if (shopKeeper == null) {
-			mob.out("There is no shop here to buy and sell from");
-			return;
-		}
+        if (shopKeeper == null) {
+            mob.out("There is no shop here to buy and sell from");
+            return;
+        }
 
-		if (mob.isGood() && shopKeeper.isNoGood() ||
-				(!mob.isGood() && shopKeeper.isNoEvil())) {
-			mob.out("This shop will not sell to the likes of you");
-			return;
-		}
+        if (mob.isGood() && shopKeeper.isNoGood() ||
+                (!mob.isGood() && shopKeeper.isNoEvil())) {
+            mob.out("This shop will not sell to the likes of you");
+            return;
+        }
 
-		if (shopKeeper.isNoProfession(mob.getPlayer().getProfession())) {
-			mob.out("This shop will not sell to your profession");
-			return;
-		}
+        if (shopKeeper.isNoProfession(mob.getPlayer().getProfession())) {
+            mob.out("This shop will not sell to your profession");
+            return;
+        }
 
 
-		// list
+        // list
 
-		mob.out("$H~$J");
+        mob.out("$H~$J");
 
-		// Required to keep the order the same.
-		for (int index = 0; index < shopKeeper.getInventory().getItems().size(); index++) {
-			Item item = shopKeeper.getInventory().getItems().get(index);
-			mob.out("[" + (index + 1) + "] " + item.getName() + " at " + item.getCost());
-		}
+        // Required to keep the order the same.
+        for (int index = 0; index < shopKeeper.getInventory().getItems().size(); index++) {
+            Item item = shopKeeper.getInventory().getItems().get(index);
+            mob.out("[" + (index + 1) + "] " + item.getName() + " at " + item.getCost());
+        }
 
-		mob.out("$H~$J");
+        mob.out("$H~$J");
 
-	}
+    }
 
 }

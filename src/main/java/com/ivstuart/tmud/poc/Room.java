@@ -63,14 +63,13 @@ public class Room {
         Exit exit;
         if (direction == null) {
             exit = new Exit(facing, destination);
-        }
-         else {
+        } else {
             exit = new Exit(direction, destination);
         }
 
         if (hasDirection(exit.getName())) {
 
-            if (!Facing.isCustom(exit.getName())){
+            if (!Facing.isCustom(exit.getName())) {
                 LOGGER.debug("Has direction already");
                 return false;
             }
@@ -176,7 +175,7 @@ public class Room {
 
 
         this.addExit(direction, facing, false);
-       //  this.addExit(facing, false);
+        //  this.addExit(facing, false);
 
     }
 
@@ -186,23 +185,23 @@ public class Room {
         int dx = gridLocation.getX() - previousRoom.getGridLocation().getX();
         int dy = gridLocation.getY() - previousRoom.getGridLocation().getY();
 
-        boolean onway = !JModePanel.isOneWay();
+        boolean bidirectional = JModePanel.isBidirectional();
 
         if (dx < 0) {
-            previousRoom.addExit(0, onway);
+            previousRoom.addExit(0, bidirectional);
             return;
         }
         if (dx > 0) {
-            previousRoom.addExit(2, onway);
+            previousRoom.addExit(2, bidirectional);
             return;
         }
 
         if (dy < 0) {
-            previousRoom.addExit(1, onway);
+            previousRoom.addExit(1, bidirectional);
             return;
         }
         if (dy > 0) {
-            previousRoom.addExit(3, onway);
+            previousRoom.addExit(3, bidirectional);
         }
 
     }

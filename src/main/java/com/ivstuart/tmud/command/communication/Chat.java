@@ -31,29 +31,29 @@ import com.ivstuart.tmud.world.World;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Chat extends BaseCommand {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see command.Command#execute(java.lang.String)
-	 */
-	@Override
-	public void execute(Mob mob, String input) {
-		Channel c = ChannelHistory.getInstance().getChat();
+    /*
+     * (non-Javadoc)
+     *
+     * @see command.Command#execute(java.lang.String)
+     */
+    @Override
+    public void execute(Mob mob, String input) {
+        Channel c = ChannelHistory.getInstance().getChat();
 
-		if (input.length() > 0) {
+        if (!input.isEmpty()) {
 
-			c.add("$B(" + mob.getId() + ") " + input + "$J", mob.isGood());
-			World.out(input, mob.isGood(), ChannelData.CHAT);
-		} else {
-			mob.out("$H------------( Chat History  )------------$J");
-			mob.out(c.toString(mob.isGood()));
-		}
-	}
+            c.add("$B(" + mob.getId() + ") " + input + "$J", mob.isGood());
+            World.out(input, mob.isGood(), ChannelData.CHAT);
+        } else {
+            mob.out("$H------------( Chat History  )------------$J");
+            mob.out(c.toString(mob.isGood()));
+        }
+    }
 
 }

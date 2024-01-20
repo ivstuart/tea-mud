@@ -21,14 +21,14 @@ import com.ivstuart.tmud.world.WorldTime;
 
 public class Repopulate extends AdminCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		super.execute(mob,input);
+        super.execute(mob, input);
 
-		mob.out("Force repopulation of killed creatures.");
+        mob.out("Force repopulation of killed creatures.");
 
-		WorldTime.getInstance().repopulateMobs(true);
+        WorldTime.getInstance().repopulateMobs(true);
 
-	}
+    }
 }

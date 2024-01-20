@@ -50,7 +50,7 @@ public class SleepingTest {
     }
 
     @Test
-	public void testIfAwakeAndNotFightingThenSleep() {
+    public void testIfAwakeAndNotFightingThenSleep() {
         Race human = new Race();
         World.getInstance().addToWorld(human);
 

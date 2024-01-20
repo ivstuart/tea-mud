@@ -7,7 +7,6 @@
 package com.ivstuart.tmud.command;
 
 
-
 import com.ivstuart.tmud.server.Connection;
 import com.ivstuart.tmud.server.Readable;
 import org.apache.logging.log4j.LogManager;
@@ -15,61 +14,61 @@ import org.apache.logging.log4j.Logger;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class DummyConnection extends Connection {
 
-	private static final Logger LOGGER = LogManager.getLogger();
-	private String output;
+    private static final Logger LOGGER = LogManager.getLogger();
+    private String output;
 
 
-	/**
-	 *
-	 */
-	public DummyConnection() {
+    /**
+     *
+     */
+    public DummyConnection() {
 
-	}
+    }
 
-	public String getOutput() {
-		return output;
-	}
+    public String getOutput() {
+        return output;
+    }
 
-	@Override
-	public void disconnect() {
-		LOGGER.debug("disconnect");
-	}
+    @Override
+    public void disconnect() {
+        LOGGER.debug("disconnect");
+    }
 
-	@Override
-	public Readable getState() {
-		LOGGER.debug("get state");
-		return null;
-	}
+    @Override
+    public Readable getState() {
+        LOGGER.debug("get state");
+        return null;
+    }
 
-	@Override
-	public void setState(Readable readable) {
-		LOGGER.debug("set state");
-	}
+    @Override
+    public void setState(Readable readable) {
+        LOGGER.debug("set state");
+    }
 
-	/**
-	 * @return
-	 */
-	@Override
-	public boolean isConnected() {
-		return true;
-	}
+    /**
+     * @return
+     */
+    @Override
+    public boolean isConnected() {
+        return true;
+    }
 
-	@Override
-	public void out(String output) {
-		this.output = output;
-		LOGGER.debug("output [ " + output + " ]");
+    @Override
+    public void out(String output) {
+        this.output = output;
+        LOGGER.debug("output [ " + output + " ]");
 
-	}
+    }
 
-	@Override
-	public void process(String cmd) {
-		LOGGER.debug("command [ " + cmd + " ]");
-	}
+    @Override
+    public void process(String cmd) {
+        LOGGER.debug("command [ " + cmd + " ]");
+    }
 
 }

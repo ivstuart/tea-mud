@@ -23,44 +23,44 @@ import com.ivstuart.tmud.state.Mob;
 
 public class Assist extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		Mob target = null;
+        Mob target = null;
 
-        if (input == null || input.length() == 0) {
+        if (input == null || input.isEmpty()) {
             for (Mob aMob : mob.getPlayer().getGroup()) {
-				if (!aMob.getFight().isFighting()) {
-					continue;
-				}
-				if (aMob == mob) {
-					continue;
-				}
-				target = aMob;
-				break;
-			}
-		} else {
-			target = mob.getRoom().getMob(input);
-		}
+                if (!aMob.getFight().isFighting()) {
+                    continue;
+                }
+                if (aMob == mob) {
+                    continue;
+                }
+                target = aMob;
+                break;
+            }
+        } else {
+            target = mob.getRoom().getMob(input);
+        }
 
-		if (target == null) {
-			mob.out("No one here to assist!");
-			return;
-		}
+        if (target == null) {
+            mob.out("No one here to assist!");
+            return;
+        }
 
-		Mob targetTarget = target.getFight().getTarget();
+        Mob targetTarget = target.getFight().getTarget();
 
-		if (targetTarget == null) {
-			mob.out("Your colleague is not fighting anyone");
-			return;
-		}
+        if (targetTarget == null) {
+            mob.out("Your colleague is not fighting anyone");
+            return;
+        }
 
-		mob.getFight().changeTarget(targetTarget);
+        mob.getFight().changeTarget(targetTarget);
 
-		Fight.startCombat(mob, targetTarget);
+        Fight.startCombat(mob, targetTarget);
 
         mob.out(new Msg(mob, targetTarget, ("<S-You/NAME> assist " + target.getName() + " by attacking <T-NAME>")));
 
-	}
+    }
 
 }

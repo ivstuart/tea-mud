@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNull;
 
 /**
  * Created by Ivan on 30/08/2016.
@@ -68,6 +69,6 @@ public class ClearAffectsTest {
 
         clearAffects.execute(mob, null);
 
-        assertEquals("Has not blur", null, mob.getMobAffects().getAffect("blur"));
+        assertNull("Has not blur", mob.getMobAffects().getAffect("blur"));
     }
 }

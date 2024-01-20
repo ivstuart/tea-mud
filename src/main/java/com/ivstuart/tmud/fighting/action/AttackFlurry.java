@@ -27,40 +27,41 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class AttackFlurry extends BasicAttack {
 
-	/**
+    /**
      * Constructor
+     *
      * @param me
      * @param target
      */
     public AttackFlurry(Mob me, Mob target) {
-		super(me, target);
+        super(me, target);
 
-		out(new Msg(me, target,
-				"<S-You ready your/NAME readies GEN-him>self to attack <T-you/NAME>."));
+        out(new Msg(me, target,
+                "<S-You ready your/NAME readies GEN-him>self to attack <T-you/NAME>."));
 
-	}
+    }
 
 
-	@Override
-	public void happen() {
+    @Override
+    public void happen() {
 
-		if (!getSelf().getMv().deduct(25)) {
-			out("You do not have enough movement available to flurry");
-			this.finished();
-		}
+        if (!getSelf().getMv().deduct(25)) {
+            out("You do not have enough movement available to flurry");
+            this.finished();
+        }
 
         getSelf().out("You open out with a flurry of attacks doubling your chances to hit");
 
-		super.happen();
-		super.happen();
+        super.happen();
+        super.happen();
 
-	}
+    }
 
 
 }

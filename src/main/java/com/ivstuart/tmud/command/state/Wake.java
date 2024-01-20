@@ -30,49 +30,49 @@ import static com.ivstuart.tmud.common.MobState.*;
 
 public class Wake extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob_, String input_) {
+    @Override
+    public void execute(Mob mob_, String input_) {
 
-		if (input_.length() > 0) {
-			Mob mobToWake = mob_.getRoom().getMob(input_);
+        if (!input_.isEmpty()) {
+            Mob mobToWake = mob_.getRoom().getMob(input_);
 
-			if (mobToWake == null) {
-				mob_.out("Can not see " + input_ + " to wake");
-				return;
-			}
+            if (mobToWake == null) {
+                mob_.out("Can not see " + input_ + " to wake");
+                return;
+            }
 
-			if (mobToWake.getState() != SLEEP && mobToWake.getState() != SLEEP_ON) {
-				mob_.out(mob_.getName() + " is already awake!");
-				return;
-			}
+            if (mobToWake.getState() != SLEEP && mobToWake.getState() != SLEEP_ON) {
+                mob_.out(mob_.getName() + " is already awake!");
+                return;
+            }
 
-			mobToWake.setState(STAND);
-			mobToWake.out("You are woken by " + mob_.getName());
-			mob_.out("You wake " + mobToWake.getName());
-			return;
+            mobToWake.setState(STAND);
+            mobToWake.out("You are woken by " + mob_.getName());
+            mob_.out("You wake " + mobToWake.getName());
+            return;
 
-		}
+        }
 
-		// Check current state
-		if (mob_.getState() != SLEEP && mob_.getState() != SLEEP_ON) {
-			mob_.out("You are already awake!");
-			return;
-		}
+        // Check current state
+        if (mob_.getState() != SLEEP && mob_.getState() != SLEEP_ON) {
+            mob_.out("You are already awake!");
+            return;
+        }
 
-		// Check allowed to change state
-		SleepAffect sleepingSpell = (SleepAffect) mob_.getMobAffects().getAffect("sleep");
+        // Check allowed to change state
+        SleepAffect sleepingSpell = (SleepAffect) mob_.getMobAffects().getAffect("sleep");
 
-		if (sleepingSpell != null) {
-			mob_.out("You are under the effects of a sleep spell!");
-			return;
-		}
-		// Change state and notify mob and room
+        if (sleepingSpell != null) {
+            mob_.out("You are under the effects of a sleep spell!");
+            return;
+        }
+        // Change state and notify mob and room
 
-		mob_.out("You wake");
+        mob_.out("You wake");
 
-		mob_.setState(STAND);
+        mob_.setState(STAND);
 
-		// Note sleep to wake you will also stand
-	}
+        // Note sleep to wake you will also stand
+    }
 
 }

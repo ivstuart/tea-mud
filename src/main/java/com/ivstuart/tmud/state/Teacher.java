@@ -24,65 +24,65 @@ import java.util.List;
 @SuppressWarnings("serial")
 public class Teacher extends Prop {
 
-	private List<String> _abilities;
+    private final List<String> _abilities;
 
-	public Teacher() {
-		_abilities = new ArrayList<String>();
-	}
+    public Teacher() {
+        _abilities = new ArrayList<>();
+    }
 
-	public Teacher(Teacher teacher_) {
-		super(teacher_);
+    public Teacher(Teacher teacher_) {
+        super(teacher_);
 
-		_abilities = teacher_._abilities;
-	}
+        _abilities = teacher_._abilities;
+    }
 
-	public String displayAbilities() {
+    public String displayAbilities() {
 
-		StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
 
-		if (teachesEverything()) {
+        if (teachesEverything()) {
 
-			for (BaseSkill skill : World.getSkills().values()) {
+            for (BaseSkill skill : World.getSkills().values()) {
 
-				sb.append(skill.getId() + "\n");
+                sb.append(skill.getId() + "\n");
 
-			}
+            }
 
-			for (Spell spell : World.getSpells().values()) {
+            for (Spell spell : World.getSpells().values()) {
 
-				sb.append(spell.getId() + "\n");
+                sb.append(spell.getId() + "\n");
 
-			}
+            }
 
-			return sb.toString();
-		} else {
-			for (Object obj : _abilities) {
-				sb.append(obj.toString()).append("\n");
-			}
-		}
-		return sb.toString();
-	}
+            return sb.toString();
+        } else {
+            for (Object obj : _abilities) {
+                sb.append(obj.toString()).append("\n");
+            }
+        }
+        return sb.toString();
+    }
 
-	public String getAbility(String ability_) {
+    public String getAbility(String ability_) {
 
-		for (String ability : _abilities) {
-			if (ability.startsWith(ability_)) {
-				return ability;
-			}
-		}
-		return null;
-	}
+        for (String ability : _abilities) {
+            if (ability.startsWith(ability_)) {
+                return ability;
+            }
+        }
+        return null;
+    }
 
-	@Override
-	public boolean isTeacher() {
-		return true;
-	}
+    @Override
+    public boolean isTeacher() {
+        return true;
+    }
 
-	public void setAbility(String ability_) {
-		_abilities.add(ability_);
-	}
+    public void setAbility(String ability_) {
+        _abilities.add(ability_);
+    }
 
-	public boolean teachesEverything() {
-		return (_abilities.isEmpty());
-	}
+    public boolean teachesEverything() {
+        return (_abilities.isEmpty());
+    }
 }

@@ -50,7 +50,7 @@ public class EntityProvider {
         Mob newMob = null;
 
         Class clazz = existingMob.getClass();
-        Constructor constructor = null;
+        Constructor constructor;
         Object mobObject = null;
 
         try {
@@ -66,6 +66,7 @@ public class EntityProvider {
 
         if (newMob == null) {
             LOGGER.error("Mob object " + mobObject + " not an instance of a Mob");
+            return null;
         }
 
         // this newMob is a new instance of Mob from world with its own repop
@@ -74,7 +75,7 @@ public class EntityProvider {
 
 
         if (!(newMob instanceof ShopKeeper)) {
-            Item item = null;
+            Item item;
             // Remove items based on load percentage default 1% load chance
             for (Iterator<Item> itemIter = newMob.getInventory().getItems().iterator(); itemIter.hasNext(); ) {
                 item = itemIter.next();

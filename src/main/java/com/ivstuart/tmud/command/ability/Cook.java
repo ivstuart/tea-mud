@@ -30,9 +30,9 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- *         <p>
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Cook extends BaseCommand {
 
@@ -72,7 +72,7 @@ public class Cook extends BaseCommand {
         int weight = food.getWeight();
         food.setWeight((int) (weight * 0.9));
         int portions = food.getPortions();
-        food.setPortions(portions++);
+        food.setPortions(++portions);
         food.setCookable(false);
         food.setDisease(null);
 

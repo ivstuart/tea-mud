@@ -20,35 +20,35 @@ import java.util.List;
 
 public interface Msgable {
 
-	public Gender getGender();
+    Gender getGender();
 
-	public String getId();
+    String getId();
 
-	public String getName();
+    String getName();
 
-	public List<String> getSenseFlags();
+    List<String> getSenseFlags();
 
-	public boolean hasDetectHidden();
+    boolean hasDetectHidden();
 
-	public boolean hasDetectInvisible();
+    boolean hasDetectInvisible();
 
-	public boolean hasSeeInDark();
+    boolean hasSeeInDark();
 
-	public boolean isBlinded();
+    boolean isBlinded();
 
-	public boolean isHidden();
+    boolean isHidden();
 
-	public boolean isInDark();
+    boolean isInDark();
 
-	public boolean isInvisible();
+    boolean isInvisible();
 
-	public boolean isSleeping();
+    boolean isSleeping();
 
-	public void out(Msg message);
+    void out(Msg message);
 
-	public boolean isGood();
+    boolean isGood();
 
-	public String getRaceName();
+    String getRaceName();
 
     boolean isPlayer();
 }

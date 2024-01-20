@@ -26,7 +26,7 @@ import java.util.List;
 
 public class Scan extends BaseCommand {
 
-    private static final String DISTANCE[] = {
+    private static final String[] DISTANCE = {
             "is pretty close by",
             "is close by",
             "is not far off",
@@ -45,7 +45,7 @@ public class Scan extends BaseCommand {
 
         scanner.distance = DISTANCE.length;
 
-        if (!mob.getRoom().getSectorType().isInside() && World.getWeather().isBlocksScan()) {
+        if (mob.getRoom().getSectorType().isInside() && World.getWeather().isBlocksScan()) {
             scanner.distance = 1;
             mob.out("The weather is reducing visibility");
         }
@@ -54,8 +54,6 @@ public class Scan extends BaseCommand {
 
         scanner.scan(mob.getRoom().getExits());
 
-        scanner = null; // Probably would not have to do this.
-
     }
 
     private void out(String message) {
@@ -63,9 +61,10 @@ public class Scan extends BaseCommand {
     }
 
     private void scan(Exit exit, int distance) {
-        if (distance > distance || exit == null) {
+        if (distance > this.distance || exit == null || exit.getDestinationRoom() == null) {
             return;
         }
+
         showCharacters(exit.getDestinationRoom().getMobs(), distance, exit);
         scan(exit.getDestinationRoom().getExit(exit.getId()), ++distance);
     }

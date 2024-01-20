@@ -10,192 +10,192 @@ import java.text.ParseException;
 
 public class TestMsg extends TestCase {
 
-	private Mob source = null;
-	private Mob target = null;
-	private BasicThing item = null;
+    private Mob source = null;
+    private Mob target = null;
+    private BasicThing item = null;
 
-	@Override
-	public void setUp() {
+    @Override
+    public void setUp() {
 
-		source = new Mob();
+        source = new Mob();
 
-		source.setName("Ivan");
-		source.setGender(Gender.FEMALE);
+        source.setName("Ivan");
+        source.setGender(Gender.FEMALE);
 
-		target = new Mob();
+        target = new Mob();
 
-		target.setName("Rabbit");
-		target.setGender(Gender.MALE);
+        target.setName("Rabbit");
+        target.setGender(Gender.MALE);
 
-		item = new Item();
+        item = new Item();
 
-		item.setId("item");
+        item.setId("item");
 
-	}
+    }
 
-	@Test
-	public void testBadMessageEndTagMissing() {
+    @Test
+    public void testBadMessageEndTagMissing() {
 
-		String msg = "<S-your/GEN-his forceful attack";
+        String msg = "<S-your/GEN-his forceful attack";
 
-		Msg message = new Msg(source, target, msg);
+        Msg message = new Msg(source, target, msg);
 
-		try {
-			message.parse(target);
+        try {
+            message.parse(target);
 
-			fail();
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+            fail();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
-	}
+    }
 
-	@Test
-	public void testBadMessageUnknownTag() {
+    @Test
+    public void testBadMessageUnknownTag() {
 
-		String msg = "<Z-your/GEN-his> forceful attack";
+        String msg = "<Z-your/GEN-his> forceful attack";
 
-		Msg message = new Msg(source, target, msg);
+        Msg message = new Msg(source, target, msg);
 
-		try {
-			message.parse(target);
+        try {
+            message.parse(target);
 
-			fail();
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+            fail();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
-	}
+    }
 
-	@Test
-	public void testBadMissingGender() {
+    @Test
+    public void testBadMissingGender() {
 
-		String msg = "<S-your/GEN-> forceful attack";
+        String msg = "<S-your/GEN-> forceful attack";
 
-		Msg message = new Msg(source, target, msg);
+        Msg message = new Msg(source, target, msg);
 
-		try {
-			message.parse(target);
+        try {
+            message.parse(target);
 
-			fail();
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+            fail();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
-	}
+    }
 
-	@Test
-	public void testHimToHer() throws ParseException {
+    @Test
+    public void testHimToHer() throws ParseException {
 
-		Msg message = new Msg();
+        Msg message = new Msg();
 
-		assertEquals("Him to her", "her", message.maleToFemale("him"));
+        assertEquals("Him to her", "her", message.maleToFemale("him"));
 
-		assertEquals("Him to her", "she", message.maleToFemale("he"));
+        assertEquals("Him to her", "she", message.maleToFemale("he"));
 
-		assertEquals("Him to her", "herself", message.maleToFemale("himself"));
+        assertEquals("Him to her", "herself", message.maleToFemale("himself"));
 
-		assertEquals("Him to her", "herself", message.maleToFemale("hisself"));
+        assertEquals("Him to her", "herself", message.maleToFemale("hisself"));
 
-		assertEquals("Him to her", "her", message.maleToFemale("his"));
+        assertEquals("Him to her", "her", message.maleToFemale("his"));
 
-	}
+    }
 
-	@Test
-	public void testNameGenderItemDefinedOther() throws ParseException {
+    @Test
+    public void testNameGenderItemDefinedOther() throws ParseException {
 
-		String msg = "<S-You/NAME> injure<S-/s> <T-you/NAME> with <S-your/GEN-his> forceful <I-NAME> attack";
+        String msg = "<S-You/NAME> injure<S-/s> <T-you/NAME> with <S-your/GEN-his> forceful <I-NAME> attack";
 
-		item.setId("sword");
+        item.setId("sword");
 
-		Msg message = new Msg(source, target, item, msg);
+        Msg message = new Msg(source, target, item, msg);
 
-		assertEquals("Name replacement failed",
-				"Ivan injures Rabbit with her forceful sword attack",
-				message.toString(new Mob()));
+        assertEquals("Name replacement failed",
+                "Ivan injures Rabbit with her forceful sword attack",
+                message.toString(new Mob()));
 
-	}
+    }
 
-	@Test
-	public void testNameGenderItemOther() throws ParseException {
+    @Test
+    public void testNameGenderItemOther() throws ParseException {
 
-		String msg = "<S-You/NAME> injure<S-/s> <T-you/NAME> with <S-your/GEN-his> forceful <I-NAME> attack";
+        String msg = "<S-You/NAME> injure<S-/s> <T-you/NAME> with <S-your/GEN-his> forceful <I-NAME> attack";
 
-		Msg message = new Msg(source, target, null, msg);
+        Msg message = new Msg(source, target, null, msg);
 
-		assertEquals("Name replacement failed",
-				"Ivan injures Rabbit with her forceful attack",
-				message.toString(new Mob()));
+        assertEquals("Name replacement failed",
+                "Ivan injures Rabbit with her forceful attack",
+                message.toString(new Mob()));
 
-	}
+    }
 
-	@Test
-	public void testNameGenderItemSource() throws ParseException {
+    @Test
+    public void testNameGenderItemSource() throws ParseException {
 
-		String msg = "<S-You/NAME> injure<S-/s> <T-you/NAME> with <S-your/GEN-his> forceful <I-NAME> attack";
+        String msg = "<S-You/NAME> injure<S-/s> <T-you/NAME> with <S-your/GEN-his> forceful <I-NAME> attack";
 
-		Msg message = new Msg(source, target, null, msg);
+        Msg message = new Msg(source, target, null, msg);
 
-		assertEquals("Name replacement failed",
-				"You injure Rabbit with your forceful attack",
-				message.toString(source));
+        assertEquals("Name replacement failed",
+                "You injure Rabbit with your forceful attack",
+                message.toString(source));
 
-	}
+    }
 
-	@Test
-	public void testNameGenderItemTarget() throws ParseException {
+    @Test
+    public void testNameGenderItemTarget() throws ParseException {
 
-		String msg = "<S-You/NAME> injure<S-/s> <T-you/NAME> with <S-your/GEN-his> forceful <I-NAME> attack";
+        String msg = "<S-You/NAME> injure<S-/s> <T-you/NAME> with <S-your/GEN-his> forceful <I-NAME> attack";
 
-		Msg message = new Msg(source, target, null, msg);
+        Msg message = new Msg(source, target, null, msg);
 
-		assertEquals("Name replacement failed",
-				"Ivan injures you with her forceful attack",
-				message.toString(target));
+        assertEquals("Name replacement failed",
+                "Ivan injures you with her forceful attack",
+                message.toString(target));
 
-	}
+    }
 
-	@Test
-	public void testNoneReplacementTag() {
-		StringBuilder sb = new StringBuilder("<Suger>");
+    @Test
+    public void testNoneReplacementTag() {
+        StringBuilder sb = new StringBuilder("<Suger>");
 
-		Msg message = new Msg();
+        Msg message = new Msg();
 
-		assertFalse("Check is not replacement tag",
-				message.isReplacementTag(sb, 0));
-	}
+        assertFalse("Check is not replacement tag",
+                message.isReplacementTag(sb, 0));
+    }
 
-	@Test
-	public void testNoReplacements() throws ParseException {
+    @Test
+    public void testNoReplacements() throws ParseException {
 
-		String msg = "Z-your/GEN-his> forceful attack";
+        String msg = "Z-your/GEN-his> forceful attack";
 
-		Msg message = new Msg(source, target, msg);
+        Msg message = new Msg(source, target, msg);
 
-		assertEquals("No replacements", msg, message.toString(source));
+        assertEquals("No replacements", msg, message.toString(source));
 
-	}
+    }
 
-	@Test
-	public void testParseException() {
-		Msg message = new Msg();
+    @Test
+    public void testParseException() {
+        Msg message = new Msg();
 
-		try {
-			message.parse(null);
+        try {
+            message.parse(null);
 
-			fail();
-		} catch (ParseException e) {
+            fail();
+        } catch (ParseException e) {
 
-		}
-	}
+        }
+    }
 
-	@Test
-	public void testReplacementTag() {
-		StringBuilder sb = new StringBuilder("<S-");
+    @Test
+    public void testReplacementTag() {
+        StringBuilder sb = new StringBuilder("<S-");
 
-		Msg message = new Msg();
+        Msg message = new Msg();
 
-		assertTrue("Check is replacement tag", message.isReplacementTag(sb, 0));
-	}
+        assertTrue("Check is replacement tag", message.isReplacementTag(sb, 0));
+    }
 
 }

@@ -23,15 +23,15 @@ import com.ivstuart.tmud.state.Spell;
 
 public class Damage implements SpellEffect {
 
-	@Override
-	public void effect(Mob giver_, Mob reciever, Spell spell, Item targetItem) {
+    @Override
+    public void effect(Mob giver, Mob receiver, Spell spell, Item targetItem) {
 
 
-        DamageManager.deal(giver_, reciever, spell.getDamage().roll(), spell);
+        DamageManager.deal(giver, receiver, spell.getDamage().roll(), spell);
     }
 
-	public boolean isPositiveEffect() {
-		return false;
-	}
+    public boolean isPositiveEffect() {
+        return false;
+    }
 
 }

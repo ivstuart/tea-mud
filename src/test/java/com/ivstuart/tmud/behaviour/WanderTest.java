@@ -32,75 +32,74 @@ import static org.junit.Assert.assertTrue;
 
 public class WanderTest {
 
-	private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
 
-	@Before
-	public void setUp() {
+    @Before
+    public void setUp() {
 
-		try {
-			LaunchMud.loadMudServerProperties();
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+        try {
+            LaunchMud.loadMudServerProperties();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-	}
-	/**
+    }
+
+    /**
      *
      */
-	@Test
-	public void testMoveRandomly() {
+    @Test
+    public void testMoveRandomly() {
 
-		Mob mob = new Mob();
-		mob.setNameAndId("wanderingMob");
-		mob.setHp("500");
-		Wander wandering = new Wander();
+        Mob mob = new Mob();
+        mob.setNameAndId("wanderingMob");
+        mob.setHp("500");
+        Wander wandering = new Wander();
 
-		wandering.setMob(mob);
-		Room startRoom = TestHelper.makeRoomGrid();
-		mob.setRoom(startRoom);
-		startRoom.add(mob);
+        wandering.setMob(mob);
+        Room startRoom = TestHelper.makeRoomGrid();
+        mob.setRoom(startRoom);
+        startRoom.add(mob);
 
-		wandering.tick();
-		wandering.tick();
-		wandering.tick();
-		wandering.tick();
+        wandering.tick();
+        wandering.tick();
+        wandering.tick();
+        wandering.tick();
 
-		System.out.println("Rooms been to " + wandering.getRooms());
+        System.out.println("Rooms been to " + wandering.getRooms());
 
 
     }
 
-	/**
-     *
+    /**
      * [ ]-[ ]-[ ]-[ start pos ]-[ ]-[ ]
-	 * 
-	 * Confirm that the lost sheep can get at most 2 rooms away from start
-	 * position. Not a deterministic test just very likely to find any issue.
-	 * 
-	 */
-	@Test
-	public void testMoveWithinMaxDistanceOfStartPosition() {
-		Mob mob = new Mob();
-		mob.setNameAndId("wanderingMob");
-		mob.setHp("500");
+     * <p>
+     * Confirm that the lost sheep can get at most 2 rooms away from start
+     * position. Not a deterministic test just very likely to find any issue.
+     */
+    @Test
+    public void testMoveWithinMaxDistanceOfStartPosition() {
+        Mob mob = new Mob();
+        mob.setNameAndId("wanderingMob");
+        mob.setHp("500");
 
-		Wander wandering = new Wander();
+        Wander wandering = new Wander();
 
-		wandering.setMob(mob);
-		wandering.setParameter(100);
+        wandering.setMob(mob);
+        wandering.setParameter(100);
 
-		Room startRoom = TestHelper.makeRoomGrid();
-		mob.setRoom(startRoom);
-		startRoom.add(mob);
+        Room startRoom = TestHelper.makeRoomGrid();
+        mob.setRoom(startRoom);
+        startRoom.add(mob);
 
-		for (int i = 0; i < 100; i++) {
-			wandering.tick();
-		}
+        for (int i = 0; i < 100; i++) {
+            wandering.tick();
+        }
 
-		assertTrue("Rooms been to less than 3", wandering.getRooms().size() < 3);
+        assertTrue("Rooms been to less than 3", wandering.getRooms().size() < 3);
 
-	}
+    }
 
 }

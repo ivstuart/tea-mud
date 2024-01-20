@@ -20,24 +20,24 @@ import com.ivstuart.tmud.state.Mob;
 
 public class Level extends AdminCommand {
 
-	@Override
-	public void execute(Mob mob_, String input_) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		super.execute(mob_,input_);
-		
-		int numberOfLevels = 1;
+        super.execute(mob, input);
 
-		if (input_.length() > 0) {
-			numberOfLevels = Integer.parseInt(input_);
-		}
+        int numberOfLevels = 1;
 
-		while (numberOfLevels-- > 0) {
+        if (!input.isEmpty()) {
+            numberOfLevels = Integer.parseInt(input);
+        }
 
-			long xp = mob_.getPlayer().getData().getToLevelXp();
+        while (numberOfLevels-- > 0) {
 
-			mob_.getPlayer().getData().addXp(xp);
+            long xp = mob.getPlayer().getData().getToLevelXp();
 
-			mob_.getPlayer().checkIfLeveled();
-		}
-	}
+            mob.getPlayer().getData().addXp(xp);
+
+            mob.getPlayer().checkIfLeveled();
+        }
+    }
 }

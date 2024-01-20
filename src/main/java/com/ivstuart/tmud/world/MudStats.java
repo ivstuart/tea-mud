@@ -30,7 +30,7 @@ import java.io.Serializable;
 public class MudStats implements Serializable {
 
     private static final Logger LOGGER = LogManager.getLogger();
-    private static String fileName = "stats.sav";
+    private static final String fileName = "stats.sav";
     private transient int newPlayers;
     private transient int deletions;
     private transient int levelsGained;

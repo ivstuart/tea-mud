@@ -33,9 +33,9 @@ import com.ivstuart.tmud.world.World;
 
 /**
  * @author stuarti
- *         <p>
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Post extends BaseCommand {
 
@@ -61,7 +61,7 @@ public class Post extends BaseCommand {
             return;
         }
 
-        if (input.length() == 0) {
+        if (input.isEmpty()) {
             collectPost(mob);
             return;
         }

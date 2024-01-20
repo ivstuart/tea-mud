@@ -29,22 +29,22 @@ import com.ivstuart.tmud.world.World;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class HelpSpells extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
 
         for (Spell spell : World.getSpells().values()) {
 
-			mob.out(spell.getId());
+            mob.out(spell.getId());
 
-		}
+        }
 
-	}
+    }
 
 }

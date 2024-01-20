@@ -34,170 +34,167 @@ import static com.ivstuart.tmud.constants.DoorState.*;
 
 public class RoomManager {
 
-	private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
 
-	private static Map<String, String> directionMap = new HashMap<String, String>();
+    private static final Map<String, String> directionMap = new HashMap<>();
 
-	// Not thread safe but we only single thread loading of the world
-	private static Door lastCreatedDoor;
+    // Not thread safe, but we only single thread loading of the world
+    private static Door lastCreatedDoor;
 
-	private static List<DoorDAO> exitsWithDoors;
+    private static List<DoorDAO> exitsWithDoors;
 
-	static {
-		new RoomManager();
-	}
+    static {
+        new RoomManager();
+    }
 
-	public RoomManager() {
-		directionMap.put("north", "south");
-		directionMap.put("east", "west");
-		directionMap.put("south", "north");
-		directionMap.put("west", "east");
-		directionMap.put("up", "down");
-		directionMap.put("down", "up");
+    public RoomManager() {
+        // TODO move this to a enum with direction and reverse direction fields.
+        directionMap.put("north", "south");
+        directionMap.put("east", "west");
+        directionMap.put("south", "north");
+        directionMap.put("west", "east");
+        directionMap.put("up", "down");
+        directionMap.put("down", "up");
 
-		exitsWithDoors = new ArrayList<DoorDAO>();
-	}
+        exitsWithDoors = new ArrayList<>();
+    }
 
-	public static void createDoors(String roomId_, String exit_) {
+    public static void createDoors(String roomId_, String exit_) {
 
-		LOGGER.info("Creating door in room [ " + roomId_ + " ] for [ " + exit_
-				+ " ]");
+        LOGGER.info("Creating door in room [ " + roomId_ + " ] for [ " + exit_
+                + " ]");
 
-		DoorState state = OPEN;
+        DoorState state = OPEN;
 
-		if (exit_.indexOf("[") > -1) {
-			exit_ = exit_.substring(1, exit_.length() - 1);
-			state = CLOSED;
-		} else if (exit_.indexOf("{") > -1) {
-			exit_ = exit_.substring(1, exit_.length() - 1);
-			state = LOCKED;
-		}
+        if (exit_.contains("[")) {
+            exit_ = exit_.substring(1, exit_.length() - 1);
+            state = CLOSED;
+        } else if (exit_.contains("{")) {
+            exit_ = exit_.substring(1, exit_.length() - 1);
+            state = LOCKED;
+        }
 
-		Door aDoor = new Door();
+        Door aDoor = new Door();
 
-		aDoor.setLook("gate");
-		aDoor.setState(state);
+        aDoor.setLook("gate");
+        aDoor.setState(state);
 
-		lastCreatedDoor = aDoor;
+        lastCreatedDoor = aDoor;
 
-		DoorDAO doorDAO = new DoorDAO();
-		doorDAO.setDoor(aDoor);
-		doorDAO.setExit(exit_);
-		doorDAO.setRoom(roomId_);
+        DoorDAO doorDAO = new DoorDAO();
+        doorDAO.setDoor(aDoor);
+        doorDAO.setExit(exit_);
+        doorDAO.setRoom(roomId_);
 
-		exitsWithDoors.add(doorDAO);
+        exitsWithDoors.add(doorDAO);
 
-	}
+    }
 
-	/**
-	 * @param string
-	 */
-	public static void createExit(Room from, String direction, String toRoomId) {
-		createExit(from, direction, toRoomId, false);
 
-	}
+    public static void createExit(Room from, String direction, String toRoomId) {
+        createExit(from, direction, toRoomId, false);
 
-	/**
-	 * @param string
-	 */
-	public static void createExit(Room from, String direction, String toRoomId,
-			boolean isOneWay) {
+    }
 
-		Exit exitFromTo = new Exit(direction, toRoomId);
-		from.add(exitFromTo);
 
-		if (isOneWay) {
-			return;
-		}
+    public static void createExit(Room from, String direction, String toRoomId,
+                                  boolean isOneWay) {
 
-		Exit exitToFrom = new Exit(reverseDirection(direction), from.getId());
+        Exit exitFromTo = new Exit(direction, toRoomId);
+        from.add(exitFromTo);
 
-		Room room = World.getRoom(toRoomId);
+        if (isOneWay) {
+            return;
+        }
 
-		if (room != null ) {
-			room.add(exitToFrom);
-		}
+        Exit exitToFrom = new Exit(reverseDirection(direction), from.getId());
 
-	}
+        Room room = World.getRoom(toRoomId);
 
-	public static void createExits(Room tmpRoom, String exitStringList) {
+        if (room != null) {
+            room.add(exitToFrom);
+        }
 
-		for (String exit : exitStringList.split(" ")) {
+    }
 
-			String[] pair = exit.split("->");
+    public static void createExits(Room tmpRoom, String exitStringList) {
 
-			// Guard condition
-			if (pair.length < 2) {
-				continue;
-			}
+        for (String exit : exitStringList.split(" ")) {
 
-			createExit(tmpRoom, pair[0], pair[1], true);
-		}
-	}
+            String[] pair = exit.split("->");
 
-	public static void main(String arg[]) {
-		System.out.println("East becomes "
-				+ RoomManager.reverseDirection("east"));
-	}
+            // Guard condition
+            if (pair.length < 2) {
+                continue;
+            }
 
-	public static String reverseDirection(String direction) {
+            createExit(tmpRoom, pair[0], pair[1], true);
+        }
+    }
 
-		String reversed = directionMap.get(direction);
+    public static void main(String[] arg) {
+        System.out.println("East becomes "
+                + RoomManager.reverseDirection("east"));
+    }
 
-		// LOGGER.debug("direction " + direction + " becomes " + reversed);
+    public static String reverseDirection(String direction) {
 
-		return (reversed != null ? reversed : direction);
+        String reversed = directionMap.get(direction);
 
-	}
+        // LOGGER.debug("direction " + direction + " becomes " + reversed);
 
-	public static void setDoorKeys(String keys_) {
-		if (lastCreatedDoor == null) {
-			return;
-		}
+        return (reversed != null ? reversed : direction);
 
-		lastCreatedDoor.setKeyId(keys_);
-	}
+    }
 
-	public static void setDoorOnEndOfExit() {
+    public static void setDoorKeys(String keys_) {
+        if (lastCreatedDoor == null) {
+            return;
+        }
 
-		for (DoorDAO door : exitsWithDoors) {
+        lastCreatedDoor.setKeyId(keys_);
+    }
 
-			LOGGER.debug("Setting up [" + door + "]");
+    public static void setDoorOnEndOfExit() {
 
-			Room room = World.getRoom(door.getRoom());
+        for (DoorDAO door : exitsWithDoors) {
 
-			Exit exit = room.getExit(door.getExit());
+            LOGGER.debug("Setting up [" + door + "]");
 
-			exit.setDoor(door.getDoor());
+            Room room = World.getRoom(door.getRoom());
 
-			Exit opExit = exit.getDestinationRoom().getExit(
-					RoomManager.reverseDirection(door.getExit()));
+            Exit exit = room.getExit(door.getExit());
 
-			if (opExit != null) {
-				opExit.setDoor(exit.getDoor());
-			}
-		}
+            exit.setDoor(door.getDoor());
 
-		exitsWithDoors.clear();
-	}
+            Exit opExit = exit.getDestinationRoom().getExit(
+                    RoomManager.reverseDirection(door.getExit()));
 
-	public static void setDoorBashable(boolean flag) {
-		lastCreatedDoor.setBashable(flag);
-	}
+            if (opExit != null) {
+                opExit.setDoor(exit.getDoor());
+            }
+        }
 
-	public static void setDoorPickable(boolean flag) {
-		lastCreatedDoor.setPickable(flag);
-	}
+        exitsWithDoors.clear();
+    }
 
-	public static void setDoorUnspellable(boolean flag) {
-		lastCreatedDoor.setUnspellable(flag);
-	}
+    public static void setDoorBashable(boolean flag) {
+        lastCreatedDoor.setBashable(flag);
+    }
 
-	public static void setDoorStrength(int str) {
-		lastCreatedDoor.setStrength(str);
-	}
+    public static void setDoorPickable(boolean flag) {
+        lastCreatedDoor.setPickable(flag);
+    }
 
-	public static void setDoorDifficulty(int doorDifficulty) {
-		lastCreatedDoor.setDifficulty(doorDifficulty);
-	}
+    public static void setDoorUnspellable(boolean flag) {
+        lastCreatedDoor.setUnspellable(flag);
+    }
+
+    public static void setDoorStrength(int str) {
+        lastCreatedDoor.setStrength(str);
+    }
+
+    public static void setDoorDifficulty(int doorDifficulty) {
+        lastCreatedDoor.setDifficulty(doorDifficulty);
+    }
 }

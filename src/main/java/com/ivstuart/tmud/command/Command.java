@@ -27,23 +27,21 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public interface Command {
 
-	/**
-	 * 
-	 * @param mob
-	 * @param input
-	 *            calling code ensures that null is never passed in
-	 */
-	public void execute(Mob mob, String input);
+    /**
+     * @param mob
+     * @param input calling code ensures that null is never passed in
+     */
+    void execute(Mob mob, String input);
 
-	public MobState getMinimumPosition();
+    MobState getMinimumPosition();
 
-	public void setMinimumPosition(MobState state);
+    void setMinimumPosition(MobState state);
 
-	String getHelp();
+    String getHelp();
 }

@@ -34,56 +34,56 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- *         <p>
- *         A traveling merchant knees you in the solar plexus!!
- *         A traveling merchant looks dazed and confused from lack of oxygen!
- *         A traveling merchant claws at you, trying to get a better position.
- *         A traveling merchant tries to elbow you, but you keep squeezing his neck, and he
- *         can't manage to get his elbow to your face.
- *         <p>
- *         You bite into a traveling merchant's groin, ouch thats going to hurt!
- *         You gouge a traveling merchant's eyes!
- *         You apply an arm-bar to a traveling merchant.
- *         You apply a leg lock to a traveling merchant.
- *         You drive your knee into a traveling merchant's groin!
- *         You successfully put a air-choke on a traveling merchant!
- *         You drive your elbow into a traveling merchants solar plexus!!
- *         You strike into a traveling merchant's pressure point, numbing his leg.
- *         You continue strangling a traveling merchant!
- *         You start hyper-extending a traveling merchant limb!
- *         You hear a cracking noise as you hyper-extend a traveling merchant limb!
- *         You ram your forehead into a traveling merchant's face!
- *         You smash your elbow into the side of a traveling merchant's head!
- *         Blood runs everywhere as you rip a traveling merchant's neck with your teeth!
- *         <p>
- *         [ JOINTLOCK ]You WILL attempt wrist-bends and arm hyperextensions.
- *         [ CHOKE ]    You WILL attempt to choke your victim.
- *         [ BITE ]     You WILL attempt to bite your victim.
- *         [ ELBOW ]    You WILL use your elbows.
- *         [ KNEE ]     You WILL use your knees.
- *         [ HEADBUTT ] You WILL headbutt.
+ * <p>
+ * A traveling merchant knees you in the solar plexus!!
+ * A traveling merchant looks dazed and confused from lack of oxygen!
+ * A traveling merchant claws at you, trying to get a better position.
+ * A traveling merchant tries to elbow you, but you keep squeezing his neck, and he
+ * can't manage to get his elbow to your face.
+ * <p>
+ * You bite into a traveling merchant's groin, ouch thats going to hurt!
+ * You gouge a traveling merchant's eyes!
+ * You apply an arm-bar to a traveling merchant.
+ * You apply a leg lock to a traveling merchant.
+ * You drive your knee into a traveling merchant's groin!
+ * You successfully put an air-choke on a traveling merchant!
+ * You drive your elbow into a traveling merchants solar plexus!!
+ * You strike into a traveling merchant's pressure point, numbing his leg.
+ * You continue strangling a traveling merchant!
+ * You start hyper-extending a traveling merchant limb!
+ * You hear a cracking noise as you hyper-extend a traveling merchant limb!
+ * You ram your forehead into a traveling merchant's face!
+ * You smash your elbow into the side of a traveling merchant's head!
+ * Blood runs everywhere as you rip a traveling merchant's neck with your teeth!
+ * <p>
+ * [ JOINTLOCK ]You WILL attempt wrist-bends and arm hyperextensions.
+ * [ CHOKE ]    You WILL attempt to choke your victim.
+ * [ BITE ]     You WILL attempt to bite your victim.
+ * [ ELBOW ]    You WILL use your elbows.
+ * [ KNEE ]     You WILL use your knees.
+ * [ HEADBUTT ] You WILL headbutt.
  */
 public class GroundFighting extends FightAction {
 
     private final String[] DESCRIPTION_START = {
             "<S-You/NAME> start hyper-extending a <T-you/NAME> limb!",
             "<S-You/NAME> successfully put a air-choke on a <T-you/NAME>!",
-            "<S-You/NAME> bite into a <T-you/NAME> groin, ouch thats going to hurt!",
+            "<S-You/NAME> bite into a <T-you/NAME> groin, ouch that's going to hurt!",
             "A <T-you/NAME> tries to elbow you, but you keep squeezing his neck, and he can't manage to get his elbow to your face.",
             "<S-You/NAME> start to swing you legs ready to knee",
             "<S-You/NAME> pull your head back and line up your forehead",
-            "<S-You/NAME> bite into a <T-you/NAME> groin, ouch thats going to hurt!"};
+            "<S-You/NAME> bite into a <T-you/NAME> groin, ouch that's going to hurt!"};
     private final String[] DESCRIPTION_APPLY = {
             "<S-You/NAME> hear a cracking noise as you hyper-extend a <T-you/NAME> limb!",
             "A <T-you/NAME> looks dazed and confused from lack of oxygen!",
-            "<S-You/NAME> bite into a <T-you/NAME> groin, ouch thats going to hurt!",
+            "<S-You/NAME> bite into a <T-you/NAME> groin, ouch that's going to hurt!",
             "<S-You/NAME> drive your elbow into a <T-you/NAME> solar plexus!!",
             "<S-You/NAME> drive your knee into a <T-you/NAME> groin!",
             "<S-You/NAME> ram your forehead into a <T-you/NAME> face!",
             "Blood runs everywhere as you rip a <T-you/NAME> neck with your teeth!",
             "<S-You/NAME> gouge a <T-you/NAME> eyes!"};
     private final String[] DESCRIPTION_FAIL = {
-            "<S-You/NAME> fail to get into the right position for a jointlock",
+            "<S-You/NAME> fail to get into the right position for a joint lock",
             "<S-You/NAME> fail to get into the right position to apply a choke hold",
             "<S-You/NAME> fail to get into the right position to bite",
             "<S-You/NAME> fail to get into the right position to elbow",
@@ -113,12 +113,11 @@ public class GroundFighting extends FightAction {
             "coccyx",
             "back of knee",
             "achilles"};
+    private final int attackType;
+    private final boolean hasAChokeHold = false;
     private int position; // i.e. who is in a better position.
-    private int attackType = 0;
-    private boolean hasAChokeHold = false;
 
     /**
-     *
      * @param me_
      * @param target_
      */
@@ -195,7 +194,7 @@ public class GroundFighting extends FightAction {
         out(new Msg(getSelf(), getTarget(),
                 "<S-You are/NAME is> ground fighting <T-you/NAME>."));
 
-        if (getSelf().getRoom().getMobs().contains(getTarget()) == false) {
+        if (!getSelf().getRoom().getMobs().contains(getTarget())) {
             out(getTarget().getId() + " is no longer here to attack!");
             getSelf().getFight().stopFighting();
             finished();

@@ -26,11 +26,11 @@ public enum SectorType {
     MOUNTAIN(5),
     DESERT(5),
     WATER_SWIM(10),
-    WATER_NOSWIM(100),
+    WATER_NO_SWIM(100),
     UNDERWATER(2),
     FLYING(1);
 
-    private int moveModify;
+    private final int moveModify;
 
     SectorType(int moveModify) {
         this.moveModify = moveModify;

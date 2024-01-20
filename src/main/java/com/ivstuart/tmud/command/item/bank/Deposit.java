@@ -29,60 +29,60 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Deposit extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		Mob banker = mob.getRoom().getBanker();
+        Mob banker = mob.getRoom().getBanker();
 
-		if (banker == null) {
-			mob.out("There is no bank here to deposit into");
-			return;
-		}
+        if (banker == null) {
+            mob.out("There is no bank here to deposit into");
+            return;
+        }
 
-		if (checkCashDeposit(mob, banker, input)) {
-			return;
-		}
+        if (checkCashDeposit(mob, banker, input)) {
+            return;
+        }
 
-		Item item = mob.getInventory().get(input);
+        Item item = mob.getInventory().get(input);
 
-		if (item == null) {
-			mob.out("No item to deposit "+input);
-			return;
-		}
+        if (item == null) {
+            mob.out("No item to deposit " + input);
+            return;
+        }
 
-		if (item.isNoBank()) {
-			mob.out("The bank will not accept these items");
-			return;
-		}
+        if (item.isNoBank()) {
+            mob.out("The bank will not accept these items");
+            return;
+        }
 
-		mob.getInventory().remove(item);
+        mob.getInventory().remove(item);
 
-		mob.getPlayer().getBank().add(item);
+        mob.getPlayer().getBank().add(item);
 
-		mob.out("You deposit a "+item.getName());
-	}
+        mob.out("You deposit a " + item.getName());
+    }
 
-	private boolean checkCashDeposit(Mob mob, Mob banker, String input) {
+    private boolean checkCashDeposit(Mob mob, Mob banker, String input) {
 
-		SomeMoney cash = mob.getInventory().removeCoins(input);
+        SomeMoney cash = mob.getInventory().removeCoins(input);
 
-		if (cash == null) {
-			return false;
-		}
+        if (cash == null) {
+            return false;
+        }
 
-		mob.getPlayer().getBank().add(cash);
+        mob.getPlayer().getBank().add(cash);
 
-		// banker.getInventory().add(cash);
+        // banker.getInventory().add(cash);
 
-		mob.out("You deposit "+cash+" into the bank");
+        mob.out("You deposit " + cash + " into the bank");
 
-		return true;
-	}
+        return true;
+    }
 
 }

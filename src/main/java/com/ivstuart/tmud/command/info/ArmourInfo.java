@@ -30,38 +30,38 @@ import static com.ivstuart.tmud.constants.UsefulContants.armourString;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class ArmourInfo extends BaseCommand {
 
-	private String desc(int value_) {
-		int index = value_;
+    private String desc(int value_) {
+        int index = value_;
 
-		if (index > armourString.length - 1) {
-			index = armourString.length - 1;
-		}
-		return armourString[index];
-	}
+        if (index > armourString.length - 1) {
+            index = armourString.length - 1;
+        }
+        return armourString[index];
+    }
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		Armour armour = mob.getEquipment().getTotalArmour(); // .armourAt(HEAD);
+        Armour armour = mob.getEquipment().getTotalArmour(); // .armourAt(HEAD);
 
-		String data = "$K~$J";
-		data += "\n   O      <---   Head/Neck: " + desc(armour.getHead());
-		data += "\n /-|-\\    <---  Upper Body: " + desc(armour.getBody());
-		data += "\n | | |    <---   Arms/Body: " + desc(armour.getArms());
-		data += "\n ! | !    <--- Hands/Waist: " + desc(armour.getWaist());
-		data += "\n  / \\     <---        Legs: " + desc(armour.getLegs());
-		data += "\n_/   \\_   <--- Ankles/Feet: " + desc(armour.getFeet());
-		data += "\n$K~$J";
-		data += "\n               Overall ---> " + desc(armour.getAverage());
-		data += "\n$K~$J";
+        String data = "$K~$J";
+        data += "\n   O      <---   Head/Neck: " + desc(armour.getHead());
+        data += "\n /-|-\\    <---  Upper Body: " + desc(armour.getBody());
+        data += "\n | | |    <---   Arms/Body: " + desc(armour.getArms());
+        data += "\n ! | !    <--- Hands/Waist: " + desc(armour.getWaist());
+        data += "\n  / \\     <---        Legs: " + desc(armour.getLegs());
+        data += "\n_/   \\_   <--- Ankles/Feet: " + desc(armour.getFeet());
+        data += "\n$K~$J";
+        data += "\n               Overall ---> " + desc(armour.getAverage());
+        data += "\n$K~$J";
 
-		mob.out(data);
-	}
+        mob.out(data);
+    }
 
 }

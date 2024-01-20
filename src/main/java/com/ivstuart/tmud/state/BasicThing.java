@@ -28,201 +28,206 @@ import java.util.List;
 
 public class BasicThing implements Serializable, Cloneable, Msgable {
 
-	public static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
     private static final Logger LOGGER = LogManager.getLogger();
     private String id;
-	private String brief;
-	private String verbose;
-	private String look;
-	private String properties;
-	private boolean hidden;
-	private boolean invisible;
-	private boolean detectInvisible;
-	private boolean detectHidden;
-	public BasicThing() {
-		look = "";
-	}
+    private String brief;
+    private String verbose;
+    private String look;
+    private String properties;
+    private boolean hidden;
+    private boolean invisible;
+    private boolean detectInvisible;
+    private boolean detectHidden;
 
-	public BasicThing(BasicThing thing_) {
-		id = thing_.id;
-		brief = thing_.brief;
-		verbose = thing_.verbose;
-		look = thing_.look;
-		properties = thing_.properties;
-		detectInvisible = false;
-		detectHidden = false;
-	}
+    public BasicThing() {
+        look = "";
+    }
 
-	public String getProperties() {
-		return properties;
-	}
+    public BasicThing(BasicThing thing_) {
+        id = thing_.id;
+        brief = thing_.brief;
+        verbose = thing_.verbose;
+        look = thing_.look;
+        properties = thing_.properties;
+        hidden = thing_.hidden;
+        invisible = thing_.invisible;
+        detectInvisible = false;
+        detectHidden = false;
+    }
 
-	public void setProperties(String properties_) {
-		properties = properties_;
-	}
+    public String getProperties() {
+        return properties;
+    }
 
-	@Override
-	public String toString() {
-		return "BasicThing{" +
-				"id='" + id + '\'' +
-				", brief='" + brief + '\'' +
-				", verbose='" + verbose + '\'' +
-				", look='" + look + '\'' +
-				", properties='" + properties + '\'' +
-				", hidden=" + hidden +
-				", invisible=" + invisible +
-				", detectInvisible=" + detectInvisible +
-				", detectHidden=" + detectHidden +
-				'}';
-	}
+    public void setProperties(String properties_) {
+        properties = properties_;
+    }
 
-	@Override
-	public Object clone() {
-		BasicThing thing = null;
-		try {
-			thing = (BasicThing) super.clone();
-		} catch (CloneNotSupportedException e) {
+    @Override
+    public String toString() {
+        return "BasicThing{" +
+                "id='" + id + '\'' +
+                ", brief='" + brief + '\'' +
+                ", verbose='" + verbose + '\'' +
+                ", look='" + look + '\'' +
+                ", properties='" + properties + '\'' +
+                ", hidden=" + hidden +
+                ", invisible=" + invisible +
+                ", detectInvisible=" + detectInvisible +
+                ", detectHidden=" + detectHidden +
+                '}';
+    }
+
+    @Override
+    public Object clone() {
+        BasicThing thing = null;
+        try {
+            thing = (BasicThing) super.clone();
+        } catch (CloneNotSupportedException e) {
             LOGGER.error("Problem cloning object", e);
         }
-		return thing;
-	}
+        return thing;
+    }
 
-	public String getBrief() {
-		return brief;
-	}
+    public String getBrief() {
+        return brief;
+    }
 
-	public void setBrief(String brief) {
-		this.brief = brief;
-	}
+    public void setBrief(String brief) {
+        this.brief = brief;
+    }
 
-	@Override
-	public Gender getGender() {
-		return Gender.NEUTRAL;
-	}
+    @Override
+    public Gender getGender() {
+        return Gender.NEUTRAL;
+    }
 
-	@Override
-	public String getId() {
-		return id;
-	}
+    @Override
+    public String getId() {
+        return id;
+    }
 
-	public void setId(String id_) {
-		id = id_;
-	}
+    public void setId(String id_) {
+        id = id_;
+    }
 
-	public String getLook() {
-		return look;
-	}
+    public String getLook() {
+        return look;
+    }
 
-	public void setLook(String look_) {
-		if (look.length() > 0) {
-			look += "\n";
-		}
-		look += look_;
-	}
+    public void setLook(String look_) {
+        if (!look.isEmpty()) {
+            look += "\n";
+        }
+        look += look_;
+    }
 
-	@Override
-	public String getName() {
-		return id;
-	}
+    @Override
+    public String getName() {
+        return id;
+    }
 
-	@Override
-	public List<String> getSenseFlags() {
-		return Collections.emptyList();
-	}
+    @Override
+    public List<String> getSenseFlags() {
+        return Collections.emptyList();
+    }
 
-	public String getVerbose() {
-		return verbose;
-	}
+    public String getVerbose() {
+        return verbose;
+    }
 
-	@Override
-	public boolean hasDetectHidden() {
-		return false;
-	}
+    @Override
+    public boolean hasDetectHidden() {
+        return false;
+    }
 
-	@Override
-	public boolean hasDetectInvisible() {
-		return detectInvisible;
-	}
+    @Override
+    public boolean hasDetectInvisible() {
+        return detectInvisible;
+    }
 
-	public boolean hasProperty(String property_) {
-		if (properties == null) {
-			return false;
-		}
-		return (properties.indexOf(property_) > -1);
-	}
+    public boolean hasProperty(String property_) {
+        if (properties == null) {
+            return false;
+        }
+        return (properties.contains(property_));
+    }
 
-	@Override
-	public boolean hasSeeInDark() {
-		return false;
-	}
+    @Override
+    public boolean hasSeeInDark() {
+        return false;
+    }
 
-	@Override
-	public boolean isBlinded() {
-		return false;
-	}
+    @Override
+    public boolean isBlinded() {
+        return false;
+    }
 
-	@Override
-	public boolean isHidden() {
-		return hidden;
-	}
+    @Override
+    public boolean isHidden() {
+        return hidden;
+    }
 
-	public void setHidden(boolean hidden) {
-		this.hidden = hidden;
-	}
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
+    }
 
-	@Override
-	public boolean isInDark() {
-		return false;
-	}
+    @Override
+    public boolean isInDark() {
+        return false;
+    }
 
-	@Override
-	public boolean isInvisible() {
-		return invisible;
-	}
+    @Override
+    public boolean isInvisible() {
+        return invisible;
+    }
 
-	public void setInvisible(boolean flag) {
-		invisible = flag;
-	}
+    public void setInvisible(boolean flag) {
+        invisible = flag;
+    }
 
-	@Override
-	public boolean isSleeping() {
-		return false;
-	}
+    @Override
+    public boolean isSleeping() {
+        return false;
+    }
 
-	@Override
-	public void out(Msg message) {
+    @Override
+    public void out(Msg message) {
 
-	}
+    }
 
-	@Override
-	public boolean isGood() {
-		return true;
-	}
+    @Override
+    public boolean isGood() {
+        return true;
+    }
 
-	@Override
-	public String getRaceName() {
-		return null;
-	}
+    @Override
+    public String getRaceName() {
+        return null;
+    }
 
-	public void setDetectInvisible(boolean flag) { detectInvisible = flag;}
+    public void setDetectInvisible(boolean flag) {
+        detectInvisible = flag;
+    }
 
-	public void setClearLook(String look_) {
-		look = "";
-	}
+    public void setClearLook(String look_) {
+        look = "";
+    }
 
-	public void setLong(String verbose) {
-		this.verbose = verbose;
-	}
+    public void setLong(String verbose) {
+        this.verbose = verbose;
+    }
 
-	public void setLookClear(String look_) {
-		look = "";
-	}
+    public void setLookClear(String look_) {
+        look = "";
+    }
 
-	public void setShort(String brief) {
-		this.brief = brief;
-	}
+    public void setShort(String brief) {
+        this.brief = brief;
+    }
 
-	public boolean isPlayer() {
-		return false;
-	}
+    public boolean isPlayer() {
+        return false;
+    }
 }

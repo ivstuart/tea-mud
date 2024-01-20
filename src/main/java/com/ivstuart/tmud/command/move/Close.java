@@ -28,8 +28,8 @@ import com.ivstuart.tmud.state.*;
 
 public class Close extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
         Item item = mob.getRoom().getInventory().get(input);
 
@@ -40,32 +40,32 @@ public class Close extends BaseCommand {
 
         Exit exit = mob.getRoom().getExit(input);
 
-		if (exit == null) {
-			mob.out("No visiable exit in direction " + input);
-			return;
-		}
+        if (exit == null) {
+            mob.out("No visible exit in direction " + input);
+            return;
+        }
 
-		Door door = exit.getDoor();
+        Door door = exit.getDoor();
 
-		if (door == null) {
-			mob.out("No visiable door in direction " + input);
-			return;
-		}
+        if (door == null) {
+            mob.out("No visible door in direction " + input);
+            return;
+        }
 
-		if (door.getState() == DoorState.CLOSED) {
-			mob.out("Door is already closed!");
-			return;
-		}
+        if (door.getState() == DoorState.CLOSED) {
+            mob.out("Door is already closed!");
+            return;
+        }
 
-		if (door.getState() == DoorState.LOCKED) {
-			mob.out("Door is locked!");
-			return;
-		}
+        if (door.getState() == DoorState.LOCKED) {
+            mob.out("Door is locked!");
+            return;
+        }
 
-		door.setState(DoorState.CLOSED);
+        door.setState(DoorState.CLOSED);
 
-		mob.out("You close a door");
-	}
+        mob.out("You close a door");
+    }
 
     private void closeItem(Mob mob, Item item) {
 

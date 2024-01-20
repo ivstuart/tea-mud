@@ -30,9 +30,9 @@ import com.ivstuart.tmud.world.World;
 
 /**
  * @author stuarti
- *         <p>
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Bid extends BaseCommand {
 
@@ -56,11 +56,11 @@ public class Bid extends BaseCommand {
 
         if (ai == null) {
             mob.out("That person " + sellerName + " has no auctions running");
+            return;
         }
 
         if (ai.bid(mob, money)) {
             mob.out("You have the highest bid and are winning the auction");
-            return;
         } else {
             mob.out("You are currently being outbid");
         }

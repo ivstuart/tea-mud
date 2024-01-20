@@ -35,52 +35,49 @@ import java.util.concurrent.TimeUnit;
 
 public class World {
 
-	private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
+    private static final World INSTANCE = new World();
+    private static Map<String, Tickable> tickers;
+    private static Map<String, Zone> zones;
+    private static Map<String, Room> rooms;
+    private static Map<String, Mob> mobs;
+    private static Map<String, Item> items;
+    private static Map<String, Prop> props;
+    private static Map<String, BaseSkill> skills;
+    private static Map<String, Spell> spells;
+    private static Set<String> players; // Names in lowercase.
+    private static ScheduledExecutorService scheduledExecutorService;
 
-	private static Map<String, Tickable> tickers;
-	private static Map<String, Zone> zones;
-	private static Map<String, Room> rooms;
-	private static Map<String, Mob> mobs;
-	private static Map<String, Item> items;
-	private static Map<String, Prop> props;
-	private static Map<String, BaseSkill> skills;
-	private static Map<String, Spell> spells;
-	private static Set<String> players; // Names in lowercase.
-
-	private static World INSTANCE = new World();
-
-	private static ScheduledExecutorService scheduledExecutorService;
-
-	private static List<Race> races;
-	private static Map<String, AuctionItem> auction;
+    private static List<Race> races;
+    private static Map<String, AuctionItem> auction;
     private static WeatherSky weather;
-	private static MudStats mudStats;
+    private static MudStats mudStats;
 
-	private World() {
-		tickers = new HashMap<>();
-		zones = new HashMap<>();
-		rooms = new HashMap<>();
-		mobs = new HashMap<>();
-		items = new HashMap<>();
-		skills = new HashMap<>();
-		spells = new HashMap<>();
-		players = new HashSet<>();
-		props = new HashMap<>();
-		races = new ArrayList<>();
-		auction = new HashMap<>();
+    private World() {
+        tickers = new HashMap<>();
+        zones = new HashMap<>();
+        rooms = new HashMap<>();
+        mobs = new HashMap<>();
+        items = new HashMap<>();
+        skills = new HashMap<>();
+        spells = new HashMap<>();
+        players = new HashSet<>();
+        props = new HashMap<>();
+        races = new ArrayList<>();
+        auction = new HashMap<>();
 
         // Initialise banned list of player names if it exists.
         Ban.init();
         AddAdmin.init();
-		Boards.init();
+        Boards.init();
         PostalSystem.init();
         Clans.init();
 
-		mudStats = MudStats.init();
+        mudStats = MudStats.init();
 
-		if (mudStats == null) {
-			mudStats = new MudStats();
-		}
+        if (mudStats == null) {
+            mudStats = new MudStats();
+        }
 
         startTime();
 
@@ -95,156 +92,156 @@ public class World {
         World.weather = weather;
     }
 
-	public static void add(BaseSkill skill) {
-		LOGGER.info("Adding skill [ " + skill.getId() + "]");
-		skills.put(skill.getId(), skill);
-	}
+    public static void add(BaseSkill skill) {
+        LOGGER.info("Adding skill [ " + skill.getId() + "]");
+        skills.put(skill.getId(), skill);
+    }
 
-	public static void add(Item item) {
-		LOGGER.debug("Adding item [ " + item.getId() + "]");
-		items.put(item.getId(), item);
-	}
+    public static void add(Item item) {
+        LOGGER.debug("Adding item [ " + item.getId() + "]");
+        items.put(item.getId(), item);
+    }
 
-	public static void add(Mob mob_) {
-		LOGGER.info("Adding mob [ " + mob_.getId() + " ]");
+    public static void add(Mob mob_) {
+        LOGGER.info("Adding mob [ " + mob_.getId() + " ]");
 
-		mobs.put(mob_.getId(), mob_);
-	}
+        mobs.put(mob_.getId(), mob_);
+    }
 
-	public static void add(Prop prop) {
-		LOGGER.info("Adding prop [ " + prop.getId() + "]");
-		props.put(prop.getId(), prop);
-	}
+    public static void add(Prop prop) {
+        LOGGER.info("Adding prop [ " + prop.getId() + "]");
+        props.put(prop.getId(), prop);
+    }
 
-	public static void add(Room room) {
-		rooms.put(room.getId(), room);
-	}
+    public static void add(Room room) {
+        rooms.put(room.getId(), room);
+    }
 
-	public static void add(Spell spell) {
-		LOGGER.info("Adding spell [ " + spell.getId() + "]");
-		spells.put(spell.getId(), spell);
-	}
+    public static void add(Spell spell) {
+        LOGGER.info("Adding spell [ " + spell.getId() + "]");
+        spells.put(spell.getId(), spell);
+    }
 
-	public static void add(Zone zone) {
-		LOGGER.debug("Adding zone [ " + zone.getId() + "]");
-		zones.put(zone.getId(), zone);
-	}
+    public static void add(Zone zone) {
+        LOGGER.debug("Adding zone [ " + zone.getId() + "]");
+        zones.put(zone.getId(), zone);
+    }
 
-	public static void addPlayer(Mob character) throws MudException {
+    public static void addPlayer(Mob character) throws MudException {
 
-		LOGGER.info("Adding player [ " + character.getName() + " ]");
+        LOGGER.info("Adding player [ " + character.getName() + " ]");
 
-		// Guard
-		if (!character.isPlayer()) {
-			LOGGER.error("Mob is not a player!");
-			throw new MudException("Mob is not a player");
-		}
+        // Guard
+        if (!character.isPlayer()) {
+            LOGGER.error("Mob is not a player!");
+            throw new MudException("Mob is not a player");
+        }
 
-		players.add(character.getName().toLowerCase());
+        players.add(character.getName().toLowerCase());
 
-		mobs.put(character.getId().toLowerCase(), character);
+        mobs.put(character.getId().toLowerCase(), character);
 
-		WorldTime.addTickable(character);
+        WorldTime.addTickable(character);
 
-	}
+    }
 
-	public static void addTicker(Tickable ticker) {
-		LOGGER.info("Adding ticker [ " + ticker.getId() + "]");
-		tickers.put(ticker.getId(), ticker);
-	}
+    public static void addTicker(Tickable ticker) {
+        LOGGER.info("Adding ticker [ " + ticker.getId() + "]");
+        tickers.put(ticker.getId(), ticker);
+    }
 
-	public static Prop createProp(String id_) {
-		LOGGER.info("Creating prop with id [ " + id_ + "]");
+    public static Prop createProp(String id_) {
+        LOGGER.info("Creating prop with id [ " + id_ + "]");
 
-		return props.get(id_);
-	}
+        return props.get(id_);
+    }
 
-	public static BaseSkill getAbility(String name) {
-		BaseSkill skill = skills.get(name);
+    public static BaseSkill getAbility(String name) {
+        BaseSkill skill = skills.get(name);
 
-		if (skill != null) {
-			return skill;
-		}
+        if (skill != null) {
+            return skill;
+        }
 
-		return spells.get(name);
+        return spells.get(name);
 
-	}
+    }
 
-	public static Item getItem(String itemId) {
-		return items.get(itemId);
-	}
+    public static Item getItem(String itemId) {
+        return items.get(itemId);
+    }
 
-	public static Mob getMob(String name_) {
-		return mobs.get(name_);
-	}
+    public static Mob getMob(String name_) {
+        return mobs.get(name_);
+    }
 
-	public static Map<String, Mob> getMobs() {
-		return mobs;
-	}
+    public static Map<String, Mob> getMobs() {
+        return mobs;
+    }
 
-	public static Player getPlayer(String playerName) {
-		Mob playerMob = mobs.get(playerName);
+    public static Player getPlayer(String playerName) {
+        Mob playerMob = mobs.get(playerName);
 
-		if (playerMob != null) {
-			return playerMob.getPlayer();
-		}
+        if (playerMob != null) {
+            return playerMob.getPlayer();
+        }
 
-		return null;
-	}
+        return null;
+    }
 
-	public static Set<String> getPlayers() {
-		return players;
-	}
+    public static Set<String> getPlayers() {
+        return players;
+    }
 
-	public static Prop getProp(String id_) {
+    public static Prop getProp(String id_) {
 
-		return props.get(id_);
-	}
+        return props.get(id_);
+    }
 
-	public static Room getRoom(String id_) {
-		return rooms.get(id_);
-	}
+    public static Room getRoom(String id_) {
+        return rooms.get(id_);
+    }
 
-	public static BaseSkill getSkill(String name) {
-		return skills.get(name);
+    public static BaseSkill getSkill(String name) {
+        return skills.get(name);
 
-	}
+    }
 
-	public static Map<String, BaseSkill> getSkills() {
-		return skills;
-	}
+    public static Map<String, BaseSkill> getSkills() {
+        return skills;
+    }
 
-	public static Spell getSpell(String name) {
+    public static Spell getSpell(String name) {
 
-		return spells.get(name);
+        return spells.get(name);
 
-	}
+    }
 
-	public static Map<String, Spell> getSpells() {
-		return spells;
-	}
+    public static Map<String, Spell> getSpells() {
+        return spells;
+    }
 
-	public static boolean isOnline(String name_) {
-		return players.contains(name_);
-	}
+    public static boolean isOnline(String name_) {
+        return players.contains(name_);
+    }
 
-	public static void removePlayer(Player player) {
-		LOGGER.info("Removing player with id [" + player.getName() + "]");
+    public static void removePlayer(Player player) {
+        LOGGER.info("Removing player with id [" + player.getName() + "]");
 
-		players.remove(player.getName().toLowerCase());
+        players.remove(player.getName().toLowerCase());
 
-		tickers.remove(player.getMob());
+        tickers.remove(player.getName());
 
-		mobs.remove(player.getMob());
+        mobs.remove(player.getName());
 
-		WorldTime.removeTickables(player.getMob());
+        WorldTime.removeTickables(player.getMob());
 
 
-	}
+    }
 
-	public static Map<String,Room> getRooms() {
-		return rooms;
-	}
+    public static Map<String, Room> getRooms() {
+        return rooms;
+    }
 
     private static void add(Race race) {
         races.add(race);
@@ -293,166 +290,162 @@ public class World {
         }
     }
 
-	public static void registerAuction(Mob seller, AuctionItem auctionItem) {
-		auction.put(seller.getName(), auctionItem);
-	}
+    public static void registerAuction(Mob seller, AuctionItem auctionItem) {
+        auction.put(seller.getName(), auctionItem);
+    }
 
-	public static AuctionItem getAuction(String sellerName) {
-		return auction.get(sellerName);
-	}
+    public static AuctionItem getAuction(String sellerName) {
+        return auction.get(sellerName);
+    }
 
-	public static void shutdownAuctions() {
-		for (AuctionItem auctionItem : auction.values()) {
-			auctionItem.finishAuction();
-		}
-	}
+    public static void shutdownAuctions() {
+        for (AuctionItem auctionItem : auction.values()) {
+            auctionItem.finishAuction();
+        }
+    }
 
-	public static AuctionItem removeAuction(Mob seller) {
-		return auction.remove(seller.getName());
-	}
+    public static AuctionItem removeAuction(Mob seller) {
+        return auction.remove(seller.getName());
+    }
 
-	public static void out(String msg, boolean good, int channelData) {
-		for (String player : players) {
-			Mob aPlayer = mobs.get(player.toLowerCase());
-			if (aPlayer.isGood() == good) {
-				if (aPlayer.getPlayer().getConfig().getChannelData().is(channelData)) {
-					aPlayer.out(msg);
-				}
-			}
-		}
-	}
+    public static void out(String msg, boolean good, int channelData) {
+        for (String player : players) {
+            Mob aPlayer = mobs.get(player.toLowerCase());
+            if (aPlayer.isGood() == good) {
+                if (aPlayer.getPlayer().getConfig().getChannelData().is(channelData)) {
+                    aPlayer.out(msg);
+                }
+            }
+        }
+    }
 
-	public static Room getDonateRoom(Mob mob) {
-		if (mob.isGood()) {
-			return World.getRoom("Z0-:2:0:-1");
-		} else {
-			return World.getRoom("Z6-:2:0:-1");
-		}
-	}
+    public static Room getDonateRoom(Mob mob) {
+        if (mob.isGood()) {
+            return World.getRoom("Z0-:2:0:-1");
+        } else {
+            return World.getRoom("Z6-:2:0:-1");
+        }
+    }
 
-	public static Object remove(String input) {
-		Object object = null;
-		object = mobs.remove(input);
-		if (object != null) {
-			return object;
-		}
-		object = rooms.remove(input);
-		if (object != null) {
-			return object;
-		}
-		object = items.remove(input);
-		if (object != null) {
-			return object;
-		}
-		object = zones.remove(input);
-		if (object != null) {
-			return object;
-		}
-		object = props.remove(input);
-		if (object != null) {
-			return object;
-		}
-		object = spells.remove(input);
-		if (object != null) {
-			return object;
-		}
-		object = skills.remove(input);
-		if (object != null) {
-			return object;
-		}
-		return null;
-	}
+    public static Object remove(String input) {
+        Object object;
+        object = mobs.remove(input);
+        if (object != null) {
+            return object;
+        }
+        object = rooms.remove(input);
+        if (object != null) {
+            return object;
+        }
+        object = items.remove(input);
+        if (object != null) {
+            return object;
+        }
+        object = zones.remove(input);
+        if (object != null) {
+            return object;
+        }
+        object = props.remove(input);
+        if (object != null) {
+            return object;
+        }
+        object = spells.remove(input);
+        if (object != null) {
+            return object;
+        }
+        object = skills.remove(input);
+        return object;
+    }
 
     public static boolean isPlayer(String playerInput) {
         return true;
     }
 
-	public static MudStats getMudStats() {
-		return mudStats;
-	}
+    public static MudStats getMudStats() {
+        return mudStats;
+    }
 
-	public static List<Race> getRaces() {
-		return races;
-	}
+    public static List<Race> getRaces() {
+        return races;
+    }
 
-	public void addToWorld(Object object) {
+    public void addToWorld(Object object) {
 
-		if (object instanceof Room) {
-			World.add((Room) object);
-			return;
-		}
+        if (object instanceof Room) {
+            World.add((Room) object);
+            return;
+        }
 
-		if (object instanceof GuardMob) {
-			World.add((GuardMob) object);
-			return;
-		}
+        if (object instanceof GuardMob) {
+            World.add((GuardMob) object);
+            return;
+        }
 
-		if (object instanceof Mob) {
-			World.add((Mob) object);
-			return;
-		}
+        if (object instanceof Mob) {
+            World.add((Mob) object);
+            return;
+        }
 
-		if (object instanceof Item) {
-			World.add((Item) object);
-			return;
-		}
+        if (object instanceof Item) {
+            World.add((Item) object);
+            return;
+        }
 
-		if (object instanceof Zone) {
-			World.add((Zone) object);
-			return;
-		}
+        if (object instanceof Zone) {
+            World.add((Zone) object);
+            return;
+        }
 
-		if (object instanceof Spell) {
-			World.add((Spell) object);
-			return;
-		}
+        if (object instanceof Spell) {
+            World.add((Spell) object);
+            return;
+        }
 
-		if (object instanceof BaseSkill) {
-			World.add((BaseSkill) object);
-			return;
-		}
+        if (object instanceof BaseSkill) {
+            World.add((BaseSkill) object);
+            return;
+        }
 
-		if (object instanceof Prop) {
-			World.add((Prop) object);
-			return;
-		}
+        if (object instanceof Prop) {
+            World.add((Prop) object);
+            return;
+        }
 
-		if (object instanceof Race) {
-			World.add((Race) object);
-			return;
-		}
+        if (object instanceof Race) {
+            World.add((Race) object);
+            return;
+        }
 
-		if (object instanceof RoomBuilder) {
-			// This is fine.
-			return;
-		}
+        if (object instanceof RoomBuilder) {
+            // This is fine.
+            return;
+        }
 
         if (object != null) {
-			LOGGER.warn("Unknow object type ["+object.getClass().getSimpleName()+"]");
-		}
-		else {
-			LOGGER.warn("Object of null reference attempted to add to the world!");
-		}
+            LOGGER.warn("Unknow object type [" + object.getClass().getSimpleName() + "]");
+        } else {
+            LOGGER.warn("Object of null reference attempted to add to the world!");
+        }
 
-	}
+    }
 
-	private void startTime() {
+    private void startTime() {
 
-		scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
+        scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
 
-		ScheduledFuture<?> scheduledFuture = scheduledExecutorService.scheduleAtFixedRate(WorldTime.getInstance(),0,100, TimeUnit.MILLISECONDS);
+        ScheduledFuture<?> scheduledFuture = scheduledExecutorService.scheduleAtFixedRate(WorldTime.getInstance(), 0, 100, TimeUnit.MILLISECONDS);
 
-		LOGGER.info("WorldTime running [ "
-				+ (!scheduledFuture.isCancelled()) + " ]");
+        LOGGER.info("WorldTime running [ "
+                + (!scheduledFuture.isCancelled()) + " ]");
 
         scheduledExecutorService.scheduleAtFixedRate(new Weather(), 0, 30, TimeUnit.MINUTES);
     }
 
-	// Yes I know I am not using a map here. Loading in order
-	public Race getRace(int id) {
-		if (id == 0) {
-			id = 1;
-		} // Default to human when no race set.
-		return races.get(id - 1);
-	}
+    // Yes I know I am not using a map here. Loading in order
+    public Race getRace(int id) {
+        if (id == 0) {
+            id = 1;
+        } // Default to human when no race set.
+        return races.get(id - 1);
+    }
 }

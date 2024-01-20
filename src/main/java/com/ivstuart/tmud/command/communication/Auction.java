@@ -31,34 +31,34 @@ import com.ivstuart.tmud.world.World;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Auction extends BaseCommand {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see command.Command#execute(java.lang.String)
-	 */
-	@Override
-	public void execute(Mob mob, String input) {
+    /*
+     * (non-Javadoc)
+     *
+     * @see command.Command#execute(java.lang.String)
+     */
+    @Override
+    public void execute(Mob mob, String input) {
 
-		Channel c = ChannelHistory.getInstance().getAuction();
+        Channel c = ChannelHistory.getInstance().getAuction();
 
-		if (input.length() > 0) {
+        if (!input.isEmpty()) {
 
-			String msg = "$H(" + mob.getId() + ") " + input + "$J";
+            String msg = "$H(" + mob.getId() + ") " + input + "$J";
 
-			c.add(msg, mob.isGood());
+            c.add(msg, mob.isGood());
 
-			World.out(msg, mob.isGood(), ChannelData.AUCTION);
-		} else {
-			mob.out("$H------------( Auction History  )------------$J");
-			mob.out(c.toString(mob.isGood()));
-		}
+            World.out(msg, mob.isGood(), ChannelData.AUCTION);
+        } else {
+            mob.out("$H------------( Auction History  )------------$J");
+            mob.out(c.toString(mob.isGood()));
+        }
 
-	}
+    }
 
 }

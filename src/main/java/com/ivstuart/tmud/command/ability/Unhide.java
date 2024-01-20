@@ -27,21 +27,19 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- * 
  */
 public class Unhide extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		if (mob.isHidden()) {
-			mob.setHidden(false);
-			mob.out("You stop hiding.");
-		}
-		else {
-			mob.out("You were not hiding in the first place");
-		}
-		
-	}
+        if (mob.isHidden()) {
+            mob.setHidden(false);
+            mob.out("You stop hiding.");
+        } else {
+            mob.out("You were not hiding in the first place");
+        }
+
+    }
 
 }

@@ -18,7 +18,7 @@ public class MudClientServerTest {
     @Before
     public void setUp() throws Exception {
 
-        if ( mudServer == null) {
+        if (mudServer == null) {
             System.out.println("MudServer null so creating a new one");
             Thread thread = new Thread(new RunLaunchMud());
             thread.start();
@@ -59,28 +59,28 @@ public class MudClientServerTest {
         Assert.assertEquals("Check name server response prompt", "You can not create a player with that name it is already taken", mudClient.getLastResponseWithWait());
 
         /**
-        Assert.assertEquals("Check name server response prompt", "Gender? Male / Female / Neutral:", mudClient.getLastResponseWithWait());
+         Assert.assertEquals("Check name server response prompt", "Gender? Male / Female / Neutral:", mudClient.getLastResponseWithWait());
 
-        mudClient.send("Male");
+         mudClient.send("Male");
 
-        Assert.assertEquals("Check name server response prompt", "", mudClient.getLastResponseWithWait());
+         Assert.assertEquals("Check name server response prompt", "", mudClient.getLastResponseWithWait());
 
-        mudClient.send("emailaddress@fake.com");
+         mudClient.send("emailaddress@fake.com");
 
-        Assert.assertEquals("Check name server response prompt", "", mudClient.getLastResponseWithWait());
+         Assert.assertEquals("Check name server response prompt", "", mudClient.getLastResponseWithWait());
 
-        mudClient.send("1"); // Human
+         mudClient.send("1"); // Human
 
-        Assert.assertEquals("Check name server response prompt", "[STRENGTH][CONSTITUTION][INTELLIGENCE][DEXTERITY][WISDOM]", mudClient.getLastResponseWithWait());
+         Assert.assertEquals("Check name server response prompt", "[STRENGTH][CONSTITUTION][INTELLIGENCE][DEXTERITY][WISDOM]", mudClient.getLastResponseWithWait());
 
-        mudClient.send("18 18 18 18 18"); // Attributes
+         mudClient.send("18 18 18 18 18"); // Attributes
 
-        Assert.assertEquals("Check name server response prompt", "Created character. Check your email for login inputPassword", mudClient.getLastResponseWithWait());
+         Assert.assertEquals("Check name server response prompt", "Created character. Check your email for login inputPassword", mudClient.getLastResponseWithWait());
 
-        mudClient.send("foo");
+         mudClient.send("foo");
 
-        Thread.sleep(500);
-        mudClient.send("foo");
+         Thread.sleep(500);
+         mudClient.send("foo");
          */
     }
 
@@ -161,9 +161,9 @@ public class MudClientServerTest {
         Thread.sleep(60);
         mudClient.send("look");
 
-        boolean isRunning =  mudClient.isRunning();
+        boolean isRunning = mudClient.isRunning();
 
-        Assert.assertTrue("Check client has closed", !isRunning );
+        Assert.assertTrue("Check client has closed", !isRunning);
     }
 
     @Test

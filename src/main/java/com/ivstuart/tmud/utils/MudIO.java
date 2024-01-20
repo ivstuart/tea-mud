@@ -26,7 +26,12 @@ import com.ivstuart.tmud.server.LaunchMud;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
@@ -35,91 +40,90 @@ import java.util.zip.GZIPOutputStream;
  */
 public class MudIO {
 
-	private static final Logger LOGGER = LogManager.getLogger();
-	
-	private static final MudIO INSTANCE = new MudIO();
+    private static final Logger LOGGER = LogManager.getLogger();
 
-	public static MudIO getInstance() {
-		return INSTANCE;
-	}
+    private static final MudIO INSTANCE = new MudIO();
 
-	public Object load(String saveDirectory, String fileName) throws Exception {
-		FileInputStream aFileInputStream = new FileInputStream(
-				saveDirectory + fileName);
+    public static MudIO getInstance() {
+        return INSTANCE;
+    }
 
-		fileName = fileName.toLowerCase();
+    public Object load(String saveDirectory, String fileName) throws Exception {
+        FileInputStream aFileInputStream = new FileInputStream(
+                saveDirectory + fileName);
 
-		ObjectInputStream aObjectInputStream = new ObjectInputStream(
-				new GZIPInputStream(aFileInputStream));
+        fileName = fileName.toLowerCase();
 
-		Object loadedObject = aObjectInputStream.readObject();
+        ObjectInputStream aObjectInputStream = new ObjectInputStream(
+                new GZIPInputStream(aFileInputStream));
 
-		LOGGER.info("Loaded object from file:" + fileName);
+        Object loadedObject = aObjectInputStream.readObject();
 
-		aObjectInputStream.close();
+        LOGGER.info("Loaded object from file:" + fileName);
 
-		return loadedObject;
-	}
+        aObjectInputStream.close();
 
-	public Object load(String saveDirectory, String fileName, boolean gzip) throws Exception {
+        return loadedObject;
+    }
 
-		fileName = fileName.toLowerCase();
+    public Object load(String saveDirectory, String fileName, boolean gzip) throws Exception {
 
-		if (gzip) {
-			return load(saveDirectory, fileName);
-		}
+        fileName = fileName.toLowerCase();
 
-		FileInputStream aFileInputStream = new FileInputStream(
-				saveDirectory + fileName);
+        if (gzip) {
+            return load(saveDirectory, fileName);
+        }
 
-		ObjectInputStream aObjectInputStream = new ObjectInputStream(
-				aFileInputStream);
+        FileInputStream aFileInputStream = new FileInputStream(
+                saveDirectory + fileName);
 
-		Object loadedObject = aObjectInputStream.readObject();
+        ObjectInputStream aObjectInputStream = new ObjectInputStream(
+                aFileInputStream);
 
-		LOGGER.info("Loaded object from file:" + fileName);
+        Object loadedObject = aObjectInputStream.readObject();
 
-		aObjectInputStream.close();
+        LOGGER.info("Loaded object from file:" + fileName);
 
-		return loadedObject;
-	}
+        aObjectInputStream.close();
 
-	public void save(Object saveObject, String dir, String fileName) throws IOException {
+        return loadedObject;
+    }
 
-		fileName = fileName.toLowerCase();
+    public void save(Object saveObject, String dir, String fileName) throws IOException {
 
-		ObjectOutputStream out = new ObjectOutputStream(new GZIPOutputStream(
-				new FileOutputStream(dir + fileName)));
+        fileName = fileName.toLowerCase();
 
-		out.writeObject(saveObject);
+        ObjectOutputStream out = new ObjectOutputStream(new GZIPOutputStream(
+                Files.newOutputStream(Paths.get(dir + fileName))));
 
-		LOGGER.info("Saved object to file:" + fileName);
+        out.writeObject(saveObject);
 
-		out.close();
-	}
+        LOGGER.info("Saved object to file:" + fileName);
 
-	public void save(Object saveObject, String dir, String fileName, boolean gzip)
-			throws IOException {
+        out.close();
+    }
 
-		fileName = fileName.toLowerCase();
+    public void save(Object saveObject, String dir, String fileName, boolean gzip)
+            throws IOException {
 
-		if (gzip) {
-			save(saveObject, dir, fileName);
-			return;
-		}
+        fileName = fileName.toLowerCase();
 
-		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(
-				dir + fileName));
+        if (gzip) {
+            save(saveObject, dir, fileName);
+            return;
+        }
 
-		out.writeObject(saveObject);
+        ObjectOutputStream out = new ObjectOutputStream(Files.newOutputStream(Paths.get(dir + fileName)));
 
-		LOGGER.info("Saved object to file:" + fileName);
+        out.writeObject(saveObject);
 
-		out.close();
-	}
+        LOGGER.info("Saved object to file:" + fileName);
 
-	public String getSaveDirectory() {
-		return LaunchMud.mudServerProperties.getProperty("player.save.dir");
-	}
+        out.close();
+    }
+
+    public String getSaveDirectory() {
+        return LaunchMud.mudServerProperties.getProperty("player.save.dir");
+    }
 
 }

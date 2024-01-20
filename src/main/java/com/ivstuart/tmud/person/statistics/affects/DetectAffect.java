@@ -25,41 +25,41 @@ import static com.ivstuart.tmud.constants.SpellNames.DETECT_INVISIBLE;
 
 public class DetectAffect extends Affect {
 
-	private static final Logger LOGGER = LogManager.getLogger();
-	private final Spell spell;
+    private static final Logger LOGGER = LogManager.getLogger();
+    private final Spell spell;
 
-	public DetectAffect(Mob mob_, String desc_, int duration_) {
-		super(mob_, desc_, duration_);
-		this.spell = null;
-	}
+    public DetectAffect(Mob mob_, String desc_, int duration_) {
+        super(mob_, desc_, duration_);
+        this.spell = null;
+    }
 
-	public DetectAffect(Mob target_, Spell spell) {
-		super(target_,spell.getId(),spell.getDuration().roll());
-		this.spell = spell;
-	}
+    public DetectAffect(Mob target_, Spell spell) {
+        super(target_, spell.getId(), spell.getDuration().roll());
+        this.spell = spell;
+    }
 
-	@Override
-	public void applyEffect() {
-		_mob.out("You feel the affects of " + _desc);
+    @Override
+    public void applyEffect() {
+        _mob.out("You feel the affects of " + _desc);
 
-		// LOGGER.debug("Spell id :"+spell.getId());
+        // LOGGER.debug("Spell id :"+spell.getId());
 
-		if (spell.getId().equalsIgnoreCase(DETECT_INVISIBLE)) {
-			_mob.setDetectInvisible(true);
-		}
-	}
+        if (spell.getId().equalsIgnoreCase(DETECT_INVISIBLE)) {
+            _mob.setDetectInvisible(true);
+        }
+    }
 
-	@Override
-	public void removeEffect() {
-		_mob.out("The affects of " + _desc + " wear off");
+    @Override
+    public void removeEffect() {
+        _mob.out("The affects of " + _desc + " wear off");
 
-		if (spell.getId().equalsIgnoreCase(DETECT_INVISIBLE)) {
-			_mob.setDetectInvisible(false);
-		}
+        if (spell.getId().equalsIgnoreCase(DETECT_INVISIBLE)) {
+            _mob.setDetectInvisible(false);
+        }
 
-	}
+    }
 
-	public void setDuration(int duration) {
-		this._duration = duration;
-	}
+    public void setDuration(int duration) {
+        this._duration = duration;
+    }
 }

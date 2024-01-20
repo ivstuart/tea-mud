@@ -29,27 +29,27 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class AttributeInfo extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		mob.out(Info.BAR);
+        mob.out(Info.BAR);
 
-		Attributes att = mob.getPlayer().getAttributes();
+        Attributes att = mob.getPlayer().getAttributes();
 
-		mob.out(att.getSTR().getDescription());
-		mob.out(att.getCON().getDescription());
-		mob.out(att.getDEX().getDescription());
-		mob.out(att.getINT().getDescription());
-		mob.out(att.getWIS().getDescription());
+        mob.out(att.getSTR().getDescription());
+        mob.out(att.getCON().getDescription());
+        mob.out(att.getDEX().getDescription());
+        mob.out(att.getINT().getDescription());
+        mob.out(att.getWIS().getDescription());
 
-		mob.out(Info.BAR);
+        mob.out(Info.BAR);
 
-	}
+    }
 
 }

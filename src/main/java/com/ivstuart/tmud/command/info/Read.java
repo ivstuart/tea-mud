@@ -22,9 +22,9 @@ import com.ivstuart.tmud.state.Mob;
 
 public class Read extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		CommandProvider.getCommand(Look.class).execute(mob, input);
-	}
+        CommandProvider.getCommand(Look.class).execute(mob, input);
+    }
 }

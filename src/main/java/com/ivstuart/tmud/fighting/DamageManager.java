@@ -118,7 +118,7 @@ public class DamageManager {
         }
 
         // Half damage
-        damage = checkForSanctury(attacker, defender, damage, SANCTURY);
+        damage = checkForSanctury(attacker, defender, damage, SANCTUARY);
 
         // Stoneskin does not stack with spell stoneskin
         if (defender.getRace().isStoneskin()) {
@@ -136,7 +136,7 @@ public class DamageManager {
 
         // Take off armour at hit location
         //   if melee the armor at location
-        //      apply any armor peneration skills or specials to counter armour saves
+        //      apply any armor penetration skills or specials to counter armour saves
         //   if spell damage the average armour minus any special elemental saves
         int armour = checkArmourAtHitLocation(defender);
 
@@ -394,7 +394,7 @@ public class DamageManager {
     }
 
     private static void allocateWarpoints(Mob attacker, Mob defender) {
-        int level = 0;
+        int level;
         if (attacker.isGood() != defender.isGood()) {
             level = defender.getPlayer().getData().getLevel();
 
@@ -431,7 +431,7 @@ public class DamageManager {
         corpse.setWhenKilled(System.currentTimeMillis());
         corpse.setType("BUTCHERABLE"); // TODO
 
-        if (defender.getRoom().isNoDrop() == false) {
+        if (!defender.getRoom().isNoDrop()) {
             inveToCorpse(defender, corpse);
         } else {
             LOGGER.debug("No drop has been set for this room so eq will not be dropped to corpse");
@@ -528,7 +528,7 @@ public class DamageManager {
         if (!dodge.isNull() && dodge != Ability.NULL_ABILITY && dodge.isSuccessful(defender) && DiceRoll.ONE_D_SIX.rollMoreThan(4)) {
             defender.out(new Msg(defender, "<S-You/NAME> successfully dodge missing most of the attack."));
 
-            damage = (int) damage / 10;
+            damage = damage / 10;
         }
 
         return damage;
@@ -542,7 +542,7 @@ public class DamageManager {
         if (!parry.isNull() && parry.isSuccessful(defender) && DiceRoll.ONE_D_SIX.rollMoreThan(2)) {
             defender.out(new Msg(defender, "<S-You/NAME> successfully parry missing most of the attack."));
 
-            damage = (int) damage / 5;
+            damage = damage / 5;
         }
 
         return damage;

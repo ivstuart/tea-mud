@@ -44,6 +44,7 @@ public class Fight {
     private FightAction melee;
     private Mob lastMobAttackedMe;
     private List<Mob> targettedBy;
+
     /**
      *
      */
@@ -194,8 +195,8 @@ public class Fight {
         return !targettedBy.isEmpty();
     }
 
-    public boolean isEngaged(Mob combatent) {
-        return targettedBy.contains(combatent);
+    public boolean isEngaged(Mob combatant) {
+        return targettedBy.contains(combatant);
     }
 
     public boolean isFighting() {

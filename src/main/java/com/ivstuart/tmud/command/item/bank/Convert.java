@@ -30,9 +30,9 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- *         <p>
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Convert extends BaseCommand {
 
@@ -47,7 +47,6 @@ public class Convert extends BaseCommand {
         }
 
         if (checkCashDeposit(mob, banker, input)) {
-            return;
         }
 
 
@@ -63,7 +62,7 @@ public class Convert extends BaseCommand {
 
         int type = Money.getType(input);
 
-        MoneyBag moneyBag = new MoneyBag(cash.getValue(),type,true);
+        MoneyBag moneyBag = new MoneyBag(cash.getValue(), type, true);
 
         mob.getInventory().add(moneyBag);
 

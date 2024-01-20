@@ -33,84 +33,84 @@ import org.apache.logging.log4j.Logger;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Playing implements Readable {
 
-	private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
 
-	private Player player;
-	private Mob mob;
-	private String previousCommandLine;
+    private final Player player;
+    private final Mob mob;
+    private String previousCommandLine;
 
-	/**
-	 * 
-	 */
-	public Playing(Player player) {
-		this.player = player;
-		mob = player.getMob();
-	}
+    /**
+     *
+     */
+    public Playing(Player player) {
+        this.player = player;
+        mob = player.getMob();
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see server.Read#read(java.lang.String)
-	 */
-	@Override
-	public void read(String line) {
+    /*
+     * (non-Javadoc)
+     *
+     * @see server.Read#read(java.lang.String)
+     */
+    @Override
+    public void read(String line) {
 
-		if (line.equals("!")) {
-			line = previousCommandLine;
-		}
+        if (line.equals("!")) {
+            line = previousCommandLine;
+        }
 
-		line = player.applyAlias(line);
+        line = player.applyAlias(line);
 
-		LOGGER.debug("Line after alias is: "+line);
+        LOGGER.debug("Line after alias is: " + line);
 
-		if (player.getSnooper() != null) {
-			player.getSnooper().out("You snoop:"+line);
-		}
-		
-		String[] input = line.split(" ", 2);
-		String parameters = "";
+        if (player.getSnooper() != null) {
+            player.getSnooper().out("You snoop:" + line);
+        }
 
-		// This is required as some commands act on their input
-		if (input.length == 2) {
-			parameters = input[1];
-		}
-		
-		if (mob.getMobStatus().isFrozen()) {
-			mob.out("You can only quit while frozen");
-			if (!input[0].equals("quit")) {
-				return;
-			}
-		}
+        String[] input = line.split(" ", 2);
+        String parameters = "";
 
-		try {
-			Command command = CommandProvider.getCommandByString(input[0]);
+        // This is required as some commands act on their input
+        if (input.length == 2) {
+            parameters = input[1];
+        }
 
-			MobState minState = command.getMinimumPosition();
+        if (mob.getMobStatus().isFrozen()) {
+            mob.out("You can only quit while frozen");
+            if (!input[0].equals("quit")) {
+                return;
+            }
+        }
 
-			MobState currentState = mob.getState();
+        try {
+            Command command = CommandProvider.getCommandByString(input[0]);
 
-			if (minState != null && currentState.lessThan(minState)) {
-				mob.out("You need to be at least "+minState.toString().toLowerCase()+" in order to "+command.getClass().getSimpleName().toLowerCase());
-				return;
-			}
+            MobState minState = command.getMinimumPosition();
 
-			if (mob.getPlayer().getPossess() != null && !(command instanceof AdminCommand)) {
-				command.execute(mob.getPlayer().getPossess(), parameters);
-			} else {
-				command.execute(mob, parameters);
-			}
+            MobState currentState = mob.getState();
 
-		} catch (Exception e) {
-			LOGGER.error("Problem sourcing command for [ " + input[0] + " ]", e);
-			mob.out(e.getMessage());
-		}
+            if (minState != null && currentState.lessThan(minState)) {
+                mob.out("You need to be at least " + minState.toString().toLowerCase() + " in order to " + command.getClass().getSimpleName().toLowerCase());
+                return;
+            }
 
-		previousCommandLine = line;
-	}
+            if (mob.getPlayer().getPossess() != null && !(command instanceof AdminCommand)) {
+                command.execute(mob.getPlayer().getPossess(), parameters);
+            } else {
+                command.execute(mob, parameters);
+            }
+
+        } catch (Exception e) {
+            LOGGER.error("Problem sourcing command for [ " + input[0] + " ]", e);
+            mob.out(e.getMessage());
+        }
+
+        previousCommandLine = line;
+    }
 }

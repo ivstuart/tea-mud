@@ -4,13 +4,13 @@ import javax.swing.*;
 
 public class JModePanel extends JPanel {
 
-    private static JCheckBox editDoors ;
-    private static JCheckBox editRooms ;
-    private static JCheckBox editExits ;
+    private static JCheckBox editDoors;
+    private static JCheckBox editRooms;
+    private static JCheckBox editExits;
 
-    private static JCheckBox oneWay ;
-    private static JCheckBox open ;
-    private static JCheckBox path ;
+    private static JCheckBox oneWay;
+    private static JCheckBox open;
+    private static JCheckBox path;
 
     private static JTextField drawPlane;
 
@@ -18,7 +18,31 @@ public class JModePanel extends JPanel {
         return editDoors.isSelected();
     }
 
-    public void createInterface(){
+    public static boolean isEditRooms() {
+        return editRooms.isSelected();
+    }
+
+    public static boolean isEditExits() {
+        return editExits.isSelected();
+    }
+
+    public static boolean isBidirectional() {
+        return !oneWay.isSelected();
+    }
+
+    public static boolean isOpen() {
+        return open.isSelected();
+    }
+
+    public static boolean isPath() {
+        return path.isSelected();
+    }
+
+    public static int getValue() {
+        return Integer.parseInt(drawPlane.getText());
+    }
+
+    public void createInterface() {
         editDoors = new JCheckBox("Edit doors");
         editRooms = new JCheckBox("Edit rooms");
         editExits = new JCheckBox("Edit exits");
@@ -46,30 +70,5 @@ public class JModePanel extends JPanel {
 
     private void changedValue() {
         this.getRootPane().repaint();
-    }
-
-    public static boolean isEditRooms() {
-        return editRooms.isSelected();
-    }
-
-    public static boolean isEditExits() {
-        return editExits.isSelected();
-    }
-
-    public static boolean isOneWay() {
-        return oneWay.isSelected();
-    }
-
-
-    public static boolean isOpen() {
-        return open.isSelected();
-    }
-
-    public static boolean isPath() {
-        return path.isSelected();
-    }
-
-    public static int getValue() {
-        return Integer.valueOf(drawPlane.getText());
     }
 }

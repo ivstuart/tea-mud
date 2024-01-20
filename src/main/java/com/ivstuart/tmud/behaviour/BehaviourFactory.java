@@ -30,8 +30,8 @@ public class BehaviourFactory {
     public static BaseBehaviour create(String behaviour) {
 
         String className = behaviour;
-        if (behaviour.indexOf(":") > -1) {
-            className = behaviour.split(":",2)[0];
+        if (behaviour.contains(":")) {
+            className = behaviour.split(":", 2)[0];
         }
 
         BaseBehaviour bb = createClass(className);
@@ -42,8 +42,8 @@ public class BehaviourFactory {
     }
 
     private static void initBehaviour(String behaviour, BaseBehaviour baseBehaviour) {
-        if (behaviour.indexOf(":") > -1) {
-            String input[] = behaviour.split(":");
+        if (behaviour.contains(":")) {
+            String[] input = behaviour.split(":");
             if (input.length > 1) {
                 int parameter = Integer.parseInt(input[1]);
                 baseBehaviour.setParameter(parameter);
@@ -61,8 +61,8 @@ public class BehaviourFactory {
 
     private static BaseBehaviour createClass(String name) {
         try {
-            String classprefix = LaunchMud.getMudServerClassPrefix() + "behaviour.";
-            return (BaseBehaviour) Class.forName(classprefix + name).newInstance();
+            String classifier = LaunchMud.getMudServerClassPrefix() + "behaviour.";
+            return (BaseBehaviour) Class.forName(classifier + name).newInstance();
         } catch (Exception e) {
             LOGGER.error("Problem creating new behaviour instance", e);
         }

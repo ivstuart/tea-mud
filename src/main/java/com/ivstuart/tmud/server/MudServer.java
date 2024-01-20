@@ -35,75 +35,73 @@ import java.util.Iterator;
  */
 public class MudServer {
 
-	private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
 
-	private static MudServer INSTANCE;
-	/**
-	 * Single selector for accepts, reads
-	 */
-	private Selector readSelector = null;
-	/**
-	 * Single selector for writes
-	 */
-	private Selector writeSelector = null;
-	/**
-	 * ServerSocketChannel which listens for client connections
-	 */
-	private ServerSocketChannel serverSocketChannel = null;
+    private static MudServer INSTANCE;
+    /**
+     * Single selector for accepts, reads
+     */
+    private Selector readSelector = null;
+    /**
+     * Single selector for writes
+     */
+    private Selector writeSelector = null;
+    /**
+     * ServerSocketChannel which listens for client connections
+     */
+    private ServerSocketChannel serverSocketChannel = null;
 
-	private boolean isReady = false;
+    private boolean isReady = false;
 
-	public MudServer() {
-		INSTANCE = this;
-	}
+    public MudServer() {
+        INSTANCE = this;
+    }
 
-	public boolean isReady() {
-		return isReady;
-	}
+    public static MudServer getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new MudServer();
+        }
+        return INSTANCE;
+    }
 
-	public static MudServer getInstance(){
-		if (INSTANCE == null) {
-			INSTANCE = new MudServer();
-		}
-		return INSTANCE;
-	}
+    public boolean isReady() {
+        return isReady;
+    }
 
-	protected void startListening(String port) {
-		startListening(Integer.parseInt(port));
-	}
+    protected void startListening(String port) {
+        startListening(Integer.parseInt(port));
+    }
 
-	/**
-	 * Sets up the selectors and starts listening
-     * @param port
+    /**
+     * Sets up the selectors and starts listening
+     *
+     * @param port default is 5678
      */
     protected void startListening(int port) {
-		LOGGER.info("Starting read write networking for the mud server");
-		try {
-			// create the selector and the ServerSocket
-			readSelector = SelectorProvider.provider().openSelector();
-			writeSelector = SelectorProvider.provider().openSelector();
+        LOGGER.info("Starting read write networking for the mud server");
+        try {
+            // create the selector and the ServerSocket
+            readSelector = SelectorProvider.provider().openSelector();
+            writeSelector = SelectorProvider.provider().openSelector();
 
-			serverSocketChannel = ServerSocketChannel.open();
+            serverSocketChannel = ServerSocketChannel.open();
 
-			// Non-blocking
-			serverSocketChannel.configureBlocking(false);
-			InetSocketAddress inetSocketAddress = new InetSocketAddress(
-					InetAddress.getLocalHost(), port);
+            // Non-blocking
+            serverSocketChannel.configureBlocking(false);
+            InetSocketAddress inetSocketAddress = new InetSocketAddress(
+                    InetAddress.getLocalHost(), port);
 
-			LOGGER.info("Started listening on [ " + InetAddress.getLocalHost()
-					+ ":" + port + " ]");
+            LOGGER.info("Started listening on [ " + InetAddress.getLocalHost()
+                    + ":" + port + " ]");
 
-			serverSocketChannel.socket().bind(inetSocketAddress);
-			serverSocketChannel.register(readSelector, SelectionKey.OP_ACCEPT);
-			serverSocketChannel.register(writeSelector, SelectionKey.OP_ACCEPT);
+            serverSocketChannel.socket().bind(inetSocketAddress);
+            serverSocketChannel.register(readSelector, SelectionKey.OP_ACCEPT);
+            serverSocketChannel.register(writeSelector, SelectionKey.OP_ACCEPT);
 
-		} catch (Exception e) {
-			LOGGER.error("Problem with starting selector thread", e);
-		}
+        } catch (Exception e) {
+            LOGGER.error("Problem with starting selector thread", e);
+        }
 
-        /**
-         * The thread that waits for ready Channels - accept / read
-         */
         SelectorThread readThread = new SelectorThread();
         readThread.setDaemon(true);
         readThread.start();
@@ -111,101 +109,99 @@ public class MudServer {
         try {
             Thread.sleep(50);
         } catch (InterruptedException e) {
-			LOGGER.error("MudServer problem sleeping:"+e.getMessage());
+            LOGGER.error("MudServer problem sleeping:" + e.getMessage());
             throw new RuntimeException(e);
         }
 
-		LOGGER.info("MudServer is ready");
+        LOGGER.info("MudServer is ready");
 
         isReady = true;
     }
 
-	/**
-	 * Stop the selector thread
-	 */
-	public synchronized void stop() {
-		LOGGER.info("Starting shutdown of the mud server");
-		try {
-			serverSocketChannel.socket().close();
-			serverSocketChannel.close();
-		} catch (Exception e) {
-			LOGGER.error("Problem with stopping selector thread", e);
-		}
-		this.serverSocketChannel = null;
-		LOGGER.info("Finished shutdown of the mud server");
-	}
-
-	public void write(SocketChannel socketChannel, String output) throws IOException {
-		if (socketChannel == null) {
-			LOGGER.warn("SocketChannel is null failed to write:"+output);
-			return;
-		}
-
-		output += "\n";
-		socketChannel.write(ByteBuffer.wrap(output.getBytes(StandardCharsets.UTF_8)));
-    }
-
-	public void shutdownIO(SocketChannel socketChannel) {
+    /**
+     * Stop the selector thread
+     */
+    public synchronized void stop() {
+        LOGGER.info("Starting shutdown of the mud server");
         try {
-			socketChannel.shutdownInput();
-            socketChannel.shutdownOutput();
+            serverSocketChannel.socket().close();
+            serverSocketChannel.close();
+        } catch (Exception e) {
+            LOGGER.error("Problem with stopping selector thread", e);
         }
-		catch (ClosedChannelException cce) {
-			LOGGER.warn("ClosedChannelException in shutdownIO");
-		}
-		catch (IOException e) {
-			LOGGER.error("Problem with shutdown of server", e);
+        this.serverSocketChannel = null;
+        LOGGER.info("Finished shutdown of the mud server");
+    }
+
+    public void write(SocketChannel socketChannel, String output) throws IOException {
+        if (socketChannel == null) {
+            LOGGER.warn("SocketChannel is null failed to write:" + output);
+            return;
+        }
+
+        output += "\n";
+        socketChannel.write(ByteBuffer.wrap(output.getBytes(StandardCharsets.UTF_8)));
+    }
+
+    public void shutdownIO(SocketChannel socketChannel) {
+        try {
+            socketChannel.shutdownInput();
+            socketChannel.shutdownOutput();
+        } catch (ClosedChannelException cce) {
+            LOGGER.warn("ClosedChannelException in shutdownIO");
+        } catch (IOException e) {
+            LOGGER.error("Problem with shutdown of server", e);
         }
     }
 
-	/**
+    /**
      * Thread which runs the Selector
      */
     private class SelectorThread extends Thread {
 
         private final ByteBuffer buffer = ByteBuffer.allocate(1024);
 
-		public SelectorThread() {
-			super("SelectorThread");
-		}
+        public SelectorThread() {
+            super("SelectorThread");
+        }
 
-		private void readSocket(SelectionKey sk) throws IOException {
+        private void readSocket(SelectionKey sk) throws IOException {
 
-			SocketChannel socketChannel = (SocketChannel) sk.channel();
+            SocketChannel socketChannel = (SocketChannel) sk.channel();
 
-			buffer.clear();
+            buffer.clear();
 
-			int numberOfBytesRead = socketChannel.read(buffer);
+            int numberOfBytesRead = socketChannel.read(buffer);
 
-			if (numberOfBytesRead == -1) {
-				LOGGER.info("SocketChannel closing after read -1");
-				Connection connection = ConnectionManager.remove(socketChannel);
-				if (connection != null) {
-					connection.disconnect();
-				}
-				socketChannel.close();
-				sk.cancel();
-				return;
-			}
+            if (numberOfBytesRead == -1) {
+                LOGGER.info("SocketChannel closing after read -1");
+                Connection connection = ConnectionManager.remove(socketChannel);
+                if (connection != null) {
+                    connection.disconnect();
+                }
+                socketChannel.close();
+                sk.cancel();
+                return;
+            }
 
-			buffer.flip();
+            buffer.flip();
 
-			StringBuilder sb = new StringBuilder();
-			int remaining = buffer.remaining();
-			for (int i = 0; i < remaining; i++) {
-				char c = (char) buffer.get();
+            StringBuilder sb = new StringBuilder();
+            int remaining = buffer.remaining();
+            for (int i = 0; i < remaining; i++) {
+                char c = (char) buffer.get();
 
-				// Consider other filtering!!
-				if (c != '\r' && c != '\n') {
-					sb.append(c);
-				}
-			}
+                // Consider other filtering!!
+                if (c != '\r' && c != '\n') {
+                    sb.append(c);
+                }
+            }
 
-			if (sb.length() < 1) {
-				return ;
-			}
+            if (sb.length() < 1) {
+                return;
+            }
 
-			ConnectionManager.getConnection(socketChannel).process(sb.toString());
+            ConnectionManager.getConnection(socketChannel).process(sb.toString());
 
         }
 
@@ -213,13 +209,13 @@ public class MudServer {
          * run method
          */
         @Override
-		public void run() {
-			LOGGER.info("Starting running mud server read sockets");
-			try {
-				// block until a Channel is ready for I/O
-				while (readSelector.select() > 0) {
+        public void run() {
+            LOGGER.info("Starting running mud server read sockets");
+            try {
+                // block until a Channel is ready for I/O
+                while (readSelector.select() > 0) {
 
-				    try {
+                    try {
                         Iterator<SelectionKey> selectionKeyIter = readSelector
                                 .selectedKeys().iterator();
 
@@ -229,20 +225,17 @@ public class MudServer {
                             if (sk.isAcceptable()) {
 
                                 // new client connection
-                                ServerSocketChannel nextReady = (ServerSocketChannel) sk
-                                        .channel();
-
+                                ServerSocketChannel nextReady = (ServerSocketChannel) sk.channel();
                                 SocketChannel channel = nextReady.accept();
 
                                 channel.configureBlocking(false);
                                 channel.register(readSelector, SelectionKey.OP_READ);
 
-								writeSelector.wakeup(); // Added as required by specification
+                                writeSelector.wakeup(); // Added as required by specification
 
-                                channel.register(writeSelector,
-                                        SelectionKey.OP_WRITE);
+                                channel.register(writeSelector, SelectionKey.OP_WRITE);
 
-								ConnectionManager.add(channel);
+                                ConnectionManager.add(channel);
 
                             } else if (sk.isConnectable()) {
                                 LOGGER.info("SelectionKey is connected");
@@ -251,32 +244,32 @@ public class MudServer {
                                 try {
                                     readSocket(sk);
                                 } catch (IOException ioe) {
-									LOGGER.error("Problem reading socket:"+ ioe.getMessage());
-									SocketChannel socketChannel = (SocketChannel) sk.channel();
-									Connection connection = ConnectionManager.remove(socketChannel);
-									if (connection != null) {
-										connection.disconnect();
-									}
-									socketChannel.close();
-									sk.cancel();
+                                    LOGGER.error("Problem reading socket:" + ioe.getMessage());
+                                    SocketChannel socketChannel = (SocketChannel) sk.channel();
+                                    Connection connection = ConnectionManager.remove(socketChannel);
+                                    if (connection != null) {
+                                        connection.disconnect();
+                                    }
+                                    socketChannel.close();
+                                    sk.cancel();
                                     throw ioe;
                                 }
                             } else if (sk.isWritable()) {
                                 LOGGER.info("SelectionKey is writable");
                             } else if (!sk.isValid()) {
                                 LOGGER.info("SelectionKey is invalid");
-                                new MudException("SelectionKey is invalid:");
+                                throw new MudException("SelectionKey is invalid:");
                             }
                         }
                     } catch (Throwable t) {
                         LOGGER.error("Problem with communication channel", t);
                     }
-				}
-			} catch (Exception e) {
-				LOGGER.error("Problem with communication channel", e);
-			}
-		} // end run()
+                }
+            } catch (Exception e) {
+                LOGGER.error("Problem with communication channel", e);
+            }
+        } // end run()
 
-	} // end class
+    } // end class
 
 }

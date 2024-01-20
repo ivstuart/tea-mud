@@ -101,7 +101,7 @@ public class StopFightingTest {
         stopFighting.execute(player1Mob, "world");
 
 
-        assertEquals("sheep should be not fighting", false, sheepMob.getFight().isFighting());
+        assertFalse("sheep should be not fighting", sheepMob.getFight().isFighting());
 
 
     }

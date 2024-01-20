@@ -18,7 +18,7 @@ package com.ivstuart.tmud.constants;
 
 public class EquipmentConstants {
 
-    public static final String condition[] = {
+    public static final String[] condition = {
             "indestructible",
             "pristine condition",
             "good condition",

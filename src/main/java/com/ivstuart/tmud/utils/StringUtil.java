@@ -29,7 +29,7 @@ public class StringUtil {
         int index = input.indexOf(SPACE);
 
         if (index > -1) {
-            return  input.substring(0,index);
+            return input.substring(0, index);
         }
 
         return input;
@@ -40,7 +40,7 @@ public class StringUtil {
         int index = input.lastIndexOf(SPACE);
 
         if (index > -1) {
-            return  input.substring(index+1);
+            return input.substring(index + 1);
         }
 
         return input;
@@ -50,7 +50,7 @@ public class StringUtil {
         int index = input.lastIndexOf(SPACE);
 
         if (index > -1 && index >= beginIndex) {
-            return  input.substring(index+1);
+            return input.substring(index + 1);
         }
 
         return defaultString;
@@ -60,15 +60,15 @@ public class StringUtil {
         int index = input.lastIndexOf(SPACE);
 
         if (index > -1) {
-            return  input.substring(0,index);
+            return input.substring(0, index);
         }
 
         return input;
     }
 
     public static int getWordCount(String input) {
-        int total=0;
-        for (int i=0;i<input.length();i++) {
+        int total = 0;
+        for (int i = 0; i < input.length(); i++) {
             if (input.charAt(i) == SPACE_CHAR) {
                 total++;
             }
@@ -76,7 +76,7 @@ public class StringUtil {
         return total;
     }
 
-    public static void main (String args[]) {
+    public static void main(String[] args) {
 
         System.out.println(getFirstWord("firstword secondword thirdword"));
 

@@ -63,7 +63,7 @@ public class EnterNoLook extends BaseCommand {
             return;
         }
 
-        if (!mob.getState().canMove()) {
+        if (mob.getState().stuck()) {
             mob.out("You can not move you are " + mob.getState().getDesc());
             return;
         }
@@ -137,7 +137,7 @@ public class EnterNoLook extends BaseCommand {
             return;
         }
 
-        if (destination.isTunnel() && destination.getMobs().size() != 0) {
+        if (destination.isTunnel() && !destination.getMobs().isEmpty()) {
             mob.out("That destination is a tunnel room, which is already occupied.");
             return;
         }
@@ -182,7 +182,7 @@ public class EnterNoLook extends BaseCommand {
                 movement = "sneak";
 
             } else if (mob.isFlying()) {
-                if (!moves.deduct(1 * movemod)) {
+                if (!moves.deduct(movemod)) {
                     mob.out("You can not fly you are out of movement and too tired!");
                     return;
                 }
@@ -201,7 +201,7 @@ public class EnterNoLook extends BaseCommand {
             mob.setHidden(false);
         }
 
-        // Might annoy players but they can always load up on coffee to counter drunkenness.
+        // Might annoy players, but they can always load up on coffee to counter drunkenness.
         if (mob.isPlayer()) {
             Attribute drunk = mob.getPlayer().getData().getDrunkAttribute();
             if (drunk.getValue() > 100 && DiceRoll.ONE_D100.rollLessThanOrEqualTo(10)) {
@@ -261,7 +261,7 @@ public class EnterNoLook extends BaseCommand {
         }
 
         Iterator<Disease> diseaseIter = destination.getDiseases().iterator();
-        for (; diseaseIter.hasNext(); ) {
+        while (diseaseIter.hasNext()) {
             Disease disease = diseaseIter.next();
             disease.tick();
             if (disease.isExpired()) {

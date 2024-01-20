@@ -79,7 +79,7 @@ public class Race {
 
     public void setStats(String stats) {
 
-        String attribute[] = stats.split(" ");
+        String[] attribute = stats.split(" ");
 
         for (int i = 0; i < attribute.length; i++) {
             this.stats[i] = Integer.parseInt(attribute[i]);

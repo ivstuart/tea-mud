@@ -107,7 +107,7 @@ public class DisarmTest {
         player1Mob.getFight().getFightActions().getFirst().begin();
         player1Mob.getFight().getFightActions().getFirst().happen();
 
-        assertEquals("sheep should have no weapon", null, sheepMob.getWeapon());
+        assertNull("sheep should have no weapon", sheepMob.getWeapon());
 
 
     }

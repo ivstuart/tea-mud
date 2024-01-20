@@ -34,6 +34,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNull;
 
 /**
  * Created by Ivan on 30/08/2016.
@@ -88,7 +89,7 @@ public class ClanLeaveTest {
         ClanLeave clanLeave = new ClanLeave();
         clanLeave.execute(player1Mob, "yes");
 
-        assertEquals("Player1 leaves the clan", null, player1Mob.getPlayer().getClanMembership());
+        assertNull("Player1 leaves the clan", player1Mob.getPlayer().getClanMembership());
 
     }
 }

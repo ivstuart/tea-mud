@@ -32,45 +32,45 @@ import com.ivstuart.tmud.state.Prop;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Diagnose extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		Prop corpse = mob.getRoom().getProps().get(input);
+        Prop corpse = mob.getRoom().getProps().get(input);
 
-		if (corpse == null) {
-			mob.out("There is no " + input + " to investigate");
-			return;
-		}
+        if (corpse == null) {
+            mob.out("There is no " + input + " to investigate");
+            return;
+        }
 
-		if (!(corpse instanceof Corpse)) {
-			mob.out("That item is not a corpse");
-			return;
-		}
+        if (!(corpse instanceof Corpse)) {
+            mob.out("That item is not a corpse");
+            return;
+        }
 
-		Ability ability = mob.getLearned().getAbility(SkillNames.INVESTIGATE);
+        Ability ability = mob.getLearned().getAbility(SkillNames.INVESTIGATE);
 
-		if (ability.isNull()) {
-			mob.out("You have no skill to investigate");
-			return;
-		}
+        if (ability.isNull()) {
+            mob.out("You have no skill to investigate");
+            return;
+        }
 
-		Corpse corpse1 = (Corpse) corpse;
+        Corpse corpse1 = (Corpse) corpse;
 
-		if (ability.isSuccessful(mob)) {
-			mob.out(new Msg(mob, ("<S-You/NAME> successfully investigated.")));
+        if (ability.isSuccessful(mob)) {
+            mob.out(new Msg(mob, ("<S-You/NAME> successfully investigated.")));
 
-			mob.out(corpse1.investigation());
+            mob.out(corpse1.investigation());
 
-		} else {
-			mob.out(new Msg(mob, ("<S-You/NAME> failed to investigate.")));
-		}
+        } else {
+            mob.out(new Msg(mob, ("<S-You/NAME> failed to investigate.")));
+        }
 
-	}
+    }
 
 }

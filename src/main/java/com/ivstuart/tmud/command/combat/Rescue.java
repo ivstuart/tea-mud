@@ -29,70 +29,69 @@ import java.util.List;
 import static com.ivstuart.tmud.constants.SkillNames.RESCUE;
 
 /**
- *     rescue <mob>
- *     rescue <mob> [from <mob>]
- *     rescue <mob> [from all] rescue
+ * rescue <mob>
+ * rescue <mob> [from <mob>]
+ * rescue <mob> [from all] rescue
  * <mob> [from 1.good]
- * 
+ *
  * @author Ivan Stuart
- * 
  */
 public class Rescue extends BaseCommand {
-	
-	private static final Logger LOGGER = LogManager.getLogger();
 
-	@Override
-	public void execute(Mob mob, String input) {
+    private static final Logger LOGGER = LogManager.getLogger();
 
-		LOGGER.debug(mob.getName()+" executing rescue command");
+    @Override
+    public void execute(Mob mob, String input) {
 
-		if (!mob.getLearned().hasLearned(RESCUE)) {
-			mob.out("You have no knowledge of rescue");
-			return;
-		}
+        LOGGER.debug(mob.getName() + " executing rescue command");
 
-		Mob target = mob.getRoom().getMob(input);
+        if (!mob.getLearned().hasLearned(RESCUE)) {
+            mob.out("You have no knowledge of rescue");
+            return;
+        }
 
-		if (target == null) {
-			mob.out(input + " is not here to rescue!");
-			return;
-		}
+        Mob target = mob.getRoom().getMob(input);
 
-		// deduct 1 move point?
+        if (target == null) {
+            mob.out(input + " is not here to rescue!");
+            return;
+        }
 
-		// rescue from all attackers? or just one? random or first?
+        // deduct 1 move point?
 
-		List<Mob> aggressors = target.getFight().getTargettedBy();
+        // rescue from all attackers? or just one? random or first?
 
-		if (aggressors.isEmpty()) {
-			mob.out(input + " does not need to be rescued");
-			return;
-		}
+        List<Mob> aggressors = target.getFight().getTargettedBy();
 
-		if (!mob.getMv().deduct(10)) {
-			mob.out("You do not have enough movement left to rescue");
-			return;
-		}
+        if (aggressors.isEmpty()) {
+            mob.out(input + " does not need to be rescued");
+            return;
+        }
 
-		Mob aggressor = aggressors.get(0);
+        if (!mob.getMv().deduct(10)) {
+            mob.out("You do not have enough movement left to rescue");
+            return;
+        }
 
-		Ability ability = mob.getLearned().getAbility(RESCUE);
+        Mob aggressor = aggressors.get(0);
+
+        Ability ability = mob.getLearned().getAbility(RESCUE);
 
         if (!ability.isNull() && ability.isSuccessful(mob)) {
 
-			mob.getRoom().out(new Msg(mob, aggressor, ("<S-You/NAME> successfully rescues from <T-you/NAME>.")));
-			if (!mob.getFight().isFighting()) {
-				mob.getFight().changeTarget(aggressor);
-				WorldTime.addFighting(mob);
-			}
+            mob.getRoom().out(new Msg(mob, aggressor, ("<S-You/NAME> successfully rescues from <T-you/NAME>.")));
+            if (!mob.getFight().isFighting()) {
+                mob.getFight().changeTarget(aggressor);
+                WorldTime.addFighting(mob);
+            }
 
-			LOGGER.debug(mob.getName() +" rescues "+aggressor.getFight().getTarget().getName()+" from combat with you.");
-			aggressor.getFight().changeTarget(mob);
+            LOGGER.debug(mob.getName() + " rescues " + aggressor.getFight().getTarget().getName() + " from combat with you.");
+            aggressor.getFight().changeTarget(mob);
 
-		} else {
+        } else {
             mob.out(new Msg(mob, aggressor, ("<S-You/NAME> fail to rescue <T-you/NAME>.")));
         }
 
-	}
+    }
 
 }

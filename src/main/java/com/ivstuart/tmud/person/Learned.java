@@ -31,79 +31,75 @@ import java.util.Map;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Learned implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	private Map<String, Ability> abilities = null;
+    private static final long serialVersionUID = 1L;
+    private final Map<String, Ability> abilities;
 
-	public Learned() {
-		// lazy initialisation of this as most mobs will have no skills.
-		abilities = new HashMap<String, Ability>();
-	}
+    public Learned() {
+        // lazy initialisation of this as most mobs will have no skills.
+        abilities = new HashMap<>();
+    }
 
-	public void add(Ability ability) {
-		abilities.put(ability.getId(), ability);
+    public void add(Ability ability) {
+        abilities.put(ability.getId(), ability);
 
-	}
+    }
 
-	public Collection<Ability> getAbilities() {
-		return abilities.values();
-	}
+    public Collection<Ability> getAbilities() {
+        return abilities.values();
+    }
 
-	public Ability getAbility(String name) {
+    public Ability getAbility(String name) {
 
-		Ability ability = abilities.get(name);
+        Ability ability = abilities.get(name);
 
-		if (ability == null) {
-			ability = Ability.NULL_ABILITY;
-		}
+        if (ability == null) {
+            ability = Ability.NULL_ABILITY;
+        }
 
-		return ability;
+        return ability;
 
-	}
+    }
 
-	/**
-	 * @param name_
-	 * @return
-	 */
-	public boolean hasLearned(String name) {
-		return abilities.containsKey(name);
-	}
+    /**
+     * @param name
+     * @return
+     */
+    public boolean hasLearned(String name) {
+        return abilities.containsKey(name);
+    }
 
-	public boolean hasPrereq(String prereq) {
+    public boolean hasPrereq(String prereq) {
 
-		if (prereq == null) {
-			return true;
-		}
+        if (prereq == null) {
+            return true;
+        }
 
-		Ability ab = getAbility(prereq);
+        Ability ab = getAbility(prereq);
 
-		if (null == ab || ab.isNull()) {
-			return false;
-		}
+        if (null == ab || ab.isNull()) {
+            return false;
+        }
 
-		if (ab.getSkill() > 50) {
-			return true;
-		}
+        return ab.getSkill() > 50;
+    }
 
-		return false;
-	}
+    public Ability remove(String name) {
+        return abilities.remove(name);
+    }
 
-	public Ability remove(String name) {
-		return abilities.remove(name);
-	}
+    public int getAbilityPoints() {
+        int abilityPoints = 0;
 
-	public int getAbilityPoints() {
-		int abilityPoints = 0;
+        for (Ability ab : abilities.values()) {
+            abilityPoints += ab.getSkill();
+        }
 
-		for (Ability ab : abilities.values()) {
-			abilityPoints += ab.getSkill();
-		}
-
-		return abilityPoints;
-	}
+        return abilityPoints;
+    }
 }

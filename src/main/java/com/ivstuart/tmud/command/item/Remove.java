@@ -31,50 +31,50 @@ import java.util.List;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Remove extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		if ("all".equalsIgnoreCase(input)) {
-			removalAll(mob);
-			return;
-		}
+        if ("all".equalsIgnoreCase(input)) {
+            removalAll(mob);
+            return;
+        }
 
-		Item item = (Item) mob.getEquipment().remove(input);
+        Item item = (Item) mob.getEquipment().remove(input);
 
-		if (item == null) {
-			mob.out("Can not get " + input + " it is not here!");
-			return;
-		}
+        if (item == null) {
+            mob.out("Can not get " + input + " it is not here!");
+            return;
+        }
 
-		if (item.isNoRemove()) {
-			mob.getEquipment().add(item);
-			mob.out("This item is cursed and will not be removed");
-			return;
-		}
+        if (item.isNoRemove()) {
+            mob.getEquipment().add(item);
+            mob.out("This item is cursed and will not be removed");
+            return;
+        }
 
-		item.unequip(mob);
+        item.unequip(mob);
 
-		mob.getInventory().add(item);
+        mob.getInventory().add(item);
 
-		mob.out("You remove an " + item.getBrief());
-	}
+        mob.out("You remove an " + item.getBrief());
+    }
 
-	private void removalAll(Mob mob) {
-		List<Equipable> equipment = mob.getEquipment().removeAll();
+    private void removalAll(Mob mob) {
+        List<Equipable> equipment = mob.getEquipment().removeAll();
 
-		for (Equipable item : equipment) {
-			mob.getInventory().add((Item) item);
-		}
+        for (Equipable item : equipment) {
+            mob.getInventory().add((Item) item);
+        }
 
-		for (Equipable eq : equipment) {
-			mob.out("You remove an " + ((Item) eq).getName());
-		}
-	}
+        for (Equipable eq : equipment) {
+            mob.out("You remove an " + ((Item) eq).getName());
+        }
+    }
 
 }

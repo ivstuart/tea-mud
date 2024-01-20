@@ -34,53 +34,53 @@ import static com.ivstuart.tmud.utils.StringUtil.getLastWord;
 
 /**
  * The following put modes are supported by the code below:
- * 
+ * <p>
  * 1) put <object> <container> 2) put all.<object> <container> 3) put all
  * <container>
- * 
+ *
  * <container> must be in inventory or on ground. all objects to be put into
  * container must be in inventory.
  */
 public class Put extends BaseCommand {
 
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		String bagString = getLastWord(input);
+        String bagString = getLastWord(input);
 
-		Item bag = mob.getInventory().get(bagString);
+        Item bag = mob.getInventory().get(bagString);
 
-		if (bag == null) {
-			bag = mob.getRoom().getInventory().get(bagString);
-		}
+        if (bag == null) {
+            bag = mob.getRoom().getInventory().get(bagString);
+        }
 
-		if (bag == null) {
-			mob.out("There is no bag to put stuff into");
-			return;
-		}
+        if (bag == null) {
+            mob.out("There is no bag to put stuff into");
+            return;
+        }
 
-		if (!bag.isContainer()) {
-			mob.out("You can not put things into "+bag.getName());
-			return;
-		}
+        if (!bag.isContainer()) {
+            mob.out("You can not put things into " + bag.getName());
+            return;
+        }
 
 
-		String target = getFirstWord(input);
+        String target = getFirstWord(input);
 
-		Item anItem = mob.getInventory().get(target);
+        Item anItem = mob.getInventory().get(target);
 
-		if (anItem == null) {
-			mob.out("Can not put " + target + " it is not here!");
-			return;
-		}
+        if (anItem == null) {
+            mob.out("Can not put " + target + " it is not here!");
+            return;
+        }
 
-		if (anItem == bag) {
-			mob.out("You can not put something into itself");
-			return;
-		}
+        if (anItem == bag) {
+            mob.out("You can not put something into itself");
+            return;
+        }
 
-		Bag aBag = (Bag)bag;
+        Bag aBag = (Bag) bag;
 
         if (bag instanceof Chest) {
             if (((Chest) bag).getState() != DoorState.OPEN) {
@@ -89,14 +89,13 @@ public class Put extends BaseCommand {
             }
         }
 
-		aBag.getInventory().add(anItem);
-		mob.getInventory().remove(anItem);
+        aBag.getInventory().add(anItem);
+        mob.getInventory().remove(anItem);
 
-		mob.out("You put an "+anItem.getName()+" into a "+bag.getName());
+        mob.out("You put an " + anItem.getName() + " into a " + bag.getName());
 
 
-	}
-
+    }
 
 
 }

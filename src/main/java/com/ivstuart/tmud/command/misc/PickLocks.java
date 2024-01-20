@@ -31,15 +31,15 @@ import static com.ivstuart.tmud.constants.SkillNames.PICK_LOCKS;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class PickLocks extends BaseCommand {
 
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
         if (!mob.getLearned().hasLearned("pick locks")) {
             mob.out("You have no knowledge of pick locks");

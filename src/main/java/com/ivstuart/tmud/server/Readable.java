@@ -22,10 +22,9 @@ package com.ivstuart.tmud.server;
 
 /**
  * @author stuarti
- * 
  */
 public interface Readable {
 
-	public void read(String line);
+    void read(String line);
 
 }

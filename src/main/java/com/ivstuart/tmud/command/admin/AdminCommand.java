@@ -27,20 +27,20 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class AdminCommand extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
-		
-		if (!mob.isAdmin()) {
-			mob.out("The command "+this.getClass().getSimpleName()+" is not available to you.");
-			throw new AdminRuntimeException("Not a admin");
-		}
+    @Override
+    public void execute(Mob mob, String input) {
 
-	}
+        if (!mob.isAdmin()) {
+            mob.out("The command " + this.getClass().getSimpleName() + " is not available to you.");
+            throw new AdminRuntimeException("Not a admin");
+        }
+
+    }
 
 }

@@ -17,27 +17,30 @@
 package com.ivstuart.tmud.constants;
 
 public enum DoorState {
-	OPEN("(", ")"), CLOSED("[", "]"), LOCKED("{", "}"), BOLTED("-", "-"), BROKEN(
-            "(", "]");
+    OPEN("(", ")"),
+    CLOSED("[", "]"),
+    LOCKED("{", "}"),
+    BOLTED("-", "-"),
+    BROKEN("(", "]");
 
-	private String _begin;
-	private String _end;
+    private final String start;
+    private final String end;
 
-	DoorState(String begin_, String end_) {
-		_begin = begin_;
-		_end = end_;
-	}
+    DoorState(String begin, String end) {
+        this.start = begin;
+        this.end = end;
+    }
 
-	public String getBegin() {
-		return _begin;
-	}
+    public String getBegin() {
+        return start;
+    }
 
-	public String getEnd() {
-		return _end;
-	}
+    public String getEnd() {
+        return end;
+    }
 
-	public boolean isScanable() {
-		return (this == DoorState.OPEN || this == DoorState.BROKEN);
-	}
+    public boolean isScanable() {
+        return (this == DoorState.OPEN || this == DoorState.BROKEN);
+    }
 
 }

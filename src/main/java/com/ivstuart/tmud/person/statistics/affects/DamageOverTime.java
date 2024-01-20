@@ -21,32 +21,32 @@ import com.ivstuart.tmud.state.Mob;
 
 public class DamageOverTime extends Affect {
 
-	protected DiceRoll _damageRoll = null;
+    protected DiceRoll _damageRoll = null;
 
-	public DamageOverTime(Mob mob_, String desc_, int duration_,
-			DiceRoll damage_) {
-		super(mob_, desc_, duration_);
-		_damageRoll = damage_;
-	}
+    public DamageOverTime(Mob mob_, String desc_, int duration_,
+                          DiceRoll damage_) {
+        super(mob_, desc_, duration_);
+        _damageRoll = damage_;
+    }
 
-	@Override
+    @Override
     public boolean tick() {
         super.tick();
 
-		int damage = _damageRoll.roll();
+        int damage = _damageRoll.roll();
 
-		_mob.getHp().decrease(damage);
+        _mob.getHp().decrease(damage);
 
-		String msg = this._desc + " deals you " + damage + " damage";
+        String msg = this._desc + " deals you " + damage + " damage";
 
-		_mob.out(msg);
+        _mob.out(msg);
         return false;
 
-	}
+    }
 
-	@Override
-	public String toString() {
-		return super.toString() + " " + _damageRoll;
-	}
+    @Override
+    public String toString() {
+        return super.toString() + " " + _damageRoll;
+    }
 
 }

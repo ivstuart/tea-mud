@@ -25,117 +25,112 @@ import org.apache.logging.log4j.Logger;
 
 public abstract class FightAction {
 
-	private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
+    private final Mob self;
+    private long whenNextStateMillis;
+    private FightState state;
+    private Mob target;
 
-	private long whenNextStateMillis;
+    public FightAction(Mob me, Mob target) {
+        this.self = me;
+        this.target = target;
+        this.state = FightState.BEGIN;
+    }
 
-	private FightState state;
+    public void begin() {
+        // Set melee target
+        if (this.isMeleeEnabled()) {
+            LOGGER.debug("Is melee so setting melee target for combat");
+            getSelf().getFight().changeTarget(getTarget());
+        } else {
+            LOGGER.debug("Is zero damage action so not setting melee target for combat");
+        }
+    }
 
-	private Mob self;
+    public abstract void changed();
 
-	private Mob target;
+    public void destroy() {
+    }
 
-	public FightAction(Mob me, Mob target) {
-		this.self = me;
-		this.target = target;
-		this.state = FightState.BEGIN;
-	}
+    protected void duration(long durationSeconds) {
+        whenNextStateMillis = System.currentTimeMillis()
+                + (durationSeconds * 1000);
+    }
 
-	public void begin() {
-		// Set melee target
-		if (this.isMeleeEnabled()) {
-			LOGGER.debug("Is melee so setting melee target for combat");
-			getSelf().getFight().changeTarget(getTarget());
-		}
-		else {
-			LOGGER.debug("Is zero damage action so not setting melee target for combat");
-		}
-	}
+    protected void durationMillis(long durationMillis) {
+        whenNextStateMillis = System.currentTimeMillis() + durationMillis;
+    }
 
-	public abstract void changed();
+    public abstract void ended();
 
-	public void destory() {
-	}
+    public void finished() {
+        setState(FightState.FINISHED);
+    }
 
-	protected void duration(long durationSeconds) {
-		whenNextStateMillis = System.currentTimeMillis()
-				+ (durationSeconds * 1000);
-	}
+    protected Fight getFight() {
+        return self.getFight();
+    }
 
-	protected void durationMillis(long durationMillis) {
-		whenNextStateMillis = System.currentTimeMillis() + durationMillis;
-	}
+    protected MobMana getMobMana() {
+        return self.getMana();
+    }
 
-	public abstract void ended();
+    public Mob getSelf() {
+        return self;
+    }
 
-	public void finished() {
-		setState(FightState.FINISHED);
-	}
-
-	protected Fight getFight() {
-		return self.getFight();
-	}
-
-	protected MobMana getMobMana() {
-		return self.getMana();
-	}
-
-	public Mob getSelf() {
-		return self;
-	}
-
-	public Mob getTarget() {
-		return target;
-	}
+    public Mob getTarget() {
+        return target;
+    }
 
     public void setTarget(Mob mob) {
         this.target = mob;
     }
 
-	public abstract void happen();
+    public abstract void happen();
 
-	public boolean isFinished() {
-		return state.isFinished();
-	}
+    public boolean isFinished() {
+        return state.isFinished();
+    }
 
-	public boolean isGroundFighting() {
-		return false;
-	}
+    public boolean isGroundFighting() {
+        return false;
+    }
 
-	public boolean isMeleeEnabled() {
-		return true;
-	}
+    public boolean isMeleeEnabled() {
+        return true;
+    }
 
-	public void next() {
+    public void next() {
 
-		if (System.currentTimeMillis() < whenNextStateMillis) {
-			return;
-		}
+        if (System.currentTimeMillis() < whenNextStateMillis) {
+            return;
+        }
 
-		state = state.next(this);
-	}
+        state = state.next(this);
+    }
 
-	protected void out(Msg output_) {
-		// Need to think about hits to flee characters...
-		self.getRoom().out(output_);
-		// _self.out(output);
-	}
+    protected void out(Msg output_) {
+        // Need to think about hits to flee characters...
+        self.getRoom().out(output_);
+        // _self.out(output);
+    }
 
-	protected void out(String output) {
-		self.out(new Msg(self, target, output));
-		// self.out(output);
-	}
+    protected void out(String output) {
+        self.out(new Msg(self, target, output));
+        // self.out(output);
+    }
 
-	public void restart() {
-		setState(FightState.BEGIN);
-	}
+    public void restart() {
+        setState(FightState.BEGIN);
+    }
 
-	public void setState(FightState state) {
-		this.state = state;
-	}
+    public void setState(FightState state) {
+        this.state = state;
+    }
 
-	@Override
-	public String toString() {
+    @Override
+    public String toString() {
         String output = "FightAction{" +
                 "whenNextStateMillis=" + whenNextStateMillis +
                 ", state=" + state;

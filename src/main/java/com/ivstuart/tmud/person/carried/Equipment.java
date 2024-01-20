@@ -45,34 +45,28 @@ import static com.ivstuart.tmud.constants.SpellNames.PROTECTION;
 
 /**
  * @author stuarti
- *         <p>
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Equipment implements Serializable {
 
     private static final long serialVersionUID = -4733577084794956703L;
     private static final Logger LOGGER = LogManager.getLogger();
-    private MudArrayList<Equipable> _equipment;
-
+    private final MudArrayList<Equipable> _equipment;
+    // Used to work out if we have space at that location to put on said item.
+    private final int[] _slots = new int[EquipLocation.values().length];
+    private final Mob mob;
     /* Special slots */
     private Equipable _primary;
-
     private Equipable _secondary;
-
     private Equipable _both;
-
     private Equipable _natural;
-
-    // Used to work out if we have space at that location to put on said item.
-    private int _slots[] = new int[EquipLocation.values().length];
-
-    private Mob mob;
     private int kickBonus;
 
     public Equipment(Mob mob) {
         this.mob = mob;
-        _equipment = new MudArrayList<Equipable>();
+        _equipment = new MudArrayList<>();
     }
 
     public int getKickBonus() {
@@ -166,7 +160,7 @@ public class Equipment implements Serializable {
         }
         /*
          * Should not return this if (_secondary != null) { return _secondary; }
-		 */
+         */
         return _natural;
     }
 
@@ -191,7 +185,7 @@ public class Equipment implements Serializable {
 
         Affect armourBuff = mob.getMobAffects().getAffect(PROTECTION);
 
-        int buff = 0;
+        int buff;
         if (armourBuff != null) {
             buff = armourBuff.getAmount();
             Armour protection = new Armour();
@@ -219,12 +213,10 @@ public class Equipment implements Serializable {
 
         if (eq == null) {
             EquipLocation el = EquipLocation.valueOf(item.toUpperCase());
-            if (el == null) {
-                return null;
-            }
+
             // Maybe need to replace Equipable with Item
             for (Equipable eqItem : _equipment) {
-                if (((Item) eqItem).getWorn() == el.ordinal()) {
+                if (eqItem.getWorn() == el.ordinal()) {
                     eq = eqItem;
                     _equipment.remove(eq);
                     break;
@@ -239,7 +231,7 @@ public class Equipment implements Serializable {
 
         _slots[eq.getWorn()]--;
 
-		/* to remove special slots */
+        /* to remove special slots */
         if (eq == _primary) {
             _primary = null;
         } else if (eq == _secondary) {
@@ -284,13 +276,12 @@ public class Equipment implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("You have equipped:\n");
 
-        for (int index = 0; index < _equipment.size(); index++) {
-            Equipable eq = _equipment.get(index);
+        for (Equipable eq : _equipment) {
             sb.append("<");
             sb.append(EquipLocation.values()[eq.getWorn()].getDesc());
             sb.append("> ");
             // sb.append(" slots: ["+_slots[eq.getWorn()]+"] ");
-            Item item = null;
+            Item item;
             if (eq instanceof Item) {
                 item = (Item) eq;
                 sb.append(item.getBrief());
@@ -306,10 +297,7 @@ public class Equipment implements Serializable {
         if (_primary != null && ((Item) _primary).isShield()) {
             return true;
         }
-        if (_secondary != null && ((Item) _secondary).isShield()) {
-            return true;
-        }
-        return false;
+        return _secondary != null && ((Item) _secondary).isShield();
     }
 
     public int getAPB() {
@@ -358,7 +346,7 @@ public class Equipment implements Serializable {
     }
 
     public Equipable getRandom() {
-        int index = (int) Math.random() * EquipLocation.values().length;
+        int index = (int) (Math.random() * EquipLocation.values().length);
         for (Equipable eq : _equipment) {
             Item item = (Item) eq;
             if (item.getWorn() == index) {
@@ -447,16 +435,14 @@ public class Equipment implements Serializable {
         if (_both != null) {
             return true;
         }
-        if (_primary != null && _secondary != null) {
-            return true;
-        }
-        return false;
+        return _primary != null && _secondary != null;
     }
 
     public boolean hasSharpEdge() {
         for (Equipable eq : _equipment) {
             Item item = (Item) eq;
-            if ("SHARP".indexOf(item.getType()) > -1) {
+
+            if (item != null && item.getName().contains("SHARP")) {
                 return true;
             }
 

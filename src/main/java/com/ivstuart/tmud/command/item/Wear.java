@@ -23,7 +23,6 @@
 package com.ivstuart.tmud.command.item;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.common.Equipable;
 import com.ivstuart.tmud.constants.EquipLocation;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
@@ -34,9 +33,9 @@ import java.util.Iterator;
 
 /**
  * @author stuarti
- *         <p>
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Wear extends BaseCommand {
 
@@ -55,7 +54,7 @@ public class Wear extends BaseCommand {
                 return;
             }
 
-            for (; itemIter.hasNext(); ) {
+            while (itemIter.hasNext()) {
                 Item item = itemIter.next();
                 // wearItem(mob,item);
                 if (item.isAntiProfession(mob.getPlayer().getProfession())) {
@@ -97,7 +96,7 @@ public class Wear extends BaseCommand {
     }
 
     private void wearItem(Mob mob, Item item) {
-        if (!(item instanceof Equipable)) {
+        if (item == null) {
             mob.out("That item is not equipable!");
             return;
         }

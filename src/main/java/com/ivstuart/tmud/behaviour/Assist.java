@@ -27,11 +27,11 @@ import java.util.List;
 
 public class Assist extends BaseBehaviour {
 
-    private static Logger LOGGER = LogManager.getLogger();
+    private final static Logger LOGGER = LogManager.getLogger();
 
 
     public Assist() {
-        parameter = 50; //aggro precentage
+        parameter = 50; //aggro percentage
     }
 
     @Override
@@ -48,7 +48,7 @@ public class Assist extends BaseBehaviour {
         }
 
         if (DiceRoll.ONE_D100.rollMoreThan(parameter)) {
-            LOGGER.debug(mob.getName()+" is does not feel like assisting");
+            LOGGER.debug(mob.getName() + " is does not feel like assisting");
             return false;
         }
 

@@ -36,15 +36,15 @@ public enum EquipLocation {
     FINGER(3, "worn on finger"),
     PRIMARY(1, "primary hand"),
     SECONDARY(1, "secondary hand"),
-    BOTH(1,"both hands"),
+    BOTH(1, "both hands"),
     WAIST(1, "worn around waist"),
     BELT(2, "thru belt"),
     LEGS(1, "worn on legs"),
     ANKLE(2, "worn on ankle"),
     FEET(1, "worn on feet");
 
-    private int _capacity;
-    private String _description;
+    private final int _capacity;
+    private final String _description;
 
     EquipLocation(int capacity_, String description_) {
         _capacity = capacity_;

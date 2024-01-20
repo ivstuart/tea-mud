@@ -28,7 +28,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
 
 /**
  * Created by Ivan on 30/08/2016.
@@ -64,6 +64,6 @@ public class FreezeTest {
         Freeze freeze = new Freeze();
         freeze.execute(mob, bob.getAlias());
 
-        assertEquals("Has been frozen", true, bob.getMobStatus().isFrozen());
+        assertTrue("Has been frozen", bob.getMobStatus().isFrozen());
     }
 }

@@ -30,32 +30,32 @@ import static com.ivstuart.tmud.common.MobState.FLYING;
 
 public class Fly extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob_, String input_) {
+    @Override
+    public void execute(Mob mob_, String input_) {
 
-		// Check current state
-		if (mob_.isFlying()) {
-			mob_.out("You are already flying!");
-			return;
-		}
+        // Check current state
+        if (mob_.isFlying()) {
+            mob_.out("You are already flying!");
+            return;
+        }
 
-		if (mob_.getRoom().isTunnel()) {
-			mob_.out("You can not fly here inside a tunnel");
-			return;
-		}
+        if (mob_.getRoom().isTunnel()) {
+            mob_.out("You can not fly here inside a tunnel");
+            return;
+        }
 
-		if (!mob_.getRace().isFly()) {
-			// Check allowed to change state
-			if (!mob_.getMobAffects().hasAffect("levitate")) {
-				mob_.out("You do not have that spell active");
-				return;
-			}
-		}
+        if (!mob_.getRace().isFly()) {
+            // Check allowed to change state
+            if (!mob_.getMobAffects().hasAffect("levitate")) {
+                mob_.out("You do not have that spell active");
+                return;
+            }
+        }
 
-		// Change state and notify mob and room
-		mob_.getRoom().out(new Msg(mob_, "<S-NAME> start flying"));
-		mob_.setState(FLYING);
+        // Change state and notify mob and room
+        mob_.getRoom().out(new Msg(mob_, "<S-NAME> start flying"));
+        mob_.setState(FLYING);
 
-	}
+    }
 
 }

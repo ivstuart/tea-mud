@@ -3,10 +3,7 @@ package com.ivstuart.tmud.poc;
 import java.util.BitSet;
 
 public class RoomFlags {
-
-
     public static final int NARROW = 0;
-
     public static final int DARK = 1;
 
     public static final int NO_MOB = 2;

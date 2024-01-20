@@ -22,11 +22,11 @@ import com.ivstuart.tmud.state.Mob;
 
 public class Leave extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		MoveManager.random(mob);
+        MoveManager.random(mob);
 
-	}
+    }
 
 }

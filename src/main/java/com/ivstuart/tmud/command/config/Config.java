@@ -22,19 +22,19 @@ import com.ivstuart.tmud.state.Mob;
 
 public class Config extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
         execute(mob.getPlayer(), input);
 
-	}
+    }
 
-	public void execute(Player mob, String input) {
+    public void execute(Player mob, String input) {
 
-		if (input.length() == 0) {
-			mob.out(mob.getConfig().getConfigData().toString());
-			return;
-		}
-		mob.out(mob.getConfig().getConfigData().toggle(input));
-	}
+        if (input.isEmpty()) {
+            mob.out(mob.getConfig().getConfigData().toString());
+            return;
+        }
+        mob.out(mob.getConfig().getConfigData().toggle(input));
+    }
 }

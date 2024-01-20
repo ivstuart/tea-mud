@@ -31,34 +31,33 @@ import static com.ivstuart.tmud.constants.SkillNames.SNEAK;
 
 /**
  * @author stuarti
- * 
  */
 public class Sneak extends BaseCommand {
 
-	/**
-	 * Move without alerting others to your presence as you enter in the same
-	 * room as them
-	 */
-	@Override
-	public void execute(Mob mob, String input) {
+    /**
+     * Move without alerting others to your presence as you enter into the same
+     * room as them
+     */
+    @Override
+    public void execute(Mob mob, String input) {
 
         Ability sneak = mob.getLearned().getAbility(SNEAK);
 
         if (sneak == null || sneak.isNull()) {
             mob.out("You have no knowledge of sneak");
-			return;
-		}
+            return;
+        }
 
-		if (mob.isSneaking()) {
-			mob.out("You are already sneaking around");
-		}
+        if (mob.isSneaking()) {
+            mob.out("You are already sneaking around");
+        }
 
         if (sneak.isSuccessful(mob)) {
             mob.out(new Msg(mob, "<S-You/NAME> successfully start to sneak"));
 
-			mob.getMobStatus().setSneaking(60);// 1 minute of sneaking around.
+            mob.getMobStatus().setSneaking(60);// 1 minute of sneaking around.
 
-		}
-	}
+        }
+    }
 
 }

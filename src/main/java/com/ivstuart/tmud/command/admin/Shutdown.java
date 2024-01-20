@@ -23,14 +23,18 @@ import com.ivstuart.tmud.world.Clans;
 import com.ivstuart.tmud.world.MudStats;
 import com.ivstuart.tmud.world.PostalSystem;
 import com.ivstuart.tmud.world.World;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Shutdown extends AdminCommand {
+
+    private static final Logger LOGGER = LogManager.getLogger();
 
     @Override
     public void execute(Mob mob, String input) {
 
-        World.out("Mudserver shutdown started you will be kicked off from playing",true);
-        World.out("Mudserver shutdown started you will be kicked off from playing",false);
+        World.out("Mudserver shutdown started you will be kicked off from playing", true);
+        World.out("Mudserver shutdown started you will be kicked off from playing", false);
 
         World.shutdownAuctions();
         World.shutdown();
@@ -41,8 +45,8 @@ public class Shutdown extends AdminCommand {
 
         // Quit all players so that they saved.
         Object[] players = World.getPlayers().toArray();
-        for (int index = 0; index < players.length; index++) {
-            String playerName = (String) players[index];
+        for (Object player : players) {
+            String playerName = (String) player;
             Mob playerMob = World.getMob(playerName.toLowerCase());
             if (playerMob != null) {
                 CommandProvider.getCommand(Quit.class).execute(playerMob, null);
@@ -52,7 +56,7 @@ public class Shutdown extends AdminCommand {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            LOGGER.error("Interrupted while shutting down:", e);
         }
 
         System.exit(0);

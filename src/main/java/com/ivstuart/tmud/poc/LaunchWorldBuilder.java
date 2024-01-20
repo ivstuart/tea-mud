@@ -13,8 +13,8 @@ public class LaunchWorldBuilder {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private static int maxPathLength = 20;
-    private static int maxNumberOfPaths = 20;
+    private static final int maxPathLength = 20;
+    private static final int maxNumberOfPaths = 20;
 
     private static boolean isOpen = false;
 
@@ -24,7 +24,7 @@ public class LaunchWorldBuilder {
         Random random = new Random();
         random.setSeed(7757);
 
-        GridLocation gridLocation = new GridLocation(5,5,0);
+        GridLocation gridLocation = new GridLocation(5, 5, 0);
 
         Room startingRoom = new Room(gridLocation);
 
@@ -34,9 +34,9 @@ public class LaunchWorldBuilder {
         startingRoom.getRoomFlags().setFlag(RoomFlags.DARK);
         startingRoom.getRoomFlags().setFlag(RoomFlags.PEACEFUL);
 
-        LOGGER.info("Starting room:"+startingRoom);
+        LOGGER.info("Starting room:" + startingRoom);
 
-        for (int counter=0;counter<maxNumberOfPaths;counter++) {
+        for (int counter = 0; counter < maxNumberOfPaths; counter++) {
 
             List<GridLocation> locations = getGridLocations(random, gridLocation);
 
@@ -56,7 +56,7 @@ public class LaunchWorldBuilder {
 //
         // Join open rooms up
         for (Room room : World.getRoomMap().values()) {
-            LOGGER.debug("Room:"+room);
+            LOGGER.debug("Room:" + room);
             if (!room.isNarrowPassageway()) {
                 room.joinNeighbours();
             }
@@ -67,24 +67,23 @@ public class LaunchWorldBuilder {
         frame.setTitle("Mud GUI - World Builder and Editor - v0.1");
 
 
-
         //scrollPane.setLayout(new BorderLayout());
 
         JWorldPanel worldPanel = new JWorldPanel(new BorderLayout());
-        worldPanel.setPreferredSize(new Dimension(640,800));
+        worldPanel.setPreferredSize(new Dimension(640, 800));
         worldPanel.setVisible(true);
         worldPanel.addClickListener();
 
         JScrollPane scrollPane = new JScrollPane(worldPanel);
-        scrollPane.setPreferredSize(new Dimension(640,400));
+        scrollPane.setPreferredSize(new Dimension(640, 400));
         scrollPane.setVisible(true);
 
         JPanel eastPanel = new JPanel(new BorderLayout());
 
-        JExitsPanel exitsPanel = new JExitsPanel(new GridLayout(9,1));
+        JExitsPanel exitsPanel = new JExitsPanel(new GridLayout(9, 1));
         exitsPanel.createButtons();
         exitsPanel.setVisible(true);
-        exitsPanel.setSize(new Dimension(40,120));
+        exitsPanel.setSize(new Dimension(40, 120));
 
         eastPanel.add(exitsPanel, BorderLayout.NORTH);
         JInputOutputPanel ioPanel = new JInputOutputPanel();
@@ -92,20 +91,20 @@ public class LaunchWorldBuilder {
         eastPanel.add(ioPanel, BorderLayout.SOUTH);
 
 
-        JBitsPanel jBitsPanel = new JBitsPanel(new GridLayout(10,2));
+        JBitsPanel jBitsPanel = new JBitsPanel(new GridLayout(10, 2));
         jBitsPanel.createComponents();
         eastPanel.add(jBitsPanel, BorderLayout.CENTER);
 
-        frame.add(eastPanel,BorderLayout.EAST);
-        frame.add(scrollPane,BorderLayout.CENTER);
+        frame.add(eastPanel, BorderLayout.EAST);
+        frame.add(scrollPane, BorderLayout.CENTER);
 
         JZoomPanel zoomPanel = new JZoomPanel();
         zoomPanel.createSlider();
-        frame.add(zoomPanel,BorderLayout.SOUTH);
+        frame.add(zoomPanel, BorderLayout.SOUTH);
 
         JModePanel modePanel = new JModePanel();
         modePanel.createInterface();
-        frame.add(modePanel,BorderLayout.NORTH);
+        frame.add(modePanel, BorderLayout.NORTH);
 
 
         frame.setVisible(true);
@@ -119,7 +118,7 @@ public class LaunchWorldBuilder {
 
     private static GridLocation getNextGridLocation(List<GridLocation> locations, Random random) {
 
-        if(locations.isEmpty()) {
+        if (locations.isEmpty()) {
             return null;
         }
 
@@ -139,7 +138,7 @@ public class LaunchWorldBuilder {
 
     private static List<GridLocation> getGridLocations(Random random, GridLocation startLocation) {
 
-        LOGGER.info("Start path:"+startLocation);
+        LOGGER.info("Start path:" + startLocation);
 
         int x = startLocation.getX();
         int y = startLocation.getY();
@@ -149,20 +148,28 @@ public class LaunchWorldBuilder {
 
         List<GridLocation> locations = new ArrayList<>(21);
 
-        for (int counter=0;counter<maxPathLength;counter++) {
+        for (int counter = 0; counter < maxPathLength; counter++) {
 
-            GridLocation beforeLocation = new GridLocation(x,y,z);
+            GridLocation beforeLocation = new GridLocation(x, y, z);
 
-            switch(facing) {
-                case 0: --x; break; // west
-                case 1: --y; break; // north
-                case 2: ++x; break; // east
-                case 3: ++y; break; // south
+            switch (facing) {
+                case 0:
+                    --x;
+                    break; // west
+                case 1:
+                    --y;
+                    break; // north
+                case 2:
+                    ++x;
+                    break; // east
+                case 3:
+                    ++y;
+                    break; // south
             }
 
-            GridLocation mapLocation = new GridLocation(x,y,z);
+            GridLocation mapLocation = new GridLocation(x, y, z);
 
-            if(mapLocation.isOutsideOfZone(World.zone)) {
+            if (mapLocation.isOutsideOfZone(World.zone)) {
                 break;
             }
 
@@ -170,8 +177,8 @@ public class LaunchWorldBuilder {
 
             addRoomAndExit(beforeLocation, mapLocation, random, facing);
 
-            if (random.nextInt(100) < 80 ) {
-                facing = getFacing(facing, random);;
+            if (random.nextInt(100) < 80) {
+                facing = getFacing(facing, random);
             }
 
 
@@ -180,18 +187,16 @@ public class LaunchWorldBuilder {
     }
 
 
-
     private static void addRoomAndExit(GridLocation beforeLocation, GridLocation afterLocation, Random random, int facing) {
         Room beforeRoom = World.getRoom(beforeLocation);
         Room room = World.getRoom(afterLocation);
         if (room != null) {
 
             // 50% chance of creating a looped path
-            if (random.nextInt(100) < 50 ) {
-                beforeRoom.addExit(facing,true);
+            if (random.nextInt(100) < 50) {
+                beforeRoom.addExit(facing, true);
             }
-        }
-        else {
+        } else {
             room = new Room(afterLocation);
 
             if (random.nextInt(100) < 10) {
@@ -201,7 +206,7 @@ public class LaunchWorldBuilder {
 
             World.addRoom(room);
 
-            beforeRoom.addExit(facing,true);
+            beforeRoom.addExit(facing, true);
 
         }
 
@@ -213,8 +218,7 @@ public class LaunchWorldBuilder {
 
         if (newFacing < 0) {
             newFacing = 3;
-        }
-        else if (newFacing > 3) {
+        } else if (newFacing > 3) {
             newFacing = 0;
         }
         return newFacing;

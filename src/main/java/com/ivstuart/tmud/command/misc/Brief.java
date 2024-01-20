@@ -28,18 +28,18 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Brief extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-        mob.out("Setting room decriptions to brief");
-		mob.getPlayer().getConfig().getConfigData()
-				.set(ConfigData.VERBOSE, false);
-	}
+        mob.out("Setting room descriptions to brief");
+        mob.getPlayer().getConfig().getConfigData()
+                .set(ConfigData.VERBOSE, false);
+    }
 
 }

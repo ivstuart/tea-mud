@@ -22,14 +22,14 @@ package com.ivstuart.tmud.fighting;
  */
 public interface Damage {
 
-	public String getDescription();
+    String getDescription();
 
-	public String getType();
+    String getType();
 
-	// public Ability getAbility();
+    // public Ability getAbility();
 
-	public int roll();
+    int roll();
 
-	public void setRoll(int number, int sides, int adder);
+    void setRoll(int number, int sides, int adder);
 
 }

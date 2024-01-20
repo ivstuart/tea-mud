@@ -28,29 +28,29 @@ import com.ivstuart.tmud.world.World;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Teleport extends AdminCommand {
 
-	/**
-	 * Teleport instantely to new target location
-	 */
-	@Override
-	public void execute(Mob mob, String input) {
+    /**
+     * Teleport instantly to new target location
+     */
+    @Override
+    public void execute(Mob mob, String input) {
 
-		super.execute(mob,input);
-		
-		Room toRoom = World.getRoom(input);
+        super.execute(mob, input);
 
-		if (toRoom != null) {
-			mob.out("You teleport to " + toRoom.getId());
-			mob.getRoom().remove(mob);
-			toRoom.add(mob);
-		} else {
-			mob.out("Room " + input + " not found!");
-		}
-	}
+        Room toRoom = World.getRoom(input);
+
+        if (toRoom != null) {
+            mob.out("You teleport to " + toRoom.getId());
+            mob.getRoom().remove(mob);
+            toRoom.add(mob);
+        } else {
+            mob.out("Room " + input + " not found!");
+        }
+    }
 
 }

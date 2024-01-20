@@ -18,57 +18,52 @@ package com.ivstuart.tmud.fighting.action;
 
 public enum FightState {
 
-	BEGIN() {
+    BEGIN() {
+        @Override
+        public FightState next(FightAction action) {
+            action.begin();
+            return HAPPEN;
+        }
 
-		@Override
-		public FightState next(FightAction action) {
-			action.begin();
-			return HAPPEN;
-		}
+    },
+    HAPPEN() {
+        @Override
+        public FightState next(FightAction action) {
+            action.happen();
+            return DONE;
+        }
 
-	},
-	HAPPEN() {
+    },
+    CHANGED() {
+        @Override
+        public FightState next(FightAction action) {
+            action.changed();
+            return DONE;
+        }
+    },
+    DONE() {
+        @Override
+        public FightState next(FightAction action) {
+            action.ended();
+            return FINISHED;
+        }
+    },
+    FINISHED() {
+        @Override
+        public boolean isFinished() {
+            return true;
+        }
 
-		@Override
-		public FightState next(FightAction action) {
-			action.happen();
-			return DONE;
-		}
+        @Override
+        public FightState next(FightAction action) {
+            return FINISHED;
+        }
+    };
 
-	},
-	CHANGED() {
+    public boolean isFinished() {
+        return false;
+    }
 
-		@Override
-		public FightState next(FightAction action) {
-			action.changed();
-			return DONE;
-		}
-	},
-	DONE() {
-
-		@Override
-		public FightState next(FightAction action) {
-			action.ended();
-			return FINISHED;
-		}
-	},
-	FINISHED() {
-
-		@Override
-		public boolean isFinished() {
-			return true;
-		}
-
-		@Override
-		public FightState next(FightAction action) {
-			return FINISHED;
-		}
-	};
-
-	public boolean isFinished() {
-		return false;
-	}
-
-	public abstract FightState next(FightAction action);
+    public abstract FightState next(FightAction action);
 
 }

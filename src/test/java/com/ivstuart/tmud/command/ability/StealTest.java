@@ -31,7 +31,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class StealTest {
 
@@ -82,7 +82,7 @@ public class StealTest {
         Command steal = new Steal();
         steal.execute(player1Mob, sheepMob.getAlias());
 
-        assertEquals("Player should have some cash", true, player1Mob.getInventory().getPurse().getValue() > 0);
+        assertTrue("Player should have some cash", player1Mob.getInventory().getPurse().getValue() > 0);
 
 
     }

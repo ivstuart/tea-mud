@@ -25,68 +25,68 @@ import java.io.IOException;
 import static org.junit.Assert.assertTrue;
 
 public class MudConnectionTest {
-	
-	TestHelper help = new TestHelper();
 
-	@Test
-	public void launchServerThenStop() throws InterruptedException {
+    TestHelper help = new TestHelper();
 
-		
-		help.startServer();
+    @Test
+    public void launchServerThenStop() throws InterruptedException {
 
-		boolean stopping = help.stopServer();
 
-		assertTrue(stopping);
+        help.startServer();
 
-	}
+        boolean stopping = help.stopServer();
 
-	@Test
-	public void sendSomeClientDataToServer() throws InterruptedException {
-		help.startServer();
+        assertTrue(stopping);
 
-		LaunchMudClient  client = new LaunchMudClient();
-		Thread clientThread = new Thread(client);
-		clientThread.start();
-		
-		Thread.sleep(200); // Allow time to start before sending via the client
+    }
 
-		try {
-			client.send("1");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+    @Test
+    public void sendSomeClientDataToServer() throws InterruptedException {
+        help.startServer();
 
-	}
+        LaunchMudClient client = new LaunchMudClient();
+        Thread clientThread = new Thread(client);
+        clientThread.start();
 
-	class LaunchMudClient implements Runnable {
+        Thread.sleep(200); // Allow time to start before sending via the client
 
-		boolean isRunning = true;
+        try {
+            client.send("1");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-		LaunchClient client = null;
+    }
 
-		@Override
-		public void run() {
+    class LaunchMudClient implements Runnable {
 
-			try {
-				client = LaunchClient.init();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+        boolean isRunning = true;
 
-			try {
-				Thread.sleep(15 * 60 * 1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			} // 15 minutes no shutdown coded yet.
+        LaunchClient client = null;
 
-			isRunning = false;
+        @Override
+        public void run() {
 
-		}
+            try {
+                client = LaunchClient.init();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-		public void send(String userInput) throws IOException {
+            try {
+                Thread.sleep(15 * 60 * 1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } // 15 minutes no shutdown coded yet.
 
-			client.send(userInput);
-		}
-	}
+            isRunning = false;
+
+        }
+
+        public void send(String userInput) throws IOException {
+
+            client.send(userInput);
+        }
+    }
 
 }

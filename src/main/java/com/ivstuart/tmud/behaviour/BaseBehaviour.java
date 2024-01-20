@@ -44,6 +44,7 @@ public class BaseBehaviour implements Tickable {
     public void setParameter2(int parameter2) {
         this.parameter2 = parameter2;
     }
+
     @Override
     public String getId() {
         return null;

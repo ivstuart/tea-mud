@@ -28,37 +28,37 @@ import static com.ivstuart.tmud.common.Colour.*;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public enum ManaType {
-	FIRE(RED, 'F'), EARTH(BROWN, 'E'), WATER(BLUE, 'W'), AIR(YELLOW, 'A'), COMMON(
-			WHITE, '*');
+    FIRE(RED, 'F'), EARTH(BROWN, 'E'), WATER(BLUE, 'W'), AIR(YELLOW, 'A'), COMMON(
+            WHITE, '*');
 
-    private Colour _colour;
-    private char _symbol;
+    private final Colour _colour;
+    private final char _symbol;
 
     ManaType(Colour colour_, char symbol_) {
         _colour = colour_;
         _symbol = symbol_;
     }
 
-	public static ManaType getManaType(String manaType) {
-		try {
-			return ManaType.valueOf(manaType);
-		} catch (IllegalArgumentException e) {
+    public static ManaType getManaType(String manaType) {
+        try {
+            return ManaType.valueOf(manaType);
+        } catch (IllegalArgumentException e) {
 
-		}
-		return null;
+        }
+        return null;
 
-	}
+    }
 
-	public Colour getColour() {
-		return _colour;
-	}
+    public Colour getColour() {
+        return _colour;
+    }
 
-	public String getManaString() {
-		return _colour.toString() + '(' + _symbol + ')' + WHITE;
-	}
+    public String getManaString() {
+        return _colour.toString() + '(' + _symbol + ')' + WHITE;
+    }
 }

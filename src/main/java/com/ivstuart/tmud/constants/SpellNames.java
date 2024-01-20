@@ -26,8 +26,8 @@ public class SpellNames {
     public static final String BLINDNESS = "blindness";
     public static final String COMBAT_SENSE = "combat sense";
     public static final String BLUR = "blur";
-    public static final String SANCTURY = "sanctury";
-    public static final String STONE_SKIN = "stoneskin";
+    public static final String SANCTUARY = "sanctuary";
+    public static final String STONE_SKIN = "stone skin";
     public static final String BARRIER = "barrier";
     public static final String PROTECTION = "protection";
 

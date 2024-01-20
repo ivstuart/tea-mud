@@ -40,7 +40,7 @@ public class Inventory implements Serializable {
      */
     private static final long serialVersionUID = 1L;
 
-    private MudArrayList<Item> items;
+    private final MudArrayList<Item> items;
 
     private SomeMoney purse;
 
@@ -49,13 +49,13 @@ public class Inventory implements Serializable {
      */
     public Inventory() {
         super();
-        items = new MudArrayList<Item>(true);
+        items = new MudArrayList<>(true);
         purse = new MoneyBag();
     }
 
     public Inventory(Inventory inventory) {
         super();
-        items = new MudArrayList<Item>(inventory.items);
+        items = new MudArrayList<>(inventory.items);
         purse = new MoneyBag(inventory.purse);
     }
 
@@ -98,7 +98,7 @@ public class Inventory implements Serializable {
         sb.append(purse.toString());
 
         for (Item item : items) {
-            sb.append(item.getBrief() + "\n");
+            sb.append(item.getBrief()).append("\n");
         }
 
         return sb.toString();
@@ -119,7 +119,7 @@ public class Inventory implements Serializable {
     public boolean hasLighter() {
         for (Item item : items) {
             if (item.getType() != null) {
-                if ("LIGHTER".indexOf(item.getType()) > -1) {
+                if ("LIGHTER".contains(item.getType())) {
                     return true;
                 }
             }
@@ -131,7 +131,7 @@ public class Inventory implements Serializable {
     public boolean hasLockpicks() {
         for (Item item : items) {
             if (item.getType() != null) {
-                if ("lockpicks".indexOf(item.getType()) > -1) {
+                if ("lockpicks".contains(item.getType())) {
                     return true;
                 }
             }
@@ -176,11 +176,7 @@ public class Inventory implements Serializable {
             return true;
         } else if (items != null && !items.isEmpty()) {
             return false;
-        } else if (purse != null && !purse.isEmpty()) {
-            return false;
-        } else {
-            return true;
-        }
+        } else return purse == null || purse.isEmpty();
 
     }
 
@@ -194,7 +190,7 @@ public class Inventory implements Serializable {
 
     public boolean hasSharpEdge() {
         for (Item item : items) {
-            if ("SHARP".indexOf(item.getType()) > -1) {
+            if (item.getType().contains("SHARP")) {
                 return true;
             }
 
@@ -226,29 +222,26 @@ public class Inventory implements Serializable {
     public SomeMoney removeCoins(String input) {
         int type = -1;
         boolean allCoins = false;
-        if (input.indexOf("all") > -1) {
+        if (input.contains("all")) {
             type = Money.COPPER;
         }
-        if (input.indexOf("coins") > -1) {
+        if (input.contains("coins")) {
             type = Money.COPPER;
         }
-        if (input.indexOf("copper") > -1) {
+        if (input.contains("copper")) {
             type = Money.COPPER;
         }
-        if (input.indexOf("silver") > -1) {
+        if (input.contains("silver")) {
             type = Money.SILVER;
         }
-        if (input.indexOf("gold") > -1) {
+        if (input.contains("gold")) {
             type = Money.GOLD;
         }
-        if (input.indexOf("plati") > -1) {
+        if (input.contains("plati")) {
             type = Money.PLATINUM;
         }
         if (type > -1) {
-            String inputSplit[] = input.split(" ");
-            if (inputSplit == null) {
-                return null;
-            }
+            String[] inputSplit = input.split(" ");
             int coins = 0;
             try {
                 coins = Integer.parseInt(inputSplit[0]);

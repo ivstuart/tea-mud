@@ -34,7 +34,7 @@ public class New extends AdminCommand {
     @Override
     public void execute(Mob mob, String input) {
 
-        if (input.length() == 0) {
+        if (input.isEmpty()) {
             mob.out("Format is: new state.Item");
             return;
         }
@@ -43,7 +43,7 @@ public class New extends AdminCommand {
         try {
             obj = StateReader.getInstance().createOrAddNewObject(null, input, null);
         } catch (ClassNotFoundException e) {
-            LOGGER.error("Making new instance in builder", e);
+            LOGGER.error("Class not found in builder", e);
         } catch (IllegalAccessException e) {
             LOGGER.error("Making new instance in builder", e);
         }

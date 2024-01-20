@@ -28,35 +28,35 @@ import com.ivstuart.tmud.state.ProfessionMaster;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Leave extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		ProfessionMaster professionMaster = mob.getRoom().getProfessionMaster();
+        ProfessionMaster professionMaster = mob.getRoom().getProfessionMaster();
 
-		if (professionMaster == null) {
-			mob.out("There is no one here to leave a profession with");
-			return;
-		}
+        if (professionMaster == null) {
+            mob.out("There is no one here to leave a profession with");
+            return;
+        }
 
-		if (mob.getPlayer().getProfession() == null) {
-			mob.out("You already have no profession");
-			return;
-		}
+        if (mob.getPlayer().getProfession() == null) {
+            mob.out("You already have no profession");
+            return;
+        }
 
-		if (!professionMaster.getProf().equals(mob.getPlayer().getProfession())) {
-			mob.out("This is the wrong profession master to leave from");
-			return;
-		}
+        if (!professionMaster.getProf().equals(mob.getPlayer().getProfession())) {
+            mob.out("This is the wrong profession master to leave from");
+            return;
+        }
 
-		mob.getPlayer().setProfession(null);
+        mob.getPlayer().setProfession(null);
 
 
-	}
+    }
 
 }

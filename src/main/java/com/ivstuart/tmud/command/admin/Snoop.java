@@ -28,35 +28,34 @@ import com.ivstuart.tmud.world.World;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Snoop extends AdminCommand {
 
-	/**
-	 * View all input from player as if in the same room.
-	 */
-	@Override
-	public void execute(Mob mob, String input) {
+    /**
+     * View all input from player as if in the same room.
+     */
+    @Override
+    public void execute(Mob mob, String input) {
 
-		super.execute(mob,input);
-		
-		Player player = World.getPlayer(input);
+        super.execute(mob, input);
 
-		if (player == null) {
-			mob.out("Can not find player "+input+" to snoop on");
-			return;
-		}
-		
-		if (input.equals("off")) {
-			mob.out("You stop snooping on player "+player.getName());
-			player.setSnooper(null);
-		}
-		else {
-			mob.out("You start snooping on player "+player.getName()+" command with arg off to switch off snooping");
-			player.setSnooper(mob);
-		}
-	}
+        Player player = World.getPlayer(input);
+
+        if (player == null) {
+            mob.out("Can not find player " + input + " to snoop on");
+            return;
+        }
+
+        if (input.equals("off")) {
+            mob.out("You stop snooping on player " + player.getName());
+            player.setSnooper(null);
+        } else {
+            mob.out("You start snooping on player " + player.getName() + " command with arg off to switch off snooping");
+            player.setSnooper(mob);
+        }
+    }
 
 }

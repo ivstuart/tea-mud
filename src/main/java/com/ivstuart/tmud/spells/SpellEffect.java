@@ -24,9 +24,9 @@ import java.io.Serializable;
 
 public interface SpellEffect extends Serializable {
 
-	public void effect(Mob caster, Mob target, Spell spell, Item targetItem);
+    void effect(Mob caster, Mob target, Spell spell, Item targetItem);
 
-	// Maybe this should be in the spell config file.
-	public boolean isPositiveEffect();
+    // Maybe this should be in the spell config file.
+    boolean isPositiveEffect();
 
 }

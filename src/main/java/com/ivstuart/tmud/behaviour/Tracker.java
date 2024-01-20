@@ -26,58 +26,58 @@ import org.apache.logging.log4j.Logger;
 
 public class Tracker extends BaseBehaviour {
 
-	private static Logger LOGGER = LogManager.getLogger();
+    private final static Logger LOGGER = LogManager.getLogger();
 
-	private String target;
+    private String target;
 
-	public Tracker() {
-		parameter = 50;
-		parameter2 = 2;
-	}
+    public Tracker() {
+        parameter = 50;
+        parameter2 = 2;
+    }
 
-	@Override
-	public String getId() {
-		return mob.getId();
-	}
+    @Override
+    public String getId() {
+        return mob.getId();
+    }
 
-	@Override
+    @Override
     public boolean tick() {
 
-		if (mob.getFight().isFighting()) {
-			target = mob.getFight().getTarget().getName();
-			LOGGER.debug(mob.getName()+" is fighting and hence will not track target");
+        if (mob.getFight().isFighting()) {
+            target = mob.getFight().getTarget().getName();
+            LOGGER.debug(mob.getName() + " is fighting and hence will not track target");
             return false;
         }
 
-		if (target == null) {
-			LOGGER.debug(mob.getName()+" is not currently tracking anyone");
+        if (target == null) {
+            LOGGER.debug(mob.getName() + " is not currently tracking anyone");
             return false;
         }
 
-		if (mob.getFight().isEngaged()) {
-			LOGGER.debug(mob.getName()+" is engaged and hence will not track");
+        if (mob.getFight().isEngaged()) {
+            LOGGER.debug(mob.getName() + " is engaged and hence will not track");
             return false;
         }
 
-		if (DiceRoll.ONE_D100.rollMoreThan(parameter)) {
-			LOGGER.debug(mob.getName()+" is does not feel like tracking this tick");
+        if (DiceRoll.ONE_D100.rollMoreThan(parameter)) {
+            LOGGER.debug(mob.getName() + " is does not feel like tracking this tick");
             return false;
         }
 
-		Room currentRoom = mob.getRoom();
+        Room currentRoom = mob.getRoom();
 
-		for (Track track : currentRoom.getTracks()) {
-			if (track.getWho().equals(target)) {
-				String direction = track.getDirection();
+        for (Track track : currentRoom.getTracks()) {
+            if (track.getWho().equals(target)) {
+                String direction = track.getDirection();
 
-				Exit exit = currentRoom.getExit(direction);
+                Exit exit = currentRoom.getExit(direction);
 
-				MoveManager.move(mob, currentRoom, exit.getDestinationRoom(), exit, "walks");
+                MoveManager.move(mob, currentRoom, exit.getDestinationRoom(), exit, "walks");
                 return false;
             }
-		}
+        }
 
-		LOGGER.debug(mob.getName()+" has no matching tracks to follow");
+        LOGGER.debug(mob.getName() + " has no matching tracks to follow");
 
         return false;
     }

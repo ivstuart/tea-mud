@@ -24,10 +24,8 @@ package com.ivstuart.tmud.person;
 
 /**
  * @author Ivan Stuart
- * 
- * 
  */
 public interface Nameable {
 
-	public String getName();
+    String getName();
 }

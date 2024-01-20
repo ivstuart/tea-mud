@@ -28,22 +28,22 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Compact extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		mob.getPlayer().getConfig().getConfigData().toggle(ConfigData.COMBINE);
-	}
+        mob.getPlayer().getConfig().getConfigData().toggle(ConfigData.COMBINE);
+    }
 
-	public String getHelp() {
+    public String getHelp() {
 
-		return "This command toggles the extra blank line output to your screen after each"
-				+ "command. Useful if you have a small display.";
-	}
+        return "This command toggles the extra blank line output to your screen after each"
+                + "command. Useful if you have a small display.";
+    }
 
 }

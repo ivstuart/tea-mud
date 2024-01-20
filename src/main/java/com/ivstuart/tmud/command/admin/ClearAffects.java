@@ -20,23 +20,23 @@ import com.ivstuart.tmud.state.Mob;
 
 public class ClearAffects extends AdminCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		super.execute(mob,input);
+        super.execute(mob, input);
 
-		Mob target = null;
-		if (input != null && input.length() > 0) {
-			target = mob.getRoom().getMob(input);
+        Mob target;
+        if (input != null && !input.isEmpty()) {
+            target = mob.getRoom().getMob(input);
 
-			if (target == null) {
-				mob.out(input + " is not here to clear affects on!");
-				return;
-			}
-			mob = target;
-		}
+            if (target == null) {
+                mob.out(input + " is not here to clear affects on!");
+                return;
+            }
+            mob = target;
+        }
 
-		mob.out("Clearing all affects on "+mob.getName());
+        mob.out("Clearing all affects on " + mob.getName());
 
         mob.clearAffects();
     }

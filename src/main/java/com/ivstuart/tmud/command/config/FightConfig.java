@@ -23,18 +23,18 @@ import com.ivstuart.tmud.state.Mob;
 
 public class FightConfig extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
-		execute(mob.getPlayer(), input);
-	}
+    @Override
+    public void execute(Mob mob, String input) {
+        execute(mob.getPlayer(), input);
+    }
 
-	private void execute(Player mob, String input) {
+    private void execute(Player mob, String input) {
 
-		if (input.length() == 0) {
-			mob.out(mob.getConfig().getFightData().look());
-			return;
-		}
-		mob.out(mob.getConfig().getFightData().toggle(input));
-	}
+        if (input.isEmpty()) {
+            mob.out(mob.getConfig().getFightData().look());
+            return;
+        }
+        mob.out(mob.getConfig().getFightData().toggle(input));
+    }
 
 }

@@ -31,7 +31,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class Room extends BasicThing implements Msgable {
@@ -74,9 +73,11 @@ public class Room extends BasicThing implements Msgable {
     private boolean isNoDrop;
     private boolean isAuctionHouse;
     private SectorType sectorType;
+
     public Room() {
         initRoom();
     }
+
     public Room(Room room) {
         super(room);
         initRoom();
@@ -100,6 +101,9 @@ public class Room extends BasicThing implements Msgable {
         this.isNoDrop = room.isNoDrop;
         this.isAuctionHouse = room.isAuctionHouse;
         this.isDeepWater = room.isDeepWater;
+        this._type = room._type;
+        this.sectorType = room.sectorType;
+
     }
 
     public static void setPickable(boolean flag) {
@@ -193,10 +197,6 @@ public class Room extends BasicThing implements Msgable {
 
     public void setNoDrop(boolean noDrop) {
         isNoDrop = noDrop;
-    }
-
-    public void setRegen(boolean regen) {
-        isRegen = regen;
     }
 
     public boolean isFlying() {
@@ -320,10 +320,10 @@ public class Room extends BasicThing implements Msgable {
     }
 
     private void initRoom() {
-        _props = new MudArrayList<Prop>();
-        _exits = new MudArrayList<Exit>();
-        _mobs = new MudArrayList<Mob>(true); // matching part of name
-        tracks = new ArrayList<Track>(0);
+        _props = new MudArrayList<>();
+        _exits = new MudArrayList<>();
+        _mobs = new MudArrayList<>(true); // matching part of name
+        tracks = new ArrayList<>(0);
         isRegen = false;
         isUnderWater = false;
     }
@@ -396,9 +396,9 @@ public class Room extends BasicThing implements Msgable {
     }
 
     public List<Mob> getMobs(String target) {
-        List<Mob> mobs = new ArrayList<Mob>();
+        List<Mob> mobs = new ArrayList<>();
         for (Mob mob : _mobs) {
-            if (mob.getName().indexOf(target) > -1 || "all".equalsIgnoreCase(target)) {
+            if (mob.getName().contains(target) || "all".equalsIgnoreCase(target)) {
                 mobs.add(mob);
             }
         }
@@ -482,8 +482,8 @@ public class Room extends BasicThing implements Msgable {
     /**
      * Why would you ever what to do this?
      *
-     * @param id_
-     * @return
+     * @param id_ key
+     * @return Mob
      * @deprecated
      */
     @Deprecated
@@ -529,14 +529,13 @@ public class Room extends BasicThing implements Msgable {
         RoomManager.setDoorKeys(keys_);
     }
 
-
     public void setMob(String mobId_) {
         Mob mob = EntityProvider.createMob(mobId_, getId());
         this.add(mob);
     }
 
     public Mob getRandomPlayer() {
-        List<Mob> playerList = new ArrayList<Mob>();
+        List<Mob> playerList = new ArrayList<>();
         for (Mob mob : _mobs) {
             if (mob.isPlayer()) {
                 playerList.add(mob);
@@ -575,7 +574,7 @@ public class Room extends BasicThing implements Msgable {
     public Mob getRepairer() {
         for (Mob mob : _mobs) {
             if (mob instanceof Armourer) {
-                return (Armourer) mob;
+                return mob;
             }
         }
         return null;
@@ -584,7 +583,7 @@ public class Room extends BasicThing implements Msgable {
     public Mob getBanker() {
         for (Mob mob : _mobs) {
             if (mob instanceof Banker) {
-                return (Banker) mob;
+                return mob;
             }
         }
         return null;
@@ -596,6 +595,10 @@ public class Room extends BasicThing implements Msgable {
 
     public boolean isRegen() {
         return isRegen;
+    }
+
+    public void setRegen(boolean regen) {
+        isRegen = regen;
     }
 
     public void setRegen(String arg) {
@@ -613,7 +616,7 @@ public class Room extends BasicThing implements Msgable {
     public Mob getWarMaster() {
         for (Mob mob : _mobs) {
             if (mob instanceof WarMaster) {
-                return (WarMaster) mob;
+                return mob;
             }
         }
         return null;
@@ -641,27 +644,33 @@ public class Room extends BasicThing implements Msgable {
 
     public boolean hasFire() {
         Prop prop = _props.get("fire");
-        if (prop == null) {
-            return false;
-        }
-        return true;
+        return prop != null;
     }
 
     public void add(Disease disease) {
         if (diseases == null) {
             diseases = new ArrayList<>();
         }
-        Iterator<Disease> diseaseIter = diseases.iterator();
-        for (; diseaseIter.hasNext(); ) {
-            Disease infection = diseaseIter.next();
-            infection.getDesc().equals(disease.getDesc());
-            diseaseIter.remove();
+
+        for (Disease haveAlreadyDiseases : diseases) {
+            if (disease.getDesc().equals(haveAlreadyDiseases.getDesc())) {
+                // No need to add something the room already has
+                LOGGER.info("Room already has that disease not adding");
+                return;
+            }
         }
+
         diseases.add(disease);
     }
 
     public void setDisease(String name) {
         Disease disease = DiseaseFactory.createClass(name);
+
+        if (disease == null) {
+            // TODO log this case.
+            return;
+        }
+
         disease.setDecription(name);
         add(disease);
     }

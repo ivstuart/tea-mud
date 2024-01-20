@@ -27,7 +27,7 @@ import java.util.List;
 
 public class Stealer extends BaseBehaviour {
 
-    private static Logger LOGGER = LogManager.getLogger();
+    private final static Logger LOGGER = LogManager.getLogger();
 
 
     public Stealer() {
@@ -43,7 +43,7 @@ public class Stealer extends BaseBehaviour {
     public boolean tick() {
 
         if (DiceRoll.ONE_D100.rollMoreThan(parameter)) {
-            LOGGER.debug(mob.getName()+" is does not feel like stealing");
+            LOGGER.debug(mob.getName() + " is does not feel like stealing");
             return false;
         }
 
@@ -67,7 +67,7 @@ public class Stealer extends BaseBehaviour {
             victim = mobs.get(randomIndex);
         }
 
-        SomeMoney money = new Money(Money.COPPER,5);
+        SomeMoney money = new Money(Money.COPPER, 5);
 
         if (!victim.getInventory().getPurse().remove(money)) {
             LOGGER.debug("No money to steal");

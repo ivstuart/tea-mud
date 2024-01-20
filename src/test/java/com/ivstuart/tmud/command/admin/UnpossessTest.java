@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNull;
 
 /**
  * Created by Ivan on 30/08/2016.
@@ -80,6 +81,6 @@ public class UnpossessTest {
         Unpossess unpossess = new Unpossess();
         unpossess.execute(mob, sheepMob.getAlias());
 
-        assertEquals("Sheep is not possessed", null, sheepMob.getPossessed());
+        assertNull("Sheep is not possessed", sheepMob.getPossessed());
     }
 }

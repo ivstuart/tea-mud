@@ -24,20 +24,20 @@ import com.ivstuart.tmud.world.World;
 
 public class ControlWeather implements SpellEffect {
 
-	@Override
-	public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
+    @Override
+    public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
 
-		// Note pass in parameter for better or worse weather
-		WeatherSky sky = World.getWeather().getNextSky(1000);
+        // Note pass in parameter for better or worse weather
+        WeatherSky sky = World.getWeather().getNextSky(1000);
 
-		World.setWeather(sky);
+        World.setWeather(sky);
 
-		caster_.out("The weather changes");
-		caster_.out(sky.getDesc());
-	}
+        caster_.out("The weather changes");
+        caster_.out(sky.getDesc());
+    }
 
-	public boolean isPositiveEffect() {
-		return true;
-	}
+    public boolean isPositiveEffect() {
+        return true;
+    }
 
 }

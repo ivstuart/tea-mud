@@ -25,9 +25,9 @@ import java.util.List;
 
 /**
  * @author stuarti
- *         <p>
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class ClanChat extends BaseCommand {
 
@@ -54,7 +54,7 @@ public class ClanChat extends BaseCommand {
         }
         List<String> chat = Clans.getClan(clanMembership.getClanId()).getChat();
 
-        if (input.length() == 0) {
+        if (input.isEmpty()) {
             mob.out("" + chat);
             return;
         }

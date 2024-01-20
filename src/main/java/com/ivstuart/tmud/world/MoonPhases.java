@@ -46,6 +46,7 @@ public enum MoonPhases {
     /**
      * This is not designed to be perfect but is good enough for game purposes.
      * 16th Sep 2016 is a full moon
+     *
      * @return
      */
     public static MoonPhases getPhase() {

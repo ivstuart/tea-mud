@@ -30,9 +30,9 @@ import static com.ivstuart.tmud.constants.SpellNames.*;
 
 /**
  * @author stuarti
- *         <p>
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Rating extends BaseCommand {
 
@@ -48,7 +48,7 @@ public class Rating extends BaseCommand {
 
         rating += mob.getPlayer().getAttributes().getTotal();
 
-        if (mob.getMobAffects().hasAffect(SANCTURY)) {
+        if (mob.getMobAffects().hasAffect(SANCTUARY)) {
             rating += 30;
         }
         if (mob.getMobAffects().hasAffect(BLUR)) {

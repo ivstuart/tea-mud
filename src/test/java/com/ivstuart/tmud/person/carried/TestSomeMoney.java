@@ -13,19 +13,19 @@ public class TestSomeMoney {
 
         Money copper = new Money(Money.COPPER, 10);
 
-        System.out.println("Copper :"+copper);
+        System.out.println("Copper :" + copper);
 
         money.add(copper);
 
-        System.out.println("Money :"+money);
+        System.out.println("Money :" + money);
 
-        System.out.println("Copper :"+copper);
+        System.out.println("Copper :" + copper);
 
         money.remove(copper);
 
-        System.out.println("Copper :"+copper);
+        System.out.println("Copper :" + copper);
 
-        System.out.println("Money :"+money);
+        System.out.println("Money :" + money);
     }
 
     @Test
@@ -34,7 +34,7 @@ public class TestSomeMoney {
 
         Money copper = new Money(Money.COPPER, 1234);
 
-        MoneyBag moneyBag = new MoneyBag(copper.getValue(),Money.PLATINUM, true);
+        MoneyBag moneyBag = new MoneyBag(copper.getValue(), Money.PLATINUM, true);
 
         System.out.println("Money :" + moneyBag);
     }
@@ -45,7 +45,7 @@ public class TestSomeMoney {
 
         Money copper = new Money(Money.COPPER, 1234);
 
-        MoneyBag moneyBag = new MoneyBag(copper.getValue(),Money.GOLD, true);
+        MoneyBag moneyBag = new MoneyBag(copper.getValue(), Money.GOLD, true);
 
         System.out.println("Money :" + moneyBag);
     }

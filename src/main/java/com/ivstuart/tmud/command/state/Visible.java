@@ -24,7 +24,6 @@ package com.ivstuart.tmud.command.state;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.statistics.affects.Affect;
-import com.ivstuart.tmud.person.statistics.affects.BuffStatsAffect;
 import com.ivstuart.tmud.state.Mob;
 
 import static com.ivstuart.tmud.common.MobState.STAND;
@@ -32,37 +31,37 @@ import static com.ivstuart.tmud.constants.SpellNames.INVISIBILITY;
 
 public class Visible extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob_, String input_) {
+    @Override
+    public void execute(Mob mob_, String input_) {
 
-		// Check current state
-		if (mob_.getState().isSleeping()) {
-			mob_.out("You are sleeping wake up to vis and invis!");
-			return;
-		}
+        // Check current state
+        if (mob_.getState().isSleeping()) {
+            mob_.out("You are sleeping wake up to vis and invis!");
+            return;
+        }
 
-        Affect invisAffect = (BuffStatsAffect) mob_.getMobAffects().getAffect(INVISIBILITY);
+        Affect invisAffect = mob_.getMobAffects().getAffect(INVISIBILITY);
 
-		if (invisAffect == null){
-			mob_.out("That spell is not active!");
-			return;
-		}
+        if (invisAffect == null) {
+            mob_.out("That spell is not active!");
+            return;
+        }
 
-		// Check allowed to change state
-		if (mob_.isInvisible()) {
-			mob_.out("You turn yourself visible");
-			mob_.setInvisible(false);
-			return;
-		}
+        // Check allowed to change state
+        if (mob_.isInvisible()) {
+            mob_.out("You turn yourself visible");
+            mob_.setInvisible(false);
+            return;
+        }
 
-		// Change state and notify mob and room
+        // Change state and notify mob and room
 
-		mob_.out("You turn yourself invisible");
+        mob_.out("You turn yourself invisible");
 
-		mob_.setState(STAND);
-		mob_.setInvisible(true);
+        mob_.setState(STAND);
+        mob_.setInvisible(true);
 
-		// Note sleep to wake you will also stand
-	}
+        // Note sleep to wake you will also stand
+    }
 
 }

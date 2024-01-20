@@ -31,22 +31,22 @@ import static com.ivstuart.tmud.constants.SkillNames.TRACKING;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class TrackCommand extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		if (!mob.getMv().deduct(1)) {
-			mob.out("You have no movement left to track with");
-			return;
-		}
+        if (!mob.getMv().deduct(1)) {
+            mob.out("You have no movement left to track with");
+            return;
+        }
 
-		// Success or fail
-		Ability ability = mob.getLearned().getAbility(TRACKING);
+        // Success or fail
+        Ability ability = mob.getLearned().getAbility(TRACKING);
 
         if (ability.isNull()) {
             mob.out("You have no such ability to do tracking");
@@ -55,18 +55,18 @@ public class TrackCommand extends BaseCommand {
 
         if (ability.isSuccessful(mob)) {
 
-			if (mob.getRoom().getTracks() == null) {
-				mob.out("You fail to find any tracks");
-				return;
-			}
+            if (mob.getRoom().getTracks() == null) {
+                mob.out("You fail to find any tracks");
+                return;
+            }
 
-			for (Track track : mob.getRoom().getTracks()) {
-				mob.out("Track off to the " + track.getDirection() + " for " + track.getWho() + " age " + track.getAge());
-			}
+            for (Track track : mob.getRoom().getTracks()) {
+                mob.out("Track off to the " + track.getDirection() + " for " + track.getWho() + " age " + track.getAge());
+            }
 
-		} else {
-			mob.out("You fail to find any tracks");
-		}
-	}
+        } else {
+            mob.out("You fail to find any tracks");
+        }
+    }
 
 }

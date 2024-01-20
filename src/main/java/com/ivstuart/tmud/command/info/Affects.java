@@ -28,75 +28,73 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Affects extends BaseCommand {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see command.Command#execute(java.lang.String)
-	 */
-	@Override
-	public void execute(Mob mob, String input) {
+    /*
+     * (non-Javadoc)
+     *
+     * @see command.Command#execute(java.lang.String)
+     */
+    @Override
+    public void execute(Mob mob, String input) {
 
 
-        Mob self = mob;
+        // get any mob affects
+        mob.out(mob.showMobAffects());
 
-		// get any mob affects
-		self.out(mob.showMobAffects());
+        mob.out(getHunger(mob));
+        mob.out(getThirst(mob));
 
-		self.out(getHunger(self));
-		self.out(getThirst(self));
+    }
 
-	}
+    private String getHunger(Mob self) {
+        Attribute att = self.getPlayer().getData().getHunger();
+        if (att.getValue() > 400) {
+            return "You are fully fed.";
+        }
+        if (att.getValue() > 150) {
+            return "You could eat if forced.";
+        }
+        if (att.getValue() > 100) {
+            return "You are slightly hungry.";
+        }
+        if (att.getValue() > 50) {
+            return "You are hungry.";
+        }
+        if (att.getValue() > 0) {
+            return "You are very hungry.";
+        }
+        if (att.getValue() > -50) {
+            return "You are suffering with starvation!";
+        }
+        return "You are starving to death!";
+    }
 
-	private String getHunger(Mob self) {
-		Attribute att = self.getPlayer().getData().getHunger();
-		if (att.getValue() > 400) {
-			return "You are fully fed.";
-		}
-		if (att.getValue() > 150) {
-			return "You could eat if forced.";
-		}
-		if (att.getValue() > 100) {
-			return "You are slightly hungery.";
-		}
-		if (att.getValue() > 50) {
-			return "You are hungery.";
-		}
-		if (att.getValue() > 0) {
-			return "You are very hungery.";
-		}
-		if (att.getValue() > -50) {
-			return "You are suffering with starvation!";
-		}
-		return "You are starving to death!";
-	}
-
-	private String getThirst(Mob self) {
-		Attribute att = self.getPlayer().getData().getThirst();
-		if (att.getValue() > 80) {
-			return "You are fully refreshed.";
-		}
-		if (att.getValue() > 30) {
-			return "You could drink if forced to.";
-		}
-		if (att.getValue() > 20) {
-			return "You are slightly thirsty.";
-		}
-		if (att.getValue() > 10) {
-			return "You are thirsty.";
-		}
-		if (att.getValue() > 0) {
-			return "You are very thirsty.";
-		}
-		if (att.getValue() > -10) {
-			return "You are suffering with dehyration!";
-		}
-		return "Dehyration is killing you!";
-	}
+    private String getThirst(Mob self) {
+        Attribute att = self.getPlayer().getData().getThirst();
+        if (att.getValue() > 80) {
+            return "You are fully refreshed.";
+        }
+        if (att.getValue() > 30) {
+            return "You could drink if forced to.";
+        }
+        if (att.getValue() > 20) {
+            return "You are slightly thirsty.";
+        }
+        if (att.getValue() > 10) {
+            return "You are thirsty.";
+        }
+        if (att.getValue() > 0) {
+            return "You are very thirsty.";
+        }
+        if (att.getValue() > -10) {
+            return "You are suffering with dehydration!";
+        }
+        return "Dehydration is killing you!";
+    }
 
 }

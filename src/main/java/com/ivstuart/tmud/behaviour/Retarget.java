@@ -24,11 +24,11 @@ import org.apache.logging.log4j.Logger;
 
 public class Retarget extends BaseBehaviour {
 
-    private static Logger LOGGER = LogManager.getLogger();
+    private final static Logger LOGGER = LogManager.getLogger();
 
 
     public Retarget() {
-        parameter = 50; //aggro precentage
+        parameter = 50; //aggro percentage
     }
 
     @Override
@@ -45,7 +45,7 @@ public class Retarget extends BaseBehaviour {
         }
 
         if (DiceRoll.ONE_D100.rollMoreThan(parameter)) {
-            LOGGER.debug(mob.getName()+" is does not feel like retargetting");
+            LOGGER.debug(mob.getName() + " is does not feel like retargeting");
             return false;
         }
 

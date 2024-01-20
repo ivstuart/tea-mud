@@ -33,9 +33,9 @@ import java.util.Map;
  */
 public class PostalSystem {
     private static final Logger LOGGER = LogManager.getLogger();
-
+    private static final String fileName = "post.sav";
     private static Map<String, List<Item>> post = new HashMap<>();
-    private static String fileName = "post.sav";
+
     public static void post(Item item, String player) {
 
         List<Item> items = post.get(player);

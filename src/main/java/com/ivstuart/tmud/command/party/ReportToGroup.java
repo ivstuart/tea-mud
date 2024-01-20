@@ -30,38 +30,38 @@ import java.util.List;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class ReportToGroup extends BaseCommand {
 
-	/**
-	 * 
-	 */
-	public ReportToGroup() {
-		super();
-	}
+    /**
+     *
+     */
+    public ReportToGroup() {
+        super();
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see command.Command#execute(java.lang.String)
-	 */
-	@Override
-	public void execute(Mob mob_, String input) {
+    /*
+     * (non-Javadoc)
+     *
+     * @see command.Command#execute(java.lang.String)
+     */
+    @Override
+    public void execute(Mob mob_, String input) {
 
-		List<Mob> group = mob_.getPlayer().getGroup();
+        List<Mob> group = mob_.getPlayer().getGroup();
 
-		if (group == null) {
-			mob_.out("You are not currently part of any xp group");
-			return;
-		}
+        if (group == null) {
+            mob_.out("You are not currently part of any xp group");
+            return;
+        }
 
-		for (Mob mob : group) {
-			mob.out(">>> ["+mob_.getName()+"] "+ Prompt.getPrompt(mob_));
-		}
+        for (Mob mob : group) {
+            mob.out(">>> [" + mob_.getName() + "] " + Prompt.getPrompt(mob_));
+        }
 
-	}
+    }
 
 }

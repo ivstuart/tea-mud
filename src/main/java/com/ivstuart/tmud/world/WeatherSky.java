@@ -33,9 +33,9 @@ public enum WeatherSky {
     BLIZZARD(970, 990, "The snow storm reduces visibility", true);
 
 
-    private String desc;
-    private int low;
-    private int high;
+    private final String desc;
+    private final int low;
+    private final int high;
     private int humidity;
     private int temperature;
     private boolean blocksScan;

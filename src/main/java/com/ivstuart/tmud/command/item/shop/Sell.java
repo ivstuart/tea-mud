@@ -30,20 +30,20 @@ import com.ivstuart.tmud.state.ShopKeeper;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Sell extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
         ShopKeeper shopKeeper = mob.getRoom().getShopKeeper();
 
-		if (shopKeeper == null) {
-			mob.out("There is no shop here to buy and sell from");
-			return;
-		}
+        if (shopKeeper == null) {
+            mob.out("There is no shop here to buy and sell from");
+            return;
+        }
 
         if (mob.isGood() && shopKeeper.isNoGood() ||
                 (!mob.isGood() && shopKeeper.isNoEvil())) {
@@ -56,32 +56,32 @@ public class Sell extends BaseCommand {
             return;
         }
 
-		Item item = mob.getInventory().get(input);
+        Item item = mob.getInventory().get(input);
 
-		if (item == null) {
-			mob.out("No item to sell "+input);
-			return;
-		}
+        if (item == null) {
+            mob.out("No item to sell " + input);
+            return;
+        }
 
-		// SomeMoney
-		Money cost = (Money) item.getCost();
+        // SomeMoney
+        Money cost = (Money) item.getCost();
 
-		if (cost == null) {
-			mob.out("The shop does not want that item its worthless");
-			return;
-		}
+        if (cost == null) {
+            mob.out("The shop does not want that item its worthless");
+            return;
+        }
 
-		if (!shopKeeper.getInventory().getPurse().remove(cost)) {
-			mob.out("Shopkeeper can not afford "+cost+" of item");
-			return;
-		}
+        if (!shopKeeper.getInventory().getPurse().remove(cost)) {
+            mob.out("Shopkeeper can not afford " + cost + " of item");
+            return;
+        }
 
-		mob.getInventory().remove(item);
-		mob.getInventory().add(cost);
+        mob.getInventory().remove(item);
+        mob.getInventory().add(cost);
 
-		shopKeeper.getInventory().add(item);
+        shopKeeper.getInventory().add(item);
 
-		mob.out("You sell a "+item.getName());
-	}
+        mob.out("You sell a " + item.getName());
+    }
 
 }

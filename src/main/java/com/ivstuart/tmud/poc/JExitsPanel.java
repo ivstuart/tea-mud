@@ -9,6 +9,10 @@ public class JExitsPanel extends JPanel {
         super(layout);
     }
 
+    public JExitsPanel() {
+        super();
+    }
+
     public void createButtons() {
         JButton nButton = new JButton("North");
         JButton sButton = new JButton("South");
@@ -32,36 +36,35 @@ public class JExitsPanel extends JPanel {
         this.add(customExitField);
         this.add(customExitFacing);
 
-        nButton.addActionListener(e -> buttonPressed("north",1));
-        sButton.addActionListener(e -> buttonPressed("south",3));
-        eButton.addActionListener(e -> buttonPressed("east",2));
-        wButton.addActionListener(e -> buttonPressed("west",0));
-        uButton.addActionListener(e -> buttonPressed("up",4));
-        dButton.addActionListener(e -> buttonPressed("down",5));
+        nButton.addActionListener(e -> buttonPressed("north", 1));
+        sButton.addActionListener(e -> buttonPressed("south", 3));
+        eButton.addActionListener(e -> buttonPressed("east", 2));
+        wButton.addActionListener(e -> buttonPressed("west", 0));
+        uButton.addActionListener(e -> buttonPressed("up", 4));
+        dButton.addActionListener(e -> buttonPressed("down", 5));
 
         int facing = Integer.parseInt(customExitFacing.getText());
 
-        customButton.addActionListener(e -> buttonPressed(customExitField.getText(),facing));
+        customButton.addActionListener(e -> buttonPressed(customExitField.getText(), facing));
     }
 
     private void buttonPressed(String direction, int facing) {
-        Room selectedRoom =   World.getSelectedRoom();
+        Room selectedRoom = World.getSelectedRoom();
         selectedRoom.toggleExit(direction, facing);
 
-        if (!JModePanel.isOneWay()) {
+        if (JModePanel.isBidirectional()) {
             GridLocation nextLocation = World.getSelectedRoom().getGridLocation().goFacing(facing);
             Room addjasentRoom = World.getRoom(nextLocation);
 
-            if(addjasentRoom != null) {
-                addjasentRoom.toggleExit(Facing.getOpposite(direction),Facing.reverse(facing));
+            if (addjasentRoom != null) {
+                addjasentRoom.toggleExit(Facing.getOpposite(direction), Facing.reverse(facing));
 
                 Exit exit = selectedRoom.getExit(direction);
 
-                if(JModePanel.isEditDoors() && exit != null) {
+                if (JModePanel.isEditDoors() && exit != null) {
                     exit.toggleDoor();
                 }
-            }
-            else {
+            } else {
                 if (JModePanel.isEditRooms()) {
                     World.addRoom(new Room(nextLocation));
                 }
@@ -69,12 +72,7 @@ public class JExitsPanel extends JPanel {
         }
 
 
-
         this.getRootPane().repaint();
-    }
-
-    public JExitsPanel() {
-        super();
     }
 
 }

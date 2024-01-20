@@ -79,7 +79,7 @@ public class ButcherTest {
         Command butcher = new Butcher();
         butcher.execute(player1Mob, "corpse"); // sheepMob.getAlias());
 
-        assertNotNull("No backstab queued", player1Mob.getInventory().get("food"));
+        assertNotNull("No food from butchering", player1Mob.getInventory().get("food"));
 
     }
 

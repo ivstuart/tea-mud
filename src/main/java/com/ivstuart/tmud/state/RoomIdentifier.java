@@ -23,28 +23,28 @@ import org.apache.logging.log4j.Logger;
 /**
  * Created by Ivan on 20/08/2016.
  */
-public class RoomIdentifer {
+public class RoomIdentifier {
 
     private static final Logger LOGGER = LogManager.getLogger();
     private int x, y, z = 0;
     private String roomPrefix;
 
-    public RoomIdentifer() {
+    public RoomIdentifier() {
     }
 
-    public RoomIdentifer(int x, int y) {
+    public RoomIdentifier(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public static RoomIdentifer getRoomId(Room room) {
+    public static RoomIdentifier getRoomId(Room room) {
         String[] tokens = room.getId().split(":");
 
         if (tokens.length != 4) {
-            return new RoomIdentifer();
+            return new RoomIdentifier();
         }
 
-        RoomIdentifer newRoomId = new RoomIdentifer();
+        RoomIdentifier newRoomId = new RoomIdentifier();
         newRoomId.setRoomPrefix(tokens[0]);
         newRoomId.x = Integer.parseInt(tokens[1]);
         newRoomId.y = Integer.parseInt(tokens[2]);
@@ -89,9 +89,9 @@ public class RoomIdentifer {
         return roomPrefix + ":" + x + ":" + y + ":" + z;
     }
 
-    public RoomIdentifer createNewRoomId(ExitEnum exit) {
+    public RoomIdentifier createNewRoomId(ExitEnum exit) {
 
-        RoomIdentifer newRoomId = new RoomIdentifer();
+        RoomIdentifier newRoomId = new RoomIdentifier();
         newRoomId.setRoomPrefix(roomPrefix);
         newRoomId.x = this.x;
         newRoomId.y = this.y;

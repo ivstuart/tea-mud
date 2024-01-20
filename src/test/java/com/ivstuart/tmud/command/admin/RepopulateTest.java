@@ -85,7 +85,7 @@ public class RepopulateTest {
         DamageManager.checkForDefenderDeath(sheepMob, sheepMob);
 
         Command repop = new Repopulate();
-        repop.execute(player1Mob,""); // sheepMob.getAlias());
+        repop.execute(player1Mob, ""); // sheepMob.getAlias());
 
         assertNotNull("Sheep is in room", whiteRoom.getMob("sheep"));
 

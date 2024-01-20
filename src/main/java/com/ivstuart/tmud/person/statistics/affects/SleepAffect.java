@@ -22,45 +22,44 @@ import com.ivstuart.tmud.state.Spell;
 
 public class SleepAffect extends Affect {
 
-	private final Spell spell;
+    private final Spell spell;
 
-	public SleepAffect(Mob mob_, String desc_, int duration_) {
-		super(mob_, desc_, duration_);
-		this.spell = null;
-	}
+    public SleepAffect(Mob mob_, String desc_, int duration_) {
+        super(mob_, desc_, duration_);
+        this.spell = null;
+    }
 
-	public SleepAffect(Mob target_, Spell spell) {
-		super(target_,spell.getId(),spell.getDuration().roll());
-		this.spell = spell;
-	}
+    public SleepAffect(Mob target_, Spell spell) {
+        super(target_, spell.getId(), spell.getDuration().roll());
+        this.spell = spell;
+    }
 
-	@Override
-	public void applyEffect() {
-		_mob.out("You feel the affects of " + _desc);
+    @Override
+    public void applyEffect() {
+        _mob.out("You feel the affects of " + _desc);
 
-		if (_mob.getFight().isEngaged()) {
+        if (_mob.getFight().isEngaged()) {
 
-			if (!spell.getName().equals("improved sleep")) {
-				_mob.out("There is no effect from sleep while fighting" + _desc);
-			} else {
-				_mob.getFight().stopFighting();
-				_mob.setState(MobState.SLEEP);
-			}
-		}
-		else {
-			_mob.setState(MobState.SLEEP);
-		}
+            if (!spell.getName().equals("improved sleep")) {
+                _mob.out("There is no effect from sleep while fighting" + _desc);
+            } else {
+                _mob.getFight().stopFighting();
+                _mob.setState(MobState.SLEEP);
+            }
+        } else {
+            _mob.setState(MobState.SLEEP);
+        }
 
-	}
+    }
 
-	@Override
-	public void removeEffect() {
-		_mob.out("The affects of " + _desc + " wear off");
-		_mob.setState(MobState.WAKE);
+    @Override
+    public void removeEffect() {
+        _mob.out("The affects of " + _desc + " wear off");
+        _mob.setState(MobState.WAKE);
 
-	}
+    }
 
-	public void setDuration(int duration) {
-		this._duration = duration;
-	}
+    public void setDuration(int duration) {
+        this._duration = duration;
+    }
 }

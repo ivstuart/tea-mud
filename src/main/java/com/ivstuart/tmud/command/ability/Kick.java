@@ -40,7 +40,7 @@ public class Kick extends BaseCommand {
 
     private boolean checkMobStatus(Mob mob, Mob target) {
 
-        if (!mob.getState().canMove()) {
+        if (mob.getState().stuck()) {
             // You must be able to move to kick someone
             mob.out("You must be standing or flying to kick someone");
             return true;
@@ -89,9 +89,9 @@ public class Kick extends BaseCommand {
             return;
         }
 
-        Mob target = null;
+        Mob target;
 
-        if (mob.getFight().isFighting() && input.length() == 0) {
+        if (mob.getFight().isFighting() && input.isEmpty()) {
             target = mob.getFight().getTarget();
         } else {
             target = mob.getRoom().getMob(input);

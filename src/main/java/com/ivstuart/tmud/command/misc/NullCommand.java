@@ -29,19 +29,19 @@ import org.apache.logging.log4j.Logger;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class NullCommand extends BaseCommand {
 
-	private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
 
-	@Override
-	public void execute(Mob mob, String input) {
-		mob.out("?");
-		LOGGER.debug("NullCommand with input :"+input);
+    @Override
+    public void execute(Mob mob, String input) {
+        mob.out("?");
+        LOGGER.debug("NullCommand with input :" + input);
 
-	}
+    }
 
 }

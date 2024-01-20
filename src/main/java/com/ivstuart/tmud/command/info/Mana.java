@@ -28,20 +28,20 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Mana extends BaseCommand {
 
-	public Mana() {
-		super();
+    public Mana() {
+        super();
 
-	}
+    }
 
-	@Override
-	public void execute(Mob mob, String input) {
-		CommandProvider.getCommand(Magic.class).execute(mob, "");
-	}
+    @Override
+    public void execute(Mob mob, String input) {
+        CommandProvider.getCommand(Magic.class).execute(mob, "");
+    }
 
 }

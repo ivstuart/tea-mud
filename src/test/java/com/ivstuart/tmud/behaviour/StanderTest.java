@@ -34,6 +34,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertFalse;
 
 /**
  * Created by Ivan on 20/09/2016.
@@ -95,7 +96,7 @@ public class StanderTest {
 
         assertEquals("sheep should be standing", MobState.STAND, sheepMob.getState());
 
-        assertEquals("sheep should be standing", false, sheepMob.getFight().isGroundFighting());
+        assertFalse("sheep should be standing", sheepMob.getFight().isGroundFighting());
     }
 
 

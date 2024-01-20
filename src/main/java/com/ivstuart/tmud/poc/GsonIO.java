@@ -26,111 +26,115 @@ import java.lang.reflect.Type;
 
 public class GsonIO {
 
-	private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
 
-	public void save(Object src, String fileName) throws IOException {
+    public void save(Object src, String fileName) throws IOException {
 
-		LOGGER.info("Started saving object to file:" + getFullPath(fileName));
+        LOGGER.info("Started saving object to file:" + getFullPath(fileName));
 
-		// Gson gson = new Gson();
-		GsonBuilder gb = new GsonBuilder();
-		gb.setPrettyPrinting();
-		// .excludeFieldsWithModifiers(Modifier.TRANSIENT);
-		Gson gson = gb.create();
+        // Gson gson = new Gson();
+        GsonBuilder gb = new GsonBuilder();
+        gb.setPrettyPrinting();
+        // .excludeFieldsWithModifiers(Modifier.TRANSIENT);
+        Gson gson = gb.create();
 
-		String output = gson.toJson(src);
+        String output = gson.toJson(src);
 
-		LOGGER.debug("encoding:" + output);
+        LOGGER.debug("encoding:" + output);
 
-		File file = new File(getFullPath(fileName));
-		// creates the file
+        File file = new File(getFullPath(fileName));
+        // creates the file
 
-		LOGGER.debug("File path:" + file.getAbsolutePath());
+        LOGGER.debug("File path:" + file.getAbsolutePath());
 
-		file.createNewFile();
+        boolean newFile = file.createNewFile();
 
-		// creates a FileWriter Object
-		FileWriter writer = new FileWriter(file);
+        LOGGER.info("Was a new file created:" + newFile);
 
-		// Writes the content to the file
-		writer.write(output);
-		writer.flush();
-		writer.close();
+        // creates a FileWriter Object
+        FileWriter writer = new FileWriter(file);
 
-		LOGGER.info("Finished saving object to file:" + getFullPath(fileName));
-	}
+        // Writes the content to the file
+        writer.write(output);
+        writer.flush();
+        writer.close();
 
-	public String getSaveDirectory() {
-		return "./src/main/resources/saved/";
-	}
+        LOGGER.info("Finished saving object to file:" + getFullPath(fileName));
+    }
 
-	public String getFullPath(String fileName) {
-		return getSaveDirectory() + fileName; // + ".gson";
-	}
+    public String getSaveDirectory() {
+        return "./src/main/resources/saved/";
+    }
 
-	public Object load(String fileName,Class aClass) throws IOException {
+    public String getFullPath(String fileName) {
+        return getSaveDirectory() + fileName; // + ".gson";
+    }
 
-		LOGGER.info("Starting loading object fromm file:"
-				+ getFullPath(fileName));
+    @SuppressWarnings("rawtypes")
+    public Object load(String fileName, Class aClass) throws IOException {
 
-		String readLine = null;
-		StringBuilder sb = new StringBuilder();
-		BufferedReader br = null;
-		try {
-			FileReader fileReader = new FileReader(getFullPath(fileName));
-			br = new BufferedReader(fileReader);
-			while ((readLine = br.readLine()) != null) {
-				sb.append(readLine);
-			}
-		} catch (IOException e) {
-			LOGGER.error("Error: ", e);
-			throw e;
-		}
+        LOGGER.info("Starting loading object fromm file:"
+                + getFullPath(fileName));
 
-		br.close();
-		String json = sb.toString();
+        String readLine;
+        StringBuilder sb = new StringBuilder();
+        BufferedReader br;
+        try {
+            FileReader fileReader = new FileReader(getFullPath(fileName));
+            br = new BufferedReader(fileReader);
+            while ((readLine = br.readLine()) != null) {
+                sb.append(readLine);
+            }
+        } catch (IOException e) {
+            LOGGER.error("Error: ", e);
+            throw e;
+        }
 
-		Gson gson = new Gson();
-		
-		Object object = gson.fromJson(json, aClass);
+        br.close();
+        String json = sb.toString();
 
-		LOGGER.info("Finished loading object fromm file:"
-				+ getFullPath(fileName));
+        Gson gson = new Gson();
 
-		return object;
+        //noinspection unchecked
+        Object object = gson.fromJson(json, aClass);
 
-	}
+        LOGGER.info("Finished loading object fromm file:"
+                + getFullPath(fileName));
 
-	public Object load(String fileName, Type type) throws IOException {
+        return object;
 
-		LOGGER.info("Starting loading object fromm file:"
-				+ getFullPath(fileName));
+    }
 
-		String readLine = null;
-		StringBuilder sb = new StringBuilder();
-		BufferedReader br = null;
-		try {
-			FileReader fileReader = new FileReader(getFullPath(fileName));
-			br = new BufferedReader(fileReader);
-			while ((readLine = br.readLine()) != null) {
-				sb.append(readLine);
-			}
-		} catch (IOException e) {
-			LOGGER.error("Error: ", e);
-			throw e;
-		}
+    public Object load(String fileName, Type type) throws IOException {
 
-		br.close();
-		String json = sb.toString();
+        LOGGER.info("Starting loading object fromm file:"
+                + getFullPath(fileName));
 
-		Gson gson = new Gson();
+        String readLine;
+        StringBuilder sb = new StringBuilder();
+        BufferedReader br;
+        try {
+            FileReader fileReader = new FileReader(getFullPath(fileName));
+            br = new BufferedReader(fileReader);
+            while ((readLine = br.readLine()) != null) {
+                sb.append(readLine);
+            }
+        } catch (IOException e) {
+            LOGGER.error("Error: ", e);
+            throw e;
+        }
 
-		Object object = gson.fromJson(json, type);
+        br.close();
+        String json = sb.toString();
 
-		LOGGER.info("Finished loading object fromm file:"
-				+ getFullPath(fileName));
+        Gson gson = new Gson();
 
-		return object;
+        Object object = gson.fromJson(json, type);
 
-	}
+        LOGGER.info("Finished loading object fromm file:"
+                + getFullPath(fileName));
+
+        return object;
+
+    }
 }

@@ -137,9 +137,8 @@ public class MudArrayList<E> extends ArrayList<E> {
                         indexOfSeperator));
             } catch (NumberFormatException e) {
                 LOGGER.error("Client entered invalid index number", e);
-                itemNumber = -1;
             }
-            value = value.substring(++indexOfSeperator, value.length());
+            value = value.substring(++indexOfSeperator);
         }
 
         return indexOf(value, itemNumber);
@@ -165,7 +164,7 @@ public class MudArrayList<E> extends ArrayList<E> {
 
             boolean match = false;
             if (indexLookup) {
-                match = (shortName.indexOf(value) > -1);
+                match = (shortName.contains(value));
             } else {
                 match = shortName.startsWith(value);
             }

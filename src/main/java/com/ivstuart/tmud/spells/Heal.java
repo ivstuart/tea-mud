@@ -22,19 +22,19 @@ import com.ivstuart.tmud.state.Spell;
 
 public class Heal implements SpellEffect {
 
-	@Override
-	public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
+    @Override
+    public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
 
-		int ammount = spell.getAmount();
-		if (caster_.getPlayer().getGuilds().isHealers()) {
-			ammount *= 2;
-		}
+        int amount = spell.getAmount();
+        if (caster_.getPlayer().getGuilds().isHealers()) {
+            amount *= 2;
+        }
 
-		target_.getHp().increase(ammount);
-	}
+        target_.getHp().increase(amount);
+    }
 
-	public boolean isPositiveEffect() {
-		return true;
-	}
+    public boolean isPositiveEffect() {
+        return true;
+    }
 
 }

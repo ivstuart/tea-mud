@@ -30,37 +30,36 @@ import static com.ivstuart.tmud.constants.ManaType.*;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Magic extends BaseCommand {
 
-	public Magic() {
-		super();
-	}
+    public Magic() {
+        super();
+    }
 
-	@Override
-	public void execute(Mob mob_, String input_) {
+    @Override
+    public void execute(Mob mob_, String input_) {
 
-		MobMana mana = mob_.getMana();
+        MobMana mana = mob_.getMana();
 
-		if (mana == null) {
-			mob_.out("You have no magical power");
-			return;
-		}
+        if (mana == null) {
+            mob_.out("You have no magical power");
+            return;
+        }
 
-		StringBuilder sb = new StringBuilder();
-		sb.append("$K~$J");
-		sb.append("\n$H   /---\\                    Cur   Max   Level");
-		sb.append("\n$H  /  |  \\   " + mana.get(FIRE).display());
-		sb.append("\n$H /__/ \\__\\  " + mana.get(EARTH).display());
-		sb.append("\n$H \\  \\ /  /  " + mana.get(WATER).display());
-		sb.append("\n$H  \\  |  /   " + mana.get(AIR).display());
-		sb.append("\n$H   \\---/");
-		sb.append("\n$K~$J");
+        String sb = "$K~$J" +
+                "\n$H   /---\\                    Cur   Max   Level" +
+                "\n$H  /  |  \\   " + mana.get(FIRE).display() +
+                "\n$H /__/ \\__\\  " + mana.get(EARTH).display() +
+                "\n$H \\  \\ /  /  " + mana.get(WATER).display() +
+                "\n$H  \\  |  /   " + mana.get(AIR).display() +
+                "\n$H   \\---/" +
+                "\n$K~$J";
 
-		mob_.out(sb.toString());
-	}
+        mob_.out(sb);
+    }
 
 }

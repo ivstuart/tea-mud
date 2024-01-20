@@ -29,61 +29,61 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Repair extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		// repair item
-		// repair all
+        // repair item
+        // repair all
 
-		Mob repairer = mob.getRoom().getRepairer();
+        Mob repairer = mob.getRoom().getRepairer();
 
-		if (repairer == null) {
-			mob.out("No one here willing to repair your kit");
-			return;
-		}
+        if (repairer == null) {
+            mob.out("No one here willing to repair your kit");
+            return;
+        }
 
-		if (input.equalsIgnoreCase("all")) {
-			for (Item item : mob.getInventory().getItems()) {
-				repairItem(mob, input, item);
-			}
-			return;
-		}
+        if (input.equalsIgnoreCase("all")) {
+            for (Item item : mob.getInventory().getItems()) {
+                repairItem(mob, input, item);
+            }
+            return;
+        }
 
-		Item item = mob.getInventory().get(input);
+        Item item = mob.getInventory().get(input);
 
-		repairItem(mob, input, item);
+        repairItem(mob, input, item);
 
-	}
+    }
 
-	private void repairItem(Mob mob, String input, Item item) {
-		if (item == null) {
-			mob.out("No such item "+input);
-			return;
-		}
+    private void repairItem(Mob mob, String input, Item item) {
+        if (item == null) {
+            mob.out("No such item " + input);
+            return;
+        }
 
-		if (item.getDamagedPercentage() < 1) {
-			mob.out("Item has no damage to repair");
-			return;
-		}
+        if (item.getDamagedPercentage() < 1) {
+            mob.out("Item has no damage to repair");
+            return;
+        }
 
-		int cost = (item.getCost().getValue() * item.getDamagedPercentage()) / 1000;
+        int cost = (item.getCost().getValue() * item.getDamagedPercentage()) / 1000;
 
-		mob.out("The item will cost "+cost+" copper to repair it");
+        mob.out("The item will cost " + cost + " copper to repair it");
 
-		if (!mob.getInventory().getPurse().remove(new Money(Money.COPPER,cost))) {
-			mob.out("You do not have the required funds to make this repair");
-			return;
-		}
+        if (!mob.getInventory().getPurse().remove(new Money(Money.COPPER, cost))) {
+            mob.out("You do not have the required funds to make this repair");
+            return;
+        }
 
-		item.setDamagedPercentage(0);
+        item.setDamagedPercentage(0);
 
-		mob.out("Item "+item.getName()+" is fully repaired");
-	}
+        mob.out("Item " + item.getName() + " is fully repaired");
+    }
 
 }

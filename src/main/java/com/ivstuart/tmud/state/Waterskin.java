@@ -16,7 +16,7 @@
 
 package com.ivstuart.tmud.state;
 
-import static com.ivstuart.tmud.state.LiquardType.WATER;
+import static com.ivstuart.tmud.state.LiquidType.WATER;
 
 public class Waterskin extends Item {
 
@@ -24,22 +24,22 @@ public class Waterskin extends Item {
 
     private int capacity = 4;
     private int drafts = 4;
-    private LiquardType liquardType;
+    private LiquidType liquidType;
 
     public Waterskin() {
 
     }
 
-    public LiquardType getLiquardType() {
-        if (liquardType == null) {
+    public LiquidType getLiquidType() {
+        if (liquidType == null) {
             return WATER;
         }
-        return liquardType;
+        return liquidType;
     }
 
-    public void setLiquardType(String liquardType) {
-        String params[] = liquardType.split(":");
-        this.liquardType = new LiquardType(
+    public void setLiquidType(String liquidType) {
+        String[] params = liquidType.split(":");
+        this.liquidType = new LiquidType(
                 Integer.parseInt(params[0]),
                 Integer.parseInt(params[1]),
                 Integer.parseInt(params[2]),

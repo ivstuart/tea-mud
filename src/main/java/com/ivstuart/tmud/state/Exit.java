@@ -84,7 +84,7 @@ public class Exit extends BasicThing {
 
     public String look() {
 
-        String exitDescription = null;
+        String exitDescription;
 
         if (door == null) {
             exitDescription = this.getId();

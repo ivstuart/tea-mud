@@ -31,100 +31,100 @@ import static com.ivstuart.tmud.constants.SpellNames.COMBAT_SENSE;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class CombatCal {
 
-	public static int getAttack(Mob mob) {
-		int attack = getBaseAttack(mob);
+    public static int getAttack(Mob mob) {
+        int attack = getBaseAttack(mob);
 
-		// Get skill level with currently wielded weapon
+        // Get skill level with currently wielded weapon
 
-		Weapon weapon = mob.getEquipment().getWeapon();
+        Weapon weapon = mob.getEquipment().getWeapon();
 
-		if (weapon != null) {
+        if (weapon != null) {
 
-			int skill = mob.getLearned().getAbility(weapon.getSkill())
-					.getSkill();
+            int skill = mob.getLearned().getAbility(weapon.getSkill())
+                    .getSkill();
 
-			attack += skill;
-		} else {
-			int skill = mob.getLearned().getAbility(UNARMED_COMBAT)
-					.getSkill();
+            attack += skill;
+        } else {
+            int skill = mob.getLearned().getAbility(UNARMED_COMBAT)
+                    .getSkill();
 
-			attack += skill;
-		}
+            attack += skill;
+        }
 
-		attack += mob.getEquipment().getHitRollBonus();
-
-
-		return attack;
-	}
-
-	private static int getBaseAttack(Mob mob_) {
-		int total = mob_.getOffensive();
-		if (mob_.isPlayer()) {
-			total += mob_.getPlayer().getAttributes().getSTR().getValue() * 2;
-			total += mob_.getPlayer().getAttributes().getDEX().getValue();
-			total += mob_.getPlayer().getAttributes().getINT().getValue();
-		}
-
-		if (mob_.getMobAffects().hasAffect(BLINDNESS)) {
-			total /= 2;
-		}
-
-		if (mob_.getMobAffects().hasAffect(COMBAT_SENSE)) {
-			total += 20;
-		}
+        attack += mob.getEquipment().getHitRollBonus();
 
 
-		return total;
-	}
+        return attack;
+    }
 
-	private static int getBaseDefence(Mob mob_) {
-		if (mob_ == null) {
-			return 0;
-		}
-		int total = mob_.getDefence();
-		if (mob_.isPlayer()) {
-			total += mob_.getPlayer().getAttributes().getSTR().getValue();
-			total += mob_.getPlayer().getAttributes().getDEX().getValue() * 2;
-			total += mob_.getPlayer().getAttributes().getINT().getValue();
-		}
+    private static int getBaseAttack(Mob mob_) {
+        int total = mob_.getOffensive();
+        if (mob_.isPlayer()) {
+            total += mob_.getPlayer().getAttributes().getSTR().getValue() * 2;
+            total += mob_.getPlayer().getAttributes().getDEX().getValue();
+            total += mob_.getPlayer().getAttributes().getINT().getValue();
+        }
 
-		if (mob_.getMobAffects().hasAffect(BLINDNESS)) {
-			total /= 2;
-		}
+        if (mob_.getMobAffects().hasAffect(BLINDNESS)) {
+            total /= 2;
+        }
 
-		if (mob_.getMobAffects().hasAffect(COMBAT_SENSE)) {
-			total += 20;
-		}
+        if (mob_.getMobAffects().hasAffect(COMBAT_SENSE)) {
+            total += 20;
+        }
 
-		return total;
-	}
 
-	public static int getDefence(Mob mob) {
-		int defence = getBaseDefence(mob);
+        return total;
+    }
 
-		// Get skill level with currently wielded weapon
-		Weapon weapon = mob.getEquipment().getWeapon();
+    private static int getBaseDefence(Mob mob_) {
+        if (mob_ == null) {
+            return 0;
+        }
+        int total = mob_.getDefence();
+        if (mob_.isPlayer()) {
+            total += mob_.getPlayer().getAttributes().getSTR().getValue();
+            total += mob_.getPlayer().getAttributes().getDEX().getValue() * 2;
+            total += mob_.getPlayer().getAttributes().getINT().getValue();
+        }
 
-		if (weapon != null) {
+        if (mob_.getMobAffects().hasAffect(BLINDNESS)) {
+            total /= 2;
+        }
 
-			int skill = mob.getLearned().getAbility(weapon.getSkill())
-					.getSkill();
+        if (mob_.getMobAffects().hasAffect(COMBAT_SENSE)) {
+            total += 20;
+        }
 
-			defence += skill;
-		} else {
-			int skill = mob.getLearned().getAbility(UNARMED_COMBAT)
-					.getSkill();
+        return total;
+    }
 
-			defence += skill;
-		}
+    public static int getDefence(Mob mob) {
+        int defence = getBaseDefence(mob);
 
-		return defence;
-	}
+        // Get skill level with currently wielded weapon
+        Weapon weapon = mob.getEquipment().getWeapon();
+
+        if (weapon != null) {
+
+            int skill = mob.getLearned().getAbility(weapon.getSkill())
+                    .getSkill();
+
+            defence += skill;
+        } else {
+            int skill = mob.getLearned().getAbility(UNARMED_COMBAT)
+                    .getSkill();
+
+            defence += skill;
+        }
+
+        return defence;
+    }
 
 }

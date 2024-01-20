@@ -5,19 +5,23 @@ import java.awt.*;
 
 public class JZoomPanel extends JPanel {
 
-    private static JSlider silder;
+    private static JSlider jSlider;
+
+    public static int getValue() {
+        return jSlider.getValue();
+    }
 
     public void createSlider() {
 
-        silder = new JSlider();
+        jSlider = new JSlider();
 
-        silder.setMinimum(20);
-        silder.setMaximum(200);
-        silder.setName("Zoom");
+        jSlider.setMinimum(20);
+        jSlider.setMaximum(200);
+        jSlider.setName("Zoom");
 
-        this.add(silder);
+        this.add(jSlider);
 
-        silder.addChangeListener(e -> changed());
+        jSlider.addChangeListener(e -> changed());
     }
 
     private void changed() {
@@ -26,11 +30,7 @@ public class JZoomPanel extends JPanel {
     }
 
     public Dimension getPreferredSize() {
-        return new Dimension(100,40);
-    }
-
-    public static int getValue() {
-        return silder.getValue();
+        return new Dimension(100, 40);
     }
 
 }

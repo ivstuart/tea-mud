@@ -18,82 +18,85 @@ package com.ivstuart.tmud.state;
 
 public class Prop extends BasicThing {
 
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = 8257487772034485327L;
-	protected String alias;
-	protected String affects;
-	protected boolean waterSource;
-	protected boolean isSittable;
-	protected boolean isSleepable;
-	public Prop() {
-	}
+    /**
+     *
+     */
+    private static final long serialVersionUID = 8257487772034485327L;
+    protected String alias;
+    protected String affects;
+    protected boolean waterSource;
+    protected boolean isSittable;
+    protected boolean isSleepable;
 
-	public Prop(Prop prop_) {
-		super(prop_);
-		alias = prop_.alias;
-		affects = prop_.affects;
-		waterSource = false;
-	}
+    public Prop() {
+    }
 
-	@Override
-	public String toString() {
-		return super.toString() + "Prop{" +
-				"alias='" + alias + '\'' +
-				", affects='" + affects + '\'' +
-				", waterSource=" + waterSource +
-				", isSittable=" + isSittable +
-				", isSleepable=" + isSleepable +
-				'}';
-	}
+    public Prop(Prop prop_) {
+        super(prop_);
+        alias = prop_.alias;
+        affects = prop_.affects;
+        waterSource = false;
+        isSittable = prop_.isSittable;
+        isSleepable = prop_.isSleepable;
+    }
 
-	public boolean isSittable() {
-		return isSittable;
-	}
+    @Override
+    public String toString() {
+        return super.toString() + "Prop{" +
+                "alias='" + alias + '\'' +
+                ", affects='" + affects + '\'' +
+                ", waterSource=" + waterSource +
+                ", isSittable=" + isSittable +
+                ", isSleepable=" + isSleepable +
+                '}';
+    }
 
-	public void setSittable(boolean sittable) {
-		isSittable = sittable;
-	}
+    public boolean isSittable() {
+        return isSittable;
+    }
 
-	public boolean isSleepable() {
-		return isSleepable;
-	}
+    public void setSittable(boolean sittable) {
+        isSittable = sittable;
+    }
 
-	public void setSleepable(boolean sleepable) {
-		isSleepable = sleepable;
-	}
+    public boolean isSleepable() {
+        return isSleepable;
+    }
 
-	public String getAlias() {
-		return alias;
-	}
+    public void setSleepable(boolean sleepable) {
+        isSleepable = sleepable;
+    }
 
-	public void setAlias(String alias_) {
-		alias = alias_;
-	}
+    public String getAlias() {
+        return alias;
+    }
 
-	public String getAffects() {
-		return affects;
-	}
+    public void setAlias(String alias_) {
+        alias = alias_;
+    }
 
-	public void setAffects(String affects_) {
-		this.affects = affects_;
-	}
+    public String getAffects() {
+        return affects;
+    }
 
-	public boolean isTeacher() {
-		return false;
-	}
+    public void setAffects(String affects_) {
+        this.affects = affects_;
+    }
 
-	public String look() {
+    public boolean isTeacher() {
+        return false;
+    }
 
-		return this.getBrief();
-	}
+    public String look() {
 
-	public boolean isWaterSource() {
-		return waterSource;
-	}
+        return this.getBrief();
+    }
 
-	public void setWaterSource(boolean waterSource) {
-		this.waterSource = waterSource;
-	}
+    public boolean isWaterSource() {
+        return waterSource;
+    }
+
+    public void setWaterSource(boolean waterSource) {
+        this.waterSource = waterSource;
+    }
 }

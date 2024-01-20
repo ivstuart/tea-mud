@@ -33,59 +33,59 @@ import com.ivstuart.tmud.utils.StringUtil;
 
 /**
  * @author stuarti
- *
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Sacrifice extends BaseCommand {
 
-	/**
-	 * @param input
-	 * @return
-	 */
-	private boolean checkSacCash(Mob mob, String input) {
-		SomeMoney sm = mob.getRoom().getInventory().removeCoins(input);
+    /**
+     * @param input
+     * @return
+     */
+    private boolean checkSacCash(Mob mob, String input) {
+        SomeMoney sm = mob.getRoom().getInventory().removeCoins(input);
 
-		if (sm != null) {
-			mob.out("You sacrifice " + sm);
-			return true;
-		}
+        if (sm != null) {
+            mob.out("You sacrifice " + sm);
+            return true;
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		if (checkSacCash(mob, input)) {
-			return;
-		}
+        if (checkSacCash(mob, input)) {
+            return;
+        }
 
-		String lastWord = StringUtil.getLastWord(input);
-		Prop prop = mob.getRoom().getProps().get(lastWord);
+        String lastWord = StringUtil.getLastWord(input);
+        Prop prop = mob.getRoom().getProps().get(lastWord);
 
-		if (prop != null) {
-			if (prop instanceof Corpse) {
-				Corpse corpse = (Corpse) prop;
-				mob.getRoom().remove(corpse);
-				mob.out("You sacrifice an " + corpse.getName());
-				return;
-			}
-		}
+        if (prop != null) {
+            if (prop instanceof Corpse) {
+                Corpse corpse = (Corpse) prop;
+                mob.getRoom().remove(corpse);
+                mob.out("You sacrifice an " + corpse.getName());
+                return;
+            }
+        }
 
-		MudArrayList<Item> items = mob.getRoom().getInventory().getItems();
+        MudArrayList<Item> items = mob.getRoom().getInventory().getItems();
 
-		if (items == null) {
-			mob.out(input + " is not here to sacrifice!");
-			return;
-		}
+        if (items == null) {
+            mob.out(input + " is not here to sacrifice!");
+            return;
+        }
 
-		Item anItem = items.remove(input);
+        Item anItem = items.remove(input);
 
-		if (anItem == null) {
-			mob.out("Can not sacrifice " + input + " it is not here!");
-			return;
-		}
+        if (anItem == null) {
+            mob.out("Can not sacrifice " + input + " it is not here!");
+            return;
+        }
 
         mob.out("You sacrifice an " + anItem.getBrief());
     }

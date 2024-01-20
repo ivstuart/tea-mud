@@ -26,12 +26,13 @@ import org.apache.logging.log4j.Logger;
 
 /**
  * @author stuarti
- *         <p>
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class ClanInfo extends BaseCommand {
     private static final Logger LOGGER = LogManager.getLogger();
+
     /**
      *
      */
@@ -69,7 +70,6 @@ public class ClanInfo extends BaseCommand {
                 mob.out("" + clan.getApplicants());
             }
         }
-
 
 
     }

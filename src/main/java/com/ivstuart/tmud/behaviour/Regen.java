@@ -22,11 +22,11 @@ import org.apache.logging.log4j.Logger;
 
 public class Regen extends BaseBehaviour {
 
-    private static Logger LOGGER = LogManager.getLogger();
+    private final static Logger LOGGER = LogManager.getLogger();
 
 
     public Regen() {
-        parameter = 50; // precentage
+        parameter = 50; // percentage
     }
 
     @Override

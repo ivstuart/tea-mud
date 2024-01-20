@@ -28,25 +28,25 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class GoldInfo extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		mob.out("You are carrying:\n");
+        mob.out("You are carrying:\n");
 
-		Inventory inve = mob.getInventory();
+        Inventory inve = mob.getInventory();
 
-		if (inve == null) {
+        if (inve == null) {
             mob.out("Not a sausage!");
             return;
-		}
+        }
 
-		mob.out(mob.getInventory().getPurseString());
-	}
+        mob.out(mob.getInventory().getPurseString());
+    }
 
 }

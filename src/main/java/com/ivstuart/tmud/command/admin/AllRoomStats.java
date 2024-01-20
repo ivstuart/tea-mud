@@ -27,28 +27,28 @@ import com.ivstuart.tmud.state.Room;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class AllRoomStats extends AdminCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
-		
-		super.execute(mob,input);
-		
-		Room target = mob.getRoom();
+    @Override
+    public void execute(Mob mob, String input) {
 
-		if (target == null) {
-			mob.out(input + " is not here to get all stats on!");
-			return;
-		}
+        super.execute(mob, input);
 
-		mob.out("id: "+target.getId()); // Useful for building mobs to which room.
+        Room target = mob.getRoom();
 
-		mob.out(target.toString());
+        if (target == null) {
+            mob.out(input + " is not here to get all stats on!");
+            return;
+        }
 
-	}
+        mob.out("id: " + target.getId()); // Useful for building mobs to which room.
+
+        mob.out(target.toString());
+
+    }
 
 }

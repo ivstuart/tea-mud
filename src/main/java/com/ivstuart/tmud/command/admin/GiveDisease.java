@@ -44,6 +44,12 @@ public class GiveDisease extends AdminCommand {
         }
 
         Disease infection = DiseaseFactory.createClass(disease);
+
+        if (infection == null) {
+            mob.out("No disease of that name " + disease);
+            return;
+        }
+
         infection.setMob(targetMob);
         infection.setDecription(disease);
         infection.setDuration(infection.getInitialDuration());

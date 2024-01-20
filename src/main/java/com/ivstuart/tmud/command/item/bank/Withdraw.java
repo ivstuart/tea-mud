@@ -30,69 +30,69 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Withdraw extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		Mob banker = mob.getRoom().getBanker();
+        Mob banker = mob.getRoom().getBanker();
 
-		if (banker == null) {
-			mob.out("There is no bank here to withdraw or deposit from");
-			return;
-		}
+        if (banker == null) {
+            mob.out("There is no bank here to withdraw or deposit from");
+            return;
+        }
 
-		if (checkCashWithdraw(mob,banker,input)) {
-			return;
-		}
-		// items and cash amounts.
+        if (checkCashWithdraw(mob, banker, input)) {
+            return;
+        }
+        // items and cash amounts.
 
-		Item item = mob.getPlayer().getBank().get(input);
+        Item item = mob.getPlayer().getBank().get(input);
 
-		if (item == null) {
-			mob.out("There is no item "+input+" to withdraw");
-			return;
-		}
+        if (item == null) {
+            mob.out("There is no item " + input + " to withdraw");
+            return;
+        }
 
-		SomeMoney cost = item.getCost();
+        SomeMoney cost = item.getCost();
 
-		if (cost == null) {
-			cost = Money.NO_MONEY;
-		}
+        if (cost == null) {
+            cost = Money.NO_MONEY;
+        }
 
-		cost = new Money(Money.COPPER, (int) (1 + cost.getValue() * 0.05));
+        cost = new Money(Money.COPPER, (int) (1 + cost.getValue() * 0.05));
 
-		if (!mob.getInventory().getPurse().remove(cost)) {
-			mob.out("You can not afford "+cost+" to withdraw item");
-			return;
-		}
+        if (!mob.getInventory().getPurse().remove(cost)) {
+            mob.out("You can not afford " + cost + " to withdraw item");
+            return;
+        }
 
-		mob.getPlayer().getBank().remove(item);
-		banker.getInventory().add(cost);
+        mob.getPlayer().getBank().remove(item);
+        banker.getInventory().add(cost);
 
-		mob.getInventory().add(item);
+        mob.getInventory().add(item);
 
-		mob.out("You withdraw a "+item.getName());
+        mob.out("You withdraw a " + item.getName());
 
-	}
+    }
 
-	private boolean checkCashWithdraw(Mob mob, Mob banker, String input) {
+    private boolean checkCashWithdraw(Mob mob, Mob banker, String input) {
 
-		SomeMoney cash = mob.getPlayer().getBank().removeCoins(input);
+        SomeMoney cash = mob.getPlayer().getBank().removeCoins(input);
 
-		if (cash == null) {
-			return false;
-		}
+        if (cash == null) {
+            return false;
+        }
 
-		mob.getInventory().add(cash);
+        mob.getInventory().add(cash);
 
-		mob.out("You withdraw "+cash+" from the bank");
+        mob.out("You withdraw " + cash + " from the bank");
 
-		return true;
+        return true;
 
-	}
+    }
 }

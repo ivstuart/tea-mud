@@ -33,7 +33,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
 
 /**
  * Created by Ivan on 30/08/2016.
@@ -83,6 +83,6 @@ public class ClanApplyTest {
         ClanApply clanApply = new ClanApply();
         clanApply.execute(player1Mob, "0");
 
-        assertEquals("Player1 applies to join the clan", true, Clans.getClan("0").getApplicants().contains(player1Mob.getName()));
+        assertTrue("Player1 applies to join the clan", Clans.getClan("0").getApplicants().contains(player1Mob.getName()));
     }
 }

@@ -71,7 +71,7 @@ public class Look extends BaseCommand {
 
         }
 
-        if (input_.length() > 0) {
+        if (!input_.isEmpty()) {
             Prop prop = mob_.getRoom().getProps().get(input_);
 
             if (prop != null) {
@@ -84,7 +84,7 @@ public class Look extends BaseCommand {
 
         }
 
-        if (input_.length() > 0) {
+        if (!input_.isEmpty()) {
             Mob mob = mob_.getRoom().getMob(input_);
             if (mob != null) {
                 mob_.getRoom()
@@ -105,7 +105,7 @@ public class Look extends BaseCommand {
             }
         }
 
-        if (input_.length() > 0) {
+        if (!input_.isEmpty()) {
             Item item = mob_.getInventory().get(input_);
 
             if (item != null) {
@@ -118,7 +118,7 @@ public class Look extends BaseCommand {
             }
         }
 
-        if (input_.length() > 0) {
+        if (!input_.isEmpty()) {
             Item item = mob_.getRoom().getInventory().get(input_);
 
             if (item != null) {
@@ -163,7 +163,7 @@ public class Look extends BaseCommand {
                     String exitLook = exit.look();
 
                     if (mob.getRoom().isWater()) {
-                        sb.append("<" + exitLook).append("> ");
+                        sb.append("<").append(exitLook).append("> ");
                     } else {
                         sb.append(exitLook).append(" ");
                     }
@@ -193,10 +193,9 @@ public class Look extends BaseCommand {
         }
 
         StringBuilder sb = new StringBuilder();
-        for (int index = 0; index < list.size(); index++) {
-            Item item = list.get(index);
+        for (Item item : list) {
             if (!item.isHidden() || mob.hasDetectHidden()) {
-                sb.append("$IA " + item.getLook() + " lies here.\n");
+                sb.append("$IA ").append(item.getLook()).append(" lies here.\n");
             }
         }
         if (sb.length() != 0) {
@@ -233,12 +232,12 @@ public class Look extends BaseCommand {
             // Note this should be all done as part of Msg command
             if (mob.isPlayer()) {
                 if (!mob.isAlignmentSame(mob_)) {
-                    sb.append("$H +* " + mob.getSize() + " " + mob.getAge() + " " + mob.getRace().getName() + " *+");
+                    sb.append("$H +* ").append(mob.getSize()).append(" ").append(mob.getAge()).append(" ").append(mob.getRace().getName()).append(" *+");
                 } else {
-                    sb.append("$H" + mob.getBrief());
+                    sb.append("$H").append(mob.getBrief());
                 }
             } else {
-                sb.append("$H" + mob.getBrief());
+                sb.append("$H").append(mob.getBrief());
             }
 
             if (mob.getFight() != null && mob.getFight().isFighting()) {
@@ -248,7 +247,7 @@ public class Look extends BaseCommand {
                     if (target == mob_) {
                         sb.append("you");
                     } else {
-                        sb.append(target.getName() + "!");
+                        sb.append(target.getName()).append("!");
                     }
                 } else {
                     sb.append("someone!");
@@ -284,13 +283,6 @@ public class Look extends BaseCommand {
         mob.out(mob.getRoom().getBrief() + " [" + mob.getRoom().getType() + "]");
 
         mob.out(mob.getRoom().getLook());
-
-        /**
-         * if
-         * (mob.getPlayer().getConfig().getConfigData().is(ConfigData.VERBOSE))
-         * { mob.out(mob.getRoom().getLook()); } else {
-         * mob.out(mob.getRoom().getShort()); }
-         */
 
     }
 

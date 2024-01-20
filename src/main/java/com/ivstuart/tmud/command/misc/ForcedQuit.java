@@ -34,59 +34,57 @@ import java.io.IOException;
 
 /**
  * @author stuarti
- * 
  */
 public class ForcedQuit extends BaseCommand {
 
-	private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		Player player = mob.getPlayer();
+        Player player = mob.getPlayer();
 
-		if (player == null) {
-			LOGGER.warn("Force quit for null player already quit");
-			return;
-		}
+        if (player == null) {
+            LOGGER.warn("Force quit for null player already quit");
+            return;
+        }
 
-		if (player.getConnection().isConnected()) {
-			mob.out("Thank you for playing you have been forced to quit");
-		}
-		else {
-			LOGGER.warn("Force quit for player already disconnected");
-			return;
-		}
+        if (player.getConnection().isConnected()) {
+            mob.out("Thank you for playing you have been forced to quit");
+        } else {
+            LOGGER.warn("Force quit for player already disconnected");
+            return;
+        }
 
-		mob.out("Thank you for playing");
+        mob.out("Thank you for playing");
 
-		player.getData().setPlayingTime();
+        player.getData().setPlayingTime();
 
-		mob.setRoomId(mob.getRoom().getId());
+        mob.setRoomId(mob.getRoom().getId());
 
-		// Save character first
-		try {
+        // Save character first
+        try {
 
-			MudIO.getInstance().save(player, player.getSaveDirectory(), mob.getId() + ".sav");
+            MudIO.getInstance().save(player, player.getSaveDirectory(), mob.getId() + ".sav");
 
-			// The following GSON does not work to serialise the player, do not use it.
-			// GsonIO gio = new GsonIO();
-			// gio.save(player, player.getName() + ".sav");
-		} catch (IOException e) {
-			LOGGER.error("Problem saving character", e);
-			mob.out("Problem saving character!");
-			return;
-		}
+            // The following GSON does not work to serialise the player, do not use it.
+            // GsonIO gio = new GsonIO();
+            // gio.save(player, player.getName() + ".sav");
+        } catch (IOException e) {
+            LOGGER.error("Problem saving character", e);
+            mob.out("Problem saving character!");
+            return;
+        }
 
-		// getCharacter().getLocation().save();
-		mob.getRoom().remove(mob);
-		mob.getFight().stopFighting();
-		mob.getFight().clear();
+        // getCharacter().getLocation().save();
+        mob.getRoom().remove(mob);
+        mob.getFight().stopFighting();
+        mob.getFight().clear();
 
-		// Remove from World (Delay if recently been flagged)
-		player.disconnect();
-		World.removePlayer(player);
+        // Remove from World (Delay if recently been flagged)
+        player.disconnect();
+        World.removePlayer(player);
 
-	}
+    }
 
 }

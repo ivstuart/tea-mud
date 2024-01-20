@@ -30,46 +30,46 @@ import com.ivstuart.tmud.world.World;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class LearnAll extends AdminCommand {
 
-	
-	@Override
-	public void execute(Mob mob, String input) {
 
-		super.execute(mob,input);
-		
-		mob.out("This is a test command to learn all skills and spells to 80% in the game");
-		
-		// Learn all skills
-		for (BaseSkill skill : World.getSkills().values()) {
-			Ability ability = new Ability(skill.getName());
-			ability.setSkill(80);
-			learn(mob, ability);
-		}
-		
-		// Learn all skills
-		for (Spell spell : World.getSpells().values()) {
-			Ability ability = new Ability(spell.getName());
-			ability.setSkill(80);
-			learn(mob, ability);
-		}
+    @Override
+    public void execute(Mob mob, String input) {
 
-	}
+        super.execute(mob, input);
 
-	private void learn(Mob mob, Ability ability) {
+        mob.out("This is a test command to learn all skills and spells to 80% in the game");
 
-		if (mob.getLearned().hasLearned(ability.getId())) {
-			mob.out("You already know " + ability.getId());
+        // Learn all skills
+        for (BaseSkill skill : World.getSkills().values()) {
+            Ability ability = new Ability(skill.getName());
+            ability.setSkill(80);
+            learn(mob, ability);
+        }
 
-		} else {
-			mob.getLearned().add(ability);
-			mob.out("You learn " + ability.getId());
-		}
-	}
+        // Learn all skills
+        for (Spell spell : World.getSpells().values()) {
+            Ability ability = new Ability(spell.getName());
+            ability.setSkill(80);
+            learn(mob, ability);
+        }
+
+    }
+
+    private void learn(Mob mob, Ability ability) {
+
+        if (mob.getLearned().hasLearned(ability.getId())) {
+            mob.out("You already know " + ability.getId());
+
+        } else {
+            mob.getLearned().add(ability);
+            mob.out("You learn " + ability.getId());
+        }
+    }
 
 
 }

@@ -39,7 +39,7 @@ public class GemList extends Item implements Equipable {
     }
 
     public void setLevel(String level_) {
-        String element[] = level_.split(" ");
+        String[] element = level_.split(" ");
         int index = 0;
         for (String levelString : element) {
             Gem gem = gems.get(index);
@@ -50,7 +50,7 @@ public class GemList extends Item implements Equipable {
     }
 
     public void setMana(String mana_) {
-        String element[] = mana_.split(" ");
+        String[] element = mana_.split(" ");
         for (String manaString : element) {
             Gem gem = new Gem();
             gems.add(gem);

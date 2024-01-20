@@ -35,13 +35,14 @@ public class WorldTime implements Runnable {
 
     private static final Logger LOGGER = LogManager.getLogger();
     private static final WorldTime INSTANCE = new WorldTime();
+    private static final boolean _running = false;
     private static List<Mob> fighting;
     private static List<DeadMob> deadMobs;
     private static List<Tickable> tickables;
-    private static boolean _running = false;
     private static boolean pauseTime = false;
     private final int tickSpeed = 150;
     private int counter = 0;
+
     private WorldTime() {
         WorldTime.init();
     }
@@ -73,7 +74,6 @@ public class WorldTime implements Runnable {
 
     /**
      * @return
-     * @Admin
      */
     public static List<Mob> getFighting() {
         return fighting;
@@ -95,9 +95,9 @@ public class WorldTime implements Runnable {
 
     public static void init() {
 
-        fighting = new ArrayList<Mob>();
-        tickables = new ArrayList<Tickable>();
-        deadMobs = new ArrayList<DeadMob>();
+        fighting = new ArrayList<>();
+        tickables = new ArrayList<>();
+        deadMobs = new ArrayList<>();
     }
 
     public static boolean removeItem(Item item_) {
@@ -140,6 +140,11 @@ public class WorldTime implements Runnable {
                         deadMob.getRepopRoomID());
 
                 Room repopRoom = World.getRoom(deadMob.getRepopRoomID());
+
+                if (repopRoom == null) {
+                    LOGGER.error("Repopulate room is null");
+                    continue;
+                }
 
                 repopRoom.add(mob);
             }

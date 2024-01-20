@@ -24,24 +24,24 @@ import com.ivstuart.tmud.state.util.EntityProvider;
 
 public class CloneMob implements SpellEffect {
 
-	@Override
-	public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
+    @Override
+    public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
 
-		// Target mob is cloned into same location
-		if (target_.isPlayer()) {
-			caster_.out("This spell fizzels on player mobs");
-			return;
-		}
+        // Target mob is cloned into same location
+        if (target_.isPlayer()) {
+            caster_.out("This spell fizzel's on player mobs");
+            return;
+        }
 
-		Room room = target_.getRoom();
+        Room room = target_.getRoom();
 
-		Mob clonedMob = EntityProvider.createMob(target_.getId(),target_.getId()+"c");
+        Mob clonedMob = EntityProvider.createMob(target_.getId(), target_.getId() + "c");
 
-		room.add(clonedMob);
-	}
+        room.add(clonedMob);
+    }
 
-	public boolean isPositiveEffect() {
-		return true;
-	}
+    public boolean isPositiveEffect() {
+        return true;
+    }
 
 }

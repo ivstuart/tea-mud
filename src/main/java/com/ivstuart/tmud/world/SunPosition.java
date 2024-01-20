@@ -14,45 +14,37 @@
  *  limitations under the License.
  */
 
-package com.ivstuart.tmud.common;
+package com.ivstuart.tmud.world;
 
-/**
- * Created by Ivan on 20/08/2016.
- */
-public enum ExitEnum {
+public enum SunPosition {
 
-    n("north", 0, 1, 0),
-    s("south", 0, -1, 0),
-    e("east", 1, 0, 0),
-    w("west", -1, 0, 0),
-    u("up", 0, 0, 1),
-    d("down", 0, 0, -1);
+    DAY_TIME("The day has begun", 9),
+    NIGHTTIME("The night has begun", 20),
+    SUN_RISE("The sun rises in the east", 7),
+    SUN_SET("The sun slowly disappears in the west", 18);
 
     private final String desc;
-    private final int dx;
-    private final int dy;
-    private final int dz;
+    private final int hour;
 
-    ExitEnum(String s, int dx, int dy, int dz) {
-        this.desc = s;
-        this.dx = dx;
-        this.dy = dy;
-        this.dz = dz;
+    SunPosition(String desc, int hour) {
+        this.desc = desc;
+        this.hour = hour;
+    }
+
+    public static String getMessage(int hour) {
+        for (SunPosition pos : values()) {
+            if (pos.getHour() == hour) {
+                return pos.getDesc();
+            }
+        }
+        return "";
     }
 
     public String getDesc() {
         return desc;
     }
 
-    public int getDx() {
-        return dx;
-    }
-
-    public int getDy() {
-        return dy;
-    }
-
-    public int getDz() {
-        return dz;
+    public int getHour() {
+        return hour;
     }
 }

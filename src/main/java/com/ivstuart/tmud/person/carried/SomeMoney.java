@@ -27,33 +27,33 @@ import java.util.List;
 
 /**
  * @author Ivan Stuart
- *
- *          To change the template for this generated type comment go to
- *         Window - Preferences - Java - Code Style - Code Templates
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window - Preferences - Java - Code Style - Code Templates
  */
 public interface SomeMoney extends Serializable {
 
-	
-	public boolean add(Money money);
 
-	public void add(SomeMoney cash);
+    public boolean add(Money money);
 
-	public void clear();
+    public void add(SomeMoney cash);
 
-	public List<SomeMoney> getList();
+    public void clear();
 
-	public int getValue();
+    public List<SomeMoney> getList();
 
-	public boolean isBag();
+    public int getValue();
 
-	public boolean isEmpty();
+    public boolean isBag();
 
-	public boolean remove(Money money);
+    public boolean isEmpty();
 
-	public boolean remove(MoneyBag cash);
+    public boolean remove(Money money);
 
-	@Override
-	public String toString();
+    public boolean remove(MoneyBag cash);
+
+    @Override
+    public String toString();
 
     boolean remove(SomeMoney cost);
 
@@ -62,7 +62,7 @@ public interface SomeMoney extends Serializable {
     SomeMoney removeAndConvert(int copper);
 
     /**
-	 * @param cash
-	 */
+     * @param cash
+     */
 
 }

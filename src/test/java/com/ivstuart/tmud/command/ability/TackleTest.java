@@ -102,7 +102,7 @@ public class TackleTest {
 
         player1Mob.getFight().getFightActions().getFirst().happen();
 
-        assertEquals("sheep should be ground fighting", true, sheepMob.getFight().isGroundFighting());
+        assertTrue("sheep should be ground fighting", sheepMob.getFight().isGroundFighting());
 
 
     }

@@ -24,6 +24,8 @@ package com.ivstuart.tmud.person;
 
 import com.ivstuart.tmud.state.Attribute;
 import com.ivstuart.tmud.state.Mob;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.Serializable;
 import java.security.MessageDigest;
@@ -35,18 +37,17 @@ import java.util.Arrays;
  */
 public class PlayerData implements Serializable {
 
+    private static final Logger LOGGER = LogManager.getLogger();
     /**
      *
      */
     private static final long serialVersionUID = 1L;
-
+    private final Attribute thirstAttribute;
+    private final Attribute hungerAttribute;
     private transient String password;
     private byte[] passwordDigest;
-
     private String email;
-
     private String title;
-
     private long totalXp;
     private long toLevelXp;
     private int xpForFighting;
@@ -67,11 +68,10 @@ public class PlayerData implements Serializable {
     private int warpoints;
     private int tier;
     private int killpoints;
-    private Attribute thirstAttribute;
-    private Attribute hungerAttribute;
     private Attribute drunkAttribute;
     private Attribute poisonAttribute;
     private Attribute alignment;
+
     /**
      *
      */
@@ -202,11 +202,12 @@ public class PlayerData implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-        MessageDigest md = null;
+        MessageDigest md;
         try {
             md = MessageDigest.getInstance("SHA-256");
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            LOGGER.error("No algorithm found for password digest", e);
+            return;
         }
         md.update(password.getBytes());
         this.passwordDigest = md.digest();
@@ -258,7 +259,7 @@ public class PlayerData implements Serializable {
 
     public void incrementLevel() {
         level++;
-        toLevelXp += 1000 * Math.pow(level, 2);
+        toLevelXp += 1000 * ((long) level * level); // Better than
         learns++;
         pracs += 3;
 
@@ -281,11 +282,12 @@ public class PlayerData implements Serializable {
     }
 
     public boolean isPasswordSame(String password) {
-        MessageDigest md = null;
+        MessageDigest md;
         try {
             md = MessageDigest.getInstance("SHA-256");
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            LOGGER.error("No algorithm for digest found", e);
+            return false;
         }
         md.update(password.getBytes());
         byte[] digest = md.digest();

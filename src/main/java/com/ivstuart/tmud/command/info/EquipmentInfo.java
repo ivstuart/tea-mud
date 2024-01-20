@@ -29,19 +29,19 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class EquipmentInfo extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
-		if (input.length() > 0) {
-			CommandProvider.getCommand(Wear.class).execute(mob, input);
-			return;
-		}
-		mob.out(mob.getEquipment().toString());
-	}
+    @Override
+    public void execute(Mob mob, String input) {
+        if (!input.isEmpty()) {
+            CommandProvider.getCommand(Wear.class).execute(mob, input);
+            return;
+        }
+        mob.out(mob.getEquipment().toString());
+    }
 
 }

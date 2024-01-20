@@ -32,7 +32,7 @@ import java.util.Map;
 public class Clans {
 
     private static final Logger LOGGER = LogManager.getLogger();
-    private static String fileName = "clan.sav";
+    private static final String fileName = "clan.sav";
     private static Map<Integer, Clan> clans = new HashMap<>();
 
     public static Collection<Clan> getClans() {

@@ -27,17 +27,17 @@ import java.util.List;
 
 /**
  * @author stuarti
- *         <p>
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Channel {
 
     private static final int MAX_SIZE = 20;
 
-    private List<String> good;
+    private final List<String> good;
 
-    private List<String> evil;
+    private final List<String> evil;
 
     /**
      *

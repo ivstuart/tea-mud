@@ -26,6 +26,7 @@ public class Social extends BaseCommand {
 
     private final String cmd;
     private String description;
+
     public Social(String line) {
         this.cmd = line;
     }

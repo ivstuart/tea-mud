@@ -41,9 +41,9 @@ import static com.ivstuart.tmud.utils.StringUtil.getLastWord;
 
 /**
  * @author stuarti
- *         <p>
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Cast extends BaseCommand {
 
@@ -210,7 +210,7 @@ public class Cast extends BaseCommand {
 
 
     private boolean checkTargetSelf(Mob mob_, Spell spell, Mob targetMob) {
-        if (spell.getTarget() != null && spell.getTarget().indexOf("SELF") > -1) {
+        if (spell.getTarget() != null && spell.getTarget().contains("SELF")) {
             if (targetMob != mob_) {
                 mob_.out("You can only target self with this spell");
                 return true;
@@ -225,7 +225,7 @@ public class Cast extends BaseCommand {
     // check room items
     // check world
     private boolean checkTargetItemSpell(Mob mob_, String target, Ability spellAbility, Spell spell, MobMana mana, boolean castingCost) {
-        if (spell.getTarget() != null && spell.getTarget().indexOf("ITEM") > -1) {
+        if (spell.getTarget() != null && spell.getTarget().contains("ITEM")) {
             Item item = mob_.getRoom().getInventory().get(target);
 
             if (item == null) {
@@ -233,15 +233,15 @@ public class Cast extends BaseCommand {
 
                 if (prop instanceof Item) {
                     item = (Item) prop;
-                    if (item == null) {
-                        // Local object spell
-                        item = World.getItem(target);
-                        if (item == null) {
-                            mob_.out("The item " + target + " is not here to target");
-                            return true;
-                        }
-                    }
+                } else if (prop == null) {
+                    // Local object spell
+                    item = World.getItem(target);
                 }
+            }
+
+            if (item == null) {
+                mob_.out("The item " + target + " is not here to target");
+                return true;
             }
 
             if (item.isInvisible() && !mob_.hasDetectInvisible()) {
@@ -268,7 +268,7 @@ public class Cast extends BaseCommand {
     }
 
     private boolean checkTargetManySpell(Mob mob_, String target, Ability spellAbility, Spell spell, MobMana mana, boolean castingCost) {
-        if (spell.getTarget() != null && spell.getTarget().indexOf("MANY") > -1) {
+        if (spell.getTarget() != null && spell.getTarget().contains("MANY")) {
             List<Mob> targets = mob_.getRoom().getMobs(target);
 
             if (targets.isEmpty()) {
@@ -295,7 +295,7 @@ public class Cast extends BaseCommand {
     }
 
     private boolean targettingSelf(String target) {
-        return target == null || target.length() == 0 || target.equalsIgnoreCase("me") || target.equalsIgnoreCase("self");
+        return target == null || target.isEmpty() || target.equalsIgnoreCase("me") || target.equalsIgnoreCase("self");
     }
 
 }

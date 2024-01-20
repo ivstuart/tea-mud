@@ -30,8 +30,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class HideTest {
 
@@ -78,7 +77,7 @@ public class HideTest {
         Command hide = new Hide();
         hide.execute(player1Mob, player1Mob.getAlias());
 
-        assertEquals("player should be hidden", true, player1Mob.isHidden());
+        assertTrue("player should be hidden", player1Mob.isHidden());
 
         Command kill = new Kill();
 
@@ -94,7 +93,7 @@ public class HideTest {
         kill.execute(sheepMob, player1Mob.getName());
 
         // Check they are targeting each other.
-        assertEquals("sheep should not target player1", null, sheepMob
+        assertNull("sheep should not target player1", sheepMob
                 .getFight().getTarget());
 
 

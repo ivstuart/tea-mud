@@ -29,49 +29,40 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Wield extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		Item item = mob.getInventory().get(input); // .remove(input);
+        Item item = mob.getInventory().get(input); // .remove(input);
 
-		if (item == null) {
-			mob.out("You are not carrying a " + input);
-			return;
-		}
+        if (item == null) {
+            mob.out("You are not carrying a " + input);
+            return;
+        }
 
-		Equipable eq = null;
-
-		if (item instanceof Equipable) {
-			eq = item;
-		} else {
-			mob.out("That item is not equipable!");
-			return;
-		}
-
-		if (item.isAntiProfession(mob.getPlayer().getProfession())) {
-			mob.out("You can not wield that item its not for your profession");
-			return;
-		}
+        if (item.isAntiProfession(mob.getPlayer().getProfession())) {
+            mob.out("You can not wield that item its not for your profession");
+            return;
+        }
 
         if (!item.isCorrectSize(mob.getHeight())) {
             mob.out("That item is the wrong size to wield, resize it first");
             return;
         }
 
-		if (mob.getEquipment().add(eq)) {
-			mob.getInventory().remove(item);
-			eq.equip(mob);
-			mob.out("You wield an " + item);
-		} else {
-			mob.out("You do not have any space available to wield an " + item);
-		}
+        if (mob.getEquipment().add(item)) {
+            mob.getInventory().remove(item);
+            ((Equipable) item).equip(mob);
+            mob.out("You wield an " + item);
+        } else {
+            mob.out("You do not have any space available to wield an " + item);
+        }
 
-	}
+    }
 
 }

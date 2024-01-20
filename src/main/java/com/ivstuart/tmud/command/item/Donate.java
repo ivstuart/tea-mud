@@ -31,33 +31,33 @@ import com.ivstuart.tmud.world.World;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Donate extends BaseCommand {
 
-	// Teleports item to donation room
-	// Idea is newbies can pick up items.
+    // Teleports item to donation room
+    // Idea is newbies can pick up items.
 
-	/**
-	 * @param input
-	 * @return
-	 */
+    /**
+     * @param input money
+     * @return true when donated
+     */
     private boolean checkDonateCash(Mob mob, String input) {
         SomeMoney sm = mob.getRoom().getInventory().removeCoins(input);
 
-		if (sm != null) {
-			mob.out("You donate " + sm);
-			World.getDonateRoom(mob).getInventory().add(sm);
-			return true;
-		}
+        if (sm != null) {
+            mob.out("You donate " + sm);
+            World.getDonateRoom(mob).getInventory().add(sm);
+            return true;
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
         Room donateRoom = World.getDonateRoom(mob);
         execute(mob, input, donateRoom);
     }
@@ -66,42 +66,42 @@ public class Donate extends BaseCommand {
 
         if (checkDonateCash(mob, input)) {
             return;
-		}
+        }
 
-		String lastWord = StringUtil.getLastWord(input);
-		Prop prop = mob.getRoom().getProps().get(lastWord);
+        String lastWord = StringUtil.getLastWord(input);
+        Prop prop = mob.getRoom().getProps().get(lastWord);
 
-		if (prop != null) {
-			if (prop instanceof Corpse) {
-				Corpse corpse = (Corpse) prop;
-				mob.getRoom().remove(corpse);
-				mob.out("You donate an " + corpse.getName());
-				return;
-			}
-		}
+        if (prop != null) {
+            if (prop instanceof Corpse) {
+                Corpse corpse = (Corpse) prop;
+                mob.getRoom().remove(corpse);
+                mob.out("You donate an " + corpse.getName());
+                return;
+            }
+        }
 
-		MudArrayList<Item> items = mob.getRoom().getInventory().getItems();
+        MudArrayList<Item> items = mob.getRoom().getInventory().getItems();
 
-		if (items == null) {
-			mob.out(input + " is not here to donate!");
-			return;
-		}
+        if (items == null) {
+            mob.out(input + " is not here to donate!");
+            return;
+        }
 
-		Item anItem = items.remove(input);
+        Item anItem = items.remove(input);
 
-		if (anItem == null) {
-			mob.out("Can not donate " + input + " it is not here!");
-			return;
-		}
+        if (anItem == null) {
+            mob.out("Can not donate " + input + " it is not here!");
+            return;
+        }
 
-		if (anItem.isNoDonate()) {
-			mob.out("Can not not donate this item its flagged as no donation");
-			items.add(anItem);
-			return;
-		}
+        if (anItem.isNoDonate()) {
+            mob.out("Can not not donate this item its flagged as no donation");
+            items.add(anItem);
+            return;
+        }
 
         donateRoom.add(anItem);
         mob.out("You donate an " + anItem.getBrief());
-	}
+    }
 
 }

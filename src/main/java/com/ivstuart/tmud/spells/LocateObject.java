@@ -22,14 +22,14 @@ import com.ivstuart.tmud.state.Spell;
 
 public class LocateObject implements SpellEffect {
 
-	@Override
-	public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
+    @Override
+    public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
 
-		caster_.out("Object was last dropped in room " + targetItem.getRoomId());
-	}
+        caster_.out("Object was last dropped in room " + targetItem.getRoomId());
+    }
 
-	public boolean isPositiveEffect() {
-		return true;
-	}
+    public boolean isPositiveEffect() {
+        return true;
+    }
 
 }

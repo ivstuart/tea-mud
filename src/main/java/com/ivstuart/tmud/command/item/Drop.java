@@ -35,82 +35,82 @@ import java.util.Iterator;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Drop extends BaseCommand {
 
-	/*
-	 * Usage: drop <item> drop all.<item> drop all drop <number> coins
-	 */
+    /*
+     * Usage: drop <item> drop all.<item> drop all drop <number> coins
+     */
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		Room room = null;
-		if (mob.getRoom().isFlying()) {
-			room = mob.getRoom().getGroundRoom();
-		} else {
-			room = mob.getRoom();
-		}
+        Room room = null;
+        if (mob.getRoom().isFlying()) {
+            room = mob.getRoom().getGroundRoom();
+        } else {
+            room = mob.getRoom();
+        }
 
-		if (input.equalsIgnoreCase("all")) {
-			Iterator<Item> itemIter = mob.getInventory().getItems().iterator();
-			for (; itemIter.hasNext(); ) {
+        if (input.equalsIgnoreCase("all")) {
+            Iterator<Item> itemIter = mob.getInventory().getItems().iterator();
+            while (itemIter.hasNext()) {
 
-				Item item = itemIter.next();
+                Item item = itemIter.next();
 
-				room.add(item);
+                room.add(item);
 
-				mob.out("You drop an " + item.getBrief());
+                mob.out("You drop an " + item.getBrief());
 
-				checkDisease(mob, item);
-				itemIter.remove();
-			}
-		}
+                checkDisease(mob, item);
+                itemIter.remove();
+            }
+        }
 
-		SomeMoney sm = mob.getInventory().removeCoins(input);
+        SomeMoney sm = mob.getInventory().removeCoins(input);
 
-		if (sm != null) {
-			mob.out("You drop some coins  " + sm);
-			mob.getRoom().getInventory().add(sm);
-			return;
-		}
+        if (sm != null) {
+            mob.out("You drop some coins  " + sm);
+            mob.getRoom().getInventory().add(sm);
+            return;
+        }
 
-		Item item = mob.getInventory().remove(input);
+        Item item = mob.getInventory().remove(input);
 
-		if (item == null) {
-			mob.out("You are not carrying a " + input);
-			return;
-		}
+        if (item == null) {
+            mob.out("You are not carrying a " + input);
+            return;
+        }
 
-		if (item instanceof Torch) {
-			Torch torch = (Torch) item;
-			torch.setMsgable(mob.getRoom());
-		}
+        if (item instanceof Torch) {
+            Torch torch = (Torch) item;
+            torch.setMsgable(mob.getRoom());
+        }
 
-		room.add(item);
+        room.add(item);
 
-		mob.out("You drop an " + item.getBrief());
+        mob.out("You drop an " + item.getBrief());
 
-		checkDisease(mob, item);
-	}
+        checkDisease(mob, item);
+    }
 
-	private void checkDisease(Mob mob, Item item) {
-		if (mob.getMobAffects().getDiseases() == null) {
-			return;
-		}
+    private void checkDisease(Mob mob, Item item) {
+        if (mob.getMobAffects().getDiseases() == null) {
+            return;
+        }
 
-		for (Disease disease : mob.getMobAffects().getDiseases()) {
-			if (disease.isIndirectContact()) {
-				if (DiceRoll.ONE_D100.rollLessThanOrEqualTo(disease.getInfectionRate())) {
-					Disease infection = (Disease) disease.clone();
-					item.setDisease(infection);
-				}
-			}
-		}
+        for (Disease disease : mob.getMobAffects().getDiseases()) {
+            if (disease.isIndirectContact()) {
+                if (DiceRoll.ONE_D100.rollLessThanOrEqualTo(disease.getInfectionRate())) {
+                    Disease infection = (Disease) disease.clone();
+                    item.setDisease(infection);
+                }
+            }
+        }
 
-	}
+    }
 
 }

@@ -24,11 +24,11 @@ import org.apache.logging.log4j.Logger;
 
 public class Stander extends BaseBehaviour {
 
-    private static Logger LOGGER = LogManager.getLogger();
+    private final static Logger LOGGER = LogManager.getLogger();
 
 
     public Stander() {
-        parameter = 50; // precentage
+        parameter = 50; // percentage
     }
 
     @Override

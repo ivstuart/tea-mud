@@ -29,14 +29,14 @@ import com.ivstuart.tmud.world.World;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Users extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
 
         String line = String.format(" %1$-3s %2$-5s %3$-16s %4$-16s %5$-4s %6$-8s %7$-16s",
@@ -64,8 +64,8 @@ public class Users extends BaseCommand {
                     player.getConnection().getLocalAddress(),
                     player.getConnection().getRemoteAddress());
 
-			mob.out(line);
-		}
+            mob.out(line);
+        }
 
         mob.out("$K~$J");
     }

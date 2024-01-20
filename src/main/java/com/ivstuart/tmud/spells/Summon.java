@@ -50,7 +50,7 @@ public class Summon implements SpellEffect {
 
         if (toRoom != null) {
             caster.out("You summon to " + toRoom.getId());
-            MoveManager.move(target,toRoom);
+            MoveManager.move(target, toRoom);
         } else {
             target.out("Room not found!");
         }

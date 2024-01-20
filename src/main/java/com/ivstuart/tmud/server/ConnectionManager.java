@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.nio.channels.SocketChannel;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Collection;
 
 public class ConnectionManager {
 

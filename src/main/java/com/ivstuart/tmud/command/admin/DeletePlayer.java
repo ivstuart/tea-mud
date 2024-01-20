@@ -34,9 +34,9 @@ import java.io.File;
 
 /**
  * @author stuarti
- *         <p>
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class DeletePlayer extends AdminCommand {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -46,8 +46,6 @@ public class DeletePlayer extends AdminCommand {
 
         super.execute(mob, input);
 
-        String name = input;
-
         Player player = World.getPlayer(input);
 
         if (player != null) {
@@ -55,15 +53,20 @@ public class DeletePlayer extends AdminCommand {
         }
 
         String path = LaunchMud.mudServerProperties.getProperty("player.save.dir");
-        File file = new File(path + name.toLowerCase() + ".sav");
+        File file = new File(path + input.toLowerCase() + ".sav");
         if (!file.exists() || file.isDirectory()) {
             mob.out("There is no file " + file.getAbsolutePath());
             return;
         }
 
         mob.out("Removing player file " + file.getAbsolutePath());
-        file.delete();
+        boolean result = file.delete();
 
+        if (result) {
+            LOGGER.info("Player file successfully removed.");
+        } else {
+            LOGGER.warn("Player file not removed!");
+        }
 
     }
 

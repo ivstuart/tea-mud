@@ -27,20 +27,20 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Reload extends AdminCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		super.execute(mob,input);
-		
-		mob.out("Reloading command " + input);
+        super.execute(mob, input);
 
-		CommandProvider.reloadCommand(input);
-	}
+        mob.out("Reloading command " + input);
+
+        CommandProvider.reloadCommand(input);
+    }
 
 }

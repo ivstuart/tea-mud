@@ -28,83 +28,83 @@ import com.ivstuart.tmud.utils.StringUtil;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Drink extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob_, String input_) {
+    @Override
+    public void execute(Mob mob_, String input_) {
 
-		String target = StringUtil.getLastWord(input_);
-		// Check for fountain first of all
-		Prop fountain = mob_.getRoom().getProps().get(target);
+        String target = StringUtil.getLastWord(input_);
+        // Check for fountain first of all
+        Prop fountain = mob_.getRoom().getProps().get(target);
 
-		if (fountain != null) {
-			if (fountain.isWaterSource()) {
+        if (fountain != null) {
+            if (fountain.isWaterSource()) {
                 mob_.out("You drink some liquid from " + fountain.getName());
                 Attribute thirst = mob_.getPlayer().getData().getThirst();
-				thirst.increase(500);
-				return;
-			}
-		}
+                thirst.increase(500);
+                return;
+            }
+        }
 
-		Item item = mob_.getInventory().get(input_);
+        Item item = mob_.getInventory().get(input_);
 
-		if (item == null) {
-			item = (Item) mob_.getEquipment().get(input_);
-		}
+        if (item == null) {
+            item = (Item) mob_.getEquipment().get(input_);
+        }
 
-		/* Guard condition */
-		if (item == null) {
-			mob_.out("You are not carrying a " + input_ + " to drink.");
-			return;
-		}
+        /* Guard condition */
+        if (item == null) {
+            mob_.out("You are not carrying a " + input_ + " to drink.");
+            return;
+        }
 
-		if (item instanceof Potion) {
-			Potion potion = (Potion) item;
+        if (item instanceof Potion) {
+            Potion potion = (Potion) item;
 
-			mob_.out("You quaff the " + item.getLook() + " down");
+            mob_.out("You quaff the " + item.getLook() + " down");
 
-			potion.drink(mob_);
+            potion.drink(mob_);
 
-			mob_.getInventory().remove(potion);
-			return;
-		}
+            mob_.getInventory().remove(potion);
+            return;
+        }
 
-		if (item instanceof Waterskin) {
-			Waterskin waterskin = (Waterskin) item;
+        if (item instanceof Waterskin) {
+            Waterskin waterskin = (Waterskin) item;
 
-			if (waterskin.getDrafts() == 0) {
-				mob_.out("You cannot drink from this as it is empty");
-				return;
-			}
+            if (waterskin.getDrafts() == 0) {
+                mob_.out("You cannot drink from this as it is empty");
+                return;
+            }
 
-			Attribute thirst = mob_.getPlayer().getData().getThirst();
+            Attribute thirst = mob_.getPlayer().getData().getThirst();
 
-			int max = thirst.getMaximum();
+            int max = thirst.getMaximum();
 
-			int current = thirst.getValue();
+            int current = thirst.getValue();
 
-			if (current + 20 > max) {
-				mob_.out("You are not thirsty enough to drink");
-				return;
-			}
+            if (current + 20 > max) {
+                mob_.out("You are not thirsty enough to drink");
+                return;
+            }
 
-			mob_.out("You drink some liquard from " + waterskin.getBrief());
+            mob_.out("You drink some liquid from " + waterskin.getBrief());
 
-			thirst.increase(waterskin.getLiquardType().getThirst());
+            thirst.increase(waterskin.getLiquidType().getThirst());
 
-			mob_.getPlayer().getData().getHunger().increase(waterskin.getLiquardType().getFood());
-			mob_.getPlayer().getData().getDrunkAttribute().increase(waterskin.getLiquardType().getAlcohol());
-			mob_.getPlayer().getData().getPoisonAttribute().increase(waterskin.getLiquardType().getPoison());
+            mob_.getPlayer().getData().getHunger().increase(waterskin.getLiquidType().getFood());
+            mob_.getPlayer().getData().getDrunkAttribute().increase(waterskin.getLiquidType().getAlcohol());
+            mob_.getPlayer().getData().getPoisonAttribute().increase(waterskin.getLiquidType().getPoison());
 
-			waterskin.drink();
-		} else {
-			mob_.out("The " + item.getLook() + " is not drinkable.");
-		}
+            waterskin.drink();
+        } else {
+            mob_.out("The " + item.getLook() + " is not drinkable.");
+        }
 
-	}
+    }
 
 }

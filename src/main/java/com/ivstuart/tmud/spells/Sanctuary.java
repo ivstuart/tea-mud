@@ -21,18 +21,18 @@ import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Spell;
 
-public class Sanctury implements SpellEffect {
+public class Sanctuary implements SpellEffect {
 
-	@Override
-	public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
+    @Override
+    public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
 
-		target_.addAffect(spell.getId(),new SancAffect(caster_,spell.getId(),spell.getDuration().roll()));
-		// No nothing on hit.
-	}
+        target_.addAffect(spell.getId(), new SancAffect(caster_, spell.getId(), spell.getDuration().roll()));
+        // No nothing on hit.
+    }
 
-	public boolean isPositiveEffect() {
-		return true;
-	}
+    public boolean isPositiveEffect() {
+        return true;
+    }
 
 
 }

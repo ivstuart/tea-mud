@@ -37,10 +37,10 @@ import static com.ivstuart.tmud.common.Colour.*;
 
 /**
  * @author stuarti
- *         <p>
- *         <p>
- *         You have 0 copper banked, and carry 0 platinum, 0 gold and 0 copper.
- *         You carry 17 stones and 3 pebbles of weight. You are unburdened.
+ * <p>
+ * <p>
+ * You have 0 copper banked, and carry 0 platinum, 0 gold and 0 copper.
+ * You carry 17 stones and 3 pebbles of weight. You are unburdened.
  */
 public class Score extends BaseCommand {
 
@@ -83,13 +83,13 @@ public class Score extends BaseCommand {
 
         mob.out(String
                 .format("  %1$2s Health     : %2$6s    Damage Bonus : %3$6s    War Points  : %4$6s",
-                        WHITE.toString(),
+                        WHITE,
                         mob.getHp().getValue(),
                         player.getAPB(),
                         data.getWarpoints()));
         mob.out(String
                 .format("  %1$2s Stamina    : %2$6s    Melee Attack : %3$6s    Kill Points : %4$6s",
-                        WHITE.toString(),
+                        WHITE,
                         mob.getMv().getValue(),
                         mAtt,
                         data.getKillpoints()));
@@ -103,32 +103,32 @@ public class Score extends BaseCommand {
 
             mob.out(String
                     .format("  %1$2s Mana       : %2$6s    Melee Defence: %3$6s    Ability Pts : %4$6s",
-                            WHITE.toString(),
+                            WHITE,
                             mana.getPrompt(),
                             mDef,
                             mob.getLearned().getAbilityPoints()));
 
             mob.out(String
                     .format("  %1$2s Fire  Save : %2$6s    $JRanged Attack: %3$6s    Rating      : %4$6s",
-                            RED.toString(),
+                            RED,
                             mob.getSave(DamageType.FIRE),
                             mBatt,
                             Rating.getRating(mob)));
             mob.out(String
                     .format("  %1$2s Nature Save: %2$6s    $JEvasion      : %3$6s    Remorts     : %4$6s",
-                            GREEN.toString(),
+                            GREEN,
                             mob.getSave(DamageType.NATURE),
                             mob.getPlayer().getData().getEvasion(),
                             mob.getPlayer().getData().getRemorts()));
             mob.out(String
                     .format("  %1$2s Cold Save  : %2$6s    $JStealth      : %3$6s    Level       : %4$6s",
-                            BLUE.toString(),
+                            BLUE,
                             mob.getSave(DamageType.COLD),
                             mob.getPlayer().getData().getStealth(),
                             data.getLevel()));
             mob.out(String
                     .format("  %1$2s Shock Save : %2$6s    $JPerception   : %3$6s    Deaths      : %4$6s",
-                            YELLOW.toString(),
+                            YELLOW,
                             mob.getSave(DamageType.SHOCK),
                             mob.getPlayer().getData().getPerception(),
                             mob.getPlayer().getData().getDeaths()));
@@ -160,7 +160,7 @@ public class Score extends BaseCommand {
         Profession profession = mob.getPlayer().getProfession();
 
         if (profession != null) {
-            mob.out("   Your current profession is:"+profession.toString().toLowerCase());
+            mob.out("   Your current profession is:" + profession.toString().toLowerCase());
         }
     }
 
@@ -187,8 +187,8 @@ public class Score extends BaseCommand {
             sb.append("healers ");
         }
 
-        if (sb.length() >0) {
-            mob.out("   Guilds: "+sb.toString());
+        if (sb.length() > 0) {
+            mob.out("   Guilds: " + sb);
         }
 
     }

@@ -32,16 +32,16 @@ import java.util.List;
 
 /**
  * @author stuarti
- *         <p>
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class BasicSpell extends FightAction {
 
     public static final int FIVE_SECONDS = 5000; // Max time to cast
 
-    private Ability _ability;
-    private Spell _spell;
+    private final Ability _ability;
+    private final Spell _spell;
 
     private List<Mob> _targets;
     private Item _item;
@@ -80,7 +80,7 @@ public class BasicSpell extends FightAction {
 //        if (checkCanCast() == false) {
 //
 //            getSelf().getMobStatus().setCasting(0);
-//            this.destory();
+//            this.destroy();
 //            return;
 //        }
 
@@ -88,7 +88,7 @@ public class BasicSpell extends FightAction {
                 "<S-You begin/NAME begins> to utter some strange incantations..."));
 
         // When a queued command resolves it need to work out if the target is
-        // still visble.
+        // still visible.
         getSelf().getMobStatus().setCasting(6);
 
 
@@ -156,11 +156,11 @@ public class BasicSpell extends FightAction {
 
         Room room = getSelf().getRoom();
 
-        MudArrayList mobs = room.getMobs();
+        MudArrayList<Mob> mobs = room.getMobs();
 
         // Can summon targets in other room locations.
         if (!_spell.isAnyTarget()) {
-            if (mobs == null || mobs.contains(getTarget()) == false) {
+            if (mobs == null || !mobs.contains(getTarget())) {
                 out(getTarget().getId() + " is no longer here you stop casting");
 
                 getSelf().getMobStatus().setCasting(0);
@@ -220,7 +220,7 @@ public class BasicSpell extends FightAction {
     }
 
     /*
-     * Some attacks which fail can have even more possiblities... i.e drop
+     * Some attacks which fail can have even more possibilities... i.e drop
      * weapon, hitting a friend etc... more fun.
      */
     private void miss() {

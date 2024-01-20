@@ -23,19 +23,19 @@ import com.ivstuart.tmud.state.Weapon;
 
 public class EnchantWeapon implements SpellEffect {
 
-	@Override
-	public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
+    @Override
+    public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
 
-		if (!(targetItem instanceof Weapon)) {
-			caster_.out("That item " + targetItem.getName() + " is not a weapon and hence can not be enchanted");
-			return;
-		}
-		targetItem.setMagic(true);
-		caster_.out("You enchant that item");
-	}
+        if (!(targetItem instanceof Weapon)) {
+            caster_.out("That item " + targetItem.getName() + " is not a weapon and hence can not be enchanted");
+            return;
+        }
+        targetItem.setMagic(true);
+        caster_.out("You enchant that item");
+    }
 
-	public boolean isPositiveEffect() {
-		return true;
-	}
+    public boolean isPositiveEffect() {
+        return true;
+    }
 
 }

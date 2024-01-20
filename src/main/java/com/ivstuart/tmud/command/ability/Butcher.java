@@ -27,74 +27,74 @@ import com.ivstuart.tmud.state.*;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Butcher extends BaseCommand {
 
-	/*
-	 * 2ndary action?
-	 */
-	@Override
-	public void execute(Mob mob, String input) {
+    /*
+     * Secondary action?
+     */
+    @Override
+    public void execute(Mob mob, String input) {
 
-		// Need any weapon with sword, knife, edge, sharp, axe, blade in the short desc 
-		// then also some animal meat - yields 3 portions of food that are perishable
-		// salting meet makes it last 10 times longer. 
-		// Fire can cook meat but 30% change of burning it.
+        // Need any weapon with sword, knife, edge, sharp, axe, blade in the short desc
+        // then also some animal meat - yields 3 portions of food that are perishable
+        // salting meet makes it last 10 times longer.
+        // Fire can cook meat but 30% change of burning it.
 
-		Prop prop = mob.getRoom().getProps().get(input);
+        Prop prop = mob.getRoom().getProps().get(input);
 
-		Item item;
-		boolean propFlag = false;
-		if (prop == null || !(prop instanceof Item)) {
-			item = mob.getInventory().get(input);
-			propFlag = true;
-		} else {
-			item = (Item) prop;
-		}
+        Item item;
+        boolean propFlag = false;
+        if (!(prop instanceof Item)) {
+            item = mob.getInventory().get(input);
+            propFlag = true;
+        } else {
+            item = (Item) prop;
+        }
 
-		if (item == null) {
-			mob.out("There is no " + input + " to butcher here");
-			return;
-		}
+        if (item == null) {
+            mob.out("There is no " + input + " to butcher here");
+            return;
+        }
 
-		if (!item.isButcherable()) {
-			mob.out(input+" is not editable animal skin, can not butcher it");
-			return;
-		}
+        if (!item.isButcherable()) {
+            mob.out(input + " is not editable animal skin, can not butcher it");
+            return;
+        }
 
-		if (!mob.getInventory().hasSharpEdge() && !mob.getEquipment().hasSharpEdge()) {
-			mob.out(input +" has no sharpe edge capable of being used to butcher the animal");
-			return;
-		}
-		
-		// Butcher animal
+        if (!mob.getInventory().hasSharpEdge() && !mob.getEquipment().hasSharpEdge()) {
+            mob.out(mob.getName() + " has no sharp edge capable of being used to butcher the animal");
+            return;
+        }
 
-		if (propFlag) {
-			mob.getRoom().getProps().remove(item);
-			if (item instanceof Corpse) {
-				Corpse corpse = (Corpse) item;
-				corpse.getInventory();
-				mob.getRoom().getInventory().addAll(corpse.getInventory());
-			}
-		} else {
-			mob.getInventory().remove(item);
-		}
-		
-		Food animalMeat = new Food();
-		
-		animalMeat.setNumberPortions(item.getWeight());
-		animalMeat.setWeight(item.getWeight());
-		animalMeat.setBrief("some animal meat");
-		animalMeat.setId("meat");
-		animalMeat.setAlias("food meat");
-		animalMeat.setSaltable(true);
+        // Butcher animal
 
-		mob.out("You add some meat to your inventory");
+        if (propFlag) {
+            mob.getRoom().getProps().remove(item);
+            if (item instanceof Corpse) {
+                Corpse corpse = (Corpse) item;
+                corpse.getInventory();
+                mob.getRoom().getInventory().addAll(corpse.getInventory());
+            }
+        } else {
+            mob.getInventory().remove(item);
+        }
 
-		mob.getInventory().add(animalMeat);
-	}
+        Food animalMeat = new Food();
+
+        animalMeat.setNumberPortions(item.getWeight());
+        animalMeat.setWeight(item.getWeight());
+        animalMeat.setBrief("some animal meat");
+        animalMeat.setId("meat");
+        animalMeat.setAlias("food meat");
+        animalMeat.setSaltable(true);
+
+        mob.out("You add some meat to your inventory");
+
+        mob.getInventory().add(animalMeat);
+    }
 
 }

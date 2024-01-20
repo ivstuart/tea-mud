@@ -48,25 +48,33 @@ public class GridLocation {
     }
 
     public GridLocation goFacing(int facing) {
-        switch(facing) {
-            case 0: return new GridLocation(x - 1,y,z); // West
-            case 1: return new GridLocation(x,y - 1,z); // North
-            case 2: return new GridLocation(x+1,y,z); // East
-            case 3: return new GridLocation(x,y+1,z); // South
-            case 4: return new GridLocation(x,y,z-1); // up
-            case 5: return new GridLocation(x,y,z+1); // down
+        switch (facing) {
+            case 0:
+                return new GridLocation(x - 1, y, z); // West
+            case 1:
+                return new GridLocation(x, y - 1, z); // North
+            case 2:
+                return new GridLocation(x + 1, y, z); // East
+            case 3:
+                return new GridLocation(x, y + 1, z); // South
+            case 4:
+                return new GridLocation(x, y, z - 1); // up
+            case 5:
+                return new GridLocation(x, y, z + 1); // down
         }
         return null;
     }
 
     public boolean isOutsideOfZone(Zone zone) {
-        if (x < 0 || x > zone.getWidth()) { return true; }
+        if (x < 0 || x > zone.getWidth()) {
+            return true;
+        }
         return y < 0 || y > zone.getHeight();
     }
 
     public boolean isNextTo(GridLocation gridLocation) {
-        return (Math.abs(x - gridLocation.getX())+
-                Math.abs(y - gridLocation.getY())+
+        return (Math.abs(x - gridLocation.getX()) +
+                Math.abs(y - gridLocation.getY()) +
                 Math.abs(z - gridLocation.getZ()) == 1);
     }
 
@@ -75,14 +83,26 @@ public class GridLocation {
         int dy = y - gridLocation.getY();
         int dz = z - gridLocation.getZ();
 
-        if (dx == 1 && dy == 0) { return "west"; }
-        if (dx == -1 && dy == 0) { return "east"; }
+        if (dx == 1 && dy == 0) {
+            return "west";
+        }
+        if (dx == -1 && dy == 0) {
+            return "east";
+        }
 
-        if (dx == 0 && dy == 1) { return "north"; }
-        if (dx == 0 && dy == -1) { return "south"; }
+        if (dx == 0 && dy == 1) {
+            return "north";
+        }
+        if (dx == 0 && dy == -1) {
+            return "south";
+        }
 
-        if (dz == -1) { return "up"; }
-        if (dz == 1) { return "down"; }
+        if (dz == -1) {
+            return "up";
+        }
+        if (dz == 1) {
+            return "down";
+        }
 
         return "hidden";
     }

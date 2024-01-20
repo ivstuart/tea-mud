@@ -31,76 +31,73 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Eat extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob_, String input_) {
+    @Override
+    public void execute(Mob mob_, String input_) {
 
-		Item item = mob_.getInventory().get(input_);
+        Item item = mob_.getInventory().get(input_);
 
-		/**
-		 * if (item == null) { item = (Item)mob_.getEquipment().get(input_); }
-		 */
 
-		if (item == null) {
-			mob_.out("You are not carrying a " + input_ + " to eat.");
-			return;
-		}
+        if (item == null) {
+            mob_.out("You are not carrying a " + input_ + " to eat.");
+            return;
+        }
 
-		if (item instanceof Food) {
-			Food food = (Food) item;
+        if (item instanceof Food) {
+            Food food = (Food) item;
 
-			if (food.getPortions() == 0) {
-				mob_.out("You cannot eat from this as it is empty");
-				return;
-			}
+            if (food.getPortions() == 0) {
+                mob_.out("You cannot eat from this as it is empty");
+                return;
+            }
 
-			Attribute hunger = mob_.getPlayer().getData().getHunger();
+            Attribute hunger = mob_.getPlayer().getData().getHunger();
 
-			int max = hunger.getMaximum();
+            int max = hunger.getMaximum();
 
-			int current = hunger.getValue();
+            int current = hunger.getValue();
 
-			if (current + 20 > max) {
-				mob_.out("You are not hungery enough to eat");
-				return;
-			}
+            if (current + 20 > max) {
+                mob_.out("You are not hungry enough to eat");
+                return;
+            }
 
-			hunger.increase(100);
+            hunger.increase(100);
 
-			mob_.out("You eat some " + food);
+            mob_.out("You eat some " + food);
 
-			food.eat();
+            food.eat();
 
-			checkFoodForDisease(mob_, food);
+            checkFoodForDisease(mob_, food);
 
-			if (food.getPortions() == 0) {
-				mob_.getInventory().remove(food);
-				mob_.out("Food is gone you ate it all of that!");
-				// food object should be gc() able now.
-			}
-		} else {
-			mob_.out("The " + item.getLook() + " is not drinkable.");
-		}
+            if (food.getPortions() == 0) {
+                mob_.getInventory().remove(food);
+                mob_.out("Food is gone you ate it all of that!");
+                // food object should be gc() able now.
+            }
+        } else {
+            mob_.out("The " + item.getLook() + " is not drinkable.");
+        }
 
-	}
+    }
 
-	private void checkFoodForDisease(Mob mob, Food food) {
-		if (food.getDisease() == null) {
-			return;
-		}
+    private void checkFoodForDisease(Mob mob, Food food) {
+        if (food.getDisease() == null) {
+            return;
+        }
 
-		Disease disease = food.getDisease();
+        Disease disease = food.getDisease();
 
-		if (disease.isOral()) {
-			Disease.infect(mob, disease);
-		}
+        if (disease.isOral()) {
+            Disease.infect(mob, disease);
+        }
 
-	}
+    }
 
 
 }

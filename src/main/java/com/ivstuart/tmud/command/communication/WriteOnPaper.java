@@ -28,36 +28,36 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class WriteOnPaper extends BaseCommand {
 
-	/**
-	 * Have a write on command for writing to signs
-	 *  notice boards
-	 *  paper etc...
-	 */
-	@Override
-	public void execute(Mob mob, String input) {
-		
-		// Check pen and paper first
-		
-		Item note = new Item();
-		
-		note.setLong(input);
-		note.setAlias("note");
+    /**
+     * Have a write on command for writing to signs
+     * notice boards
+     * paper etc...
+     */
+    @Override
+    public void execute(Mob mob, String input) {
 
-		if (input.length() > 40) {
-			note.setBrief(input.substring(0, 40));
-		} else {
-			note.setBrief(input);
-		}
-		
-		// Add finished note to inventory.
-		mob.getInventory().add(note);
-		
-	}
+        // Check pen and paper first
+
+        Item note = new Item();
+
+        note.setLong(input);
+        note.setAlias("note");
+
+        if (input.length() > 40) {
+            note.setBrief(input.substring(0, 40));
+        } else {
+            note.setBrief(input);
+        }
+
+        // Add finished note to inventory.
+        mob.getInventory().add(note);
+
+    }
 
 }

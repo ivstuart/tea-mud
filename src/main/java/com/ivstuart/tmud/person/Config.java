@@ -30,26 +30,25 @@ import java.io.Serializable;
 
 /**
  * @author stuarti
- * 
  */
 public class Config implements Serializable {
 
-	private static final long serialVersionUID = -2704055301344799543L;
+    private static final long serialVersionUID = -2704055301344799543L;
 
-	private ConfigData configData;
+    private final ConfigData configData;
 
-	private ChannelData channelData;
+    private final ChannelData channelData;
 
-	private FightData fightData;
+    private final FightData fightData;
 
-	/**
+    /**
      *
      */
-	public Config() {
-		super();
-		configData = new ConfigData();
-		channelData = new ChannelData();
-		fightData = new FightData();
+    public Config() {
+        super();
+        configData = new ConfigData();
+        channelData = new ChannelData();
+        fightData = new FightData();
     }
 
     @Override
@@ -61,16 +60,16 @@ public class Config implements Serializable {
                 '}';
     }
 
-	public ChannelData getChannelData() {
-		return channelData;
-	}
+    public ChannelData getChannelData() {
+        return channelData;
+    }
 
-	public ConfigData getConfigData() {
-		return configData;
-	}
+    public ConfigData getConfigData() {
+        return configData;
+    }
 
-	public FightData getFightData() {
-		return fightData;
-	}
+    public FightData getFightData() {
+        return fightData;
+    }
 
 }

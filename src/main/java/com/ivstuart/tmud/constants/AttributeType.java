@@ -23,7 +23,7 @@
 package com.ivstuart.tmud.constants;
 
 public enum AttributeType {
-	// STR,CON,INT,DEX,WIS;
-	STRENGTH, CONSTITUTION, INTELLIGENCE, DEXTERITY, WISDOM;
+    // STR,CON,INT,DEX,WIS;
+    STRENGTH, CONSTITUTION, INTELLIGENCE, DEXTERITY, WISDOM
 
 }

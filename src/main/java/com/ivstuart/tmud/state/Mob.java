@@ -51,6 +51,7 @@ public class Mob extends Prop implements Tickable {
     private static final long serialVersionUID = 1L;
 
     private static final Logger LOGGER = LogManager.getLogger();
+    private final int IDLE_TIMEOUT = 500; // Seconds
     protected Equipment equipment;
     protected transient Fight fight;
     protected transient Mob following;
@@ -107,7 +108,6 @@ public class Mob extends Prop implements Tickable {
     private boolean veryAggressive;
     private boolean isMemory;
     private boolean isPeekAggro;
-    private int IDLE_TIMEOUT = 500; // Seconds
     private Map<DamageType, Integer> saves;
     private Mob charmed;
     private boolean ridable;
@@ -167,7 +167,6 @@ public class Mob extends Prop implements Tickable {
         isMemory = baseMob.isMemory;
         isNoCharm = baseMob.isNoCharm;
         ridable = baseMob.ridable;
-        raceId = baseMob.raceId;
 
         // Required for diseases.
         if (baseMob.mobAffects != null) {
@@ -236,7 +235,7 @@ public class Mob extends Prop implements Tickable {
     }
 
     public void setSaves(String saveString) {
-        String element[] = saveString.split(":");
+        String[] element = saveString.split(":");
         if (element.length != 2) {
             LOGGER.error("Problem setting saves to " + saveString);
             return;
@@ -327,7 +326,7 @@ public class Mob extends Prop implements Tickable {
 
     public void addTickable(Tickable ticker) {
         if (tickers == null) {
-            tickers = new ArrayList<Tickable>();
+            tickers = new ArrayList<>();
             LOGGER.debug("Setting behaviours [ " + ticker + " ]");
         }
         tickers.add(ticker);
@@ -657,25 +656,25 @@ public class Mob extends Prop implements Tickable {
         this.attackType = types;
     }
 
-    public void setBehaviour(String behaviours_) {
+    public void setBehaviour(String behaviours) {
         if (this.behaviours == null) {
-            this.behaviours = new ArrayList<String>();
+            this.behaviours = new ArrayList<>();
         }
-        this.behaviours.add(behaviours_);
+        this.behaviours.add(behaviours);
     }
 
-    public void setDefensive(String defensive_) {
-        this.defensive = Integer.parseInt(defensive_.trim());
+    public void setDefensive(String defensive) {
+        this.defensive = Integer.parseInt(defensive.trim());
     }
 
-    public void setLevel(int level_) {
-        this.level = level_;
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     // Alias will be used in MudArrayList
-    public void setNameAndId(String name_) {
-        name = name_;
-        this.setId(name_);
+    public void setNameAndId(String name) {
+        this.name = name;
+        this.setId(name);
     }
 
     public String showMobAffects() {
@@ -714,7 +713,7 @@ public class Mob extends Prop implements Tickable {
     private void checkForHitByLightning() {
 
         if (World.getWeather() == WeatherSky.LIGHTNING) {
-            if (!room.getSectorType().isInside() && DiceRoll.ONE_D100.rollLessThanOrEqualTo(1) &&
+            if (room.getSectorType().isInside() && DiceRoll.ONE_D100.rollLessThanOrEqualTo(1) &&
                     DiceRoll.ONE_D100.rollLessThanOrEqualTo(1)) {
                 out("You are hit by lightning!");
                 health.increasePercentage(-1 * DiceRoll.roll(2, 100, 0));
@@ -750,7 +749,7 @@ public class Mob extends Prop implements Tickable {
         if (room.isRegen()) {
             RATE_OF_REGEN_3_PERCENT = 9;
         } else {
-            if (!room.getSectorType().isInside() && MoonPhases.isNightTime()) {
+            if (room.getSectorType().isInside() && MoonPhases.isNightTime()) {
                 RATE_OF_REGEN_3_PERCENT = 3 * MoonPhases.getPhase().getManaMod();
             }
             RATE_OF_REGEN_3_PERCENT = 3;
@@ -918,7 +917,7 @@ public class Mob extends Prop implements Tickable {
     /**
      * Based on level
      *
-     * @return
+     * @return size of mob
      */
     public String getSize() {
         if (level < 10) {
@@ -937,7 +936,7 @@ public class Mob extends Prop implements Tickable {
     }
 
     /**
-     * @return
+     * @return age string
      */
     public String getAge() {
         if (isPlayer()) {
@@ -969,7 +968,7 @@ public class Mob extends Prop implements Tickable {
     }
 
     public void setItem(String input) {
-        String elements[] = input.split(" ");
+        String[] elements = input.split(" ");
 
         Item item = EntityProvider.createItem(elements[0]);
 
@@ -1129,6 +1128,12 @@ public class Mob extends Prop implements Tickable {
 
     public void setDisease(String name) {
         Disease disease = DiseaseFactory.createClass(name);
+
+        if (disease == null) {
+            LOGGER.warn("Problem creating disease for " + this.getName());
+            return;
+        }
+
         disease.setMob(this);
         disease.setDecription(name);
         getMobAffects().add(disease.getId(), disease);

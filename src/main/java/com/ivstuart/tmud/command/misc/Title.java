@@ -30,26 +30,26 @@ import org.apache.logging.log4j.Logger;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Title extends BaseCommand {
 
-	private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		Player player = mob.getPlayer();
+        Player player = mob.getPlayer();
 
-		if (player == null) {
-			LOGGER.warn("A none player called Who command");
-			return;
-		}
+        if (player == null) {
+            LOGGER.warn("A none player called Who command");
+            return;
+        }
 
-		player.getData().setTitle(input);
-		player.out("Setting your title to " + input);
-	}
+        player.getData().setTitle(input);
+        player.out("Setting your title to " + input);
+    }
 
 }

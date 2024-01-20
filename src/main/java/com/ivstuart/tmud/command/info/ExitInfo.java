@@ -28,24 +28,23 @@ import com.ivstuart.tmud.state.Mob;
 
 /**
  * @author stuarti
- * 
  */
 public class ExitInfo extends BaseCommand {
 
-	@Override
-	public void execute(Mob mob, String input) {
+    @Override
+    public void execute(Mob mob, String input) {
 
-		StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
 
-		for (Exit exit : mob.getRoom().getExits()) {
-			if (!exit.isHidden() || mob.hasDetectHidden()) {
-				sb.append(exit.look()).append(" ");
-			}
+        for (Exit exit : mob.getRoom().getExits()) {
+            if (!exit.isHidden() || mob.hasDetectHidden()) {
+                sb.append(exit.look()).append(" ");
+            }
 
-		}
+        }
 
-		mob.out("  $K[Exits: " + sb + "]$J");
+        mob.out("  $K[Exits: " + sb + "]$J");
 
-	}
+    }
 
 }

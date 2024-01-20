@@ -31,32 +31,32 @@ import com.ivstuart.tmud.world.World;
 
 /**
  * @author stuarti
- * 
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Newbie extends BaseCommand {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see command.Command#execute(java.lang.String)
-	 */
-	@Override
-	public void execute(Mob mob, String input) {
-		Channel c = ChannelHistory.getInstance().getNewbie();
+    /*
+     * (non-Javadoc)
+     *
+     * @see command.Command#execute(java.lang.String)
+     */
+    @Override
+    public void execute(Mob mob, String input) {
+        Channel c = ChannelHistory.getInstance().getNewbie();
 
-		if (input.length() > 0) {
+        if (!input.isEmpty()) {
 
-			String msg = "$K(" + mob.getId() + ") " + input + "$J";
+            String msg = "$K(" + mob.getId() + ") " + input + "$J";
 
-			c.add(msg, mob.isGood());
+            c.add(msg, mob.isGood());
 
-			World.out(msg, mob.isGood(), ChannelData.NEWBIE);
-		} else {
-			mob.out("$H>>>>>>>>>>>>>>> Newbie History <<<<<<<<<<<<<<<$J");
-			mob.out(c.toString(mob.isGood()));
-		}
-	}
+            World.out(msg, mob.isGood(), ChannelData.NEWBIE);
+        } else {
+            mob.out("$H>>>>>>>>>>>>>>> Newbie History <<<<<<<<<<<<<<<$J");
+            mob.out(c.toString(mob.isGood()));
+        }
+    }
 
 }

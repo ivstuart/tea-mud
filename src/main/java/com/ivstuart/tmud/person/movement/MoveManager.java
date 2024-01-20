@@ -26,90 +26,90 @@ import static com.ivstuart.tmud.constants.SkillNames.SNEAK;
 
 public class MoveManager {
 
-	public static void move(Mob mob_, Room destination) {
+    public static void move(Mob mob_, Room destination) {
 
-		Room room = mob_.getRoom();
+        Room room = mob_.getRoom();
 
-		room.remove(mob_);
+        room.remove(mob_);
 
-		destination.add(mob_);
+        destination.add(mob_);
 
-	}
+    }
 
-	public static void move(Mob mob_, Room sourceRoom_, Room destinationRoom_, Exit exit_, String movementType) {
+    public static void move(Mob mob_, Room sourceRoom_, Room destinationRoom_, Exit exit_, String movementType) {
 
-		sourceRoom_.remove(mob_);
-		boolean sneak = false;
-		if (mob_.getMobStatus().isSneaking()) {
-			movementType = "sneaks";
-			Ability abSneak = mob_.getLearned().getAbility(SNEAK);
-			if (abSneak.isSuccessful(mob_)) {
-				sneak = true;
-			}
-		}
+        sourceRoom_.remove(mob_);
+        boolean sneak = false;
+        if (mob_.getMobStatus().isSneaking()) {
+            movementType = "sneaks";
+            Ability abSneak = mob_.getLearned().getAbility(SNEAK);
+            if (abSneak.isSuccessful(mob_)) {
+                sneak = true;
+            }
+        }
 
-		if (sneak == false) {
-			sourceRoom_.out(new Msg(mob_, "<S-NAME> " + movementType + " " + exit_.getId()));
+        if (!sneak) {
+            sourceRoom_.out(new Msg(mob_, "<S-NAME> " + movementType + " " + exit_.getId()));
 
-			destinationRoom_.out(new Msg(mob_, "<S-NAME> arrives from the " + RoomManager.reverseDirection(exit_.getId())));
-		} else {
-			mob_.out(new Msg(mob_, "<S-NAME> " + movementType + " " + exit_.getId()));
-		}
+            destinationRoom_.out(new Msg(mob_, "<S-NAME> arrives from the " + RoomManager.reverseDirection(exit_.getId())));
+        } else {
+            mob_.out(new Msg(mob_, "<S-NAME> " + movementType + " " + exit_.getId()));
+        }
 
-		destinationRoom_.add(mob_);
+        destinationRoom_.add(mob_);
 
 
-		Track track = new Track();
-		if (mob_.getHp().getPercentageLeft() < 10) {
-			track.setBlood(true);
-		}
-		track.setWho(mob_.getName());
-		track.setDirection(exit_.getId());
-		sourceRoom_.addTrack(track);
+        Track track = new Track();
+        if (mob_.getHp().getPercentageLeft() < 10) {
+            track.setBlood(true);
+        }
+        track.setWho(mob_.getName());
+        track.setDirection(exit_.getId());
+        sourceRoom_.addTrack(track);
 
-	}
+    }
 
-	public static Exit random(Mob mob) {
+    public static Exit random(Mob mob) {
 
-		if (mob.getRoom() == null) {
-			return null;
-		}
+        if (mob.getRoom() == null) {
+            return null;
+        }
 
-		List<Exit> exits = mob.getRoom().getExits();
+        List<Exit> exits = mob.getRoom().getExits();
 
-		/* Guard condition for no exists to flee to */
-		if (exits.size() == 0) {
-			return null;
-		}
+        /* Guard condition for no exists to flee to */
+        if (exits.isEmpty()) {
+            return null;
+        }
 
-		int index = (int) (Math.random() * exits.size());
+        int index = (int) (Math.random() * exits.size());
 
-		Exit myExit = (exits.get(index));
+        Exit myExit = (exits.get(index));
 
-		// mob.out("Attempting to flee in " + myExit + " direction.");
+        // mob.out("Attempting to flee in " + myExit + " direction.");
 
-		Room currentRoom = mob.getRoom();
+        Room currentRoom = mob.getRoom();
 
-		MoveManager.move(mob, mob.getRoom(), myExit.getDestinationRoom(), myExit, "walks");
+        MoveManager.move(mob, mob.getRoom(), myExit.getDestinationRoom(), myExit, "walks");
 
-		if (currentRoom != mob.getRoom()) {
-			mob.getFight().stopFighting();
-			mob.getFight().clear();
-		}
+        if (currentRoom != mob.getRoom()) {
+            mob.getFight().stopFighting();
+            mob.getFight().clear();
+        }
 
-		return myExit;
+        return myExit;
 
-	}
+    }
 
-	public static void move(Mob mob, String down) {
+    public static void move(Mob mob, String down) {
 
-		Exit exit = mob.getRoom().getExit(down);
+        Exit exit = mob.getRoom().getExit(down);
 
-		if (exit == null) {
-			mob.out("Strong winds buffet you around and you fail to fall straight down");
-			return;
-		}
+        if (exit == null) {
+            mob.out("Strong winds buffet you around and you fail to fall straight down");
+            return;
+        }
 
-		MoveManager.move(mob, mob.getRoom(), exit.getDestinationRoom(), exit, "falling");
-	}
+        MoveManager.move(mob, mob.getRoom(), exit.getDestinationRoom(), exit, "falling");
+    }
 }

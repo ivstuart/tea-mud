@@ -29,9 +29,9 @@ import com.ivstuart.tmud.world.Boards;
 
 /**
  * @author stuarti
- *         <p>
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class ReadBoards extends BaseCommand {
 
@@ -45,7 +45,7 @@ public class ReadBoards extends BaseCommand {
 
         int alreadyReadIndex = mob.getPlayer().getReadIndex();
 
-        if (input != null && input.length() > 0) {
+        if (input != null && !input.isEmpty()) {
             alreadyReadIndex = Integer.parseInt(input);
         }
 

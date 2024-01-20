@@ -35,16 +35,14 @@ import java.util.List;
 
 /**
  * @author stuarti
- *         <p>
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class AddAdmin extends AdminCommand {
     private static final Logger LOGGER = LogManager.getLogger();
+    private static final String fileName = "admin";
     private static List<String> adminNames = null;
-
-
-    private static String fileName = "admin";
 
     public static boolean isAdmin(String name) {
         return adminNames.contains(name);
@@ -62,8 +60,10 @@ public class AddAdmin extends AdminCommand {
             adminNames = (List<String>) io.load(fileName,
                     ArrayList.class);
         } catch (IOException e) {
-            adminNames = new ArrayList<String>();
-            e.printStackTrace();
+            adminNames = new ArrayList<>();
+
+            LOGGER.error("Problem initialising:" + e);
+
         }
     }
 
@@ -72,25 +72,23 @@ public class AddAdmin extends AdminCommand {
 
         super.execute(mob, input);
 
-        String name = input;
-
-        if (!Login.checkFileExist(name)) {
+        if (!Login.checkFileExist(input)) {
             mob.out("There is no file");
             return;
         }
 
-        if (adminNames.contains(name)) {
-            mob.out(name + " have been demoted from admin!");
-            adminNames.remove(name);
-            Mob aMob = World.getMob(name);
+        if (adminNames.contains(input)) {
+            mob.out(input + " have been demoted from admin!");
+            adminNames.remove(input);
+            Mob aMob = World.getMob(input);
 
             if (aMob != null) {
                 aMob.getPlayer().setAdmin(false);
             }
         } else {
-            mob.out(name + " have been promoted to admin!");
-            adminNames.add(name);
-            Mob aMob = World.getMob(name);
+            mob.out(input + " have been promoted to admin!");
+            adminNames.add(input);
+            Mob aMob = World.getMob(input);
             if (aMob != null) {
                 aMob.getPlayer().setAdmin(true);
             }
@@ -101,7 +99,7 @@ public class AddAdmin extends AdminCommand {
         try {
             io.save(adminNames, fileName);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Problem saving:" + e);
         }
 
 

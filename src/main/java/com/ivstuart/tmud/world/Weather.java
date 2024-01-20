@@ -29,10 +29,10 @@ public class Weather implements Runnable {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-	private static Attribute pressure = new Attribute("pressure", 960, 1040,
-			1000);
+    private static final Attribute pressure = new Attribute("pressure", 960, 1040,
+            1000);
 
-	private static int monthAdjustment;
+    private static int monthAdjustment;
 
     public Attribute getPressure() {
 
@@ -41,18 +41,18 @@ public class Weather implements Runnable {
 
         if ((month >= 9) || (month <= 4)) {
             monthAdjustment = (pressure.getValue() > 985 ? -2 : 2);
-		} else {
-			monthAdjustment = (pressure.getValue() > 1015 ? -2 : 2);
-		}
+        } else {
+            monthAdjustment = (pressure.getValue() > 1015 ? -2 : 2);
+        }
 
-		pressure.increase(ONE_D_FOUR.roll() * monthAdjustment
-				+ TWO_D_SIX.roll() - TWO_D_SIX.roll());
+        pressure.increase(ONE_D_FOUR.roll() * monthAdjustment
+                + TWO_D_SIX.roll() - TWO_D_SIX.roll());
 
         return pressure;
     }
 
     public String getSunPosition(int hour) {
-        return SunPostion.getMessage(hour);
+        return SunPosition.getMessage(hour);
 
     }
 

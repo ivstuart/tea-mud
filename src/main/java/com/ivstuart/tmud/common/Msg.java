@@ -64,13 +64,35 @@ public class Msg {
         message = msg;
     }
 
-    public boolean canHear(Msgable observer, Msgable target) {
+    private static String getGender(String text, boolean uppercase) {
+        String gender = text;
 
-        if (observer.isSleeping()) {
-            return false;
+        gender = gender.toLowerCase();
+
+        switch (gender) {
+            case "he":
+                gender = "she";
+                break;
+            case "his":
+            case "him":
+                gender = "her";
+                break;
+            case "himself":
+            case "hisself":
+                gender = "herself";
+                break;
         }
 
-        return true;
+        if (uppercase) {
+            gender = gender.replaceFirst(gender, gender.substring(1)
+                    .toUpperCase());
+        }
+        return gender;
+    }
+
+    public boolean canHear(Msgable observer, Msgable target) {
+
+        return !observer.isSleeping();
     }
 
     public boolean canSee(Msgable observer, Msgable target) {
@@ -91,11 +113,7 @@ public class Msg {
             return false;
         }
 
-        if (target.isInvisible() && !observer.hasDetectInvisible()) {
-            return false;
-        }
-
-        return true;
+        return !target.isInvisible() || observer.hasDetectInvisible();
     }
 
     public boolean isReplacementTag(StringBuilder output, int index) {
@@ -103,13 +121,10 @@ public class Msg {
         if (output.charAt(index) == '<') {
 
             if (output.length() > index + 2) {
-                if (output.charAt(index + 2) != '-') {
-                    return false;
-                }
+                return output.charAt(index + 2) == '-';
             } else {
                 return false;
             }
-            return true;
         }
         return false;
     }
@@ -124,32 +139,9 @@ public class Msg {
 
         char a = text.charAt(0);
 
-        boolean uppercase = false;
+        boolean uppercase = 'A' < a && a < 'Z';
 
-        if ('A' < a && a < 'Z') {
-            uppercase = true;
-        }
-
-        String gender = new String(text);
-
-        gender = gender.toLowerCase();
-
-        if (gender.equals("he")) {
-            gender = "she";
-        } else if (gender.equals("his")) {
-            gender = "her";
-        } else if (gender.equals("him")) {
-            gender = "her";
-        } else if (gender.equals("himself")) {
-            gender = "herself";
-        } else if (gender.equals("hisself")) {
-            gender = "herself";
-        }
-
-        if (uppercase) {
-            gender = gender.replaceFirst(gender, gender.substring(1)
-                    .toUpperCase());
-        }
+        String gender = getGender(text, uppercase);
 
         LOGGER.trace("Gender after [" + gender + "]");
 
@@ -159,7 +151,7 @@ public class Msg {
     public String parse(Msgable requester) throws ParseException {
 
         if (message == null) {
-            throw new ParseException(message, 0);
+            throw new ParseException("Null message", 0);
         }
 
         StringBuilder output = new StringBuilder(message);
@@ -171,7 +163,7 @@ public class Msg {
                 // Remove start tag
                 output.deleteCharAt(index);
 
-                Msgable tagMsgable = null;
+                Msgable tagMsgable;
 
                 String unseen = "someone";
 
@@ -187,7 +179,6 @@ public class Msg {
                         unseen = "something";
                         break;
                     case '<':
-                        continue;
                     case '-':
                         continue;
                     default:
@@ -199,7 +190,7 @@ public class Msg {
 
                 int divIndex = output.indexOf("/", index);
 
-                String replacement = null;
+                String replacement;
 
                 int endIndex = output.indexOf(">", index);
 
@@ -217,7 +208,7 @@ public class Msg {
 
                 NAME_REPLACEMENT:
 
-                if (replacement.indexOf("NAME") > -1) {
+                if (replacement.contains("NAME")) {
 
                     if (tagMsgable == null) {
                         replacement = "";
@@ -225,7 +216,7 @@ public class Msg {
                         break NAME_REPLACEMENT;
                     }
 
-                    String name = null;
+                    String name;
                     if (this.canSee(requester, tagMsgable)) {
 
                         name = assignNameBasedOnAlignment(requester, tagMsgable);
@@ -239,7 +230,7 @@ public class Msg {
                 }
 
                 // Gender him her replacement code
-                if (replacement.indexOf("GEN-") > -1) {
+                if (replacement.contains("GEN-")) {
 
                     replacement = replacement.substring(4);
 

@@ -21,5 +21,6 @@ package com.ivstuart.tmud.command.admin;
  */
 public class AdminRuntimeException extends RuntimeException {
     public AdminRuntimeException(String s) {
+        super(s);
     }
 }

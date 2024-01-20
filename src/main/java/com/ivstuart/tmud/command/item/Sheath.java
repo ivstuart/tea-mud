@@ -29,9 +29,9 @@ import com.ivstuart.tmud.state.Weapon;
 
 /**
  * @author stuarti
- *         <p>
- *         To change the template for this generated type comment go to
- *         Window>Preferences>Java>Code Generation>Code and Comments
+ * <p>
+ * To change the template for this generated type comment go to
+ * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Sheath extends BaseCommand {
 
@@ -46,7 +46,7 @@ public class Sheath extends BaseCommand {
 
         Item item = (Item) mob.getEquipment().getPrimary();
 
-        if (item == null || (!(item instanceof Weapon))) {
+        if (!(item instanceof Weapon)) {
             item = (Item) mob.getEquipment().getSecondary();
         }
 
