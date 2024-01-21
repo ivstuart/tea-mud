@@ -17,7 +17,7 @@
 package com.ivstuart.tmud.person.config;
 
 import java.io.Serializable;
-import java.util.Arrays;
+import java.util.BitSet;
 
 /*
  * This class is simple a data class to store the configuration
@@ -92,26 +92,26 @@ public class ConfigData implements Serializable {
             "You can not be summoned",
             "You see brief descriptions of rooms"};
 
-    private final boolean[] mData = new boolean[19];
+    private final BitSet flags = new BitSet(FLAG_NAME.length);
 
     public ConfigData() {
-        Arrays.fill(mData, true);
+        flags.set(0,FLAG_NAME.length-1,true);
     }
 
     public boolean is(int index) {
-        return mData[index];
+        return flags.get(index);
     }
 
-    public void set(int index, boolean state) {
-        mData[index] = state;
+    public void set(int index, boolean value) {
+        flags.set(index,value);
     }
 
     public void toggle(int index) {
-        mData[index] = !mData[index];
+        flags.flip(index);
     }
 
     public String toggle(String flagName) {
-        for (int index = 0; index < mData.length; index++) {
+        for (int index = 0; index < FLAG_NAME.length; index++) {
             if (FLAG_NAME[index].equalsIgnoreCase(flagName)) {
                 this.toggle(index);
                 return toString(index);
@@ -123,17 +123,17 @@ public class ConfigData implements Serializable {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (int index = 0; index < mData.length; index++) {
+        for (int index = 0; index < FLAG_NAME.length; index++) {
             sb.append(String.format("[ %1$10s ] %2$s\n", FLAG_NAME[index],
                     this.toString(index)));
         }
         return sb.toString();
     }
 
-    private String toString(int flag) {
-        if (mData[flag]) {
-            return TRUE_DESCRIPTION[flag];
+    private String toString(int index) {
+        if (flags.get(index)) {
+            return TRUE_DESCRIPTION[index];
         }
-        return FALSE_DESCRIPTION[flag];
+        return FALSE_DESCRIPTION[index];
     }
 }

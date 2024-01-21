@@ -53,6 +53,7 @@ public class ForcedQuit extends BaseCommand {
             mob.out("Thank you for playing you have been forced to quit");
         } else {
             LOGGER.warn("Force quit for player already disconnected");
+            // TODO when disconnected client need to allow save and quit too. Remove return
             return;
         }
 

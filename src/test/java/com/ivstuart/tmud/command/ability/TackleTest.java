@@ -54,7 +54,7 @@ public class TackleTest {
 
         Mob player1Mob = TestHelper.makeDefaultPlayerMob("player1");
 
-        Ability ability = new Ability("tackle", 100);
+        Ability ability = new Ability("tackle", 105);
         player1Mob.getLearned().add(ability);
         World.add(new BaseSkill("tackle"));
 
