@@ -25,5 +25,5 @@ mobInRoom: prof-cleric Z5-:15:2:1
 mobInRoom: prof-thief Z5-:10:1:3
 mobInRoom: prof-fighter Z5-:6:2:1
 
-# TODO Monk Druid Bard to Add
+# Consider adding in classes for Monk Druid Bard
 

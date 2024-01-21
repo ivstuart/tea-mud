@@ -47,8 +47,7 @@ public class UsersTest {
 
     }
 
-    // TODO fixme
-    @Test(expected = NullPointerException.class)
+    @Test
     public void testUsers() {
 
         Mob mob = TestHelper.makeDefaultPlayerMob("ivan");

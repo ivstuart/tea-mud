@@ -429,7 +429,7 @@ public class DamageManager {
         corpse.setAlias("corpse");
         corpse.setWhoKilledMe(attacker.getName());
         corpse.setWhenKilled(System.currentTimeMillis());
-        corpse.setType("BUTCHERABLE"); // TODO
+        corpse.setType("BUTCHERABLE");
 
         if (!defender.getRoom().isNoDrop()) {
             inveToCorpse(defender, corpse);

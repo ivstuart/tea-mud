@@ -10,7 +10,7 @@ import java.util.Random;
 public class World {
     public static final Zone zone = new Zone(100, 160); // 40 by 40 works well.
     private static final Logger LOGGER = LogManager.getLogger();
-    // TODO should this be a Set
+
     private static Map<GridLocation, Room> roomMap = new HashMap<>(100);
     private static int counter = 0;
     private static Room selectedRoom;

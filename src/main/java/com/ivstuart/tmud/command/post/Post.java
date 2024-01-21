@@ -66,7 +66,6 @@ public class Post extends BaseCommand {
             return;
         }
 
-        // TODO post note and or item to player
         String itemInput = StringUtil.getFirstWord(input);
 
         Item item = mob.getInventory().get(itemInput);

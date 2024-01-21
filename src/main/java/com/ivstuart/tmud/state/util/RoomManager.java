@@ -26,9 +26,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static com.ivstuart.tmud.constants.DoorState.*;
 
@@ -36,28 +34,9 @@ public class RoomManager {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private static final Map<String, String> directionMap = new HashMap<>();
-
-    // Not thread safe, but we only single thread loading of the world
     private static Door lastCreatedDoor;
 
-    private static List<DoorDAO> exitsWithDoors;
-
-    static {
-        new RoomManager();
-    }
-
-    public RoomManager() {
-        // TODO move this to a enum with direction and reverse direction fields.
-        directionMap.put("north", "south");
-        directionMap.put("east", "west");
-        directionMap.put("south", "north");
-        directionMap.put("west", "east");
-        directionMap.put("up", "down");
-        directionMap.put("down", "up");
-
-        exitsWithDoors = new ArrayList<>();
-    }
+    private static final List<DoorDAO> exitsWithDoors = new ArrayList<>();
 
     public static void createDoors(String roomId_, String exit_) {
 
@@ -132,20 +111,24 @@ public class RoomManager {
         }
     }
 
-    public static void main(String[] arg) {
-        System.out.println("East becomes "
-                + RoomManager.reverseDirection("east"));
-    }
-
     public static String reverseDirection(String direction) {
-
-        String reversed = directionMap.get(direction);
-
-        // LOGGER.debug("direction " + direction + " becomes " + reversed);
-
-        return (reversed != null ? reversed : direction);
-
+        switch (direction) {
+            case "east":
+                return "west";
+            case "south":
+                return "north";
+            case "west":
+                return "east";
+            case "north":
+                return "south";
+            case "up":
+                return "down";
+            case "down":
+                return "up";
+        }
+        return direction;
     }
+
 
     public static void setDoorKeys(String keys_) {
         if (lastCreatedDoor == null) {

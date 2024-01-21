@@ -37,7 +37,7 @@ public class JWorldPanel extends JPanel {
 
                 int scaleFactor = JZoomPanel.getValue() / 20;
                 int gridSize = GRID_SIZE * scaleFactor;
-                // TODO select a room
+
                 int x = e.getX() / gridSize;
                 int y = e.getY() / gridSize;
 
@@ -94,7 +94,7 @@ public class JWorldPanel extends JPanel {
 
                 int scaleFactor = JZoomPanel.getValue() / 20;
                 int gridSize = GRID_SIZE * scaleFactor;
-                // TODO select a room
+
                 int x = e.getX() / gridSize;
                 int y = e.getY() / gridSize;
                 int z = JModePanel.getValue();

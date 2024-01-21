@@ -667,7 +667,7 @@ public class Room extends BasicThing implements Msgable {
         Disease disease = DiseaseFactory.createClass(name);
 
         if (disease == null) {
-            // TODO log this case.
+            LOGGER.warn("Disease was null not adding it to room!");
             return;
         }
 
