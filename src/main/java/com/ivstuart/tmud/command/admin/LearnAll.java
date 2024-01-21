@@ -42,19 +42,19 @@ public class LearnAll extends AdminCommand {
 
         super.execute(mob, input);
 
-        mob.out("This is a test command to learn all skills and spells to 80% in the game");
+        mob.out("This is a test command to learn all skills and spells to 105% in the game");
 
         // Learn all skills
         for (BaseSkill skill : World.getSkills().values()) {
             Ability ability = new Ability(skill.getName());
-            ability.setSkill(80);
+            ability.setSkill(105);
             learn(mob, ability);
         }
 
         // Learn all skills
         for (Spell spell : World.getSpells().values()) {
             Ability ability = new Ability(spell.getName());
-            ability.setSkill(80);
+            ability.setSkill(105);
             learn(mob, ability);
         }
 

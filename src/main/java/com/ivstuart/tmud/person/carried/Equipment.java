@@ -442,7 +442,7 @@ public class Equipment implements Serializable {
         for (Equipable eq : _equipment) {
             Item item = (Item) eq;
 
-            if (item != null && item.getName().contains("SHARP")) {
+            if (item != null && item.getType().contains("SHARP")) {
                 return true;
             }
 

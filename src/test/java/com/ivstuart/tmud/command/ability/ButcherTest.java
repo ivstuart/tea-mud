@@ -33,6 +33,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class ButcherTest {
 
@@ -57,6 +58,10 @@ public class ButcherTest {
         Mob player1Mob = TestHelper.makeDefaultPlayerMob("player1");
 
         TestHelper.equipDagger(player1Mob);
+
+
+        assertTrue("Check has a edge to butcher with", player1Mob.getEquipment().hasSharpEdge());
+
 
         Race human = new Race();
         World.getInstance().addToWorld(human);

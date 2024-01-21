@@ -38,6 +38,10 @@ public class MoveManager {
 
     public static void move(Mob mob_, Room sourceRoom_, Room destinationRoom_, Exit exit_, String movementType) {
 
+        if (mob_ == null || sourceRoom_ == null || destinationRoom_ == null) {
+            return;
+        }
+
         sourceRoom_.remove(mob_);
         boolean sneak = false;
         if (mob_.getMobStatus().isSneaking()) {

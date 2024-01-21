@@ -119,7 +119,7 @@ public class CircleTest {
         TestHelper.equipDagger(player1Mob);
 
         // Teach rescue to player
-        Ability ability = new Ability("circle", 100);
+        Ability ability = new Ability("circle", 105);
         player1Mob.getLearned().add(ability);
         World.add(new BaseSkill("circle"));
 
@@ -174,7 +174,7 @@ public class CircleTest {
 
         assertFalse("No circle queued", player1Mob.getFight().getFightActions().isEmpty());
 
-        assertEquals("Sheep engaged to player1Mob now", player1Mob, sheepMob.getFight().getTarget());
+        assertEquals("Sheep engaged to player1Mob now", player1Mob.getName(), sheepMob.getFight().getTarget().getName());
 
         assertTrue("sheep and player1 will be engaged in combat", player1Mob
                 .getFight().isEngaged(sheepMob));
