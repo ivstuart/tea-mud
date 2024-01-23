@@ -19,11 +19,15 @@ public class JInputOutputPanel extends JPanel {
     private static final JTextField yTextField = new JTextField();
     private static final JTextField zTextField = new JTextField();
 
+    private static final JTextField zoneTextField = new JTextField();
+
     public static void setGridLocation(Room room) {
 
         xTextField.setText("" + room.getGridLocation().getX());
         yTextField.setText("" + room.getGridLocation().getY());
         zTextField.setText("" + room.getGridLocation().getZ());
+
+        zoneTextField.setText(""+room.getZoneId());
 
     }
 
@@ -40,13 +44,15 @@ public class JInputOutputPanel extends JPanel {
         JLabel yLabel = new JLabel("Grid Y:");
         JLabel zLabel = new JLabel("Grid Z:");
 
+        JLabel zoneLabel = new JLabel("Zone:");
+
         buttonPanel.add(cButton);
         buttonPanel.add(nButton);
         buttonPanel.add(sButton);
 
         this.add(buttonPanel, BorderLayout.NORTH);
 
-        JPanel gridPanel = new JPanel(new GridLayout(3, 2));
+        JPanel gridPanel = new JPanel(new GridLayout(4, 2));
 
 
         gridPanel.add(xLabel);
@@ -55,6 +61,10 @@ public class JInputOutputPanel extends JPanel {
         gridPanel.add(yTextField);
         gridPanel.add(zLabel);
         gridPanel.add(zTextField);
+
+        gridPanel.add(zoneLabel);
+        gridPanel.add(zoneTextField);
+
 
         this.add(gridPanel, BorderLayout.CENTER);
 

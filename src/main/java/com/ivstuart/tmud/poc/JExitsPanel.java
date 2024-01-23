@@ -66,7 +66,8 @@ public class JExitsPanel extends JPanel {
                 }
             } else {
                 if (JModePanel.isEditRooms()) {
-                    World.addRoom(new Room(nextLocation));
+                    Room room = new Room(nextLocation);
+                    World.addRoom(room);
                 }
             }
         }

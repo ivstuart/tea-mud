@@ -168,48 +168,18 @@ public class JWorldPanel extends JPanel {
                 maxY = cy;
             }
 
-            int colourValue = 0;
-
-            for (Exit exit : room.getExits()) {
-
-                switch (exit.getName()) {
-                    case "up":
-                        colourValue = colourValue + 1;
-                        break;
-                    case "down":
-                        colourValue = colourValue + 2;
-                        break;
-                }
-            }
-
-
             if (World.getSelectedRoom() == room) {
                 g.setColor(Color.LIGHT_GRAY);
             } else {
-                switch (colourValue) {
-                    case 0:
-                        g.setColor(Color.GREEN);
-                        break;
-                    case 1:
-                        g.setColor(Color.CYAN);
-                        break;
-                    case 2:
-                        g.setColor(Color.RED);
-                        break;
-                    case 3:
-                        g.setColor(Color.BLUE);
-                        break;
-                }
+                int zoneId = room.getZoneId();
+                g.setColor(getColour(zoneId));
             }
-
-            // g.drawString( ""+room.getRoomNumber(), room.getGridLocation().getX() * gridSize, room.getGridLocation().getY() * gridSize);
 
             if (room.isNarrowPassageway()) {
                 g.fillOval(room.getGridLocation().getX() * gridSize, room.getGridLocation().getY() * gridSize, roomSize, roomSize);
             } else {
                 g.fillRect(room.getGridLocation().getX() * gridSize, room.getGridLocation().getY() * gridSize, roomSize, roomSize);
             }
-
 
             g.setColor(Color.BLACK);
 
@@ -222,12 +192,7 @@ public class JWorldPanel extends JPanel {
 
                 String exitName = exit.getName();
 
-                if (Facing.isCustom(exitName)) {
-                    g.setColor(Color.RED);
-
-                    exitName = room.getGridLocation().getDestinationExit(exit.getDestination());
-                }
-
+                boolean customExit = false;
                 switch (exitName) {
                     case "north":
                         y = 0;
@@ -245,12 +210,33 @@ public class JWorldPanel extends JPanel {
                         x = roomSize;
                         dx = exitOffsetSize;
                         break;
+                    case "up":
+                        x = roomSize;
+                        y = 0;
+                        dx = exitOffsetSize;
+                        dy = -exitOffsetSize;
+                        break;
+                    case "down":
+                        x = 0;
+                        y = roomSize;
+                        dx = -exitOffsetSize;
+                        dy = exitOffsetSize;
+                        break;
+                    default:
+                        customExit = true;
+
                 }
 
                 int xExit = x + (room.getGridLocation().getX() * gridSize);
                 int yExit = y + (room.getGridLocation().getY() * gridSize);
 
+                if (customExit) {
+                    g.drawString("C", xExit, yExit);
+                    continue;
+                }
+
                 g.drawLine(xExit, yExit, xExit + dx, yExit + dy);
+
                 if (exit.isDoor()) {
                     g.setColor(Color.BLACK);
                     g.drawString("D", xExit + dx, yExit + dy);
@@ -268,4 +254,25 @@ public class JWorldPanel extends JPanel {
 
     }
 
+    public static Color getColour(int zoneId) {
+        switch (zoneId % 8) {
+            case 0:
+                return Color.GREEN;
+            case 1:
+                return Color.BLACK;
+            case 2:
+                return Color.BLUE;
+            case 3:
+                return Color.GRAY;
+            case 4:
+                return Color.MAGENTA;
+            case 5:
+                return Color.ORANGE;
+            case 6:
+                return Color.RED;
+            case 7:
+                return Color.PINK;
+        }
+        return Color.YELLOW;
+    }
 }

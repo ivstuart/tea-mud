@@ -109,6 +109,7 @@ public class LaunchWorldBuilder {
 
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         LOGGER.info("Reached this point");
 
@@ -203,7 +204,6 @@ public class LaunchWorldBuilder {
                 isOpen = !isOpen;
             }
             room.setNarrowPassageway(isOpen);
-
             World.addRoom(room);
 
             beforeRoom.addExit(facing, true);

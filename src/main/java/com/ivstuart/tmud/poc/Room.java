@@ -12,16 +12,26 @@ public class Room {
     private final ArrayList<Exit> exits;
     private final RoomFlags roomFlags = new RoomFlags();
     private int roomNumber;
+    private int zoneId;
 
     public Room(GridLocation gridLocation) {
         this.gridLocation = gridLocation;
-        exits = new ArrayList<>(4);
+        this.exits = new ArrayList<>(4);
+        this.zoneId = JModePanel.getZone();
     }
 
     public Room(int x, int y, int z) {
         this(new GridLocation(x, y, z));
     }
 
+    public int getZoneId() {
+        return zoneId;
+    }
+
+    public void setZoneId(int zoneId) {
+        LOGGER.debug("Setting zone id:"+zoneId);
+        this.zoneId = zoneId;
+    }
 
     public RoomFlags getRoomFlags() {
         return roomFlags;
@@ -145,11 +155,11 @@ public class Room {
     @Override
     public String toString() {
         return "Room{" +
-                "roomNumber=" + roomNumber +
-                ", gridLocation=" + gridLocation +
+                "gridLocation=" + gridLocation +
                 ", exits=" + exits +
-                ", isNarrowPassageway=" + this.isNarrowPassageway() +
                 ", roomFlags=" + roomFlags +
+                ", roomNumber=" + roomNumber +
+                ", zoneId=" + zoneId +
                 '}';
     }
 
