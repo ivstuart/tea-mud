@@ -70,7 +70,7 @@ public class WimpyTest {
 
         BaseBehaviour baseBehaviour = BehaviourFactory.create("Wimpy:100:500");
         baseBehaviour.setMob(sheepMob);
-        baseBehaviour.setParameter(100);
+        baseBehaviour.setParameter(105);
 
         sheepMob.addTickable(baseBehaviour);
 

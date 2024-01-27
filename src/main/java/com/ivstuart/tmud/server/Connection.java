@@ -22,6 +22,8 @@
  */
 package com.ivstuart.tmud.server;
 
+import com.ivstuart.tmud.command.misc.ForcedQuit;
+import com.ivstuart.tmud.state.Mob;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -35,6 +37,7 @@ import java.nio.channels.SocketChannel;
 public class Connection {
 
     private static final Logger LOGGER = LogManager.getLogger();
+    private final int IDLE_TIMEOUT = 500; // Seconds
 
     private SocketChannel socketChannel;
 
@@ -133,5 +136,19 @@ public class Connection {
             return null;
         }
         return socketChannel.socket().getInetAddress().toString();
+    }
+
+    public void checkTimeout(Mob mob) {
+        int secondsIdle = (int) (getIdle() / 1000);
+
+        if (secondsIdle > IDLE_TIMEOUT) {
+            LOGGER.info("Player " + mob.getName() + " has been idle for " + secondsIdle + " and has been kicked off");
+            out("You have been idle for " + secondsIdle + " seconds hence quiting for you");
+            new ForcedQuit().execute(mob, null);
+        } else if (isConnected()) {
+            LOGGER.info("Player has lost there connection and has been kicked off");
+            new ForcedQuit().execute(mob, null);
+        }
+
     }
 }

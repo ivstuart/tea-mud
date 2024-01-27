@@ -102,7 +102,7 @@ public class Remort extends BaseCommand {
         mob.getPlayer().getData().setLevel(1);
         mob.setHp("50");
         mob.setMv("50");
-        mob.setMana(new MobMana(true));
+        mob.setMana(50);
 
 
         mob.getPlayer().getData().setRemort(++remorts);

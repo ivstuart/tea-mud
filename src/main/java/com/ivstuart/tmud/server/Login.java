@@ -186,7 +186,7 @@ public class Login implements Readable {
 
         mob.setHp("10");
         mob.setMv("50");
-        mob.setMana(new MobMana(true));
+        mob.setMana(10);
 
         // int + wis / 2 to set casting level
         mob.getMana().setCastLevel((att[3] + att[2]) / 2);

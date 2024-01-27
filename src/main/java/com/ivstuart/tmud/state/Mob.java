@@ -34,6 +34,7 @@ import com.ivstuart.tmud.person.statistics.MobMana;
 import com.ivstuart.tmud.person.statistics.affects.Affect;
 import com.ivstuart.tmud.person.statistics.diseases.Disease;
 import com.ivstuart.tmud.person.statistics.diseases.DiseaseFactory;
+import com.ivstuart.tmud.server.ConnectionManager;
 import com.ivstuart.tmud.state.util.EntityProvider;
 import com.ivstuart.tmud.world.MoonPhases;
 import com.ivstuart.tmud.world.WeatherSky;
@@ -51,22 +52,27 @@ public class Mob extends Prop implements Tickable {
     private static final long serialVersionUID = 1L;
 
     private static final Logger LOGGER = LogManager.getLogger();
-    private final int IDLE_TIMEOUT = 500; // Seconds
+
+    protected Inventory inventory;
     protected Equipment equipment;
+
+    protected transient Player player;
     protected transient Fight fight;
     protected transient Mob following;
+
+    private MobCoreStats mobCoreStats;
+
     // Stats
-    protected Gender gender; // base mob
-    protected Attribute health;
+    protected Gender gender;
+    protected String race;
+
+
     protected int height; // cms base mob
-    protected Inventory inventory;
+
     // Player only data?
     protected transient Mob lastToldBy;
     protected Learned learned;
-    protected MobMana mana;
-    protected Attribute moves;
-    protected transient Player player;
-    protected String race; // base mob
+
     protected String repopRoomID;
     protected transient Room room;
     protected String roomId;
@@ -93,7 +99,7 @@ public class Mob extends Prop implements Tickable {
     private boolean undead;
     private transient List<String> behaviours;
     private List<Tickable> tickers;
-    private int RATE_OF_REGEN_3_PERCENT = 3;
+    private final int RATE_OF_REGEN_3_PERCENT = 3;
     private String patrolPath;
     private boolean alignment;
     private String returnRoom; // After battleground will be returned here.
@@ -103,11 +109,12 @@ public class Mob extends Prop implements Tickable {
     private Mob mount;
     private transient Mob possessed;
 
-    private EnumSet<MobEnum> enumSet;
+    private final EnumSet<MobEnum> enumSet;
 
     public Mob() {
         fight = new Fight(this);
         enumSet = EnumSet.noneOf(MobEnum.class);
+        mobCoreStats = new MobCoreStats();
     }
 
     public Mob(Mob baseMob) {
@@ -116,13 +123,7 @@ public class Mob extends Prop implements Tickable {
 
         name = baseMob.name;
         armour = baseMob.armour;
-        health = new Attribute("Health", baseMob.maxHp.roll());
-        if (null != baseMob.moves) {
-            moves = new Attribute("Move", baseMob.moves.maximum);
-        }
-        if (null != baseMob.mana) {
-            mana = new MobMana(baseMob.mana);
-        }
+
         state = baseMob.state;
 
         level = baseMob.level;
@@ -184,6 +185,8 @@ public class Mob extends Prop implements Tickable {
 
         this.enumSet = EnumSet.copyOf(baseMob.enumSet);
 
+        mobCoreStats = new MobCoreStats(baseMob.mobCoreStats);
+
     }
 
     public boolean hasMobEnum(MobEnum mobEnum) {
@@ -195,7 +198,13 @@ public class Mob extends Prop implements Tickable {
     }
 
     public void setFlag(String value) {
-        setMobEnum(MobEnum.valueOf(value));
+
+        try {
+            setMobEnum(MobEnum.valueOf(value.toUpperCase()));
+        }
+        catch (IllegalArgumentException iae) {
+            LOGGER.warn("IllegalArgumentException for flag value:"+value);
+        }
     }
 
 
@@ -323,12 +332,12 @@ public class Mob extends Prop implements Tickable {
     }
 
     public Attribute getHp() {
-        return health;
+        return mobCoreStats.getHealth();
     }
 
     public void setHp(String hp_) {
         maxHp = new DiceRoll(hp_);
-        health = new Attribute("Health", maxHp.roll());
+        mobCoreStats.getHealth().setToMaximum(maxHp.roll());
     }
 
     public Inventory getInventory() {
@@ -354,11 +363,11 @@ public class Mob extends Prop implements Tickable {
     }
 
     public MobMana getMana() {
-        return mana;
+        return mobCoreStats.getMana();
     }
 
-    public void setMana(MobMana mana_) {
-        mana = mana_;
+    public void setMana(int mana) {
+        mobCoreStats.getMana().setToMaximum(mana);
     }
 
     public int getMobLevel() {
@@ -373,11 +382,11 @@ public class Mob extends Prop implements Tickable {
     }
 
     public Attribute getMv() {
-        return moves;
+        return mobCoreStats.getMoves();
     }
 
     public void setMv(String moves_) {
-        moves = new Attribute("Move", Integer.parseInt(moves_));
+        mobCoreStats.getMoves().setToMaximum(Integer.parseInt(moves_));
     }
 
     @Override
@@ -497,10 +506,6 @@ public class Mob extends Prop implements Tickable {
         return this.getMobAffects().hasAffect(DETECT_HIDDEN) || getRace().isDetectHidden();
     }
 
-    public boolean isAlive() {
-        return !isDead();
-    }
-
     public boolean isDead() {
         return getHp().getValue() <= 0;
     }
@@ -528,7 +533,7 @@ public class Mob extends Prop implements Tickable {
     @Override
     public String look() {
 
-        return super.look() + "\n Hp=" + health.getValue();
+        return super.look() + "\n Hp=" + mobCoreStats.getHealth().getValue();
     }
 
     @Override
@@ -614,6 +619,8 @@ public class Mob extends Prop implements Tickable {
 
         tickRegenerate();
 
+        checkForDrowning();
+
         checkForFalling();
 
         checkHungerAndThirst();
@@ -637,7 +644,7 @@ public class Mob extends Prop implements Tickable {
             if (room.getSectorType().isInside() && DiceRoll.ONE_D100.rollLessThanOrEqualTo(1) &&
                     DiceRoll.ONE_D100.rollLessThanOrEqualTo(1)) {
                 out("You are hit by lightning!");
-                health.increasePercentage(-1 * DiceRoll.roll(2, 100, 0));
+                mobCoreStats.getHealth().increasePercentage(-1 * DiceRoll.roll(2, 100, 0));
                 DamageManager.checkForDefenderDeath(this, this);
             }
         }
@@ -667,37 +674,29 @@ public class Mob extends Prop implements Tickable {
             currentState = state;
         }
 
+        int regen_rate = RATE_OF_REGEN_3_PERCENT;
         if (room.hasFlag(RoomEnum.REGEN)) {
-            RATE_OF_REGEN_3_PERCENT = 9;
+            regen_rate *= 3;
         } else {
-            if (room.getSectorType().isInside() && MoonPhases.isNightTime()) {
-                RATE_OF_REGEN_3_PERCENT = 3 * MoonPhases.getPhase().getManaMod();
+            if (!room.getSectorType().isInside() && MoonPhases.isNightTime()) {
+                regen_rate = regen_rate * MoonPhases.getPhase().getManaMod();
             }
-            RATE_OF_REGEN_3_PERCENT = 3;
         }
 
-        if (health != null) {
+        mobCoreStats.regen(currentState, regen_rate);
+    }
+
+    private void checkForDrowning() {
+        if (mobCoreStats.getHealth() != null) {
 
             if (room.hasFlag(RoomEnum.UNDER_WATER) &&
                     !getRace().isWaterbreath() &&
                     !mobAffects.hasAffect(UNDERWATER_BREATH)) {
                 out("You begin to drown as you can not breath underwater");
-                health.increasePercentage(-20);
+                mobCoreStats.getHealth().increasePercentage(-20);
                 DamageManager.checkForDefenderDeath(this, this);
-            } else {
-                health.increasePercentage(RATE_OF_REGEN_3_PERCENT * currentState.getHpMod());
-                health.increase(this.getRace().getRegenHp());
             }
         }
-        if (moves != null) {
-            moves.increasePercentage(RATE_OF_REGEN_3_PERCENT * currentState.getMoveMod());
-            moves.increase(this.getRace().getRegenMv());
-        }
-        if (mana != null) {
-            mana.increasePercentage(RATE_OF_REGEN_3_PERCENT * currentState.getManaMod());
-            mana.increase(this.getRace().getRegenMn());
-        }
-
 
     }
 
@@ -729,19 +728,7 @@ public class Mob extends Prop implements Tickable {
 
     private void checkIdleTimeAndKickout() {
         if (isPlayer() && !getFight().isEngaged()) {
-            int secondsIdle = (int) (getPlayer().getConnection().getIdle() / 1000);
-
-            if (secondsIdle > IDLE_TIMEOUT) {
-                LOGGER.info("Player " + getPlayer().getName() + " has been idle for " + secondsIdle + " and has been kicked off");
-                out("You have been idle for " + secondsIdle + " seconds hence quiting for you");
-                new ForcedQuit().execute(this, null);
-            } else if (!getPlayer().getConnection().isConnected()) {
-                LOGGER.info("Player has lost there connection and has been kicked off");
-                new ForcedQuit().execute(this, null);
-            }
-
-            // LOGGER.debug("Tick for player " + getPlayer().getName());
-
+            getPlayer().getConnection().checkTimeout(this);
         }
     }
 
@@ -753,11 +740,11 @@ public class Mob extends Prop implements Tickable {
             hunger.decrease(1);
             if (thirst.getValue() <= 0) {
                 out("You hurt from thirst!");
-                health.increasePercentage(-15);
+                mobCoreStats.getHealth().increasePercentage(-15);
             }
             if (hunger.getValue() <= 0) {
                 out("You hurt from hunger!");
-                health.increasePercentage(-10);
+                mobCoreStats.getHealth().increasePercentage(-10);
             }
 
             Attribute drunk = getPlayer().getData().getDrunkAttribute();
@@ -765,7 +752,7 @@ public class Mob extends Prop implements Tickable {
 
             if (poison.getValue() > 0) {
                 out("You hurt from poison!");
-                health.increasePercentage(-10);
+                mobCoreStats.getHealth().increasePercentage(-10);
                 poison.decrease(1);
             }
 
@@ -792,9 +779,9 @@ public class Mob extends Prop implements Tickable {
         if (!room.hasFlag(RoomEnum.AIR) && fallingCounter > 0) {
             this.out("Ouch, you hit the ground hard!");
             if (room.hasFlag(RoomEnum.WATER)) {
-                health.increasePercentage(-10 * fallingCounter);
+                mobCoreStats.getHealth().increasePercentage(-10 * fallingCounter);
             } else {
-                health.increasePercentage(-30 * fallingCounter);
+                mobCoreStats.getHealth().increasePercentage(-30 * fallingCounter);
             }
             fallingCounter = 0;
             DamageManager.checkForDefenderDeath(this, this);
@@ -1003,13 +990,10 @@ public class Mob extends Prop implements Tickable {
                 ", fight=" + fight +
                 ", following=" + following +
                 ", gender=" + gender +
-                ", health=" + health +
                 ", height=" + height +
                 ", inventory=" + inventory +
                 ", lastToldBy=" + lastToldBy +
                 ", learned=" + learned +
-                ", mana=" + mana +
-                ", moves=" + moves +
                 ", player=" + player +
                 ", race='" + race + '\'' +
                 ", repopRoomID='" + repopRoomID + '\'' +
@@ -1043,7 +1027,6 @@ public class Mob extends Prop implements Tickable {
                 ", alignment=" + alignment +
                 ", returnRoom='" + returnRoom + '\'' +
                 ", fallingCounter=" + fallingCounter +
-                ", IDLE_TIMEOUT=" + IDLE_TIMEOUT +
                 ", saves=" + saves +
                 ", flags=" + enumSet +
                 '}';

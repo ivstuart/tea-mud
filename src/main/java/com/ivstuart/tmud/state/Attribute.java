@@ -1,5 +1,5 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,25 +25,25 @@ public class Attribute implements Serializable {
 
     private static final Logger LOGGER = LogManager.getLogger();
     private static final long serialVersionUID = 1L;
-    protected final String name;
-    protected int minimum;
-    protected int maximum;
-    protected int current;
-    protected int savedMaximum;
+    private final String name;
+    private int minimum;
+    private int maximum;
+    private int current;
+    private int savedMaximum;
 
-    public Attribute(Attribute oldAttribute_) {
-        name = oldAttribute_.name;
-        current = oldAttribute_.current;
-        maximum = oldAttribute_.maximum;
-        minimum = oldAttribute_.minimum;
-        savedMaximum = oldAttribute_.savedMaximum;
+    public Attribute(Attribute attribute) {
+        this.name = attribute.name;
+        this.current = attribute.current;
+        this.maximum = attribute.maximum;
+        this.minimum = attribute.minimum;
+        this.savedMaximum = attribute.savedMaximum;
     }
 
-    public Attribute(String name_, int value) {
-        name = name_;
-        maximum = value;
-        current = value;
-        minimum = 0;
+    public Attribute(String name, int value) {
+        this.name = name;
+        this.maximum = value;
+        this.current = value;
+        this.minimum = 0;
     }
 
     public Attribute(String aType, int min, int value) {
@@ -190,5 +190,14 @@ public class Attribute implements Serializable {
 
     public void invert() {
         current = -current;
+    }
+
+    public void setMaximum(int max) {
+        this.maximum = max;
+    }
+
+    public void setToMaximum(int max) {
+        this.maximum = max;
+        this.current = max;
     }
 }

@@ -168,4 +168,10 @@ public class MobMana implements Serializable {
             manaAtt.increaseCurrentAndMaximum(mana);
         }
     }
+
+    public void setToMaximum(int mana) {
+        for (ManaAttribute manaAtt : _mana) {
+            manaAtt.setToMaximum(mana);
+        }
+    }
 }

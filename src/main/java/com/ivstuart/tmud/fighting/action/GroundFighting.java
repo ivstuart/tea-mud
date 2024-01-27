@@ -1,11 +1,11 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ * Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *       http://www.apache.org/licenses/LICENSE-2.0
  *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,12 +14,6 @@
  *  limitations under the License.
  */
 
-/*
- * Created on 24-Sep-2003
- *
- * To change the template for this generated file go to
- * Window>Preferences>Java>Code Generation>Code and Comments
- */
 package com.ivstuart.tmud.fighting.action;
 
 import com.ivstuart.tmud.command.CommandProvider;
@@ -33,37 +27,6 @@ import com.ivstuart.tmud.person.config.FightData;
 import com.ivstuart.tmud.person.config.FightEnum;
 import com.ivstuart.tmud.state.Mob;
 
-/**
- * @author stuarti
- * <p>
- * A traveling merchant knees you in the solar plexus!!
- * A traveling merchant looks dazed and confused from lack of oxygen!
- * A traveling merchant claws at you, trying to get a better position.
- * A traveling merchant tries to elbow you, but you keep squeezing his neck, and he
- * can't manage to get his elbow to your face.
- * <p>
- * You bite into a traveling merchant's groin, ouch thats going to hurt!
- * You gouge a traveling merchant's eyes!
- * You apply an arm-bar to a traveling merchant.
- * You apply a leg lock to a traveling merchant.
- * You drive your knee into a traveling merchant's groin!
- * You successfully put an air-choke on a traveling merchant!
- * You drive your elbow into a traveling merchants solar plexus!!
- * You strike into a traveling merchant's pressure point, numbing his leg.
- * You continue strangling a traveling merchant!
- * You start hyper-extending a traveling merchant limb!
- * You hear a cracking noise as you hyper-extend a traveling merchant limb!
- * You ram your forehead into a traveling merchant's face!
- * You smash your elbow into the side of a traveling merchant's head!
- * Blood runs everywhere as you rip a traveling merchant's neck with your teeth!
- * <p>
- * [ JOINTLOCK ]You WILL attempt wrist-bends and arm hyperextensions.
- * [ CHOKE ]    You WILL attempt to choke your victim.
- * [ BITE ]     You WILL attempt to bite your victim.
- * [ ELBOW ]    You WILL use your elbows.
- * [ KNEE ]     You WILL use your knees.
- * [ HEADBUTT ] You WILL headbutt.
- */
 public class GroundFighting extends FightAction {
 
     private final String[] DESCRIPTION_START = {

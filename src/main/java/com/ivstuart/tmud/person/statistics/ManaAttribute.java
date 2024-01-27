@@ -1,5 +1,5 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -27,65 +27,65 @@ public class ManaAttribute implements Serializable {
      */
     private static final long serialVersionUID = 1L;
 
-    private final String _name;
+    private final String name;
 
-    private final int _minimum;
-    private final ManaType _mana;
-    private int _maximum;
-    private int _current;
-    private int _castlevel;
+    private final int minimum;
+    private final ManaType mana;
+    private int maximum;
+    private int current;
+    private int castlevel;
 
     public ManaAttribute(ManaAttribute old_) {
-        _mana = old_._mana;
-        _name = old_._name;
-        _maximum = old_._maximum;
-        _current = old_._current;
-        _minimum = old_._minimum;
-        _castlevel = old_._castlevel;
+        mana = old_.mana;
+        name = old_.name;
+        maximum = old_.maximum;
+        current = old_.current;
+        minimum = old_.minimum;
+        castlevel = old_.castlevel;
     }
 
     public ManaAttribute(ManaType mana_) {
-        _mana = mana_;
-        _name = mana_.name();
-        _maximum = 10;
-        _current = 10;
-        _minimum = 0;
-        _castlevel = 18;
+        mana = mana_;
+        name = mana_.name();
+        maximum = 10;
+        current = 10;
+        minimum = 0;
+        castlevel = 18;
     }
 
     public void addCastLevel(int level_) {
-        _castlevel += level_;
+        castlevel += level_;
     }
 
     public void addMaximum(int max_) {
-        _maximum += max_;
+        maximum += max_;
     }
 
     public void decrease(int value) {
-        _current -= value;
-        if (_current < _minimum) {
-            _current = _minimum;
+        current -= value;
+        if (current < minimum) {
+            current = minimum;
         }
     }
 
     public String display() {
         return String.format("%1$s << %2$5s >>  $J %3$3s / %4$3s   %5$3s",
-                _mana.getColour().toString(), _name, _current, _maximum,
-                _castlevel);
+                mana.getColour().toString(), name, current, maximum,
+                castlevel);
     }
 
     public int getCastlevel() {
-        return _castlevel;
+        return castlevel;
     }
 
     public void setCastlevel(int castlevel) {
-        this._castlevel = castlevel;
+        this.castlevel = castlevel;
     }
 
     private String getColour(int current_, int max_) {
-        if (_current < _maximum) {
+        if (current < maximum) {
             return "$G";
-        } else if (_current > _maximum) {
+        } else if (current > maximum) {
             return "$K";
         }
         return "$J";
@@ -93,61 +93,66 @@ public class ManaAttribute implements Serializable {
 
     public String getDescription() {
         return String.format("%1%2$3s / $J%3$3s",
-                this.getColour(_current, _maximum), _current, _maximum);
+                this.getColour(current, maximum), current, maximum);
     }
 
     public ManaType getManaType() {
-        return _mana;
+        return mana;
     }
 
     public int getMaximum() {
-        return _maximum;
+        return maximum;
     }
 
     public String getName() {
-        return _name;
+        return name;
     }
 
     public String getPrompt() {
-        return String.valueOf(_current);
+        return String.valueOf(current);
     }
 
     public int getValue() {
-        return _current;
+        return current;
     }
 
     public void setValue(int value) {
-        _current = value;
+        current = value;
         this.decrease(0);
         this.increase(0);
     }
 
     public void increase(int value) {
-        _current += value;
-        if (_current > _maximum) {
-            _current = _maximum;
+        current += value;
+        if (current > maximum) {
+            current = maximum;
         }
     }
 
     public void removeCastLevel(int level_) {
-        _castlevel -= level_;
+        castlevel -= level_;
     }
 
     public void removeMaximum(int max_) {
-        _maximum -= max_;
+        maximum -= max_;
         this.decrease(max_);
     }
 
     public void restore() {
-        _current = _maximum;
+        current = maximum;
     }
 
     public void increaseToMaximum() {
-        _current = _maximum;
+        current = maximum;
     }
 
     public void increaseCurrentAndMaximum(int mana) {
-        _maximum += mana;
-        _current += mana;
+        maximum += mana;
+        current += mana;
+    }
+
+    public void setToMaximum(int mana) {
+        maximum = mana;
+        current = mana;
     }
 }

@@ -3,6 +3,7 @@ package com.ivstuart.tmud.poc.mob;
 import com.ivstuart.tmud.person.statistics.MobMana;
 import com.ivstuart.tmud.poc.GsonIO;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.MobEnum;
 
 import java.io.IOException;
 import java.util.*;
@@ -123,6 +124,10 @@ public class MobGenerator {
         aMob.setLong("More description here");
         aMob.setDetectInvisible(true);
         aMob.setCopper("100");
+
+        aMob.setFlag("Memory");
+        aMob.setFlag(MobEnum.AGGRO.name());
+        aMob.setFlag("Foo");
 
         /**
         GsonIO gsonIO = new GsonIO();

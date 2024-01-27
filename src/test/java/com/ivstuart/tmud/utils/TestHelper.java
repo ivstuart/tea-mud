@@ -68,7 +68,7 @@ public class TestHelper {
 
         mob.setHp("100");
         mob.setMv("100");
-        mob.setMana(new MobMana(true));
+        mob.setMana(50);
 
         data.setThirst(500);
         data.setHunger(500);
