@@ -24,6 +24,7 @@ package com.ivstuart.tmud.command.communication;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.config.ChannelData;
+import com.ivstuart.tmud.person.config.ChannelEnum;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.world.Channel;
 import com.ivstuart.tmud.world.ChannelHistory;
@@ -49,7 +50,7 @@ public class Chat extends BaseCommand {
         if (!input.isEmpty()) {
 
             c.add("$B(" + mob.getId() + ") " + input + "$J", mob.isGood());
-            World.out(input, mob.isGood(), ChannelData.CHAT);
+            World.out(input, mob.isGood(), ChannelEnum.CHAT);
         } else {
             mob.out("$H------------( Chat History  )------------$J");
             mob.out(c.toString(mob.isGood()));

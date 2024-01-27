@@ -26,9 +26,7 @@ import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.fighting.action.FightAction;
-import com.ivstuart.tmud.state.Ability;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.MobStatus;
+import com.ivstuart.tmud.state.*;
 
 import static com.ivstuart.tmud.constants.SkillNames.BASH;
 
@@ -87,7 +85,7 @@ public class Bash extends BaseCommand {
             return;
         }
 
-        if (mob.getRoom().isPeaceful()) {
+        if (mob.getRoom().hasFlag(RoomEnum.PEACEFUL)) {
             mob.out("You can not be aggressive in this room");
             return;
         }
@@ -105,7 +103,7 @@ public class Bash extends BaseCommand {
             return;
         }
 
-        if (target.isNoBash()) {
+        if (target.hasMobEnum(MobEnum.BASH_IMMUNE)) {
             mob.out(input + " is too big to bash to the ground");
             return;
         }

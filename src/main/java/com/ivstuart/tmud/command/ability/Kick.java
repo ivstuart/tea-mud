@@ -30,6 +30,7 @@ import com.ivstuart.tmud.fighting.action.FightAction;
 import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.MobStatus;
+import com.ivstuart.tmud.state.RoomEnum;
 
 import static com.ivstuart.tmud.constants.SkillNames.KICK;
 
@@ -84,7 +85,7 @@ public class Kick extends BaseCommand {
             return;
         }
 
-        if (mob.getRoom().isPeaceful()) {
+        if (mob.getRoom().hasFlag(RoomEnum.PEACEFUL)) {
             mob.out("You can not be aggressive in this room");
             return;
         }

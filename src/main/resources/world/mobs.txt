@@ -108,7 +108,7 @@ copper: 10000
 xp: 200000
 state: STANDING
 attackType: claw tail bite breath
-memory: true
+flags: MEMORY
 # dice types possible for most fields 
 
 # Used by the Animate Dead Spell linked by id field.

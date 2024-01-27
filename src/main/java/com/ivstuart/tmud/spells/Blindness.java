@@ -18,6 +18,7 @@ package com.ivstuart.tmud.spells;
 
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.MobEnum;
 import com.ivstuart.tmud.state.Spell;
 
 /**
@@ -28,8 +29,8 @@ public class Blindness extends BuffStats {
     @Override
     public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
 
-        if (target_.isNoBlind()) {
-            caster_.out("Your target is no blind your spell fizzles uselessly");
+        if (target_.hasMobEnum(MobEnum.MAGIC_IMMUNE)) {
+            caster_.out("Your target is immune to magic your spell fizzles uselessly");
             return;
         }
 

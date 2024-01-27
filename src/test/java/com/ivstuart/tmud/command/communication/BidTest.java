@@ -23,6 +23,7 @@ import com.ivstuart.tmud.server.LaunchMud;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Race;
 import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.RoomEnum;
 import com.ivstuart.tmud.utils.TestHelper;
 import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
@@ -63,7 +64,7 @@ public class BidTest {
         World.getInstance().addToWorld(human);
 
         Room startRoom = new Room();
-        startRoom.setAuctionHouse(true);
+        startRoom.setFlag(RoomEnum.AUCTION);
         startRoom.add(player1Mob);
         player1Mob.setRoom(startRoom);
 

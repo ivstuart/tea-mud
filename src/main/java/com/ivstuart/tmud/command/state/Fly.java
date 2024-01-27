@@ -25,6 +25,7 @@ package com.ivstuart.tmud.command.state;
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.RoomEnum;
 
 import static com.ivstuart.tmud.common.MobState.FLYING;
 
@@ -39,7 +40,7 @@ public class Fly extends BaseCommand {
             return;
         }
 
-        if (mob_.getRoom().isTunnel()) {
+        if (mob_.getRoom().hasFlag(RoomEnum.NARROW)) {
             mob_.out("You can not fly here inside a tunnel");
             return;
         }

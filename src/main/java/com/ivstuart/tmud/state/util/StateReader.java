@@ -156,8 +156,9 @@ public class StateReader {
         Method method = null;
         try {
             method = object.getClass().getMethod(name, aClass);
+
         } catch (NoSuchMethodException e) {
-            LOGGER.warn("No such method called!", e);
+            // LOGGER.warn("No such method called!", e);
         }
         return method;
     }

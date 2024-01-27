@@ -33,12 +33,14 @@ public class GuardMob extends Mob {
 
     public GuardMob() {
         super();
+        setMobEnum(MobEnum.GUARD);
     }
 
     public GuardMob(GuardMob baseMob) {
         super(baseMob);
         this.exit = baseMob.exit;
         isAlignmentGuard = baseMob.isAlignmentGuard;
+        setMobEnum(MobEnum.GUARD);
     }
 
     public boolean isAlignmentGuard() {
@@ -47,12 +49,6 @@ public class GuardMob extends Mob {
 
     public void setAlignmentGuard(boolean alignmentGuard) {
         isAlignmentGuard = alignmentGuard;
-
-    }
-
-    @Override
-    public boolean isGuard() {
-        return true;
     }
 
     @Override

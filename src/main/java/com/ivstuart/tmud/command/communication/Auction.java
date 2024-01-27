@@ -24,6 +24,7 @@ package com.ivstuart.tmud.command.communication;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.config.ChannelData;
+import com.ivstuart.tmud.person.config.ChannelEnum;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.world.Channel;
 import com.ivstuart.tmud.world.ChannelHistory;
@@ -53,7 +54,7 @@ public class Auction extends BaseCommand {
 
             c.add(msg, mob.isGood());
 
-            World.out(msg, mob.isGood(), ChannelData.AUCTION);
+            World.out(msg, mob.isGood(), ChannelEnum.AUCTION);
         } else {
             mob.out("$H------------( Auction History  )------------$J");
             mob.out(c.toString(mob.isGood()));

@@ -23,6 +23,7 @@ import com.ivstuart.tmud.command.misc.ForcedQuit;
 import com.ivstuart.tmud.common.Tickable;
 import com.ivstuart.tmud.exceptions.MudException;
 import com.ivstuart.tmud.person.Player;
+import com.ivstuart.tmud.person.config.ChannelEnum;
 import com.ivstuart.tmud.state.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -308,11 +309,11 @@ public class World {
         return auction.remove(seller.getName());
     }
 
-    public static void out(String msg, boolean good, int channelData) {
+    public static void out(String msg, boolean good, ChannelEnum channelEnum) {
         for (String player : players) {
             Mob aPlayer = mobs.get(player.toLowerCase());
             if (aPlayer.isGood() == good) {
-                if (aPlayer.getPlayer().getConfig().getChannelData().is(channelData)) {
+                if (aPlayer.getPlayer().getConfig().getChannelData().isFlagSet(channelEnum)) {
                     aPlayer.out(msg);
                 }
             }

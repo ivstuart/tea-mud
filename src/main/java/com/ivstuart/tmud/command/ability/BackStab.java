@@ -28,9 +28,7 @@ import com.ivstuart.tmud.common.Equipable;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.fighting.DamageManager;
 import com.ivstuart.tmud.fighting.action.FightAction;
-import com.ivstuart.tmud.state.Ability;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Weapon;
+import com.ivstuart.tmud.state.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -68,7 +66,7 @@ public class BackStab extends BaseCommand {
             return;
         }
 
-        if (mob.getRoom().isPeaceful()) {
+        if (mob.getRoom().hasFlag(RoomEnum.PEACEFUL)) {
             mob.out("You can not be aggressive in this room");
             return;
         }
@@ -104,7 +102,7 @@ public class BackStab extends BaseCommand {
             return;
         }
 
-        if (target.isAware()) {
+        if (target.hasMobEnum(MobEnum.AWARE)) {
             mob.out("This mob is very alert and will not let you get behind them");
             return;
         }

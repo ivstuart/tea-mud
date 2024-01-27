@@ -104,15 +104,15 @@ public class Exit extends BasicThing {
         getDestinationRoom();
 
         if (destinationRoom != null) {
-            if (destinationRoom.isWater()) {
+            if (destinationRoom.hasFlag(RoomEnum.WATER)) {
                 exitDescription = "<" + exitDescription + ">";
             }
 
-            if (destinationRoom.isClimb()) {
+            if (destinationRoom.hasFlag(RoomEnum.CLIMB)) {
                 exitDescription = "/" + exitDescription + "/";
             }
 
-            if (destinationRoom.isFlying()) {
+            if (destinationRoom.hasFlag(RoomEnum.AIR)) {
                 exitDescription = "{" + exitDescription + "}";
             }
         }
@@ -136,6 +136,6 @@ public class Exit extends BasicThing {
     }
 
     public boolean isSwim() {
-        return getDestinationRoom().isWater();
+        return getDestinationRoom().hasFlag(RoomEnum.WATER);
     }
 }

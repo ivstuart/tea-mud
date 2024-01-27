@@ -30,6 +30,7 @@ import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.state.Ability;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.MobEnum;
 
 import static com.ivstuart.tmud.constants.SkillNames.STEAL;
 
@@ -59,7 +60,7 @@ public class Steal extends BaseCommand {
             return;
         }
 
-        if (target.isAware()) {
+        if (target.hasMobEnum(MobEnum.AWARE)) {
             mob.out(input + " is too alert to steal from!");
             return;
         }

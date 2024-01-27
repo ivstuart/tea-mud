@@ -18,6 +18,7 @@ package com.ivstuart.tmud.command.config;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.Player;
+import com.ivstuart.tmud.person.config.ChannelEnum;
 import com.ivstuart.tmud.state.Mob;
 
 public class Channel extends BaseCommand {
@@ -35,6 +36,19 @@ public class Channel extends BaseCommand {
             mob.out(mob.getConfig().getChannelData().toString());
             return;
         }
-        mob.out(mob.getConfig().getChannelData().toggle(input));
+
+        ChannelEnum channelEnum;
+
+        try {
+            channelEnum = ChannelEnum.valueOf(input.toUpperCase());
+        }
+        catch (IllegalArgumentException iae) {
+            mob.out("No such channel to toggle:"+input);
+            return;
+        }
+
+        mob.getConfig().getChannelData().flip(channelEnum);
+        mob.out("Toggling channel "+input);
+
     }
 }

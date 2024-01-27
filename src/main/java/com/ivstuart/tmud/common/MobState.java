@@ -57,9 +57,9 @@ public enum MobState {
         try {
             return MobState.valueOf(state_);
         } catch (IllegalArgumentException e) {
-            LOGGER.error("Problem with getting mob state", e);
+            return STAND;
+            // LOGGER.error("Problem with getting mob state", e);
         }
-        return null;
     }
 
     public boolean stuck() {

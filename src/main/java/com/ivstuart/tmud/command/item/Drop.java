@@ -26,10 +26,7 @@ import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.person.statistics.diseases.Disease;
-import com.ivstuart.tmud.state.Item;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Room;
-import com.ivstuart.tmud.state.Torch;
+import com.ivstuart.tmud.state.*;
 
 import java.util.Iterator;
 
@@ -49,7 +46,7 @@ public class Drop extends BaseCommand {
     public void execute(Mob mob, String input) {
 
         Room room = null;
-        if (mob.getRoom().isFlying()) {
+        if (mob.getRoom().hasFlag(RoomEnum.AIR)) {
             room = mob.getRoom().getGroundRoom();
         } else {
             room = mob.getRoom();

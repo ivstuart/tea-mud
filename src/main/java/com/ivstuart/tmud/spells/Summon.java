@@ -17,10 +17,7 @@
 package com.ivstuart.tmud.spells;
 
 import com.ivstuart.tmud.person.movement.MoveManager;
-import com.ivstuart.tmud.state.Item;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Room;
-import com.ivstuart.tmud.state.Spell;
+import com.ivstuart.tmud.state.*;
 
 /**
  * Created by Ivan on 09/08/2016.
@@ -40,8 +37,8 @@ public class Summon implements SpellEffect {
             return;
         }
 
-        if (target.isNoSummon()) {
-            caster.out("Your target is no summon your spell fizzles uselessly");
+        if (target.hasMobEnum(MobEnum.MAGIC_IMMUNE)) {
+            caster.out("Your target is immune to magic your spell fizzles uselessly");
             return;
         }
 

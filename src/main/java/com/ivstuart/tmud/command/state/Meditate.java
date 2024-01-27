@@ -24,6 +24,7 @@ package com.ivstuart.tmud.command.state;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.RoomEnum;
 
 import static com.ivstuart.tmud.common.MobState.MEDITATE;
 
@@ -48,7 +49,7 @@ public class Meditate extends BaseCommand {
         }
 
         // Check allowed to change state
-        if (mob_.getRoom().isFlying() && !mob_.getMobAffects().hasAffect("levitate")) {
+        if (mob_.getRoom().hasFlag(RoomEnum.AIR) && !mob_.getMobAffects().hasAffect("levitate")) {
             mob_.out("You must continue to fly here");
             return;
         }

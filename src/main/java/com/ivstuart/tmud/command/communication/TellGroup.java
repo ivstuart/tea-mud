@@ -24,6 +24,7 @@ package com.ivstuart.tmud.command.communication;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.config.ChannelData;
+import com.ivstuart.tmud.person.config.ChannelEnum;
 import com.ivstuart.tmud.state.Mob;
 
 import java.util.List;
@@ -58,7 +59,7 @@ public class TellGroup extends BaseCommand {
 
         for (Mob mob : group) {
 
-            if (mob.getPlayer().getConfig().getChannelData().is(ChannelData.GROUP)) {
+            if (mob.getPlayer().getConfig().getChannelData().isFlagSet(ChannelEnum.GROUP)) {
                 mob.out("<" + mob_.getName() + "> say's " + input);
             }
         }

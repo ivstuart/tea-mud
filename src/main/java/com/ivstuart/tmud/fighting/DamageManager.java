@@ -30,6 +30,7 @@ import com.ivstuart.tmud.constants.SkillNames;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.person.config.ConfigData;
+import com.ivstuart.tmud.person.config.ConfigEnum;
 import com.ivstuart.tmud.person.statistics.affects.Affect;
 import com.ivstuart.tmud.person.statistics.diseases.Disease;
 import com.ivstuart.tmud.state.*;
@@ -54,7 +55,7 @@ public class DamageManager {
 
     public static void deal(Mob attacker, Mob defender, int damage, Spell spell) {
 
-        if (defender.isMemory()) {
+        if (defender.hasMobEnum(MobEnum.MEMORY)) {
             defender.getFight().setLastMobAttackedMe(attacker);
         }
 
@@ -431,7 +432,7 @@ public class DamageManager {
         corpse.setWhenKilled(System.currentTimeMillis());
         corpse.setType("BUTCHERABLE");
 
-        if (!defender.getRoom().isNoDrop()) {
+        if (!defender.getRoom().hasFlag(RoomEnum.NO_DROP)) {
             inveToCorpse(defender, corpse);
         } else {
             LOGGER.debug("No drop has been set for this room so eq will not be dropped to corpse");
@@ -446,13 +447,13 @@ public class DamageManager {
 
         // AUTO LOOT
         if (attacker.getPlayer() != null) {
-            if (attacker.getPlayer().getConfig().getConfigData().is(ConfigData.AUTOLOOT)) {
+            if (attacker.getPlayer().getConfig().getConfigData().isFlagSet(ConfigEnum.AUTO_LOOT)) {
                 // get all from corpse.
                 CommandProvider.getCommand(Get.class).execute(attacker, "all from corpse");
             }
 
             // AUTO SAC
-            if (attacker.getPlayer().getConfig().getConfigData().is(ConfigData.AUTOSAC)) {
+            if (attacker.getPlayer().getConfig().getConfigData().isFlagSet(ConfigEnum.AUTO_SAC)) {
                 // get all from corpse.
                 CommandProvider.getCommand(Sacrifice.class).execute(attacker, "corpse");
             }

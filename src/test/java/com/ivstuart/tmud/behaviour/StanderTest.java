@@ -73,7 +73,7 @@ public class StanderTest {
 
         BaseBehaviour baseBehaviour = BehaviourFactory.create("Stander");
         baseBehaviour.setMob(sheepMob);
-        baseBehaviour.setParameter(100);
+        baseBehaviour.setParameter(105);
 
         sheepMob.addTickable(baseBehaviour);
         WorldTime.addTickable(sheepMob);

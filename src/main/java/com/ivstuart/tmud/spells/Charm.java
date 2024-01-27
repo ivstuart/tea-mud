@@ -20,6 +20,7 @@ import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.person.statistics.affects.Charmed;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.MobEnum;
 import com.ivstuart.tmud.state.Spell;
 
 public class Charm implements SpellEffect {
@@ -47,7 +48,7 @@ public class Charm implements SpellEffect {
 
         if (affect == null) {
             target_.addAffect(spell.getId(), new Charmed(target_, spell));
-            if (!target_.isNoCharm()) {
+            if (!target_.hasMobEnum(MobEnum.MAGIC_IMMUNE)) {
                 target_.setCharmed(caster_);
                 caster_.out("You charm a " + target_.getName());
             }

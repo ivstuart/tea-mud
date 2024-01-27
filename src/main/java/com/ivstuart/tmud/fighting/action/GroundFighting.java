@@ -30,6 +30,7 @@ import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.fighting.BasicDamage;
 import com.ivstuart.tmud.fighting.DamageManager;
 import com.ivstuart.tmud.person.config.FightData;
+import com.ivstuart.tmud.person.config.FightEnum;
 import com.ivstuart.tmud.state.Mob;
 
 /**
@@ -125,7 +126,7 @@ public class GroundFighting extends FightAction {
         super(me_, target_);
 
         if (me_.isPlayer()) {
-            attackType = me_.getPlayer().getConfig().getFightData().getRandomAttackType();
+            attackType = me_.getPlayer().getConfig().getFightData().getRandomAttackType().ordinal();
         } else {
             attackType = DiceRoll.ONE_D_SIX.roll() - 1;
         }
@@ -225,7 +226,7 @@ public class GroundFighting extends FightAction {
     private void tryToStandUp() {
         if (!getSelf().getMobStatus().isGroundFighting()) {
 
-            if (!getSelf().getPlayer().getConfig().getFightData().is(FightData.GROUND)) {
+            if (!getSelf().getPlayer().getConfig().getFightData().isFlagSet(FightEnum.GROUND)) {
 
                 out("You try and stand to avoid continuing to ground fight");
 

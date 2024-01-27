@@ -54,11 +54,11 @@ public class SearchTest {
 
         Mob player1Mob = TestHelper.makeDefaultPlayerMob("player1");
 
-        Ability ability = new Ability("searching", 100);
+        Ability ability = new Ability("searching", 105);
         player1Mob.getLearned().add(ability);
         World.add(new BaseSkill("searching"));
 
-        Ability hide1 = new Ability("hide", 100);
+        Ability hide1 = new Ability("hide", 105);
         player1Mob.getLearned().add(hide1);
         World.add(new BaseSkill("hide"));
 
@@ -95,11 +95,11 @@ public class SearchTest {
 
         Mob player1Mob = TestHelper.makeDefaultPlayerMob("player1");
 
-        Ability ability = new Ability("searching", 100);
+        Ability ability = new Ability("searching", 105);
         player1Mob.getLearned().add(ability);
         World.add(new BaseSkill("searching"));
 
-        Ability hide1 = new Ability("hide", 100);
+        Ability hide1 = new Ability("hide", 105);
         player1Mob.getLearned().add(hide1);
         World.add(new BaseSkill("hide"));
 

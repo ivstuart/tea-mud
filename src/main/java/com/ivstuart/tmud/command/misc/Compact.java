@@ -24,6 +24,7 @@ package com.ivstuart.tmud.command.misc;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.config.ConfigData;
+import com.ivstuart.tmud.person.config.ConfigEnum;
 import com.ivstuart.tmud.state.Mob;
 
 /**
@@ -37,7 +38,7 @@ public class Compact extends BaseCommand {
     @Override
     public void execute(Mob mob, String input) {
 
-        mob.getPlayer().getConfig().getConfigData().toggle(ConfigData.COMBINE);
+        mob.getPlayer().getConfig().getConfigData().flip(ConfigEnum.COMBINE);
     }
 
     public String getHelp() {

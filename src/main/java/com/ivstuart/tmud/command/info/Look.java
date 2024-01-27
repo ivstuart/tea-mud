@@ -52,7 +52,7 @@ public class Look extends BaseCommand {
         }
 
 
-        if (mob_.getRoom().isDark()) {
+        if (mob_.getRoom().hasFlag(RoomEnum.DARK)) {
             // Can mob see in the dark?
             if (mob_.getMobAffects().hasAffect(INFRAVISION) || mob_.getRace().isInfravison()) {
                 mob_.out("You can see in the dark");
@@ -93,7 +93,7 @@ public class Look extends BaseCommand {
                 mob_.out(mob.getLook());
                 mob_.out(mob.getEquipment().toString());
 
-                if (mob.isPeekAggro()) {
+                if (mob.hasMobEnum(MobEnum.AGGRO)) {
                     Fight.startCombat(mob_, mob);
                 }
 
@@ -162,7 +162,7 @@ public class Look extends BaseCommand {
 
                     String exitLook = exit.look();
 
-                    if (mob.getRoom().isWater()) {
+                    if (mob.getRoom().hasFlag(RoomEnum.WATER)) {
                         sb.append("<").append(exitLook).append("> ");
                     } else {
                         sb.append(exitLook).append(" ");
@@ -232,7 +232,8 @@ public class Look extends BaseCommand {
             // Note this should be all done as part of Msg command
             if (mob.isPlayer()) {
                 if (!mob.isAlignmentSame(mob_)) {
-                    sb.append("$H +* ").append(mob.getSize()).append(" ").append(mob.getAge()).append(" ").append(mob.getRace().getName()).append(" *+");
+                    sb.append("$H +* ").append(MobHelper.getSize(mob.getMobLevel())).append(" ").append(MobHelper.getAge(mob))
+                            .append(" ").append(mob.getRace().getName()).append(" *+");
                 } else {
                     sb.append("$H").append(mob.getBrief());
                 }

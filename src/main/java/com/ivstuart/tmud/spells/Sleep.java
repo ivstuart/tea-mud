@@ -19,6 +19,7 @@ package com.ivstuart.tmud.spells;
 import com.ivstuart.tmud.person.statistics.affects.SleepAffect;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.MobEnum;
 import com.ivstuart.tmud.state.Spell;
 
 public class Sleep implements SpellEffect {
@@ -27,7 +28,7 @@ public class Sleep implements SpellEffect {
     @Override
     public void effect(Mob caster_, Mob target_, Spell spell, Item targetItem) {
 
-        if (target_.isNoSleep()) {
+        if (target_.hasMobEnum(MobEnum.NO_SLEEP)) {
             caster_.out("Your target is no sleep your spell fizzles uselessly");
             return;
         }

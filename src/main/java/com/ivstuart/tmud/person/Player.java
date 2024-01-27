@@ -19,6 +19,7 @@ package com.ivstuart.tmud.person;
 import com.ivstuart.tmud.constants.Profession;
 import com.ivstuart.tmud.person.carried.Inventory;
 import com.ivstuart.tmud.person.config.ConfigData;
+import com.ivstuart.tmud.person.config.ConfigEnum;
 import com.ivstuart.tmud.server.Connection;
 import com.ivstuart.tmud.server.LaunchMud;
 import com.ivstuart.tmud.server.Output;
@@ -221,7 +222,7 @@ public class Player implements Serializable, Nameable {
 
     public void out(String message) {
         message = Output.getString(message,
-                config.getConfigData().is(ConfigData.ANSI));
+                config.getConfigData().isFlagSet(ConfigEnum.ANSI));
 
         LOGGER.debug(getName() + " output [" + message + "]");
 

@@ -25,8 +25,10 @@ package com.ivstuart.tmud.command.communication;
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.person.config.ChannelData;
+import com.ivstuart.tmud.person.config.ChannelEnum;
 import com.ivstuart.tmud.state.Item;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.RoomEnum;
 import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -54,7 +56,7 @@ public class AuctionItem extends BaseCommand implements Runnable {
     @Override
     public void execute(Mob mob, String input) {
 
-        if (!mob.getRoom().isAuctionHouse()) {
+        if (!mob.getRoom().hasFlag(RoomEnum.AUCTION)) {
             mob.out("You MUST be in an auction house in order to auction");
             return;
         }
@@ -136,9 +138,9 @@ public class AuctionItem extends BaseCommand implements Runnable {
         countDown--;
 
         if (currentBid != null && highestBidder != null) {
-            World.out("<" + countDown + "> <" + seller.getName() + "> Item " + item.getName() + " current bidding is <" + highestBidder.getName() + "> " + currentBid, seller.isGood(), ChannelData.AUCTION);
+            World.out("<" + countDown + "> <" + seller.getName() + "> Item " + item.getName() + " current bidding is <" + highestBidder.getName() + "> " + currentBid, seller.isGood(), ChannelEnum.AUCTION);
         } else {
-            World.out("<" + countDown + "> <" + seller.getName() + "> Item " + item.getName(), seller.isGood(), ChannelData.AUCTION);
+            World.out("<" + countDown + "> <" + seller.getName() + "> Item " + item.getName(), seller.isGood(), ChannelEnum.AUCTION);
         }
 
         if (countDown <= 0) {

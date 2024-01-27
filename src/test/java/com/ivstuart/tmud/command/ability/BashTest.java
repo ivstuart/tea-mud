@@ -54,7 +54,7 @@ public class BashTest {
 
         Mob player1Mob = TestHelper.makeDefaultPlayerMob("player1");
 
-        Ability ability = new Ability("bash", 100);
+        Ability ability = new Ability("bash", 105);
         player1Mob.getLearned().add(ability);
         World.add(new BaseSkill("bash"));
 

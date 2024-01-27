@@ -24,6 +24,7 @@ package com.ivstuart.tmud.command.misc;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.config.ConfigData;
+import com.ivstuart.tmud.person.config.ConfigEnum;
 import com.ivstuart.tmud.state.Mob;
 
 /**
@@ -37,9 +38,8 @@ public class Brief extends BaseCommand {
     @Override
     public void execute(Mob mob, String input) {
 
-        mob.out("Setting room descriptions to brief");
-        mob.getPlayer().getConfig().getConfigData()
-                .set(ConfigData.VERBOSE, false);
+        mob.out("Setting room descriptions to brief from verbose");
+        mob.getPlayer().getConfig().getConfigData().remove(ConfigEnum.VERBOSE);
     }
 
 }

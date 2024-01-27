@@ -95,7 +95,7 @@ public class EnterNoLook extends BaseCommand {
             return;
         }
 
-        if (destination.isClimb() && !mob.isFlying()) {
+        if (destination.hasFlag(RoomEnum.CLIMB) && !mob.isFlying()) {
             // check for climbing skill and boots
             Ability climbing = mob.getLearned().getAbility(CLIMBING);
 
@@ -117,32 +117,32 @@ public class EnterNoLook extends BaseCommand {
 
         }
 
-        if (destination.isAdminRoom() && !mob.isAdmin()) {
+        if (destination.hasFlag(RoomEnum.ADMIN) && !mob.isAdmin()) {
             mob.out("You must be admin to enter that location");
             return;
         }
 
-        if (room.isFlying() && !mob.isFlying()) {
+        if (room.hasFlag(RoomEnum.AIR) && !mob.isFlying()) {
             mob.out("Down seems more likely");
             return;
         }
 
-        if (destination.isFlying() && !mob.isFlying()) {
+        if (destination.hasFlag(RoomEnum.AIR) && !mob.isFlying()) {
             mob.out("You must be flying to enter that location");
             return;
         }
 
-        if (destination.isPrivate() && destination.getMobs().size() > 1) {
+        if (destination.hasFlag(RoomEnum.PRIVATE) && destination.getMobs().size() > 1) {
             mob.out("That destination is a private room which is already occupied.");
             return;
         }
 
-        if (destination.isTunnel() && !destination.getMobs().isEmpty()) {
+        if (destination.hasFlag(RoomEnum.NARROW) && !destination.getMobs().isEmpty()) {
             mob.out("That destination is a tunnel room, which is already occupied.");
             return;
         }
 
-        if (destination.isDeepWater() && !mob.hasBoat()) {
+        if (destination.hasFlag(RoomEnum.DEEP_WATER) && !mob.hasBoat()) {
             mob.out("You need a boat to cross that type of water");
             return;
         }
@@ -161,7 +161,7 @@ public class EnterNoLook extends BaseCommand {
 
             int movemod = mob.getBurden().getMovemod();
 
-            if (room.isWater() || exit.isSwim() && !mob.isFlying()) {
+            if (room.hasFlag(RoomEnum.WATER) || exit.isSwim() && !mob.isFlying()) {
                 if (!moves.deduct(10 * movemod)) {
                     mob.out("You can not swim you are out of movement and too tired!");
                     return;
@@ -216,12 +216,12 @@ public class EnterNoLook extends BaseCommand {
 
         MoveManager.move(mob, room, destination, exit, movement);
 
-        if (destination.isTunnel() && mob.isFlying()) {
+        if (destination.hasFlag(RoomEnum.NARROW) && mob.isFlying()) {
             mob.out("You have entered a tunnel so stop flying for now.");
             mob.setState(STAND);
         }
 
-        if (destination.isDeath() && !mob.isAdmin()) {
+        if (destination.hasFlag(RoomEnum.TRAP) && !mob.isAdmin()) {
             mob.getHp().setValue(-1);
             mob.out("You walk into a death trap and have been killed");
             DamageManager.checkForDefenderDeath(mob, mob);
@@ -276,7 +276,7 @@ public class EnterNoLook extends BaseCommand {
     private void checkForVeryAggressiveMobs(Mob mob, Room destination) {
         // Check if any aggro or very aggressive mobs should attack you
         for (Mob mobInRoom : destination.getMobs()) {
-            if (mobInRoom.isVeryAggressive()) {
+            if (mobInRoom.hasMobEnum(MobEnum.AGGRO)) {
                 LOGGER.debug("A very aggressive mob is here which launches into attack");
                 Fight.startCombat(mobInRoom, mob);
             }

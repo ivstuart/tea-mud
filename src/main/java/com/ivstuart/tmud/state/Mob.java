@@ -80,13 +80,12 @@ public class Mob extends Prop implements Tickable {
     private int attacks = 1;
     private int defensive;
     private int offensive;
-    private boolean immunityTackle = false;
     private transient boolean running = false;
-    private int level; // base mob
-    private DiceRoll maxHp; // base mob
+    private int level;
+    private DiceRoll maxHp;
     private MobAffects mobAffects;
     private transient MobStatus mobStatus;
-    private String name; // immutable
+    private String name;
     private MobState state;
     private int xp;
     private int raceId;
@@ -97,25 +96,18 @@ public class Mob extends Prop implements Tickable {
     private int RATE_OF_REGEN_3_PERCENT = 3;
     private String patrolPath;
     private boolean alignment;
-    private boolean isAware;
-    private boolean isNoSummon;
-    private boolean isNoSleep;
-    private boolean isNoBash;
-    private boolean isNoBlind;
-    private boolean isNoCharm;
     private String returnRoom; // After battleground will be returned here.
     private int fallingCounter;
-    private boolean veryAggressive;
-    private boolean isMemory;
-    private boolean isPeekAggro;
     private Map<DamageType, Integer> saves;
     private Mob charmed;
-    private boolean ridable;
     private Mob mount;
     private transient Mob possessed;
 
+    private EnumSet<MobEnum> enumSet;
+
     public Mob() {
         fight = new Fight(this);
+        enumSet = EnumSet.noneOf(MobEnum.class);
     }
 
     public Mob(Mob baseMob) {
@@ -158,16 +150,6 @@ public class Mob extends Prop implements Tickable {
 
         alignment = baseMob.alignment;
 
-        isAware = baseMob.isAware;
-        isNoSummon = baseMob.isNoSummon;
-        isNoSleep = baseMob.isNoSleep;
-        isNoBash = baseMob.isNoBash;
-        isNoBlind = baseMob.isNoBlind;
-        veryAggressive = baseMob.veryAggressive;
-        isMemory = baseMob.isMemory;
-        isNoCharm = baseMob.isNoCharm;
-        ridable = baseMob.ridable;
-
         // Required for diseases.
         if (baseMob.mobAffects != null) {
             mobAffects = (MobAffects) baseMob.mobAffects.clone();
@@ -200,7 +182,22 @@ public class Mob extends Prop implements Tickable {
             WorldTime.addTickable(this);
         }
 
+        this.enumSet = EnumSet.copyOf(baseMob.enumSet);
+
     }
+
+    public boolean hasMobEnum(MobEnum mobEnum) {
+        return enumSet.contains(mobEnum);
+    }
+
+    public void setMobEnum(MobEnum mobEnum) {
+        enumSet.add(mobEnum);
+    }
+
+    public void setFlag(String value) {
+        setMobEnum(MobEnum.valueOf(value));
+    }
+
 
     public Mob getPossessed() {
         return possessed;
@@ -216,22 +213,6 @@ public class Mob extends Prop implements Tickable {
 
     public void setMount(Mob mount) {
         this.mount = mount;
-    }
-
-    public boolean isRidable() {
-        return ridable;
-    }
-
-    public void setRidable(boolean ridable) {
-        this.ridable = ridable;
-    }
-
-    public boolean isNoCharm() {
-        return isNoCharm;
-    }
-
-    public void setNoCharm(boolean noCharm) {
-        isNoCharm = noCharm;
     }
 
     public void setSaves(String saveString) {
@@ -254,60 +235,12 @@ public class Mob extends Prop implements Tickable {
         this.roomId = roomId;
     }
 
-    public boolean isPeekAggro() {
-        return isPeekAggro;
-    }
-
-    public void setPeekAggro(boolean peekAggro) {
-        isPeekAggro = peekAggro;
-    }
-
     public boolean isAlignment() {
         return alignment;
     }
 
     public void setAlignment(boolean alignment) {
         this.alignment = alignment;
-    }
-
-    public boolean isAware() {
-        return isAware;
-    }
-
-    public void setAware(boolean aware) {
-        isAware = aware;
-    }
-
-    public boolean isNoSummon() {
-        return isNoSummon;
-    }
-
-    public void setNoSummon(boolean noSummon) {
-        isNoSummon = noSummon;
-    }
-
-    public boolean isNoSleep() {
-        return isNoSleep;
-    }
-
-    public void setNoSleep(boolean noSleep) {
-        isNoSleep = noSleep;
-    }
-
-    public boolean isNoBash() {
-        return isNoBash;
-    }
-
-    public void setNoBash(boolean noBash) {
-        isNoBash = noBash;
-    }
-
-    public boolean isNoBlind() {
-        return isNoBlind;
-    }
-
-    public void setNoBlind(boolean noBlind) {
-        isNoBlind = noBlind;
     }
 
     public void addAffect(String spellId, Affect affect_) {
@@ -572,20 +505,8 @@ public class Mob extends Prop implements Tickable {
         return getHp().getValue() <= 0;
     }
 
-    public boolean isGuard() {
-        return false;
-    }
-
     public boolean isGuarding(Mob mob_, String id) {
         return false;
-    }
-
-    public boolean isImmunityTackle() {
-        return immunityTackle;
-    }
-
-    public void setImmunityTackle(boolean immunityTackle) {
-        this.immunityTackle = immunityTackle;
     }
 
     public boolean isPlayer() {
@@ -746,7 +667,7 @@ public class Mob extends Prop implements Tickable {
             currentState = state;
         }
 
-        if (room.isRegen()) {
+        if (room.hasFlag(RoomEnum.REGEN)) {
             RATE_OF_REGEN_3_PERCENT = 9;
         } else {
             if (room.getSectorType().isInside() && MoonPhases.isNightTime()) {
@@ -757,7 +678,7 @@ public class Mob extends Prop implements Tickable {
 
         if (health != null) {
 
-            if (room.isUnderWater() &&
+            if (room.hasFlag(RoomEnum.UNDER_WATER) &&
                     !getRace().isWaterbreath() &&
                     !mobAffects.hasAffect(UNDERWATER_BREATH)) {
                 out("You begin to drown as you can not breath underwater");
@@ -862,15 +783,15 @@ public class Mob extends Prop implements Tickable {
         }
 
         // Falling from the sky. 30% damage per room
-        if (room.isFlying() && !this.isFlying() && !getState().isMeditate()) {
+        if (room.hasFlag(RoomEnum.AIR) && !this.isFlying() && !getState().isMeditate()) {
             this.out("You are in free fall while not flying");
             fallingCounter++;
             MoveManager.move(this, "down");
         }
 
-        if (!room.isFlying() && fallingCounter > 0) {
+        if (!room.hasFlag(RoomEnum.AIR) && fallingCounter > 0) {
             this.out("Ouch, you hit the ground hard!");
-            if (room.isWater()) {
+            if (room.hasFlag(RoomEnum.WATER)) {
                 health.increasePercentage(-10 * fallingCounter);
             } else {
                 health.increasePercentage(-30 * fallingCounter);
@@ -912,55 +833,6 @@ public class Mob extends Prop implements Tickable {
 
     public boolean isAlignmentSame(Mob mob_) {
         return this.isGood() == mob_.isGood();
-    }
-
-    /**
-     * Based on level
-     *
-     * @return size of mob
-     */
-    public String getSize() {
-        if (level < 10) {
-            return "small";
-        } else if (level < 20) {
-            return "medium";
-        } else if (level < 40) {
-            return "big";
-        } else if (level < 60) {
-            return "large";
-        } else if (level < 80) {
-            return "huge";
-        } else {
-            return "massive";
-        }
-    }
-
-    /**
-     * @return age string
-     */
-    public String getAge() {
-        if (isPlayer()) {
-            int remorts = getPlayer().getData().getRemorts();
-            switch (remorts) {
-                case 0:
-                    return "young";
-                case 1:
-                    return "youthful";
-                case 2:
-                    return "middle aged";
-                case 3:
-                    return "mature";
-                case 4:
-                    return "old";
-                case 5:
-                    return "very old";
-                case 6:
-                    return "ancient";
-                default:
-                    return "unknown";
-            }
-        }
-        return "";
     }
 
     public List<Tickable> getTickers() {
@@ -1054,22 +926,6 @@ public class Mob extends Prop implements Tickable {
 
     public String getReturnRoom() {
         return returnRoom;
-    }
-
-    public boolean isVeryAggressive() {
-        return veryAggressive;
-    }
-
-    public void setVeryAggressive(boolean veryAggressive) {
-        this.veryAggressive = veryAggressive;
-    }
-
-    public boolean isMemory() {
-        return isMemory;
-    }
-
-    public void setMemory(boolean memory) {
-        isMemory = memory;
     }
 
     @Override
@@ -1169,7 +1025,6 @@ public class Mob extends Prop implements Tickable {
                 ", attacks=" + attacks +
                 ", defensive=" + defensive +
                 ", offensive=" + offensive +
-                ", immunityTackle=" + immunityTackle +
                 ", running=" + running +
                 ", level=" + level +
                 ", maxHp=" + maxHp +
@@ -1186,19 +1041,11 @@ public class Mob extends Prop implements Tickable {
                 ", RATE_OF_REGEN_3_PERCENT=" + RATE_OF_REGEN_3_PERCENT +
                 ", patrolPath='" + patrolPath + '\'' +
                 ", alignment=" + alignment +
-                ", isAware=" + isAware +
-                ", isNoSummon=" + isNoSummon +
-                ", isNoSleep=" + isNoSleep +
-                ", isNoBash=" + isNoBash +
-                ", isNoBlind=" + isNoBlind +
                 ", returnRoom='" + returnRoom + '\'' +
                 ", fallingCounter=" + fallingCounter +
-                ", veryAggressive=" + veryAggressive +
-                ", isMemory=" + isMemory +
-                ", isPeekAggro=" + isPeekAggro +
                 ", IDLE_TIMEOUT=" + IDLE_TIMEOUT +
                 ", saves=" + saves +
-                ", ridable=" + ridable +
+                ", flags=" + enumSet +
                 '}';
     }
 

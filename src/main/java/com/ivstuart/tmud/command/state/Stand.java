@@ -25,6 +25,7 @@ package com.ivstuart.tmud.command.state;
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.RoomEnum;
 
 import static com.ivstuart.tmud.common.MobState.STAND;
 
@@ -62,7 +63,7 @@ public class Stand extends BaseCommand {
         }
 
         // Check allowed to change state
-        if (mob.getRoom().isFlying()) {
+        if (mob.getRoom().hasFlag(RoomEnum.AIR)) {
             mob.out("You must continue to fly here");
             return;
         }

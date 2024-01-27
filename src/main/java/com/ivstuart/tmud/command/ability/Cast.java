@@ -63,7 +63,7 @@ public class Cast extends BaseCommand {
             return;
         }
 
-        if (mob_.getRoom().isNoMagic()) {
+        if (mob_.getRoom().hasFlag(RoomEnum.NO_MAGIC)) {
             mob_.out("You can not use magic in this room");
             return;
         }
@@ -102,7 +102,7 @@ public class Cast extends BaseCommand {
     }
 
     public void execute(Mob mob_, Spell spell, Ability spellAbility, String input_, boolean castingCost) {
-        if (mob_.getRoom().isPeaceful() && !spell.getSpellEffect().isPositiveEffect()) {
+        if (mob_.getRoom().hasFlag(RoomEnum.PEACEFUL) && !spell.getSpellEffect().isPositiveEffect()) {
             mob_.out("You can not use offensive magic in this room");
             return;
         }

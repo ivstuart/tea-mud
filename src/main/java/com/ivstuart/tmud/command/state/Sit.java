@@ -25,6 +25,7 @@ package com.ivstuart.tmud.command.state;
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Prop;
+import com.ivstuart.tmud.state.RoomEnum;
 import com.ivstuart.tmud.utils.StringUtil;
 
 import static com.ivstuart.tmud.common.MobState.SIT;
@@ -52,12 +53,12 @@ public class Sit extends BaseCommand {
 
         // Check allowed to change state
 
-        if (mob_.getRoom().isFlying()) {
+        if (mob_.getRoom().hasFlag(RoomEnum.AIR)) {
             mob_.out("You can not sit here you must continue to fly");
             return;
         }
 
-        if (mob_.getRoom().isWater()) {
+        if (mob_.getRoom().hasFlag(RoomEnum.WATER)) {
             mob_.out("You can not sit here you must continue to swim");
             return;
         }

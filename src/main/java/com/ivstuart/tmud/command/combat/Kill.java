@@ -19,13 +19,14 @@ package com.ivstuart.tmud.command.combat;
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.RoomEnum;
 
 public class Kill extends BaseCommand {
 
     @Override
     public void execute(Mob mob, String input) {
 
-        if (mob.getRoom().isPeaceful()) {
+        if (mob.getRoom().hasFlag(RoomEnum.PEACEFUL)) {
             mob.out("You can not be aggressive in this room");
             return;
         }

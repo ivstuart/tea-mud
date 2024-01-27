@@ -24,6 +24,7 @@ package com.ivstuart.tmud.command.misc;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.config.ConfigData;
+import com.ivstuart.tmud.person.config.ConfigEnum;
 import com.ivstuart.tmud.state.Mob;
 
 /**
@@ -37,9 +38,8 @@ public class Verbose extends BaseCommand {
     @Override
     public void execute(Mob mob, String input) {
 
-        mob.out("Setting room decriptions to verbose");
-        mob.getPlayer().getConfig().getConfigData()
-                .set(ConfigData.VERBOSE, true);
+        mob.out("Toggling room descriptions to verbose");
+        mob.getPlayer().getConfig().getConfigData().set(ConfigEnum.VERBOSE);
     }
 
 }

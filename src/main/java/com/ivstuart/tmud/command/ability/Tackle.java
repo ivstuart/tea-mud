@@ -28,9 +28,7 @@ import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.fighting.action.FightAction;
 import com.ivstuart.tmud.fighting.action.GroundFighting;
-import com.ivstuart.tmud.state.Ability;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.MobStatus;
+import com.ivstuart.tmud.state.*;
 
 import static com.ivstuart.tmud.constants.SkillNames.TACKLE;
 
@@ -54,7 +52,7 @@ public class Tackle extends BaseCommand {
 
     private boolean checkTargetStatus(Mob mob, Mob target) {
 
-        if (target.isImmunityTackle()) {
+        if (target.hasMobEnum(MobEnum.BASH_IMMUNE)) {
             mob.out(target.getName() + " is immune to being tackled!");
             return true;
         }
@@ -77,7 +75,7 @@ public class Tackle extends BaseCommand {
             return;
         }
 
-        if (mob.getRoom().isPeaceful()) {
+        if (mob.getRoom().hasFlag(RoomEnum.PEACEFUL)) {
             mob.out("You can not be aggressive in this room");
             return;
         }

@@ -1,0 +1,6 @@
+package com.ivstuart.tmud.state;
+
+public enum RoomEnum {
+    NARROW, DARK, NO_MOB, PEACEFUL, WATER, SWIM, DEEP_WATER, UNDER_WATER, AIR, REGEN, TRAP, NO_SOUND, NO_MAGIC, NO_TRACK, CLIMB, NO_DROP, AUCTION, HOUSE, ADMIN, PRIVATE
+
+}

@@ -18,6 +18,9 @@ package com.ivstuart.tmud.command.config;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.Player;
+import com.ivstuart.tmud.person.config.ChannelEnum;
+import com.ivstuart.tmud.person.config.ConfigEnum;
+import com.ivstuart.tmud.person.config.FightEnum;
 import com.ivstuart.tmud.state.Mob;
 
 
@@ -31,10 +34,22 @@ public class FightConfig extends BaseCommand {
     private void execute(Player mob, String input) {
 
         if (input.isEmpty()) {
-            mob.out(mob.getConfig().getFightData().look());
+            mob.out(mob.getConfig().getFightData().toString());
             return;
         }
-        mob.out(mob.getConfig().getFightData().toggle(input));
+
+        FightEnum fightEnum;
+
+        try {
+            fightEnum = FightEnum.valueOf(input.toUpperCase());
+        }
+        catch (IllegalArgumentException iae) {
+            mob.out("No such channel to toggle:"+input);
+            return;
+        }
+        mob.getConfig().getFightData().flip(fightEnum);
+
+        mob.out("You toggle fight option "+fightEnum.name());
     }
 
 }

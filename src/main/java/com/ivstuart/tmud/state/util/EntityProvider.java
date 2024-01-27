@@ -49,7 +49,7 @@ public class EntityProvider {
 
         Mob newMob = null;
 
-        Class clazz = existingMob.getClass();
+        Class<?> clazz = existingMob.getClass();
         Constructor constructor;
         Object mobObject = null;
 

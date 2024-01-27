@@ -24,6 +24,7 @@ package com.ivstuart.tmud.command.admin;
 
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.person.config.FightData;
+import com.ivstuart.tmud.person.config.FightEnum;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Room;
 import com.ivstuart.tmud.world.World;
@@ -160,7 +161,7 @@ public class Battleground extends AdminCommand implements Runnable {
         // Get all players who have fight data set for BATTLEGROUND and teleport them to random location in battleground.
         for (String playerName : World.getPlayers()) {
             Mob aMob = World.getMob(playerName);
-            if (aMob.getPlayer().getConfig().getFightData().is(FightData.BATTLEGROUND)) {
+            if (aMob.getPlayer().getConfig().getFightData().isFlagSet(FightEnum.BATTLEGROUND)) {
                 players.add(aMob);
 
                 if (aMob.isGood()) {

@@ -24,6 +24,7 @@ import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.person.statistics.diseases.Disease;
 import com.ivstuart.tmud.person.statistics.diseases.DiseaseFactory;
+import com.ivstuart.tmud.poc.RoomFlags;
 import com.ivstuart.tmud.state.util.EntityProvider;
 import com.ivstuart.tmud.state.util.RoomManager;
 import com.ivstuart.tmud.utils.MudArrayList;
@@ -31,6 +32,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
 
 public class Room extends BasicThing implements Msgable {
@@ -51,59 +53,30 @@ public class Room extends BasicThing implements Msgable {
 
     private transient Inventory _items;
     private transient List<Disease> diseases;
-    private boolean isRegen;
-    private boolean isUnderWater;
-    private boolean isDark;
-    private boolean isWater;
-    private boolean isDeepWater;
-    private boolean isFlying;
-    // DARK, DEATH, NO_MOB, INDOORS, PEACEFUL, SOUND_PROOF, NO_TRACK, NO_MAGIC, TUNNEL, PRIVATE, GOD_ROOM, HOUSE
-    private boolean isDeath;
-    private boolean isNoMob;
-    private boolean isIndoors;
-    private boolean isPeaceful;
-    private boolean isSoundProof;
-    private boolean isNoTrack;
-    private boolean isNoMagic;
-    private boolean isTunnel;
-    private boolean isPrivate;
-    private boolean isAdminRoom;
-    private boolean isHouse;
-    private boolean isClimb;
-    private boolean isNoDrop;
-    private boolean isAuctionHouse;
     private SectorType sectorType;
+
+    private final EnumSet<RoomEnum> flags;
 
     public Room() {
         initRoom();
+        flags = EnumSet.noneOf(RoomEnum.class);
     }
 
     public Room(Room room) {
         super(room);
         initRoom();
-        this.isRegen = room.isRegen;
-        this.isUnderWater = room.isUnderWater;
-        this.isDark = room.isDark;
-        this.isWater = room.isWater;
-        this.isFlying = room.isFlying;
-        this.isDeath = room.isDeath;
-        this.isNoMob = room.isNoMob;
-        this.isIndoors = room.isIndoors;
-        this.isPeaceful = room.isPeaceful;
-        this.isSoundProof = room.isSoundProof;
-        this.isNoTrack = room.isNoTrack;
-        this.isNoMagic = room.isNoMagic;
-        this.isTunnel = room.isTunnel;
-        this.isPrivate = room.isPrivate;
-        this.isAdminRoom = room.isAdminRoom;
-        this.isHouse = room.isHouse;
-        this.isClimb = room.isClimb;
-        this.isNoDrop = room.isNoDrop;
-        this.isAuctionHouse = room.isAuctionHouse;
-        this.isDeepWater = room.isDeepWater;
         this._type = room._type;
         this.sectorType = room.sectorType;
 
+        this.flags = EnumSet.copyOf(room.flags);
+    }
+
+    public boolean hasFlag(RoomEnum flag) {
+        return this.flags.contains(flag);
+    }
+
+    public void setFlag(RoomEnum flag) {
+        this.flags.add(flag);
     }
 
     public static void setPickable(boolean flag) {
@@ -130,22 +103,6 @@ public class Room extends BasicThing implements Msgable {
         this.diseases = diseases;
     }
 
-    public boolean isDeepWater() {
-        return isDeepWater;
-    }
-
-    public void setDeepWater(boolean deepWater) {
-        isDeepWater = deepWater;
-    }
-
-    public boolean isAuctionHouse() {
-        return isAuctionHouse;
-    }
-
-    public void setAuctionHouse(boolean auctionHouse) {
-        isAuctionHouse = auctionHouse;
-    }
-
     public SectorType getSectorType() {
         if (sectorType == null) {
             return SectorType.INSIDE;
@@ -167,156 +124,9 @@ public class Room extends BasicThing implements Msgable {
                 // ", _mobs=" + _mobs +
                 ", _items=" + _items +
                 ", diseases=" + diseases +
-                ", isRegen=" + isRegen +
-                ", isUnderWater=" + isUnderWater +
-                ", isDark=" + isDark +
-                ", isWater=" + isWater +
-                ", isDeepWater=" + isDeepWater +
-                ", isFlying=" + isFlying +
-                ", isDeath=" + isDeath +
-                ", isNoMob=" + isNoMob +
-                ", isIndoors=" + isIndoors +
-                ", isPeaceful=" + isPeaceful +
-                ", isSoundProof=" + isSoundProof +
-                ", isNoTrack=" + isNoTrack +
-                ", isNoMagic=" + isNoMagic +
-                ", isTunnel=" + isTunnel +
-                ", isPrivate=" + isPrivate +
-                ", isAdminRoom=" + isAdminRoom +
-                ", isHouse=" + isHouse +
-                ", isClimb=" + isClimb +
-                ", isNoDrop=" + isNoDrop +
-                ", isAuctionHouse=" + isAuctionHouse +
                 ", sectorType=" + sectorType +
+                ", flags=" + flags +
                 '}';
-    }
-
-    public boolean isNoDrop() {
-        return isNoDrop;
-    }
-
-    public void setNoDrop(boolean noDrop) {
-        isNoDrop = noDrop;
-    }
-
-    public boolean isFlying() {
-        return isFlying;
-    }
-
-    public void setFlying(boolean flying) {
-        isFlying = flying;
-    }
-
-    public boolean isClimb() {
-        return isClimb;
-    }
-
-    public void setClimb(boolean climb) {
-        isClimb = climb;
-    }
-
-    public boolean isDeath() {
-        return isDeath;
-    }
-
-    public void setDeath(boolean death) {
-        isDeath = death;
-    }
-
-    public boolean isNoMob() {
-        return isNoMob;
-    }
-
-    public void setNoMob(boolean noMob) {
-        isNoMob = noMob;
-    }
-
-    public boolean isIndoors() {
-        return isIndoors;
-    }
-
-    public void setIndoors(boolean indoors) {
-        isIndoors = indoors;
-    }
-
-    public boolean isPeaceful() {
-        return isPeaceful;
-    }
-
-    public void setPeaceful(boolean peaceful) {
-        isPeaceful = peaceful;
-    }
-
-    public boolean isSoundProof() {
-        return isSoundProof;
-    }
-
-    public void setSoundProof(boolean soundProof) {
-        isSoundProof = soundProof;
-    }
-
-    public boolean isNoTrack() {
-        return isNoTrack;
-    }
-
-    public void setNoTrack(boolean noTrack) {
-        isNoTrack = noTrack;
-    }
-
-    public boolean isNoMagic() {
-        return isNoMagic;
-    }
-
-    public void setNoMagic(boolean noMagic) {
-        isNoMagic = noMagic;
-    }
-
-    public boolean isTunnel() {
-        return isTunnel;
-    }
-
-    public void setTunnel(boolean tunnel) {
-        isTunnel = tunnel;
-    }
-
-    public boolean isPrivate() {
-        return isPrivate;
-    }
-
-    public void setPrivate(boolean aPrivate) {
-        isPrivate = aPrivate;
-    }
-
-    public boolean isAdminRoom() {
-        return isAdminRoom;
-    }
-
-    public void setAdminRoom(boolean adminRoom) {
-        isAdminRoom = adminRoom;
-    }
-
-    public boolean isHouse() {
-        return isHouse;
-    }
-
-    public void setHouse(boolean house) {
-        isHouse = house;
-    }
-
-    public boolean isDark() {
-        return isDark;
-    }
-
-    public void setDark(boolean dark) {
-        isDark = dark;
-    }
-
-    public boolean isWater() {
-        return isWater;
-    }
-
-    public void setWater(boolean water) {
-        isWater = water;
     }
 
     private void initRoom() {
@@ -324,8 +134,6 @@ public class Room extends BasicThing implements Msgable {
         _exits = new MudArrayList<>();
         _mobs = new MudArrayList<>(true); // matching part of name
         tracks = new ArrayList<>(0);
-        isRegen = false;
-        isUnderWater = false;
     }
 
     public void add(Exit exit_) {
@@ -357,7 +165,7 @@ public class Room extends BasicThing implements Msgable {
     }
 
     public void addTrack(Track track) {
-        if (!isNoTrack) {
+        if (!hasFlag(RoomEnum.NO_TRACK)) {
             tracks.remove(track);
             tracks.add(track);
         }
@@ -593,26 +401,6 @@ public class Room extends BasicThing implements Msgable {
         _props.remove(corpse);
     }
 
-    public boolean isRegen() {
-        return isRegen;
-    }
-
-    public void setRegen(boolean regen) {
-        isRegen = regen;
-    }
-
-    public void setRegen(String arg) {
-        isRegen = true;
-    }
-
-    public boolean isUnderWater() {
-        return isUnderWater;
-    }
-
-    public void setUnderWater(boolean underWater) {
-        isUnderWater = underWater;
-    }
-
     public Mob getWarMaster() {
         for (Mob mob : _mobs) {
             if (mob instanceof WarMaster) {
@@ -625,7 +413,7 @@ public class Room extends BasicThing implements Msgable {
     public Room getGroundRoom() {
         Room room = this;
         Exit exit = this.getExit("down");
-        while (room.isFlying() && exit != null) {
+        while (room.hasFlag(RoomEnum.AIR) && exit != null) {
             room = exit.getDestinationRoom();
             exit = this.getExit("down");
         }
