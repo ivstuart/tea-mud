@@ -1,5 +1,5 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -14,10 +14,6 @@
  *  limitations under the License.
  */
 
-/*
- * Created on 22-Sep-2003
- *
- */
 package com.ivstuart.tmud.command.communication;
 
 import com.ivstuart.tmud.command.BaseCommand;

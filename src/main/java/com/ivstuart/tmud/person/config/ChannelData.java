@@ -1,5 +1,5 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -17,7 +17,6 @@
 package com.ivstuart.tmud.person.config;
 
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.EnumSet;
 
 /*
@@ -37,8 +36,7 @@ public class ChannelData implements Serializable {
     public void flip(ChannelEnum channelEnum) {
         if (enumSet.contains(channelEnum)) {
             enumSet.remove(channelEnum);
-        }
-        else {
+        } else {
             enumSet.add(channelEnum);
         }
     }
@@ -50,8 +48,7 @@ public class ChannelData implements Serializable {
     public String getState(ChannelEnum channelEnum) {
         if (isFlagSet(channelEnum)) {
             return channelEnum.getOn();
-        }
-        else {
+        } else {
             return channelEnum.getOff();
         }
     }
@@ -60,7 +57,7 @@ public class ChannelData implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (ChannelEnum channelEnum : ChannelEnum.values()) {
-            sb.append(String.format("[ %1$10s ] %2$s\n",channelEnum.name(), getState(channelEnum)));
+            sb.append(String.format("[ %1$10s ] %2$s\n", channelEnum.name(), getState(channelEnum)));
         }
         return sb.toString();
     }

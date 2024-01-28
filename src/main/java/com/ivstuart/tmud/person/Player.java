@@ -1,5 +1,5 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,7 +18,6 @@ package com.ivstuart.tmud.person;
 
 import com.ivstuart.tmud.constants.Profession;
 import com.ivstuart.tmud.person.carried.Inventory;
-import com.ivstuart.tmud.person.config.ConfigData;
 import com.ivstuart.tmud.person.config.ConfigEnum;
 import com.ivstuart.tmud.server.Connection;
 import com.ivstuart.tmud.server.LaunchMud;

@@ -1,5 +1,5 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -14,12 +14,6 @@
  *  limitations under the License.
  */
 
-/*
- * Created on 28-Sep-2003
- *
- * To change the template for this generated file go to
- * Window>Preferences>Java>Code Generation>Code and Comments
- */
 package com.ivstuart.tmud.command.item.shop;
 
 import com.ivstuart.tmud.command.BaseCommand;
@@ -66,7 +60,7 @@ public class Resize extends BaseCommand {
             mob.out("No such item " + input);
             return;
         }
-        int mobSize = mob.getHeight();
+        int mobSize = mob.getMobBodyStats().getHeight();
 
         if (mobSize == 0) {
             mobSize = 180;

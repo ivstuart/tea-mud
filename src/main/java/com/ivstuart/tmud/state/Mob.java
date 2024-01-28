@@ -1,5 +1,5 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -16,9 +16,6 @@
 
 package com.ivstuart.tmud.state;
 
-import com.ivstuart.tmud.behaviour.BaseBehaviour;
-import com.ivstuart.tmud.behaviour.BehaviourFactory;
-import com.ivstuart.tmud.command.misc.ForcedQuit;
 import com.ivstuart.tmud.common.*;
 import com.ivstuart.tmud.constants.CarriedEnum;
 import com.ivstuart.tmud.constants.DamageType;
@@ -34,7 +31,6 @@ import com.ivstuart.tmud.person.statistics.MobMana;
 import com.ivstuart.tmud.person.statistics.affects.Affect;
 import com.ivstuart.tmud.person.statistics.diseases.Disease;
 import com.ivstuart.tmud.person.statistics.diseases.DiseaseFactory;
-import com.ivstuart.tmud.server.ConnectionManager;
 import com.ivstuart.tmud.state.util.EntityProvider;
 import com.ivstuart.tmud.world.MoonPhases;
 import com.ivstuart.tmud.world.WeatherSky;
@@ -52,55 +48,33 @@ public class Mob extends Prop implements Tickable {
     private static final long serialVersionUID = 1L;
 
     private static final Logger LOGGER = LogManager.getLogger();
-
-    protected Inventory inventory;
-    protected Equipment equipment;
-
-    protected transient Player player;
-    protected transient Fight fight;
-    protected transient Mob following;
-
-    private MobCoreStats mobCoreStats;
-
+    private final int RATE_OF_REGEN_3_PERCENT = 3;
+    private final EnumSet<MobEnum> enumSet;
+    private final MobCombat mobCombat;
+    private final MobNpc mobNpc;
+    private final MobBodyStats mobBodyStats;
+    private Inventory inventory;
     // Stats
-    protected Gender gender;
-    protected String race;
-
-
-    protected int height; // cms base mob
-
+    private Equipment equipment;
+    private transient Player player;
+    private transient Mob following;
     // Player only data?
-    protected transient Mob lastToldBy;
-    protected Learned learned;
-
-    protected String repopRoomID;
-    protected transient Room room;
-    protected String roomId;
-    protected int weight; // kg base mob
+    private transient Mob lastToldBy;
+    private Learned learned;
+    private String repopRoomID;
+    private transient Room room;
+    private String roomId;
+    private int weight; // kg base mob
+    private final MobCoreStats mobCoreStats;
     private String ability; // base mob
     private int align; // base mob
-    private int armour;
-    private String attackType; // base mob
-    private int copper;
-    private DiceRoll damage; // base mob
-    private int attacks = 1;
-    private int defensive;
-    private int offensive;
     private transient boolean running = false;
     private int level;
-    private DiceRoll maxHp;
     private MobAffects mobAffects;
     private transient MobStatus mobStatus;
     private String name;
     private MobState state;
-    private int xp;
-    private int raceId;
-    private int wimpy;
-    private boolean undead;
-    private transient List<String> behaviours;
     private List<Tickable> tickers;
-    private final int RATE_OF_REGEN_3_PERCENT = 3;
-    private String patrolPath;
     private boolean alignment;
     private String returnRoom; // After battleground will be returned here.
     private int fallingCounter;
@@ -109,69 +83,29 @@ public class Mob extends Prop implements Tickable {
     private Mob mount;
     private transient Mob possessed;
 
-    private final EnumSet<MobEnum> enumSet;
-
     public Mob() {
-        fight = new Fight(this);
         enumSet = EnumSet.noneOf(MobEnum.class);
         mobCoreStats = new MobCoreStats();
+        mobCombat = new MobCombat(this);
+        mobNpc = new MobNpc();
+        mobBodyStats = new MobBodyStats();
     }
 
     public Mob(Mob baseMob) {
         super(baseMob);
-        fight = new Fight(this);
-
         name = baseMob.name;
-        armour = baseMob.armour;
-
         state = baseMob.state;
-
         level = baseMob.level;
         align = baseMob.align;
-        attacks = baseMob.attacks;
-        damage = baseMob.damage;
-        offensive = baseMob.offensive;
-        defensive = baseMob.defensive;
-        copper = baseMob.copper;
-        xp = baseMob.xp;
-
-        attackType = baseMob.attackType;
         ability = baseMob.ability;
-
-        gender = baseMob.gender;
-        race = baseMob.race;
-        raceId = baseMob.raceId;
-
-        height = baseMob.height;
         weight = baseMob.weight;
-
         room = baseMob.room;
-
         repopRoomID = baseMob.repopRoomID;
-
         alignment = baseMob.alignment;
 
         // Required for diseases.
         if (baseMob.mobAffects != null) {
             mobAffects = (MobAffects) baseMob.mobAffects.clone();
-        }
-
-        if (baseMob.behaviours != null) {
-            for (String behaviour : baseMob.behaviours) {
-                BaseBehaviour bb = BehaviourFactory.create(behaviour);
-
-                if (bb != null) {
-                    bb.setMob(this);
-                    if (tickers == null) {
-                        tickers = new ArrayList<>();
-                    }
-                    LOGGER.debug("Adding behaviour [" + bb.getId() + "] for mob " + this.getName());
-                    tickers.add(bb);
-
-                }
-
-
-            }
         }
 
         if (!baseMob.getInventory().isEmpty()) {
@@ -187,6 +121,23 @@ public class Mob extends Prop implements Tickable {
 
         mobCoreStats = new MobCoreStats(baseMob.mobCoreStats);
 
+        mobCombat = new MobCombat(this, baseMob.mobCombat);
+
+        mobNpc = new MobNpc(this, baseMob.mobNpc);
+
+        mobBodyStats = new MobBodyStats(baseMob.mobBodyStats);
+    }
+
+    public MobBodyStats getMobBodyStats() {
+        return mobBodyStats;
+    }
+
+    public MobCombat getMobCombat() {
+        return mobCombat;
+    }
+
+    public MobNpc getMobNpc() {
+        return mobNpc;
     }
 
     public boolean hasMobEnum(MobEnum mobEnum) {
@@ -198,12 +149,10 @@ public class Mob extends Prop implements Tickable {
     }
 
     public void setFlag(String value) {
-
         try {
             setMobEnum(MobEnum.valueOf(value.toUpperCase()));
-        }
-        catch (IllegalArgumentException iae) {
-            LOGGER.warn("IllegalArgumentException for flag value:"+value);
+        } catch (IllegalArgumentException iae) {
+            LOGGER.warn("IllegalArgumentException for flag value:" + value);
         }
     }
 
@@ -275,20 +224,8 @@ public class Mob extends Prop implements Tickable {
 
     }
 
-    public DiceRoll getDamage() {
-        return damage;
-    }
-
-    public void setDamage(DiceRoll damage) {
-        this.damage = damage;
-    }
-
-    public void setDamage(String damage_) {
-        this.damage = new DiceRoll(damage_);
-    }
-
     public int getDefence() {
-        return defensive;
+        return mobCombat.getDefensive();
     }
 
     public Equipment getEquipment() {
@@ -299,14 +236,16 @@ public class Mob extends Prop implements Tickable {
     }
 
     public Fight getFight() {
-        if (fight == null) {
-            fight = new Fight(this);
+        // Deserialized mobs will have a null Fight object
+        if (mobCombat.getFight() == null) {
+            mobCombat.setFight(new Fight(this));
         }
-        return fight;
+
+        return mobCombat.getFight();
     }
 
     public void setFight(Fight fight) {
-        this.fight = fight;
+        mobCombat.setFight(fight);
     }
 
     public Mob getFollowing() {
@@ -317,27 +256,12 @@ public class Mob extends Prop implements Tickable {
         following = mob_;
     }
 
-    @Override
-    public Gender getGender() {
-
-        return gender;
-    }
-
-    public void setGender(Gender g) {
-        gender = g;
-    }
-
-    public void setGender(String gender_) {
-        gender = Gender.valueOf(gender_.toUpperCase());
-    }
-
     public Attribute getHp() {
         return mobCoreStats.getHealth();
     }
 
-    public void setHp(String hp_) {
-        maxHp = new DiceRoll(hp_);
-        mobCoreStats.getHealth().setToMaximum(maxHp.roll());
+    public void setHp(String hp) {
+        mobNpc.setHp(hp, mobCoreStats.getHealth());
     }
 
     public Inventory getInventory() {
@@ -399,19 +323,11 @@ public class Mob extends Prop implements Tickable {
     }
 
     public int getOffensive() {
-        return offensive;
-    }
-
-    public void setOffensive(String offensive_) {
-        this.offensive = Integer.parseInt(offensive_.trim());
+        return mobCombat.getOffensive();
     }
 
     public Player getPlayer() {
         return player;
-    }
-
-    public String getRaceName() {
-        return race;
     }
 
     public String getRepopRoomId() {
@@ -493,12 +409,11 @@ public class Mob extends Prop implements Tickable {
     }
 
     public int getXp() {
-        return xp;
+        return mobNpc.getXp();
     }
 
-    public void setXp(String xp_) {
-        // _stats.add(new IntegerAttribute(XP,xp_));
-        this.xp = Integer.parseInt(xp_);
+    public void setXp(int xp) {
+        mobNpc.setXp(xp);
     }
 
     @Override
@@ -570,27 +485,8 @@ public class Mob extends Prop implements Tickable {
         this.align = Integer.parseInt(align_);
     }
 
-    public int getAttacks() {
-        return attacks;
-    }
-
-    public void setAttacks(String attacks) {
-        this.attacks = Integer.parseInt(attacks);
-    }
-
     public void setAttackType(String types) {
-        this.attackType = types;
-    }
-
-    public void setBehaviour(String behaviours) {
-        if (this.behaviours == null) {
-            this.behaviours = new ArrayList<>();
-        }
-        this.behaviours.add(behaviours);
-    }
-
-    public void setDefensive(String defensive) {
-        this.defensive = Integer.parseInt(defensive.trim());
+        mobNpc.setAttackType(types);
     }
 
     public void setLevel(int level) {
@@ -617,6 +513,8 @@ public class Mob extends Prop implements Tickable {
             return true;
         }
 
+        checkIdleTimeAndKickout();
+
         tickRegenerate();
 
         checkForDrowning();
@@ -624,8 +522,6 @@ public class Mob extends Prop implements Tickable {
         checkForFalling();
 
         checkHungerAndThirst();
-
-        checkIdleTimeAndKickout();
 
         checkForDiseases();
 
@@ -701,7 +597,7 @@ public class Mob extends Prop implements Tickable {
     }
 
     private void checkForDiseases() {
-        if (!getRace().isUndead()) {
+        if (!mobBodyStats.isUndead()) {
             List<Disease> diseases = this.getMobAffects().getDiseases();
             for (Disease disease : diseases) {
                 if (disease.isDroplets()) {
@@ -733,7 +629,7 @@ public class Mob extends Prop implements Tickable {
     }
 
     private void checkHungerAndThirst() {
-        if (isPlayer() && !getRace().isUndead()) {
+        if (isPlayer() && !mobBodyStats.isUndead()) {
             Attribute thirst = getPlayer().getData().getThirst();
             thirst.decrease(1);
             Attribute hunger = getPlayer().getData().getHunger();
@@ -826,6 +722,10 @@ public class Mob extends Prop implements Tickable {
         return tickers;
     }
 
+    public void setTickers(List<Tickable> objects) {
+        tickers = objects;
+    }
+
     public void setItem(String input) {
         String[] elements = input.split(" ");
 
@@ -839,31 +739,19 @@ public class Mob extends Prop implements Tickable {
     }
 
     public int getCopper() {
-        return copper;
+        return mobNpc.getCopper();
     }
 
-    public void setCopper(String copper_) {
-        this.copper = Integer.parseInt(copper_);
+    public void setCopper(int copper) {
+        mobNpc.setCopper(copper);
     }
 
     public void setPatrolPath(String path) {
-        this.patrolPath = path;
+        mobNpc.setPatrolPath(path);
     }
 
-    public int getArmour() {
-        return armour;
-    }
-
-    public void setArmour(String armour_) {
-        this.armour = Integer.parseInt(armour_);
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height_) {
-        height = height_;
+    public void setArmour(int armour) {
+        mobNpc.setArmour(armour);
     }
 
     public int getWeightCarried() {
@@ -875,22 +763,6 @@ public class Mob extends Prop implements Tickable {
             grams += equipment.getWeight();
         }
         return grams;
-    }
-
-    public void setRaceId(int raceId) {
-        this.raceId = raceId;
-    }
-
-    public Race getRace() {
-        return World.getInstance().getRace(raceId);
-    }
-
-    public void setRace(String race_) {
-        race = race_;
-    }
-
-    public void setUndead(boolean undead) {
-        this.undead = undead;
     }
 
     public CarriedEnum getBurden() {
@@ -962,11 +834,7 @@ public class Mob extends Prop implements Tickable {
     }
 
     public int getWimpy() {
-        return wimpy;
-    }
-
-    public void setWimpy(int wimpy) {
-        this.wimpy = wimpy;
+        return mobCombat.getWimpy();
     }
 
     public void setDisease(String name) {
@@ -986,49 +854,37 @@ public class Mob extends Prop implements Tickable {
     @Override
     public String toString() {
         return "Mob{" +
-                "equipment=" + equipment +
-                ", fight=" + fight +
-                ", following=" + following +
-                ", gender=" + gender +
-                ", height=" + height +
+                ", enumSet=" + enumSet +
+                ", mobCombat=" + mobCombat +
+                ", mobNpc=" + mobNpc +
+                ", mobBodyStats=" + mobBodyStats +
                 ", inventory=" + inventory +
+                ", equipment=" + equipment +
+                ", player=" + player +
+                ", following=" + following +
                 ", lastToldBy=" + lastToldBy +
                 ", learned=" + learned +
-                ", player=" + player +
-                ", race='" + race + '\'' +
                 ", repopRoomID='" + repopRoomID + '\'' +
-                // ", room=" + room +
+//                ", room=" + room +
                 ", roomId='" + roomId + '\'' +
                 ", weight=" + weight +
+                ", mobCoreStats=" + mobCoreStats +
                 ", ability='" + ability + '\'' +
                 ", align=" + align +
-                ", armour=" + armour +
-                ", attackType='" + attackType + '\'' +
-                ", copper=" + copper +
-                ", damage=" + damage +
-                ", attacks=" + attacks +
-                ", defensive=" + defensive +
-                ", offensive=" + offensive +
                 ", running=" + running +
                 ", level=" + level +
-                ", maxHp=" + maxHp +
                 ", mobAffects=" + mobAffects +
                 ", mobStatus=" + mobStatus +
                 ", name='" + name + '\'' +
                 ", state=" + state +
-                ", xp=" + xp +
-                ", raceId=" + raceId +
-                ", wimpy=" + wimpy +
-                ", undead=" + undead +
-                ", behaviours=" + behaviours +
                 ", tickers=" + tickers +
-                ", RATE_OF_REGEN_3_PERCENT=" + RATE_OF_REGEN_3_PERCENT +
-                ", patrolPath='" + patrolPath + '\'' +
                 ", alignment=" + alignment +
                 ", returnRoom='" + returnRoom + '\'' +
                 ", fallingCounter=" + fallingCounter +
                 ", saves=" + saves +
-                ", flags=" + enumSet +
+                ", charmed=" + charmed +
+                ", mount=" + mount +
+                ", possessed=" + possessed +
                 '}';
     }
 
@@ -1047,15 +903,7 @@ public class Mob extends Prop implements Tickable {
     public void clearAffects() {
 
         if (isPlayer()) {
-
-            Attribute drunk = getPlayer().getData().getDrunkAttribute();
-            Attribute poison = getPlayer().getData().getPoisonAttribute();
-
-            drunk.setValue(0);
-            poison.setValue(0);
-
-            getPlayer().getData().getHunger().setValue(500);
-            getPlayer().getData().getThirst().setValue(500);
+            getPlayer().getData().restoreToPerfectHealth();
         }
 
         // Best to remove effects first
@@ -1063,5 +911,18 @@ public class Mob extends Prop implements Tickable {
 
         getMobAffects().clear();
 
+    }
+
+    public void setBehaviour(String behaviour) {
+        mobNpc.setBehaviour(behaviour);
+    }
+
+    public Race getRace() {
+        // TODO test this carefully and check if it is better to cache Race object in mob.
+        return World.getInstance().getRace(mobBodyStats.getRaceId());
+    }
+    @Override
+    public Gender getGender() {
+        return mobBodyStats.getGender();
     }
 }

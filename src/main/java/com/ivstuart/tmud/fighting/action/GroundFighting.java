@@ -1,11 +1,11 @@
 /*
- * Copyright 2024. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
  *
- *       http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
@@ -23,11 +23,14 @@ import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.fighting.BasicDamage;
 import com.ivstuart.tmud.fighting.DamageManager;
-import com.ivstuart.tmud.person.config.FightData;
 import com.ivstuart.tmud.person.config.FightEnum;
 import com.ivstuart.tmud.state.Mob;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class GroundFighting extends FightAction {
+
+    private static final Logger LOGGER = LogManager.getLogger();
 
     private final String[] DESCRIPTION_START = {
             "<S-You/NAME> start hyper-extending a <T-you/NAME> limb!",
@@ -77,7 +80,7 @@ public class GroundFighting extends FightAction {
             "coccyx",
             "back of knee",
             "achilles"};
-    private final int attackType;
+    private int attackType;
     private final boolean hasAChokeHold = false;
     private int position; // i.e. who is in a better position.
 
@@ -90,6 +93,10 @@ public class GroundFighting extends FightAction {
 
         if (me_.isPlayer()) {
             attackType = me_.getPlayer().getConfig().getFightData().getRandomAttackType().ordinal();
+            if (attackType > 5) {
+                LOGGER.warn("Attack type too large for index :"+attackType);
+                attackType = DiceRoll.ONE_D_SIX.roll() - 1;
+            }
         } else {
             attackType = DiceRoll.ONE_D_SIX.roll() - 1;
         }

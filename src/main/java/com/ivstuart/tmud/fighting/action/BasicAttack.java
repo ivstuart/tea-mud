@@ -1,5 +1,5 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -14,12 +14,6 @@
  *  limitations under the License.
  */
 
-/*
- * Created on 24-Sep-2003
- *
- * To change the template for this generated file go to
- * Window>Preferences>Java>Code Generation>Code and Comments
- */
 package com.ivstuart.tmud.fighting.action;
 
 import com.ivstuart.tmud.command.ability.Tackle;
@@ -76,7 +70,7 @@ public class BasicAttack extends FightAction {
         durationMillis(100);
 
         if (getSelf().getWimpy() > getSelf().getHp().getValue()) {
-            getSelf().getFight().add(new com.ivstuart.tmud.fighting.action.Flee(getSelf()));
+            getSelf().getFight().add(new Flee(getSelf()));
             out("You have reached your wimpy and will try to flee");
             return;
         }
@@ -177,7 +171,7 @@ public class BasicAttack extends FightAction {
 
         // Enhanced damage and armour penetration
         Ability secondAttack = getSelf().getLearned().getAbility(
-                SkillNames.SECOND_ATTACK);
+                SECOND_ATTACK);
         Ability thirdAttack = getSelf().getLearned().getAbility(THIRD_ATTACK);
 
         Weapon weapon = getSelf().getWeapon();
@@ -229,7 +223,7 @@ public class BasicAttack extends FightAction {
             damage.setRoll(weapon.getDamage());
         } else {
             // unarmed
-            damage.setRoll(getSelf().getDamage());
+            damage.setRoll(getSelf().getMobNpc().getDamage());
 
             Ability unarmed = getSelf().getLearned().getAbility(UNARMED_COMBAT);
 
@@ -245,7 +239,7 @@ public class BasicAttack extends FightAction {
         }
 
         Ability enhancedDamage = getSelf().getLearned().getAbility(
-                SkillNames.ENHANCED_DAMAGE);
+                ENHANCED_DAMAGE);
 
         if (!enhancedDamage.isNull() && enhancedDamage.isSuccessful(getSelf())) {
             damage.setMultiplier(2);
@@ -260,7 +254,7 @@ public class BasicAttack extends FightAction {
 
         // Mobs can have multiple attacks.
         if (!getSelf().isPlayer()) {
-            int attacks = getSelf().getAttacks();
+            int attacks = getSelf().getMobCombat().getAttacks();
 
             for (int i = 1; i < attacks; i++) {
                 DamageManager.deal(getSelf(), getTarget(), damage.roll());

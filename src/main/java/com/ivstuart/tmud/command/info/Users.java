@@ -1,5 +1,5 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -14,12 +14,6 @@
  *  limitations under the License.
  */
 
-/*
- * Created on 22-Sep-2003
- *
- * To change the template for this generated file go to
- * Window>Preferences>Java>Code Generation>Code and Comments
- */
 package com.ivstuart.tmud.command.info;
 
 import com.ivstuart.tmud.command.BaseCommand;
@@ -54,6 +48,11 @@ public class Users extends BaseCommand {
         for (String playerName : World.getPlayers()) {
             counter++;
             Player player = World.getMob(playerName).getPlayer();
+
+            if (player.getConnection() == null) {
+                continue;
+            }
+
             // String line = playerName + player.getData().getTitle();
             line = String.format(" %1$-3s %2$-5s %3$-16s %4$-16s %5$-4s %6$-8s %7$-16s",
                     counter,

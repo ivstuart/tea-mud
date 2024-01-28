@@ -1,5 +1,5 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@ package com.ivstuart.tmud.utils;
 import com.ivstuart.tmud.client.LaunchClient;
 import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.person.PlayerData;
-import com.ivstuart.tmud.person.statistics.MobMana;
 import com.ivstuart.tmud.server.LaunchMud;
 import com.ivstuart.tmud.state.*;
 import com.ivstuart.tmud.world.World;
@@ -56,7 +55,7 @@ public class TestHelper {
 
         player.getData().setAlignment(new Attribute("Alignment", 1000));
 
-        mob.setHeight(6);
+        mob.getMobBodyStats().setHeight(160);
 
         data.setTotalXp(0);
         data.setRemort(0);
@@ -73,7 +72,7 @@ public class TestHelper {
         data.setThirst(500);
         data.setHunger(500);
 
-        mob.setWimpy(10);
+        mob.getMobCombat().setWimpy(10);
 
         return mob;
     }

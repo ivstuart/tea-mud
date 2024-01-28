@@ -1,5 +1,5 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -33,10 +33,8 @@ import static com.ivstuart.tmud.constants.DoorState.*;
 public class RoomManager {
 
     private static final Logger LOGGER = LogManager.getLogger();
-
-    private static Door lastCreatedDoor;
-
     private static final List<DoorDAO> exitsWithDoors = new ArrayList<>();
+    private static Door lastCreatedDoor;
 
     public static void createDoors(String roomId_, String exit_) {
 

@@ -1,5 +1,5 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -113,7 +113,7 @@ public class KickTest {
         TestHelper.equipDagger(player1Mob);
 
         // Teach rescue to player
-        Ability ability = new Ability("kick", 100);
+        Ability ability = new Ability("kick", 105);
         player1Mob.getLearned().add(ability);
         World.add(new BaseSkill("kick"));
 

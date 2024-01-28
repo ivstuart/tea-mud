@@ -1,5 +1,5 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -14,12 +14,6 @@
  *  limitations under the License.
  */
 
-/*
- * Created on 08-Sep-2003
- *
- * To change the template for this generated file go to
- * Window>Preferences>Java>Code Generation>Code and Comments
- */
 package com.ivstuart.tmud.person;
 
 import com.ivstuart.tmud.state.Attribute;
@@ -368,5 +362,13 @@ public class PlayerData implements Serializable {
 
     public void addXpForFighting(int damage) {
         this.xpForFighting += damage;
+    }
+
+    public void restoreToPerfectHealth() {
+        drunkAttribute.setValue(0);
+        poisonAttribute.setValue(0);
+
+        thirstAttribute.restore();
+        hungerAttribute.restore();
     }
 }

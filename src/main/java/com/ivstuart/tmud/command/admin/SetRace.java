@@ -1,5 +1,5 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ public class SetRace extends AdminCommand {
 
         int raceId = Integer.parseInt(StringUtil.getLastWord(input));
 
-        mob.setRaceId(raceId);
+        mob.getMobBodyStats().setRaceId(raceId);
 
         mob_.out("You set the race of " + mob.getName() + " to race " + mob.getRace().getName());
 

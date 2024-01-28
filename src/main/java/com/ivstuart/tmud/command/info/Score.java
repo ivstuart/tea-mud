@@ -1,5 +1,5 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -14,12 +14,6 @@
  *  limitations under the License.
  */
 
-/*
- * Created on 23-Sep-2003
- *
- * To change the template for this generated file go to
- * Window>Preferences>Java>Code Generation>Code and Comments
- */
 package com.ivstuart.tmud.command.info;
 
 import com.ivstuart.tmud.command.BaseCommand;
@@ -73,7 +67,7 @@ public class Score extends BaseCommand {
         mob.out("   You are " + player.getData().getAge() + " years of age ("
                 + days + " Days, "
                 + hours + " Hours) old. You are "
-                + mob.getHeight() + "cm's tall.");
+                + mob.getMobBodyStats().getHeight() + "cm's tall.");
         mob.out("   You have gained " + player.getData().getTotalXp()
                 + " experience points " + player.getData().getRemorts()
                 + " remort.");

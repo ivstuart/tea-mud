@@ -1,3 +1,19 @@
+/*
+ *  Copyright 2024. Ivan Stuart
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
 package com.ivstuart.tmud.person.config;
 
 public enum ConfigEnum {
@@ -7,7 +23,7 @@ public enum ConfigEnum {
     AUTO_EXIT("You will automatically see exits"),
     AUTO_LOAD("You will automatically split items looted from corpses"),
     AUTO_LOOT("You will automatically loot corpses"),
-    AUTO_SAC( "You will automatically sacrifice corpses"),
+    AUTO_SAC("You will automatically sacrifice corpses"),
     AUTO_SPLIT("You will automatically split coins looted from corpses"),
     BATTLE("You will see progress of battle ground"),
     BLANK("You will have a blank line before your prompt"),
@@ -23,9 +39,12 @@ public enum ConfigEnum {
     VERBOSE("You will see room descriptions in verbose");
 
 
+    private final String on;
+    private final String off;
+
     ConfigEnum(String on) {
         this.on = on;
-        this.off = on.replaceFirst("will","will NOT");
+        this.off = on.replaceFirst("will", "will NOT");
     }
 
     public String getOn() {
@@ -35,10 +54,6 @@ public enum ConfigEnum {
     public String getOff() {
         return off;
     }
-
-    private final String on;
-
-    private final String off;
 
 
 }

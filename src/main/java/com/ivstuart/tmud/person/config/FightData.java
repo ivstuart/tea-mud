@@ -1,5 +1,5 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -16,12 +16,8 @@
 
 package com.ivstuart.tmud.person.config;
 
-import com.ivstuart.tmud.common.Colour;
-
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.EnumSet;
-import java.util.Iterator;
 import java.util.Random;
 
 /*
@@ -41,8 +37,7 @@ public class FightData implements Serializable {
     public void flip(FightEnum fightEnum) {
         if (enumSet.contains(fightEnum)) {
             enumSet.remove(fightEnum);
-        }
-        else {
+        } else {
             enumSet.add(fightEnum);
         }
     }
@@ -54,8 +49,7 @@ public class FightData implements Serializable {
     public String getState(FightEnum fightEnum) {
         if (isFlagSet(fightEnum)) {
             return fightEnum.getOn();
-        }
-        else {
+        } else {
             return fightEnum.getOff();
         }
     }
@@ -64,7 +58,7 @@ public class FightData implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (FightEnum fightEnum : FightEnum.values()) {
-            sb.append(String.format("[ %1$10s ] %2$s\n",fightEnum.name(), getState(fightEnum)));
+            sb.append(String.format("[ %1$10s ] %2$s\n", fightEnum.name(), getState(fightEnum)));
         }
         return sb.toString();
     }

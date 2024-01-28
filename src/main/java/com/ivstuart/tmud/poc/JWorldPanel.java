@@ -1,3 +1,19 @@
+/*
+ *  Copyright 2024. Ivan Stuart
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
 package com.ivstuart.tmud.poc;
 
 import org.apache.logging.log4j.LogManager;
@@ -24,6 +40,27 @@ public class JWorldPanel extends JPanel {
     public static void setResized() {
     }
 
+    public static Color getColour(int zoneId) {
+        switch (zoneId % 8) {
+            case 0:
+                return Color.GREEN;
+            case 1:
+                return Color.BLACK;
+            case 2:
+                return Color.BLUE;
+            case 3:
+                return Color.GRAY;
+            case 4:
+                return Color.MAGENTA;
+            case 5:
+                return Color.ORANGE;
+            case 6:
+                return Color.RED;
+            case 7:
+                return Color.PINK;
+        }
+        return Color.YELLOW;
+    }
 
     public void addClickListener() {
         this.addMouseMotionListener(new MouseInputAdapter() {
@@ -252,27 +289,5 @@ public class JWorldPanel extends JPanel {
             this.setPreferredSize(new Dimension(maxX + 10, maxY + 10));
         }
 
-    }
-
-    public static Color getColour(int zoneId) {
-        switch (zoneId % 8) {
-            case 0:
-                return Color.GREEN;
-            case 1:
-                return Color.BLACK;
-            case 2:
-                return Color.BLUE;
-            case 3:
-                return Color.GRAY;
-            case 4:
-                return Color.MAGENTA;
-            case 5:
-                return Color.ORANGE;
-            case 6:
-                return Color.RED;
-            case 7:
-                return Color.PINK;
-        }
-        return Color.YELLOW;
     }
 }

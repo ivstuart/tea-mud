@@ -1,5 +1,5 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -41,14 +41,13 @@ public class Channel extends BaseCommand {
 
         try {
             channelEnum = ChannelEnum.valueOf(input.toUpperCase());
-        }
-        catch (IllegalArgumentException iae) {
-            mob.out("No such channel to toggle:"+input);
+        } catch (IllegalArgumentException iae) {
+            mob.out("No such channel to toggle:" + input);
             return;
         }
 
         mob.getConfig().getChannelData().flip(channelEnum);
-        mob.out("Toggling channel "+input);
+        mob.out("Toggling channel " + input);
 
     }
 }

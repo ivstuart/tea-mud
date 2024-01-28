@@ -1,5 +1,5 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -14,12 +14,6 @@
  *  limitations under the License.
  */
 
-/*
- * Created on 04-Oct-2003
- *
- * To change the template for this generated file go to
- * Window>Preferences>Java>Code Generation>Code and Comments
- */
 package com.ivstuart.tmud.server;
 
 import com.ivstuart.tmud.command.admin.Ban;
@@ -29,7 +23,6 @@ import com.ivstuart.tmud.exceptions.MudException;
 import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.person.PlayerData;
 import com.ivstuart.tmud.person.carried.Money;
-import com.ivstuart.tmud.person.statistics.MobMana;
 import com.ivstuart.tmud.state.*;
 import com.ivstuart.tmud.state.util.EntityProvider;
 import com.ivstuart.tmud.utils.MudIO;
@@ -42,9 +35,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
-/**
- * @author stuarti
- */
 public class Login implements Readable {
 
     private static final Logger LOGGER = LogManager.getLogger();
@@ -131,13 +121,13 @@ public class Login implements Readable {
         data.setPassword(password);
 
 
-        mob.setGender(gender);
+        mob.getMobBodyStats().setGender(gender);
 
-        mob.setHeight(170 + DiceRoll.TWO_D_SIX.roll());
+        mob.getMobBodyStats().setHeight(170 + DiceRoll.TWO_D_SIX.roll());
 
-        mob.setRace(RaceData.RACE_NAME[choice]);
+        mob.getMobBodyStats().setRace(RaceData.RACE_NAME[choice]);
 
-        mob.setRaceId(choice);
+        mob.getMobBodyStats().setRaceId(choice);
 
         Race race = mob.getRace();
 
@@ -150,7 +140,7 @@ public class Login implements Readable {
         // Str Con Dex Int Wis - Set
         player.setAttributes(attributes);
 
-        mob.setUndead(mob.getRace().isUndead());
+        mob.getMobBodyStats().setUndead(mob.getRace().isUndead());
 
         Attribute alignment = new Attribute("Alignment", -5000, 5000);
 

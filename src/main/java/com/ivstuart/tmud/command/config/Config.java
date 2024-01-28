@@ -1,5 +1,5 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -18,7 +18,6 @@ package com.ivstuart.tmud.command.config;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.Player;
-import com.ivstuart.tmud.person.config.ChannelEnum;
 import com.ivstuart.tmud.person.config.ConfigEnum;
 import com.ivstuart.tmud.state.Mob;
 
@@ -42,15 +41,14 @@ public class Config extends BaseCommand {
 
         try {
             configEnum = ConfigEnum.valueOf(input.toUpperCase());
-        }
-        catch (IllegalArgumentException iae) {
-            mob.out("No such channel to toggle:"+input);
+        } catch (IllegalArgumentException iae) {
+            mob.out("No such channel to toggle:" + input);
             return;
         }
 
 
         mob.getConfig().getConfigData().flip(configEnum);
 
-        mob.out("Toggling config option "+configEnum.name());
+        mob.out("Toggling config option " + configEnum.name());
     }
 }

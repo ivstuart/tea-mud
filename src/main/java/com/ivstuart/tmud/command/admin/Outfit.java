@@ -1,5 +1,5 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -69,7 +69,7 @@ public class Outfit extends AdminCommand {
 
     private void createItem(Mob mob, String id) {
         Item item = EntityProvider.createItem(id);
-        item.setSize(mob.getHeight());
+        item.setSize(mob.getMobBodyStats().getHeight());
         mob.getInventory().add(item);
     }
 }

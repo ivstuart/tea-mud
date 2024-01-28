@@ -1,5 +1,5 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -17,7 +17,6 @@
 package com.ivstuart.tmud.person.config;
 
 import java.io.Serializable;
-import java.util.BitSet;
 import java.util.EnumSet;
 
 /*
@@ -37,8 +36,7 @@ public class ConfigData implements Serializable {
     public void flip(ConfigEnum configEnum) {
         if (enumSet.contains(configEnum)) {
             enumSet.remove(configEnum);
-        }
-        else {
+        } else {
             enumSet.add(configEnum);
         }
     }
@@ -50,8 +48,7 @@ public class ConfigData implements Serializable {
     public String getState(ConfigEnum configEnum) {
         if (isFlagSet(configEnum)) {
             return configEnum.getOn();
-        }
-        else {
+        } else {
             return configEnum.getOff();
         }
     }
@@ -60,7 +57,7 @@ public class ConfigData implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (ConfigEnum configEnum : ConfigEnum.values()) {
-            sb.append(String.format("[ %1$10s ] %2$s\n",configEnum.name(), getState(configEnum)));
+            sb.append(String.format("[ %1$10s ] %2$s\n", configEnum.name(), getState(configEnum)));
         }
         return sb.toString();
     }

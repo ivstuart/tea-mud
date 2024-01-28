@@ -177,6 +177,9 @@ public class Attribute implements Serializable {
         return current >= maximum;
     }
 
+    public void setMaximum(int max) {
+        this.maximum = max;
+    }
 
     public void increasePercentage(int i) {
         int inc = 1 + (i * maximum) / 100;
@@ -190,10 +193,6 @@ public class Attribute implements Serializable {
 
     public void invert() {
         current = -current;
-    }
-
-    public void setMaximum(int max) {
-        this.maximum = max;
     }
 
     public void setToMaximum(int max) {

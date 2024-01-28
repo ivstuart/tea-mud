@@ -1,5 +1,5 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -14,12 +14,6 @@
  *  limitations under the License.
  */
 
-/*
- * Created on 23-Sep-2003
- *
- * To change the template for this generated file go to
- * Window>Preferences>Java>Code Generation>Code and Comments
- */
 package com.ivstuart.tmud.command.item;
 
 import com.ivstuart.tmud.command.BaseCommand;
@@ -62,7 +56,7 @@ public class Wear extends BaseCommand {
                     continue;
                 }
 
-                if (!item.isCorrectSize(mob.getHeight())) {
+                if (!item.isCorrectSize(mob.getMobBodyStats().getHeight())) {
                     mob.out("That item is the wrong size to wear, resize it first");
                     continue;
                 }
@@ -122,7 +116,7 @@ public class Wear extends BaseCommand {
             return;
         }
 
-        if (!item.isCorrectSize(mob.getHeight())) {
+        if (!item.isCorrectSize(mob.getMobBodyStats().getHeight())) {
             mob.out("That item is the wrong size to wear, resize it first");
             return;
         }

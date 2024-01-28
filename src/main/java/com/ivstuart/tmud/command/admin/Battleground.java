@@ -1,5 +1,5 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -14,16 +14,9 @@
  *  limitations under the License.
  */
 
-/*
- * Created on 23-Sep-2003
- *
- * To change the template for this generated file go to
- * Window>Preferences>Java>Code Generation>Code and Comments
- */
 package com.ivstuart.tmud.command.admin;
 
 import com.ivstuart.tmud.common.DiceRoll;
-import com.ivstuart.tmud.person.config.FightData;
 import com.ivstuart.tmud.person.config.FightEnum;
 import com.ivstuart.tmud.state.Mob;
 import com.ivstuart.tmud.state.Room;

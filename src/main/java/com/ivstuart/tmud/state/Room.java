@@ -1,5 +1,5 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.person.statistics.diseases.Disease;
 import com.ivstuart.tmud.person.statistics.diseases.DiseaseFactory;
-import com.ivstuart.tmud.poc.RoomFlags;
 import com.ivstuart.tmud.state.util.EntityProvider;
 import com.ivstuart.tmud.state.util.RoomManager;
 import com.ivstuart.tmud.utils.MudArrayList;
@@ -40,22 +39,15 @@ public class Room extends BasicThing implements Msgable {
     private static final Logger LOGGER = LogManager.getLogger();
 
     private static final long serialVersionUID = 1L;
-
+    private final EnumSet<RoomEnum> flags;
     private transient List<Track> tracks;
-
     private String _type;
-
     private transient MudArrayList<Prop> _props;
-
     private transient MudArrayList<Exit> _exits;
-
     private transient MudArrayList<Mob> _mobs;
-
     private transient Inventory _items;
     private transient List<Disease> diseases;
     private SectorType sectorType;
-
-    private final EnumSet<RoomEnum> flags;
 
     public Room() {
         initRoom();
@@ -69,14 +61,6 @@ public class Room extends BasicThing implements Msgable {
         this.sectorType = room.sectorType;
 
         this.flags = EnumSet.copyOf(room.flags);
-    }
-
-    public boolean hasFlag(RoomEnum flag) {
-        return this.flags.contains(flag);
-    }
-
-    public void setFlag(RoomEnum flag) {
-        this.flags.add(flag);
     }
 
     public static void setPickable(boolean flag) {
@@ -93,6 +77,14 @@ public class Room extends BasicThing implements Msgable {
 
     public static void setStrength(int str) {
         RoomManager.setDoorStrength(str);
+    }
+
+    public boolean hasFlag(RoomEnum flag) {
+        return this.flags.contains(flag);
+    }
+
+    public void setFlag(RoomEnum flag) {
+        this.flags.add(flag);
     }
 
     public List<Disease> getDiseases() {

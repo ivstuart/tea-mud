@@ -1,5 +1,5 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ public class Wimpy extends BaseCommand {
 
             mob.out("Wimpy set to " + wimpy);
 
-            mob.setWimpy(wimpy);
+            mob.getMobCombat().setWimpy(wimpy);
         } catch (NumberFormatException e) {
             mob.out("Wimpy number formatting issue with input value " + input + ", number only please");
         }

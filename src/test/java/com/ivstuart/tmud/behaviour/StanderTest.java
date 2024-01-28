@@ -1,5 +1,5 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -68,7 +68,7 @@ public class StanderTest {
         sheepMob.setAlias("sheep");
         sheepMob.setHp("500");
         sheepMob.setMv("500");
-        sheepMob.setBehaviour("Stander");
+        sheepMob.getMobNpc().setBehaviour("Stander");
 
 
         BaseBehaviour baseBehaviour = BehaviourFactory.create("Stander");

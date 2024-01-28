@@ -1,5 +1,5 @@
 /*
- *  Copyright 2016. Ivan Stuart
+ *  Copyright 2024. Ivan Stuart
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -29,7 +29,6 @@ import com.ivstuart.tmud.constants.DamageType;
 import com.ivstuart.tmud.constants.SkillNames;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
-import com.ivstuart.tmud.person.config.ConfigData;
 import com.ivstuart.tmud.person.config.ConfigEnum;
 import com.ivstuart.tmud.person.statistics.affects.Affect;
 import com.ivstuart.tmud.person.statistics.diseases.Disease;
@@ -257,7 +256,7 @@ public class DamageManager {
     private static int checkArmourAtHitLocation(Mob defender) {
 
         if (!defender.isPlayer()) {
-            return defender.getArmour();
+            return defender.getMobNpc().getArmour();
         }
 
         // Assign random damage
