@@ -16,7 +16,7 @@
 
 package com.ivstuart.tmud.command.admin;
 
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 import com.ivstuart.tmud.world.WorldTime;
 
 public class PauseTime extends AdminCommand {

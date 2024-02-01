@@ -20,13 +20,12 @@ import com.ivstuart.tmud.command.ability.Tackle;
 import com.ivstuart.tmud.command.info.Prompt;
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.Msg;
-import com.ivstuart.tmud.constants.SkillNames;
 import com.ivstuart.tmud.fighting.BasicDamage;
 import com.ivstuart.tmud.fighting.CombatCal;
 import com.ivstuart.tmud.fighting.DamageManager;
-import com.ivstuart.tmud.state.Ability;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Weapon;
+import com.ivstuart.tmud.state.mobs.Ability;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.items.Weapon;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

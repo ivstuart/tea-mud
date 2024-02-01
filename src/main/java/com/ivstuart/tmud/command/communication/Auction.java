@@ -18,7 +18,7 @@ package com.ivstuart.tmud.command.communication;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.config.ChannelEnum;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 import com.ivstuart.tmud.world.Channel;
 import com.ivstuart.tmud.world.ChannelHistory;
 import com.ivstuart.tmud.world.World;

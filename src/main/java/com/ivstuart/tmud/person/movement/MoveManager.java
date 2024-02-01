@@ -17,7 +17,11 @@
 package com.ivstuart.tmud.person.movement;
 
 import com.ivstuart.tmud.common.Msg;
-import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.state.mobs.Ability;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Exit;
+import com.ivstuart.tmud.state.places.Room;
+import com.ivstuart.tmud.state.places.Track;
 import com.ivstuart.tmud.state.util.RoomManager;
 
 import java.util.List;

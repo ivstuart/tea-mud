@@ -1,4 +1,4 @@
-class: state.Waterskin
+class: state.items.Waterskin
 id: waterskin-001
 alias: waterskin canteen
 short: hide waterskin
@@ -9,7 +9,7 @@ cost: 10
 rent: 5
 affects:
 # poison, alcohol, food, thirst
-liquardType: 0:0:10:100
+liquidType: 0:0:10:100
 
 id: bottle-of-beer-001
 alias: bottle beer
@@ -21,7 +21,7 @@ cost: 10
 rent: 5
 affects:
 # poison, alcohol, food, thirst
-liquardType: 0:30:20:50
+liquidType: 0:30:20:50
 shopSupplied: true
 
 id: bottle-of-wine-001
@@ -34,7 +34,7 @@ cost: 10
 rent: 5
 affects:
 # poison, alcohol, food, thirst
-liquardType: 0:90:20:50
+liquidType: 0:90:20:50
 shopSupplied: true
 
 id: bottle-of-ale-001
@@ -47,7 +47,7 @@ cost: 10
 rent: 5
 affects:
 # poison, alcohol, food, thirst
-liquardType: 0:20:20:50
+liquidType: 0:20:20:50
 shopSupplied: true
 
 id: bottle-of-whisky-001
@@ -60,7 +60,7 @@ cost: 10
 rent: 5
 affects:
 # poison, alcohol, food, thirst
-liquardType: 0:300:20:50
+liquidType: 0:300:20:50
 shopSupplied: true
 
 id: cup-of-tea-001
@@ -73,7 +73,7 @@ cost: 10
 rent: 5
 affects:
 # poison, alcohol, food, thirst
-liquardType: 0:-10:10:50
+liquidType: 0:-10:10:50
 shopSupplied: true
 
 id: cup-of-coffee-001
@@ -86,7 +86,7 @@ cost: 10
 rent: 5
 affects:
 # poison, alcohol, food, thirst
-liquardType: 0:-10:10:50
+liquidType: 0:-10:10:50
 shopSupplied: true
 
 id: draft-salt-water-001
@@ -99,7 +99,7 @@ cost: 10
 rent: 5
 affects:
 # poison, alcohol, food, thirst
-liquardType: 0:0:10:-50
+liquidType: 0:0:10:-50
 shopSupplied: true
 
 id: poison-water-001
@@ -112,5 +112,5 @@ cost: 10
 rent: 5
 affects:
 # poison, alcohol, food, thirst
-liquardType: 50:0:10:50
+liquidType: 50:0:10:50
 shopSupplied: true

@@ -1,4 +1,4 @@
-class: state.Food
+class: state.items.Food
 id: food-001
 alias: food bread loaf
 short: loaf of bread
@@ -9,10 +9,10 @@ cost: 10
 rent: 5
 affects:
 
-id: waffer-001
-alias: waffer food bread
-short: waffer of bread
-look: waffer of bread
+id: wafer-001
+alias: wafer food bread
+short: wafer of bread
+look: wafer of bread
 type: food
 weight: 5
 cost: 10

@@ -1,4 +1,4 @@
-class: state.Mob
+class: state.mobs.Mob
 
 id: horse-001
 name: horse

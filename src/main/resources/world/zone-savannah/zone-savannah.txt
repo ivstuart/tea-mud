@@ -1,7 +1,7 @@
 include: zone-savannah/mobs-savannah.txt
 include: zone-savannah/rooms-savannah.txt
 
-class: state.Zone
+class: state.places.Zone
 
 #id: 7
 #propInRoom: teacher-002 Z6-:-2:0:-1

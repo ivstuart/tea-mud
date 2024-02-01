@@ -17,8 +17,8 @@
 
 package com.ivstuart.tmud.person.carried;
 
-import com.ivstuart.tmud.state.Item;
-import com.ivstuart.tmud.state.Torch;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.items.Torch;
 import com.ivstuart.tmud.utils.MudArrayList;
 
 import java.io.Serializable;

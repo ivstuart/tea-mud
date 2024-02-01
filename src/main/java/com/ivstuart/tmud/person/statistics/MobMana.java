@@ -17,7 +17,7 @@
 package com.ivstuart.tmud.person.statistics;
 
 import com.ivstuart.tmud.constants.ManaType;
-import com.ivstuart.tmud.state.Spell;
+import com.ivstuart.tmud.state.skills.Spell;
 
 import java.io.Serializable;
 

@@ -22,7 +22,11 @@ import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.fighting.action.FightAction;
 import com.ivstuart.tmud.fighting.action.GroundFighting;
-import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.state.mobs.Ability;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.mobs.MobEnum;
+import com.ivstuart.tmud.state.mobs.MobStatus;
+import com.ivstuart.tmud.state.places.RoomEnum;
 
 import static com.ivstuart.tmud.constants.SkillNames.TACKLE;
 
@@ -181,7 +185,7 @@ public class Tackle extends BaseCommand {
             Ability ability = getSelf().getLearned().getAbility(TACKLE);
 
             // Always successful against a sleeping opponent
-            if (!ability.isNull() && ability.isSuccessful(getSelf()) && DiceRoll.ONE_D100.rollMoreThan(50) || getTarget().getState().isSleeping()) {
+            if (!ability.isNull() && ability.isSuccessful(getSelf()) && DiceRoll.ONE_D100.rollMoreThan(50) || getTarget().getState().isSleeping() || ability.getSkill() > 100) {
                 out(new Msg(getSelf(), getTarget(), "<S-You/NAME> successfully tackled <T-you/NAME> to the ground."));
                 setTackled(getSelf(), getTarget());
             } else {

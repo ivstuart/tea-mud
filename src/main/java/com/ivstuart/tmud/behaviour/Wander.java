@@ -18,8 +18,8 @@ package com.ivstuart.tmud.behaviour;
 
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.person.movement.MoveManager;
-import com.ivstuart.tmud.state.Exit;
-import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.places.Exit;
+import com.ivstuart.tmud.state.places.Room;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

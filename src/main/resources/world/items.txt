@@ -1,4 +1,4 @@
-# including sub class items aswell
+# including sub class items as well
 include: gems.txt
 include: armour.txt
 include: weapons.txt
@@ -6,7 +6,7 @@ include: food.txt
 include: waterskins.txt
 include: torches.txt
 
-class: state.Wand
+class: state.items.Wand
 
 id: wand-001
 alias: wand
@@ -16,7 +16,7 @@ wear: PRIMARY
 properties: fireball
 charges: 3
 
-class: state.Scroll
+class: state.items.Scroll
 
 id: fb-scroll-001
 alias: old fireball scroll
@@ -25,7 +25,7 @@ look: an old parchment with fiery writing
 wear: PRIMARY
 properties: fireball
 
-class: state.DoorKey
+class: state.items.DoorKey
 
 id: key-001
 alias: key
@@ -34,14 +34,14 @@ look: large golden key
 wear: PRIMARY
 properties: door1
 
-class: state.Item
+class: state.items.Item
 
 id: map-001
 alias: map
 short: map
 look: map
 
-class: state.Bag
+class: state.items.Bag
 id: bag-001
 alias: bag
 short: leather bag
@@ -49,7 +49,7 @@ look: worn leather bag
 type: container
 weight: 1
 
-class: state.Chest
+class: state.items.Chest
 id: chest-001
 alias: wooden chest
 short: wooden chest
@@ -58,7 +58,7 @@ type: container
 weight: 100000
 keyId: door1
 
-class: state.Item
+class: state.items.Item
 id: tinder-box-001
 alias: small tinder-box
 short: small tinder-box
@@ -72,7 +72,7 @@ short: flint and tinder
 look: flint and tinder
 type: lighter
 
-class: state.Potion
+class: state.items.Potion
 id: potion-001
 alias: potion
 short: green potion
@@ -84,7 +84,7 @@ rent: 5
 affects:
 properties: fireball
 
-class: state.Item
+class: state.items.Item
 id: lockpicks-001
 alias: lockpicks
 short: lockpicks
@@ -100,10 +100,10 @@ type: BUTCHERABLE
 # wand
 # scroll
 # beer 
-# coffee - think caffine verses sleep spell
+# coffee - think caffeine verses sleep spell
 # pets?
 
-class: state.Item
+class: state.items.Item
 id: guild-token-001
 alias: small guild token
 short: small guild token

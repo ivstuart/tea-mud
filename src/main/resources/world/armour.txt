@@ -1,5 +1,5 @@
 #Armour
-class: state.Armour
+class: state.items.Armour
 
 id: scarf-001
 alias: scarf
@@ -53,7 +53,7 @@ affects:
 armour: 0 0 0 0 0 10 0
 climbing: true
 
-class: state.KickArmour
+class: state.items.KickArmour
 id: black-boots-001
 alias: black leather boots
 brief: black leather boots
@@ -68,7 +68,7 @@ rent: 5
 affects:
 armour: 0 0 0 0 0 10
 
-class: state.KickArmour
+class: state.items.KickArmour
 id: black-anklet-001
 alias: black anklet spiky
 brief: spiky black anklet
@@ -80,7 +80,7 @@ cost: 50
 kick: 1
 armour: 0 0 0 0 0 4
 
-class: state.StatArmour
+class: state.items.StatArmour
 id: wizard-hat-001
 alias: blue stars wizard cloth hat
 brief: pointy cloth hat
@@ -96,7 +96,7 @@ rent: 5
 affects:
 armour: 0 0 0 0 0 10
 
-class: state.Armour
+class: state.items.Armour
 id: ring-fire-prot-001
 alias: ring fire protection
 brief: ring of fire protection
@@ -110,7 +110,7 @@ armour: 0 0 0 0 0 10
 saveType: FIRE
 save: 13
 
-class: state.Armour
+class: state.items.Armour
 id: ring-of-combat-001
 alias: ring of combat
 brief: ring of combat
@@ -123,7 +123,7 @@ rent: 5
 affects:
 armour: 0 0 0 0 0 10
 
-class: state.Armour
+class: state.items.Armour
 id: mantel-of-good-001
 alias: mantel good yellow
 brief: a yellow aura of goodness
@@ -136,7 +136,7 @@ rent: 5
 affects:
 armour: 0 0 0 0 0 10
 
-class: state.Armour
+class: state.items.Armour
 id: mantel-of-protection-001
 alias: mantel protection yellow
 brief: a yellow aura of protection
@@ -148,7 +148,7 @@ rent: 5
 affects:
 armour: 0 0 0 0 0 100
 
-class: state.Armour
+class: state.items.Armour
 id: orb-of-power-001
 alias: orb power
 brief: a green orb of power radiates mana
@@ -160,7 +160,7 @@ mana: 100
 rent: 5
 armour: 0 0 0 0 0 10
 
-class: state.Armour
+class: state.items.Armour
 id: jade-earring-001
 alias: jade earring
 brief: jade earring
@@ -172,7 +172,7 @@ move: 10
 rent: 5
 armour: 5 0 0 0 0 0
 
-class: state.Armour
+class: state.items.Armour
 id: cool-shades-001
 alias: cool shades
 brief: cool shades
@@ -183,7 +183,7 @@ cost: 1000
 rent: 5
 armour: 15 0 0 0 0 0
 
-class: state.Armour
+class: state.items.Armour
 id: mask-madness-001
 alias: mask madness
 brief: mask of madness
@@ -194,7 +194,7 @@ cost: 1000
 rent: 5
 armour: 15 0 0 0 0 0
 
-class: state.Armour
+class: state.items.Armour
 id: mask-madness-001
 alias: mask madness
 brief: mask of madness
@@ -205,7 +205,7 @@ cost: 1000
 rent: 5
 armour: 15 0 0 0 0 0
 
-class: state.Armour
+class: state.items.Armour
 id: spiked-collar-001
 alias: spiked collar
 brief: spiked collar
@@ -216,7 +216,7 @@ cost: 1000
 rent: 5
 armour: 15 0 0 0 0 0 0
 
-class: state.Armour
+class: state.items.Armour
 id: spiked-pauldrons-001
 alias: spiked pauldrons
 brief: spiked pauldrons
@@ -227,7 +227,7 @@ cost: 1000
 rent: 5
 armour: 15 0 0 0 0 0
 
-class: state.Armour
+class: state.items.Armour
 id: grey-cloak-001
 alias: grey cloak
 brief: grey cloak
@@ -238,7 +238,7 @@ cost: 1000
 rent: 5
 armour: 0 10 0 0 0 10
 
-class: state.Armour
+class: state.items.Armour
 id: chest-plate-001
 alias: chest plate
 brief: chest plate
@@ -249,7 +249,7 @@ cost: 1000
 rent: 5
 armour: 0 50 0 0 0 10
 
-class: state.Armour
+class: state.items.Armour
 id: greaves-001
 alias: greaves
 brief: greaves
@@ -260,7 +260,7 @@ cost: 1000
 rent: 5
 armour: 0 0 20 0 0 10
 
-class: state.Armour
+class: state.items.Armour
 id: greaves-001
 alias: greaves
 brief: greaves
@@ -271,7 +271,7 @@ cost: 1000
 rent: 5
 armour: 0 0 20 0 0 10
 
-class: state.Armour
+class: state.items.Armour
 id: gauntlets-001
 alias: gauntlets
 brief: gauntlets
@@ -282,7 +282,7 @@ cost: 1000
 rent: 5
 armour: 0 0 20 0 0 10
 
-class: state.Armour
+class: state.items.Armour
 id: bangle-001
 alias: bangle
 brief: bangle
@@ -293,7 +293,7 @@ cost: 1000
 rent: 5
 armour: 0 0 20 0 0 10
 
-class: state.Armour
+class: state.items.Armour
 id: leather-belt-001
 alias: leather belt
 brief: leather belt
@@ -304,7 +304,7 @@ cost: 1000
 rent: 5
 armour: 0 0 0 20 0 10
 
-class: state.Armour
+class: state.items.Armour
 id: chain-mail-leggings-001
 alias: chain mail leggings
 brief: chain mail leggings
@@ -315,7 +315,7 @@ cost: 1000
 rent: 5
 armour: 0 0 0 0 20 10
 
-class: state.Armour
+class: state.items.Armour
 id: leather-boots-001
 alias: leather boots
 brief: leather boots

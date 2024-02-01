@@ -17,8 +17,8 @@
 package com.ivstuart.tmud.state.util;
 
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.BaseSkill;
-import com.ivstuart.tmud.state.Spell;
+import com.ivstuart.tmud.state.skills.BaseSkill;
+import com.ivstuart.tmud.state.skills.Spell;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Test;

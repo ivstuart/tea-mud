@@ -17,8 +17,12 @@
 package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.state.items.Prop;
+import com.ivstuart.tmud.state.mobs.Ability;
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Room;
+import com.ivstuart.tmud.state.skills.BaseSkill;
 import com.ivstuart.tmud.utils.TestHelper;
 import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
@@ -59,7 +63,7 @@ public class PracticeTest {
 
         Mob player1Mob = TestHelper.makeDefaultPlayerMob("player1");
         Prop teacher = TestHelper.makeTeacherProp("teacher");
-        Room whiteRoom = new Room();
+        Room whiteRoom = TestHelper.getPortalAndClearMobs();
 
         whiteRoom.add(teacher);
         whiteRoom.add(player1Mob);

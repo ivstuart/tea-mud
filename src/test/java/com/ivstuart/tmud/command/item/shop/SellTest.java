@@ -18,9 +18,9 @@ package com.ivstuart.tmud.command.item.shop;
 
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Room;
-import com.ivstuart.tmud.state.ShopKeeper;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Room;
+import com.ivstuart.tmud.state.mobs.ShopKeeper;
 import com.ivstuart.tmud.utils.TestHelper;
 import org.junit.Test;
 
@@ -32,7 +32,7 @@ public class SellTest {
     @Test
     public void testSellDagger() {
 
-        Room room = new Room();
+        Room room = TestHelper.getPortalAndClearMobs();
         room.setId("A room");
 
         ShopKeeper shopKeeper = new ShopKeeper();

@@ -16,8 +16,8 @@
 
 package com.ivstuart.tmud.command.ability;
 
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.MobStatus;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.mobs.MobStatus;
 
 public class AbilityHelper {
 

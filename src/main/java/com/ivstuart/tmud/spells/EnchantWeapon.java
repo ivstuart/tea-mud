@@ -16,10 +16,10 @@
 
 package com.ivstuart.tmud.spells;
 
-import com.ivstuart.tmud.state.Item;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Spell;
-import com.ivstuart.tmud.state.Weapon;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.skills.Spell;
+import com.ivstuart.tmud.state.items.Weapon;
 
 public class EnchantWeapon implements SpellEffect {
 

@@ -17,7 +17,7 @@
 package com.ivstuart.tmud.world;
 
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.Item;
+import com.ivstuart.tmud.state.items.Item;
 import com.ivstuart.tmud.utils.MudIO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

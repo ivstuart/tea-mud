@@ -2,7 +2,7 @@ include: zone-homeland-good/mobs-hl-good.txt
 include: zone-homeland-good/rooms-hl-good.txt
 include: zone-homeland-good/props-hl-good.txt
 
-class: state.Zone
+class: state.places.Zone
 
 id: 0
 propInRoom: teacher-002 Z0-:-2:0:-1

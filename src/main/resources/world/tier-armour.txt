@@ -1,5 +1,5 @@
 #Armour
-class: state.Armour
+class: state.items.Armour
 
 id: tier-001
 alias: talisman

@@ -16,8 +16,8 @@
 
 package com.ivstuart.tmud.poc.mob;
 
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.MobEnum;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.mobs.MobEnum;
 
 import java.util.*;
 

@@ -17,9 +17,10 @@
 package com.ivstuart.tmud.command.info;
 
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Race;
-import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.player.Race;
+import com.ivstuart.tmud.state.places.Room;
+import com.ivstuart.tmud.state.places.Exit;
 import com.ivstuart.tmud.utils.TestHelper;
 import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
@@ -56,9 +57,15 @@ public class ScanTest {
         World.getInstance().addToWorld(human);
 
         Room room = TestHelper.makeRoomGrid();
+
+        LOGGER.debug("Room information :"+room);
+
         room.add(mob);
         mob.setRoom(room);
-        room.getExit("north").getDestinationRoom().add(ste);
+
+        Exit exit =  room.getExit("north");
+        Room destinationRoom = exit.getDestinationRoom();
+        destinationRoom.add(ste);
 
         Scan scan = new Scan();
         scan.execute(mob, "");

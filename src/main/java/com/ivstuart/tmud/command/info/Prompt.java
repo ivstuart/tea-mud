@@ -20,8 +20,8 @@ import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.constants.FightConstants;
 import com.ivstuart.tmud.person.statistics.ManaAttribute;
 import com.ivstuart.tmud.person.statistics.MobMana;
-import com.ivstuart.tmud.state.Attribute;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.player.Attribute;
+import com.ivstuart.tmud.state.mobs.Mob;
 
 import static com.ivstuart.tmud.common.Colour.*;
 import static com.ivstuart.tmud.constants.ManaType.*;

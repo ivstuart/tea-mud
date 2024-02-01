@@ -1,4 +1,4 @@
-class: state.Weapon
+class: state.items.Weapon
 
 # SKILL types: slashing piercing crushing chopping thrusting
 

@@ -18,8 +18,9 @@ package com.ivstuart.tmud.command.admin;
 
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.person.config.FightEnum;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Room;
+import com.ivstuart.tmud.state.places.RoomLocation;
 import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -53,6 +54,14 @@ public class Battleground extends AdminCommand implements Runnable {
 
         return "ZBG-:" + x + ":" + y + ":" + z;
     }
+
+    public static RoomLocation getRandomStartLocation() {
+        int x = DiceRoll.ONE_D_TEN.roll() - 1;
+        int y = -1 * (DiceRoll.ONE_D_TEN.roll() - 1);
+        int z = 0;
+        return new RoomLocation(x,y,z);
+    }
+
 
     public static void deathOf(Mob defender) {
 
@@ -123,11 +132,7 @@ public class Battleground extends AdminCommand implements Runnable {
             mob.getMv().restore();
             mob.getMana().restore();
 
-            Room destination = World.getRoom(mob.getReturnRoom());
-
-            mob.getRoom().remove(mob);
-            destination.add(mob);
-            mob.setRoom(destination);
+            mob.setRoomLocationToBeforeBattleGround();
         }
     }
 
@@ -184,15 +189,15 @@ public class Battleground extends AdminCommand implements Runnable {
         for (Mob mob : mobs) {
 
             mob.setReturnRoom();
-            String roomId = getRandomBattleGroundRoom();
-            Room destination = World.getRoom(roomId);
+            RoomLocation startLocation = getRandomStartLocation();
+            Room destination = World.getRoom(startLocation);
 
             if (destination != null) {
                 mob.getRoom().remove(mob);
-                mob.setRoom(destination);
+                mob.setRoomLocation(startLocation);
                 destination.add(mob);
             } else {
-                LOGGER.error("Room id: " + roomId + " does not exist to battleground in");
+                LOGGER.error("Room id: " + startLocation + " does not exist to battleground in");
             }
         }
 

@@ -17,7 +17,11 @@
 package com.ivstuart.tmud.spells;
 
 import com.ivstuart.tmud.person.movement.MoveManager;
-import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.mobs.MobEnum;
+import com.ivstuart.tmud.state.places.Room;
+import com.ivstuart.tmud.state.skills.Spell;
 
 /**
  * Created by Ivan on 09/08/2016.

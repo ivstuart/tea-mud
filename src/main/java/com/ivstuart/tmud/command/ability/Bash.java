@@ -20,7 +20,11 @@ import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.fighting.action.FightAction;
-import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.state.mobs.Ability;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.mobs.MobEnum;
+import com.ivstuart.tmud.state.mobs.MobStatus;
+import com.ivstuart.tmud.state.places.RoomEnum;
 
 import static com.ivstuart.tmud.constants.SkillNames.BASH;
 

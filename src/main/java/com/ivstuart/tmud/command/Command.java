@@ -17,7 +17,7 @@
 package com.ivstuart.tmud.command;
 
 import com.ivstuart.tmud.common.MobState;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 
 /**
  * @author stuarti

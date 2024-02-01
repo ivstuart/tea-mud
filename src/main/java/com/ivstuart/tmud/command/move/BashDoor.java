@@ -19,9 +19,9 @@ package com.ivstuart.tmud.command.move;
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.constants.DoorState;
-import com.ivstuart.tmud.state.Door;
-import com.ivstuart.tmud.state.Exit;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.places.Door;
+import com.ivstuart.tmud.state.places.Exit;
+import com.ivstuart.tmud.state.mobs.Mob;
 
 public class BashDoor extends BaseCommand {
 

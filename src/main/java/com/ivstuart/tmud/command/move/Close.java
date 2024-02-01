@@ -18,7 +18,11 @@ package com.ivstuart.tmud.command.move;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.constants.DoorState;
-import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.state.items.Chest;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Door;
+import com.ivstuart.tmud.state.places.Exit;
 
 public class Close extends BaseCommand {
 

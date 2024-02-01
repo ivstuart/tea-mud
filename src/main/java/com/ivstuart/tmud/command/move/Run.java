@@ -18,8 +18,8 @@ package com.ivstuart.tmud.command.move;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.CommandProvider;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Room;
 
 public class Run extends BaseCommand {
 

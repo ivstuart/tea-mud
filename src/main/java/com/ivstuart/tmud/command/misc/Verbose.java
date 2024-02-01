@@ -18,7 +18,7 @@ package com.ivstuart.tmud.command.misc;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.config.ConfigEnum;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 
 /**
  * @author stuarti

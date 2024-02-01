@@ -19,9 +19,10 @@ package com.ivstuart.tmud.command.clan;
 import com.ivstuart.tmud.exceptions.MudException;
 import com.ivstuart.tmud.person.ClanMembership;
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Race;
-import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.RoomLocation;
+import com.ivstuart.tmud.state.player.Race;
+import com.ivstuart.tmud.state.places.Room;
 import com.ivstuart.tmud.utils.TestHelper;
 import com.ivstuart.tmud.world.Clan;
 import com.ivstuart.tmud.world.Clans;
@@ -79,7 +80,7 @@ public class ClanDonateTest {
         Clan clan = new Clan();
         clan.setClanId(0);
         clan.setAlignment(true);
-        clan.setDonateRoom("room-01");
+        clan.setDonateRoom(new RoomLocation(0,0,0));
 
         Room room = new Room();
         room.setId("room-01");

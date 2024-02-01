@@ -16,8 +16,8 @@
 
 package com.ivstuart.tmud.person.statistics.affects;
 
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Spell;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.skills.Spell;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

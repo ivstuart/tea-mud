@@ -18,7 +18,7 @@ package com.ivstuart.tmud.command.admin;
 
 import com.ivstuart.tmud.command.CommandProvider;
 import com.ivstuart.tmud.command.misc.Quit;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 import com.ivstuart.tmud.world.Clans;
 import com.ivstuart.tmud.world.MudStats;
 import com.ivstuart.tmud.world.PostalSystem;

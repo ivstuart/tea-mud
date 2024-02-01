@@ -19,7 +19,7 @@ package com.ivstuart.tmud.command.misc;
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.server.Readable;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 
 /**
  * @author stuarti

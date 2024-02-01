@@ -18,7 +18,7 @@ package com.ivstuart.tmud.command.admin;
 
 import com.ivstuart.tmud.person.statistics.diseases.Disease;
 import com.ivstuart.tmud.person.statistics.diseases.DiseaseFactory;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 import com.ivstuart.tmud.utils.StringUtil;
 
 /**

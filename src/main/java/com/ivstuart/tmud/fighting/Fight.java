@@ -18,7 +18,7 @@ package com.ivstuart.tmud.fighting;
 
 import com.ivstuart.tmud.fighting.action.BasicAttack;
 import com.ivstuart.tmud.fighting.action.FightAction;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 import com.ivstuart.tmud.world.WorldTime;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -133,7 +133,7 @@ public class Fight {
         if (ownTarget != null) {
             ownTarget.getFight().removeTargettedBy(melee.getSelf());
 
-            LOGGER.debug(melee.getSelf().getName() + " removed from targeted by for " + ownTarget.getName());
+            LOGGER.debug(melee.getSelf().getName() + " removed from targeted by " + ownTarget.getName());
         }
 
         melee.setTarget(newTargetMob);
@@ -141,7 +141,7 @@ public class Fight {
         if (newTargetMob != null) {
 
             newTargetMob.getFight().addTargettedBy(melee.getSelf());
-            LOGGER.debug(melee.getSelf().getName() + " added to targeted by for " + newTargetMob.getName());
+            LOGGER.debug(melee.getSelf().getName() + " added to targeted by " + newTargetMob.getName());
 
         }
 

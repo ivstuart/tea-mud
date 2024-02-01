@@ -18,18 +18,41 @@ package com.ivstuart.tmud.command.item;
 
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.server.LaunchMud;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Room;
+import com.ivstuart.tmud.utils.TestHelper;
+import com.ivstuart.tmud.world.World;
+import org.junit.Before;
 import org.junit.Test;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 import static junit.framework.TestCase.assertEquals;
 
 public class GiveTest {
 
+
+    @Before
+    public void setUp() {
+
+        try {
+            LaunchMud.loadMudServerProperties();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     @Test
     public void testGive50Copper() {
 
-        Room room = new Room();
+        World instance = World.getInstance();
+
+        Room room = TestHelper.getPortalAndClearMobs();
         room.setId("A room");
 
         Mob mob = new Mob();

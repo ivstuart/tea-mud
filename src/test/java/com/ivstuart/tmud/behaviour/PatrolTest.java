@@ -17,8 +17,8 @@
 package com.ivstuart.tmud.behaviour;
 
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Room;
 import com.ivstuart.tmud.utils.TestHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -76,12 +76,14 @@ public class PatrolTest {
         baseBehaviour.tick();
         baseBehaviour.tick();
 
-        assertNotEquals("sheep should not be at start room", whiteRoom.getId(), sheepMob.getRoom().getId());
+        LOGGER.debug("Room exits:"+whiteRoom.getExits());
+
+        assertNotEquals("sheep should not be at start room", whiteRoom.getRoomLocation(), sheepMob.getRoom().getRoomLocation());
 
         baseBehaviour.tick();
         baseBehaviour.tick();
         baseBehaviour.tick();
 
-        assertEquals("sheep should be at start room", whiteRoom.getId(), sheepMob.getRoom().getId());
+        assertEquals("sheep should be at start room", whiteRoom.getRoomLocation(), sheepMob.getRoom().getRoomLocation());
     }
 }

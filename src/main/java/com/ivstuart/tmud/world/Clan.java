@@ -17,7 +17,8 @@
 package com.ivstuart.tmud.world;
 
 import com.ivstuart.tmud.person.Player;
-import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.places.Room;
+import com.ivstuart.tmud.state.places.RoomLocation;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class Clan implements Serializable {
     private String leader;
     private boolean alignment;
 
-    private String donateRoom;
+    private RoomLocation donateRoom;
     private String homeRoom;
     private String graveRoom;
     private List<String> applicants;
@@ -114,11 +115,11 @@ public class Clan implements Serializable {
         this.clanId = clanId;
     }
 
-    public Room getDonateRoom() {
-        return World.getRoom(donateRoom);
+    public RoomLocation getDonateRoom() {
+        return donateRoom;
     }
 
-    public void setDonateRoom(String donateRoom) {
+    public void setDonateRoom(RoomLocation donateRoom) {
         this.donateRoom = donateRoom;
     }
 

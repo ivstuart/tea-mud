@@ -23,7 +23,13 @@ import com.ivstuart.tmud.exceptions.MudException;
 import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.person.PlayerData;
 import com.ivstuart.tmud.person.carried.Money;
-import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.items.Torch;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Room;
+import com.ivstuart.tmud.state.places.RoomLocation;
+import com.ivstuart.tmud.state.player.Attribute;
+import com.ivstuart.tmud.state.player.Race;
 import com.ivstuart.tmud.state.util.EntityProvider;
 import com.ivstuart.tmud.utils.MudIO;
 import com.ivstuart.tmud.world.World;
@@ -303,16 +309,21 @@ public class Login implements Readable {
 
         Mob character = player.getMob();
 
-        String roomId = character.getRoomId();
+        RoomLocation newRoomLocation = character.getRoomLocation();
 
-        Room newRoom = World.getRoom(roomId);
+        Room newRoom = World.getRoom(newRoomLocation);
 
         if (newRoom == null) {
             LOGGER.warn("Could not find players room!");
-            newRoom = World.getPortal(character);
+
+            // TODO have a way to set good and evil start locations
+            newRoomLocation = new RoomLocation(0,0,0);
+            newRoom = World.getRoom(newRoomLocation);
+            newRoom = World.getPortal();
+
         }
 
-        character.setRoom(newRoom);
+        character.setRoomLocation(newRoomLocation);
 
         newRoom.add(character);
 

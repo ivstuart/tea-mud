@@ -18,8 +18,12 @@ package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.command.combat.Kill;
+import com.ivstuart.tmud.state.mobs.Ability;
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Room;
+import com.ivstuart.tmud.state.player.Race;
+import com.ivstuart.tmud.state.skills.BaseSkill;
 import com.ivstuart.tmud.utils.TestHelper;
 import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
@@ -71,8 +75,9 @@ public class BackstabTest {
         sheepMob.setAlias("sheep");
         sheepMob.setHp("2d10+50");
 
-        Room whiteRoom = new Room();
+        Room whiteRoom = TestHelper.getPortalAndClearMobs();
 
+        whiteRoom.getMobs().clear();
         whiteRoom.add(sheepMob);
         whiteRoom.add(player1Mob);
 
@@ -123,18 +128,22 @@ public class BackstabTest {
         // have test resource file to load in a mob sheep and mob player
         // test files.
         Mob sheepMob = new Mob();
-        sheepMob.setNameAndId("sheep");
-        sheepMob.setAlias("sheep");
+        sheepMob.setNameAndId("sheep2");
+        sheepMob.setAlias("sheep2");
         sheepMob.setHp("2d10+50");
 
-        Room whiteRoom = new Room();
+        Room whiteRoom = TestHelper.getPortalAndClearMobs();
 
         whiteRoom.add(sheepMob);
         whiteRoom.add(player1Mob);
 
-        assertEquals("Check sheep name", "sheep", sheepMob.getName());
+        assertEquals("Check sheep name", "sheep2", sheepMob.getName());
         assertNotNull("Check sheep exists in the room",
                 whiteRoom.getMob(sheepMob.getName()));
+
+
+        LOGGER.debug("Mobs in room :"+whiteRoom.getMobs());
+
         assertEquals("Check sheep is in the room", sheepMob,
                 whiteRoom.getMob(sheepMob.getName()));
 

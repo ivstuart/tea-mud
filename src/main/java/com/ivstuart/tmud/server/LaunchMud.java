@@ -17,7 +17,11 @@
 
 package com.ivstuart.tmud.server;
 
+import com.ivstuart.tmud.command.CommandProvider;
+import com.ivstuart.tmud.state.places.Room;
+import com.ivstuart.tmud.state.places.RoomLocation;
 import com.ivstuart.tmud.state.util.StateReader;
+import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -63,7 +67,13 @@ public class LaunchMud {
             LOGGER.error("Problem loading mud server properties", e);
         }
 
-        StateReader.getInstance().load();
+        // TODO change state loading to read in JSON for the world and generate mobs and items on demand.
+        // StateReader.getInstance().load();
+        World.getInstance();
+
+
+
+        CommandProvider.getInstance();
 
         MudServer mudServer = MudServer.getInstance();
 

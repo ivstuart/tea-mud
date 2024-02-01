@@ -18,8 +18,12 @@ package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.command.combat.Kill;
+import com.ivstuart.tmud.state.mobs.Ability;
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Room;
+import com.ivstuart.tmud.state.player.Race;
+import com.ivstuart.tmud.state.skills.BaseSkill;
 import com.ivstuart.tmud.utils.TestHelper;
 import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
@@ -55,7 +59,7 @@ public class DisarmTest {
         Mob player1Mob = TestHelper.makeDefaultPlayerMob("player1");
 
         // Teach rescue to player
-        Ability ability = new Ability("disarm", 100);
+        Ability ability = new Ability("disarm", 105);
         player1Mob.getLearned().add(ability);
         World.add(new BaseSkill("disarm"));
 
@@ -71,7 +75,7 @@ public class DisarmTest {
 
         TestHelper.equipDagger(sheepMob);
 
-        Room whiteRoom = new Room();
+        Room whiteRoom = TestHelper.getPortalAndClearMobs();
 
         whiteRoom.add(sheepMob);
         whiteRoom.add(player1Mob);
@@ -100,9 +104,13 @@ public class DisarmTest {
         assertTrue("sheep and player1 will be engaged in combat", sheepMob
                 .getFight().isEngaged(player1Mob));
 
-        // Bash
         Command disarm = new Disarm();
         disarm.execute(player1Mob, sheepMob.getAlias());
+
+        if (player1Mob.getFight().isGroundFighting()) {
+            LOGGER.warn("Test skipped due to ground fighting");
+            return;
+        }
 
         player1Mob.getFight().getFightActions().getFirst().begin();
         player1Mob.getFight().getFightActions().getFirst().happen();

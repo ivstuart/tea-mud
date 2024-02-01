@@ -17,8 +17,13 @@
 package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.Command;
+import com.ivstuart.tmud.state.mobs.Ability;
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Exit;
+import com.ivstuart.tmud.state.places.Room;
+import com.ivstuart.tmud.state.player.Race;
+import com.ivstuart.tmud.state.skills.BaseSkill;
 import com.ivstuart.tmud.utils.TestHelper;
 import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
@@ -72,7 +77,7 @@ public class SearchTest {
         sheepMob.setAlias("sheep");
         sheepMob.setHp("2d10+50");
 
-        Room whiteRoom = new Room();
+        Room whiteRoom = TestHelper.getPortalAndClearMobs();
 
         whiteRoom.add(sheepMob);
         whiteRoom.add(player1Mob);
@@ -106,9 +111,9 @@ public class SearchTest {
         Race human = new Race();
         World.getInstance().addToWorld(human);
 
-        Room whiteRoom = new Room();
-        whiteRoom.setId("room-01");
-        Exit hiddenExit = new Exit("gate", whiteRoom.getId());
+        Room whiteRoom = TestHelper.getPortalAndClearMobs();
+
+        Exit hiddenExit = new Exit("gate", whiteRoom.getRoomLocation());
         hiddenExit.setHidden(true);
         whiteRoom.add(hiddenExit);
 

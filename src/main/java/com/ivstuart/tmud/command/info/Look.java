@@ -20,7 +20,14 @@ import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.person.carried.SomeMoney;
-import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.items.Prop;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.mobs.MobEnum;
+import com.ivstuart.tmud.state.mobs.MobHelper;
+import com.ivstuart.tmud.state.places.Exit;
+import com.ivstuart.tmud.state.places.RoomEnum;
+import com.ivstuart.tmud.state.places.Track;
 import com.ivstuart.tmud.utils.MudArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -99,7 +106,6 @@ public class Look extends BaseCommand {
 
                 if (mob_.getPlayer().isAdmin()) {
                     mob_.out("Info mob id       = " + mob.getId());
-                    mob_.out("Info mob repop id = " + mob.getRepopRoomId());
                     mob_.out("Type :" + mob_.getClass().getCanonicalName());
                 }
             }

@@ -17,10 +17,10 @@
 package com.ivstuart.tmud.command.item;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.state.Item;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Prop;
-import com.ivstuart.tmud.state.Waterskin;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.items.Prop;
+import com.ivstuart.tmud.state.items.Waterskin;
 import com.ivstuart.tmud.utils.StringUtil;
 
 /**

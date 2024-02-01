@@ -18,7 +18,7 @@ package com.ivstuart.tmud.command.misc;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.Player;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 import com.ivstuart.tmud.utils.MudIO;
 import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
@@ -54,8 +54,6 @@ public class ForcedQuit extends BaseCommand {
         mob.out("Thank you for playing");
 
         player.getData().setPlayingTime();
-
-        mob.setRoomId(mob.getRoom().getId());
 
         // Save character first
         try {

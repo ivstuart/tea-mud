@@ -18,9 +18,9 @@ package com.ivstuart.tmud.command.item.tier;
 
 import com.ivstuart.tmud.command.admin.Load;
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Room;
-import com.ivstuart.tmud.state.WarMaster;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Room;
+import com.ivstuart.tmud.state.mobs.WarMaster;
 import com.ivstuart.tmud.utils.TestHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -51,7 +51,7 @@ public class TierTest {
     @Test
     public void testTier() {
 
-        Room room = new Room();
+        Room room = TestHelper.getPortalAndClearMobs();
         room.setId("A room");
 
         WarMaster warMaster = new WarMaster();

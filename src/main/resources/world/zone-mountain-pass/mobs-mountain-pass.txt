@@ -1,4 +1,4 @@
-class: state.Mob
+class: state.places.Mob
 id: ape-001
 name: ape
 alias: ape

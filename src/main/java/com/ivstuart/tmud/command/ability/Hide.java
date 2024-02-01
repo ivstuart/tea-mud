@@ -19,10 +19,10 @@ package com.ivstuart.tmud.command.ability;
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.constants.SkillNames;
-import com.ivstuart.tmud.state.Ability;
-import com.ivstuart.tmud.state.Exit;
-import com.ivstuart.tmud.state.Item;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Ability;
+import com.ivstuart.tmud.state.places.Exit;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.mobs.Mob;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

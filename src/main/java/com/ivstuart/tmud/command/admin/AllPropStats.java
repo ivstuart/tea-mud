@@ -16,8 +16,8 @@
 
 package com.ivstuart.tmud.command.admin;
 
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Prop;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.items.Prop;
 
 /**
  * @author stuarti

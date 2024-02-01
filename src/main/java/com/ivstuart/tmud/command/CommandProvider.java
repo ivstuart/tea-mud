@@ -38,14 +38,12 @@ public class CommandProvider {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final Command NULL_COMMAND = new NullCommand();
     @SuppressWarnings("unused")
-    private static final CommandProvider INSTANCE;
-    private static final MudHash<Command> commandHash = new MudHash<Command>();
-
-    static {
-        INSTANCE = new CommandProvider();
-    }
+    private static final CommandProvider INSTANCE = new CommandProvider();
+    private static MudHash<Command> commandHash;
 
     private CommandProvider() {
+
+        commandHash = new MudHash<>();
 
         clearAndLoadCommands();
 
@@ -118,6 +116,10 @@ public class CommandProvider {
                 replacementCommand);
 
         return true;
+    }
+
+    public static CommandProvider getInstance() {
+        return INSTANCE;
     }
 
     public void clearAndLoadCommands() {

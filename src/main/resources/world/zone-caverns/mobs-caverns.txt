@@ -1,4 +1,4 @@
-class: state.Mob
+class: state.mobs.Mob
 id: rat-001
 name: rat
 alias: rat
@@ -16,7 +16,7 @@ xp: 55
 state: STAND
 attackType: bite claw
 
-class: state.Mob
+class: state.mobs.Mob
 # poison
 id: spider-001
 name: spider
@@ -35,7 +35,7 @@ xp: 150
 state: STAND
 attackType: sting bite
 
-class: state.Mob
+class: state.mobs.Mob
 id: snake-caverns-001
 name: snake
 alias: snake
@@ -53,7 +53,7 @@ xp: 50
 state: STAND
 attackType: bite
 
-class: state.Mob
+class: state.mobs.Mob
 id: bat-001
 name: bat
 alias: bat
@@ -71,7 +71,7 @@ xp: 50
 state: STAND
 attackType: bite claw
 
-class: state.Mob
+class: state.mobs.Mob
 id: goo-001
 name: goo
 alias: goo
@@ -89,7 +89,7 @@ xp: 50
 state: STAND
 attackType: burn
 
-class: state.Mob
+class: state.mobs.Mob
 id: giant-spider-001
 name: giant-spider
 alias: giant spider

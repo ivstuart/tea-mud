@@ -18,8 +18,8 @@ package com.ivstuart.tmud.command.combat;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.common.Msg;
-import com.ivstuart.tmud.state.Ability;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Ability;
+import com.ivstuart.tmud.state.mobs.Mob;
 import com.ivstuart.tmud.world.WorldTime;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

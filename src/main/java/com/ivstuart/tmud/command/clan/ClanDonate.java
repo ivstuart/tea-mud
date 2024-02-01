@@ -19,8 +19,9 @@ package com.ivstuart.tmud.command.clan;
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.item.Donate;
 import com.ivstuart.tmud.person.ClanMembership;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Room;
+import com.ivstuart.tmud.state.places.RoomLocation;
 import com.ivstuart.tmud.world.Clans;
 import com.ivstuart.tmud.world.World;
 
@@ -53,7 +54,10 @@ public class ClanDonate extends BaseCommand {
             return;
         }
 
-        Room donateRoom = Clans.getClan(clanMembership.getClanId()).getDonateRoom();
+
+        RoomLocation roomLocation = Clans.getClan(clanMembership.getClanId()).getDonateRoom();
+
+        Room donateRoom = World.getRoom(roomLocation);
 
         // Default back to usual donation room
         if (donateRoom == null) {

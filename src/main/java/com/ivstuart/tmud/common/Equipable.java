@@ -16,7 +16,7 @@
 
 package com.ivstuart.tmud.common;
 
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 
 import java.util.List;
 

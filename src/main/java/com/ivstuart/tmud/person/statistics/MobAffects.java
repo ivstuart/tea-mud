@@ -24,15 +24,22 @@ import org.apache.logging.log4j.Logger;
 import java.io.Serializable;
 import java.util.*;
 
-public class MobAffects implements Serializable, Cloneable {
+public class MobAffects implements Serializable , Cloneable{
 
     private static final long serialVersionUID = 5426953002440290562L;
     private static final Logger LOGGER = LogManager.getLogger();
     protected Map<String, Affect> affects;
 
     public MobAffects() {
-        affects = new HashMap<>();
+        this.affects = new HashMap<>();
+    }
 
+    public MobAffects(MobAffects mobAffects) {
+        try {
+            this.affects = ((MobAffects) mobAffects.clone()).affects;
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void add(String id, Affect affect_) {
@@ -117,19 +124,15 @@ public class MobAffects implements Serializable, Cloneable {
         return diseases;
     }
 
-    public Object clone() {
-        try {
-            return super.clone();
-        } catch (CloneNotSupportedException e) {
-            LOGGER.error("Problem cloning object", e);
-        }
-        return null;
-    }
-
     @Override
     public String toString() {
         return "MobAffects{" +
                 "affects=" + affects +
                 '}';
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

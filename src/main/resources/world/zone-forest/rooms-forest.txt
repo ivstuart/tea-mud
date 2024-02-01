@@ -1,4 +1,4 @@
-class: state.Room
+class: state.places.Room
 
 id: Z7-:0:0:0
 brief: A green and lush forest
@@ -12,7 +12,7 @@ path: nesw
 execute: notused
 
 ## Linkage to Forset
-class: state.Room
+class: state.places.Room
 id: Z7-:0:0:0
 exits: south->Z5-:28:18:0
 

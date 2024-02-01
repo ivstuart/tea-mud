@@ -19,8 +19,8 @@ package com.ivstuart.tmud.command.item.shop;
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
-import com.ivstuart.tmud.state.Item;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.mobs.Mob;
 
 /**
  * @author stuarti

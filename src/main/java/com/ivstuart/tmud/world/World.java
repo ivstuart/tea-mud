@@ -24,7 +24,20 @@ import com.ivstuart.tmud.common.Tickable;
 import com.ivstuart.tmud.exceptions.MudException;
 import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.person.config.ChannelEnum;
-import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.items.Prop;
+import com.ivstuart.tmud.state.mobs.GuardMob;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Room;
+import com.ivstuart.tmud.state.places.RoomBuilder;
+import com.ivstuart.tmud.state.places.RoomLocation;
+import com.ivstuart.tmud.state.places.Zone;
+import com.ivstuart.tmud.state.player.Race;
+import com.ivstuart.tmud.state.setup.RaceProvider;
+import com.ivstuart.tmud.state.setup.SkillsProvider;
+import com.ivstuart.tmud.state.setup.SpellProvider;
+import com.ivstuart.tmud.state.skills.BaseSkill;
+import com.ivstuart.tmud.state.skills.Spell;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -40,7 +53,7 @@ public class World {
     private static final World INSTANCE = new World();
     private static Map<String, Tickable> tickers;
     private static Map<String, Zone> zones;
-    private static Map<String, Room> rooms;
+    private static Map<RoomLocation, Room> rooms;
     private static Map<String, Mob> mobs;
     private static Map<String, Item> items;
     private static Map<String, Prop> props;
@@ -74,6 +87,11 @@ public class World {
         PostalSystem.init();
         Clans.init();
 
+        // Code as config
+        RaceProvider.load();
+        SkillsProvider.load();
+        SpellProvider.load();
+
         mudStats = MudStats.init();
 
         if (mudStats == null) {
@@ -83,6 +101,11 @@ public class World {
         startTime();
 
         weather = WeatherSky.CLOUDLESS;
+
+        // Needed until JSON state reading merged in and a real work is added.
+        // TODO remove this and figure out a nice way to mark start positions from map editor.
+        Room portal =new Room(new RoomLocation(0,0,0));
+        World.add(portal.getRoomLocation(), portal);
     }
 
     public static WeatherSky getWeather() {
@@ -94,43 +117,50 @@ public class World {
     }
 
     public static void add(BaseSkill skill) {
-        LOGGER.info("Adding skill [ " + skill.getId() + "]");
+        LOGGER.info("Adding skill [" + skill.getId() + "]");
         skills.put(skill.getId(), skill);
     }
 
     public static void add(Item item) {
-        LOGGER.debug("Adding item [ " + item.getId() + "]");
+        LOGGER.debug("Adding item [" + item.getId() + "]");
         items.put(item.getId(), item);
     }
 
     public static void add(Mob mob_) {
-        LOGGER.info("Adding mob [ " + mob_.getId() + " ]");
+        LOGGER.info("Adding mob [" + mob_.getId() + " ]");
 
         mobs.put(mob_.getId(), mob_);
     }
 
     public static void add(Prop prop) {
-        LOGGER.info("Adding prop [ " + prop.getId() + "]");
+        LOGGER.info("Adding prop [" + prop.getId() + "]");
         props.put(prop.getId(), prop);
     }
 
-    public static void add(Room room) {
-        rooms.put(room.getId(), room);
+    public static void add(RoomLocation roomLocation,Room room) {
+
+        if(rooms.containsKey(roomLocation)) {
+            LOGGER.debug("Failed to add room which already exists [" + roomLocation + "]:["+room.getRoomLocation());
+            return;
+        }
+
+        LOGGER.debug("Adding room [" + roomLocation + "]:["+room.getRoomLocation());
+        rooms.put(roomLocation,room);
     }
 
     public static void add(Spell spell) {
-        LOGGER.info("Adding spell [ " + spell.getId() + "]");
+        LOGGER.info("Adding spell [" + spell.getId() + "]");
         spells.put(spell.getId(), spell);
     }
 
     public static void add(Zone zone) {
-        LOGGER.debug("Adding zone [ " + zone.getId() + "]");
+        LOGGER.debug("Adding zone [" + zone.getId() + "]");
         zones.put(zone.getId(), zone);
     }
 
     public static void addPlayer(Mob character) throws MudException {
 
-        LOGGER.info("Adding player [ " + character.getName() + " ]");
+        LOGGER.info("Adding player [" + character.getName() + " ]");
 
         // Guard
         if (!character.isPlayer()) {
@@ -147,12 +177,12 @@ public class World {
     }
 
     public static void addTicker(Tickable ticker) {
-        LOGGER.info("Adding ticker [ " + ticker.getId() + "]");
+        LOGGER.info("Adding ticker [" + ticker.getId() + "]");
         tickers.put(ticker.getId(), ticker);
     }
 
     public static Prop createProp(String id_) {
-        LOGGER.info("Creating prop with id [ " + id_ + "]");
+        LOGGER.info("Creating prop with id [" + id_ + "]");
 
         return props.get(id_);
     }
@@ -240,11 +270,8 @@ public class World {
 
     }
 
-    public static Map<String, Room> getRooms() {
-        return rooms;
-    }
 
-    private static void add(Race race) {
+    public static void add(Race race) {
         races.add(race);
     }
 
@@ -288,6 +315,14 @@ public class World {
             return World.getRoom("R-P2");
         } else {
             return World.getRoom("R-P1");
+        }
+    }
+
+    public static RoomLocation getPortalLocation(Mob defender) {
+        if (defender.isGood()) {
+            return new RoomLocation(0,0,0);
+        } else {
+            return new RoomLocation(1,0,0);
         }
     }
 
@@ -370,12 +405,12 @@ public class World {
         return races;
     }
 
-    public void addToWorld(Object object) {
+    public static void addToWorld(Object object) {
 
-        if (object instanceof Room) {
-            World.add((Room) object);
-            return;
-        }
+//        if (object instanceof Room) {
+//            World.add(new RoomLocation(0,0,0), (Room) object);
+//            return;
+//        }
 
         if (object instanceof GuardMob) {
             World.add((GuardMob) object);
@@ -423,11 +458,24 @@ public class World {
         }
 
         if (object != null) {
-            LOGGER.warn("Unknow object type [" + object.getClass().getSimpleName() + "]");
+            LOGGER.warn("Unknown object type [" + object.getClass().getSimpleName() + "]");
         } else {
             LOGGER.warn("Object of null reference attempted to add to the world!");
         }
 
+    }
+
+    public static Room getRoom(RoomLocation roomLocation) {
+        // LOGGER.debug("Getting room "+roomLocation);
+        return rooms.get(roomLocation);
+    }
+
+    public static int getNumberOfRooms() {
+        return rooms.size();
+    }
+
+    public static void add(Room root) {
+        rooms.put(root.getRoomLocation(), root);
     }
 
     private void startTime() {
@@ -444,9 +492,18 @@ public class World {
 
     // Yes I know I am not using a map here. Loading in order
     public Race getRace(int id) {
+
+        if (races.isEmpty()) {
+            return null;
+        }
+
         if (id == 0) {
             id = 1;
         } // Default to human when no race set.
         return races.get(id - 1);
+    }
+
+    public static Room getPortal(){
+        return rooms.get(new RoomLocation(0,0,0));
     }
 }

@@ -1,4 +1,4 @@
-class: state.Race
+class: state.player.Race
 id: 1
 name: Human
 desc: Human

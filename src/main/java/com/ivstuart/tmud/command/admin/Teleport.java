@@ -16,8 +16,9 @@
 
 package com.ivstuart.tmud.command.admin;
 
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Room;
+import com.ivstuart.tmud.state.places.RoomLocation;
 import com.ivstuart.tmud.world.World;
 
 /**
@@ -36,10 +37,23 @@ public class Teleport extends AdminCommand {
 
         super.execute(mob, input);
 
-        Room toRoom = World.getRoom(input);
+        String[] params = input.split(":");
+
+        if (params.length != 3) {
+            mob.out("You can only teleport to a grid reference x:y:z "+params.length);
+            return;
+        }
+
+        int x = Integer.parseInt(params[0]);
+        int y = Integer.parseInt(params[1]);
+        int z = Integer.parseInt(params[2]);
+
+        RoomLocation roomLocation = new RoomLocation(x,y,z);
+
+        Room toRoom = World.getRoom(roomLocation);
 
         if (toRoom != null) {
-            mob.out("You teleport to " + toRoom.getId());
+            mob.out("You teleport to " + toRoom.getRoomLocation());
             mob.getRoom().remove(mob);
             toRoom.add(mob);
         } else {

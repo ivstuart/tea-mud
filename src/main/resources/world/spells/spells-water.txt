@@ -1,4 +1,4 @@
-class: state.Spell
+class: state.skills.Spell
 id: chill touch
 level: 3
 cost: 5

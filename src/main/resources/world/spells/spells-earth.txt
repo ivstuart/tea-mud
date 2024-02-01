@@ -1,4 +1,4 @@
-class: state.Spell
+class: state.skills.Spell
 id: poison
 level: 1
 cost: 7

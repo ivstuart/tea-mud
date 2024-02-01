@@ -27,12 +27,22 @@ import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.constants.DamageConstants;
 import com.ivstuart.tmud.constants.DamageType;
 import com.ivstuart.tmud.constants.SkillNames;
+import com.ivstuart.tmud.state.items.Prop;
+import com.ivstuart.tmud.state.mobs.Ability;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.person.config.ConfigEnum;
 import com.ivstuart.tmud.person.statistics.affects.Affect;
 import com.ivstuart.tmud.person.statistics.diseases.Disease;
-import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.state.items.Armour;
+import com.ivstuart.tmud.state.items.Corpse;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.mobs.MobEnum;
+import com.ivstuart.tmud.state.places.Room;
+import com.ivstuart.tmud.state.places.RoomEnum;
+import com.ivstuart.tmud.state.places.RoomLocation;
+import com.ivstuart.tmud.state.skills.Spell;
 import com.ivstuart.tmud.world.World;
 import com.ivstuart.tmud.world.WorldTime;
 import org.apache.logging.log4j.LogManager;
@@ -311,9 +321,8 @@ public class DamageManager {
                 createCorpse(attacker, defender);
 
                 if (defender.isPlayer()) {
-                    Room portal = World.getPortal(defender);
-                    portal.add(defender);
-                    defender.setRoom(portal);
+                    RoomLocation portal = World.getPortalLocation(defender);
+                    defender.setRoomLocation(portal);
                     defender.getHp().setValue(1);
 
                     // Allocate WP's for opposite alignment kill

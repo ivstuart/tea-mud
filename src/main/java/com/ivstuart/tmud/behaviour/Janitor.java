@@ -17,8 +17,8 @@
 package com.ivstuart.tmud.behaviour;
 
 import com.ivstuart.tmud.common.DiceRoll;
-import com.ivstuart.tmud.state.Item;
-import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.places.Room;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

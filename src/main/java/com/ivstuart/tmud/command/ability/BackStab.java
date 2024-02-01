@@ -22,7 +22,11 @@ import com.ivstuart.tmud.common.Equipable;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.fighting.DamageManager;
 import com.ivstuart.tmud.fighting.action.FightAction;
-import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.state.mobs.Ability;
+import com.ivstuart.tmud.state.items.Weapon;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.mobs.MobEnum;
+import com.ivstuart.tmud.state.places.RoomEnum;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

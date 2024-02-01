@@ -16,10 +16,10 @@
 
 package com.ivstuart.tmud.state.util;
 
-import com.ivstuart.tmud.state.Item;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Prop;
-import com.ivstuart.tmud.state.ShopKeeper;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.items.Prop;
+import com.ivstuart.tmud.state.mobs.ShopKeeper;
 import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,7 +33,14 @@ public class EntityProvider {
 
     public static Item createItem(String itemId) {
         LOGGER.debug("Creating instance of item " + itemId);
-        return (Item) World.getItem(itemId).clone();
+
+        Item item = World.getItem(itemId);
+        if (item == null) {
+            LOGGER.warn("Could not found item :"+itemId);
+            return null;
+        }
+
+        return (Item)item.clone();
     }
 
     public static Mob createMob(String mobId_, String _id) {
@@ -71,7 +78,7 @@ public class EntityProvider {
 
         // this newMob is a new instance of Mob from world with its own repop
         // room
-        newMob.setRepopRoomId(_id);
+        // TODO mob repopulation is not done in this way.
 
 
         if (!(newMob instanceof ShopKeeper)) {

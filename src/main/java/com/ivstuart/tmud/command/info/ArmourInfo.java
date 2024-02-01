@@ -17,8 +17,8 @@
 package com.ivstuart.tmud.command.info;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.state.Armour;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.items.Armour;
+import com.ivstuart.tmud.state.mobs.Mob;
 
 import static com.ivstuart.tmud.constants.UsefulContants.armourString;
 

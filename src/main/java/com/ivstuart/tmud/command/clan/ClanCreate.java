@@ -19,7 +19,7 @@ package com.ivstuart.tmud.command.clan;
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.ClanMembership;
 import com.ivstuart.tmud.person.carried.SomeMoney;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 import com.ivstuart.tmud.world.Clan;
 import com.ivstuart.tmud.world.Clans;
 
@@ -59,7 +59,7 @@ public class ClanCreate extends BaseCommand {
 
         clan.addMembers(mob.getPlayer().getName());
         clan.setLeader(mob.getPlayer().getName());
-        clan.setDonateRoom(mob.getRoomId());
+        clan.setDonateRoom(mob.getRoomLocation());
         clan.setName(input);
         clan.setAlignment(mob.isGood());
 

@@ -17,10 +17,14 @@
 package com.ivstuart.tmud.command.item;
 
 import com.ivstuart.tmud.command.BaseCommand;
+import com.ivstuart.tmud.state.mobs.Ability;
 import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.person.statistics.diseases.Disease;
-import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.mobs.GuildMaster;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.skills.BaseSkill;
 import com.ivstuart.tmud.world.World;
 
 import static com.ivstuart.tmud.constants.SkillNames.TRACKING;

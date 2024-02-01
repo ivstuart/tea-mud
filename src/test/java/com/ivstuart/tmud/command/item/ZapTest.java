@@ -16,8 +16,14 @@
 
 package com.ivstuart.tmud.command.item;
 
+import com.ivstuart.tmud.constants.ManaType;
+import com.ivstuart.tmud.state.mobs.Ability;
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Room;
+import com.ivstuart.tmud.state.player.Race;
+import com.ivstuart.tmud.state.skills.BaseSkill;
+import com.ivstuart.tmud.state.skills.Spell;
 import com.ivstuart.tmud.utils.TestHelper;
 import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
@@ -52,8 +58,7 @@ public class ZapTest {
         Race human = new Race();
         World.getInstance().addToWorld(human);
 
-        Room room = new Room();
-        room.setId("A room");
+        Room room = TestHelper.getPortalAndClearMobs();
 
         Mob mob = TestHelper.makeDefaultPlayerMob("ivan");
         mob.setRoom(room);
@@ -67,7 +72,7 @@ public class ZapTest {
         Spell fireball = new Spell();
         fireball.setDamage("50");
         fireball.setId("fireball");
-        fireball.setMana("COMMON");
+        fireball.setMana(ManaType.FIRE);
         World.add(fireball);
 
         Mob sheepMob = new Mob();

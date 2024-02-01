@@ -18,8 +18,8 @@ package com.ivstuart.tmud.command.item;
 
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Room;
 import com.ivstuart.tmud.utils.TestHelper;
 import org.junit.Test;
 

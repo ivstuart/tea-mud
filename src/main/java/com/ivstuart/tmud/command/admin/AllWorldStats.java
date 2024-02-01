@@ -16,7 +16,7 @@
 
 package com.ivstuart.tmud.command.admin;
 
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 import com.ivstuart.tmud.world.World;
 
 /**
@@ -36,7 +36,7 @@ public class AllWorldStats extends AdminCommand {
 
         mob.out("Number of mobs    :" + numberOfMobs);
 
-        int numberOfRooms = World.getRooms().size();
+        int numberOfRooms = World.getNumberOfRooms();
 
         mob.out("Number of rooms   :" + numberOfRooms);
 

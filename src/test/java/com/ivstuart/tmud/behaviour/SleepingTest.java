@@ -18,9 +18,9 @@ package com.ivstuart.tmud.behaviour;
 
 import com.ivstuart.tmud.common.MobState;
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Race;
-import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.player.Race;
+import com.ivstuart.tmud.state.places.Room;
 import com.ivstuart.tmud.world.World;
 import com.ivstuart.tmud.world.WorldTime;
 import org.apache.logging.log4j.LogManager;

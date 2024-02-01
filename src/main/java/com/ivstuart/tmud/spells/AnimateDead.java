@@ -16,7 +16,11 @@
 
 package com.ivstuart.tmud.spells;
 
-import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.state.items.Corpse;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Room;
+import com.ivstuart.tmud.state.skills.Spell;
 import com.ivstuart.tmud.state.util.EntityProvider;
 
 public class AnimateDead implements SpellEffect {

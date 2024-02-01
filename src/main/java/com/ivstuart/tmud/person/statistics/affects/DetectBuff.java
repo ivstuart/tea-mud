@@ -17,7 +17,7 @@
 
 package com.ivstuart.tmud.person.statistics.affects;
 
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 
 public class DetectBuff extends Affect {
 

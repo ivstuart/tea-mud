@@ -17,10 +17,11 @@
 package com.ivstuart.tmud.state.util;
 
 import com.ivstuart.tmud.constants.DoorState;
-import com.ivstuart.tmud.state.Door;
-import com.ivstuart.tmud.state.Exit;
-import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.places.Door;
+import com.ivstuart.tmud.state.places.Exit;
+import com.ivstuart.tmud.state.places.Room;
 import com.ivstuart.tmud.state.dao.DoorDAO;
+import com.ivstuart.tmud.state.places.RoomLocation;
 import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -68,13 +69,13 @@ public class RoomManager {
     }
 
 
-    public static void createExit(Room from, String direction, String toRoomId) {
+    public static void createExit(Room from, String direction, RoomLocation toRoomId) {
         createExit(from, direction, toRoomId, false);
 
     }
 
 
-    public static void createExit(Room from, String direction, String toRoomId,
+    public static void createExit(Room from, String direction, RoomLocation toRoomId,
                                   boolean isOneWay) {
 
         Exit exitFromTo = new Exit(direction, toRoomId);
@@ -84,7 +85,7 @@ public class RoomManager {
             return;
         }
 
-        Exit exitToFrom = new Exit(reverseDirection(direction), from.getId());
+        Exit exitToFrom = new Exit(reverseDirection(direction), from.getRoomLocation());
 
         Room room = World.getRoom(toRoomId);
 
@@ -92,21 +93,6 @@ public class RoomManager {
             room.add(exitToFrom);
         }
 
-    }
-
-    public static void createExits(Room tmpRoom, String exitStringList) {
-
-        for (String exit : exitStringList.split(" ")) {
-
-            String[] pair = exit.split("->");
-
-            // Guard condition
-            if (pair.length < 2) {
-                continue;
-            }
-
-            createExit(tmpRoom, pair[0], pair[1], true);
-        }
     }
 
     public static String reverseDirection(String direction) {

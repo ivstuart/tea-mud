@@ -19,10 +19,10 @@ package com.ivstuart.tmud.command.info;
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.constants.SkillNames;
-import com.ivstuart.tmud.state.Ability;
-import com.ivstuart.tmud.state.Corpse;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Prop;
+import com.ivstuart.tmud.state.mobs.Ability;
+import com.ivstuart.tmud.state.items.Corpse;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.items.Prop;
 
 /**
  * @author stuarti

@@ -1,13 +1,20 @@
 # If you load the items and mobs first you can use mob: and item: in room file.
+# TODO remove state loading and generate it instead.
 include: items.txt
 include: prop.txt
 include: mobs.txt
 include: mounts.txt
+# TODO remove state loading files and switch to JSON instead
 include: rooms.txt
 include: zone.txt
 
-include: spells/spells.txt
-include: skills.txt
+# Code as config
+#include: races.txt
+include: tier-armour.txt
+
+# include: spells/spells.txt
+# Code as config
+#include: skills.txt
 
 # Newbie zone levels 1-10 recommended
 include: zone-homeland-good/zone-hl-good.txt
@@ -44,7 +51,5 @@ include: zone-pyramid/rooms-pyramid.txt
 include: zone-pyramid/zone-pyramid.txt
 
 
-include: races.txt
-include: tier-armour.txt
 
 include: zone-battle-ground/rooms-bg.txt

@@ -16,8 +16,9 @@
 
 package com.ivstuart.tmud.spells;
 
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Spell;
+import com.ivstuart.tmud.constants.ManaType;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.skills.Spell;
 import com.ivstuart.tmud.utils.TestHelper;
 import org.junit.Test;
 
@@ -35,7 +36,7 @@ public class BlurTest {
         Mob ste = TestHelper.makeDefaultPlayerMob("Ste");
 
         Spell spell = new Spell();
-        spell.setMana("WATER");
+        spell.setMana(ManaType.WATER);
         spell.setId("blur");
         spell.setDuration("100");
 

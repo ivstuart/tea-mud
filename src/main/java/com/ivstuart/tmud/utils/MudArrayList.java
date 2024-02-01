@@ -16,8 +16,8 @@
 
 package com.ivstuart.tmud.utils;
 
-import com.ivstuart.tmud.state.BasicThing;
-import com.ivstuart.tmud.state.Prop;
+import com.ivstuart.tmud.state.items.BasicThing;
+import com.ivstuart.tmud.state.items.Prop;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

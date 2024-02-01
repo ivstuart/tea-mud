@@ -19,9 +19,9 @@ package com.ivstuart.tmud.behaviour;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.command.combat.Kill;
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Race;
-import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.player.Race;
+import com.ivstuart.tmud.state.places.Room;
 import com.ivstuart.tmud.utils.TestHelper;
 import com.ivstuart.tmud.world.World;
 import com.ivstuart.tmud.world.WorldTime;
@@ -78,7 +78,7 @@ public class RetargetTest {
         sheepMob.addTickable(baseBehaviour);
         WorldTime.addTickable(sheepMob);
 
-        Room whiteRoom = new Room();
+        Room whiteRoom = TestHelper.getPortalAndClearMobs();
         whiteRoom.add(sheepMob);
         sheepMob.setRoom(whiteRoom);
 
@@ -104,6 +104,8 @@ public class RetargetTest {
         player2Mob.getFight().getMelee().begin();
 
         baseBehaviour.tick();
+
+        assertTrue("Check sheep is fighting first", sheepMob.getFight().isFighting());
 
         assertTrue("sheep should be fighting", player2Mob.getName().equals(sheepMob.getFight().getTarget().getName()) ||
                 player1Mob.getName().equals(sheepMob.getFight().getTarget().getName()));

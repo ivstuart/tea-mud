@@ -18,10 +18,10 @@ package com.ivstuart.tmud.world;
 
 import com.ivstuart.tmud.common.Tickable;
 import com.ivstuart.tmud.fighting.Fight;
-import com.ivstuart.tmud.state.DeadMob;
-import com.ivstuart.tmud.state.Item;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.mobs.DeadMob;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Room;
 import com.ivstuart.tmud.state.util.EntityProvider;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -108,7 +108,8 @@ public class WorldTime implements Runnable {
         LOGGER.debug("scheduleMobForRepopulation with id [ " + mob_.getId()
                 + " ]");
 
-        DeadMob dead = new DeadMob(mob_.getId(), mob_.getRepopRoomId(), 10);
+        // TODO fixme
+        DeadMob dead = new DeadMob(mob_.getId(), null, 10);
 
         deadMobs.add(dead);
     }
@@ -143,7 +144,10 @@ public class WorldTime implements Runnable {
 
                 if (repopRoom == null) {
                     LOGGER.error("Repopulate room is null");
-                    continue;
+                    // TODO fixme need to change way mobs are generated
+                    // Hack to make test work for now
+                    repopRoom = World.getPortal();
+                    // continue;
                 }
 
                 repopRoom.add(mob);

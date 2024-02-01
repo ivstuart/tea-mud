@@ -16,7 +16,7 @@
 
 package com.ivstuart.tmud.person.statistics.affects;
 
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 
 import java.io.Serializable;
 
@@ -25,6 +25,7 @@ import static com.ivstuart.tmud.constants.UsefulContants.affDuration;
 public class Affect implements Serializable {
 
     protected Mob _mob;
+
     protected String _desc;
     protected int _duration;
     protected int _amount;

@@ -21,7 +21,7 @@ import com.ivstuart.tmud.command.CommandProvider;
 import com.ivstuart.tmud.command.admin.AdminCommand;
 import com.ivstuart.tmud.common.MobState;
 import com.ivstuart.tmud.person.Player;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

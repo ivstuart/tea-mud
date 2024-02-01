@@ -19,9 +19,9 @@ package com.ivstuart.tmud.behaviour;
 import com.ivstuart.tmud.command.ability.Tackle;
 import com.ivstuart.tmud.common.MobState;
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Race;
-import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.player.Race;
+import com.ivstuart.tmud.state.places.Room;
 import com.ivstuart.tmud.utils.TestHelper;
 import com.ivstuart.tmud.world.World;
 import com.ivstuart.tmud.world.WorldTime;
@@ -78,7 +78,7 @@ public class StanderTest {
         sheepMob.addTickable(baseBehaviour);
         WorldTime.addTickable(sheepMob);
 
-        Room whiteRoom = new Room();
+        Room whiteRoom = TestHelper.getPortalAndClearMobs();
         whiteRoom.add(sheepMob);
         sheepMob.setRoom(whiteRoom);
 

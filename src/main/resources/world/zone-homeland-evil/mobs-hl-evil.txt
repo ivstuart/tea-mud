@@ -1,4 +1,4 @@
-class: state.Mob
+class: state.mobs.Mob
 id: mouse-001
 name: mouse
 alias: mouse
@@ -84,7 +84,7 @@ xp: 55
 state: STAND
 attackType: bite kick
 
-class: state.GuardMob
+class: state.mobs.GuardMob
 
 id: guard-evil-60
 name: large official looking guard

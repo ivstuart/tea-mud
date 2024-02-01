@@ -1,4 +1,4 @@
-class: state.Room
+class: state.places.Room
 
 id: Z6-:0:0:0
 brief: A room near a dark portal
@@ -16,26 +16,26 @@ look: The dark inner sanctum within the Black Tower is made from highly polished
 look: snow white marbled stone. Along the outer walls of the courtyard torches,
 look: held by iron sconces, flicker dim light about the area.
 
-class: state.RoomBuilder
+class: state.places.RoomBuilder
 id: Z6-:1:0:0
 roomPrefix: Z6-
 path: wee2s2w2n2sdu2e2nd
 execute: notused
 
-class: state.RoomBuilder
+class: state.places.RoomBuilder
 id: Z6-:0:-2:-1
 roomPrefix: Z6-
 path: 3x3nwwnseeeed
 execute: notused
 
-class: state.RoomBuilder
+class: state.places.RoomBuilder
 id: Z6-:2:-1:-2
 roomPrefix: Z6-
 path: ssww4x4sd
 execute: notused
 
 ## Link to caverns
-class: state.Room
+class: state.places.Room
 id: Z6-:0:-4:-3
 exits: north->Z4-:0:0:0
 

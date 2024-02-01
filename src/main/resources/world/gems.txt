@@ -1,4 +1,4 @@
-class: state.Gem
+class: state.items.Gem
 # Level 20 Gems
 id: fire-20
 alias: ruby gem
@@ -181,7 +181,7 @@ level: 80
 wear: PRIMARY SECONDARY
 weight: 1
 
-class: state.GemList
+class: state.items.GemList
 
 id: immortal-80
 alias: immortal gem

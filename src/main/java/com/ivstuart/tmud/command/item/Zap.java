@@ -19,7 +19,11 @@ package com.ivstuart.tmud.command.item;
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.ability.Cast;
 import com.ivstuart.tmud.constants.SkillNames;
-import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.state.mobs.Ability;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.items.Wand;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.skills.Spell;
 import com.ivstuart.tmud.world.World;
 
 /**

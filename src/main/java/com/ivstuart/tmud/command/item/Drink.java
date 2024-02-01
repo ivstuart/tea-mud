@@ -17,7 +17,12 @@
 package com.ivstuart.tmud.command.item;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.items.Potion;
+import com.ivstuart.tmud.state.items.Prop;
+import com.ivstuart.tmud.state.items.Waterskin;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.player.Attribute;
 import com.ivstuart.tmud.utils.StringUtil;
 
 /**

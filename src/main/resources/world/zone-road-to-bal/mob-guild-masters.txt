@@ -1,4 +1,4 @@
-class: state.GuildMaster
+class: state.mobs.GuildMaster
 id: mages-guildmaster
 name: mages guild master
 alias: mages guild master
@@ -17,7 +17,7 @@ state: STANDING
 attackType: punch
 mages: true
 
-class: state.GuildMaster
+class: state.mobs.GuildMaster
 id: ranger-guildmaster
 name: ranger guild master
 alias: ranger guild master
@@ -36,7 +36,7 @@ state: STANDING
 attackType: punch
 rangers: true
 
-class: state.GuildMaster
+class: state.mobs.GuildMaster
 id: tinkers-guildmaster
 name: tinkers guild master
 alias: tinkers guild master
@@ -55,7 +55,7 @@ state: STANDING
 attackType: punch
 tinkers: true
 
-class: state.GuildMaster
+class: state.mobs.GuildMaster
 id: thieves-guildmaster
 name: thieves guild master
 alias: thieves guild master
@@ -74,7 +74,7 @@ state: STANDING
 attackType: punch
 thieves: true
 
-class: state.GuildMaster
+class: state.mobs.GuildMaster
 id: healers-guildmaster
 name: healers guild master
 alias: healers guild master
@@ -93,7 +93,7 @@ state: STANDING
 attackType: punch
 healers: true
 
-class: state.GuildMaster
+class: state.mobs.GuildMaster
 id: fighters-guildmaster
 name: fighters guild master
 alias: fighters guild master

@@ -18,7 +18,7 @@
 package com.ivstuart.tmud.server;
 
 import com.ivstuart.tmud.command.misc.ForcedQuit;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

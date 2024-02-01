@@ -1,4 +1,4 @@
-class: state.Room
+class: state.places.Room
 
 id: Z10-:0:0:0
 brief: A green and damp murky swamp
@@ -6,7 +6,7 @@ type: Outside
 look: A green and damp murky swamp
 exits: west->Z5-:35:6:0
 
-class: state.RoomBuilder
+class: state.places.RoomBuilder
 id: Z10-:0:0:0
 roomPrefix: Z10-
 path: nesw
@@ -14,7 +14,7 @@ execute: notused
 
 
 ## Linkage to caverns
-class: state.Room
+class: state.places.Room
 id: Z10-:1:0:0
 exits: south->Z4-:3:16:0
 

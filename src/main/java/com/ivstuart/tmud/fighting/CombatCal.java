@@ -16,8 +16,8 @@
 
 package com.ivstuart.tmud.fighting;
 
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Weapon;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.items.Weapon;
 
 import static com.ivstuart.tmud.constants.SkillNames.UNARMED_COMBAT;
 import static com.ivstuart.tmud.constants.SpellNames.BLINDNESS;

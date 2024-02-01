@@ -16,7 +16,7 @@
 
 package com.ivstuart.tmud.person.statistics.diseases;
 
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 
 /**
  * Created by Ivan on 06/09/2016.

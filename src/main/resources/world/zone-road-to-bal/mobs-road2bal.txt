@@ -1,4 +1,4 @@
-class: state.Mob
+class: state.mobs.Mob
 id: fire-fly-001
 name: fire-fly
 alias: fire fly
@@ -16,7 +16,7 @@ xp: 55
 state: FLYING
 attackType: bite sting
 
-class: state.GuardMob
+class: state.mobs.GuardMob
 
 id: guard-good-40
 name: large official looking guard

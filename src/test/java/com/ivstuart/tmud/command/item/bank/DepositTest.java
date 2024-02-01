@@ -18,9 +18,9 @@ package com.ivstuart.tmud.command.item.bank;
 
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
-import com.ivstuart.tmud.state.Banker;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.mobs.Banker;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Room;
 import com.ivstuart.tmud.utils.TestHelper;
 import org.junit.Test;
 
@@ -31,7 +31,7 @@ public class DepositTest {
     @Test
     public void testDeposit50Copper() {
 
-        Room room = new Room();
+        Room room = TestHelper.getPortalAndClearMobs();
         room.setId("A room");
 
         Banker banker = new Banker();

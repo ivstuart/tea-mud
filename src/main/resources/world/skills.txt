@@ -1,4 +1,4 @@
-class: state.BaseSkill
+class: state.skills.BaseSkill
 id: kick
 level: 1
 cost: 5
@@ -117,7 +117,7 @@ id: pick locks
 level: 1
 prof: THIEF
 
-id: constants.AbilityConstants SHIELD_BLOCK
+id: shield block
 level: 1
 prof: FIGHTER
 

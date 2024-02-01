@@ -22,8 +22,8 @@ import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.fighting.DamageManager;
 import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.fighting.action.FightAction;
-import com.ivstuart.tmud.state.Ability;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Ability;
+import com.ivstuart.tmud.state.mobs.Mob;
 
 import static com.ivstuart.tmud.constants.SkillNames.CIRCLE;
 

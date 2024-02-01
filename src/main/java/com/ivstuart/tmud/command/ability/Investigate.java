@@ -19,7 +19,7 @@ package com.ivstuart.tmud.command.ability;
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.CommandProvider;
 import com.ivstuart.tmud.command.info.Diagnose;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 
 /**
  * @author stuarti

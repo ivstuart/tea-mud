@@ -18,8 +18,8 @@ package com.ivstuart.tmud.command.combat;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.fighting.Fight;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.RoomEnum;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.RoomEnum;
 
 public class Kill extends BaseCommand {
 

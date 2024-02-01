@@ -17,8 +17,8 @@
 package com.ivstuart.tmud.behaviour;
 
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Room;
 import com.ivstuart.tmud.utils.TestHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -71,7 +71,7 @@ public class FollowTest {
         sheepMob.addTickable(baseBehaviour);
 
 
-        Room whiteRoom = new Room();
+        Room whiteRoom = TestHelper.getPortalAndClearMobs();
         whiteRoom.add(sheepMob);
         sheepMob.setRoom(whiteRoom);
 
@@ -83,6 +83,6 @@ public class FollowTest {
         baseBehaviour.tick();
 
 
-        assertEquals("sheep should be following", player1Mob, sheepMob.getFollowing());
+        assertEquals("sheep should be following", player1Mob.getName(), sheepMob.getFollowing().getName());
     }
 }

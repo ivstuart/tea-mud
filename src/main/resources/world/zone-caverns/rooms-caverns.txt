@@ -1,4 +1,4 @@
-class: state.Room
+class: state.places.Room
 
 id: Z4-:0:0:0
 brief: The Entrance to caverns

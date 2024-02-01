@@ -17,9 +17,9 @@
 package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.state.Ability;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Teacher;
+import com.ivstuart.tmud.state.mobs.Ability;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.mobs.Teacher;
 
 /**
  * @author stuarti

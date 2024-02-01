@@ -18,7 +18,7 @@ package com.ivstuart.tmud.command.admin;
 
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.fighting.DamageManager;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 
 /**
  * @author stuarti

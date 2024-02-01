@@ -19,7 +19,7 @@ package com.ivstuart.tmud.command.combat;
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.fighting.Fight;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 
 public class Assist extends BaseCommand {
 

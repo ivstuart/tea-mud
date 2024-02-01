@@ -18,7 +18,7 @@ package com.ivstuart.tmud.command.info;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.constants.DamageType;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 
 public class SavesInfo extends BaseCommand {
 

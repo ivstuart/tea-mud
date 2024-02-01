@@ -1,4 +1,4 @@
-class: state.Mob
+class: state.mobs.Mob
 id: hummingbird-001
 name: hummingbird
 alias: humming bird

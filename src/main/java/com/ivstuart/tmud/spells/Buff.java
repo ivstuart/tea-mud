@@ -17,9 +17,9 @@
 package com.ivstuart.tmud.spells;
 
 import com.ivstuart.tmud.person.statistics.affects.Affect;
-import com.ivstuart.tmud.state.Item;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Spell;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.skills.Spell;
 
 public class Buff implements SpellEffect {
 

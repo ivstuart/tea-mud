@@ -1,9 +1,9 @@
-class: state.Room
+class: state.places.Room
 
 id: R-P1
 brief: The Portal of Eternal Darkness
 type: Ether
-look: Your essense seems suspended, listlessly in a chaotic maelstrom of swirling
+look: Your essence seems suspended, listlessly in a chaotic maelstrom of swirling
 look: white and black mist. As the mists flow about you, black and white tendrils
 look: seem to pause, pulling you either up or down. Looking far below your
 look: body, the dense black mist seems to get heavier. Far above you, the white
@@ -22,7 +22,7 @@ auctionHouse: true
 id: R-P2
 brief: The Portal of Eternal Light
 type: Ether
-look: Your essense seems suspended, listlessly in a chaotic maelstrom of swirling
+look: Your essence seems suspended, listlessly in a chaotic maelstrom of swirling
 look: white and black mist. As the mists flow about you, black and white tendrils
 look: seem to pause, pulling you either up or down. Looking far below your
 look: body, the dense black mist seems to get heavier. Far above you, the white

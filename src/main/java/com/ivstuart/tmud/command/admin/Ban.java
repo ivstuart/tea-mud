@@ -17,7 +17,7 @@
 package com.ivstuart.tmud.command.admin;
 
 import com.ivstuart.tmud.person.Player;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 import com.ivstuart.tmud.utils.GsonIO;
 import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;

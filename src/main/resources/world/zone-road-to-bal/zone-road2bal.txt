@@ -3,7 +3,7 @@ include: zone-road-to-bal/mob-prof-masters.txt
 include: zone-road-to-bal/mobs-road2bal.txt
 include: zone-road-to-bal/rooms-road2bal.txt
 
-class: state.Zone
+class: state.places.Zone
 
 id: 6
 #propInRoom: teacher-002 Z6-:-2:0:-1

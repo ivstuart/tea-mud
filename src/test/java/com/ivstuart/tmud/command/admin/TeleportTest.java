@@ -18,8 +18,9 @@ package com.ivstuart.tmud.command.admin;
 
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Room;
+import com.ivstuart.tmud.state.places.RoomLocation;
 import com.ivstuart.tmud.utils.TestHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -62,9 +63,9 @@ public class TeleportTest {
         startRoom.add(mob);
 
         Command teleport = new Teleport();
-        teleport.execute(mob, "Z0-:0:1:0");
+        teleport.execute(mob, "3:3:0");
 
-        assertEquals("In new room", "Z0-:0:1:0", mob.getRoom().getId());
+        assertEquals("In new room",new RoomLocation(3,3,0), mob.getRoom().getRoomLocation());
 
 
     }

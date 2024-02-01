@@ -20,9 +20,9 @@ import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.command.combat.Kill;
 import com.ivstuart.tmud.person.movement.MoveManager;
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Race;
-import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.player.Race;
+import com.ivstuart.tmud.state.places.Room;
 import com.ivstuart.tmud.utils.TestHelper;
 import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
@@ -68,7 +68,7 @@ public class TrackerTest {
 
 
         Tracker tracker = new Tracker();
-        tracker.setParameter(100);
+        tracker.setParameter(105);
 
         tracker.setMob(mob);
         Room startRoom = TestHelper.makeRoomGrid();

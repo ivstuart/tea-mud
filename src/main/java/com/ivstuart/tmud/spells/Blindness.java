@@ -16,10 +16,10 @@
 
 package com.ivstuart.tmud.spells;
 
-import com.ivstuart.tmud.state.Item;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.MobEnum;
-import com.ivstuart.tmud.state.Spell;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.mobs.MobEnum;
+import com.ivstuart.tmud.state.skills.Spell;
 
 /**
  * Created by Ivan on 28/08/2016.

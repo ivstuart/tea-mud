@@ -17,7 +17,7 @@
 package com.ivstuart.tmud.command.admin;
 
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 import com.ivstuart.tmud.state.util.StateReader;
 import com.ivstuart.tmud.utils.FileHandle;
 import org.apache.logging.log4j.LogManager;

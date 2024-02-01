@@ -17,7 +17,7 @@
 package com.ivstuart.tmud.behaviour;
 
 import com.ivstuart.tmud.common.Tickable;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 
 /**
  * Created by Ivan on 15/08/2016.

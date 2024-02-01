@@ -1,4 +1,4 @@
-class: state.Room
+class: state.places.Room
 
 id: Z2-:0:0:0
 brief: The Entrance to salt mine
@@ -14,13 +14,13 @@ look: You are in the old salt mine. The mine is located in a volcanic area
 look: steam can be seen rising from various vents.
 exits: north->Z2-:0:0:0
 
-class: state.RoomBuilder
+class: state.places.RoomBuilder
 id: Z2-:0:-1:0
 roomPrefix: Z2-
 path: 4s4x5s2s3w5s4x5w8s3x3n6s5x2
 execute: notused
 
-class: state.Room
+class: state.places.Room
 id: Z2-:1:-1:0
 mob: fire-sprite-001
 

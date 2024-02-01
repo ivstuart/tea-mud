@@ -20,7 +20,7 @@ import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.CommandProvider;
 import com.ivstuart.tmud.command.item.Give;
 import com.ivstuart.tmud.person.carried.Money;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 
 import java.util.List;
 

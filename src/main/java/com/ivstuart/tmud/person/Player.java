@@ -22,8 +22,8 @@ import com.ivstuart.tmud.person.config.ConfigEnum;
 import com.ivstuart.tmud.server.Connection;
 import com.ivstuart.tmud.server.LaunchMud;
 import com.ivstuart.tmud.server.Output;
-import com.ivstuart.tmud.state.Attributes;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.player.Attributes;
+import com.ivstuart.tmud.state.mobs.Mob;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

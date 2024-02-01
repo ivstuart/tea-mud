@@ -16,8 +16,8 @@
 
 package com.ivstuart.tmud.fighting.action;
 
-import com.ivstuart.tmud.state.Exit;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.places.Exit;
+import com.ivstuart.tmud.state.mobs.Mob;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -18,7 +18,7 @@ package com.ivstuart.tmud.command.move;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.command.CommandProvider;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 
 public class South extends BaseCommand {
 

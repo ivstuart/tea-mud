@@ -20,7 +20,14 @@ import com.ivstuart.tmud.client.LaunchClient;
 import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.person.PlayerData;
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.state.items.Prop;
+import com.ivstuart.tmud.state.items.Wand;
+import com.ivstuart.tmud.state.items.Weapon;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.mobs.Teacher;
+import com.ivstuart.tmud.state.places.Room;
+import com.ivstuart.tmud.state.places.RoomBuilder;
+import com.ivstuart.tmud.state.player.Attribute;
 import com.ivstuart.tmud.world.World;
 import com.ivstuart.tmud.world.WorldTime;
 
@@ -78,13 +85,14 @@ public class TestHelper {
     }
 
     public static Room makeRoomGrid() {
-        Room root = new Room();
+        Room root = TestHelper.getPortalAndClearMobs();
         root.setId("Z0-:0:0:0");
 
-        World.add(root);
-
         RoomBuilder roomBuilder = new RoomBuilder();
+
         roomBuilder.setId("Z0-:0:0:0");
+        roomBuilder.setStartLocation(root.getRoomLocation());
+
         roomBuilder.setRoomPrefix("Z0-");
         roomBuilder.setPath("3x3");
         roomBuilder.setExecute(null);
@@ -182,6 +190,11 @@ public class TestHelper {
     public static void equipWand(Mob mob) {
 
         mob.getEquipment().add(makeWand());
+    }
+
+    public static Room getPortalAndClearMobs() {
+        World.getPortal().getMobs().clear();
+        return World.getPortal();
     }
 
     public void combatTick() {

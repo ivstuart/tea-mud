@@ -1,6 +1,6 @@
 include: teachers.txt
 
-class: state.Mob
+class: state.mobs.Mob
 
 id: snake-001
 name: king cobra
@@ -29,8 +29,8 @@ id: snake-002
 name: small cobra
 alias: small cobra snake
 short: the small green snake
-long: A small snake hisses at you mencingly.
-look: The snake is a common garden snake is and all together unremarkable.
+long: A small snake hisses at you menacingly.
+look: The snake is a common garden snake, it is all together unremarkable.
 level: 1
 offensive: 70   
 defensive: 20   
@@ -42,7 +42,7 @@ xp: 20
 state: STANDING
 attackType: claw bite
 
-class: state.GuardMob
+class: state.mobs.GuardMob
 
 id: guard-003
 name: small official looking guard
@@ -62,7 +62,7 @@ state: STANDING
 attackType: punch
 guardExit: south
 
-class: state.Mob
+class: state.mobs.Mob
 
 id: troll-004
 name: cave troll
@@ -86,7 +86,7 @@ xp: 200
 state: STANDING
 attackType: fist
 
-class: state.Mob
+class: state.mobs.Mob
 
 id: dragon-005
 name: dragon
@@ -130,7 +130,7 @@ state: STANDING
 attackType: bite
 # dice types possible for most fields
 
-class: state.ShopKeeper
+class: state.mobs.ShopKeeper
 
 id: shopkeeper-001
 name: shopkeeper
@@ -153,7 +153,7 @@ item: packed-lunches-001
 item: guild-token-001
 # dice types possible for most fields
 
-class: state.Mob
+class: state.mobs.Mob
 id: old-man-006
 name: old man
 alias: old man
@@ -174,7 +174,7 @@ xp: 200
 state: STANDING
 attackType: fist
 
-class: state.Banker
+class: state.mobs.Banker
 id: banker-001
 name: banker
 alias: banker
@@ -192,7 +192,7 @@ xp: 20
 state: STANDING
 attackType: punch
 
-class: state.WarMaster
+class: state.mobs.WarMaster
 
 id: warmaster-001
 name: warmaster
@@ -211,7 +211,7 @@ xp: 20
 state: STANDING
 attackType: punch
 
-class: state.ShopKeeper
+class: state.mobs.ShopKeeper
 
 id: barkeep-001
 name: barkeep
@@ -237,7 +237,7 @@ item: cup-of-tea-001
 item: draft-salt-water-001
 item: poison-water-001
 
-class: state.Mob
+class: state.mobs.Mob
 
 id: drow-001
 name: drow

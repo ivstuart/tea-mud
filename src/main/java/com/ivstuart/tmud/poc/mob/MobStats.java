@@ -17,7 +17,7 @@
 package com.ivstuart.tmud.poc.mob;
 
 import com.ivstuart.tmud.person.statistics.MobMana;
-import com.ivstuart.tmud.state.Attribute;
+import com.ivstuart.tmud.state.player.Attribute;
 
 public class MobStats {
 

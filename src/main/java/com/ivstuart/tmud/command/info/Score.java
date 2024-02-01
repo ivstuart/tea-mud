@@ -25,7 +25,7 @@ import com.ivstuart.tmud.person.Guilds;
 import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.person.PlayerData;
 import com.ivstuart.tmud.person.statistics.MobMana;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 
 import static com.ivstuart.tmud.common.Colour.*;
 

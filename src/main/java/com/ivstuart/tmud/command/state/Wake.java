@@ -18,7 +18,7 @@ package com.ivstuart.tmud.command.state;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.statistics.affects.SleepAffect;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 
 import static com.ivstuart.tmud.common.MobState.*;
 

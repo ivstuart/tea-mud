@@ -1,7 +1,7 @@
 include: zone-swamp/mobs-swamp.txt
 include: zone-swamp/rooms-swamp.txt
 
-class: state.Zone
+class: state.places.Zone
 
 #id: 10
 #propInRoom: teacher-002 Z6-:-2:0:-1

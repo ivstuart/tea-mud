@@ -1,4 +1,4 @@
-class: state.Prop
+class: state.items.Prop
 
 id: dragon-prop-001
 alias: dragon

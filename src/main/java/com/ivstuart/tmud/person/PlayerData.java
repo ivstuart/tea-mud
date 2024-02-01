@@ -16,8 +16,8 @@
 
 package com.ivstuart.tmud.person;
 
-import com.ivstuart.tmud.state.Attribute;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.player.Attribute;
+import com.ivstuart.tmud.state.mobs.Mob;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

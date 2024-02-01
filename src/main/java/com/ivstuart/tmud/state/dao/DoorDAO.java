@@ -16,7 +16,7 @@
 
 package com.ivstuart.tmud.state.dao;
 
-import com.ivstuart.tmud.state.Door;
+import com.ivstuart.tmud.state.places.Door;
 
 public class DoorDAO {
 

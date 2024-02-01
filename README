@@ -22,7 +22,7 @@ Run configurations main class:
 
  com.ivstuart.tmud.server.LaunchMud
 
-Use putty / zmud / tintin++ to telnet to port 5678 (default port) or can use main class:
+Use putty / zmud / tintin++ / mudlet to telnet to port 5678 (default port) or can use main class:
 
  com.ivstuart.tmud.client.LaunchClient
 
@@ -33,6 +33,6 @@ Use putty / zmud / tintin++ to telnet to port 5678 (default port) or can use mai
 This toggles off the ansi colour. In game.
 
 Note that passwords are being checking now.
-There is an easy option 5 which has been added to login as the admin user Ivan.
+There is an easy option 5 which has been added to login as the admin user.
 
 Just type 'look' or 'l' to see your surroundings. Also see the eBook for more information.

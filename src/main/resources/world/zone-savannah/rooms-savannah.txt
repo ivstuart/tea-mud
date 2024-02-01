@@ -1,11 +1,11 @@
-class: state.Room
+class: state.places.Room
 
 id: Z8-:0:0:0
 brief: A green and lush savannah
 type: Outside
 look: A green and lush savannah
 
-class: state.RoomBuilder
+class: state.places.RoomBuilder
 id: Z8-:0:0:0
 roomPrefix: Z8-
 path: nesw

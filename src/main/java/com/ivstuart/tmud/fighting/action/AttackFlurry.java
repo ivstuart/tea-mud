@@ -17,7 +17,7 @@
 package com.ivstuart.tmud.fighting.action;
 
 import com.ivstuart.tmud.common.Msg;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 
 /**
  * @author stuarti

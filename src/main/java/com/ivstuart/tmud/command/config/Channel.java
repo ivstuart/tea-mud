@@ -19,7 +19,7 @@ package com.ivstuart.tmud.command.config;
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.person.config.ChannelEnum;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 
 public class Channel extends BaseCommand {
 

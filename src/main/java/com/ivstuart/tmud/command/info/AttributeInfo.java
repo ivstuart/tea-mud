@@ -18,8 +18,8 @@ package com.ivstuart.tmud.command.info;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.common.Info;
-import com.ivstuart.tmud.state.Attributes;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.player.Attributes;
+import com.ivstuart.tmud.state.mobs.Mob;
 
 /**
  * @author stuarti

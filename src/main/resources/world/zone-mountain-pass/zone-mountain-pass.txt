@@ -1,7 +1,7 @@
 include: zone-mountain-pass/mobs-mountain-pass.txt
 include: zone-mountain-pass/rooms-mountain-pass.txt
 
-class: state.Zone
+class: state.places.Zone
 
 #id: 7
 #propInRoom: teacher-002 Z6-:-2:0:-1

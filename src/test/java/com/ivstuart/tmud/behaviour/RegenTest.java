@@ -17,9 +17,9 @@
 package com.ivstuart.tmud.behaviour;
 
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Race;
-import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.player.Race;
+import com.ivstuart.tmud.state.places.Room;
 import com.ivstuart.tmud.world.World;
 import com.ivstuart.tmud.world.WorldTime;
 import org.apache.logging.log4j.LogManager;
@@ -70,8 +70,9 @@ public class RegenTest {
         sheepMob.addTickable(baseBehaviour);
         WorldTime.addTickable(sheepMob);
 
-        Room whiteRoom = new Room();
+        Room whiteRoom = World.getPortal();
         whiteRoom.add(sheepMob);
+        sheepMob.setRoomLocation(whiteRoom.getRoomLocation());
 
         baseBehaviour.tick();
         baseBehaviour.tick();

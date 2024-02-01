@@ -1,4 +1,4 @@
-class: state.Zone
+class: state.places.Zone
 
 id: 1
 name: Northern Bal Main City

@@ -1,4 +1,4 @@
-class: state.ProfessionMaster
+class: state.mobs.ProfessionMaster
 id: prof-mages
 name: mages profession master
 alias: mages profession master
@@ -17,7 +17,7 @@ state: STANDING
 attackType: punch
 prof: MAGE
 
-class: state.ProfessionMaster
+class: state.mobs.ProfessionMaster
 id: prof-cleric
 name: cleric profession master
 alias: cleric profession master
@@ -36,7 +36,7 @@ state: STANDING
 attackType: punch
 prof: CLERIC
 
-class: state.ProfessionMaster
+class: state.mobs.ProfessionMaster
 id: prof-thief
 name: thief profession master
 alias: thief profession master
@@ -55,7 +55,7 @@ state: STANDING
 attackType: punch
 prof: THIEF
 
-class: state.ProfessionMaster
+class: state.mobs.ProfessionMaster
 id: prof-fighter
 name: fighter profession master
 alias: fighter profession master
@@ -74,7 +74,7 @@ state: STANDING
 attackType: punch
 prof: FIGHTER
 
-class: state.ProfessionMaster
+class: state.mobs.ProfessionMaster
 id: prof-monk
 name: monk profession master
 alias: monk profession master
@@ -93,7 +93,7 @@ state: STANDING
 attackType: punch
 prof: MONK
 
-class: state.ProfessionMaster
+class: state.mobs.ProfessionMaster
 id: prof-bard
 name: bard profession master
 alias: bard profession master
@@ -112,7 +112,7 @@ state: STANDING
 attackType: punch
 prof: BARD
 
-class: state.ProfessionMaster
+class: state.mobs.ProfessionMaster
 id: prof-druid
 name: druid profession master
 alias: druid profession master

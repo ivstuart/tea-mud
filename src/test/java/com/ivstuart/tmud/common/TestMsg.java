@@ -16,9 +16,9 @@
 
 package com.ivstuart.tmud.common;
 
-import com.ivstuart.tmud.state.BasicThing;
-import com.ivstuart.tmud.state.Item;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.items.BasicThing;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.mobs.Mob;
 import junit.framework.TestCase;
 import org.junit.Test;
 

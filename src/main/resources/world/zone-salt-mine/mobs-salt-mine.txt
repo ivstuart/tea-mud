@@ -1,4 +1,4 @@
-class: state.Mob
+class: state.mobs.Mob
 id: fire-sprite-001
 name: fire sprite
 alias: fire sprite

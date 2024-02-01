@@ -18,7 +18,7 @@ package com.ivstuart.tmud.person.statistics.affects;
 
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.Msg;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 
 public class BlurAffect extends Affect {
 

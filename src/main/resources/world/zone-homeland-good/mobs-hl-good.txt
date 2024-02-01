@@ -1,4 +1,4 @@
-class: state.Mob
+class: state.mobs.Mob
 id: mouse-001
 name: mouse
 alias: mouse
@@ -84,7 +84,7 @@ xp: 55
 state: STAND
 attackType: bite kick
 
-class: state.GuardMob
+class: state.mobs.GuardMob
 
 id: guard-good-60
 name: large official looking guard
@@ -147,7 +147,7 @@ item: wooden-shield-004
 item: packed-lunches-001
 # dice types possible for most fields
 
-class: state.Armourer
+class: state.mobs.Armourer
 id: armourer-001
 name: armourer
 alias: armourer

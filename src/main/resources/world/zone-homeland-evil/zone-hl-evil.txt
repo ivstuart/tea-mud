@@ -1,4 +1,4 @@
-class: state.Zone
+class: state.places.Zone
 
 id: 0
 propInRoom: teacher-002 Z6-:-2:0:-1

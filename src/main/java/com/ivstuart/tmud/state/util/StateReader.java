@@ -17,7 +17,10 @@
 package com.ivstuart.tmud.state.util;
 
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.state.items.BasicThing;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.mobs.*;
+import com.ivstuart.tmud.state.places.Room;
 import com.ivstuart.tmud.utils.FileHandle;
 import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
@@ -96,7 +99,7 @@ public class StateReader {
             addToWorld(obj);
         }
 
-        if (currentClass.equals("state.Room")) {
+        if (currentClass.equals("state.places.Room")) {
             Room room = World.getRoom(args);
             if (room != null) {
                 LOGGER.info("Editing an existing object again:" + args);

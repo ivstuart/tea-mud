@@ -18,7 +18,11 @@ package com.ivstuart.tmud.command.item;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.carried.SomeMoney;
-import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.state.items.Corpse;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.items.Prop;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Room;
 import com.ivstuart.tmud.utils.MudArrayList;
 import com.ivstuart.tmud.utils.StringUtil;
 import com.ivstuart.tmud.world.World;

@@ -1,4 +1,4 @@
-class: state.Mob
+class: state.mobs.Mob
 id: mummy-001
 name: mummy
 alias: mummy
@@ -17,7 +17,7 @@ state: STAND
 attackType: punch grab
 #disease: MummyRot
 
-class: state.Mob
+class: state.mobs.Mob
 # poison
 id: scorpion-001
 name: scorpion
@@ -36,7 +36,7 @@ xp: 50
 state: STAND
 attackType: punch grab
 
-class: state.Mob
+class: state.mobs.Mob
 id: snake-pyramid-001
 name: snake
 alias: snake
@@ -54,7 +54,7 @@ xp: 50
 state: STAND
 attackType: bite
 
-class: state.Mob
+class: state.mobs.Mob
 id: skeleton-001
 name: skeleton
 alias: skeleton
@@ -72,7 +72,7 @@ xp: 50
 state: STAND
 attackType: punch
 
-class: state.Mob
+class: state.mobs.Mob
 id: scarab-001
 name: scarab
 alias: scarab
@@ -90,7 +90,7 @@ xp: 50
 state: STAND
 attackType: punch grab
 
-class: state.Mob
+class: state.mobs.Mob
 id: pharaoh-001
 name: pharaoh
 alias: pharaoh

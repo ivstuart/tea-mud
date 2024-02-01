@@ -17,8 +17,8 @@
 package com.ivstuart.tmud.behaviour;
 
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Room;
 import com.ivstuart.tmud.utils.TestHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -62,7 +62,7 @@ public class VectorDiseaseTest {
         disease.setMob(mob);
         disease.setParameter3("Vampirism");
 
-        Room startRoom = TestHelper.makeRoomGrid();
+        Room startRoom = TestHelper.getPortalAndClearMobs();
         mob.setRoom(startRoom);
         startRoom.add(mob);
 

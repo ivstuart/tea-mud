@@ -17,9 +17,9 @@
 package com.ivstuart.tmud.command.state;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Prop;
-import com.ivstuart.tmud.state.RoomEnum;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.items.Prop;
+import com.ivstuart.tmud.state.places.RoomEnum;
 import com.ivstuart.tmud.utils.StringUtil;
 
 import static com.ivstuart.tmud.common.MobState.REST;

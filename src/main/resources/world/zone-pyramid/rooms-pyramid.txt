@@ -1,4 +1,4 @@
-class: state.Room
+class: state.places.Room
 
 id: Z3-:0:0:0
 brief: The Entrance to pyramid
@@ -12,25 +12,25 @@ type: Chamber
 look: You are in the old pyramid.
 exits: north->Z3-:0:0:0
 
-class: state.RoomBuilder
+class: state.places.RoomBuilder
 id: Z3-:0:-1:0
 roomPrefix: Z3-
 path: w8n16w16s16e9n
 execute: notused
 
-class: state.RoomBuilder
+class: state.places.RoomBuilder
 id: Z3-:-17:0:0
 roomPrefix: Z3-
 path: euee6s14e14n14w4s3eu4n2w3se2n
 execute: notused
 
-class: state.RoomBuilder
+class: state.places.RoomBuilder
 id: Z3-:-11:4:2
 roomPrefix: Z3-
 path: 8s8e8n6w6s6eu5n5w3n4s3w5n3e3s3w3ne2s
 execute: notused
 
-class: state.RoomBuilder
+class: state.places.RoomBuilder
 id: Z3-:-8:2:3
 roomPrefix: Z3-
 path: e4n3e5s6w3n4e

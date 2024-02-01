@@ -19,9 +19,9 @@ package com.ivstuart.tmud.command.admin;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.fighting.DamageManager;
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Race;
-import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.player.Race;
+import com.ivstuart.tmud.state.places.Room;
 import com.ivstuart.tmud.utils.TestHelper;
 import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
@@ -69,13 +69,13 @@ public class RepopulateTest {
         sheepMob.setAlias("sheep");
         sheepMob.setHp("50");
 
-        Room whiteRoom = new Room();
+        Room whiteRoom = TestHelper.getPortalAndClearMobs();
         whiteRoom.setId("room-01");
-        sheepMob.setRepopRoomId(whiteRoom.getId());
+//        sheepMob.setRepopRoomId(whiteRoom.getId());
 
         whiteRoom.add(sheepMob);
         sheepMob.setRoom(whiteRoom);
-        sheepMob.setRoomId(whiteRoom.getId());
+        sheepMob.setRoomLocation(whiteRoom.getRoomLocation());
         whiteRoom.add(player1Mob);
 
         World.add(sheepMob);

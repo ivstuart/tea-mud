@@ -17,8 +17,8 @@
 package com.ivstuart.tmud.utils;
 
 
-import com.ivstuart.tmud.state.Item;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.mobs.Mob;
 import junit.framework.TestCase;
 import org.junit.Test;
 

@@ -17,10 +17,11 @@
 package com.ivstuart.tmud.behaviour;
 
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.Item;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Room;
-import com.ivstuart.tmud.state.Weapon;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Room;
+import com.ivstuart.tmud.state.items.Weapon;
+import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Before;
@@ -67,7 +68,7 @@ public class JanitorTest {
         sheepMob.addTickable(baseBehaviour);
 
 
-        Room whiteRoom = new Room();
+        Room whiteRoom = World.getPortal();
         whiteRoom.add(sheepMob);
         sheepMob.setRoom(whiteRoom);
 

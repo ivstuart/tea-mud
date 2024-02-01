@@ -1,4 +1,4 @@
-class: state.Mob
+class: state.mobs.Mob
 id: lion-001
 name: lion
 alias: lion

@@ -1,4 +1,4 @@
-class: state.Zone
+class: state.places.Zone
 
 id: 1
 mobInRoom: mummy-001 Z3-:-17:0:0

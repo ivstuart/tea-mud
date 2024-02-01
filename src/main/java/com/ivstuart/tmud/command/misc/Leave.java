@@ -17,8 +17,8 @@
 package com.ivstuart.tmud.command.misc;
 
 import com.ivstuart.tmud.command.BaseCommand;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.ProfessionMaster;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.mobs.ProfessionMaster;
 
 /**
  * @author stuarti

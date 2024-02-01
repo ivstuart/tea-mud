@@ -1,4 +1,4 @@
-class: state.Room
+class: state.places.Room
 
 id: Z1-001-001
 brief: The Entrance to an Aviary

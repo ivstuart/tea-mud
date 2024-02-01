@@ -19,11 +19,12 @@ package com.ivstuart.tmud.command.ability;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.command.admin.LearnAll;
 import com.ivstuart.tmud.command.combat.Kill;
+import com.ivstuart.tmud.constants.ManaType;
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Race;
-import com.ivstuart.tmud.state.Room;
-import com.ivstuart.tmud.state.Spell;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.player.Race;
+import com.ivstuart.tmud.state.places.Room;
+import com.ivstuart.tmud.state.skills.Spell;
 import com.ivstuart.tmud.utils.TestHelper;
 import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
@@ -66,12 +67,12 @@ public class CastTest {
         World.getInstance().addToWorld(human);
 
 
-        Room whiteRoom = new Room();
+        Room whiteRoom = TestHelper.getPortalAndClearMobs();
         whiteRoom.add(player1Mob);
         Spell spell = new Spell();
         spell.setId("lesser healing");
         spell.setAmount("100");
-        spell.setMana("FIRE");
+        spell.setMana(ManaType.FIRE);
         spell.setLevel(1);
         spell.setSpellEffect("HEAL");
         spell.setCost(1);
@@ -105,7 +106,7 @@ public class CastTest {
         Spell spell = new Spell();
         spell.setId("fire blast");
         spell.setDamage("100");
-        spell.setMana("FIRE");
+        spell.setMana(ManaType.FIRE);
         spell.setLevel(1);
         // spell.setSpellEffect("HEAL");
         spell.setCost(1);
@@ -125,7 +126,7 @@ public class CastTest {
         sheepMob.setAlias("sheep");
         sheepMob.setHp("50");
 
-        Room whiteRoom = new Room();
+        Room whiteRoom = TestHelper.getPortalAndClearMobs();
 
         whiteRoom.add(sheepMob);
         whiteRoom.add(player1Mob);
@@ -154,6 +155,12 @@ public class CastTest {
 
         assertTrue("sheep and player1 will be engaged in combat", sheepMob
                 .getFight().isEngaged(player1Mob));
+
+        // Override any ground fighting for test purposes as it would stop casting
+        if (player1Mob.getFight().isGroundFighting()) {
+            player1Mob.getFight().setMeleeToBasicAttack();
+            player1Mob.getTargetFight().setMeleeToBasicAttack();
+        }
 
 
         Command cast = new Cast();

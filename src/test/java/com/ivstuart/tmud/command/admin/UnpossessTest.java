@@ -17,9 +17,9 @@
 package com.ivstuart.tmud.command.admin;
 
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Race;
-import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.player.Race;
+import com.ivstuart.tmud.state.places.Room;
 import com.ivstuart.tmud.utils.TestHelper;
 import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
@@ -65,7 +65,7 @@ public class UnpossessTest {
         sheepMob.setAlias("sheep");
         sheepMob.setHp("50");
 
-        Room whiteRoom = new Room();
+        Room whiteRoom = TestHelper.getPortalAndClearMobs();
         whiteRoom.add(sheepMob);
         whiteRoom.add(mob);
         sheepMob.setRoom(whiteRoom);

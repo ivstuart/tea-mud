@@ -19,7 +19,7 @@ package com.ivstuart.tmud.command.admin;
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.person.statistics.affects.Affect;
 import com.ivstuart.tmud.person.statistics.affects.DamageOverTime;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 
 /**
  * @author stuarti

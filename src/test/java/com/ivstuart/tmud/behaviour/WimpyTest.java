@@ -19,9 +19,9 @@ package com.ivstuart.tmud.behaviour;
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.command.combat.Kill;
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Race;
-import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.player.Race;
+import com.ivstuart.tmud.state.places.Room;
 import com.ivstuart.tmud.utils.TestHelper;
 import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
@@ -33,6 +33,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 import static junit.framework.TestCase.assertNull;
+import static org.junit.Assert.*;
 
 /**
  * Created by Ivan on 20/09/2016.
@@ -83,8 +84,23 @@ public class WimpyTest {
         whiteRoom.add(player1Mob);
         player1Mob.setRoom(whiteRoom);
 
+        // CHeck sheep and mob are in the same room.
+
+        assertEquals("Check in same room", player1Mob.getRoom(), sheepMob.getRoom());
+
+        LOGGER.debug("Room :"+player1Mob.getRoom());
+
         Command kill = new Kill();
+
+
+        assertFalse("Check player one is not fighting", player1Mob.getFight().isFighting());
+
+        assertNotNull("Check melee exists", player1Mob.getFight().getMelee());
+
+        assertTrue("Check not ground fighting", !player1Mob.getFight().isGroundFighting());
+
         kill.execute(player1Mob, sheepMob.getAlias());
+
         player1Mob.getFight().getMelee().begin();
 
         baseBehaviour.tick();

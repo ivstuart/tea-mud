@@ -18,7 +18,7 @@ package com.ivstuart.tmud.command.misc;
 
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.Player;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 import com.ivstuart.tmud.utils.MudIO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -41,8 +41,6 @@ public class SavePlayer extends BaseCommand {
 
         player.getData().setPlayingTime();
         player.getData().setLoginTime(System.currentTimeMillis());
-
-        mob_.setRoomId(mob_.getRoom().getId());
 
         // Save character first
         try {

@@ -1,4 +1,4 @@
-class: state.Teacher
+class: state.mobs.Teacher
 
 #ability: ALL set by having no ability tag
 

@@ -16,10 +16,10 @@
 
 package com.ivstuart.tmud.command.admin;
 
-import com.ivstuart.tmud.state.Ability;
-import com.ivstuart.tmud.state.BaseSkill;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Spell;
+import com.ivstuart.tmud.state.mobs.Ability;
+import com.ivstuart.tmud.state.skills.BaseSkill;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.skills.Spell;
 import com.ivstuart.tmud.world.World;
 
 /**

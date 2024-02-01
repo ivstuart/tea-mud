@@ -1,4 +1,4 @@
-class: state.Room
+class: state.places.Room
 
 id: ZBG-:0:0:0
 brief: The fighting pits of Carg-re

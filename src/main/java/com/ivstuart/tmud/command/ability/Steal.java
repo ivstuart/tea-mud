@@ -21,10 +21,10 @@ import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.person.carried.Money;
-import com.ivstuart.tmud.state.Ability;
-import com.ivstuart.tmud.state.Item;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.MobEnum;
+import com.ivstuart.tmud.state.mobs.Ability;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.mobs.MobEnum;
 
 import static com.ivstuart.tmud.constants.SkillNames.STEAL;
 

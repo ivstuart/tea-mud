@@ -17,7 +17,7 @@
 package com.ivstuart.tmud.command;
 
 import com.ivstuart.tmud.common.Msg;
-import com.ivstuart.tmud.state.Mob;
+import com.ivstuart.tmud.state.mobs.Mob;
 
 /**
  * Created by Ivan on 14/08/2016.

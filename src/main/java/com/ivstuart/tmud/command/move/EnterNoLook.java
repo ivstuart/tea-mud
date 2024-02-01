@@ -22,9 +22,16 @@ import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.constants.DoorState;
 import com.ivstuart.tmud.fighting.DamageManager;
 import com.ivstuart.tmud.fighting.Fight;
+import com.ivstuart.tmud.state.mobs.Ability;
 import com.ivstuart.tmud.person.movement.MoveManager;
 import com.ivstuart.tmud.person.statistics.diseases.Disease;
-import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.mobs.MobEnum;
+import com.ivstuart.tmud.state.places.Door;
+import com.ivstuart.tmud.state.places.Exit;
+import com.ivstuart.tmud.state.places.Room;
+import com.ivstuart.tmud.state.places.RoomEnum;
+import com.ivstuart.tmud.state.player.Attribute;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

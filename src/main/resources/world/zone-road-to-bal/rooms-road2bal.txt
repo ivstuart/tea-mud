@@ -1,4 +1,4 @@
-class: state.Room
+class: state.places.Room
 
 id: Z5-:0:0:0
 brief: A pathway of paved stone slabs form a wide road
@@ -8,25 +8,25 @@ look: Every hundred yards or so you can see recently watered hanging baskets of 
 look: Further out the landscape breaks into rolling hills and meadows.
 exits: west->Z0-:0:-12:-3
 
-class: state.RoomBuilder
+class: state.places.RoomBuilder
 id: Z5-:0:0:0
 roomPrefix: Z5-
 path: 8e2nu2w2n2e2su2e2ndnw2neue3sw2sus4e3n2de2s2edn2enw2n2e2s2e2s3e8ne8ne6e6se6se5
 execute: notused
 
-class: state.RoomBuilder
+class: state.places.RoomBuilder
 id: Z5-:0:0:0
 roomPrefix: Z5-
 path: 8e2nu2w2n2e2su2s3w4s
 execute: notused
 
-class: state.RoomBuilder
+class: state.places.RoomBuilder
 id: Z5-:0:0:0
 roomPrefix: Z5-
 path: 8e2nu2w2n2e2su2e2ndnw2neue3sw2su4n3e2s
 execute: notused
 
-class: state.RoomBuilder
+class: state.places.RoomBuilder
 id: Z5-:8:4:1
 roomPrefix: Z5-
 path: nnnwnwwswnnnennenenwnwswswsese
@@ -34,17 +34,17 @@ execute: notused
 
 
 ## Linkage to Swamp
-class: state.Room
+class: state.places.Room
 id: Z5-:35:6:0
 exits: east->Z10-:0:0:0
 
-## Linkage to Forset
-class: state.Room
+## Linkage to Forest
+class: state.places.Room
 id: Z5-:28:18:0
 exits: north->Z7-:0:0:0
 
 ## Linkage to Desert
-class: state.Room
+class: state.places.Room
 id: Z5-:28:18:0
 exits: south->Z9-:0:0:0
 

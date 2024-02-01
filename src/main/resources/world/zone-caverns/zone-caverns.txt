@@ -1,4 +1,4 @@
-class: state.Zone
+class: state.places.Zone
 
 id: 4
 mobInRoom: rat-001 Z4-:-6:5:0

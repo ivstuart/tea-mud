@@ -20,9 +20,9 @@ import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.command.party.Follow;
 import com.ivstuart.tmud.command.party.Group;
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.Mob;
-import com.ivstuart.tmud.state.Race;
-import com.ivstuart.tmud.state.Room;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.player.Race;
+import com.ivstuart.tmud.state.places.Room;
 import com.ivstuart.tmud.utils.TestHelper;
 import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
@@ -68,7 +68,7 @@ public class AssistTest {
         sheepMob.setAlias("sheep");
         sheepMob.setHp("2d10+50");
 
-        Room whiteRoom = new Room();
+        Room whiteRoom = TestHelper.getPortalAndClearMobs();
         whiteRoom.add(sheepMob);
         whiteRoom.add(player1Mob);
         whiteRoom.add(player2Mob);
@@ -121,7 +121,7 @@ public class AssistTest {
         sheepMob.setAlias("sheep");
         sheepMob.setHp("2d10+50");
 
-        Room whiteRoom = new Room();
+        Room whiteRoom = TestHelper.getPortalAndClearMobs();
         whiteRoom.add(sheepMob);
         whiteRoom.add(player1Mob);
         whiteRoom.add(player2Mob);

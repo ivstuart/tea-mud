@@ -18,8 +18,12 @@ package com.ivstuart.tmud.command.ability;
 
 import com.ivstuart.tmud.command.Command;
 import com.ivstuart.tmud.command.combat.Kill;
+import com.ivstuart.tmud.state.mobs.Ability;
 import com.ivstuart.tmud.server.LaunchMud;
-import com.ivstuart.tmud.state.*;
+import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Room;
+import com.ivstuart.tmud.state.player.Race;
+import com.ivstuart.tmud.state.skills.BaseSkill;
 import com.ivstuart.tmud.utils.TestHelper;
 import com.ivstuart.tmud.world.World;
 import org.apache.logging.log4j.LogManager;
@@ -57,7 +61,7 @@ public class KickTest {
         TestHelper.equipDagger(player1Mob);
 
         // Teach rescue to player
-        Ability ability = new Ability("kick", 100);
+        Ability ability = new Ability("kick", 105);
         player1Mob.getLearned().add(ability);
         World.add(new BaseSkill("kick"));
 
@@ -71,7 +75,7 @@ public class KickTest {
         sheepMob.setAlias("sheep");
         sheepMob.setHp("2d10+50");
 
-        Room whiteRoom = new Room();
+        Room whiteRoom = TestHelper.getPortalAndClearMobs();
 
         whiteRoom.add(sheepMob);
         whiteRoom.add(player1Mob);
@@ -100,8 +104,15 @@ public class KickTest {
         assertTrue("sheep and player1 will be engaged in combat", sheepMob
                 .getFight().isEngaged(player1Mob));
 
+        // Override any ground fighting for test purposes as it would stop casting
+        if (player1Mob.getFight().isGroundFighting()) {
+            player1Mob.getFight().setMeleeToBasicAttack();
+            player1Mob.getTargetFight().setMeleeToBasicAttack();
+        }
+
         Command kick = new Kick();
         kick.execute(player1Mob, sheepMob.getAlias());
+
 
         assertTrue("Kick queued", !player1Mob.getFight().getFightActions().isEmpty());
 
@@ -127,7 +138,7 @@ public class KickTest {
         sheepMob.setAlias("sheep");
         sheepMob.setHp("2d10+50");
 
-        Room whiteRoom = new Room();
+        Room whiteRoom = TestHelper.getPortalAndClearMobs();
 
         whiteRoom.add(sheepMob);
         whiteRoom.add(player1Mob);
@@ -140,6 +151,11 @@ public class KickTest {
 
         World.getInstance(); // Starts time.
 
+        // Override any ground fighting for test purposes as it would stop casting
+        if (player1Mob.getFight().isGroundFighting()) {
+            player1Mob.getFight().setMeleeToBasicAttack();
+            player1Mob.getTargetFight().setMeleeToBasicAttack();
+        }
 
         Command kick = new Kick();
         kick.execute(player1Mob, sheepMob.getAlias());
