@@ -19,30 +19,24 @@ package com.ivstuart.tmud.state.mobs;
 import com.ivstuart.tmud.common.*;
 import com.ivstuart.tmud.constants.CarriedEnum;
 import com.ivstuart.tmud.constants.DamageType;
-import com.ivstuart.tmud.fighting.DamageManager;
 import com.ivstuart.tmud.fighting.Fight;
 import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.person.carried.Equipment;
 import com.ivstuart.tmud.person.carried.Inventory;
-import com.ivstuart.tmud.person.movement.MoveManager;
 import com.ivstuart.tmud.person.statistics.MobAffects;
 import com.ivstuart.tmud.person.statistics.MobMana;
 import com.ivstuart.tmud.person.statistics.affects.Affect;
 import com.ivstuart.tmud.person.statistics.diseases.Disease;
 import com.ivstuart.tmud.person.statistics.diseases.DiseaseFactory;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.items.Prop;
+import com.ivstuart.tmud.state.items.Weapon;
+import com.ivstuart.tmud.state.places.Room;
 import com.ivstuart.tmud.state.places.RoomLocation;
 import com.ivstuart.tmud.state.player.Attribute;
-import com.ivstuart.tmud.state.items.Prop;
 import com.ivstuart.tmud.state.player.Race;
-import com.ivstuart.tmud.state.items.Weapon;
-import com.ivstuart.tmud.state.items.Item;
-import com.ivstuart.tmud.state.places.Room;
-import com.ivstuart.tmud.state.places.RoomEnum;
 import com.ivstuart.tmud.state.util.EntityProvider;
-import com.ivstuart.tmud.world.MoonPhases;
-import com.ivstuart.tmud.world.WeatherSky;
 import com.ivstuart.tmud.world.World;
-import com.ivstuart.tmud.world.WorldTime;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -67,14 +61,16 @@ public class Mob extends Prop implements Tickable {
     private transient Mob following;
     // Player only data?
     private transient Mob lastToldBy;
+    private transient Mob possessed;
+    private transient final MobTimePassing mobTimePassing;
     private Learned learned;
     private RoomLocation beforeBattlegroundLocation;
     private RoomLocation roomLocation;
-    private int weight; // kg base mob
     private final MobCoreStats mobCoreStats;
+    private int weight; // kg base mob
     private String ability; // base mob
     private int align; // base mob
-    private transient boolean running = false;
+    private boolean running = false;
     private int level;
     private MobAffects mobAffects;
     private transient MobStatus mobStatus;
@@ -82,11 +78,9 @@ public class Mob extends Prop implements Tickable {
     private MobState state;
     private List<Tickable> tickers;
     private boolean alignment;
-    private int fallingCounter;
-    private Map<DamageType, Integer> saves;
     private Mob charmed;
     private Mob mount;
-    private transient Mob possessed;
+
 
     public Mob() {
         enumSet = EnumSet.noneOf(MobEnum.class);
@@ -94,6 +88,7 @@ public class Mob extends Prop implements Tickable {
         mobCombat = new MobCombat(this);
         mobNpc = new MobNpc();
         mobBodyStats = new MobBodyStats();
+        mobTimePassing = new MobTimePassing(this);
     }
 
     public Mob(Mob baseMob) {
@@ -118,11 +113,6 @@ public class Mob extends Prop implements Tickable {
             }
         }
 
-        if (tickers != null || mobAffects != null) {
-            LOGGER.debug("Adding to world time for mob " + this.getName());
-            WorldTime.addTickable(this);
-        }
-
         this.enumSet = EnumSet.copyOf(baseMob.enumSet);
 
         mobCoreStats = new MobCoreStats(baseMob.mobCoreStats);
@@ -135,6 +125,7 @@ public class Mob extends Prop implements Tickable {
 
         roomLocation = baseMob.roomLocation;
         beforeBattlegroundLocation = baseMob.beforeBattlegroundLocation;
+        mobTimePassing = new MobTimePassing(this);
     }
 
     public MobBodyStats getMobBodyStats() {
@@ -180,18 +171,6 @@ public class Mob extends Prop implements Tickable {
 
     public void setMount(Mob mount) {
         this.mount = mount;
-    }
-
-    public void setSaves(String saveString) {
-        String[] element = saveString.split(":");
-        if (element.length != 2) {
-            LOGGER.error("Problem setting saves to " + saveString);
-            return;
-        }
-        if (saves == null) {
-            saves = new HashMap<>();
-        }
-        saves.put(DamageType.valueOf(element[0]), Integer.parseInt(element[1]));
     }
 
     public RoomLocation getRoomLocation() {
@@ -510,175 +489,9 @@ public class Mob extends Prop implements Tickable {
             return true;
         }
 
-        checkIdleTimeAndKickout();
-
-        tickRegenerate();
-
-        checkForDrowning();
-
-        checkForFalling();
-
-        checkHungerAndThirst();
-
-        checkForDiseases();
-
-        checkForMobAffects();
-
-        checkForMobBehaviour();
-
-        checkForHitByLightning();
+        mobTimePassing.tick();
 
         return false;
-    }
-
-    private void checkForHitByLightning() {
-
-        if (World.getWeather() == WeatherSky.LIGHTNING) {
-            if (getRoom().getSectorType().isInside() && DiceRoll.ONE_D100.rollLessThanOrEqualTo(1) &&
-                    DiceRoll.ONE_D100.rollLessThanOrEqualTo(1)) {
-                out("You are hit by lightning!");
-                mobCoreStats.getHealth().increasePercentage(-1 * DiceRoll.roll(2, 100, 0));
-                DamageManager.checkForDefenderDeath(this, this);
-            }
-        }
-
-
-    }
-
-    private void checkForMobAffects() {
-        if (null != mobAffects) {
-            mobAffects.tick();
-        }
-    }
-
-    private void checkForMobBehaviour() {
-        if (tickers != null) {
-            for (Tickable ticker : tickers) {
-                ticker.tick();
-            }
-        }
-    }
-
-    private void tickRegenerate() {
-
-        MobState currentState = MobState.STAND;
-
-        if (state != null) {
-            currentState = state;
-        }
-
-        int regenRatePercentage = 3;
-        if (getRoom().hasFlag(RoomEnum.REGEN)) {
-            regenRatePercentage *= 3;
-        } else {
-            if (!getRoom().getSectorType().isInside() && MoonPhases.isNightTime()) {
-                regenRatePercentage = regenRatePercentage * MoonPhases.getPhase().getManaMod();
-            }
-        }
-
-        mobCoreStats.regen(currentState, regenRatePercentage);
-    }
-
-    private void checkForDrowning() {
-        if (mobCoreStats.getHealth() != null) {
-
-            if (getRoom().hasFlag(RoomEnum.UNDER_WATER) &&
-                    !getRace().isWaterbreath() &&
-                    !mobAffects.hasAffect(UNDERWATER_BREATH)) {
-                out("You begin to drown as you can not breath underwater");
-                mobCoreStats.getHealth().increasePercentage(-20);
-                DamageManager.checkForDefenderDeath(this, this);
-            }
-        }
-
-    }
-
-    private void checkForDiseases() {
-        if (!mobBodyStats.isUndead()) {
-            List<Disease> diseases = this.getMobAffects().getDiseases();
-            for (Disease disease : diseases) {
-                if (disease.isDroplets()) {
-                    // LOGGER.debug(getName()+" infecting mobs in room with "+disease.getDesc());
-                    infectMobs(getRoom().getMobs(), disease);
-                }
-                if (disease.isAirbourne() && DiceRoll.ONE_D100.rollLessThanOrEqualTo(disease.getInfectionRate())) {
-                    getRoom().add(disease);
-                }
-            }
-        }
-    }
-
-    private void infectMobs(List<Mob> mobs, Disease disease) {
-
-        for (Mob mob : mobs) {
-            if (mob == this) {
-                continue;
-            }
-            Disease.infect(mob, disease);
-        }
-
-    }
-
-    private void checkIdleTimeAndKickout() {
-        if (isPlayer() && !getFight().isEngaged()) {
-            getPlayer().getConnection().checkTimeout(this);
-        }
-    }
-
-    private void checkHungerAndThirst() {
-        if (isPlayer() && !mobBodyStats.isUndead()) {
-            Attribute thirst = getPlayer().getData().getThirst();
-            thirst.decrease(1);
-            Attribute hunger = getPlayer().getData().getHunger();
-            hunger.decrease(1);
-            if (thirst.getValue() <= 0) {
-                out("You hurt from thirst!");
-                mobCoreStats.getHealth().increasePercentage(-15);
-            }
-            if (hunger.getValue() <= 0) {
-                out("You hurt from hunger!");
-                mobCoreStats.getHealth().increasePercentage(-10);
-            }
-
-            Attribute drunk = getPlayer().getData().getDrunkAttribute();
-            Attribute poison = getPlayer().getData().getPoisonAttribute();
-
-            if (poison.getValue() > 0) {
-                out("You hurt from poison!");
-                mobCoreStats.getHealth().increasePercentage(-10);
-                poison.decrease(1);
-            }
-
-            if (drunk.getValue() > 0) {
-                out("You slowly sober up, coffee might help");
-                drunk.decrease(1);
-            }
-            DamageManager.checkForDefenderDeath(this, this);
-        }
-    }
-
-    private void checkForFalling() {
-        if (this.isFlying() && fallingCounter > 0) {
-            fallingCounter = 0;
-        }
-
-        // Falling from the sky. 30% damage per room
-        if (getRoom().hasFlag(RoomEnum.AIR) && !this.isFlying() && !getState().isMeditate()) {
-            this.out("You are in free fall while not flying");
-            fallingCounter++;
-            MoveManager.move(this, "down");
-        }
-
-        if (!getRoom().hasFlag(RoomEnum.AIR) && fallingCounter > 0) {
-            this.out("Ouch, you hit the ground hard!");
-            if (getRoom().hasFlag(RoomEnum.WATER)) {
-                mobCoreStats.getHealth().increasePercentage(-10 * fallingCounter);
-            } else {
-                mobCoreStats.getHealth().increasePercentage(-30 * fallingCounter);
-            }
-            fallingCounter = 0;
-            DamageManager.checkForDefenderDeath(this, this);
-        }
     }
 
     public boolean isSneaking() {
@@ -824,10 +637,10 @@ public class Mob extends Prop implements Tickable {
         if (isPlayer()) {
             return getEquipment().getSave(damageType);
         }
-        if (saves == null) {
+        if (mobNpc.getSaves() == null) {
             return 0;
         }
-        return saves.get(damageType);
+        return mobNpc.getSaves().get(damageType);
     }
 
     public int getWimpy() {
@@ -876,8 +689,6 @@ public class Mob extends Prop implements Tickable {
                 ", tickers=" + tickers +
                 ", alignment=" + alignment +
                 ", returnRoom='" + beforeBattlegroundLocation + '\'' +
-                ", fallingCounter=" + fallingCounter +
-                ", saves=" + saves +
                 ", charmed=" + charmed +
                 ", mount=" + mount +
                 ", possessed=" + possessed +
@@ -929,5 +740,9 @@ public class Mob extends Prop implements Tickable {
     @Deprecated
     public void setRoom(Room room) {
         roomLocation = room.getRoomLocation();
+    }
+
+    public MobCoreStats getMobCoreStats() {
+        return mobCoreStats;
     }
 }

@@ -20,6 +20,7 @@ import com.ivstuart.tmud.behaviour.BaseBehaviour;
 import com.ivstuart.tmud.behaviour.BehaviourFactory;
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.Tickable;
+import com.ivstuart.tmud.constants.DamageType;
 import com.ivstuart.tmud.state.player.Attribute;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,6 +28,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class MobNpc implements Serializable {
 
@@ -40,6 +42,9 @@ public class MobNpc implements Serializable {
     private DiceRoll maxHp;
     private transient List<String> behaviours;
     private String patrolPath;
+    private Map<DamageType, Integer> saves;
+
+
 
     public MobNpc(Mob mob, MobNpc mobNpc) {
         this.armour = mobNpc.armour;
@@ -130,5 +135,13 @@ public class MobNpc implements Serializable {
                 ", behaviours=" + behaviours +
                 ", patrolPath='" + patrolPath + '\'' +
                 '}';
+    }
+
+    public Map<DamageType, Integer> getSaves() {
+        return saves;
+    }
+
+    public void setSaves(Map<DamageType, Integer> saves) {
+        this.saves = saves;
     }
 }

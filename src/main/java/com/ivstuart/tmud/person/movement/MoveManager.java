@@ -109,7 +109,7 @@ public class MoveManager {
 
     }
 
-    public static void move(Mob mob, String down) {
+    public static void fall(Mob mob, String down) {
 
         Exit exit = mob.getRoom().getExit(down);
 

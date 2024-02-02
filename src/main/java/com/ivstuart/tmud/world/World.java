@@ -418,6 +418,10 @@ public class World {
         }
 
         if (object instanceof Mob) {
+            Mob mob = (Mob)object;
+            if (mob.getTickers() != null) {
+                WorldTime.addTickable(mob);
+            }
             World.add((Mob) object);
             return;
         }
