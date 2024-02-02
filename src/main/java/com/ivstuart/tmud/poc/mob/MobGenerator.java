@@ -117,7 +117,7 @@ public class MobGenerator {
         aMob.setLevel(mobGenerator.getLevel());
         // aMob.setMana("50");
         aMob.getMobBodyStats().setGender("Male");
-        aMob.setAlign("1000");
+        aMob.getMobNpc().setAlign(1000);
 
         // aMob.setRoom(room); // Room found in
         aMob.setState("STAND");

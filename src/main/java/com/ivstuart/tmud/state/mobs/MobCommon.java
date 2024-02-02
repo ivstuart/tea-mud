@@ -16,12 +16,27 @@
 
 package com.ivstuart.tmud.state.mobs;
 
-public class MobCommon {
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import java.io.Serializable;
+
+public class MobCommon implements Serializable {
+    private static final Logger LOGGER = LogManager.getLogger();
+    private static final long serialVersionUID = 1L;
     private int level;
     private String name;
 
     private boolean running = false;
+
+    public MobCommon() {
+
+    }
+
+    public MobCommon(MobCommon mobCommon) {
+        this.level = mobCommon.level;
+        this.name = mobCommon.name;
+    }
 
     public int getLevel() {
         return level;
@@ -39,5 +54,20 @@ public class MobCommon {
         this.name = name;
     }
 
+    public boolean isRunning() {
+        return running;
+    }
 
+    public void setRunning(boolean running) {
+        this.running = running;
+    }
+
+    @Override
+    public String toString() {
+        return "MobCommon{" +
+                "level=" + level +
+                ", name='" + name + '\'' +
+                ", running=" + running +
+                '}';
+    }
 }

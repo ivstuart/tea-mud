@@ -54,6 +54,9 @@ public class Mob extends Prop implements Tickable {
     private final MobCombat mobCombat;
     private final MobNpc mobNpc;
     private final MobBodyStats mobBodyStats;
+    private final MobCommon mobCommon;
+
+    private final MobCoreStats mobCoreStats;
     private Inventory inventory;
     // Stats
     private Equipment equipment;
@@ -62,22 +65,17 @@ public class Mob extends Prop implements Tickable {
     // Player only data?
     private transient Mob lastToldBy;
     private transient Mob possessed;
-    private transient final MobTimePassing mobTimePassing;
+    private transient MobTimePassing mobTimePassing;
+    private transient MobStatus mobStatus;
     private Learned learned;
     private RoomLocation beforeBattlegroundLocation;
     private RoomLocation roomLocation;
-    private final MobCoreStats mobCoreStats;
-    private int weight; // kg base mob
-    private String ability; // base mob
-    private int align; // base mob
+
     private boolean running = false;
-    private int level;
     private MobAffects mobAffects;
-    private transient MobStatus mobStatus;
-    private String name;
+
     private MobState state;
     private List<Tickable> tickers;
-    private boolean alignment;
     private Mob charmed;
     private Mob mount;
 
@@ -86,20 +84,17 @@ public class Mob extends Prop implements Tickable {
         enumSet = EnumSet.noneOf(MobEnum.class);
         mobCoreStats = new MobCoreStats();
         mobCombat = new MobCombat(this);
+        mobCommon = new MobCommon();
         mobNpc = new MobNpc();
         mobBodyStats = new MobBodyStats();
         mobTimePassing = new MobTimePassing(this);
+
     }
 
     public Mob(Mob baseMob) {
         super(baseMob);
-        name = baseMob.name;
+        mobCommon = new MobCommon(baseMob.mobCommon);
         state = baseMob.state;
-        level = baseMob.level;
-        align = baseMob.align;
-        ability = baseMob.ability;
-        weight = baseMob.weight;
-        alignment = baseMob.alignment;
 
         // Required for diseases.
         if (baseMob.mobAffects != null) {
@@ -126,6 +121,7 @@ public class Mob extends Prop implements Tickable {
         roomLocation = baseMob.roomLocation;
         beforeBattlegroundLocation = baseMob.beforeBattlegroundLocation;
         mobTimePassing = new MobTimePassing(this);
+
     }
 
     public MobBodyStats getMobBodyStats() {
@@ -179,14 +175,6 @@ public class Mob extends Prop implements Tickable {
 
     public void setRoomLocation(RoomLocation roomLocation) {
         this.roomLocation = roomLocation;
-    }
-
-    public boolean isAlignment() {
-        return alignment;
-    }
-
-    public void setAlignment(boolean alignment) {
-        this.alignment = alignment;
     }
 
     public void addAffect(String spellId, Affect affect_) {
@@ -283,7 +271,7 @@ public class Mob extends Prop implements Tickable {
     }
 
     public int getMobLevel() {
-        return level;
+        return mobCommon.getLevel();
     }
 
     public MobStatus getMobStatus() {
@@ -303,11 +291,11 @@ public class Mob extends Prop implements Tickable {
 
     @Override
     public String getName() {
-        return name;
+        return mobCommon.getName();
     }
 
     public void setName(String name_) {
-        name = name_;
+        mobCommon.setName(name_);
     }
 
     public int getOffensive() {
@@ -374,14 +362,6 @@ public class Mob extends Prop implements Tickable {
         }
 
         return null;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
-    public void setWeight(int weight_) {
-        weight = weight_;
     }
 
     public int getXp() {
@@ -453,25 +433,17 @@ public class Mob extends Prop implements Tickable {
         mobAffects.remove(name_);
     }
 
-    public void setAbility(String ability_) {
-        this.ability = ability_;
-    }
-
-    public void setAlign(String align_) {
-        this.align = Integer.parseInt(align_);
-    }
-
     public void setAttackType(String types) {
         mobNpc.setAttackType(types);
     }
 
     public void setLevel(int level) {
-        this.level = level;
+        mobCommon.setLevel(level);
     }
 
     // Alias will be used in MudArrayList
     public void setNameAndId(String name) {
-        this.name = name;
+        mobCommon.setName(name);
         this.setId(name);
     }
 
@@ -489,6 +461,9 @@ public class Mob extends Prop implements Tickable {
             return true;
         }
 
+        if (mobTimePassing == null) {
+            mobTimePassing = new MobTimePassing(this);
+        }
         mobTimePassing.tick();
 
         return false;
@@ -517,7 +492,7 @@ public class Mob extends Prop implements Tickable {
         if (this.isPlayer()) {
             return (player.getData().getAlignment().getValue() >= 0);
         }
-        return alignment;
+        return mobNpc.isAlignment();
     }
 
     public boolean isFollowing(Mob mob_) {
@@ -664,34 +639,29 @@ public class Mob extends Prop implements Tickable {
     @Override
     public String toString() {
         return "Mob{" +
-                ", enumSet=" + enumSet +
+                "enumSet=" + enumSet +
                 ", mobCombat=" + mobCombat +
                 ", mobNpc=" + mobNpc +
                 ", mobBodyStats=" + mobBodyStats +
+                ", mobCommon=" + mobCommon +
                 ", inventory=" + inventory +
                 ", equipment=" + equipment +
                 ", player=" + player +
                 ", following=" + following +
                 ", lastToldBy=" + lastToldBy +
+                ", possessed=" + possessed +
+                ", mobTimePassing=" + mobTimePassing +
                 ", learned=" + learned +
-//                ", room=" + room +
-                ", roomId='" + roomLocation + '\'' +
-                ", weight=" + weight +
+                ", beforeBattlegroundLocation=" + beforeBattlegroundLocation +
+                ", roomLocation=" + roomLocation +
                 ", mobCoreStats=" + mobCoreStats +
-                ", ability='" + ability + '\'' +
-                ", align=" + align +
                 ", running=" + running +
-                ", level=" + level +
                 ", mobAffects=" + mobAffects +
                 ", mobStatus=" + mobStatus +
-                ", name='" + name + '\'' +
                 ", state=" + state +
                 ", tickers=" + tickers +
-                ", alignment=" + alignment +
-                ", returnRoom='" + beforeBattlegroundLocation + '\'' +
                 ", charmed=" + charmed +
                 ", mount=" + mount +
-                ", possessed=" + possessed +
                 '}';
     }
 

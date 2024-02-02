@@ -53,7 +53,7 @@ public class SwapAlignment extends AdminCommand {
             return;
         }
 
-        target.setAlignment(!target.isGood());
+        target.getMobNpc().setAlignment(!target.isGood());
 
         mob.out("You feel " + mob.getName() + " alignment flip over");
     }

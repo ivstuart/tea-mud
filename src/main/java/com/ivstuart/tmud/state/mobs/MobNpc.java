@@ -44,10 +44,17 @@ public class MobNpc implements Serializable {
     private String patrolPath;
     private Map<DamageType, Integer> saves;
 
-
+    private int weight; // kg base mob
+    private String ability; // base mob
+    private int align; // base mob
+    private boolean alignment;
 
     public MobNpc(Mob mob, MobNpc mobNpc) {
         this.armour = mobNpc.armour;
+        this.weight = mobNpc.weight;
+        this.ability = mobNpc.ability;
+        this.align = mobNpc.align;
+        this.alignment = mobNpc.alignment;
 
         if (mobNpc.behaviours != null) {
             for (String behaviour : mobNpc.behaviours) {
@@ -134,6 +141,11 @@ public class MobNpc implements Serializable {
                 ", maxHp=" + maxHp +
                 ", behaviours=" + behaviours +
                 ", patrolPath='" + patrolPath + '\'' +
+                ", saves=" + saves +
+                ", weight=" + weight +
+                ", ability='" + ability + '\'' +
+                ", align=" + align +
+                ", alignment=" + alignment +
                 '}';
     }
 
@@ -143,5 +155,37 @@ public class MobNpc implements Serializable {
 
     public void setSaves(Map<DamageType, Integer> saves) {
         this.saves = saves;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public String getAbility() {
+        return ability;
+    }
+
+    public void setAbility(String ability) {
+        this.ability = ability;
+    }
+
+    public int getAlign() {
+        return align;
+    }
+
+    public void setAlign(int align) {
+        this.align = align;
+    }
+
+    public boolean isAlignment() {
+        return alignment;
+    }
+
+    public void setAlignment(boolean alignment) {
+        this.alignment = alignment;
     }
 }
