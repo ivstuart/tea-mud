@@ -59,7 +59,7 @@ public class StealTest {
 
         Mob player1Mob = TestHelper.makeDefaultPlayerMob("player1");
 
-        Ability ability = new Ability("steal", 100);
+        Ability ability = new Ability("steal", 105);
         player1Mob.getLearned().add(ability);
         World.add(new BaseSkill("steal"));
 
@@ -76,11 +76,12 @@ public class StealTest {
         SomeMoney cash = new Money(Money.COPPER, 100);
         sheepMob.getInventory().add(cash);
 
-        Room whiteRoom = TestHelper.getPortalAndClearMobs();
+        Room whiteRoom = World.getPortal();
 
         whiteRoom.add(sheepMob);
         whiteRoom.add(player1Mob);
 
+        assertTrue("Check sheep has cash", sheepMob.getInventory().getPurse().getValue() > 0);
 
         // Bash
         Command steal = new Steal();

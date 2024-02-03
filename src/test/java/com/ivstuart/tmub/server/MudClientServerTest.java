@@ -128,7 +128,7 @@ public class MudClientServerTest {
         mudClient.send("look");
 
         String response = mudClient.getLastResponseWithWait();
-        String expected = "(0)";
+        String expected = "(3844000)";
 
         boolean result = response.endsWith(expected);
 
@@ -161,7 +161,7 @@ public class MudClientServerTest {
         mudClient.send("look");
 
         String response = mudClient.getLastResponseWithWait();
-        String expected = "(0)";
+        String expected = "(3844000)";
 
         boolean result = response.endsWith(expected);
 

@@ -20,6 +20,8 @@ package com.ivstuart.tmud.person.carried;
 import com.ivstuart.tmud.state.items.Item;
 import com.ivstuart.tmud.state.items.Torch;
 import com.ivstuart.tmud.utils.MudArrayList;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -30,6 +32,7 @@ import java.util.Iterator;
  */
 public class Inventory implements Serializable {
 
+    private static final Logger LOGGER = LogManager.getLogger();
     /**
      *
      */
@@ -55,7 +58,10 @@ public class Inventory implements Serializable {
     }
 
     public void add(Item thing) {
-
+        if (thing == null) {
+            LOGGER.error("Trying to add null into inventory!");
+            throw new IllegalArgumentException();
+        }
         items.add(thing);
     }
 

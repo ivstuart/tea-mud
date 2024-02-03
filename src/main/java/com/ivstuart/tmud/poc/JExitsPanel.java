@@ -65,25 +65,25 @@ public class JExitsPanel extends JPanel {
     }
 
     private void buttonPressed(String direction, int facing) {
-        Room selectedRoom = World.getSelectedRoom();
+        Place selectedRoom = WorldMap.getSelectedRoom();
         selectedRoom.toggleExit(direction, facing);
 
         if (JModePanel.isBidirectional()) {
-            GridLocation nextLocation = World.getSelectedRoom().getGridLocation().goFacing(facing);
-            Room addjasentRoom = World.getRoom(nextLocation);
+            GridLocation nextLocation = WorldMap.getSelectedRoom().getGridLocation().goFacing(facing);
+            Place addjasentRoom = WorldMap.getRoom(nextLocation);
 
             if (addjasentRoom != null) {
                 addjasentRoom.toggleExit(Facing.getOpposite(direction), Facing.reverse(facing));
 
-                Exit exit = selectedRoom.getExit(direction);
+                Path exit = selectedRoom.getExit(direction);
 
                 if (JModePanel.isEditDoors() && exit != null) {
                     exit.toggleDoor();
                 }
             } else {
                 if (JModePanel.isEditRooms()) {
-                    Room room = new Room(nextLocation);
-                    World.addRoom(room);
+                    Place room = new Place(nextLocation);
+                    WorldMap.addRoom(room);
                 }
             }
         }

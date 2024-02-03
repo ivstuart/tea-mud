@@ -24,7 +24,7 @@ import java.util.List;
 
 public class JBitsPanel extends JPanel {
 
-    private static final JCheckBox[] boxes = new JCheckBox[RoomFlags.NUMBER_OF_FLAGS];
+    private static final JCheckBox[] boxes = new JCheckBox[PlaceFlags.NUMBER_OF_FLAGS];
 
     public JBitsPanel(GridLayout gridLayout) {
         super(gridLayout);
@@ -61,7 +61,7 @@ public class JBitsPanel extends JPanel {
     public void createComponents() {
 
         for (int i = 0; i < boxes.length; i++) {
-            boxes[i] = new JCheckBox(RoomFlags.getBitName(i));
+            boxes[i] = new JCheckBox(PlaceFlags.getBitName(i));
             this.add(boxes[i]);
 
             final int index = i;
@@ -71,7 +71,7 @@ public class JBitsPanel extends JPanel {
     }
 
     private void changeValue(int i) {
-        World.getSelectedRoom().getRoomFlags().toggleFlag(i);
+        WorldMap.getSelectedRoom().getRoomFlags().toggleFlag(i);
     }
 
 }

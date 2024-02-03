@@ -33,6 +33,7 @@ import com.ivstuart.tmud.state.places.RoomBuilder;
 import com.ivstuart.tmud.state.places.RoomLocation;
 import com.ivstuart.tmud.state.places.Zone;
 import com.ivstuart.tmud.state.player.Race;
+import com.ivstuart.tmud.state.setup.ItemProvider;
 import com.ivstuart.tmud.state.setup.RaceProvider;
 import com.ivstuart.tmud.state.setup.SkillsProvider;
 import com.ivstuart.tmud.state.setup.SpellProvider;
@@ -91,6 +92,7 @@ public class World {
         RaceProvider.load();
         SkillsProvider.load();
         SpellProvider.load();
+        ItemProvider.load();
 
         mudStats = MudStats.init();
 
@@ -101,11 +103,6 @@ public class World {
         startTime();
 
         weather = WeatherSky.CLOUDLESS;
-
-        // Needed until JSON state reading merged in and a real work is added.
-        // TODO remove this and figure out a nice way to mark start positions from map editor.
-        Room portal =new Room(new RoomLocation(0,0,0));
-        World.add(portal.getRoomLocation(), portal);
     }
 
     public static WeatherSky getWeather() {
@@ -310,20 +307,8 @@ public class World {
         new ForcedQuit().execute(playerMob, null);
     }
 
-    public static Room getPortal(Mob defender) {
-        if (defender.isGood()) {
-            return World.getRoom("R-P2");
-        } else {
-            return World.getRoom("R-P1");
-        }
-    }
-
     public static RoomLocation getPortalLocation(Mob defender) {
-        if (defender.isGood()) {
-            return new RoomLocation(0,0,0);
-        } else {
-            return new RoomLocation(1,0,0);
-        }
+        return getPortal(defender.isGood()).getRoomLocation();
     }
 
     public static void registerAuction(Mob seller, AuctionItem auctionItem) {
@@ -494,7 +479,7 @@ public class World {
         scheduledExecutorService.scheduleAtFixedRate(new Weather(), 0, 30, TimeUnit.MINUTES);
     }
 
-    // Yes I know I am not using a map here. Loading in order
+    // Yes I know I am not using a map.gson here. Loading in order
     public Race getRace(int id) {
 
         if (races.isEmpty()) {
@@ -507,7 +492,30 @@ public class World {
         return races.get(id - 1);
     }
 
-    public static Room getPortal(){
-        return rooms.get(new RoomLocation(0,0,0));
+    public static Room getPortal() {
+        return getPortal(true);
+    }
+
+    public static Room getPortal(boolean alignment){
+
+        Room portal;
+
+        if (alignment) {
+            portal = rooms.get(RoomLocation.PORTAL_GOOD);
+        }
+        else {
+            portal = rooms.get(RoomLocation.PORTAL_EVIL);
+        }
+
+        if (portal == null) {
+            portal = new Room(new RoomLocation(0,0,0));
+            World.add(portal);
+        }
+
+        return portal;
+    }
+
+    public static Map<RoomLocation, Room> getRooms() {
+        return rooms;
     }
 }

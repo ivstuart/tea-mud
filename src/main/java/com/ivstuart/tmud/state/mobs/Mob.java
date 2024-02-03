@@ -57,9 +57,6 @@ public class Mob extends Prop implements Tickable {
     private final MobCommon mobCommon;
 
     private final MobCoreStats mobCoreStats;
-    private Inventory inventory;
-    // Stats
-    private Equipment equipment;
     private transient Player player;
     private transient Mob following;
     // Player only data?
@@ -67,17 +64,19 @@ public class Mob extends Prop implements Tickable {
     private transient Mob possessed;
     private transient MobTimePassing mobTimePassing;
     private transient MobStatus mobStatus;
+    private Inventory inventory;
+    // Stats
+    private Equipment equipment;
     private Learned learned;
     private RoomLocation beforeBattlegroundLocation;
     private RoomLocation roomLocation;
 
-    private boolean running = false;
     private MobAffects mobAffects;
 
     private MobState state;
     private List<Tickable> tickers;
-    private Mob charmed;
-    private Mob mount;
+    private transient Mob charmed;
+    private transient Mob mount;
 
 
     public Mob() {
@@ -101,10 +100,18 @@ public class Mob extends Prop implements Tickable {
             mobAffects = new MobAffects(baseMob.mobAffects);
         }
 
+        // equipment not copied.
+
         if (!baseMob.getInventory().isEmpty()) {
             for (Item item : baseMob.getInventory().getItems()) {
                 Item clonedItem = (Item) item.clone();
-                this.getInventory().add(clonedItem);
+
+                if (clonedItem == null) {
+                    LOGGER.warn("Trying to add null Item into inventory!");
+                }
+                else {
+                    this.getInventory().add(clonedItem);
+                }
             }
         }
 
@@ -294,8 +301,8 @@ public class Mob extends Prop implements Tickable {
         return mobCommon.getName();
     }
 
-    public void setName(String name_) {
-        mobCommon.setName(name_);
+    public void setName(String name) {
+        mobCommon.setName(name);
     }
 
     public int getOffensive() {
@@ -394,11 +401,11 @@ public class Mob extends Prop implements Tickable {
     }
 
     public boolean isRunning() {
-        return running;
+        return mobCommon.isRunning();
     }
 
     public void setRunning(boolean runFlag) {
-        running = runFlag;
+        mobCommon.setRunning(runFlag);
     }
 
     @Override
@@ -655,7 +662,6 @@ public class Mob extends Prop implements Tickable {
                 ", beforeBattlegroundLocation=" + beforeBattlegroundLocation +
                 ", roomLocation=" + roomLocation +
                 ", mobCoreStats=" + mobCoreStats +
-                ", running=" + running +
                 ", mobAffects=" + mobAffects +
                 ", mobStatus=" + mobStatus +
                 ", state=" + state +

@@ -16,7 +16,7 @@
 
 package com.ivstuart.tmud.poc;
 
-public class Exit {
+public class Path {
 
     private final String name;
 
@@ -24,12 +24,12 @@ public class Exit {
 
     private boolean door = false;
 
-    public Exit(String name, GridLocation destination) {
+    public Path(String name, GridLocation destination) {
         this.name = name;
         this.destination = destination;
     }
 
-    public Exit(int facing, GridLocation destination) {
+    public Path(int facing, GridLocation destination) {
         this.name = Facing.getDirection(facing);
         this.destination = destination;
     }

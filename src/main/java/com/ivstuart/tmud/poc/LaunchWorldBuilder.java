@@ -42,13 +42,13 @@ public class LaunchWorldBuilder {
 
         GridLocation gridLocation = new GridLocation(5, 5, 0);
 
-        Room startingRoom = new Room(gridLocation);
+        Place startingRoom = new Place(gridLocation);
 
-        World.addRoom(startingRoom);
+        WorldMap.addRoom(startingRoom);
 
         // Test
-        startingRoom.getRoomFlags().setFlag(RoomFlags.DARK);
-        startingRoom.getRoomFlags().setFlag(RoomFlags.PEACEFUL);
+        startingRoom.getRoomFlags().setFlag(PlaceFlags.DARK);
+        startingRoom.getRoomFlags().setFlag(PlaceFlags.PEACEFUL);
 
         LOGGER.info("Starting room:" + startingRoom);
 
@@ -71,7 +71,7 @@ public class LaunchWorldBuilder {
 //        LOGGER.info("Room dump");
 //
         // Join open rooms up
-        for (Room room : World.getRoomMap().values()) {
+        for (Place room : WorldMap.getRoomMap().values()) {
             LOGGER.debug("Room:" + room);
             if (!room.isNarrowPassageway()) {
                 room.joinNeighbours();
@@ -143,7 +143,7 @@ public class LaunchWorldBuilder {
         int index = random.nextInt(locations.size());
         gridLocation = locations.get(index);
 
-        while (!locations.isEmpty() && gridLocation.isOutsideOfZone(World.zone)) {
+        while (!locations.isEmpty() && gridLocation.isOutsideOfZone(WorldMap.zone)) {
             index = random.nextInt(locations.size());
             gridLocation = locations.get(index);
             locations.remove(gridLocation);
@@ -186,7 +186,7 @@ public class LaunchWorldBuilder {
 
             GridLocation mapLocation = new GridLocation(x, y, z);
 
-            if (mapLocation.isOutsideOfZone(World.zone)) {
+            if (mapLocation.isOutsideOfZone(WorldMap.zone)) {
                 break;
             }
 
@@ -205,8 +205,8 @@ public class LaunchWorldBuilder {
 
 
     private static void addRoomAndExit(GridLocation beforeLocation, GridLocation afterLocation, Random random, int facing) {
-        Room beforeRoom = World.getRoom(beforeLocation);
-        Room room = World.getRoom(afterLocation);
+        Place beforeRoom = WorldMap.getRoom(beforeLocation);
+        Place room = WorldMap.getRoom(afterLocation);
         if (room != null) {
 
             // 50% chance of creating a looped path
@@ -214,13 +214,13 @@ public class LaunchWorldBuilder {
                 beforeRoom.addExit(facing, true);
             }
         } else {
-            room = new Room(afterLocation);
+            room = new Place(afterLocation);
 
             if (random.nextInt(100) < 10) {
                 isOpen = !isOpen;
             }
             room.setNarrowPassageway(isOpen);
-            World.addRoom(room);
+            WorldMap.addRoom(room);
 
             beforeRoom.addExit(facing, true);
 

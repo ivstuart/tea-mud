@@ -55,6 +55,8 @@ public class Room extends BasicThing implements Msgable {
     private transient List<Disease> diseases;
     private SectorType sectorType;
 
+    private int zoneId;
+
     @Deprecated
     public Room() {
         this.roomLocation = new RoomLocation(0,0,0);
@@ -471,5 +473,13 @@ public class Room extends BasicThing implements Msgable {
 
     public RoomLocation getRoomLocation() {
         return roomLocation;
+    }
+
+    public void setZoneId(int zoneId) {
+        this.zoneId = zoneId;
+    }
+
+    public EnumSet<RoomEnum> getFlags() {
+        return flags;
     }
 }

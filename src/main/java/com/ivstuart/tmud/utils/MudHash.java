@@ -102,7 +102,7 @@ public class MudHash<T> {
 
     @Override
     public String toString() {
-        return "map [ " + map + " ]\n" + "default [ "
+        return "map.gson [ " + map + " ]\n" + "default [ "
                 + defaultObject + " ]";
     }
 

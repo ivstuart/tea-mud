@@ -21,22 +21,22 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 
-public class Room {
+public class Place {
 
     private static final Logger LOGGER = LogManager.getLogger();
     private final GridLocation gridLocation;
-    private final ArrayList<Exit> exits;
-    private final RoomFlags roomFlags = new RoomFlags();
+    private final ArrayList<Path> exits;
+    private final PlaceFlags roomFlags = new PlaceFlags();
     private int roomNumber;
     private int zoneId;
 
-    public Room(GridLocation gridLocation) {
+    public Place(GridLocation gridLocation) {
         this.gridLocation = gridLocation;
         this.exits = new ArrayList<>(4);
         this.zoneId = JModePanel.getZone();
     }
 
-    public Room(int x, int y, int z) {
+    public Place(int x, int y, int z) {
         this(new GridLocation(x, y, z));
     }
 
@@ -49,19 +49,19 @@ public class Room {
         this.zoneId = zoneId;
     }
 
-    public RoomFlags getRoomFlags() {
+    public PlaceFlags getRoomFlags() {
         return roomFlags;
     }
 
     public boolean isNarrowPassageway() {
-        return roomFlags.getFlag(RoomFlags.NARROW);
+        return roomFlags.getFlag(PlaceFlags.NARROW);
     }
 
     public void setNarrowPassageway(boolean narrowPassageway) {
         if (narrowPassageway) {
-            roomFlags.setFlag(RoomFlags.NARROW);
+            roomFlags.setFlag(PlaceFlags.NARROW);
         } else {
-            roomFlags.removeFlag(RoomFlags.NARROW);
+            roomFlags.removeFlag(PlaceFlags.NARROW);
         }
     }
 
@@ -69,7 +69,7 @@ public class Room {
         return gridLocation;
     }
 
-    public ArrayList<Exit> getExits() {
+    public ArrayList<Path> getExits() {
         return exits;
     }
 
@@ -82,15 +82,15 @@ public class Room {
 
         GridLocation destination = gridLocation.goFacing(facing);
 
-        if (destination.isOutsideOfZone(World.zone)) {
+        if (destination.isOutsideOfZone(WorldMap.zone)) {
             LOGGER.info("Hit edge of zone");
             return false;
         }
-        Exit exit;
+        Path exit;
         if (direction == null) {
-            exit = new Exit(facing, destination);
+            exit = new Path(facing, destination);
         } else {
-            exit = new Exit(direction, destination);
+            exit = new Path(direction, destination);
         }
 
         if (hasDirection(exit.getName())) {
@@ -101,7 +101,7 @@ public class Room {
             }
         }
 
-        if (World.getRoom(destination) == null) {
+        if (WorldMap.getRoom(destination) == null) {
             LOGGER.debug("Has no room in that direction");
             return false;
         }
@@ -111,7 +111,7 @@ public class Room {
 
         if (bidirectional) {
             LOGGER.info("Adding path back also");
-            Room destinationRoom = World.getRoom(destination);
+            Place destinationRoom = WorldMap.getRoom(destination);
 
             if (destinationRoom == null) {
                 LOGGER.warn("No room to add opposite direction exit into");
@@ -124,14 +124,14 @@ public class Room {
         return true;
     }
 
-    public boolean join(Room destination) {
+    public boolean join(Place destination) {
         if (destination.getGridLocation().isNextTo(this.gridLocation)) {
 
             String directionFwd = gridLocation.getDestinationExit(destination.getGridLocation());
             String directionBack = destination.getGridLocation().getDestinationExit(gridLocation);
 
-            Exit exitFwd = new Exit(directionFwd, destination.getGridLocation());
-            Exit exitBack = new Exit(directionBack, gridLocation);
+            Path exitFwd = new Path(directionFwd, destination.getGridLocation());
+            Path exitBack = new Path(directionBack, gridLocation);
 
             this.addExit(exitFwd);
             destination.addExit(exitBack);
@@ -141,7 +141,7 @@ public class Room {
         return false;
     }
 
-    private boolean addExit(Exit exitFwd) {
+    private boolean addExit(Path exitFwd) {
 
         if (hasDirection(exitFwd.getName())) {
             return false;
@@ -152,7 +152,7 @@ public class Room {
     }
 
     public boolean hasDirection(String direction) {
-        for (Exit exit : exits) {
+        for (Path exit : exits) {
             if (exit.getName().equals(direction)) {
                 return true;
             }
@@ -190,7 +190,7 @@ public class Room {
 
     public void toggleExit(String direction, int facing) {
 
-        for (Exit exit : exits) {
+        for (Path exit : exits) {
             if (exit.getName().equals(direction)) {
                 LOGGER.debug("removing exit in direction:" + direction);
                 exits.remove(exit);
@@ -206,7 +206,7 @@ public class Room {
     }
 
 
-    public void addExit(Room previousRoom) {
+    public void addExit(Place previousRoom) {
 
         int dx = gridLocation.getX() - previousRoom.getGridLocation().getX();
         int dy = gridLocation.getY() - previousRoom.getGridLocation().getY();
@@ -232,8 +232,8 @@ public class Room {
 
     }
 
-    public Exit getExit(String direction) {
-        for (Exit exit : exits) {
+    public Path getExit(String direction) {
+        for (Path exit : exits) {
             if (exit.getName().equals(direction)) {
                 return exit;
             }

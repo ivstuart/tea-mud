@@ -26,7 +26,8 @@ public class RoomLocation implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final RoomLocation PORTAL = new RoomLocation(0,0,0);
+    public static final RoomLocation PORTAL_GOOD = new RoomLocation(0,0,0);
+    public static final RoomLocation PORTAL_EVIL = new RoomLocation(1,1,0);
 
     private final int x;
     private final int y;

@@ -37,7 +37,7 @@ public class JInputOutputPanel extends JPanel {
 
     private static final JTextField zoneTextField = new JTextField();
 
-    public static void setGridLocation(Room room) {
+    public static void setGridLocation(Place room) {
 
         xTextField.setText("" + room.getGridLocation().getX());
         yTextField.setText("" + room.getGridLocation().getY());
@@ -110,7 +110,7 @@ public class JInputOutputPanel extends JPanel {
 
             GsonIO gsonIO = new GsonIO();
             try {
-                gsonIO.save(World.getRoomMap(), fileName);
+                gsonIO.save(WorldMap.getRoomMap(), fileName);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -134,22 +134,22 @@ public class JInputOutputPanel extends JPanel {
             String fileName = fileChooser.getSelectedFile().getName();
             LOGGER.info("You choose to load this file: " + fileName);
 
-            World.getRoomMap().clear();
+            WorldMap.getRoomMap().clear();
 
             GsonIO gsonIO = new GsonIO();
 
             Object loadedObject;
 
             try {
-                loadedObject = gsonIO.load(fileName, World.getRoomMap().getClass());
+                loadedObject = gsonIO.load(fileName, WorldMap.getRoomMap().getClass());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
 
-            Map<GridLocation, Room> loadedMap;
+            Map<GridLocation, Place> loadedMap;
 
             if (loadedObject instanceof Map) {
-                loadedMap = (Map<GridLocation, Room>) loadedObject;
+                loadedMap = (Map<GridLocation, Place>) loadedObject;
             } else {
                 LOGGER.error("Problem loading not a Map");
                 return;
@@ -161,12 +161,12 @@ public class JInputOutputPanel extends JPanel {
             for (Object value : loadedMap.values()) {
                 LOGGER.info("Debugging value: " + value);
 
-                Room room = gson.fromJson(value.toString(), Room.class);
+                Place room = gson.fromJson(value.toString(), Place.class);
 
-                World.addRoom(room);
+                WorldMap.addRoom(room);
             }
 
-            LOGGER.info("Debugging World: " + World.getRoomMap());
+            LOGGER.info("Debugging World: " + WorldMap.getRoomMap());
 
         }
 
@@ -175,7 +175,7 @@ public class JInputOutputPanel extends JPanel {
 
     private void clearWorld() {
 
-        Map<GridLocation, Room> roomMap = World.getRoomMap();
+        Map<GridLocation, Place> roomMap = WorldMap.getRoomMap();
         roomMap.clear();
         JRootPane rootPane = this.getRootPane();
         rootPane.repaint();

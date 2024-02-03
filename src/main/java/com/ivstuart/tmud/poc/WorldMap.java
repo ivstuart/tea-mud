@@ -23,19 +23,19 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public class World {
+public class WorldMap {
     public static final Zone zone = new Zone(100, 160); // 40 by 40 works well.
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private static Map<GridLocation, Room> roomMap = new HashMap<>(100);
+    private static Map<GridLocation, Place> roomMap = new HashMap<>(100);
     private static int counter = 0;
-    private static Room selectedRoom;
+    private static Place selectedRoom;
 
-    public static Room getRoom(GridLocation mapLocation) {
+    public static Place getRoom(GridLocation mapLocation) {
         return roomMap.get(mapLocation);
     }
 
-    public static void addRoom(Room room) {
+    public static void addRoom(Place room) {
 
 
         if (room.getGridLocation().isOutsideOfZone(zone)) {
@@ -51,29 +51,29 @@ public class World {
         }
     }
 
-    public static Map<GridLocation, Room> getRoomMap() {
+    public static Map<GridLocation, Place> getRoomMap() {
         return roomMap;
     }
 
-    public static void setRoomMap(Map<GridLocation, Room> loadedObject) {
+    public static void setRoomMap(Map<GridLocation, Place> loadedObject) {
         roomMap = loadedObject;
     }
 
-    public static Room getRandomRoom(Random random) {
+    public static Place getRandomRoom(Random random) {
         if (roomMap.isEmpty()) {
             return null;
         }
         Object[] rooms = roomMap.values().toArray();
-        return (Room) rooms[random.nextInt(rooms.length)];
+        return (Place) rooms[random.nextInt(rooms.length)];
     }
 
-    public static Room getSelectedRoom() {
+    public static Place getSelectedRoom() {
         return selectedRoom;
     }
 
     public static void setRoomSelected(int x, int y, int z) {
 
-        Room room = World.getRoom(new GridLocation(x, y, z));
+        Place room = WorldMap.getRoom(new GridLocation(x, y, z));
         if (room != null) {
             selectedRoom = room;
 
@@ -83,7 +83,7 @@ public class World {
         }
     }
 
-    public static void removeRoom(Room room) {
+    public static void removeRoom(Place room) {
         roomMap.remove(room.getGridLocation());
     }
 }

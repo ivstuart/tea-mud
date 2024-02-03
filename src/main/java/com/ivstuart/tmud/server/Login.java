@@ -22,6 +22,7 @@ import com.ivstuart.tmud.constants.AttributeType;
 import com.ivstuart.tmud.exceptions.MudException;
 import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.person.PlayerData;
+import com.ivstuart.tmud.person.carried.Inventory;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.state.items.Item;
 import com.ivstuart.tmud.state.items.Torch;
@@ -223,26 +224,22 @@ public class Login implements Readable {
     }
 
     private void initialEquipment(Player player) {
-        Item item = Login.getItemClone("tinder-box-001");
-        player.getMob().getInventory().add(item);
+        Inventory inventory = player.getMob().getInventory();
+        cloneAndAddItem( inventory,"tinder-box-001");
+        cloneAndAddItem( inventory,"torch-001");
+        cloneAndAddItem( inventory,"waterskin-001");
+        cloneAndAddItem( inventory,"sword-001");
+        cloneAndAddItem( inventory,"club-001");
+        cloneAndAddItem( inventory,"immortal-80");
+        inventory.add(new Money(Money.COPPER, 50));
 
-        item = Login.getItemClone("torch-001");
-        player.getMob().getInventory().add(item);
+    }
 
-        item = Login.getItemClone("waterskin-001");
-        player.getMob().getInventory().add(item);
-
-        item = Login.getItemClone("sword-001");
-        player.getMob().getInventory().add(item);
-
-        item = Login.getItemClone("club-001");
-        player.getMob().getInventory().add(item);
-
-        item = Login.getItemClone("immortal-80");
-        player.getMob().getInventory().add(item);
-
-        player.getMob().getInventory().add(new Money(Money.COPPER, 50));
-
+    private static void cloneAndAddItem(Inventory inventory, String id) {
+        Item item = Login.getItemClone(id);
+        if (item != null) {
+            inventory.add(item);
+        }
     }
 
     private boolean isValidName(String name) {
@@ -315,11 +312,7 @@ public class Login implements Readable {
 
         if (newRoom == null) {
             LOGGER.warn("Could not find players room!");
-
-            // TODO have a way to set good and evil start locations
-            newRoomLocation = new RoomLocation(0,0,0);
-            newRoom = World.getRoom(newRoomLocation);
-            newRoom = World.getPortal();
+            newRoom = World.getPortal(player.getMob().isGood());
 
         }
 

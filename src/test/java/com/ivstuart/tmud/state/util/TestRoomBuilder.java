@@ -69,7 +69,7 @@ public class TestRoomBuilder {
 
         assertEquals("Check number of rooms",12,World.getNumberOfRooms());
 
-        assertFalse("Check exit from first room", World.getRoom(RoomLocation.PORTAL).getExits().isEmpty());
+        assertFalse("Check exit from first room", World.getPortal(true).getExits().isEmpty());
 
     }
 }

@@ -18,6 +18,7 @@ package com.ivstuart.tmud.command.info;
 
 import com.ivstuart.tmud.server.LaunchMud;
 import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.RoomLocation;
 import com.ivstuart.tmud.state.player.Race;
 import com.ivstuart.tmud.state.places.Room;
 import com.ivstuart.tmud.state.places.Exit;
@@ -54,7 +55,11 @@ public class ScanTest {
         Mob ste = TestHelper.makeDefaultPlayerMob("ste");
 
         Race human = new Race();
+
         World.getInstance().addToWorld(human);
+
+        World.getRooms().clear();
+        World.getPortal();
 
         Room room = TestHelper.makeRoomGrid();
 

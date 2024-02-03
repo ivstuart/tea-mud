@@ -65,7 +65,7 @@ public class JWorldPanel extends JPanel {
     public void addClickListener() {
         this.addMouseMotionListener(new MouseInputAdapter() {
 
-            private Room previousRoom;
+            private Place previousRoom;
 
             @Override
             public void mouseDragged(MouseEvent e) {
@@ -78,20 +78,20 @@ public class JWorldPanel extends JPanel {
                 int x = e.getX() / gridSize;
                 int y = e.getY() / gridSize;
 
-                previousRoom = World.getSelectedRoom();
+                previousRoom = WorldMap.getSelectedRoom();
 
                 int z = JModePanel.getValue();
-                World.setRoomSelected(x, y, z);
+                WorldMap.setRoomSelected(x, y, z);
 
                 if (JModePanel.isEditRooms()) {
 
                     GridLocation gridLocation = new GridLocation(x, y, z);
-                    Room room = World.getRoom(gridLocation);
+                    Place room = WorldMap.getRoom(gridLocation);
 
                     if (e.getModifiers() == 4) { // Event.FOUR not found.
                         LOGGER.debug("Right mouse button held");
                         if (room != null) {
-                            World.removeRoom(room);
+                            WorldMap.removeRoom(room);
                         }
                         JPanel source = (JPanel) e.getSource();
                         source.repaint();
@@ -99,9 +99,9 @@ public class JWorldPanel extends JPanel {
                     }
 
                     if (room == null) {
-                        room = new Room(x, y, z);
+                        room = new Place(x, y, z);
                         room.setNarrowPassageway(!JModePanel.isOpen());
-                        World.addRoom(room);
+                        WorldMap.addRoom(room);
 
                         if (JModePanel.isEditExits() && !room.isNarrowPassageway()) {
                             room.addExit(0, true);
@@ -114,7 +114,7 @@ public class JWorldPanel extends JPanel {
                             room.addExit(previousRoom);
                         }
 
-                        World.setRoomSelected(x, y, z);
+                        WorldMap.setRoomSelected(x, y, z);
                     }
 
                 }
@@ -135,17 +135,17 @@ public class JWorldPanel extends JPanel {
                 int x = e.getX() / gridSize;
                 int y = e.getY() / gridSize;
                 int z = JModePanel.getValue();
-                World.setRoomSelected(x, y, z);
+                WorldMap.setRoomSelected(x, y, z);
 
                 if (JModePanel.isEditRooms() && e.getClickCount() == 1) {
 
                     GridLocation gridLocation = new GridLocation(x, y, z);
-                    Room room = World.getRoom(gridLocation);
+                    Place room = WorldMap.getRoom(gridLocation);
 
                     if (room == null) {
-                        room = new Room(x, y, 0);
+                        room = new Place(x, y, 0);
                         room.setNarrowPassageway(!JModePanel.isOpen());
-                        World.addRoom(room);
+                        WorldMap.addRoom(room);
 
                         if (JModePanel.isEditExits() && !room.isNarrowPassageway()) {
                             room.addExit(0, true);
@@ -154,7 +154,7 @@ public class JWorldPanel extends JPanel {
                             room.addExit(3, true);
                         }
 
-                        World.setRoomSelected(x, y, z);
+                        WorldMap.setRoomSelected(x, y, z);
                     }
 
                 }
@@ -175,7 +175,7 @@ public class JWorldPanel extends JPanel {
         g.setFont(new Font("Ariel", Font.PLAIN, 8));
 
 
-        if (World.getRoomMap().isEmpty()) {
+        if (WorldMap.getRoomMap().isEmpty()) {
             return;
         }
 
@@ -190,7 +190,7 @@ public class JWorldPanel extends JPanel {
         int maxY = 0;
         int maxX = 0;
         int level = JModePanel.getValue();
-        for (Room room : World.getRoomMap().values()) {
+        for (Place room : WorldMap.getRoomMap().values()) {
             if (level != room.getGridLocation().getZ()) {
                 continue;
             }
@@ -205,7 +205,7 @@ public class JWorldPanel extends JPanel {
                 maxY = cy;
             }
 
-            if (World.getSelectedRoom() == room) {
+            if (WorldMap.getSelectedRoom() == room) {
                 g.setColor(Color.LIGHT_GRAY);
             } else {
                 int zoneId = room.getZoneId();
@@ -220,7 +220,7 @@ public class JWorldPanel extends JPanel {
 
             g.setColor(Color.BLACK);
 
-            for (Exit exit : room.getExits()) {
+            for (Path exit : room.getExits()) {
 
                 int x = exitOffsetSize;
                 int y = exitOffsetSize;

@@ -291,6 +291,10 @@ public class Look extends BaseCommand {
 
         mob.out(mob.getRoom().getLook());
 
+        if (mob.getRoom().getBrief() == null) {
+            mob.out("A none description room at:"+mob.getRoom().getRoomLocation());
+        }
+
     }
 
     private void showTracks(Mob mob) {

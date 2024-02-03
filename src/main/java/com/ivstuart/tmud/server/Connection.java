@@ -140,7 +140,7 @@ public class Connection {
             LOGGER.info("Player " + mob.getName() + " has been idle for " + secondsIdle + " and has been kicked off");
             out("You have been idle for " + secondsIdle + " seconds hence quiting for you");
             new ForcedQuit().execute(mob, null);
-        } else if (isConnected()) {
+        } else if (!isConnected()) {
             LOGGER.info("Player has lost there connection and has been kicked off");
             new ForcedQuit().execute(mob, null);
         }

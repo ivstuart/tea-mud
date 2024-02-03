@@ -18,10 +18,12 @@
 package com.ivstuart.tmud.server;
 
 import com.ivstuart.tmud.command.CommandProvider;
+import com.ivstuart.tmud.poc.WorldMap;
 import com.ivstuart.tmud.state.places.Room;
 import com.ivstuart.tmud.state.places.RoomLocation;
 import com.ivstuart.tmud.state.util.StateReader;
 import com.ivstuart.tmud.world.World;
+import com.ivstuart.tmud.world.WorldLoad;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -29,6 +31,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.net.URISyntaxException;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -69,9 +72,7 @@ public class LaunchMud {
 
         // TODO change state loading to read in JSON for the world and generate mobs and items on demand.
         // StateReader.getInstance().load();
-        World.getInstance();
-
-
+        loadWorld();
 
         CommandProvider.getInstance();
 
@@ -89,6 +90,16 @@ public class LaunchMud {
 
 
         LOGGER.info("Finished mud.");
+    }
+
+    private static void loadWorld() {
+        World.getInstance();
+        WorldLoad.load();
+
+        Map<RoomLocation, Room> result = WorldLoad.mapWorld(WorldMap.getRoomMap());
+
+        World.getRooms().clear();
+        World.getRooms().putAll(result);
     }
 
     public static boolean stop() {

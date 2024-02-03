@@ -18,7 +18,7 @@ package com.ivstuart.tmud.poc;
 
 import java.util.BitSet;
 
-public class RoomFlags {
+public class PlaceFlags {
     public static final int NARROW = 0;
     public static final int DARK = 1;
 
@@ -72,7 +72,7 @@ public class RoomFlags {
 
     private BitSet flags;
 
-    public RoomFlags() {
+    public PlaceFlags() {
 
     }
 
