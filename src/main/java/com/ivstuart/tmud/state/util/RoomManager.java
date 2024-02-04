@@ -31,13 +31,14 @@ import java.util.List;
 
 import static com.ivstuart.tmud.constants.DoorState.*;
 
+@Deprecated
 public class RoomManager {
 
     private static final Logger LOGGER = LogManager.getLogger();
     private static final List<DoorDAO> exitsWithDoors = new ArrayList<>();
     private static Door lastCreatedDoor;
 
-    public static void createDoors(String roomId_, String exit_) {
+    public static void createDoors(RoomLocation roomId_, String exit_) {
 
         LOGGER.info("Creating door in room [ " + roomId_ + " ] for [ " + exit_
                 + " ]");
@@ -62,7 +63,7 @@ public class RoomManager {
         DoorDAO doorDAO = new DoorDAO();
         doorDAO.setDoor(aDoor);
         doorDAO.setExit(exit_);
-        doorDAO.setRoom(roomId_);
+        doorDAO.setRoomLocation(roomId_);
 
         exitsWithDoors.add(doorDAO);
 
@@ -128,7 +129,7 @@ public class RoomManager {
 
             LOGGER.debug("Setting up [" + door + "]");
 
-            Room room = World.getRoom(door.getRoom());
+            Room room = World.getRoom(door.getRoomLocation());
 
             Exit exit = room.getExit(door.getExit());
 

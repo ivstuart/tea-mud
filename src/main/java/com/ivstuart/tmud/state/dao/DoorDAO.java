@@ -17,12 +17,13 @@
 package com.ivstuart.tmud.state.dao;
 
 import com.ivstuart.tmud.state.places.Door;
+import com.ivstuart.tmud.state.places.RoomLocation;
 
 public class DoorDAO {
 
     private Door door;
 
-    private String room;
+    private RoomLocation roomLocation;
 
     private String exit;
 
@@ -42,17 +43,17 @@ public class DoorDAO {
         this.exit = exit;
     }
 
-    public String getRoom() {
-        return room;
-    }
-
-    public void setRoom(String room) {
-        this.room = room;
+    public void setRoomLocation(RoomLocation roomLocation) {
+        this.roomLocation = roomLocation;
     }
 
     @Override
     public String toString() {
-        return "DoorDAO [door=" + door + ", room=" + room + ", exit=" + exit
+        return "DoorDAO [door=" + door + ", room=" + roomLocation + ", exit=" + exit
                 + "]";
+    }
+
+    public RoomLocation getRoomLocation() {
+        return roomLocation;
     }
 }

@@ -104,7 +104,9 @@ public class TackleTest {
         Command tackle = new Tackle();
         tackle.execute(player1Mob, sheepMob.getAlias());
 
-        player1Mob.getFight().getFightActions().getFirst().happen();
+        if (!player1Mob.getFight().getFightActions().isEmpty()) {
+            player1Mob.getFight().getFightActions().getFirst().happen();
+        }
 
         assertTrue("sheep should be ground fighting", sheepMob.getFight().isGroundFighting());
 

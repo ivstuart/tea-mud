@@ -137,9 +137,8 @@ public class WorldTime implements Runnable {
             if (deadMob.shouldRepopulate() || forceRepop) {
 
                 iter.remove();
-                Mob mob = EntityProvider.createMob(deadMob.getID(),
-                        deadMob.getRepopRoomID());
-
+                Mob mob = EntityProvider.createMob(deadMob.getID(),deadMob.getID());
+                // TODO remove this code as String no longer used to get rooms.
                 Room repopRoom = World.getRoom(deadMob.getRepopRoomID());
 
                 if (repopRoom == null) {

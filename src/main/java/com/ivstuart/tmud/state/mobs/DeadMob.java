@@ -16,13 +16,15 @@
 
 package com.ivstuart.tmud.state.mobs;
 
+import com.ivstuart.tmud.state.places.RoomLocation;
+
 public class DeadMob {
 
     private String _id;
-    private String _repopRoomId;
+    private RoomLocation _repopRoomId;
     private long _repopulateTime;
 
-    public DeadMob(String id_, String repopRoomId_, long secondsUntilRepop) {
+    public DeadMob(String id_, RoomLocation repopRoomId_, long secondsUntilRepop) {
         _id = id_;
         _repopRoomId = repopRoomId_;
         _repopulateTime = System.currentTimeMillis()
@@ -33,7 +35,7 @@ public class DeadMob {
         return _id;
     }
 
-    public String getRepopRoomID() {
+    public RoomLocation getRepopRoomID() {
         return _repopRoomId;
     }
 

@@ -111,21 +111,13 @@ public class RoomBuilder {
 
         LOGGER.debug("Building area using path :" + path);
 
-        Room startRoom = World.getRoom(id);
-
-        // New code
-
+        Room startRoom = World.getRoom(startLocation);
 
         if (startRoom == null) {
-            LOGGER.warn("Room id: " + id + " not found!");
-
-            startRoom = World.getRoom(startLocation);
-
-            if (startRoom == null) {
-                LOGGER.warn("Room id: " + startLocation + " not found!");
-                return;
-            }
+            LOGGER.warn("Room id: " + startLocation + " not found!");
+            return;
         }
+
 
         roomId = startRoom.getRoomLocation().getRoomIdentifer();
 
@@ -181,22 +173,13 @@ public class RoomBuilder {
                     continue;
                 }
 
-                // New room clone when does not already exist
-                Room nextRoom = World.getRoom(destRoomId.toString());
+                RoomLocation roomLocation = new RoomLocation(destRoomId.getX(), destRoomId.getY(), destRoomId.getZ());
 
-                if (nextRoom == null) {
-                    RoomLocation roomLocation = new RoomLocation(destRoomId.getX(), destRoomId.getY(),destRoomId.getZ());
+                Room nextRoom = new Room(roomLocation);
+                nextRoom.setType(startRoom.getType());
+                nextRoom.setId(destRoomId.toString());
 
-                    nextRoom = new Room(roomLocation);
-                    nextRoom.setType(startRoom.getType());
-                    nextRoom.setId(destRoomId.toString());
-
-
-                    World.add(roomLocation,nextRoom);
-                    // LOGGER.debug("Adding new room "+nextRoom.getId()+" built from room id "+startRoom.getId());
-                } else {
-                    // LOGGER.debug("Existing room "+nextRoom.getId());
-                }
+                World.add(roomLocation, nextRoom);
 
                 if (fillOn) {
                     storeMaxMinRoomId(roomId);
@@ -230,17 +213,16 @@ public class RoomBuilder {
                 // Find first edge with a filled room.
                 RoomIdentifier roomId = new RoomIdentifier(x, y);
                 roomId.setRoomPrefix(roomPrefix);
-                Room nextRoom = World.getRoom(roomId.toString());
-
+                Room nextRoom = null;
                 // Note determine the edge and skip fill
                 // this is basically a polygon fill for rooms
                 if (roomCounter % 2 == 1) {
-                    if (nextRoom == null) {
-                        nextRoom = new Room(new RoomLocation(x,y,0));
-                        nextRoom.setId(roomId.toString());
-                        World.add(nextRoom.getRoomLocation(), nextRoom);
-                        addedRooms.add(nextRoom);
-                    }
+
+                    nextRoom = new Room(new RoomLocation(x, y, roomIdStartFill.getZ()));
+                    nextRoom.setId(roomId.toString());
+                    World.add(nextRoom.getRoomLocation(), nextRoom);
+                    addedRooms.add(nextRoom);
+
                 }
 
                 if (nextRoom != null && previousRoom == null) {

@@ -48,6 +48,7 @@ public class ForcedQuit extends BaseCommand {
         } else {
             LOGGER.warn("Force quit for player already disconnected");
             // TODO when disconnected client need to allow save and quit too. Remove return
+            // NOTE When this was removed before it lead to corrupted file state!
             return;
         }
 
@@ -57,12 +58,7 @@ public class ForcedQuit extends BaseCommand {
 
         // Save character first
         try {
-
             MudIO.getInstance().save(player, player.getSaveDirectory(), mob.getId() + ".sav");
-
-            // The following GSON does not work to serialise the player, do not use it.
-            // GsonIO gio = new GsonIO();
-            // gio.save(player, player.getName() + ".sav");
         } catch (IOException e) {
             LOGGER.error("Problem saving character", e);
             mob.out("Problem saving character!");

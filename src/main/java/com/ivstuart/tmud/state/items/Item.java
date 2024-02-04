@@ -84,6 +84,7 @@ public class Item extends Prop implements Equipable, Msgable {
     public Item() {
     }
 
+    // TODO add a copy constructor for Item after Item Flags enum integrated with code
     public boolean isAntiGood() {
         return isAntiGood;
     }

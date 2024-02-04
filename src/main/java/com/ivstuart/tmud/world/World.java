@@ -24,6 +24,7 @@ import com.ivstuart.tmud.common.Tickable;
 import com.ivstuart.tmud.exceptions.MudException;
 import com.ivstuart.tmud.person.Player;
 import com.ivstuart.tmud.person.config.ChannelEnum;
+import com.ivstuart.tmud.poc.mob.MobGenerator;
 import com.ivstuart.tmud.state.items.Item;
 import com.ivstuart.tmud.state.items.Prop;
 import com.ivstuart.tmud.state.mobs.GuardMob;
@@ -53,6 +54,7 @@ public class World {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final World INSTANCE = new World();
     private static Map<String, Tickable> tickers;
+    @Deprecated
     private static Map<String, Zone> zones;
     private static Map<RoomLocation, Room> rooms;
     private static Map<String, Mob> mobs;
@@ -93,6 +95,9 @@ public class World {
         SkillsProvider.load();
         SpellProvider.load();
         ItemProvider.load();
+
+        // Mob zones
+        MobGenerator.load();
 
         mudStats = MudStats.init();
 
@@ -150,6 +155,7 @@ public class World {
         spells.put(spell.getId(), spell);
     }
 
+    @Deprecated
     public static void add(Zone zone) {
         LOGGER.debug("Adding zone [" + zone.getId() + "]");
         zones.put(zone.getId(), zone);
@@ -224,10 +230,6 @@ public class World {
     public static Prop getProp(String id_) {
 
         return props.get(id_);
-    }
-
-    public static Room getRoom(String id_) {
-        return rooms.get(id_);
     }
 
     public static BaseSkill getSkill(String name) {
@@ -342,9 +344,10 @@ public class World {
 
     public static Room getDonateRoom(Mob mob) {
         if (mob.isGood()) {
-            return World.getRoom("Z0-:2:0:-1");
+            // TODO remove this code as String no longer used to get rooms.
+            return World.getRoom(RoomLocation.DONATE_GOOD);
         } else {
-            return World.getRoom("Z6-:2:0:-1");
+            return World.getRoom(RoomLocation.DONATE_EVIL);
         }
     }
 
@@ -465,6 +468,12 @@ public class World {
 
     public static void add(Room root) {
         rooms.put(root.getRoomLocation(), root);
+    }
+
+    @Deprecated
+    public static Room getRoom(String element) {
+        LOGGER.warn("Old code used to get a Room!");
+        return World.getRoom(RoomLocation.PORTAL_GOOD);
     }
 
     private void startTime() {

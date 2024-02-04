@@ -42,7 +42,6 @@ public class MobCombat implements Serializable {
     }
 
     public Fight getFight() {
-        // TODO add a null check
         return fight;
     }
 

@@ -1,0 +1,10153 @@
+{
+  "GridLocation{x\u003d2, y\u003d1, z\u003d0}": {
+    "gridLocation": {
+      "x": 2,
+      "y": 1,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 1,
+          "y": 1,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 2,
+          "y": 2,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 3,
+          "y": 1,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 240,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d17, y\u003d15, z\u003d0}": {
+    "gridLocation": {
+      "x": 17,
+      "y": 15,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 17,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 16,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 83,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d16, y\u003d13, z\u003d0}": {
+    "gridLocation": {
+      "x": 16,
+      "y": 13,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 16,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 16,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 94,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d15, y\u003d11, z\u003d0}": {
+    "gridLocation": {
+      "x": 15,
+      "y": 11,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 16,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 14,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 15,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 102,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d8, y\u003d30, z\u003d0}": {
+    "gridLocation": {
+      "x": 8,
+      "y": 30,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 8,
+          "y": 29,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 9,
+          "y": 30,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 218,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d7, y\u003d28, z\u003d0}": {
+    "gridLocation": {
+      "x": 7,
+      "y": 28,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 7,
+          "y": 27,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 7,
+          "y": 29,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 226,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d6, y\u003d26, z\u003d0}": {
+    "gridLocation": {
+      "x": 6,
+      "y": 26,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 5,
+          "y": 26,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 7,
+          "y": 26,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 6,
+          "y": 25,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 6,
+          "y": 27,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 152,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d4, y\u003d22, z\u003d0}": {
+    "gridLocation": {
+      "x": 4,
+      "y": 22,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 4,
+          "y": 21,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 4,
+          "y": 23,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 146,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d20, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 20,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 3,
+          "y": 21,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 4,
+          "y": 20,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 3,
+          "y": 19,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 143,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d2, y\u003d18, z\u003d0}": {
+    "gridLocation": {
+      "x": 2,
+      "y": 18,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 2,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 3,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 1,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 134,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d10, y\u003d18, z\u003d0}": {
+    "gridLocation": {
+      "x": 10,
+      "y": 18,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 10,
+          "y": 19,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 9,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 64,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d9, y\u003d16, z\u003d0}": {
+    "gridLocation": {
+      "x": 9,
+      "y": 16,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 10,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 9,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 9,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 59,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d8, y\u003d14, z\u003d0}": {
+    "gridLocation": {
+      "x": 8,
+      "y": 14,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 8,
+          "y": 13,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 7,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 8,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 30,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d7, y\u003d12, z\u003d0}": {
+    "gridLocation": {
+      "x": 7,
+      "y": 12,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 8,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 6,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 7,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 7,
+          "y": 13,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 14,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d6, y\u003d10, z\u003d0}": {
+    "gridLocation": {
+      "x": 6,
+      "y": 10,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 6,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 7,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 5,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 6,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 118,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d5, y\u003d8, z\u003d0}": {
+    "gridLocation": {
+      "x": 5,
+      "y": 8,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 5,
+          "y": 7,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 5,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 6,
+          "y": 8,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 6,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d4, y\u003d6, z\u003d0}": {
+    "gridLocation": {
+      "x": 4,
+      "y": 6,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 4,
+          "y": 5,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 5,
+          "y": 6,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 3,
+          "y": 6,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 4,
+          "y": 7,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 3,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d2, y\u003d35, z\u003d0}": {
+    "gridLocation": {
+      "x": 2,
+      "y": 35,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 3,
+          "y": 35,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 1,
+          "y": 35,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 2,
+          "y": 34,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 185,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d4, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 4,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 4,
+          "y": 4,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 3,
+          "y": 3,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 233,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d2, y\u003d2, z\u003d0}": {
+    "gridLocation": {
+      "x": 2,
+      "y": 2,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 2,
+          "y": 1,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 3,
+          "y": 2,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 236,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d17, y\u003d16, z\u003d0}": {
+    "gridLocation": {
+      "x": 17,
+      "y": 16,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 16,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 17,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 18,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 82,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d16, y\u003d14, z\u003d0}": {
+    "gridLocation": {
+      "x": 16,
+      "y": 14,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 15,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 16,
+          "y": 13,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 93,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d15, y\u003d12, z\u003d0}": {
+    "gridLocation": {
+      "x": 15,
+      "y": 12,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 16,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 14,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 15,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 96,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d13, y\u003d8, z\u003d0}": {
+    "gridLocation": {
+      "x": 13,
+      "y": 8,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 13,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 108,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d8, y\u003d31, z\u003d0}": {
+    "gridLocation": {
+      "x": 8,
+      "y": 31,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 9,
+          "y": 31,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 231,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d7, y\u003d29, z\u003d0}": {
+    "gridLocation": {
+      "x": 7,
+      "y": 29,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 7,
+          "y": 30,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 8,
+          "y": 29,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 7,
+          "y": 28,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 216,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d6, y\u003d27, z\u003d0}": {
+    "gridLocation": {
+      "x": 6,
+      "y": 27,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 5,
+          "y": 27,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 7,
+          "y": 27,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 6,
+          "y": 26,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 224,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d5, y\u003d25, z\u003d0}": {
+    "gridLocation": {
+      "x": 5,
+      "y": 25,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 6,
+          "y": 25,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 4,
+          "y": 25,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 5,
+          "y": 26,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 158,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d4, y\u003d23, z\u003d0}": {
+    "gridLocation": {
+      "x": 4,
+      "y": 23,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 4,
+          "y": 22,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 4,
+          "y": 24,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 147,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d21, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 21,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 2,
+          "y": 21,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 3,
+          "y": 20,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 4,
+          "y": 21,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 142,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d10, y\u003d19, z\u003d0}": {
+    "gridLocation": {
+      "x": 10,
+      "y": 19,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 9,
+          "y": 19,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 10,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 63,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d9, y\u003d17, z\u003d0}": {
+    "gridLocation": {
+      "x": 9,
+      "y": 17,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 9,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 9,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 60,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d8, y\u003d15, z\u003d0}": {
+    "gridLocation": {
+      "x": 8,
+      "y": 15,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 7,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 9,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 8,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 33,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d7, y\u003d13, z\u003d0}": {
+    "gridLocation": {
+      "x": 7,
+      "y": 13,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 7,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 6,
+          "y": 13,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 8,
+          "y": 13,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 22,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d6, y\u003d11, z\u003d0}": {
+    "gridLocation": {
+      "x": 6,
+      "y": 11,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 5,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 7,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 6,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 10,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d5, y\u003d9, z\u003d0}": {
+    "gridLocation": {
+      "x": 5,
+      "y": 9,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 5,
+          "y": 8,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 5,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 6,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 7,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d4, y\u003d7, z\u003d0}": {
+    "gridLocation": {
+      "x": 4,
+      "y": 7,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 5,
+          "y": 7,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 4,
+          "y": 6,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 3,
+          "y": 7,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 115,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d2, y\u003d36, z\u003d0}": {
+    "gridLocation": {
+      "x": 2,
+      "y": 36,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 3,
+          "y": 36,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 2,
+          "y": 37,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 1,
+          "y": 36,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 190,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d1, y\u003d34, z\u003d0}": {
+    "gridLocation": {
+      "x": 1,
+      "y": 34,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 1,
+          "y": 35,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 188,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d1, y\u003d1, z\u003d0}": {
+    "gridLocation": {
+      "x": 1,
+      "y": 1,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 2,
+          "y": 1,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 237,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d16, y\u003d15, z\u003d0}": {
+    "gridLocation": {
+      "x": 16,
+      "y": 15,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 17,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 16,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 84,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d14, y\u003d11, z\u003d0}": {
+    "gridLocation": {
+      "x": 14,
+      "y": 11,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 15,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 13,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 14,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 103,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d13, y\u003d9, z\u003d0}": {
+    "gridLocation": {
+      "x": 13,
+      "y": 9,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 12,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 13,
+          "y": 8,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 107,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d7, y\u003d30, z\u003d0}": {
+    "gridLocation": {
+      "x": 7,
+      "y": 30,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 7,
+          "y": 31,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 7,
+          "y": 29,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 215,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d6, y\u003d28, z\u003d0}": {
+    "gridLocation": {
+      "x": 6,
+      "y": 28,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 6,
+          "y": 29,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 5,
+          "y": 28,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 223,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d5, y\u003d26, z\u003d0}": {
+    "gridLocation": {
+      "x": 5,
+      "y": 26,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 4,
+          "y": 26,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 6,
+          "y": 26,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 5,
+          "y": 27,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 5,
+          "y": 25,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 151,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d4, y\u003d24, z\u003d0}": {
+    "gridLocation": {
+      "x": 4,
+      "y": 24,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 4,
+          "y": 23,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 4,
+          "y": 25,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 148,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d1, y\u003d18, z\u003d0}": {
+    "gridLocation": {
+      "x": 1,
+      "y": 18,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 2,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 1,
+          "y": 19,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 137,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d9, y\u003d18, z\u003d0}": {
+    "gridLocation": {
+      "x": 9,
+      "y": 18,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 9,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 9,
+          "y": 19,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 10,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 61,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d7, y\u003d14, z\u003d0}": {
+    "gridLocation": {
+      "x": 7,
+      "y": 14,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 8,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 7,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 6,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 31,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d6, y\u003d12, z\u003d0}": {
+    "gridLocation": {
+      "x": 6,
+      "y": 12,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 7,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 5,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 15,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d5, y\u003d10, z\u003d0}": {
+    "gridLocation": {
+      "x": 5,
+      "y": 10,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 5,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 5,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 6,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 8,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d6, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 6,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 4,
+          "y": 6,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 3,
+          "y": 7,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 116,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d2, y\u003d37, z\u003d0}": {
+    "gridLocation": {
+      "x": 2,
+      "y": 37,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 2,
+          "y": 36,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 2,
+          "y": 38,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 1,
+          "y": 37,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 191,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d1, y\u003d35, z\u003d0}": {
+    "gridLocation": {
+      "x": 1,
+      "y": 35,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 2,
+          "y": 35,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 0,
+          "y": 35,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 1,
+          "y": 34,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 186,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d16, y\u003d16, z\u003d0}": {
+    "gridLocation": {
+      "x": 16,
+      "y": 16,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 15,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 17,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 16,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 16,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 81,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d0, y\u003d0, z\u003d0}": {
+    "gridLocation": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 238,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d15, y\u003d14, z\u003d0}": {
+    "gridLocation": {
+      "x": 15,
+      "y": 14,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 14,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 16,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 92,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d14, y\u003d12, z\u003d0}": {
+    "gridLocation": {
+      "x": 14,
+      "y": 12,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 15,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 13,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 14,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 97,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d12, y\u003d8, z\u003d0}": {
+    "gridLocation": {
+      "x": 12,
+      "y": 8,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 11,
+          "y": 8,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 106,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d7, y\u003d31, z\u003d0}": {
+    "gridLocation": {
+      "x": 7,
+      "y": 31,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 6,
+          "y": 31,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 7,
+          "y": 30,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 7,
+          "y": 32,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 214,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d6, y\u003d29, z\u003d0}": {
+    "gridLocation": {
+      "x": 6,
+      "y": 29,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 6,
+          "y": 30,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 6,
+          "y": 28,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 222,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d23, y\u003d14, z\u003d0}": {
+    "gridLocation": {
+      "x": 23,
+      "y": 14,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 22,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 23,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 257,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d5, y\u003d27, z\u003d0}": {
+    "gridLocation": {
+      "x": 5,
+      "y": 27,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 5,
+          "y": 26,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 4,
+          "y": 27,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 5,
+          "y": 28,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 6,
+          "y": 27,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 159,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d4, y\u003d25, z\u003d0}": {
+    "gridLocation": {
+      "x": 4,
+      "y": 25,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 4,
+          "y": 24,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 4,
+          "y": 26,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 5,
+          "y": 25,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 149,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d2, y\u003d21, z\u003d0}": {
+    "gridLocation": {
+      "x": 2,
+      "y": 21,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 1,
+          "y": 21,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 3,
+          "y": 21,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 141,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d1, y\u003d19, z\u003d0}": {
+    "gridLocation": {
+      "x": 1,
+      "y": 19,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 1,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 1,
+          "y": 20,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 138,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d9, y\u003d19, z\u003d0}": {
+    "gridLocation": {
+      "x": 9,
+      "y": 19,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 9,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 10,
+          "y": 19,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 62,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d7, y\u003d15, z\u003d0}": {
+    "gridLocation": {
+      "x": 7,
+      "y": 15,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 7,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 8,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 6,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 32,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d6, y\u003d13, z\u003d0}": {
+    "gridLocation": {
+      "x": 6,
+      "y": 13,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 7,
+          "y": 13,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 5,
+          "y": 13,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 6,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 23,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d5, y\u003d11, z\u003d0}": {
+    "gridLocation": {
+      "x": 5,
+      "y": 11,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 5,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 6,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 5,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 9,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d7, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 7,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 3,
+          "y": 6,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 4,
+          "y": 7,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 117,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d2, y\u003d38, z\u003d0}": {
+    "gridLocation": {
+      "x": 2,
+      "y": 38,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 2,
+          "y": 37,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 1,
+          "y": 38,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 2,
+          "y": 39,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 192,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d1, y\u003d36, z\u003d0}": {
+    "gridLocation": {
+      "x": 1,
+      "y": 36,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 2,
+          "y": 36,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 1,
+          "y": 37,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 196,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d16, y\u003d17, z\u003d0}": {
+    "gridLocation": {
+      "x": 16,
+      "y": 17,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 16,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 15,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 85,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d0, y\u003d1, z\u003d0}": {
+    "gridLocation": {
+      "x": 0,
+      "y": 1,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 1,
+          "y": 1,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 239,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d15, y\u003d15, z\u003d0}": {
+    "gridLocation": {
+      "x": 15,
+      "y": 15,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 15,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 14,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 86,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d13, y\u003d11, z\u003d0}": {
+    "gridLocation": {
+      "x": 13,
+      "y": 11,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 13,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 14,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 12,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 98,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d12, y\u003d9, z\u003d0}": {
+    "gridLocation": {
+      "x": 12,
+      "y": 9,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 11,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 12,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 13,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 40,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d7, y\u003d32, z\u003d0}": {
+    "gridLocation": {
+      "x": 7,
+      "y": 32,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 7,
+          "y": 31,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 7,
+          "y": 33,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 219,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d6, y\u003d30, z\u003d0}": {
+    "gridLocation": {
+      "x": 6,
+      "y": 30,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 6,
+          "y": 31,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 6,
+          "y": 29,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 221,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d23, y\u003d15, z\u003d0}": {
+    "gridLocation": {
+      "x": 23,
+      "y": 15,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 23,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 23,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 262,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d5, y\u003d28, z\u003d0}": {
+    "gridLocation": {
+      "x": 5,
+      "y": 28,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 4,
+          "y": 28,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 5,
+          "y": 29,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 6,
+          "y": 28,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 5,
+          "y": 27,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 172,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d4, y\u003d26, z\u003d0}": {
+    "gridLocation": {
+      "x": 4,
+      "y": 26,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 4,
+          "y": 25,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 5,
+          "y": 26,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 4,
+          "y": 27,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 150,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d1, y\u003d20, z\u003d0}": {
+    "gridLocation": {
+      "x": 1,
+      "y": 20,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 1,
+          "y": 19,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 1,
+          "y": 21,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 139,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d6, y\u003d14, z\u003d0}": {
+    "gridLocation": {
+      "x": 6,
+      "y": 14,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 6,
+          "y": 13,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 6,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 7,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 126,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d5, y\u003d12, z\u003d0}": {
+    "gridLocation": {
+      "x": 5,
+      "y": 12,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 6,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 4,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 5,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 16,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d41, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 41,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 2,
+          "y": 41,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 3,
+          "y": 42,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 203,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d2, y\u003d39, z\u003d0}": {
+    "gridLocation": {
+      "x": 2,
+      "y": 39,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 2,
+          "y": 38,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 2,
+          "y": 40,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 198,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d1, y\u003d37, z\u003d0}": {
+    "gridLocation": {
+      "x": 1,
+      "y": 37,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 1,
+          "y": 36,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 2,
+          "y": 37,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 197,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d0, y\u003d35, z\u003d0}": {
+    "gridLocation": {
+      "x": 0,
+      "y": 35,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 1,
+          "y": 35,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 187,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d15, y\u003d16, z\u003d0}": {
+    "gridLocation": {
+      "x": 15,
+      "y": 16,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 14,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 15,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 16,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 15,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 73,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d14, y\u003d14, z\u003d0}": {
+    "gridLocation": {
+      "x": 14,
+      "y": 14,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 13,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 15,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 91,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d13, y\u003d12, z\u003d0}": {
+    "gridLocation": {
+      "x": 13,
+      "y": 12,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 12,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 13,
+          "y": 13,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 14,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 13,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 50,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d12, y\u003d10, z\u003d0}": {
+    "gridLocation": {
+      "x": 12,
+      "y": 10,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 12,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 11,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 12,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 41,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d11, y\u003d8, z\u003d0}": {
+    "gridLocation": {
+      "x": 11,
+      "y": 8,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 10,
+          "y": 8,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 12,
+          "y": 8,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 105,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d7, y\u003d33, z\u003d0}": {
+    "gridLocation": {
+      "x": 7,
+      "y": 33,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 7,
+          "y": 32,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 7,
+          "y": 34,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 220,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d6, y\u003d31, z\u003d0}": {
+    "gridLocation": {
+      "x": 6,
+      "y": 31,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 5,
+          "y": 31,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 7,
+          "y": 31,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 6,
+          "y": 30,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 213,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d23, y\u003d16, z\u003d0}": {
+    "gridLocation": {
+      "x": 23,
+      "y": 16,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 23,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 23,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 263,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d5, y\u003d29, z\u003d0}": {
+    "gridLocation": {
+      "x": 5,
+      "y": 29,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 5,
+          "y": 28,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 5,
+          "y": 30,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 173,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d22, y\u003d14, z\u003d0}": {
+    "gridLocation": {
+      "x": 22,
+      "y": 14,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 21,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 23,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 256,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d4, y\u003d27, z\u003d0}": {
+    "gridLocation": {
+      "x": 4,
+      "y": 27,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 5,
+          "y": 27,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 3,
+          "y": 27,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 4,
+          "y": 26,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 4,
+          "y": 28,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 160,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d1, y\u003d21, z\u003d0}": {
+    "gridLocation": {
+      "x": 1,
+      "y": 21,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 1,
+          "y": 20,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 2,
+          "y": 21,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 140,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d6, y\u003d15, z\u003d0}": {
+    "gridLocation": {
+      "x": 6,
+      "y": 15,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 6,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 6,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 7,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 127,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d5, y\u003d13, z\u003d0}": {
+    "gridLocation": {
+      "x": 5,
+      "y": 13,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 6,
+          "y": 13,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 4,
+          "y": 13,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 24,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d42, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 42,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 3,
+          "y": 41,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 3,
+          "y": 43,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 204,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d2, y\u003d40, z\u003d0}": {
+    "gridLocation": {
+      "x": 2,
+      "y": 40,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 2,
+          "y": 39,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 1,
+          "y": 40,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 199,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d1, y\u003d38, z\u003d0}": {
+    "gridLocation": {
+      "x": 1,
+      "y": 38,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 2,
+          "y": 38,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 0,
+          "y": 38,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 193,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d0, y\u003d36, z\u003d0}": {
+    "gridLocation": {
+      "x": 0,
+      "y": 36,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 0,
+          "y": 37,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 209,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d15, y\u003d17, z\u003d0}": {
+    "gridLocation": {
+      "x": 15,
+      "y": 17,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 15,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 14,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 16,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 74,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d14, y\u003d15, z\u003d0}": {
+    "gridLocation": {
+      "x": 14,
+      "y": 15,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 15,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 14,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 87,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d13, y\u003d13, z\u003d0}": {
+    "gridLocation": {
+      "x": 13,
+      "y": 13,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 13,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 12,
+          "y": 13,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 13,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 51,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d12, y\u003d11, z\u003d0}": {
+    "gridLocation": {
+      "x": 12,
+      "y": 11,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 11,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 12,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 13,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 12,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 48,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d11, y\u003d9, z\u003d0}": {
+    "gridLocation": {
+      "x": 11,
+      "y": 9,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 11,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 12,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 10,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 39,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d7, y\u003d34, z\u003d0}": {
+    "gridLocation": {
+      "x": 7,
+      "y": 34,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 7,
+          "y": 33,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 232,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d23, y\u003d17, z\u003d0}": {
+    "gridLocation": {
+      "x": 23,
+      "y": 17,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 22,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 23,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 23,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 261,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d5, y\u003d30, z\u003d0}": {
+    "gridLocation": {
+      "x": 5,
+      "y": 30,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 5,
+          "y": 29,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 5,
+          "y": 31,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 174,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d4, y\u003d28, z\u003d0}": {
+    "gridLocation": {
+      "x": 4,
+      "y": 28,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 4,
+          "y": 29,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 5,
+          "y": 28,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 4,
+          "y": 27,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 165,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d6, y\u003d16, z\u003d0}": {
+    "gridLocation": {
+      "x": 6,
+      "y": 16,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 6,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 5,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 128,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d4, y\u003d12, z\u003d0}": {
+    "gridLocation": {
+      "x": 4,
+      "y": 12,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 5,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 3,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 4,
+          "y": 13,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 17,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d43, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 43,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 3,
+          "y": 42,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 3,
+          "y": 44,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 205,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d2, y\u003d41, z\u003d0}": {
+    "gridLocation": {
+      "x": 2,
+      "y": 41,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 1,
+          "y": 41,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 3,
+          "y": 41,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 202,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d0, y\u003d37, z\u003d0}": {
+    "gridLocation": {
+      "x": 0,
+      "y": 37,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 0,
+          "y": 38,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 0,
+          "y": 36,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 195,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d14, y\u003d16, z\u003d0}": {
+    "gridLocation": {
+      "x": 14,
+      "y": 16,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 13,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 15,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 14,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 72,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d13, y\u003d14, z\u003d0}": {
+    "gridLocation": {
+      "x": 13,
+      "y": 14,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 13,
+          "y": 13,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 13,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 12,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 14,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 65,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d12, y\u003d12, z\u003d0}": {
+    "gridLocation": {
+      "x": 12,
+      "y": 12,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 12,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 13,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 12,
+          "y": 13,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 49,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d11, y\u003d10, z\u003d0}": {
+    "gridLocation": {
+      "x": 11,
+      "y": 10,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 11,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 11,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 12,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 10,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 38,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d10, y\u003d8, z\u003d0}": {
+    "gridLocation": {
+      "x": 10,
+      "y": 8,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 10,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 11,
+          "y": 8,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 9,
+          "y": 8,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 104,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d23, y\u003d18, z\u003d0}": {
+    "gridLocation": {
+      "x": 23,
+      "y": 18,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 23,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 23,
+          "y": 19,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 264,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d5, y\u003d31, z\u003d0}": {
+    "gridLocation": {
+      "x": 5,
+      "y": 31,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 5,
+          "y": 30,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 4,
+          "y": 31,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 6,
+          "y": 31,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 175,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d22, y\u003d16, z\u003d0}": {
+    "gridLocation": {
+      "x": 22,
+      "y": 16,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 21,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 22,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 272,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d4, y\u003d29, z\u003d0}": {
+    "gridLocation": {
+      "x": 4,
+      "y": 29,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 3,
+          "y": 29,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 4,
+          "y": 28,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 164,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d21, y\u003d14, z\u003d0}": {
+    "gridLocation": {
+      "x": 21,
+      "y": 14,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 20,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 22,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 21,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 255,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d27, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 27,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 4,
+          "y": 27,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 3,
+          "y": 28,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 161,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d4, y\u003d13, z\u003d0}": {
+    "gridLocation": {
+      "x": 4,
+      "y": 13,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 5,
+          "y": 13,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 4,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 25,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d44, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 44,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 3,
+          "y": 43,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 3,
+          "y": 45,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 206,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d11, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 11,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 2,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 21,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d1, y\u003d40, z\u003d0}": {
+    "gridLocation": {
+      "x": 1,
+      "y": 40,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 2,
+          "y": 40,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 1,
+          "y": 41,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 200,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d0, y\u003d38, z\u003d0}": {
+    "gridLocation": {
+      "x": 0,
+      "y": 38,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 1,
+          "y": 38,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 0,
+          "y": 37,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 194,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d14, y\u003d17, z\u003d0}": {
+    "gridLocation": {
+      "x": 14,
+      "y": 17,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 15,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 14,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 75,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d13, y\u003d15, z\u003d0}": {
+    "gridLocation": {
+      "x": 13,
+      "y": 15,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 13,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 13,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 12,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 66,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d12, y\u003d13, z\u003d0}": {
+    "gridLocation": {
+      "x": 12,
+      "y": 13,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 13,
+          "y": 13,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 12,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 12,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 11,
+          "y": 13,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 52,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d11, y\u003d11, z\u003d0}": {
+    "gridLocation": {
+      "x": 11,
+      "y": 11,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 10,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 11,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 12,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 37,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d10, y\u003d9, z\u003d0}": {
+    "gridLocation": {
+      "x": 10,
+      "y": 9,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 10,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 9,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 10,
+          "y": 8,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 11,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 43,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d23, y\u003d19, z\u003d0}": {
+    "gridLocation": {
+      "x": 23,
+      "y": 19,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 22,
+          "y": 19,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 23,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 253,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d22, y\u003d17, z\u003d0}": {
+    "gridLocation": {
+      "x": 22,
+      "y": 17,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 21,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 23,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 22,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 22,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 260,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d21, y\u003d15, z\u003d0}": {
+    "gridLocation": {
+      "x": 21,
+      "y": 15,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 21,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 21,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 265,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d28, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 28,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 3,
+          "y": 27,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 3,
+          "y": 29,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 2,
+          "y": 28,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 162,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d2, y\u003d26, z\u003d0}": {
+    "gridLocation": {
+      "x": 2,
+      "y": 26,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 2,
+          "y": 27,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 171,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d5, y\u003d16, z\u003d0}": {
+    "gridLocation": {
+      "x": 5,
+      "y": 16,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 6,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 4,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 129,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d45, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 45,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 3,
+          "y": 44,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 3,
+          "y": 46,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 207,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d12, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 12,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 4,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 2,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 18,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d1, y\u003d41, z\u003d0}": {
+    "gridLocation": {
+      "x": 1,
+      "y": 41,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 1,
+          "y": 40,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 2,
+          "y": 41,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 201,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d14, y\u003d18, z\u003d0}": {
+    "gridLocation": {
+      "x": 14,
+      "y": 18,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 14,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 14,
+          "y": 19,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 76,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d13, y\u003d16, z\u003d0}": {
+    "gridLocation": {
+      "x": 13,
+      "y": 16,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 13,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 12,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 14,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 67,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d12, y\u003d14, z\u003d0}": {
+    "gridLocation": {
+      "x": 12,
+      "y": 14,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 12,
+          "y": 13,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 12,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 11,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 13,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 53,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d10, y\u003d10, z\u003d0}": {
+    "gridLocation": {
+      "x": 10,
+      "y": 10,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 11,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 10,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 10,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 9,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 42,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d9, y\u003d8, z\u003d0}": {
+    "gridLocation": {
+      "x": 9,
+      "y": 8,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 10,
+          "y": 8,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 8,
+          "y": 8,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 9,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 109,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d8, y\u003d6, z\u003d0}": {
+    "gridLocation": {
+      "x": 8,
+      "y": 6,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 8,
+          "y": 7,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 7,
+          "y": 6,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 112,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d22, y\u003d18, z\u003d0}": {
+    "gridLocation": {
+      "x": 22,
+      "y": 18,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 22,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 270,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d4, y\u003d31, z\u003d0}": {
+    "gridLocation": {
+      "x": 4,
+      "y": 31,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 5,
+          "y": 31,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 4,
+          "y": 32,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 176,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d21, y\u003d16, z\u003d0}": {
+    "gridLocation": {
+      "x": 21,
+      "y": 16,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 21,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 21,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 20,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 22,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 266,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d29, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 29,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 3,
+          "y": 28,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 4,
+          "y": 29,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 163,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d20, y\u003d14, z\u003d0}": {
+    "gridLocation": {
+      "x": 20,
+      "y": 14,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 19,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 21,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 254,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d2, y\u003d27, z\u003d0}": {
+    "gridLocation": {
+      "x": 2,
+      "y": 27,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 2,
+          "y": 28,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 2,
+          "y": 26,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 170,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d46, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 46,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 3,
+          "y": 45,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 208,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d2, y\u003d11, z\u003d0}": {
+    "gridLocation": {
+      "x": 2,
+      "y": 11,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 2,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 3,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 20,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d14, y\u003d19, z\u003d0}": {
+    "gridLocation": {
+      "x": 14,
+      "y": 19,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 14,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 13,
+          "y": 19,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 77,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d13, y\u003d17, z\u003d0}": {
+    "gridLocation": {
+      "x": 13,
+      "y": 17,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 13,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 80,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d12, y\u003d15, z\u003d0}": {
+    "gridLocation": {
+      "x": 12,
+      "y": 15,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 12,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 12,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 11,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 13,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 54,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d11, y\u003d13, z\u003d0}": {
+    "gridLocation": {
+      "x": 11,
+      "y": 13,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 11,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 12,
+          "y": 13,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 89,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d10, y\u003d11, z\u003d0}": {
+    "gridLocation": {
+      "x": 10,
+      "y": 11,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 10,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 11,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 10,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 36,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d9, y\u003d9, z\u003d0}": {
+    "gridLocation": {
+      "x": 9,
+      "y": 9,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 10,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 8,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 9,
+          "y": 8,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 9,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 44,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d8, y\u003d7, z\u003d0}": {
+    "gridLocation": {
+      "x": 8,
+      "y": 7,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 8,
+          "y": 8,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 8,
+          "y": 6,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 7,
+          "y": 7,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 111,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d22, y\u003d19, z\u003d0}": {
+    "gridLocation": {
+      "x": 22,
+      "y": 19,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 21,
+          "y": 19,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 23,
+          "y": 19,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 252,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d4, y\u003d32, z\u003d0}": {
+    "gridLocation": {
+      "x": 4,
+      "y": 32,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 4,
+          "y": 31,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 4,
+          "y": 33,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 177,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d21, y\u003d17, z\u003d0}": {
+    "gridLocation": {
+      "x": 21,
+      "y": 17,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 20,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 22,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 21,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 21,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 259,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d2, y\u003d28, z\u003d0}": {
+    "gridLocation": {
+      "x": 2,
+      "y": 28,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 3,
+          "y": 28,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 1,
+          "y": 28,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 2,
+          "y": 27,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 166,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d4, y\u003d16, z\u003d0}": {
+    "gridLocation": {
+      "x": 4,
+      "y": 16,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 5,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 3,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 130,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d2, y\u003d12, z\u003d0}": {
+    "gridLocation": {
+      "x": 2,
+      "y": 12,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 3,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 2,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 19,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d13, y\u003d18, z\u003d0}": {
+    "gridLocation": {
+      "x": 13,
+      "y": 18,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 13,
+          "y": 19,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 13,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 79,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d12, y\u003d16, z\u003d0}": {
+    "gridLocation": {
+      "x": 12,
+      "y": 16,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 12,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 11,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 13,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 12,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 55,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d11, y\u003d14, z\u003d0}": {
+    "gridLocation": {
+      "x": 11,
+      "y": 14,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 11,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 11,
+          "y": 13,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 12,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 88,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d10, y\u003d12, z\u003d0}": {
+    "gridLocation": {
+      "x": 10,
+      "y": 12,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 9,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 10,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 35,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d9, y\u003d10, z\u003d0}": {
+    "gridLocation": {
+      "x": 9,
+      "y": 10,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 8,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 10,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 9,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 9,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 121,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d8, y\u003d8, z\u003d0}": {
+    "gridLocation": {
+      "x": 8,
+      "y": 8,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 9,
+          "y": 8,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 8,
+          "y": 7,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 7,
+          "y": 8,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 8,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 110,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d7, y\u003d6, z\u003d0}": {
+    "gridLocation": {
+      "x": 7,
+      "y": 6,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 8,
+          "y": 6,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 6,
+          "y": 6,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 7,
+          "y": 7,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 113,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d4, y\u003d33, z\u003d0}": {
+    "gridLocation": {
+      "x": 4,
+      "y": 33,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 4,
+          "y": 32,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 4,
+          "y": 34,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 178,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d21, y\u003d18, z\u003d0}": {
+    "gridLocation": {
+      "x": 21,
+      "y": 18,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 21,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 21,
+          "y": 19,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 267,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d31, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 31,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 3,
+          "y": 32,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 212,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d20, y\u003d16, z\u003d0}": {
+    "gridLocation": {
+      "x": 20,
+      "y": 16,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 19,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 21,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 20,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 268,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d2, y\u003d29, z\u003d0}": {
+    "gridLocation": {
+      "x": 2,
+      "y": 29,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 1,
+          "y": 29,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 169,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d19, y\u003d14, z\u003d0}": {
+    "gridLocation": {
+      "x": 19,
+      "y": 14,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 19,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 20,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 245,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d8, y\u003d25, z\u003d0}": {
+    "gridLocation": {
+      "x": 8,
+      "y": 25,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 8,
+          "y": 26,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 7,
+          "y": 25,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 155,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d13, y\u003d19, z\u003d0}": {
+    "gridLocation": {
+      "x": 13,
+      "y": 19,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 14,
+          "y": 19,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 13,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 78,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d12, y\u003d17, z\u003d0}": {
+    "gridLocation": {
+      "x": 12,
+      "y": 17,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 12,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 12,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 71,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d11, y\u003d15, z\u003d0}": {
+    "gridLocation": {
+      "x": 11,
+      "y": 15,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 11,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 11,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 10,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 12,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 57,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d9, y\u003d11, z\u003d0}": {
+    "gridLocation": {
+      "x": 9,
+      "y": 11,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 8,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 9,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 9,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 26,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d8, y\u003d9, z\u003d0}": {
+    "gridLocation": {
+      "x": 8,
+      "y": 9,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 9,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 7,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 8,
+          "y": 8,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 8,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 45,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d7, y\u003d7, z\u003d0}": {
+    "gridLocation": {
+      "x": 7,
+      "y": 7,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 7,
+          "y": 8,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 6,
+          "y": 7,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 8,
+          "y": 7,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 7,
+          "y": 6,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 123,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d4, y\u003d34, z\u003d0}": {
+    "gridLocation": {
+      "x": 4,
+      "y": 34,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 4,
+          "y": 33,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 3,
+          "y": 34,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 179,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d21, y\u003d19, z\u003d0}": {
+    "gridLocation": {
+      "x": 21,
+      "y": 19,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 20,
+          "y": 19,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 22,
+          "y": 19,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 21,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 251,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d32, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 32,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 2,
+          "y": 32,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 3,
+          "y": 31,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 211,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d20, y\u003d17, z\u003d0}": {
+    "gridLocation": {
+      "x": 20,
+      "y": 17,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 19,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 21,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 20,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 20,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 258,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d19, y\u003d15, z\u003d0}": {
+    "gridLocation": {
+      "x": 19,
+      "y": 15,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 19,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 19,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 246,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d1, y\u003d28, z\u003d0}": {
+    "gridLocation": {
+      "x": 1,
+      "y": 28,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 2,
+          "y": 28,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 1,
+          "y": 29,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 167,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d17, y\u003d11, z\u003d0}": {
+    "gridLocation": {
+      "x": 17,
+      "y": 11,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 17,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 16,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 100,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d10, y\u003d30, z\u003d0}": {
+    "gridLocation": {
+      "x": 10,
+      "y": 30,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 9,
+          "y": 30,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 10,
+          "y": 31,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 228,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d8, y\u003d26, z\u003d0}": {
+    "gridLocation": {
+      "x": 8,
+      "y": 26,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 7,
+          "y": 26,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 8,
+          "y": 25,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 154,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d16, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 16,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 4,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 2,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 131,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d12, y\u003d18, z\u003d0}": {
+    "gridLocation": {
+      "x": 12,
+      "y": 18,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 11,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 12,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 70,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d11, y\u003d16, z\u003d0}": {
+    "gridLocation": {
+      "x": 11,
+      "y": 16,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 12,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 11,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 10,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 11,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 56,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d9, y\u003d12, z\u003d0}": {
+    "gridLocation": {
+      "x": 9,
+      "y": 12,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 9,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 9,
+          "y": 13,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 10,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 8,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 27,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d8, y\u003d10, z\u003d0}": {
+    "gridLocation": {
+      "x": 8,
+      "y": 10,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 7,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 9,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 8,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 8,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 120,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d7, y\u003d8, z\u003d0}": {
+    "gridLocation": {
+      "x": 7,
+      "y": 8,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 7,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 7,
+          "y": 7,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 6,
+          "y": 8,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 8,
+          "y": 8,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 122,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d6, y\u003d6, z\u003d0}": {
+    "gridLocation": {
+      "x": 6,
+      "y": 6,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 7,
+          "y": 6,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 5,
+          "y": 6,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 6,
+          "y": 7,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 114,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d33, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 33,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 2,
+          "y": 33,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 183,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d20, y\u003d18, z\u003d0}": {
+    "gridLocation": {
+      "x": 20,
+      "y": 18,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 20,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 269,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d19, y\u003d16, z\u003d0}": {
+    "gridLocation": {
+      "x": 19,
+      "y": 16,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 18,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 19,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 19,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 20,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 244,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d1, y\u003d29, z\u003d0}": {
+    "gridLocation": {
+      "x": 1,
+      "y": 29,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 1,
+          "y": 28,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 2,
+          "y": 29,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 168,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d17, y\u003d12, z\u003d0}": {
+    "gridLocation": {
+      "x": 17,
+      "y": 12,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 16,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 17,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 99,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d10, y\u003d31, z\u003d0}": {
+    "gridLocation": {
+      "x": 10,
+      "y": 31,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 10,
+          "y": 30,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 9,
+          "y": 31,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 229,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d7, y\u003d25, z\u003d0}": {
+    "gridLocation": {
+      "x": 7,
+      "y": 25,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 8,
+          "y": 25,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 6,
+          "y": 25,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 7,
+          "y": 26,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 156,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d11, y\u003d17, z\u003d0}": {
+    "gridLocation": {
+      "x": 11,
+      "y": 17,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 11,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 11,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 68,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d10, y\u003d15, z\u003d0}": {
+    "gridLocation": {
+      "x": 10,
+      "y": 15,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 10,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 11,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 90,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d9, y\u003d13, z\u003d0}": {
+    "gridLocation": {
+      "x": 9,
+      "y": 13,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 9,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 8,
+          "y": 13,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 28,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d8, y\u003d11, z\u003d0}": {
+    "gridLocation": {
+      "x": 8,
+      "y": 11,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 7,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 8,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 9,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 8,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 12,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d7, y\u003d9, z\u003d0}": {
+    "gridLocation": {
+      "x": 7,
+      "y": 9,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 8,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 6,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 7,
+          "y": 8,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 7,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 46,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d6, y\u003d7, z\u003d0}": {
+    "gridLocation": {
+      "x": 6,
+      "y": 7,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 7,
+          "y": 7,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 6,
+          "y": 6,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 5,
+          "y": 7,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 6,
+          "y": 8,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 124,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d5, y\u003d5, z\u003d0}": {
+    "gridLocation": {
+      "x": 5,
+      "y": 5,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 4,
+          "y": 5,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 5,
+          "y": 6,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        0,
+        1,
+        0,
+        1
+      ]
+    },
+    "roomNumber": 1,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d34, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 34,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 4,
+          "y": 34,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 2,
+          "y": 34,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 3,
+          "y": 35,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 180,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d20, y\u003d19, z\u003d0}": {
+    "gridLocation": {
+      "x": 20,
+      "y": 19,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 19,
+          "y": 19,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 21,
+          "y": 19,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 250,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d2, y\u003d32, z\u003d0}": {
+    "gridLocation": {
+      "x": 2,
+      "y": 32,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 2,
+          "y": 33,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 3,
+          "y": 32,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 210,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d1, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 1,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 2,
+          "y": 1,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 3,
+          "y": 2,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 241,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d19, y\u003d17, z\u003d0}": {
+    "gridLocation": {
+      "x": 19,
+      "y": 17,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 19,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 19,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 20,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 247,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d16, y\u003d11, z\u003d0}": {
+    "gridLocation": {
+      "x": 16,
+      "y": 11,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 17,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 15,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 16,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 101,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d9, y\u003d30, z\u003d0}": {
+    "gridLocation": {
+      "x": 9,
+      "y": 30,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 8,
+          "y": 30,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 10,
+          "y": 30,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 227,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d7, y\u003d26, z\u003d0}": {
+    "gridLocation": {
+      "x": 7,
+      "y": 26,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 6,
+          "y": 26,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 8,
+          "y": 26,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 7,
+          "y": 25,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 7,
+          "y": 27,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 153,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d4, y\u003d20, z\u003d0}": {
+    "gridLocation": {
+      "x": 4,
+      "y": 20,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 3,
+          "y": 20,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 4,
+          "y": 21,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 144,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d18, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 18,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 2,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 3,
+          "y": 19,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 135,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d2, y\u003d16, z\u003d0}": {
+    "gridLocation": {
+      "x": 2,
+      "y": 16,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 3,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 2,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 132,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d11, y\u003d18, z\u003d0}": {
+    "gridLocation": {
+      "x": 11,
+      "y": 18,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 11,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 12,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 69,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d10, y\u003d16, z\u003d0}": {
+    "gridLocation": {
+      "x": 10,
+      "y": 16,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 11,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 9,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 10,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 58,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d8, y\u003d12, z\u003d0}": {
+    "gridLocation": {
+      "x": 8,
+      "y": 12,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 8,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 7,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 9,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 8,
+          "y": 13,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 13,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d7, y\u003d10, z\u003d0}": {
+    "gridLocation": {
+      "x": 7,
+      "y": 10,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 6,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 8,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 7,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 7,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 119,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d6, y\u003d8, z\u003d0}": {
+    "gridLocation": {
+      "x": 6,
+      "y": 8,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 7,
+          "y": 8,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 6,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 5,
+          "y": 8,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 6,
+          "y": 7,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 125,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d5, y\u003d6, z\u003d0}": {
+    "gridLocation": {
+      "x": 5,
+      "y": 6,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 4,
+          "y": 6,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 5,
+          "y": 7,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 6,
+          "y": 6,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 5,
+          "y": 5,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 4,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d35, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 35,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 3,
+          "y": 34,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 2,
+          "y": 35,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 3,
+          "y": 36,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 184,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d4, y\u003d4, z\u003d0}": {
+    "gridLocation": {
+      "x": 4,
+      "y": 4,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 3,
+          "y": 4,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 4,
+          "y": 5,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 234,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d2, y\u003d33, z\u003d0}": {
+    "gridLocation": {
+      "x": 2,
+      "y": 33,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 2,
+          "y": 34,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 3,
+          "y": 33,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 2,
+          "y": 32,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 182,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d2, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 2,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 2,
+          "y": 2,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 3,
+          "y": 1,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 3,
+          "y": 3,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 242,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d19, y\u003d18, z\u003d0}": {
+    "gridLocation": {
+      "x": 19,
+      "y": 18,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 19,
+          "y": 17,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 19,
+          "y": 19,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 248,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d18, y\u003d16, z\u003d0}": {
+    "gridLocation": {
+      "x": 18,
+      "y": 16,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 17,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 19,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 243,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d16, y\u003d12, z\u003d0}": {
+    "gridLocation": {
+      "x": 16,
+      "y": 12,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 16,
+          "y": 13,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 15,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 17,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 16,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 95,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d9, y\u003d31, z\u003d0}": {
+    "gridLocation": {
+      "x": 9,
+      "y": 31,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 10,
+          "y": 31,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 8,
+          "y": 31,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 230,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d8, y\u003d29, z\u003d0}": {
+    "gridLocation": {
+      "x": 8,
+      "y": 29,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 7,
+          "y": 29,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 8,
+          "y": 30,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 217,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d7, y\u003d27, z\u003d0}": {
+    "gridLocation": {
+      "x": 7,
+      "y": 27,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 6,
+          "y": 27,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 7,
+          "y": 28,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 7,
+          "y": 26,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 225,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d6, y\u003d25, z\u003d0}": {
+    "gridLocation": {
+      "x": 6,
+      "y": 25,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 7,
+          "y": 25,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 5,
+          "y": 25,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 6,
+          "y": 26,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 157,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d4, y\u003d21, z\u003d0}": {
+    "gridLocation": {
+      "x": 4,
+      "y": 21,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 4,
+          "y": 20,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 4,
+          "y": 22,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 3,
+          "y": 21,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 145,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d19, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 19,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 3,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 3,
+          "y": 20,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 136,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d2, y\u003d17, z\u003d0}": {
+    "gridLocation": {
+      "x": 2,
+      "y": 17,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 2,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 2,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 133,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d9, y\u003d15, z\u003d0}": {
+    "gridLocation": {
+      "x": 9,
+      "y": 15,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 8,
+          "y": 15,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 9,
+          "y": 16,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 34,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d8, y\u003d13, z\u003d0}": {
+    "gridLocation": {
+      "x": 8,
+      "y": 13,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 9,
+          "y": 13,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 8,
+          "y": 14,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 7,
+          "y": 13,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 8,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 29,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d7, y\u003d11, z\u003d0}": {
+    "gridLocation": {
+      "x": 7,
+      "y": 11,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "west",
+        "destination": {
+          "x": 6,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 8,
+          "y": 11,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 7,
+          "y": 12,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 7,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 11,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d6, y\u003d9, z\u003d0}": {
+    "gridLocation": {
+      "x": 6,
+      "y": 9,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 7,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 6,
+          "y": 8,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 6,
+          "y": 10,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 5,
+          "y": 9,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 47,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d5, y\u003d7, z\u003d0}": {
+    "gridLocation": {
+      "x": 5,
+      "y": 7,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 5,
+          "y": 6,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 5,
+          "y": 8,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 4,
+          "y": 7,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 6,
+          "y": 7,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 5,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d4, y\u003d5, z\u003d0}": {
+    "gridLocation": {
+      "x": 4,
+      "y": 5,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 5,
+          "y": 5,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 4,
+          "y": 6,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 4,
+          "y": 4,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 2,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d36, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 36,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 3,
+          "y": 35,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "west",
+        "destination": {
+          "x": 2,
+          "y": 36,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 189,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d2, y\u003d34, z\u003d0}": {
+    "gridLocation": {
+      "x": 2,
+      "y": 34,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "east",
+        "destination": {
+          "x": 3,
+          "y": 34,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 2,
+          "y": 33,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "south",
+        "destination": {
+          "x": 2,
+          "y": 35,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {
+      "flags": [
+        1
+      ]
+    },
+    "roomNumber": 181,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d3, y\u003d3, z\u003d0}": {
+    "gridLocation": {
+      "x": 3,
+      "y": 3,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "south",
+        "destination": {
+          "x": 3,
+          "y": 4,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "north",
+        "destination": {
+          "x": 3,
+          "y": 2,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 235,
+    "zoneId": 0
+  },
+  "GridLocation{x\u003d19, y\u003d19, z\u003d0}": {
+    "gridLocation": {
+      "x": 19,
+      "y": 19,
+      "z": 0
+    },
+    "exits": [
+      {
+        "name": "north",
+        "destination": {
+          "x": 19,
+          "y": 18,
+          "z": 0
+        },
+        "door": false
+      },
+      {
+        "name": "east",
+        "destination": {
+          "x": 20,
+          "y": 19,
+          "z": 0
+        },
+        "door": false
+      }
+    ],
+    "roomFlags": {},
+    "roomNumber": 249,
+    "zoneId": 0
+  }
+}

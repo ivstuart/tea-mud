@@ -14,24 +14,9 @@
  *  limitations under the License.
  */
 
-package com.ivstuart.tmud.state.items;
+package com.ivstuart.tmud.poc.item;
 
-import com.ivstuart.tmud.constants.Profession;
+public enum WeaponSkillEnum {
 
-import java.util.List;
-
-public enum ItemEnum {
-
-    NO_DROP,
-    NO_REMOVE,
-    NO_BANK,
-    NO_DONATE,
-    NO_INVISIBLE,
-    ANTI_GOOD,
-    ANTI_EVIL,
-    BOAT,
-    MAGIC,
-    CLIMBING,
-    SHOP;
-
+    SLASHING, PIERCING, CRUSHING, CHOPPING, THRUSTING, WHIPPING
 }

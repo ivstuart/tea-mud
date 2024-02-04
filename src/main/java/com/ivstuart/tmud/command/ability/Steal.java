@@ -86,6 +86,8 @@ public class Steal extends BaseCommand {
 
             Money money = new Money(Money.COPPER, taken);
 
+            mob.out(new Msg(mob, ("<S-You/NAME> successfully pilfer "+money)));
+
             // make some mobs aware of this and respond accordingly.
             target.getInventory().getPurse().remove(money);
             mob.getInventory().add(money);

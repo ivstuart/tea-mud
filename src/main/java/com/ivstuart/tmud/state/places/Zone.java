@@ -31,6 +31,7 @@ import org.apache.logging.log4j.Logger;
  *
  * @author Ivan Stuart
  */
+@Deprecated
 public class Zone extends BasicThing {
 
     private static final Logger LOGGER = LogManager.getLogger();
@@ -71,6 +72,7 @@ public class Zone extends BasicThing {
     public void setItemInRoom(String itemAndRoom_) {
         String[] elements = itemAndRoom_.split(" ");
         Item item = EntityProvider.createItem(elements[0]);
+        // TODO remove this code as String no longer used to get rooms.
         Room room = World.getRoom(elements[1]);
         room.add(item);
     }
@@ -83,6 +85,7 @@ public class Zone extends BasicThing {
             return;
         }
 
+        // TODO remove this code as String no longer used to get rooms.
         Mob mob = World.getRoom(elements[1]).getMob(elements[0]);
 
         if (mob == null) {

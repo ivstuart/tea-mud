@@ -317,6 +317,13 @@ public class DamageManager {
                 if (defender.isPlayer()) {
                     defender.getPlayer().getData().incrementDeaths();
                 }
+                else {
+                    // Clear room spawned
+                    Room room = World.getRoom(defender.getMobNpc().getCreatedIn());
+                    if (room != null) {
+                        room.clearSpawnedMob();
+                    }
+                }
 
                 createCorpse(attacker, defender);
 

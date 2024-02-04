@@ -21,6 +21,7 @@ import com.ivstuart.tmud.behaviour.BehaviourFactory;
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.Tickable;
 import com.ivstuart.tmud.constants.DamageType;
+import com.ivstuart.tmud.state.places.RoomLocation;
 import com.ivstuart.tmud.state.player.Attribute;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -48,6 +49,8 @@ public class MobNpc implements Serializable {
     private String ability; // base mob
     private int align; // base mob
     private boolean alignment;
+
+    private RoomLocation createdIn;
 
     public MobNpc(Mob mob, MobNpc mobNpc) {
         this.armour = mobNpc.armour;
@@ -187,5 +190,13 @@ public class MobNpc implements Serializable {
 
     public void setAlignment(boolean alignment) {
         this.alignment = alignment;
+    }
+
+    public RoomLocation getCreatedIn() {
+        return createdIn;
+    }
+
+    public void setCreatedIn(RoomLocation createdIn) {
+        this.createdIn = createdIn;
     }
 }

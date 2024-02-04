@@ -1,0 +1,259 @@
+include: teachers.txt
+
+class: state.mobs.Mob
+
+id: snake-001
+name: king cobra
+alias: king cobra snake
+short: the hooded cobra snake
+long: A cobra snake rears up and opens its fearsome hood.
+look: The cobra snake waves back and forth before you, its hood displaying brilliant
+look: colors designed to serve notice to its prey that it is about to strike.
+#behaviour: Wander:50:2
+#behaviour: Aggressive:100
+affects: SANC
+align: 0
+level: 7
+offensive: 70   
+defensive: 30   
+armour: 13
+hp: 7d7+70
+damage: 2d2
+copper: 25
+xp: 200
+state: STANDING
+attackType: claw bite
+ability: bash poison
+
+id: snake-002
+name: small cobra
+alias: small cobra snake
+short: the small green snake
+long: A small snake hisses at you menacingly.
+look: The snake is a common garden snake, it is all together unremarkable.
+level: 1
+offensive: 70   
+defensive: 20   
+armour: 5
+hp: 1d6+10
+damage: 1d3
+copper: 5
+xp: 20
+state: STANDING
+attackType: claw bite
+
+class: state.mobs.GuardMob
+
+id: guard-003
+name: small official looking guard
+alias: small official guard
+short: the small guard
+long: A small guard paces up and down
+look: The guard resembles a typical palace guard, complete with hat and spear
+level: 1
+offensive: 70   
+defensive: 20   
+armour: 5
+hp: 1d6+10
+damage: 1d3
+copper: 5
+xp: 20
+state: STANDING
+attackType: punch
+guardExit: south
+
+class: state.mobs.Mob
+
+id: troll-004
+name: cave troll
+alias: large cave troll
+short: the large gray cave troll
+long: A large gray cave troll snares at you.
+look: The troll is a common cave troll is and all together unremarkable.
+#behaviour: Wander:100:1
+#behaviour: Wimpy:100:1000
+#behaviour: Follow:100
+#behaviour: Wimpy:100:50
+#behaviour: Patrol:100:wwweee
+level: 10
+offensive: 120
+defensive: 50
+armour: 20
+hp: 2000
+damage: 4d6
+copper: 500
+xp: 200
+state: STANDING
+attackType: fist
+
+class: state.mobs.Mob
+
+id: dragon-005
+name: dragon
+alias: large red dragon
+short: the large red dragon
+long: A large red dragon snares at you.
+look: The dragon is a common dragon is and all together unremarkable.
+#behaviour: Aggressive:100
+#behaviour: Assist:100
+#behaviour: Retarget:100
+level: 60
+attacks: 6
+offensive: 1000
+defensive: 500
+armour: 50
+hp: 5d6+5000
+damage: 1d120+200
+copper: 10000
+xp: 200000
+state: STANDING
+attackType: claw tail bite breath
+flags: MEMORY
+# dice types possible for most fields 
+
+# Used by the Animate Dead Spell linked by id field.
+id: zombie-001
+name: zombie
+alias: zombie
+short: the zombie
+long: A zombie snares at you.
+look: The zombie is a common zombie is and all together unremarkable.
+level: 6
+offensive: 20
+defensive: 10
+armour: 5
+hp: 5d6+50
+damage: 1d6
+copper: 0
+xp: 20
+state: STANDING
+attackType: bite
+# dice types possible for most fields
+
+class: state.mobs.ShopKeeper
+
+id: shopkeeper-001
+name: shopkeeper
+alias: shopkeeper
+short: the shopkeeper
+long: A shopkeeper snares at you.
+look: The shopkeeper is a common shopkeeper is and all together unremarkable.
+level: 100
+offensive: 1000
+defensive: 1000
+armour: 50
+hp: 1500
+damage: 1d100+50
+copper: 0
+xp: 20
+state: STANDING
+attackType: punch
+item: wooden-shield-004
+item: packed-lunches-001
+item: guild-token-001
+# dice types possible for most fields
+
+class: state.mobs.Mob
+id: old-man-006
+name: old man
+alias: old man
+short: the old man
+long: A old man
+look: The old man is a common old man is and all together unremarkable.
+#behaviour: Wander:100
+#behaviour: Janitor:100
+#behaviour: Stealer:100
+level: 10
+offensive: 120
+defensive: 50
+armour: 20
+hp: 5d6+50
+damage: 4d6
+copper: 500
+xp: 200
+state: STANDING
+attackType: fist
+
+class: state.mobs.Banker
+id: banker-001
+name: banker
+alias: banker
+short: the banker
+long: A banker snares at you.
+look: The banker is a common banker is and all together unremarkable.
+level: 100
+offensive: 1000
+defensive: 1000
+armour: 50
+hp: 1500
+damage: 1d100+50
+copper: 0
+xp: 20
+state: STANDING
+attackType: punch
+
+class: state.mobs.WarMaster
+
+id: warmaster-001
+name: warmaster
+alias: warmaster
+short: the warmaster
+long: A warmaster snares at you.
+look: The warmaster is a common warmaster is and all together unremarkable.
+level: 100
+offensive: 1000
+defensive: 1000
+armour: 50
+hp: 15000
+damage: 1d100+1050
+copper: 0
+xp: 20
+state: STANDING
+attackType: punch
+
+class: state.mobs.ShopKeeper
+
+id: barkeep-001
+name: barkeep
+alias: barkeep
+short: the barkeep
+long: A barkeep snares at you.
+look: The barkeep is a common barkeep is and all together unremarkable.
+level: 100
+offensive: 1000
+defensive: 1000
+armour: 50
+hp: 1500
+damage: 1d100+50
+copper: 0
+xp: 20
+state: STANDING
+attackType: punch
+item: bottle-of-beer-001
+item: bottle-of-wine-001
+item: bottle-of-ale-001
+item: bottle-of-whisky-001
+item: cup-of-tea-001
+item: draft-salt-water-001
+item: poison-water-001
+
+class: state.mobs.Mob
+
+id: drow-001
+name: drow
+alias: drow
+short: the drow
+long: A drow snares at you.
+look: The drow is a common drow is and all together unremarkable.
+level: 10
+offensive: 100
+defensive: 100
+armour: 10
+hp: 150
+damage: 1d10+5
+copper: 0
+xp: 20
+state: STANDING
+attackType: punch slash
+item: black-anklet-001 100
+item: black-anklet-001 100

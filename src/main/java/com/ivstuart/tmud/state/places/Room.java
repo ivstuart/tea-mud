@@ -42,6 +42,8 @@ public class Room extends BasicThing implements Msgable {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
+    private static final int FIVE_MINUTES_MILLIS = 5 * 60 * 1000;
+
     private static final long serialVersionUID = 1L;
 
     private final RoomLocation roomLocation; // Must be final
@@ -56,6 +58,9 @@ public class Room extends BasicThing implements Msgable {
     private SectorType sectorType;
 
     private int zoneId;
+
+    private long lastScannedMillis;
+    private transient Mob spawnedMob; // One per room for now.
 
     @Deprecated
     public Room() {
@@ -258,7 +263,7 @@ public class Room extends BasicThing implements Msgable {
     public boolean hasLightSource() {
 
         // Check room first
-        if (_items.hasLightSource()) {
+        if (_items !=null && _items.hasLightSource()) {
             return true;
         }
 
@@ -318,7 +323,7 @@ public class Room extends BasicThing implements Msgable {
     }
 
     public void setDoors(String doors_) {
-        RoomManager.createDoors(this.getId(), doors_);
+        RoomManager.createDoors(this.getRoomLocation(), doors_);
     }
 
     public void setBashable(boolean isBashable) {
@@ -345,8 +350,9 @@ public class Room extends BasicThing implements Msgable {
         RoomManager.setDoorKeys(keys_);
     }
 
-    public void setMob(String mobId_) {
-        Mob mob = EntityProvider.createMob(mobId_, getId());
+    public void setMob(String mobId) {
+        String name = "hack";
+        Mob mob = EntityProvider.createMob(mobId, name);
         this.add(mob);
     }
 
@@ -481,5 +487,30 @@ public class Room extends BasicThing implements Msgable {
 
     public EnumSet<RoomEnum> getFlags() {
         return flags;
+    }
+
+    public boolean chanceOfAMob() {
+        long now =  System.currentTimeMillis();
+        if (lastScannedMillis < now - FIVE_MINUTES_MILLIS) {
+            lastScannedMillis = now;
+            return true;
+        }
+        return false;
+    }
+
+    public Mob getSpawnedMob() {
+        return spawnedMob;
+    }
+
+    public void setSpawnedMob(Mob spawnedMob) {
+        this.spawnedMob = spawnedMob;
+    }
+
+    public int getZoneId() {
+        return zoneId;
+    }
+
+    public void clearSpawnedMob() {
+        this.spawnedMob = null;
     }
 }

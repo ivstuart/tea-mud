@@ -16,7 +16,10 @@
 
 package com.ivstuart.tmud.person.movement;
 
+import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.common.Msg;
+import com.ivstuart.tmud.poc.mob.MobGenerator;
+import com.ivstuart.tmud.poc.mob.RarityEnum;
 import com.ivstuart.tmud.state.mobs.Ability;
 import com.ivstuart.tmud.state.mobs.Mob;
 import com.ivstuart.tmud.state.places.Exit;
@@ -75,6 +78,27 @@ public class MoveManager {
         track.setDirection(exit_.getId());
         sourceRoom_.addTrack(track);
 
+        // Check for Mob in room.
+        checkForMobSpawning(destinationRoom_);
+
+    }
+
+    public static void checkForMobSpawning(Room destinationRoom_) {
+        if (destinationRoom_.chanceOfAMob() && DiceRoll.ONE_D100.rollLessThan(20)) {
+            if (destinationRoom_.getSpawnedMob() == null) {
+                spawnMob(destinationRoom_);
+            }
+        }
+    }
+
+    private static void spawnMob(Room destinationRoom) {
+        MobGenerator mobGenerator = MobGenerator.getRandom(destinationRoom.getZoneId());
+
+        Mob mob = MobGenerator.createMob(mobGenerator, RarityEnum.getRandom());
+
+        destinationRoom.add(mob);
+        destinationRoom.setSpawnedMob(mob);
+        mob.getMobNpc().setCreatedIn(destinationRoom.getRoomLocation());
     }
 
     public static Exit random(Mob mob) {

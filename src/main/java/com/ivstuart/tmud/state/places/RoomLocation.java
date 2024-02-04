@@ -24,10 +24,15 @@ import java.util.Objects;
  */
 public class RoomLocation implements Serializable {
 
+
     private static final long serialVersionUID = 1L;
 
     public static final RoomLocation PORTAL_GOOD = new RoomLocation(0,0,0);
     public static final RoomLocation PORTAL_EVIL = new RoomLocation(1,1,0);
+
+    public static final RoomLocation DONATE_GOOD = PORTAL_GOOD;
+
+    public static final RoomLocation DONATE_EVIL = PORTAL_EVIL;
 
     private final int x;
     private final int y;

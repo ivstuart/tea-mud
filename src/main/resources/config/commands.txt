@@ -185,6 +185,7 @@ command.admin.Teleport,SLEEP
 command.admin.LearnAll,SLEEP
 command.admin.PoisonSelf,SLEEP
 command.admin.Unpossess,SLEEP
+command.admin.ItemGen,SLEEP
 
 # Needs to be lower than At
 command.info.AttributeInfo,REST

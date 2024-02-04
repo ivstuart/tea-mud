@@ -54,10 +54,7 @@ public class SetRaceTest {
         Mob player1Mob = TestHelper.makeDefaultPlayerMob("player1");
         player1Mob.getPlayer().setAdmin(true);
 
-        World.getRaces().clear();
-
-        Load load = new Load();
-        load.execute(player1Mob, "races.txt");
+        World.getInstance();
 
         Command setrace = new SetRace();
         setrace.execute(player1Mob, "8"); // sheepMob.getAlias());

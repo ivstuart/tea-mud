@@ -1,0 +1,55 @@
+# If you load the items and mobs first you can use mob: and item: in room file.
+# TODO remove state loading and generate it instead.
+include: items.txt
+include: prop.txt
+include: mobs.txt
+include: mounts.txt
+# TODO remove state loading files and switch to JSON instead
+include: rooms.txt
+include: zone.txt
+
+# Code as config
+#include: races.txt
+include: tier-armour.txt
+
+# include: spells/spells.txt
+# Code as config
+#include: skills.txt
+
+# Newbie zone levels 1-10 recommended
+include: zone-homeland-good/zone-hl-good.txt
+
+# Zone file has the include for mobs and rooms
+include: zone-road-to-bal/zone-road2bal.txt
+include: zone-desert/zone-desert.txt
+include: zone-forest/zone-forest.txt
+include: zone-mountain-pass/zone-mountain-pass.txt
+include: zone-savannah/zone-savannah.txt
+include: zone-swamp/zone-swamp.txt
+
+# Newbie zone levels 1-10 recommended
+include: zone-homeland-evil/mobs-hl-evil.txt
+include: zone-homeland-evil/rooms-hl-evil.txt
+include: zone-homeland-evil/zone-hl-evil.txt
+
+# Newbie zone levels 1-10 recommended
+include: zone-aviary/mobs-aviary.txt
+include: zone-aviary/rooms-aviary.txt
+
+# Newbie zone levels 1-10 recommended
+include: zone-caverns/mobs-caverns.txt
+include: zone-caverns/rooms-caverns.txt
+include: zone-caverns/zone-caverns.txt
+
+# Zone 2 levels 20-30 recommended
+include: zone-salt-mine/mobs-salt-mine.txt
+include: zone-salt-mine/rooms-salt-mine.txt
+
+# Zone 3 levels 40 recommended
+include: zone-pyramid/mobs-pyramid.txt
+include: zone-pyramid/rooms-pyramid.txt
+include: zone-pyramid/zone-pyramid.txt
+
+
+
+include: zone-battle-ground/rooms-bg.txt

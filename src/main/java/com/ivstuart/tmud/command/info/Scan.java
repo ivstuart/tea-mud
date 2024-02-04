@@ -17,8 +17,10 @@
 package com.ivstuart.tmud.command.info;
 
 import com.ivstuart.tmud.command.BaseCommand;
+import com.ivstuart.tmud.person.movement.MoveManager;
 import com.ivstuart.tmud.state.places.Exit;
 import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.places.Room;
 import com.ivstuart.tmud.utils.MudArrayList;
 import com.ivstuart.tmud.world.World;
 
@@ -72,6 +74,13 @@ public class Scan extends BaseCommand {
     private void scan(List<Exit> exits) {
         for (Exit exit : exits) {
             if (exit.isScanable()) {
+
+                Room room = exit.getDestinationRoom();
+
+                if (room !=null) {
+                    MoveManager.checkForMobSpawning(room);
+                }
+
                 scan(exit, 0);
             }
         }

@@ -30,6 +30,7 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+@Deprecated
 public class StateReader {
 
     private static final String CLASS = "class";

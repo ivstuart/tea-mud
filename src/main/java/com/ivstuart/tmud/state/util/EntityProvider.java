@@ -27,6 +27,7 @@ import org.apache.logging.log4j.Logger;
 import java.lang.reflect.Constructor;
 import java.util.Iterator;
 
+@Deprecated
 public class EntityProvider {
 
     private static final Logger LOGGER = LogManager.getLogger();
@@ -43,8 +44,9 @@ public class EntityProvider {
         return (Item)item.clone();
     }
 
-    public static Mob createMob(String mobId_, String _id) {
+    public static Mob createMob(String mobId_, String name) {
 
+        // TODO create Mobs in a different way without reflection
         // LOGGER.info("Creating mob with id [ " + mobId_ + "]");
 
         Mob existingMob = World.getMobs().get(mobId_);
@@ -94,6 +96,8 @@ public class EntityProvider {
                 }
             }
         }
+
+        newMob.setName(name);
 
         return newMob;
     }

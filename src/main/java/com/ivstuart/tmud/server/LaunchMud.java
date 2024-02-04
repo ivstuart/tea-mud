@@ -70,9 +70,10 @@ public class LaunchMud {
             LOGGER.error("Problem loading mud server properties", e);
         }
 
-        // TODO change state loading to read in JSON for the world and generate mobs and items on demand.
-        // StateReader.getInstance().load();
         loadWorld();
+
+        // TODO reinstated for Items and Armour catalogue. task to change to JSON.
+        StateReader.getInstance().load();
 
         CommandProvider.getInstance();
 

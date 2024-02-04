@@ -126,7 +126,7 @@ public class WorldLoad {
         }
 
         int counter=0;
-        for (RoomEnum flag : EnumSet.allOf(RoomEnum.class)) {
+        for (RoomEnum flag : RoomEnum.values()) {
             if (place.getRoomFlags().getFlag(counter)) {
                 room.setFlag(flag);
             }

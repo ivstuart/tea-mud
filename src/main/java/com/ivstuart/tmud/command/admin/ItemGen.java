@@ -14,24 +14,25 @@
  *  limitations under the License.
  */
 
-package com.ivstuart.tmud.state.items;
+package com.ivstuart.tmud.command.admin;
 
-import com.ivstuart.tmud.constants.Profession;
+import com.ivstuart.tmud.poc.item.ItemGenerator;
+import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.mobs.Mob;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.util.List;
+public class ItemGen extends AdminCommand {
+    private static final Logger LOGGER = LogManager.getLogger();
 
-public enum ItemEnum {
+    @Override
+    public void execute(Mob mob, String input) {
 
-    NO_DROP,
-    NO_REMOVE,
-    NO_BANK,
-    NO_DONATE,
-    NO_INVISIBLE,
-    ANTI_GOOD,
-    ANTI_EVIL,
-    BOAT,
-    MAGIC,
-    CLIMBING,
-    SHOP;
+        Item item = ItemGenerator.getItem();
 
+        mob.getInventory().add(item);
+
+        mob.out("You create a "+item+" and add it to your inventory");
+
+    }
 }
