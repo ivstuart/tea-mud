@@ -30,6 +30,11 @@ public class Gem extends Item implements Equipable {
     protected ManaType _manaType;
 
     public Gem() {
+        setType("gem");
+        setMana(0);
+        setLevel(20);
+        setWear("PRIMARY SECONDARY");
+        setWeight(1);
     }
 
     @Override
@@ -38,8 +43,8 @@ public class Gem extends Item implements Equipable {
         mob.getMana().get(_manaType).addCastLevel(castBonus);
     }
 
-    public void setLevel(String level_) {
-        castBonus = Integer.parseInt(level_);
+    public void setLevel(int level_) {
+        castBonus = level_;
         manaBonus = 5 * castBonus;
     }
 

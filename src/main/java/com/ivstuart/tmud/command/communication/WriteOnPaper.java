@@ -40,7 +40,7 @@ public class WriteOnPaper extends BaseCommand {
 
         Item note = new Item();
 
-        note.setLong(input);
+        note.setVerbose(input);
         note.setAlias("note");
 
         if (input.length() > 40) {

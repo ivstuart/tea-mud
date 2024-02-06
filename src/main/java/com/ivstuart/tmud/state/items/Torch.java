@@ -33,7 +33,9 @@ public class Torch extends Item implements Tickable {
     private Msgable _msg = null;
 
     public Torch() {
-
+        setType("torch");
+        setEffects("20");
+        setWear("PRIMARY SECONDARY");
     }
 
     public int getFuel() {

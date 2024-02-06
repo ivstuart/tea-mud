@@ -30,6 +30,7 @@ public class Waterskin extends Item {
     private LiquidType liquidType;
 
     public Waterskin() {
+        this.setType("drinkable");
 
     }
 

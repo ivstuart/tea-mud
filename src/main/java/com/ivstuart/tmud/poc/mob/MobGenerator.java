@@ -17,7 +17,6 @@
 package com.ivstuart.tmud.poc.mob;
 
 import com.ivstuart.tmud.state.mobs.Mob;
-import com.ivstuart.tmud.state.mobs.MobEnum;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -252,7 +251,7 @@ public class MobGenerator {
         aMob.setShort("A mob short");
         aMob.setBrief("A "+aMob.getName()+" is here - brief");
         aMob.setLook("A "+aMob.getName()+" is here - look");
-        aMob.setLong("More description here");
+        aMob.setVerbose("More description here");
         // aMob.setDetectInvisible(true);
         // aMob.setCopper(100);
 

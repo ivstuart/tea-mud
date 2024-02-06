@@ -19,6 +19,8 @@ package com.ivstuart.tmud.state.items;
 import com.ivstuart.tmud.common.DiceRoll;
 import com.ivstuart.tmud.state.items.Item;
 
+import static com.ivstuart.tmud.poc.item.WeaponSkillEnum.SLASHING;
+
 /**
  * @author Ivan Stuart
  */
@@ -28,6 +30,15 @@ public class Weapon extends Item {
 
     private String skill;
     private DiceRoll damage;
+
+    public Weapon() {
+        super();
+        skill = SLASHING.toString();
+        damage = DiceRoll.ONE_D_SIX;
+        this.setWear("PRIMARY SECONDARY");
+        this.setType("weapon SHARP");
+
+    }
 
     public String getSkill() {
         return skill;

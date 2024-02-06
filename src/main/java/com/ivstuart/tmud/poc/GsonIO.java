@@ -63,17 +63,17 @@ public class GsonIO {
     }
 
     public String getSaveDirectory() {
-        return "./src/main/resources/saved/";
+        return "./src/main/resources/saved/gson/";
     }
 
     public String getFullPath(String fileName) {
-        return getSaveDirectory() + fileName; // + ".gson";
+        return getSaveDirectory() + fileName;
     }
 
     @SuppressWarnings("rawtypes")
     public Object load(String fileName, Class aClass) throws IOException {
 
-        LOGGER.info("Starting loading object fromm file:"
+        LOGGER.info("Starting loading object from file:"
                 + getFullPath(fileName));
 
         String readLine;
@@ -98,7 +98,7 @@ public class GsonIO {
         //noinspection unchecked
         Object object = gson.fromJson(json, aClass);
 
-        LOGGER.info("Finished loading object fromm file:"
+        LOGGER.info("Finished loading object from file:"
                 + getFullPath(fileName));
 
         return object;
@@ -107,7 +107,7 @@ public class GsonIO {
 
     public Object load(String fileName, Type type) throws IOException {
 
-        LOGGER.info("Starting loading object fromm file:"
+        LOGGER.info("Starting loading object from file:"
                 + getFullPath(fileName));
 
         String readLine;
@@ -131,7 +131,7 @@ public class GsonIO {
 
         Object object = gson.fromJson(json, type);
 
-        LOGGER.info("Finished loading object fromm file:"
+        LOGGER.info("Finished loading object from file:"
                 + getFullPath(fileName));
 
         return object;

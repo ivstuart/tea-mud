@@ -44,7 +44,8 @@ public class GemList extends Item implements Equipable {
         int index = 0;
         for (String levelString : element) {
             Gem gem = gems.get(index);
-            gem.setLevel(levelString);
+            int level = Integer.parseInt(levelString);
+            gem.setLevel(level);
             index++;
         }
 

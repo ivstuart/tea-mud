@@ -215,7 +215,7 @@ public class BasicThing implements Serializable, Cloneable, Msgable {
         look = "";
     }
 
-    public void setLong(String verbose) {
+    public void setVerbose(String verbose) {
         this.verbose = verbose;
     }
 
@@ -230,4 +230,6 @@ public class BasicThing implements Serializable, Cloneable, Msgable {
     public boolean isPlayer() {
         return false;
     }
+
+
 }

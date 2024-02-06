@@ -17,10 +17,7 @@
 package com.ivstuart.tmud.poc.item;
 
 import com.ivstuart.tmud.poc.mob.RarityEnum;
-import com.ivstuart.tmud.state.items.Armour;
-import com.ivstuart.tmud.state.items.Item;
-import com.ivstuart.tmud.state.items.Weapon;
-import com.ivstuart.tmud.state.mobs.Mob;
+import com.ivstuart.tmud.state.items.*;
 
 import java.util.Random;
 
@@ -66,45 +63,99 @@ public class ItemGenerator {
         Item item = null;
         switch(random.nextInt(6)) {
             case 0:
-                item = createArmour();
+                item = createArmour(); // TODO add weighting for 80% armour
                 break;
             case 1:
                 item = createWeapon();
                 break;
             case 2:
-                item = createWeapon();
+                item = createFood();
                 break;
             case 3:
-                item = createWeapon();
+                item = createGem();
                 break;
             case 4:
-                item = createWeapon();
+                item = createWaterskin();
                 break;
             case 5:
-                item = createWeapon();
+                item = createTorch();
                 break;
 
         }
         return item;
     }
 
+    private static Item createTorch() {
+
+        Random random = new Random();
+        int choice = random.nextInt(2);
+
+        Torch torch = new Torch();
+        if (choice == 0) {
+            torch.setId("torch");
+            torch.setAlias("torch");
+            torch.setLook("wooden torch with charred end which has a sticky oily substance on the end");
+            torch.setShort("wooden torch with a charred end");
+        }
+        else {
+            torch.setId("orb-of-light-001");
+            torch.setAlias("orb light");
+            torch.setLook("an aura of light coming from a glowing orb");
+            torch.setShort("an aura of light coming from a glowing orb");
+            torch.setWear("AURA");
+        }
+        return torch;
+    }
+
+    private static Item createWaterskin() {
+        Waterskin waterskin = new Waterskin();
+        waterskin.setLiquidType("0:0:10:100");
+        waterskin.setId("waterskin");
+        waterskin.setAlias("waterskin");
+        waterskin.setShort("waterskin");
+        waterskin.setLook("waterskin");
+        waterskin.setWeight(5);
+        waterskin.setCost(10);
+        waterskin.setRent(5);
+        return waterskin;
+    }
+
+    private static Item createGem() {
+        Gem gem = new Gem();
+        gem.setId("fire-20");
+        gem.setAlias("ruby gem");
+        gem.setShort("rough ruby gemstone");
+        gem.setLook("rough ruby gemstone");
+        return gem;
+    }
+
+    private static Item createFood() {
+        Food food = new Food();
+        food.setCookable(true);
+        food.setId("bread");
+        food.setAlias("bread");
+        food.setWeight(1);
+        food.setType("food");
+        return food;
+    }
+
     private static Item createWeapon() {
         Weapon weapon = new Weapon();
-        weapon.setId("b sword");
-        weapon.setAlias("b sword");
-        weapon.setBrief("b rusty sword");
-        weapon.setLong("b rusty sword which looks well worn");
-        weapon.setLook("b sword");
+        weapon.setId("sword");
+        weapon.setAlias("sword");
+        weapon.setBrief("rusty sword");
+        weapon.setVerbose("rusty sword which looks well worn");
+        weapon.setLook("sword");
 
-
-        weapon.setWear("PRIMARY SECONDARY");
+        // Set defaults on weapon now
+        // weapon.setWear("PRIMARY SECONDARY");
         weapon.setWeight(2);
         weapon.setCost(10);
         weapon.setRent(5);
 
         weapon.setDamage("1d6+1");
-        weapon.setType("weapon SHARP");
-        weapon.setSkill("slashing");
+        //weapon.setType("weapon SHARP");
+        //weapon.setSkill("slashing");
 
         return weapon;
 
@@ -115,7 +166,7 @@ public class ItemGenerator {
         armour.setId("scarf");
         armour.setAlias("scarf");
         armour.setBrief("red scarf");
-        armour.setLong("red scarf with flowers");
+        armour.setVerbose("red scarf with flowers");
         armour.setLook("scarf");
 
         armour.setEffects("3");

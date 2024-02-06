@@ -47,7 +47,7 @@ public class MudArrayListTest extends TestCase {
         Item sword = new Item();
 
         sword.setBrief("short sword");
-        sword.setLong("a dull edged bronze short sword");
+        sword.setVerbose("a dull edged bronze short sword");
         sword.setId("sword");
         sword.setAlias("sword");
         list.add(sword);
@@ -56,7 +56,7 @@ public class MudArrayListTest extends TestCase {
         Item longSword = new Item();
 
         longSword.setBrief("long sword");
-        longSword.setLong("a sharp steel long sword");
+        longSword.setVerbose("a sharp steel long sword");
         longSword.setId("sword");
         longSword.setAlias("sword");
 
