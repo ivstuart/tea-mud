@@ -16,6 +16,7 @@
 
 package com.ivstuart.tmud.poc.item;
 import com.ivstuart.tmud.poc.GsonIO;
+import com.ivstuart.tmud.poc.JsonIO;
 import com.ivstuart.tmud.state.items.Item;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -39,10 +40,14 @@ public class JItemControlPanel extends JPanel {
         return Integer.valueOf(spinner.getValue().toString());
     }
 
+    public static final String[] dropDownItems = {"Item","Torch","Bag","Weapon","Armour","Potion","Scroll","Wand","Waterskin","Gem","GemList","Food","DoorKey"};
+
     public void createUI() {
 
-        selector.addItem("Item"); // Add subclasses
-        selector.addItem("Mob"); // Add subclasses.
+        for (String item : dropDownItems) {
+            selector.addItem(item);
+        }
+
         this.add(selector);
 
         spinner.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
@@ -78,38 +83,34 @@ public class JItemControlPanel extends JPanel {
         load.addActionListener(e -> loadButton());
     }
 
+    public static String getDropDownValue() {
+        return selector.getSelectedItem().toString();
+    }
+
     private void loadButton() {
         JFileChooser fileChooser = new JFileChooser();
 
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                "Gson files only", "gson");
+                "JSON files only", "json");
         fileChooser.setFileFilter(filter);
         fileChooser.setDialogTitle("Load item map");
         fileChooser.setApproveButtonText("Load");
-        fileChooser.setCurrentDirectory(new File("./src/main/resources/saved/gson/"));
+        fileChooser.setCurrentDirectory(new File("./src/main/resources/saved/json/"));
         int returnVal = fileChooser.showOpenDialog(null);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             String fileName = fileChooser.getSelectedFile().getName();
             LOGGER.info("You choose to load this file: " + fileName);
 
-            JItemFieldPanel.getMap().clear();
+            // JItemFieldPanel.getMap().clear();
 
-            GsonIO gsonIO = new GsonIO();
+            JsonIO jsonIO = new JsonIO();
 
-            Object loadedObject;
-
-            try {
-                loadedObject = gsonIO.load(fileName, JItemFieldPanel.getMap().getClass());
-            } catch (IOException e) {
-                LOGGER.error("Problem loading:",e);
-                throw new RuntimeException(e);
-            }
-
-            Map<Integer, Item> loadedMap = (Map<Integer, Item>) loadedObject;
+            Map<Integer, Item> loadedMap = (Map<Integer, Item>) jsonIO.load(JItemFieldPanel.getMap().getClass(),fileName);
 
             LOGGER.info("Loading in object:"+loadedMap);
 
-            JItemFieldPanel.setMap(loadedMap);
+            JItemFieldPanel.getMap().putAll(loadedMap);
+            // JItemFieldPanel.setMap(loadedMap);
 
         }
 
@@ -119,11 +120,11 @@ public class JItemControlPanel extends JPanel {
         JFileChooser fileChooser = new JFileChooser();
 
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                "Gson files only", "gson");
+                "JSON files only", "json");
         fileChooser.setFileFilter(filter);
         fileChooser.setDialogTitle("Store item map");
         fileChooser.setApproveButtonText("Save");
-        fileChooser.setCurrentDirectory(new File("./src/main/resources/saved/gson/"));
+        fileChooser.setCurrentDirectory(new File("./src/main/resources/saved/json/"));
         int returnVal = fileChooser.showOpenDialog(null);
 
         if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -134,22 +135,15 @@ public class JItemControlPanel extends JPanel {
 
             Map map = JItemFieldPanel.getMap();
 
-            GsonIO gsonIO = new GsonIO();
-            try {
-                gsonIO.save(map, fileName);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            JsonIO jsonIO = new JsonIO();
 
+            jsonIO.save(map,fileName);
         }
-
-
     }
 
     private void dropDownChoice() {
         LOGGER.debug("Drop down selected:" + selector.getSelectedItem());
-        //JItemFieldPanel.clear();
-        //JItemFieldPanel.createUI();
+        JItemFieldPanel.clearAndCreateUI();
     }
 
     private void recordChanged() {

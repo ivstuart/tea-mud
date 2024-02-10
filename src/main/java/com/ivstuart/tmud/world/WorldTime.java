@@ -108,7 +108,7 @@ public class WorldTime implements Runnable {
         LOGGER.debug("scheduleMobForRepopulation with id [ " + mob_.getId()
                 + " ]");
 
-        // TODO fixme
+        // TODO remove or change code for repopulation as mobs are spawned from rooms now
         DeadMob dead = new DeadMob(mob_.getId(), null, 10);
 
         deadMobs.add(dead);

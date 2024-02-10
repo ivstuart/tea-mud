@@ -112,13 +112,9 @@ public class WorldLoad {
 
             Exit exit = getExit(path);
 
-            // TODO state any additional state on exit
-
             room.add(exit);
-            // TODO copy exit flags
 
             if(path.isDoor()) {
-                // TODO add a door in the correct way
                 Door door = new Door();
                 exit.setDoor(door);
             }

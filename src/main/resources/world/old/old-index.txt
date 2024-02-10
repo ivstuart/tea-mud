@@ -1,10 +1,8 @@
 # If you load the items and mobs first you can use mob: and item: in room file.
-# TODO remove state loading and generate it instead.
 include: items.txt
 include: prop.txt
 include: mobs.txt
 include: mounts.txt
-# TODO remove state loading files and switch to JSON instead
 include: rooms.txt
 include: zone.txt
 

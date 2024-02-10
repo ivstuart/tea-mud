@@ -24,6 +24,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.*;
 import java.lang.reflect.Type;
 
+@Deprecated
 public class GsonIO {
 
     private static final Logger LOGGER = LogManager.getLogger();

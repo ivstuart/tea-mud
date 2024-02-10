@@ -26,8 +26,12 @@ import java.awt.*;
 public class LaunchItemEditor {
     private static final Logger LOGGER = LogManager.getLogger();
 
+    private static final  JItemFieldPanel itemFieldPanel = new JItemFieldPanel();
+
+    private static final JFrame frame = new JFrame();
+
     public static void main(String[] args) {
-        JFrame frame = new JFrame();
+
         frame.setTitle("Mud GUI - Item Builder and Editor - v0.1");
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
@@ -39,15 +43,36 @@ public class LaunchItemEditor {
         JItemControlPanel itemControlPanel = new JItemControlPanel();
         itemControlPanel.createUI();
 
-        JItemFieldPanel itemFieldPanel = new JItemFieldPanel(new GridLayout(30,4));
+        itemFieldPanel.setLayout(new GridLayout(30,4));
 
-        itemFieldPanel.createFields(Item.class);
+        String itemName = JItemControlPanel.getDropDownValue();
+
+        Class<?> itemClass = getItemClass(itemName);
+
+        itemFieldPanel.createFields(itemClass);
 
         JScrollPane scrollPane = new JScrollPane(itemFieldPanel);
 
         frame.add(itemControlPanel, BorderLayout.NORTH);
         frame.add(scrollPane,BorderLayout.CENTER);
 
+        frame.pack();
+    }
+
+    private static Class<?> getItemClass(String itemName) {
+        try {
+            return Class.forName("com.ivstuart.tmud.state.items." + itemName);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static JItemFieldPanel getItemFieldPanel() {
+        return itemFieldPanel;
+    }
+
+    public static void repaint() {
+        frame.repaint();
         frame.pack();
     }
 }

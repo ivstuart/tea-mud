@@ -61,11 +61,14 @@ public class ItemGenerator {
         Random random = new Random();
 
         Item item = null;
-        switch(random.nextInt(6)) {
+        switch(random.nextInt(10)) {
             case 0:
+            case 6:
+            case 7:
                 item = createArmour(); // TODO add weighting for 80% armour
                 break;
             case 1:
+            case 8:
                 item = createWeapon();
                 break;
             case 2:
@@ -80,9 +83,19 @@ public class ItemGenerator {
             case 5:
                 item = createTorch();
                 break;
+            case 9:
+                item = createPotion();
+                break;
 
         }
         return item;
+    }
+
+    private static Item createPotion() {
+        Potion potion = new Potion();
+        potion.setAlias("potion");
+        potion.setProperties("lesser healing");
+        return potion;
     }
 
     private static Item createTorch() {
@@ -162,6 +175,7 @@ public class ItemGenerator {
     }
 
     private static Item createArmour() {
+        // TODO armour in file, armour for tier and other armour to add.
         Armour armour = new Armour();
         armour.setId("scarf");
         armour.setAlias("scarf");

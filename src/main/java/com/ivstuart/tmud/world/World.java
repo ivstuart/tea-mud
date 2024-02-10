@@ -344,7 +344,6 @@ public class World {
 
     public static Room getDonateRoom(Mob mob) {
         if (mob.isGood()) {
-            // TODO remove this code as String no longer used to get rooms.
             return World.getRoom(RoomLocation.DONATE_GOOD);
         } else {
             return World.getRoom(RoomLocation.DONATE_EVIL);

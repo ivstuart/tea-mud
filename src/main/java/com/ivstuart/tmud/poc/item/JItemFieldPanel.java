@@ -33,12 +33,26 @@ public class JItemFieldPanel extends JPanel {
 
     private static Map<Integer, Item> itemMap = new HashMap<>();
 
+    // private static List<Item> itemList = new ArrayList<>();
+
+    public JItemFieldPanel() {
+    }
+
     public JItemFieldPanel(LayoutManager layout) {
         super(layout);
     }
 
     public static void addPressed() throws InvocationTargetException, IllegalAccessException {
-        Item item = new Item(); // TODO make work for other object types
+        Item item;
+
+        String itemName = JItemControlPanel.getDropDownValue();
+        Class<?> itemClass = getItemClass(itemName);
+
+        try {
+            item = (Item) itemClass.newInstance();
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        }
 
         for (Map.Entry<Method,JTextField> entry: fieldMap.entrySet()) {
 
@@ -68,7 +82,7 @@ public class JItemFieldPanel extends JPanel {
         }
         int counter = JItemControlPanel.getRecordId();
         itemMap.put(counter, item);
-
+        //itemList.add(counter,item);
     }
 
     public static void clearPressed() {
@@ -80,6 +94,7 @@ public class JItemFieldPanel extends JPanel {
     public static void removePressed() {
         int counter = JItemControlPanel.getRecordId();
         itemMap.remove(counter);
+        //itemList.remove(counter);
     }
 
     public static void recordUpdated() throws InvocationTargetException, IllegalAccessException {
@@ -141,6 +156,22 @@ public class JItemFieldPanel extends JPanel {
     public static void setMap(Map<Integer, Item> loadedMap) {
         itemMap = loadedMap;
         LOGGER.info("Setting map to be:"+itemMap);
+    }
+
+    public static void clearAndCreateUI() {
+        LaunchItemEditor.getItemFieldPanel().removeAll();
+        String itemName = JItemControlPanel.getDropDownValue();
+        Class<?> itemClass = getItemClass(itemName);
+        LaunchItemEditor.getItemFieldPanel().createFields(itemClass);
+        LaunchItemEditor.repaint();
+    }
+
+    private static Class<?> getItemClass(String itemName) {
+        try {
+            return Class.forName("com.ivstuart.tmud.state.items." + itemName);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void createFields(Class<?> aClass) {
