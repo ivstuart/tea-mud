@@ -30,6 +30,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.EnumSet;
 import java.util.List;
 
 public class Item extends Prop implements Equipable, Msgable {
@@ -38,39 +39,30 @@ public class Item extends Prop implements Equipable, Msgable {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    protected String _action;
+    private final EnumSet<ItemEnum> enumItemSet;
 
-    protected String _type;
+    protected String action;
 
-    protected String _effects;
+    protected String type;
 
-    protected List<Integer> _wear;
+    protected String effects;
+
+    protected List<Integer> wear;
 
     // in grams
-    protected int _weight;
+    protected int weight;
     // copper
-    protected int _cost;
-    protected SomeMoney _someMoneyCost;
+    protected int cost;
+    protected SomeMoney someMoneyCost;
     // copper
-    protected int _rent;
-    protected int _worn;
-    protected int _size;
-    protected int _damagedPercentage;
+    protected int rent;
+    protected int worn;
+    protected int size;
+    protected int damagedPercentage;
     protected int apb;
-    protected boolean isClimbing;
-    protected boolean isShopSupplied;
     int loadPercentage = 1;
-    private boolean isNoDrop;
-    private boolean isNoRemove;
-    private boolean isNoBank;
-    private boolean isNoDonate;
-    private boolean isNoInvisible;
     private List<Profession> antiProfession;
-    private boolean isAntiGood;
-    private boolean isAntiEvil;
-    private boolean isBoat;
     private String roomId;
-    private boolean magic;
     // Consider wrap the pair this in a class
     private int hitRoll;
     private int damageRoll;
@@ -82,24 +74,18 @@ public class Item extends Prop implements Equipable, Msgable {
     private Disease disease;
 
     public Item() {
+        enumItemSet = EnumSet.noneOf(ItemEnum.class);
+    }
+
+    public boolean hasItemEnum(ItemEnum itemEnum) {
+        return enumItemSet.contains(itemEnum);
+    }
+
+    public void setItemEnum(ItemEnum itemEnum) {
+        enumItemSet.add(itemEnum);
     }
 
     // TODO add a copy constructor for Item after Item Flags enum integrated with code
-    public boolean isAntiGood() {
-        return isAntiGood;
-    }
-
-    public void setAntiGood(boolean antiGood) {
-        isAntiGood = antiGood;
-    }
-
-    public boolean isAntiEvil() {
-        return isAntiEvil;
-    }
-
-    public void setAntiEvil(boolean antiEvil) {
-        isAntiEvil = antiEvil;
-    }
 
     public int getHp() {
         return hp;
@@ -173,30 +159,6 @@ public class Item extends Prop implements Equipable, Msgable {
         this.roomId = roomId;
     }
 
-    public boolean isBoat() {
-        return isBoat;
-    }
-
-    public void setBoat(boolean boat) {
-        isBoat = boat;
-    }
-
-    public boolean isNoDonate() {
-        return isNoDonate;
-    }
-
-    public void setNoDonate(boolean noDonate) {
-        isNoDonate = noDonate;
-    }
-
-    public boolean isNoInvisible() {
-        return isNoInvisible;
-    }
-
-    public void setNoInvisible(boolean noInvisible) {
-        isNoInvisible = noInvisible;
-    }
-
     public boolean isAntiProfession(Profession profession) {
         if (antiProfession == null) {
             return false;
@@ -214,32 +176,21 @@ public class Item extends Prop implements Equipable, Msgable {
     @Override
     public String toString() {
         return "Item{" +
-                "_action='" + _action + '\'' +
-                ", _type='" + _type + '\'' +
-                ", _effects='" + _effects + '\'' +
-                ", _wear=" + _wear +
-                ", _weight=" + _weight +
-                ", _cost=" + _cost +
-                ", _someMoneyCost=" + _someMoneyCost +
-                ", _rent=" + _rent +
-                ", _worn=" + _worn +
-                ", _size=" + _size +
-                ", _damagedPercentage=" + _damagedPercentage +
+                "_action='" + action + '\'' +
+                ", _type='" + type + '\'' +
+                ", _effects='" + effects + '\'' +
+                ", _wear=" + wear +
+                ", _weight=" + weight +
+                ", _cost=" + cost +
+                ", _someMoneyCost=" + someMoneyCost +
+                ", _rent=" + rent +
+                ", _worn=" + worn +
+                ", _size=" + size +
+                ", _damagedPercentage=" + damagedPercentage +
                 ", apb=" + apb +
-                ", isClimbing=" + isClimbing +
-                ", isShopSupplied=" + isShopSupplied +
                 ", loadPercentage=" + loadPercentage +
-                ", isNoDrop=" + isNoDrop +
-                ", isNoRemove=" + isNoRemove +
-                ", isNoBank=" + isNoBank +
-                ", isNoDonate=" + isNoDonate +
-                ", isNoInvisible=" + isNoInvisible +
                 ", antiProfession=" + antiProfession +
-                ", isAntiGood=" + isAntiGood +
-                ", isAntiEvil=" + isAntiEvil +
-                ", isBoat=" + isBoat +
                 ", roomId='" + roomId + '\'' +
-                ", magic=" + magic +
                 ", hitRoll=" + hitRoll +
                 ", damageRoll=" + damageRoll +
                 ", saveType=" + saveType +
@@ -249,22 +200,6 @@ public class Item extends Prop implements Equipable, Msgable {
                 ", move=" + move +
                 ", disease=" + disease +
                 '}';
-    }
-
-    public boolean isNoBank() {
-        return isNoBank;
-    }
-
-    public void setNoBank(boolean noBank) {
-        isNoBank = noBank;
-    }
-
-    public boolean isNoRemove() {
-        return isNoRemove;
-    }
-
-    public void setNoRemove(boolean noRemove) {
-        isNoRemove = noRemove;
     }
 
     public int getAPB() {
@@ -277,44 +212,28 @@ public class Item extends Prop implements Equipable, Msgable {
 
     @Override
     public void increaseDamage() {
-        this._damagedPercentage++;
-        if (_damagedPercentage > 99) {
-            _damagedPercentage = 100;
+        this.damagedPercentage++;
+        if (damagedPercentage > 99) {
+            damagedPercentage = 100;
         }
     }
 
     @Override
     public int getDamagedPercentage() {
-        return _damagedPercentage;
+        return damagedPercentage;
     }
 
     public void setDamagedPercentage(int damagedPercentage) {
-        this._damagedPercentage = damagedPercentage;
-    }
-
-    public boolean isClimbing() {
-        return isClimbing;
-    }
-
-    public void setClimbing(boolean climbing) {
-        isClimbing = climbing;
-    }
-
-    public boolean isShopSupplied() {
-        return isShopSupplied;
-    }
-
-    public void setShopSupplied(boolean shopSupplied) {
-        isShopSupplied = shopSupplied;
+        this.damagedPercentage = damagedPercentage;
     }
 
     @Override
     public int compareTo(Object o) {
         Item item = (Item) o;
-        if (_worn == item._worn) {
+        if (worn == item.worn) {
             return 0;
         }
-        if (_worn < item._worn) {
+        if (worn < item.worn) {
             return -1;
         }
         return 1;
@@ -350,37 +269,37 @@ public class Item extends Prop implements Equipable, Msgable {
     }
 
     public int getSize() {
-        return _size;
+        return size;
     }
 
     public void setSize(int size_) {
-        _size = size_;
+        size = size_;
     }
 
     public String getType() {
-        return _type;
+        return type;
     }
 
     public void setType(String type_) {
-        this._type = type_;
+        this.type = type_;
     }
 
     @Override
     public List<Integer> getWear() {
-        if (_wear == null) {
+        if (wear == null) {
             return Collections.emptyList();
         }
-        return _wear;
+        return wear;
     }
 
     // HEAD NECK for a scarf
     public void setWear(String wear_) {
-        this._wear = new ArrayList<Integer>(1);
+        this.wear = new ArrayList<>(1);
 
         for (String loc : wear_.split(" ")) {
             EquipLocation eqLoc = EquipLocation.valueOf(loc);
             if (eqLoc != null) {
-                _wear.add(eqLoc.ordinal());
+                wear.add(eqLoc.ordinal());
             } else {
                 LOGGER.warn("Item location = " + loc + " not known!");
             }
@@ -389,7 +308,7 @@ public class Item extends Prop implements Equipable, Msgable {
 
     @Override
     public int getWorn() {
-        return _worn;
+        return worn;
     }
 
     public boolean isKey() {
@@ -406,37 +325,37 @@ public class Item extends Prop implements Equipable, Msgable {
     }
 
     public void setAction(String action_) {
-        this._action = action_;
+        this.action = action_;
     }
 
     public void setEffects(String effects_) {
-        this._effects = effects_;
+        this.effects = effects_;
     }
 
     public void setRent(int rent_) {
-        this._rent = rent_;
+        this.rent = rent_;
     }
 
     @Override
     public boolean setWorn(int worn_) {
-        _worn = worn_;
+        worn = worn_;
         return true;
     }
 
 
     public boolean isButcherable() {
-        if(_type == null) {
+        if(type == null) {
             return false;
         }
-        return (_type.contains("BUTCHERABLE"));
+        return (type.contains("BUTCHERABLE"));
     }
 
     public int getWeight() {
-        return _weight;
+        return weight;
     }
 
     public void setWeight(int weight_) {
-        this._weight = weight_;
+        this.weight = weight_;
     }
 
     public boolean isCorpse() {
@@ -444,10 +363,10 @@ public class Item extends Prop implements Equipable, Msgable {
     }
 
     public boolean isShield() {
-        if (_type == null) {
+        if (type == null) {
             return false;
         }
-        return (_type.indexOf("SHIELD") != -1);
+        return (type.contains("SHIELD"));
     }
 
     public boolean isRecitable() {
@@ -459,13 +378,13 @@ public class Item extends Prop implements Equipable, Msgable {
     }
 
     public SomeMoney getCost() {
-        return _someMoneyCost;
+        return someMoneyCost;
 
     }
 
     public void setCost(int cost_) {
-        this._cost = cost_;
-        _someMoneyCost = new Money(Money.COPPER, _cost);
+        this.cost = cost_;
+        someMoneyCost = new Money(Money.COPPER, cost);
     }
 
     public void setLoadPercentage(int loadPercentage) {
@@ -476,22 +395,10 @@ public class Item extends Prop implements Equipable, Msgable {
         return DiceRoll.ONE_D100.rollLessThanOrEqualTo(loadPercentage);
     }
 
-    public boolean isNoDrop() {
-        return isNoDrop;
-    }
-
-    public void setNoDrop(boolean noDrop) {
-        isNoDrop = noDrop;
-    }
-
     public void setInvisible(boolean flag) {
-        if (!isNoInvisible) {
+        if (!hasItemEnum(ItemEnum.NO_INVISIBLE)) {
             super.setInvisible(flag);
         }
-    }
-
-    public void setMagic(boolean magic) {
-        this.magic = magic;
     }
 
     @Override
@@ -503,8 +410,12 @@ public class Item extends Prop implements Equipable, Msgable {
 
     public boolean isCorrectSize(int mobSize) {
         if (this instanceof Armour) {
-            return (Math.abs(_size - mobSize) / mobSize) <= 0.1;
+            return ((double) Math.abs(size - mobSize) / mobSize) <= 0.1;
         }
         return true;
+    }
+
+    public void removeItemEnum(ItemEnum itemEnum) {
+        enumItemSet.remove(itemEnum);
     }
 }

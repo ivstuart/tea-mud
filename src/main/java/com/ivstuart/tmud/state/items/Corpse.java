@@ -36,7 +36,8 @@ public class Corpse extends Item {
             "a short while ago",
             "a while ago",
             "ages ago"};
-    protected Inventory _inventory;
+
+    protected Inventory inventory;
     private String whoKilledMe;
     private long whenKilled;
 
@@ -49,17 +50,17 @@ public class Corpse extends Item {
 
         List<Equipable> eq = mob_.getEquipment().removeAll();
 
-        _inventory = new Inventory(mob_.getInventory());
+        inventory = new Inventory(mob_.getInventory());
 
         mob_.getInventory().clear();
 
         for (Equipable item : eq) {
-            _inventory.add((Item) item);
+            inventory.add((Item) item);
         }
 
         SomeMoney money = new Money(Money.COPPER, mob_.getCopper());
 
-        _inventory.getPurse().add(money);
+        inventory.getPurse().add(money);
 
     }
 
@@ -68,19 +69,19 @@ public class Corpse extends Item {
     }
 
     public Inventory getInventory() {
-        if (_inventory == null) {
-            _inventory = new Inventory();
+        if (inventory == null) {
+            inventory = new Inventory();
         }
-        return _inventory;
+        return inventory;
     }
 
     @Override
     public String getLook() {
 
-        if (_inventory == null || _inventory.isEmpty()) {
+        if (inventory == null || inventory.isEmpty()) {
             return super.toString();
         } else {
-            return super.toString() + "\n" + _inventory.toString();
+            return super.toString() + "\n" + inventory.toString();
         }
 
     }

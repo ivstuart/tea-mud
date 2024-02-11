@@ -21,10 +21,8 @@ import com.ivstuart.tmud.common.Equipable;
 import com.ivstuart.tmud.constants.DamageType;
 import com.ivstuart.tmud.constants.EquipLocation;
 import com.ivstuart.tmud.person.statistics.affects.Affect;
-import com.ivstuart.tmud.state.items.Armour;
-import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.items.*;
 import com.ivstuart.tmud.state.mobs.Mob;
-import com.ivstuart.tmud.state.items.Weapon;
 import com.ivstuart.tmud.utils.MudArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -170,8 +168,12 @@ public class Equipment implements Serializable {
         // basis?
         Armour totalArmour = new Armour();
         for (Equipable eq : _equipment) {
+            // @Deprecated
             if (eq instanceof Armour) {
                 totalArmour.add((Armour) eq);
+            }
+            if (eq instanceof BasicArmour) {
+                totalArmour.add((BasicArmour) eq);
             }
         }
 
@@ -322,7 +324,7 @@ public class Equipment implements Serializable {
         for (Equipable eq : _equipment) {
             Item item = (Item) eq;
             if (item.getWorn() == FEET.ordinal()) {
-                return item.isClimbing();
+                return item.hasItemEnum(ItemEnum.CLIMBING);
             }
         }
 

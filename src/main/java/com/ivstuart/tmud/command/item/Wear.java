@@ -19,11 +19,15 @@ package com.ivstuart.tmud.command.item;
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.constants.EquipLocation;
 import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.items.ItemEnum;
 import com.ivstuart.tmud.state.mobs.Mob;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Iterator;
+
+import static com.ivstuart.tmud.state.items.ItemEnum.ANTI_EVIL;
+import static com.ivstuart.tmud.state.items.ItemEnum.ANTI_GOOD;
 
 /**
  * @author stuarti
@@ -100,12 +104,12 @@ public class Wear extends BaseCommand {
             return;
         }
 
-        if (item.isAntiGood() && mob.isGood()) {
+        if (item.hasItemEnum(ANTI_GOOD) && mob.isGood()) {
             mob.out("You can not wear this item it is anti good");
             return;
         }
 
-        if (item.isAntiEvil() && !mob.isGood()) {
+        if (item.hasItemEnum(ANTI_EVIL) && !mob.isGood()) {
             mob.out("You can not wear this item it is anti evil");
             return;
         }

@@ -18,6 +18,7 @@
 package com.ivstuart.tmud.person.carried;
 
 import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.items.ItemEnum;
 import com.ivstuart.tmud.state.items.Torch;
 import com.ivstuart.tmud.utils.MudArrayList;
 import org.apache.logging.log4j.LogManager;
@@ -142,7 +143,7 @@ public class Inventory implements Serializable {
 
     public boolean hasBoat() {
         for (Item item : items) {
-            if (item.isBoat()) {
+            if (item.hasItemEnum(ItemEnum.BOAT)) {
                 return true;
             }
 

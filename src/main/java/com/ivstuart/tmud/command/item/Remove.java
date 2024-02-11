@@ -19,6 +19,7 @@ package com.ivstuart.tmud.command.item;
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.common.Equipable;
 import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.items.ItemEnum;
 import com.ivstuart.tmud.state.mobs.Mob;
 
 import java.util.List;
@@ -46,7 +47,7 @@ public class Remove extends BaseCommand {
             return;
         }
 
-        if (item.isNoRemove()) {
+        if (item.hasItemEnum(ItemEnum.NO_REMOVE)) {
             mob.getEquipment().add(item);
             mob.out("This item is cursed and will not be removed");
             return;

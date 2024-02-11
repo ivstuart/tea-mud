@@ -69,8 +69,8 @@ public class StealTest {
         // have test resource file to load in a mob sheep and mob player
         // test files.
         Mob sheepMob = new Mob();
-        sheepMob.setNameAndId("sheep");
-        sheepMob.setAlias("sheep");
+        sheepMob.setNameAndId("gnome");
+        sheepMob.setAlias("gnome");
         sheepMob.setHp("2d10+50");
 
         SomeMoney cash = new Money(Money.COPPER, 100);
@@ -81,7 +81,7 @@ public class StealTest {
         whiteRoom.add(sheepMob);
         whiteRoom.add(player1Mob);
 
-        assertTrue("Check sheep has cash", sheepMob.getInventory().getPurse().getValue() > 0);
+        assertTrue("Check gnome has cash", sheepMob.getInventory().getPurse().getValue() > 0);
 
         // Bash
         Command steal = new Steal();

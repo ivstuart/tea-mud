@@ -19,6 +19,7 @@ package com.ivstuart.tmud.command.item.bank;
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.items.ItemEnum;
 import com.ivstuart.tmud.state.mobs.Mob;
 
 /**
@@ -50,7 +51,7 @@ public class Deposit extends BaseCommand {
             return;
         }
 
-        if (item.isNoBank()) {
+        if (item.hasItemEnum(ItemEnum.NO_BANK)) {
             mob.out("The bank will not accept these items");
             return;
         }

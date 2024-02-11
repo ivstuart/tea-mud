@@ -17,6 +17,7 @@
 package com.ivstuart.tmud.spells;
 
 import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.items.ItemEnum;
 import com.ivstuart.tmud.state.mobs.Mob;
 import com.ivstuart.tmud.state.skills.Spell;
 import com.ivstuart.tmud.state.items.Weapon;
@@ -30,7 +31,7 @@ public class EnchantWeapon implements SpellEffect {
             caster_.out("That item " + targetItem.getName() + " is not a weapon and hence can not be enchanted");
             return;
         }
-        targetItem.setMagic(true);
+        targetItem.setItemEnum(ItemEnum.MAGIC);
         caster_.out("You enchant that item");
     }
 

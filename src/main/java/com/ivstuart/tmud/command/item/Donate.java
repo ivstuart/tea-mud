@@ -20,6 +20,7 @@ import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.state.items.Corpse;
 import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.items.ItemEnum;
 import com.ivstuart.tmud.state.items.Prop;
 import com.ivstuart.tmud.state.mobs.Mob;
 import com.ivstuart.tmud.state.places.Room;
@@ -92,7 +93,7 @@ public class Donate extends BaseCommand {
             return;
         }
 
-        if (anItem.isNoDonate()) {
+        if (anItem.hasItemEnum(ItemEnum.NO_DONATE)) {
             mob.out("Can not not donate this item its flagged as no donation");
             items.add(anItem);
             return;

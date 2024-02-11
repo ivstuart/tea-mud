@@ -18,10 +18,15 @@ package com.ivstuart.tmud.poc.item;
 
 public enum MaterialEnum {
 
+    WOOL,
     CLOTH,
+    SILK,
     FUR,
     LEATHER,
-    METAL,
+    RUSTY,
+    COPPER,
+    BRONZE,
+    IRON,
     STEEL,
     MITHRIL
 }

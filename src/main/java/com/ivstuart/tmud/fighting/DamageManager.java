@@ -27,16 +27,13 @@ import com.ivstuart.tmud.common.Msg;
 import com.ivstuart.tmud.constants.DamageConstants;
 import com.ivstuart.tmud.constants.DamageType;
 import com.ivstuart.tmud.constants.SkillNames;
-import com.ivstuart.tmud.state.items.Prop;
+import com.ivstuart.tmud.state.items.*;
 import com.ivstuart.tmud.state.mobs.Ability;
 import com.ivstuart.tmud.person.carried.Money;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.person.config.ConfigEnum;
 import com.ivstuart.tmud.person.statistics.affects.Affect;
 import com.ivstuart.tmud.person.statistics.diseases.Disease;
-import com.ivstuart.tmud.state.items.Armour;
-import com.ivstuart.tmud.state.items.Corpse;
-import com.ivstuart.tmud.state.items.Item;
 import com.ivstuart.tmud.state.mobs.Mob;
 import com.ivstuart.tmud.state.mobs.MobEnum;
 import com.ivstuart.tmud.state.places.Room;
@@ -341,7 +338,9 @@ public class DamageManager {
                 } else {
                     // Add mob to list of the dead ready for repopulation after a
                     // timer.
-                    WorldTime.scheduleMobForRepopulation(defender);
+
+                    // TODO remove this code
+                    // WorldTime.scheduleMobForRepopulation(defender);
 
                     // Award xp to killing mob.
                     int xp = defender.getXp();
@@ -501,7 +500,7 @@ public class DamageManager {
 
         for (Equipable eq : equipables) {
             Item item = (Item) eq;
-            if (item.isNoDrop()) {
+            if (item.hasItemEnum(ItemEnum.NO_DROP)) {
                 // defender.getInventory().add(item);
                 defender.getEquipment().add(item);
             } else {

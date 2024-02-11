@@ -22,26 +22,30 @@ import com.ivstuart.tmud.state.items.Weapon;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.ivstuart.tmud.poc.item.WeaponSkillEnum.*;
+
 public class WeaponProvider {
 
     private static final List<Item> list = new ArrayList<>();
 
     public static void populateList() {
-        createWeapon("wand","1d6",1, "casting");
-        createWeapon("staff","2d4",3, "crushing");
-        createWeapon("dagger","1d4",1, "piercing");
-        createWeapon("spear","1d6",2, "piercing");
-        createWeapon("sword","1d6+1",3, "slashing");
-        createWeapon("axe","1d8",4, "chopping");
-        createWeapon("club","1d4+1",2, "crushing");
-        createWeapon("mace","1d6",3, "crushing");
-        createWeapon("flail","1d6",3, "crushing");
-        createWeapon("morning star","1d6",4, "crushing");
-        createWeapon("bow","1d6",1, "ranged");
-        createWeapon("whip","1d6",1, "whipping");
+        createWeapon("wand","1d6",1, CASTING);
+        createWeapon("staff","2d4",3, CRUSHING);
+
+        createWeapon("dagger","1d4",1, PIERCING);
+
+        createWeapon("spear","1d6",2, PIERCING);
+        createWeapon("sword","1d6+1",3, SLASHING);
+        createWeapon("axe","1d8",4, CHOPPING);
+        createWeapon("club","1d4+1",2, CRUSHING);
+        createWeapon("mace","1d6",3, CRUSHING);
+        createWeapon("flail","1d6",3, CRUSHING);
+        createWeapon("morning star","1d6",4, CRUSHING);
+        createWeapon("bow","1d6",1, RANGED);
+        createWeapon("whip","1d6",1, WHIPPING);
     }
 
-    private static void createWeapon(String description, String damage, int weight, String skill) {
+    private static void createWeapon(String description, String damage, int weight, WeaponSkillEnum skill) {
         Weapon weapon = new Weapon();
         weapon.setId(description);
         weapon.setAlias(description);
@@ -53,7 +57,7 @@ public class WeaponProvider {
         weapon.setRent(5);
 
         weapon.setDamage(damage);
-        weapon.setSkill(skill);
+        weapon.setSkill(skill.toString());
 
         list.add(weapon);
     }

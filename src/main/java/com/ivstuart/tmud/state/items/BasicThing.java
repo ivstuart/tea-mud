@@ -45,15 +45,15 @@ public class BasicThing implements Serializable, Cloneable, Msgable {
     }
 
     public BasicThing(BasicThing thing_) {
-        id = thing_.id;
-        brief = thing_.brief;
-        verbose = thing_.verbose;
-        look = thing_.look;
-        properties = thing_.properties;
-        hidden = thing_.hidden;
-        invisible = thing_.invisible;
-        detectInvisible = false;
-        detectHidden = false;
+        this.id = thing_.id;
+        this.brief = thing_.brief;
+        this.verbose = thing_.verbose;
+        this.look = thing_.look;
+        this.properties = thing_.properties;
+        this.hidden = thing_.hidden;
+        this.invisible = thing_.invisible;
+        this.detectInvisible = false;
+        this.detectHidden = false;
     }
 
     public String getProperties() {

@@ -16,13 +16,11 @@
 
 package com.ivstuart.tmud.state.items;
 
-import com.ivstuart.tmud.state.items.Item;
-
 public class Food extends Item {
 
     private static final long serialVersionUID = -6124978537993047365L;
 
-    private int _portions = 2;
+    private int portions = 2;
     private boolean isCookable;
     private boolean isSaltable;
 
@@ -47,18 +45,18 @@ public class Food extends Item {
     }
 
     public void eat() {
-        _portions--;
+        portions--;
     }
 
     public int getPortions() {
-        return _portions;
+        return portions;
     }
 
     public void setPortions(int drafts_) {
-        _portions = drafts_;
+        portions = drafts_;
     }
 
     public void setNumberPortions(int drafts_) {
-        _portions = drafts_;
+        portions = drafts_;
     }
 }

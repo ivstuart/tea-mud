@@ -16,51 +16,59 @@
 
 package com.ivstuart.tmud.constants;
 
+import com.ivstuart.tmud.state.items.Armour;
+
 /**
  * @author Ivan Stuart
  */
 public enum EquipLocation {
-    AURA(1, "part of your aura"),
-    FLOAT_NEAR(1, "floating nearby"),
-    HEAD(1, "worn on head"),
-    EAR(2, "worn on the ear"),
-    EYES(1, "worn on eyes"),
-    FACE(1, "worn on face"),
-    NECK(2, "worn on neck"),
-    SHOULDER(2, "worn on shoulder"),
-    ABOUT_BODY(1, "worn about body"),
-    BODY(1, "worn on body"),
-    ARMS(1, "worn on arms"),
-    WRIST(2, "worn on wrist"),
-    HANDS(1, "worn on hands"),
-    FINGER(3, "worn on finger"),
-    PRIMARY(1, "primary hand"),
-    SECONDARY(1, "secondary hand"),
-    BOTH(1, "both hands"),
-    WAIST(1, "worn around waist"),
-    BELT(2, "thru belt"),
-    LEGS(1, "worn on legs"),
-    ANKLE(2, "worn on ankle"),
-    FEET(1, "worn on feet");
+    AURA(1, "part of your aura", Armour.ALL),
+    FLOAT_NEAR(1, "floating nearby", Armour.ALL),
+    HEAD(1, "worn on head", Armour.HEAD),
+    EAR(2, "worn on the ear", Armour.HEAD),
+    EYES(1, "worn on eyes", Armour.HEAD),
+    FACE(1, "worn on face", Armour.HEAD),
+    NECK(2, "worn on neck", Armour.HEAD),
+    SHOULDER(2, "worn on shoulder", Armour.BODY),
+    ABOUT_BODY(1, "worn about body", Armour.BODY),
+    BODY(1, "worn on body", Armour.BODY),
+    ARMS(1, "worn on arms", Armour.ARMS),
+    WRIST(2, "worn on wrist", Armour.ARMS),
+    HANDS(1, "worn on hands", Armour.ARMS),
+    FINGER(3, "worn on finger", Armour.ARMS),
+    PRIMARY(1, "primary hand", Armour.ALL),
+    SECONDARY(1, "secondary hand", Armour.ALL),
+    BOTH(1, "both hands", Armour.ARMS),
+    WAIST(1, "worn around waist", Armour.WAIST),
+    BELT(2, "thru belt", Armour.WAIST),
+    LEGS(1, "worn on legs", Armour.LEGS),
+    ANKLE(2, "worn on ankle", Armour.LEGS),
+    FEET(1, "worn on feet", Armour.FEET);
 
-    private final int _capacity;
-    private final String _description;
+    private final int capacity;
+    private final String description;
 
-    EquipLocation(int capacity_, String description_) {
-        _capacity = capacity_;
-        _description = description_;
+    private final int slot;
+
+    EquipLocation(int capacity, String description, int slot) {
+        this.capacity = capacity;
+        this.description = description;
+        this.slot = slot;
     }
 
-    public static int getCapacity(int oridinal) {
-        return values()[oridinal].getCapacity();
+    public static int getCapacity(int ordinal) {
+        return values()[ordinal].getCapacity();
     }
 
     public int getCapacity() {
-        return _capacity;
+        return capacity;
     }
 
     public String getDesc() {
-        return _description;
+        return description;
     }
 
+    public int getSlot() {
+        return slot;
+    }
 }

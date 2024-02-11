@@ -25,6 +25,8 @@ import com.ivstuart.tmud.state.mobs.Ability;
 import com.ivstuart.tmud.state.items.Item;
 import com.ivstuart.tmud.state.mobs.Mob;
 import com.ivstuart.tmud.state.mobs.MobEnum;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import static com.ivstuart.tmud.constants.SkillNames.STEAL;
 
@@ -35,6 +37,8 @@ import static com.ivstuart.tmud.constants.SkillNames.STEAL;
  * Window>Preferences>Java>Code Generation>Code and Comments
  */
 public class Steal extends BaseCommand {
+
+    private static final Logger LOGGER = LogManager.getLogger();
 
     /*
      * Secondary action?
@@ -83,6 +87,8 @@ public class Steal extends BaseCommand {
             int available = target.getInventory().getPurse().getValue();
 
             int taken = Math.min(amount, available);
+
+            LOGGER.debug("Stealing amount:"+amount+" from available:"+available);
 
             Money money = new Money(Money.COPPER, taken);
 

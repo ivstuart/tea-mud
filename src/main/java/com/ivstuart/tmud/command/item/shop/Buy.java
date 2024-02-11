@@ -19,6 +19,7 @@ package com.ivstuart.tmud.command.item.shop;
 import com.ivstuart.tmud.command.BaseCommand;
 import com.ivstuart.tmud.person.carried.SomeMoney;
 import com.ivstuart.tmud.state.items.Item;
+import com.ivstuart.tmud.state.items.ItemEnum;
 import com.ivstuart.tmud.state.mobs.Mob;
 import com.ivstuart.tmud.state.mobs.ShopKeeper;
 import com.ivstuart.tmud.state.util.EntityProvider;
@@ -76,13 +77,13 @@ public class Buy extends BaseCommand {
         shopKeeper.getInventory().add(cost);
 
         // Infinite supply of items flag
-        if (!item.isShopSupplied()) {
+        if (!item.hasItemEnum(ItemEnum.SHOP)) {
             shopKeeper.getInventory().remove(item);
         } else {
             item = EntityProvider.createItem(item.getId());
         }
 
-        item.setShopSupplied(false);
+        item.removeItemEnum(ItemEnum.SHOP);
 
         mob.getInventory().add(item);
 

@@ -17,6 +17,7 @@
 package com.ivstuart.tmud.state.items;
 
 import com.ivstuart.tmud.common.DiceRoll;
+import com.ivstuart.tmud.constants.EquipLocation;
 
 import java.util.Arrays;
 
@@ -24,13 +25,13 @@ public class Armour extends Item {
 
     private static final long serialVersionUID = 1L;
 
-    private static final int HEAD = 0;
-    private static final int BODY = 1;
-    private static final int ARMS = 2;
-    private static final int WAIST = 3;
-    private static final int LEGS = 4;
-    private static final int FEET = 5;
-    private static final int ALL = 6;
+    public static final int HEAD = 0;
+    public static final int BODY = 1;
+    public static final int ARMS = 2;
+    public static final int WAIST = 3;
+    public static final int LEGS = 4;
+    public static final int FEET = 5;
+    public static final int ALL = 6;
 
     private final int[] slots = new int[6];
 
@@ -112,5 +113,12 @@ public class Armour extends Item {
         return "Armour{" +
                 "slots=" + Arrays.toString(slots) +
                 '}';
+    }
+
+    public void add(BasicArmour eq) {
+
+        int slotIndex = EquipLocation.values()[eq.getWorn()].getSlot();
+
+        slots[slotIndex] += eq.getArmourFactor();
     }
 }

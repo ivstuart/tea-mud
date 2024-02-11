@@ -14,9 +14,26 @@
  *  limitations under the License.
  */
 
-package com.ivstuart.tmud.poc.item;
+package com.ivstuart.tmud.state.items;
 
-public enum WeaponSkillEnum {
+public class BasicArmour extends Item {
 
-    SLASHING, PIERCING, CRUSHING, CHOPPING, THRUSTING, WHIPPING, RANGED, CASTING
+    private static final long serialVersionUID = 1L;
+
+    private final int armourFactor;
+
+    public BasicArmour(int armourFactor) {
+        this.armourFactor = armourFactor;
+    }
+
+    public int getArmourFactor() {
+        return armourFactor * ((100 - super.damagedPercentage) / 100);
+    }
+
+    @Override
+    public String toString() {
+        return "BasicArmour{" +
+                "armourFactor=" + armourFactor +
+                '}'+ super.toString();
+    }
 }
