@@ -32,7 +32,6 @@ import com.ivstuart.tmud.state.mobs.Mob;
 import com.ivstuart.tmud.state.places.Room;
 import com.ivstuart.tmud.state.places.RoomBuilder;
 import com.ivstuart.tmud.state.places.RoomLocation;
-import com.ivstuart.tmud.state.places.Zone;
 import com.ivstuart.tmud.state.player.Race;
 import com.ivstuart.tmud.state.setup.ItemProvider;
 import com.ivstuart.tmud.state.setup.RaceProvider;
@@ -54,8 +53,6 @@ public class World {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final World INSTANCE = new World();
     private static Map<String, Tickable> tickers;
-    @Deprecated
-    private static Map<String, Zone> zones;
     private static Map<RoomLocation, Room> rooms;
     private static Map<String, Mob> mobs;
     private static Map<String, Item> items;
@@ -72,7 +69,6 @@ public class World {
 
     private World() {
         tickers = new HashMap<>();
-        zones = new HashMap<>();
         rooms = new HashMap<>();
         mobs = new HashMap<>();
         items = new HashMap<>();
@@ -153,12 +149,6 @@ public class World {
     public static void add(Spell spell) {
         LOGGER.info("Adding spell [" + spell.getId() + "]");
         spells.put(spell.getId(), spell);
-    }
-
-    @Deprecated
-    public static void add(Zone zone) {
-        LOGGER.debug("Adding zone [" + zone.getId() + "]");
-        zones.put(zone.getId(), zone);
     }
 
     public static void addPlayer(Mob character) throws MudException {
@@ -356,15 +346,7 @@ public class World {
         if (object != null) {
             return object;
         }
-        object = rooms.remove(input);
-        if (object != null) {
-            return object;
-        }
         object = items.remove(input);
-        if (object != null) {
-            return object;
-        }
-        object = zones.remove(input);
         if (object != null) {
             return object;
         }
@@ -394,11 +376,6 @@ public class World {
 
     public static void addToWorld(Object object) {
 
-//        if (object instanceof Room) {
-//            World.add(new RoomLocation(0,0,0), (Room) object);
-//            return;
-//        }
-
         if (object instanceof GuardMob) {
             World.add((GuardMob) object);
             return;
@@ -415,11 +392,6 @@ public class World {
 
         if (object instanceof Item) {
             World.add((Item) object);
-            return;
-        }
-
-        if (object instanceof Zone) {
-            World.add((Zone) object);
             return;
         }
 
@@ -469,11 +441,6 @@ public class World {
         rooms.put(root.getRoomLocation(), root);
     }
 
-    @Deprecated
-    public static Room getRoom(String element) {
-        LOGGER.warn("Old code used to get a Room!");
-        return World.getRoom(RoomLocation.PORTAL_GOOD);
-    }
 
     private void startTime() {
 

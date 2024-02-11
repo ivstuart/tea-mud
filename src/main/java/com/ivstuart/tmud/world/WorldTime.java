@@ -131,6 +131,7 @@ public class WorldTime implements Runnable {
         repopulateMobs(false);
     }
 
+    @Deprecated
     public void repopulateMobs(boolean forceRepop) {
         for (Iterator<DeadMob> iter = deadMobs.iterator(); iter.hasNext(); ) {
             DeadMob deadMob = iter.next();

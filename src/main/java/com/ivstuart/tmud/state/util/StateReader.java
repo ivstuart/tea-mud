@@ -54,7 +54,7 @@ public class StateReader {
 
 
         if (entity instanceof Room) {
-            return World.getRoom(id).clone();
+            return new Room((Room)entity);
         }
 
         // Note use reflection for Mobs
@@ -101,11 +101,8 @@ public class StateReader {
         }
 
         if (currentClass.equals("state.places.Room")) {
-            Room room = World.getRoom(args);
-            if (room != null) {
-                LOGGER.info("Editing an existing object again:" + args);
-                return room;
-            }
+            LOGGER.error("Room state not loaded from StateReader!");
+            return null;
         }
 
 
